@@ -1,0 +1,1 @@
+enum AppFlavors {prod, stg}

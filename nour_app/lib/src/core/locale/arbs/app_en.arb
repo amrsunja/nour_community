@@ -1,0 +1,57 @@
+{
+	"appLanguage": "English",
+
+	"l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+
+
+	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "settings_app": "Settings",
+  "settings_general": "General",
+  "settings_language": "Language",
+  "settings_language_info": "Select your preferred language for the application interface.",
+
+  "settings_theme": "Theme",
+  "settings_theme_system": "System",
+  "settings_theme_light": "Light",
+  "settings_theme_dark": "Dark",
+  "settings_theme_info": "Select your preferred theme for the application interface.",
+
+  "settings_term_of_use": "Terms of Use",
+  "settings_privacy_policy": "Privacy Policy",
+  "settings_support": "Contact Support",
+  "settings_delete_all_data": "Delete All Data",
+  "settings_delete_all_data_warning": "This action is irreversible and will delete all your tracking data from this device.",
+
+
+	"l10nAbout": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ABOUT ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "about": "About",
+  "about_project": "About the Project",
+
+
+	"l10nWarning": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ WARNING ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "warning_are_you_sure": "Are you sure?",
+
+
+	"l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"success_all_data_deleted": "All your progress data has been successfully deleted from this device!",
+
+
+	"l10nErrors": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"error_db_failure": "DB Error",
+	"error_unknown": "Something went wrong. Please try again.",
+  "error_server_failure": "Something went wrong. Please check your internet connection",
+
+	"l10nOnboarding": "☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠",
+	"onboarding": "Onboarding",
+	"onboarding_skip": "Skip",
+	"onboarding_next": "Next",
+	"onboarding_start": "Get started",
+	"onboarding_screen_1_title": "Welcome to Sawm",
+	"onboarding_screen_1_description": "Screen 1 desc",
+	"onboarding_screen_2_title": "Screen 2 title",
+	"onboarding_screen_2_description": "Screen 2 desc",
+	"onboarding_screen_3_title": "Screen 3 title",
+	"onboarding_screen_3_description": "Screen 3 desc",
+
+  "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
+}
