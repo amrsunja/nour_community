@@ -66,11 +66,6 @@ class AppRouter extends RootStackRouter {
           guards: [authGuard],
           children: [
             AutoRoute(
-              path: '',
-              page: AgentChatRoute.page,
-            ),
-
-            AutoRoute(
               path: RoutePaths.settings,
               page: SettingsRoute.page,
             ),
