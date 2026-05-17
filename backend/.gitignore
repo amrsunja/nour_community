@@ -1,0 +1,13 @@
+# Supabase CLI
+supabase/.branches
+supabase/.temp
+supabase/.env
+supabase/.env.local
+supabase/functions/**/.env
+
+# Local credentials
+.env
+.env.local
+
+# OS
+.DS_Store
