@@ -12,7 +12,6 @@ export 'src/tokens/icons/ui_icons_token.dart';
 export 'src/tokens/borders/ui_borders_token.dart';
 
 
-//--------------------- ATOMS ---------------------
-
-
-//--------------------- MOLECULES ---------------------
+//--------------------- COMPONENTS ---------------------
+export 'src/components/ui_tap.dart';
+export 'src/components/ui_button.dart';
