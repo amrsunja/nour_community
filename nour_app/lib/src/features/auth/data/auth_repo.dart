@@ -21,11 +21,16 @@ class AuthRepo {
     required this.remoteDatasource
   });
 
-  Future<SuccessOrError<bool>> isAuthorized() async {
-    throw UnimplementedError();
-		//return await Failure.exceptionsCatcher<void>(() async {
-      //throw UnimplementedError();
-		//});
+  Future<SuccessOrError<void>> signInAnonymously() async {
+		return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.signInAnonymously();
+		});
+  }
+
+  Future<SuccessOrError<bool>> isAuthenticated() async {
+		return await Failure.exceptionsCatcher(() async {
+      return remoteDatasource.isAuthenticated();
+		});
   }
 
   Future<SuccessOrError<void>> signIn() async {

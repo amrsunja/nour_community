@@ -13,7 +13,10 @@ class RootPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final initFuture = useMemoized(() async {
-      await ref.read(authProvider.notifier).isAuthorized();
+      // Delay for logo animation
+      await Future.delayed(Duration(seconds: 3));
+
+      await ref.read(authProvider.notifier).authorization();
     });
 
     return FutureBuilder(

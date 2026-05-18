@@ -2,6 +2,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
+import 'package:nour/src/core/utils/state_management/single_events.dart';
+import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../../data/auth_repo.dart';
 import 'auth_state.dart';
@@ -28,11 +31,46 @@ class AuthPresenter extends Presenter<AuthState> {
     required this.ref,
   }) : super(AuthState(
       isLoading: false,
-      isAuthorized: false,
+      isAuthenticated: false,
     ));
 
-  Future<void> isAuthorized() async {
-    throw UnimplementedError();
+  Future<bool> signInAnonymously() async {
+    final response = await repo.signInAnonymously();
+
+    return response.when(
+      (s) async {
+        talker.info('Signed in anonime session');
+        return true;
+      },
+      (error) {
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      }
+    );
+  }
+
+  Future<void> authorization() async {
+    final response = await repo.isAuthenticated();
+
+    await response.when(
+      (s) async {
+        if (!s) {
+          final r1 = await signInAnonymously();
+
+          if (!r1) return ;
+        }
+
+        final r2 = await ref.read(profileProvider.notifier).initProfile();
+
+        if (!r2) return ;
+
+        state = state.copyWith(isAuthenticated: true);
+      },
+      (error) {
+        appEvents.send(ShowErrorEvent(error));
+        state = state.copyWith(isAuthenticated: false);
+      }
+    );
   }
 
   Future<void> signIn() async {

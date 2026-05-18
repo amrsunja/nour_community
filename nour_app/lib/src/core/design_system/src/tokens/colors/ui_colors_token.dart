@@ -2,17 +2,21 @@ import 'package:flutter/widgets.dart';
 
 class UIColorsToken {
   final Color bgColor;
+  final Color iconColor;
 
   const UIColorsToken({
-      required this.bgColor
+      required this.bgColor,
+      required this.iconColor,
     });
 
   factory UIColorsToken.light() => UIColorsToken(
     bgColor: Color(0xffffffff),
+    iconColor: Color(0xff000000),
   );
 
   factory UIColorsToken.dark() => UIColorsToken(
     bgColor: Color(0x00000000),
+    iconColor: Color(0x00ffffff),
   );
 
   static const Color shadow = Color(0xff0A0D12);

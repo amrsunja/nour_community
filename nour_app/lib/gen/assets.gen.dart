@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/check.svg
+  String get check => 'assets/icons/check.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -35,8 +38,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/unmute.svg
   String get unmute => 'assets/icons/unmute.svg';
 
+  /// File path: assets/icons/x.svg
+  String get x => 'assets/icons/x.svg';
+
   /// List of all assets
   List<String> get values => [
+    check,
     home,
     impact,
     mute,
@@ -44,6 +51,7 @@ class $AssetsIconsGen {
     source,
     tools,
     unmute,
+    x,
   ];
 }
 
@@ -230,12 +238,23 @@ class $AssetsImagesGen {
   ];
 }
 
+class $AssetsLottiesGen {
+  const $AssetsLottiesGen();
+
+  /// File path: assets/lotties/logo_animation.json
+  String get logoAnimation => 'assets/lotties/logo_animation.json';
+
+  /// List of all assets
+  List<String> get values => [logoAnimation];
+}
+
 class Assets {
   const Assets._();
 
   static const String aEnv = '.env';
   static const $AssetsIconsGen icons = $AssetsIconsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
 
   /// List of all assets
   static List<String> get values => [aEnv];

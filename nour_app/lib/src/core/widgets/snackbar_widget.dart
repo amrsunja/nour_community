@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:nour/src/core/design_system/design_system.dart';
 
 class AppSnackbarWidget extends SnackBar {
 	AppSnackbarWidget.sucess(
 		String message, {
 		super.key,
 		}) : super(
-		content: Placeholder(),
+		content: UIAlert.success(label: message),
 		elevation: 0,
 		behavior: SnackBarBehavior.floating,
 		backgroundColor: Colors.transparent
@@ -15,7 +16,7 @@ class AppSnackbarWidget extends SnackBar {
 		String message, {
 		super.key,
 		}) : super(
-		content: Placeholder(),
+		content: UIAlert.info(label: message),
 		elevation: 0,
 		behavior: SnackBarBehavior.floating,
 		backgroundColor: Colors.transparent
@@ -25,7 +26,7 @@ class AppSnackbarWidget extends SnackBar {
 		String message, {
 		super.key,
 	}) : super(
-		content: Placeholder(),
+		content: UIAlert.error(label: message),
 		elevation: 0,
 		behavior: SnackBarBehavior.floating,
 		backgroundColor: Colors.transparent
