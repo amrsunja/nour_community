@@ -15,7 +15,7 @@ final sqliteServicesProvider = Provider<SQLiteServices>((ref) {
   );
 });
 
-const int _dbVersion = 2;
+const int _dbVersion = 3;
 
 abstract class SQLiteServices {
   String dayKey(DateTime date);
@@ -73,7 +73,8 @@ class SQLiteServicesImpl implements SQLiteServices {
               ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifMorningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifEveningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
-              ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0
+              ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.favoriteReciterKey} TEXT
             );
           ''');
 
@@ -96,6 +97,12 @@ class SQLiteServicesImpl implements SQLiteServices {
             await db.execute(
               'ALTER TABLE ${SQLiteConfig.settingsTableName} '
               'ADD COLUMN ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0;',
+            );
+          }
+          if (oldVersion < 3) {
+            await db.execute(
+              'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+              'ADD COLUMN ${SQLiteConfig.favoriteReciterKey} TEXT;',
             );
           }
         },

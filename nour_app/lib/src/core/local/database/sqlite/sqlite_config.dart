@@ -5,6 +5,7 @@ abstract class SQLiteConfig {
   static String languageCodeKey = 'language_code';
   static String countryCodeKey = 'country_code';
   static String themeModeKey = 'theme_mode';
+  static String favoriteReciterKey = 'favorite_reciter';
 
   // Local notification toggles (0 / 1).
   static String notifPrayersKey = 'notif_prayers';

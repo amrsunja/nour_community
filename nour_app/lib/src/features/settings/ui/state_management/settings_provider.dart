@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/utils/enums/app_theme_type.dart';
+import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
@@ -79,6 +80,21 @@ class SettingsPresenter extends Presenter<SettingsState> {
 			(error) {
 				appEvents.send(ShowErrorEvent(error));
 			}
+		);
+	}
+
+	Future<bool> selectFavoriteReciter(ReciterType reciter) async {
+		final response = await repo.selectFavoriteReciter(reciter);
+
+		return response.when(
+			(success) {
+				state = state.copyWith(data: success);
+				return true;
+			},
+			(error) {
+				appEvents.send(ShowErrorEvent(error));
+				return false;
+			},
 		);
 	}
 }

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
 import 'package:nour/src/core/utils/enums/app_theme_type.dart';
+import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
 import 'datasources/settings_local_datasource.dart';
@@ -44,6 +45,13 @@ class SettingsRepo {
   Future<SuccessOrError<AppSettingsModel>> changeAppThemeMode(AppThemeType type) async {
 		return await Failure.exceptionsCatcher(() async {
 			await localDatasource.changeAppThemeMode(type);
+			return await localDatasource.getLocalSettings();
+		});
+  }
+
+  Future<SuccessOrError<AppSettingsModel>> selectFavoriteReciter(ReciterType reciter) async {
+		return await Failure.exceptionsCatcher(() async {
+			await localDatasource.selectFavoriteReciter(reciter);
 			return await localDatasource.getLocalSettings();
 		});
   }
