@@ -65,6 +65,10 @@ dependencies:
   blur: ^4.0.2
   lottie: ^3.3.3
 
+  # Audio player
+  just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
+
   # Islamic tools
   quran: ^1.4.1
   adhan_dart: ^2.0.1
