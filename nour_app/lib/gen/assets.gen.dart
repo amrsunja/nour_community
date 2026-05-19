@@ -41,6 +41,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/unmute.svg
   String get unmute => 'assets/icons/unmute.svg';
 
+  /// File path: assets/icons/volume.svg
+  String get volume => 'assets/icons/volume.svg';
+
   /// File path: assets/icons/x.svg
   String get x => 'assets/icons/x.svg';
 
@@ -55,6 +58,7 @@ class $AssetsIconsGen {
     source,
     tools,
     unmute,
+    volume,
     x,
   ];
 }
