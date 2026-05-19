@@ -17,6 +17,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/check.svg
   String get check => 'assets/icons/check.svg';
 
+  /// File path: assets/icons/chevron-left.svg
+  String get chevronLeft => 'assets/icons/chevron-left.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -44,6 +47,7 @@ class $AssetsIconsGen {
   /// List of all assets
   List<String> get values => [
     check,
+    chevronLeft,
     home,
     impact,
     mute,
@@ -241,11 +245,23 @@ class $AssetsImagesGen {
 class $AssetsLottiesGen {
   const $AssetsLottiesGen();
 
+  /// File path: assets/lotties/Nour Logo icon animated.json
+  String get nourLogoIconAnimated =>
+      'assets/lotties/Nour Logo icon animated.json';
+
+  /// File path: assets/lotties/Nour logo horizontal animated.json
+  String get nourLogoHorizontalAnimated =>
+      'assets/lotties/Nour logo horizontal animated.json';
+
   /// File path: assets/lotties/logo_animation.json
   String get logoAnimation => 'assets/lotties/logo_animation.json';
 
   /// List of all assets
-  List<String> get values => [logoAnimation];
+  List<String> get values => [
+    nourLogoIconAnimated,
+    nourLogoHorizontalAnimated,
+    logoAnimation,
+  ];
 }
 
 class Assets {
