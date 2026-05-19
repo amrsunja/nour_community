@@ -5,7 +5,27 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
-import '../locale/l10n.dart';
+
+/// Notification ID partitioning. Each feature owns a contiguous range so
+/// re-scheduling can `cancel` the whole range without touching others.
+abstract class NotificationIds {
+  // Daily ayah — single repeating notification.
+  static const int dailyAyah = 1000;
+
+  // Prayers: 2000..2999 → 7 days × 5 prayers = 35 IDs used.
+  // id = prayerBase + (dayOffset * 5) + slotIndex(0..4)
+  static const int prayersBase = 2000;
+  static const int prayersEnd = 2999;
+  static const int prayersDaysAhead = 7;
+
+  // Morning adhkar: 3000..3099 — one per day for [prayersDaysAhead] days.
+  static const int morningAdhkarBase = 3000;
+  static const int morningAdhkarEnd = 3099;
+
+  // Evening adhkar: 4000..4099
+  static const int eveningAdhkarBase = 4000;
+  static const int eveningAdhkarEnd = 4099;
+}
 
 final notificationsServicesProvider = Provider(
 	(ref) => NotificationsServices()
@@ -115,8 +135,58 @@ class NotificationsServices {
     );
   }
 
+  /// Schedule a one-time notification at an exact instant (already in `tz.local`).
+  /// Used for prayers / adhkar where each day's time differs.
+  Future<void> scheduleAt({
+    required int id,
+    required String title,
+    required String body,
+    required tz.TZDateTime when,
+  }) async {
+    if (!_isInitialized) await initialize();
+    if (when.isBefore(tz.TZDateTime.now(tz.local))) return;
+    await notificationPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      when,
+      notificationDetails(),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+    );
+  }
+
+  /// Schedule a daily-repeating notification at HH:mm in local time.
+  Future<void> scheduleDailyAt({
+    required int id,
+    required String title,
+    required String body,
+    required int hour,
+    int minute = 0,
+  }) async {
+    if (!_isInitialized) await initialize();
+    await notificationPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      _nextInstanceOfTime(hour, minute),
+      notificationDetails(),
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+    );
+  }
+
   Future<void> removeScheduledNotifications(int id) async {
     await notificationPlugin.cancel(id);
+  }
+
+  /// Cancel every scheduled notification whose id falls inside [start, end].
+  Future<void> cancelRange(int start, int end) async {
+    final pending = await notificationPlugin.pendingNotificationRequests();
+    for (final n in pending) {
+      if (n.id >= start && n.id <= end) {
+        await notificationPlugin.cancel(n.id);
+      }
+    }
   }
 
   Future<void> removeAllNotifications() async {
