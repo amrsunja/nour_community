@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 
 
 class UIIcon extends StatelessWidget {
@@ -23,15 +24,20 @@ class UIIcon extends StatelessWidget {
 	@override
 	Widget build(BuildContext context) {
     final theme = UITheme.of(context).colors;
+    final locale = Localizations.localeOf(context);
+
 		return UITap(
 			onTap: onTap,
-			child: Padding(
-			  padding: padding ?? const EdgeInsets.all(0),
-			  child: UIIconsToken.toIcon(
-			  	assetIcon,
-			  	color: color ?? theme.iconColor,
-			  	size: size,
-			  	alignment: alignment
+			child: Transform.flip(
+        flipX: locale.languageCode == L10n.ar.languageCode,// || locale.languageCode == L10n.ur.languageCode,
+			  child: Padding(
+			    padding: padding ?? const EdgeInsets.all(0),
+			    child: UIIconsToken.toIcon(
+			    	assetIcon,
+			    	color: color ?? theme.iconColor,
+			    	size: size,
+			    	alignment: alignment
+			    ),
 			  ),
 			)
 		);
