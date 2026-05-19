@@ -70,7 +70,7 @@ class SQLiteServicesImpl implements SQLiteServices {
               ${SQLiteConfig.languageCodeKey} TEXT,
               ${SQLiteConfig.countryCodeKey} TEXT,
               ${SQLiteConfig.themeModeKey} TEXT NOT NULL,
-              ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 1,
+              ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifMorningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifEveningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0
@@ -83,7 +83,7 @@ class SQLiteServicesImpl implements SQLiteServices {
           if (oldVersion < 2) {
             await db.execute(
               'ALTER TABLE ${SQLiteConfig.settingsTableName} '
-              'ADD COLUMN ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 1;',
+              'ADD COLUMN ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 0;',
             );
             await db.execute(
               'ALTER TABLE ${SQLiteConfig.settingsTableName} '
