@@ -119,10 +119,10 @@ class UIButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   EdgeInsets? get _padding => variant == _UIButtonVariant.textual ? null : isSmall
-      ? const EdgeInsets.symmetric(horizontal: 10, vertical: 10)
-      : const EdgeInsets.symmetric(horizontal: 16, vertical: 16);
+      ? const EdgeInsets.symmetric(horizontal: 10, vertical: 6)
+      : const EdgeInsets.symmetric(horizontal: 16, vertical: 12);
 
-  double get _radius => isSmall ? 8 : 16;
+  double get _radius => isSmall ? 6 : 12;
 
   double get _gap => isSmall ? 4 : 8;
 
@@ -233,17 +233,10 @@ class UIButton extends StatelessWidget {
     Widget busyChild() {
       // Force the busy state to occupy at least the same height as the
       // icon-row variant so the button doesn't visibly jump when toggled.
-      return SizedBox(
-        height: _iconSize,
-        child: Center(
-          child: SizedBox(
-            width: _spinnerSize,
-            height: _spinnerSize,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              valueColor: AlwaysStoppedAnimation<Color>(fg),
-            ),
-          ),
+      return Center(
+        child: UICircularProgressBar(
+          color: UIColorsToken.black,
+          size: _spinnerSize + 3,
         ),
       );
     }

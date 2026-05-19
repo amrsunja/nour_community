@@ -11,15 +11,23 @@ class UIShadowToken {
     double colorOpacity = 1,
   }) {
 		return BoxShadow(
-			color: UIColorsToken.shadow.withValues(alpha: colorOpacity),
+			color: UIColorsToken.yellow.withValues(alpha: 0.25),
 			blurRadius: blur,
       spreadRadius: spread,
 			offset: Offset(x, y) 
 		);
   }
 
+  static final illustration = [
+    BoxShadow(blurRadius: 60, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.2))
+  ];
+
+  static final texts = [
+    BoxShadow(blurRadius: 30, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.4))
+  ];
+
   static final kXs = [
-    shadow(y: 1, blur: 2, colorOpacity: 0.05)
+    shadow(y: 0, blur: 2, colorOpacity: 0.05)
   ];
 
   static final kSm = [
