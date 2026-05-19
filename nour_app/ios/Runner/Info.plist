@@ -66,5 +66,33 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Giving us permission to Location will allow you to create a quick way to mark your location when calculating prayer times and finding qibla</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Giving us permission to Location will allow you to create a quick way to mark your location when calculating prayer times and finding qibla</string>
+
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+		<string>https</string>
+		<string>tel</string>
+    <string>googlegmail</string>
+    <string>x-dispatch</string>
+    <string>readdle-spark</string>
+    <string>airmail</string>
+    <string>ms-outlook</string>
+    <string>ymail</string>
+    <string>fastmail</string>
+    <string>superhuman</string>
+    <string>protonmail</string>
+	</array>
+
 </dict>
 </plist>
