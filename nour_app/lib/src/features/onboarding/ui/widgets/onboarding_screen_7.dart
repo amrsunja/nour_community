@@ -88,7 +88,7 @@ class OnboardingScreen7 extends HookConsumerWidget {
                             onPreviewTap: () => audioPresenter.toggle(
                               url: previewUrl,
                               title: reciter.displayName,
-                              artist: 'Quran — Al-Fatiha 1:1',
+                              artist: l10n.onboarding_screen_7_reciter_artist,
                               id: 'reciter-preview-${reciter.dbValue}',
                             ),
                           ),
@@ -103,7 +103,7 @@ class OnboardingScreen7 extends HookConsumerWidget {
             delay: const Duration(milliseconds: 900),
             offsetY: 16,
             child: UIButton.primary(
-              label: 'Continue',
+              label: l10n.common_continue,
               fullWidth: true,
               isBusy: isLoading,
               onTap: onContinue,

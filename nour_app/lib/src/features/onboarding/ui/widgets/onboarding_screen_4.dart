@@ -79,7 +79,7 @@ class OnboardingScreen4 extends HookConsumerWidget {
             delay: const Duration(milliseconds: 800),
             offsetY: 16,
             child: UIButton.primary(
-              label: 'Continue',
+              label: l10n.common_continue,
               fullWidth: true,
               isBusy: isLoading,
               onTap: onContinue,

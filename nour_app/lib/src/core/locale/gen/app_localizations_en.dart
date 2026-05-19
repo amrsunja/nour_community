@@ -16,6 +16,15 @@ class AppLocalizationsEn extends AppLocalizations {
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
   @override
+  String get common_continue => 'Continue';
+
+  @override
+  String get common_skip => 'Skip';
+
+  @override
+  String get common_maybe_later => 'Maybe later';
+
+  @override
   String get l10nSettings =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -97,6 +106,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_start => 'Get started';
 
   @override
+  String get onboarding_lets_get_started => 'Let\'s get started';
+
+  @override
+  String get onboarding_allow_notifications => 'Allow notifications';
+
+  @override
+  String get onboarding_maybe_later => 'Maybe later';
+
+  @override
   String get onboarding_screen_1_title => 'Welcome to Nour';
 
   @override
@@ -111,11 +129,23 @@ class AppLocalizationsEn extends AppLocalizations {
       'Daily practice, sacred texts, and tools — all in one place.';
 
   @override
+  String get onboarding_screen_2_card_streak_reward => 'Streak reward';
+
+  @override
+  String get onboarding_screen_2_card_ajr_counter => 'Ajr counter';
+
+  @override
+  String get onboarding_screen_2_card_daily_dhikr => 'Daily Dhikr';
+
+  @override
   String get onboarding_screen_3_title => 'Build a beautiful daily routine';
 
   @override
   String get onboarding_screen_3_description =>
       'Earn ajr through dhikr, find peace in the Qur\'an, and grow in your faith.';
+
+  @override
+  String get onboarding_screen_3_dhikr_translation => 'Glory be to Allah';
 
   @override
   String get onboarding_screen_4_title => 'Where are you on your journey?';
@@ -131,6 +161,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Choose a goal that fits your life.';
 
   @override
+  String get onboarding_screen_5_minutes_per_day => 'minutes per day';
+
+  @override
   String get onboarding_screen_6_title => 'Gentle reminders';
 
   @override
@@ -144,10 +177,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_screen_7_description => 'Choose your favourite reciter';
 
   @override
+  String get onboarding_screen_7_reciter_artist => 'Quran — Al-Fatiha 1:1';
+
+  @override
   String get onboarding_screen_8_title => 'Choose your language';
 
   @override
   String get onboarding_screen_8_description => '*';
+
+  @override
+  String get onboarding_screen_8_lang_en => 'English';
+
+  @override
+  String get onboarding_screen_8_lang_ar => 'العربيه';
+
+  @override
+  String get onboarding_screen_8_lang_fr => 'Français';
 
   @override
   String get onboarding_screen_9_title => 'Tell us about yourself';
@@ -178,6 +223,70 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get level_returning_description => 'Coming back to my faith';
+
+  @override
+  String get l10nNotifications =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get notifications_prayer_times_label => 'Prayer times (5 prayers)';
+
+  @override
+  String get notifications_morning_adhkar_label => 'Morning adkar reminder';
+
+  @override
+  String get notifications_evening_adhkar_label => 'Evening adkar reminder';
+
+  @override
+  String get notifications_daily_ayah_label => 'Daily ayah notification';
+
+  @override
+  String get notifications_prayer_fajr => 'Fajr';
+
+  @override
+  String get notifications_prayer_dhuhr => 'Dhuhr';
+
+  @override
+  String get notifications_prayer_asr => 'Asr';
+
+  @override
+  String get notifications_prayer_maghrib => 'Maghrib';
+
+  @override
+  String get notifications_prayer_isha => 'Isha';
+
+  @override
+  String notifications_prayer_body(String prayer) {
+    return 'It is time for $prayer prayer.';
+  }
+
+  @override
+  String get notifications_morning_adhkar_title => 'Morning Adhkar';
+
+  @override
+  String get notifications_morning_adhkar_body =>
+      'Time for your morning adhkar.';
+
+  @override
+  String get notifications_evening_adhkar_title => 'Evening Adhkar';
+
+  @override
+  String get notifications_evening_adhkar_body =>
+      'Time for your evening adhkar.';
+
+  @override
+  String get notifications_daily_ayah_title => 'Daily Ayah';
+
+  @override
+  String get notifications_daily_ayah_body => 'A new ayah is waiting for you.';
+
+  @override
+  String get notifications_error_prayers_schedule =>
+      'Could not schedule prayer notifications.';
+
+  @override
+  String get notifications_error_adhkar_schedule =>
+      'Could not schedule adhkar notifications.';
 
   @override
   String get l10nSuccess =>

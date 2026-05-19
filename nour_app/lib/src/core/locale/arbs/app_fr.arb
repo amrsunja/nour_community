@@ -1,0 +1,126 @@
+{
+	"appLanguage": "Français",
+
+	"l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"common_continue": "Continuer",
+	"common_skip": "Passer",
+	"common_maybe_later": "Plus tard",
+
+
+	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "settings_app": "Paramètres",
+  "settings_general": "Général",
+  "settings_language": "Langue",
+  "settings_language_info": "Sélectionnez votre langue préférée pour l'interface de l'application.",
+
+  "settings_theme": "Thème",
+  "settings_theme_system": "Système",
+  "settings_theme_light": "Clair",
+  "settings_theme_dark": "Sombre",
+  "settings_theme_info": "Sélectionnez votre thème préféré pour l'interface de l'application.",
+
+  "settings_term_of_use": "Conditions d'utilisation",
+  "settings_privacy_policy": "Politique de confidentialité",
+  "settings_support": "Contacter le support",
+  "settings_delete_all_data": "Supprimer toutes les données",
+  "settings_delete_all_data_warning": "Cette action est irréversible et supprimera toutes vos données de suivi de cet appareil.",
+
+
+	"l10nAbout": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ABOUT ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "about": "À propos",
+  "about_project": "À propos du projet",
+
+
+	"l10nWarning": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ WARNING ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "warning_are_you_sure": "Êtes-vous sûr ?",
+
+
+	"l10nOnboarding": "☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠",
+	"onboarding": "Intégration",
+	"onboarding_skip": "Passer",
+	"onboarding_next": "Suivant",
+	"onboarding_start": "Commencer",
+	"onboarding_lets_get_started": "C'est parti",
+	"onboarding_allow_notifications": "Autoriser les notifications",
+	"onboarding_maybe_later": "Plus tard",
+
+	"onboarding_screen_1_title": "Bienvenue sur Nour",
+	"onboarding_screen_1_description": "Votre compagnon premium pour un beau parcours spirituel",
+
+	"onboarding_screen_2_title": "Tout ce dont vous avez besoin",
+	"onboarding_screen_2_description": "Pratique quotidienne, textes sacrés et outils — tout au même endroit.",
+	"onboarding_screen_2_card_streak_reward": "Récompense de série",
+	"onboarding_screen_2_card_ajr_counter": "Compteur d'Ajr",
+	"onboarding_screen_2_card_daily_dhikr": "Dhikr quotidien",
+
+	"onboarding_screen_3_title": "Construisez une belle routine quotidienne",
+	"onboarding_screen_3_description": "Gagnez de l'ajr par le dhikr, trouvez la paix dans le Coran et grandissez dans votre foi.",
+	"onboarding_screen_3_dhikr_translation": "Gloire à Allah",
+
+	"onboarding_screen_4_title": "Où en êtes-vous dans votre parcours ?",
+	"onboarding_screen_4_description": "*",
+
+	"onboarding_screen_5_title": "Combien de temps par jour ?",
+	"onboarding_screen_5_description": "Choisissez un objectif qui correspond à votre vie.",
+	"onboarding_screen_5_minutes_per_day": "minutes par jour",
+
+	"onboarding_screen_6_title": "Rappels en douceur",
+	"onboarding_screen_6_description": "Nous n'enverrons que ce que vous autorisez.",
+
+	"onboarding_screen_7_title": "Choisissez une voix",
+	"onboarding_screen_7_description": "Choisissez votre récitateur préféré",
+	"onboarding_screen_7_reciter_artist": "Coran — Al-Fatiha 1:1",
+
+	"onboarding_screen_8_title": "Choisissez votre langue",
+	"onboarding_screen_8_description": "*",
+	"onboarding_screen_8_lang_en": "English",
+	"onboarding_screen_8_lang_ar": "العربيه",
+	"onboarding_screen_8_lang_fr": "Français",
+
+	"onboarding_screen_9_title": "Parlez-nous de vous",
+	"onboarding_screen_9_description": "Pour enregistrer vos progrès quotidiens",
+
+	"level_begining_title": "Débutant",
+	"level_begining_description": "Je débute ou j'apprends",
+	"level_growing_title": "En progression",
+	"level_growing_description": "Je pratique et j'apprends davantage",
+	"level_established_title": "Établi",
+	"level_established_description": "Pratique quotidienne assidue",
+	"level_returning_title": "De retour",
+	"level_returning_description": "Je reviens à ma foi",
+
+
+	"l10nNotifications": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"notifications_prayer_times_label": "Heures de prière (5 prières)",
+	"notifications_morning_adhkar_label": "Rappel des adkars du matin",
+	"notifications_evening_adhkar_label": "Rappel des adkars du soir",
+	"notifications_daily_ayah_label": "Notification d'ayah quotidienne",
+
+	"notifications_prayer_fajr": "Fajr",
+	"notifications_prayer_dhuhr": "Dhuhr",
+	"notifications_prayer_asr": "Asr",
+	"notifications_prayer_maghrib": "Maghrib",
+	"notifications_prayer_isha": "Isha",
+	"notifications_prayer_body": "C'est l'heure de la prière {prayer}.",
+
+	"notifications_morning_adhkar_title": "Adhkar du matin",
+	"notifications_morning_adhkar_body": "C'est l'heure de vos adhkar du matin.",
+	"notifications_evening_adhkar_title": "Adhkar du soir",
+	"notifications_evening_adhkar_body": "C'est l'heure de vos adhkar du soir.",
+	"notifications_daily_ayah_title": "Ayah quotidienne",
+	"notifications_daily_ayah_body": "Une nouvelle ayah vous attend.",
+	"notifications_error_prayers_schedule": "Impossible de programmer les notifications de prière.",
+	"notifications_error_adhkar_schedule": "Impossible de programmer les notifications d'adhkar.",
+
+
+	"l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"success_all_data_deleted": "Toutes vos données de progression ont été supprimées avec succès de cet appareil !",
+
+
+	"l10nErrors": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"error_db_failure": "Erreur BD",
+	"error_unknown": "Une erreur est survenue. Veuillez réessayer.",
+  "error_server_failure": "Une erreur est survenue. Vérifiez votre connexion internet",
+
+  "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
+}

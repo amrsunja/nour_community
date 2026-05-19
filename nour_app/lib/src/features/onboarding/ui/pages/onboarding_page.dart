@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/onboarding/ui/widgets/onboarding_screen_1.dart';
@@ -24,6 +25,7 @@ class OnboardingPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = UITheme.of(context);
+    final l10n = ref.watch(l10nProvider);
     final provider = ref.read(onboardingProvider.notifier);
     final state = ref.watch(onboardingProvider);
 
@@ -70,7 +72,7 @@ class OnboardingPage extends HookConsumerWidget {
                       if (!showBars) return ;
                     },
                     child: Text(
-                      'Skip',
+                      l10n.onboarding_skip,
                       style: theme.typo.inter.bodyMedium,
                     ),
                   )

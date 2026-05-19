@@ -63,7 +63,7 @@ class OnboardingScreen1 extends ConsumerWidget {
           ),
 
           UIButton.primary(
-            label: 'Let`s get started',
+            label: l10n.onboarding_lets_get_started,
             fullWidth: true,
             onTap: () {
               provider.changePage(1);

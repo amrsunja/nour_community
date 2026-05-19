@@ -28,12 +28,16 @@ final l10nProvider = Provider<AppLocale>((ref) {
 class L10n {
 	static Locale get en => all[0];
 	static Locale get fr => all[1];
+	static Locale get ar => all[2];
 
   static final all = [
     const Locale('en', 'EN'),
     const Locale('fr', 'FR'),
+    const Locale('ar', 'AR'),
   ];
 
+	/// Default to English. Device locale only matched if it is one of the
+	/// supported languages, otherwise English is used as the fallback.
 	static Locale get defaultLocale {
 		final appNativeLocale = ui.PlatformDispatcher.instance.locale;
 		return all.firstWhereOrNull((value) => appNativeLocale.languageCode == value.languageCode) ?? en;

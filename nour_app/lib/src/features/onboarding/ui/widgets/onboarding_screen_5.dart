@@ -73,6 +73,7 @@ class OnboardingScreen5 extends HookConsumerWidget {
                 _OptionsGrid(
                   options: _options,
                   selectedValue: selected.value,
+                  unitLabel: l10n.onboarding_screen_5_minutes_per_day,
                   onSelect: (v) => selected.value = v,
                 ),
               ],
@@ -82,7 +83,7 @@ class OnboardingScreen5 extends HookConsumerWidget {
             delay: const Duration(milliseconds: 850),
             offsetY: 16,
             child: UIButton.primary(
-              label: 'Continue',
+              label: l10n.common_continue,
               fullWidth: true,
               isBusy: isLoading,
               onTap: onContinue,
@@ -99,11 +100,13 @@ class _OptionsGrid extends StatelessWidget {
   const _OptionsGrid({
     required this.options,
     required this.selectedValue,
+    required this.unitLabel,
     required this.onSelect,
   });
 
   final List<({int value, String display})> options;
   final int? selectedValue;
+  final String unitLabel;
   final ValueChanged<int> onSelect;
 
   @override
@@ -122,6 +125,7 @@ class _OptionsGrid extends StatelessWidget {
                     child: _TimeCard(
                       option: options[row],
                       selected: selectedValue == options[row].value,
+                      unitLabel: unitLabel,
                       onTap: () => onSelect(options[row].value),
                     ),
                   ),
@@ -134,6 +138,7 @@ class _OptionsGrid extends StatelessWidget {
                     child: _TimeCard(
                       option: options[row + 1],
                       selected: selectedValue == options[row + 1].value,
+                      unitLabel: unitLabel,
                       onTap: () => onSelect(options[row + 1].value),
                     ),
                   ),
@@ -150,11 +155,13 @@ class _TimeCard extends StatelessWidget {
   const _TimeCard({
     required this.option,
     required this.selected,
+    required this.unitLabel,
     required this.onTap,
   });
 
   final ({int value, String display}) option;
   final bool selected;
+  final String unitLabel;
   final VoidCallback onTap;
 
   @override
@@ -184,7 +191,7 @@ class _TimeCard extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                'minutes per day',
+                unitLabel,
                 style: theme.typo.inter.bodySmall.copyWith(
                   color: selected ? accent : UIColorsToken.textParagraph,
                 ),

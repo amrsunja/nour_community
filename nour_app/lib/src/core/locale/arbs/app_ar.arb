@@ -1,0 +1,126 @@
+{
+	"appLanguage": "العربية",
+
+	"l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"common_continue": "متابعة",
+	"common_skip": "تخطي",
+	"common_maybe_later": "لاحقاً",
+
+
+	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "settings_app": "الإعدادات",
+  "settings_general": "عام",
+  "settings_language": "اللغة",
+  "settings_language_info": "اختر لغتك المفضلة لواجهة التطبيق.",
+
+  "settings_theme": "المظهر",
+  "settings_theme_system": "النظام",
+  "settings_theme_light": "فاتح",
+  "settings_theme_dark": "داكن",
+  "settings_theme_info": "اختر مظهرك المفضل لواجهة التطبيق.",
+
+  "settings_term_of_use": "شروط الاستخدام",
+  "settings_privacy_policy": "سياسة الخصوصية",
+  "settings_support": "تواصل مع الدعم",
+  "settings_delete_all_data": "حذف جميع البيانات",
+  "settings_delete_all_data_warning": "هذا الإجراء لا يمكن التراجع عنه وسيؤدي إلى حذف جميع بيانات التتبع من هذا الجهاز.",
+
+
+	"l10nAbout": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ABOUT ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "about": "حول",
+  "about_project": "حول المشروع",
+
+
+	"l10nWarning": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ WARNING ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "warning_are_you_sure": "هل أنت متأكد؟",
+
+
+	"l10nOnboarding": "☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠",
+	"onboarding": "الترحيب",
+	"onboarding_skip": "تخطي",
+	"onboarding_next": "التالي",
+	"onboarding_start": "ابدأ",
+	"onboarding_lets_get_started": "لنبدأ",
+	"onboarding_allow_notifications": "السماح بالإشعارات",
+	"onboarding_maybe_later": "لاحقاً",
+
+	"onboarding_screen_1_title": "مرحباً بك في نور",
+	"onboarding_screen_1_description": "رفيقك المميز لرحلة روحانية جميلة",
+
+	"onboarding_screen_2_title": "كل ما تحتاجه",
+	"onboarding_screen_2_description": "العبادات اليومية، النصوص المقدسة، والأدوات — كلها في مكان واحد.",
+	"onboarding_screen_2_card_streak_reward": "مكافأة التتابع",
+	"onboarding_screen_2_card_ajr_counter": "عدّاد الأجر",
+	"onboarding_screen_2_card_daily_dhikr": "ذكر يومي",
+
+	"onboarding_screen_3_title": "ابنِ روتيناً يومياً جميلاً",
+	"onboarding_screen_3_description": "اكسب الأجر بالذكر، وجد السكينة في القرآن، وتقدم في إيمانك.",
+	"onboarding_screen_3_dhikr_translation": "سبحان الله",
+
+	"onboarding_screen_4_title": "أين أنت في رحلتك؟",
+	"onboarding_screen_4_description": "*",
+
+	"onboarding_screen_5_title": "كم من الوقت يومياً؟",
+	"onboarding_screen_5_description": "اختر هدفاً يناسب حياتك.",
+	"onboarding_screen_5_minutes_per_day": "دقيقة في اليوم",
+
+	"onboarding_screen_6_title": "تذكيرات لطيفة",
+	"onboarding_screen_6_description": "سنرسل فقط ما تسمح به.",
+
+	"onboarding_screen_7_title": "اختر صوتاً",
+	"onboarding_screen_7_description": "اختر قارئك المفضل",
+	"onboarding_screen_7_reciter_artist": "القرآن — الفاتحة 1:1",
+
+	"onboarding_screen_8_title": "اختر لغتك",
+	"onboarding_screen_8_description": "*",
+	"onboarding_screen_8_lang_en": "English",
+	"onboarding_screen_8_lang_ar": "العربيه",
+	"onboarding_screen_8_lang_fr": "Français",
+
+	"onboarding_screen_9_title": "أخبرنا عن نفسك",
+	"onboarding_screen_9_description": "لحفظ تقدمك اليومي",
+
+	"level_begining_title": "مبتدئ",
+	"level_begining_description": "في بداية الطريق أو أتعلّم",
+	"level_growing_title": "في تطور",
+	"level_growing_description": "أمارس وأتعلّم أكثر",
+	"level_established_title": "ثابت",
+	"level_established_description": "ممارسة يومية ملتزمة",
+	"level_returning_title": "عائد",
+	"level_returning_description": "أعود إلى ديني",
+
+
+	"l10nNotifications": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"notifications_prayer_times_label": "أوقات الصلاة (٥ صلوات)",
+	"notifications_morning_adhkar_label": "تذكير أذكار الصباح",
+	"notifications_evening_adhkar_label": "تذكير أذكار المساء",
+	"notifications_daily_ayah_label": "إشعار آية يومية",
+
+	"notifications_prayer_fajr": "الفجر",
+	"notifications_prayer_dhuhr": "الظهر",
+	"notifications_prayer_asr": "العصر",
+	"notifications_prayer_maghrib": "المغرب",
+	"notifications_prayer_isha": "العشاء",
+	"notifications_prayer_body": "حان وقت صلاة {prayer}.",
+
+	"notifications_morning_adhkar_title": "أذكار الصباح",
+	"notifications_morning_adhkar_body": "حان وقت أذكار الصباح.",
+	"notifications_evening_adhkar_title": "أذكار المساء",
+	"notifications_evening_adhkar_body": "حان وقت أذكار المساء.",
+	"notifications_daily_ayah_title": "آية اليوم",
+	"notifications_daily_ayah_body": "آية جديدة في انتظارك.",
+	"notifications_error_prayers_schedule": "تعذر جدولة إشعارات الصلاة.",
+	"notifications_error_adhkar_schedule": "تعذر جدولة إشعارات الأذكار.",
+
+
+	"l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"success_all_data_deleted": "تم حذف جميع بيانات تقدمك من هذا الجهاز بنجاح!",
+
+
+	"l10nErrors": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"error_db_failure": "خطأ في قاعدة البيانات",
+	"error_unknown": "حدث خطأ ما. حاول مرة أخرى.",
+  "error_server_failure": "حدث خطأ ما. تحقق من اتصالك بالإنترنت",
+
+  "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
+}

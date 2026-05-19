@@ -25,7 +25,11 @@ class OnboardingScreen2 extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const _ToolCardsStack(),
+                _ToolCardsStack(
+                  streakRewardLabel: l10n.onboarding_screen_2_card_streak_reward,
+                  ajrCounterLabel: l10n.onboarding_screen_2_card_ajr_counter,
+                  dailyDhikrLabel: l10n.onboarding_screen_2_card_daily_dhikr,
+                ),
                 const SizedBox(height: 48),
                 UIAppearAnimation(
                   delay: const Duration(milliseconds: 600),
@@ -55,7 +59,7 @@ class OnboardingScreen2 extends ConsumerWidget {
             delay: const Duration(milliseconds: 900),
             offsetY: 16,
             child: UIButton.primary(
-              label: 'Continue',
+              label: l10n.common_continue,
               fullWidth: true,
               onTap: () {
                 provider.changePage(2);
@@ -70,7 +74,15 @@ class OnboardingScreen2 extends ConsumerWidget {
 }
 
 class _ToolCardsStack extends StatelessWidget {
-  const _ToolCardsStack();
+  const _ToolCardsStack({
+    required this.streakRewardLabel,
+    required this.ajrCounterLabel,
+    required this.dailyDhikrLabel,
+  });
+
+  final String streakRewardLabel;
+  final String ajrCounterLabel;
+  final String dailyDhikrLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +106,7 @@ class _ToolCardsStack extends StatelessWidget {
                   illustration: Assets.images.illustration10.image(
                     filterQuality: FilterQuality.high,
                   ),
-                  label: 'Streak reward',
+                  label: streakRewardLabel,
                 ),
               ),
             ),
@@ -113,7 +125,7 @@ class _ToolCardsStack extends StatelessWidget {
                   illustration: Assets.images.illustration5.image(
                     filterQuality: FilterQuality.high,
                   ),
-                  label: 'Ajr counter',
+                  label: ajrCounterLabel,
                 ),
               ),
             ),
@@ -132,7 +144,7 @@ class _ToolCardsStack extends StatelessWidget {
                   illustration: Assets.images.illustration7.image(
                     filterQuality: FilterQuality.high,
                   ),
-                  label: 'Daily Dhikr',
+                  label: dailyDhikrLabel,
                 ),
               ),
             ),

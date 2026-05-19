@@ -2,6 +2,9 @@
 	"appLanguage": "English",
 
 	"l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"common_continue": "Continue",
+	"common_skip": "Skip",
+	"common_maybe_later": "Maybe later",
 
 
 	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -37,22 +40,43 @@
 	"onboarding_skip": "Skip",
 	"onboarding_next": "Next",
 	"onboarding_start": "Get started",
+	"onboarding_lets_get_started": "Let's get started",
+	"onboarding_allow_notifications": "Allow notifications",
+	"onboarding_maybe_later": "Maybe later",
+
 	"onboarding_screen_1_title": "Welcome to Nour",
 	"onboarding_screen_1_description": "Your premium companion for a beautiful spiritual journey",
+
 	"onboarding_screen_2_title": "Everything you need",
 	"onboarding_screen_2_description": "Daily practice, sacred texts, and tools — all in one place.",
+	"onboarding_screen_2_card_streak_reward": "Streak reward",
+	"onboarding_screen_2_card_ajr_counter": "Ajr counter",
+	"onboarding_screen_2_card_daily_dhikr": "Daily Dhikr",
+
 	"onboarding_screen_3_title": "Build a beautiful daily routine",
 	"onboarding_screen_3_description": "Earn ajr through dhikr, find peace in the Qur'an, and grow in your faith.",
+	"onboarding_screen_3_dhikr_translation": "Glory be to Allah",
+
 	"onboarding_screen_4_title": "Where are you on your journey?",
 	"onboarding_screen_4_description": "*",
+
 	"onboarding_screen_5_title": "How much time daily?",
 	"onboarding_screen_5_description": "Choose a goal that fits your life.",
+	"onboarding_screen_5_minutes_per_day": "minutes per day",
+
 	"onboarding_screen_6_title": "Gentle reminders",
 	"onboarding_screen_6_description": "We'll only send what you allow.",
+
 	"onboarding_screen_7_title": "Choose a voice",
 	"onboarding_screen_7_description": "Choose your favourite reciter",
+	"onboarding_screen_7_reciter_artist": "Quran — Al-Fatiha 1:1",
+
 	"onboarding_screen_8_title": "Choose your language",
 	"onboarding_screen_8_description": "*",
+	"onboarding_screen_8_lang_en": "English",
+	"onboarding_screen_8_lang_ar": "العربيه",
+	"onboarding_screen_8_lang_fr": "Français",
+
 	"onboarding_screen_9_title": "Tell us about yourself",
 	"onboarding_screen_9_description": "To save your daily progress",
 
@@ -64,6 +88,34 @@
 	"level_established_description": "Committed daily practice",
 	"level_returning_title": "Returning",
 	"level_returning_description": "Coming back to my faith",
+
+
+	"l10nNotifications": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"notifications_prayer_times_label": "Prayer times (5 prayers)",
+	"notifications_morning_adhkar_label": "Morning adkar reminder",
+	"notifications_evening_adhkar_label": "Evening adkar reminder",
+	"notifications_daily_ayah_label": "Daily ayah notification",
+
+	"notifications_prayer_fajr": "Fajr",
+	"notifications_prayer_dhuhr": "Dhuhr",
+	"notifications_prayer_asr": "Asr",
+	"notifications_prayer_maghrib": "Maghrib",
+	"notifications_prayer_isha": "Isha",
+	"notifications_prayer_body": "It is time for {prayer} prayer.",
+	"@notifications_prayer_body": {
+		"placeholders": {
+			"prayer": { "type": "String" }
+		}
+	},
+
+	"notifications_morning_adhkar_title": "Morning Adhkar",
+	"notifications_morning_adhkar_body": "Time for your morning adhkar.",
+	"notifications_evening_adhkar_title": "Evening Adhkar",
+	"notifications_evening_adhkar_body": "Time for your evening adhkar.",
+	"notifications_daily_ayah_title": "Daily Ayah",
+	"notifications_daily_ayah_body": "A new ayah is waiting for you.",
+	"notifications_error_prayers_schedule": "Could not schedule prayer notifications.",
+	"notifications_error_adhkar_schedule": "Could not schedule adhkar notifications.",
 
 
 	"l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",

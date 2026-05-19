@@ -5,7 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_fr.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +94,11 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('en'),
+    Locale('fr'),
+  ];
 
   /// No description provided for @appLanguage.
   ///
@@ -105,6 +111,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
   String get l10nTexts;
+
+  /// No description provided for @common_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get common_continue;
+
+  /// No description provided for @common_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get common_skip;
+
+  /// No description provided for @common_maybe_later.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe later'**
+  String get common_maybe_later;
 
   /// No description provided for @l10nSettings.
   ///
@@ -256,6 +280,24 @@ abstract class AppLocalizations {
   /// **'Get started'**
   String get onboarding_start;
 
+  /// No description provided for @onboarding_lets_get_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s get started'**
+  String get onboarding_lets_get_started;
+
+  /// No description provided for @onboarding_allow_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get onboarding_allow_notifications;
+
+  /// No description provided for @onboarding_maybe_later.
+  ///
+  /// In en, this message translates to:
+  /// **'Maybe later'**
+  String get onboarding_maybe_later;
+
   /// No description provided for @onboarding_screen_1_title.
   ///
   /// In en, this message translates to:
@@ -280,6 +322,24 @@ abstract class AppLocalizations {
   /// **'Daily practice, sacred texts, and tools — all in one place.'**
   String get onboarding_screen_2_description;
 
+  /// No description provided for @onboarding_screen_2_card_streak_reward.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak reward'**
+  String get onboarding_screen_2_card_streak_reward;
+
+  /// No description provided for @onboarding_screen_2_card_ajr_counter.
+  ///
+  /// In en, this message translates to:
+  /// **'Ajr counter'**
+  String get onboarding_screen_2_card_ajr_counter;
+
+  /// No description provided for @onboarding_screen_2_card_daily_dhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dhikr'**
+  String get onboarding_screen_2_card_daily_dhikr;
+
   /// No description provided for @onboarding_screen_3_title.
   ///
   /// In en, this message translates to:
@@ -291,6 +351,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Earn ajr through dhikr, find peace in the Qur\'an, and grow in your faith.'**
   String get onboarding_screen_3_description;
+
+  /// No description provided for @onboarding_screen_3_dhikr_translation.
+  ///
+  /// In en, this message translates to:
+  /// **'Glory be to Allah'**
+  String get onboarding_screen_3_dhikr_translation;
 
   /// No description provided for @onboarding_screen_4_title.
   ///
@@ -316,6 +382,12 @@ abstract class AppLocalizations {
   /// **'Choose a goal that fits your life.'**
   String get onboarding_screen_5_description;
 
+  /// No description provided for @onboarding_screen_5_minutes_per_day.
+  ///
+  /// In en, this message translates to:
+  /// **'minutes per day'**
+  String get onboarding_screen_5_minutes_per_day;
+
   /// No description provided for @onboarding_screen_6_title.
   ///
   /// In en, this message translates to:
@@ -340,6 +412,12 @@ abstract class AppLocalizations {
   /// **'Choose your favourite reciter'**
   String get onboarding_screen_7_description;
 
+  /// No description provided for @onboarding_screen_7_reciter_artist.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran — Al-Fatiha 1:1'**
+  String get onboarding_screen_7_reciter_artist;
+
   /// No description provided for @onboarding_screen_8_title.
   ///
   /// In en, this message translates to:
@@ -351,6 +429,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'*'**
   String get onboarding_screen_8_description;
+
+  /// No description provided for @onboarding_screen_8_lang_en.
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get onboarding_screen_8_lang_en;
+
+  /// No description provided for @onboarding_screen_8_lang_ar.
+  ///
+  /// In en, this message translates to:
+  /// **'العربيه'**
+  String get onboarding_screen_8_lang_ar;
+
+  /// No description provided for @onboarding_screen_8_lang_fr.
+  ///
+  /// In en, this message translates to:
+  /// **'Français'**
+  String get onboarding_screen_8_lang_fr;
 
   /// No description provided for @onboarding_screen_9_title.
   ///
@@ -412,6 +508,120 @@ abstract class AppLocalizations {
   /// **'Coming back to my faith'**
   String get level_returning_description;
 
+  /// No description provided for @l10nNotifications.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nNotifications;
+
+  /// No description provided for @notifications_prayer_times_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times (5 prayers)'**
+  String get notifications_prayer_times_label;
+
+  /// No description provided for @notifications_morning_adhkar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning adkar reminder'**
+  String get notifications_morning_adhkar_label;
+
+  /// No description provided for @notifications_evening_adhkar_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening adkar reminder'**
+  String get notifications_evening_adhkar_label;
+
+  /// No description provided for @notifications_daily_ayah_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily ayah notification'**
+  String get notifications_daily_ayah_label;
+
+  /// No description provided for @notifications_prayer_fajr.
+  ///
+  /// In en, this message translates to:
+  /// **'Fajr'**
+  String get notifications_prayer_fajr;
+
+  /// No description provided for @notifications_prayer_dhuhr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhuhr'**
+  String get notifications_prayer_dhuhr;
+
+  /// No description provided for @notifications_prayer_asr.
+  ///
+  /// In en, this message translates to:
+  /// **'Asr'**
+  String get notifications_prayer_asr;
+
+  /// No description provided for @notifications_prayer_maghrib.
+  ///
+  /// In en, this message translates to:
+  /// **'Maghrib'**
+  String get notifications_prayer_maghrib;
+
+  /// No description provided for @notifications_prayer_isha.
+  ///
+  /// In en, this message translates to:
+  /// **'Isha'**
+  String get notifications_prayer_isha;
+
+  /// No description provided for @notifications_prayer_body.
+  ///
+  /// In en, this message translates to:
+  /// **'It is time for {prayer} prayer.'**
+  String notifications_prayer_body(String prayer);
+
+  /// No description provided for @notifications_morning_adhkar_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning Adhkar'**
+  String get notifications_morning_adhkar_title;
+
+  /// No description provided for @notifications_morning_adhkar_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for your morning adhkar.'**
+  String get notifications_morning_adhkar_body;
+
+  /// No description provided for @notifications_evening_adhkar_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening Adhkar'**
+  String get notifications_evening_adhkar_title;
+
+  /// No description provided for @notifications_evening_adhkar_body.
+  ///
+  /// In en, this message translates to:
+  /// **'Time for your evening adhkar.'**
+  String get notifications_evening_adhkar_body;
+
+  /// No description provided for @notifications_daily_ayah_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Ayah'**
+  String get notifications_daily_ayah_title;
+
+  /// No description provided for @notifications_daily_ayah_body.
+  ///
+  /// In en, this message translates to:
+  /// **'A new ayah is waiting for you.'**
+  String get notifications_daily_ayah_body;
+
+  /// No description provided for @notifications_error_prayers_schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not schedule prayer notifications.'**
+  String get notifications_error_prayers_schedule;
+
+  /// No description provided for @notifications_error_adhkar_schedule.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not schedule adhkar notifications.'**
+  String get notifications_error_adhkar_schedule;
+
   /// No description provided for @l10nSuccess.
   ///
   /// In en, this message translates to:
@@ -466,7 +676,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['ar', 'en', 'fr'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -475,8 +685,12 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
+    case 'fr':
+      return AppLocalizationsFr();
   }
 
   throw FlutterError(

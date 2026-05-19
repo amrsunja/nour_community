@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 
 import '../state_management/notifications_provider.dart';
 
@@ -21,28 +22,29 @@ class NotificationsSettingsWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nProvider);
     final settings =
         ref.watch(notificationsProvider.select((s) => s.settings));
     final presenter = ref.read(notificationsProvider.notifier);
 
     final items = <_NotificationItem>[
       _NotificationItem(
-        label: 'Prayer times (5 prayers)',
+        label: l10n.notifications_prayer_times_label,
         value: settings.prayers,
         onChange: presenter.setPrayers,
       ),
       _NotificationItem(
-        label: 'Morning adkar reminder',
+        label: l10n.notifications_morning_adhkar_label,
         value: settings.morningAdhkar,
         onChange: presenter.setMorningAdhkar,
       ),
       _NotificationItem(
-        label: 'Evening adkar reminder',
+        label: l10n.notifications_evening_adhkar_label,
         value: settings.eveningAdhkar,
         onChange: presenter.setEveningAdhkar,
       ),
       _NotificationItem(
-        label: 'Daily ayah notification',
+        label: l10n.notifications_daily_ayah_label,
         value: settings.dailyAyah,
         onChange: presenter.setDailyAyah,
       ),

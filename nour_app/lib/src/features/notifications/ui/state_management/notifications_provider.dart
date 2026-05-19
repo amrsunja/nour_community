@@ -1,4 +1,5 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/notifications/notifications_services.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
@@ -18,6 +19,7 @@ final notificationsProvider =
     repo: ref.read(notificationsRepoProvider),
     appEvents: ref.read(appEventProvider),
     notifications: ref.read(notificationsServicesProvider),
+    ref: ref,
   );
 });
 
@@ -25,22 +27,24 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   final NotificationsRepo repo;
   final AppEvents appEvents;
   final NotificationsServices notifications;
-
-  // Localized copy lives in arb files; using literals here as placeholders
-  // matching the rest of the codebase until the keys are added.
-  static const _prayerTitles = {
-    PrayerSlot.fajr: 'Fajr',
-    PrayerSlot.dhuhr: 'Dhuhr',
-    PrayerSlot.asr: 'Asr',
-    PrayerSlot.maghrib: 'Maghrib',
-    PrayerSlot.isha: 'Isha',
-  };
+  final Ref ref;
 
   NotificationsPresenter({
     required this.repo,
     required this.appEvents,
     required this.notifications,
+    required this.ref,
   }) : super(NotificationsState.initial);
+
+  AppLocale get _l10n => ref.read(l10nProvider);
+
+  Map<PrayerSlot, String> _prayerTitles() => {
+        PrayerSlot.fajr: _l10n.notifications_prayer_fajr,
+        PrayerSlot.dhuhr: _l10n.notifications_prayer_dhuhr,
+        PrayerSlot.asr: _l10n.notifications_prayer_asr,
+        PrayerSlot.maghrib: _l10n.notifications_prayer_maghrib,
+        PrayerSlot.isha: _l10n.notifications_prayer_isha,
+      };
 
   Future<void> initSettings() async {
     final response = await repo.getSettings();
@@ -72,8 +76,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (enable) {
       await _scheduleAdhkar(
         baseId: NotificationIds.morningAdhkarBase,
-        title: 'Morning Adhkar',
-        body: 'Time for your morning adhkar.',
+        title: _l10n.notifications_morning_adhkar_title,
+        body: _l10n.notifications_morning_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterFajr,
       );
@@ -93,8 +97,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (enable) {
       await _scheduleAdhkar(
         baseId: NotificationIds.eveningAdhkarBase,
-        title: 'Evening Adhkar',
-        body: 'Time for your evening adhkar.',
+        title: _l10n.notifications_evening_adhkar_title,
+        body: _l10n.notifications_evening_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterMaghrib,
       );
@@ -114,8 +118,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (enable) {
       await notifications.scheduleDailyAt(
         id: NotificationIds.dailyAyah,
-        title: 'Daily Ayah',
-        body: 'A new ayah is waiting for you.',
+        title: _l10n.notifications_daily_ayah_title,
+        body: _l10n.notifications_daily_ayah_body,
         hour: 19,
         minute: 0,
       );
@@ -148,8 +152,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (s.morningAdhkar) {
       await _scheduleAdhkar(
         baseId: NotificationIds.morningAdhkarBase,
-        title: 'Morning Adhkar',
-        body: 'Time for your morning adhkar.',
+        title: _l10n.notifications_morning_adhkar_title,
+        body: _l10n.notifications_morning_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterFajr,
       );
@@ -157,8 +161,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (s.eveningAdhkar) {
       await _scheduleAdhkar(
         baseId: NotificationIds.eveningAdhkarBase,
-        title: 'Evening Adhkar',
-        body: 'Time for your evening adhkar.',
+        title: _l10n.notifications_evening_adhkar_title,
+        body: _l10n.notifications_evening_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterMaghrib,
       );
@@ -166,8 +170,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     if (s.dailyAyah) {
       await notifications.scheduleDailyAt(
         id: NotificationIds.dailyAyah,
-        title: 'Daily Ayah',
-        body: 'A new ayah is waiting for you.',
+        title: _l10n.notifications_daily_ayah_title,
+        body: _l10n.notifications_daily_ayah_body,
         hour: 19,
         minute: 0,
       );
@@ -185,16 +189,19 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         days: NotificationIds.prayersDaysAhead,
       );
 
+      final titles = _prayerTitles();
+
       for (int day = 0; day < week.length; day++) {
         final times = week[day];
         for (final slot in PrayerSlot.values) {
           final when = tz.TZDateTime.from(times.forSlot(slot), tz.local);
           final id =
               NotificationIds.prayersBase + (day * 5) + slot.index;
+          final prayerName = titles[slot]!;
           await notifications.scheduleAt(
             id: id,
-            title: _prayerTitles[slot]!,
-            body: 'It is time for ${_prayerTitles[slot]} prayer.',
+            title: prayerName,
+            body: _l10n.notifications_prayer_body(prayerName),
             when: when,
           );
         }
@@ -202,9 +209,9 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     } catch (e, st) {
       talker.handle(e, st, 'Failed to schedule prayer notifications');
       appEvents.send(
-        const ShowErrorEvent(
+        ShowErrorEvent(
           null,
-          defaultMessage: 'Could not schedule prayer notifications.',
+          defaultMessage: _l10n.notifications_error_prayers_schedule,
         ),
       );
     }
@@ -240,9 +247,9 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     } catch (e, st) {
       talker.handle(e, st, 'Failed to schedule adhkar notifications');
       appEvents.send(
-        const ShowErrorEvent(
+        ShowErrorEvent(
           null,
-          defaultMessage: 'Could not schedule adhkar notifications.',
+          defaultMessage: _l10n.notifications_error_adhkar_schedule,
         ),
       );
     }

@@ -60,6 +60,7 @@ class OnboardingScreen3 extends HookConsumerWidget {
                       ),
                       _DhikrCard(
                         currentCount: dhikrCount.value,
+                        translation: l10n.onboarding_screen_3_dhikr_translation,
                         onChange: (v) => dhikrCount.value = v,
                       ),
                     ],
@@ -94,7 +95,7 @@ class OnboardingScreen3 extends HookConsumerWidget {
             delay: const Duration(milliseconds: 800),
             offsetY: 16,
             child: UIButton.primary(
-              label: 'Continue',
+              label: l10n.common_continue,
               fullWidth: true,
               onTap: () {
                 provider.changePage(3);
@@ -111,10 +112,12 @@ class OnboardingScreen3 extends HookConsumerWidget {
 class _DhikrCard extends StatelessWidget {
   const _DhikrCard({
     required this.currentCount,
+    required this.translation,
     required this.onChange,
   });
 
   final int currentCount;
+  final String translation;
   final ValueChanged<int> onChange;
 
   @override
@@ -134,7 +137,7 @@ class _DhikrCard extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Glory be to Allah',
+              translation,
               style: theme.typo.inter.bodyLarge.copyWith(
                 color: UIColorsToken.textYellow,
                 fontSize: 12

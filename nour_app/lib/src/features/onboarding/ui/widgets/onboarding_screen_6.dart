@@ -5,10 +5,8 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/notifications/notifications_services.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
-import 'package:nour/src/features/notifications/ui/state_management/notifications_provider.dart';
 import 'package:nour/src/features/notifications/ui/widgets/notifications_settings_widget.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class OnboardingScreen6 extends ConsumerWidget {
   const OnboardingScreen6({super.key});
@@ -76,7 +74,7 @@ class OnboardingScreen6 extends ConsumerWidget {
               children: [
                 Expanded(
                   child: UIButton.textual(
-                    label: 'Maybe later',
+                    label: l10n.onboarding_maybe_later,
                     fullWidth: true,
                     contentColor: UIColorsToken.white,
                     onTap: () => onboarding.changePage(6),
@@ -86,7 +84,7 @@ class OnboardingScreen6 extends ConsumerWidget {
                 Expanded(
                   flex: 2,
                   child: UIButton.primary(
-                    label: 'Allow notifications',
+                    label: l10n.onboarding_allow_notifications,
                     fullWidth: true,
                     onTap: () async {
                       // Init notifications
