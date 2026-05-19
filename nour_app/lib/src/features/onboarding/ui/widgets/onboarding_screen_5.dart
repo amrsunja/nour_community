@@ -34,7 +34,7 @@ class OnboardingScreen5 extends HookConsumerWidget {
       final minutes = selected.value;
       if (minutes == null) return;
 
-      final ok = await profilePresenter.setDailyPracticeTime(minutes);
+      final ok = await profilePresenter.updateDailyPracticeTime(minutes);
       if (ok) {
         profile?.dailyPracticeTime = minutes;
         onboarding.changePage(5);

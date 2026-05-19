@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
+import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/profile/data/models/profile_model.dart';
 
@@ -24,9 +25,15 @@ class ProfileRepo {
 		});
   }
 
-  Future<SuccessOrError<void>> setDailyPracticeTime(int minutes) async {
+  Future<SuccessOrError<void>> updateDailyPracticeTime(int minutes) async {
     return await Failure.exceptionsCatcher(() async {
-      await remoteDatasource.setDailyPracticeTime(minutes);
+      await remoteDatasource.updateDailyPracticeTime(minutes);
+    });
+  }
+
+  Future<SuccessOrError<void>> updateLevel(LevelType level) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.updateLevel(level);
     });
   }
 }

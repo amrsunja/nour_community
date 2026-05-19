@@ -37,23 +37,4 @@ class OnboardingPresenter extends Presenter<OnboardingState> {
 
     state = state.copyWith(currentPage: previousPage > 0 ? previousPage : 0);
   }
-
-  /// Persists the chosen [level] to the user's Supabase profile.
-  /// Returns true on success so the caller can advance the page.
-  Future<bool> selectLevel(LevelType level) async {
-    state = state.copyWith(isLoading: true);
-    final response = await repo.selectLevel(level);
-
-    return response.when(
-      (_) {
-        state = state.copyWith(isLoading: false);
-        return true;
-      },
-      (error) {
-        state = state.copyWith(isLoading: false);
-        appEvents.send(ShowErrorEvent(error));
-        return false;
-      },
-    );
-  }
 }

@@ -16,6 +16,8 @@ class OnboardingScreen4 extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final provider = ref.read(onboardingProvider.notifier);
+
+    final profileP = ref.read(profileProvider.notifier);
     final profile = ref.watch(profileProvider).profile;
     final isLoading = ref.watch(
       onboardingProvider.select((s) => s.isLoading),
@@ -27,9 +29,8 @@ class OnboardingScreen4 extends HookConsumerWidget {
       final level = selectedLevel.value;
       if (level == null) return;
 
-      final ok = await provider.selectLevel(level);
+      final ok = await profileP.updateLevel(level);
       if (ok) {
-        profile?.level = level;
         provider.changePage(4);
       }
     }

@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
@@ -47,12 +48,32 @@ class ProfilePresenter extends Presenter<ProfileState> {
 
   /// Persists [minutes] of daily practice to the user's Supabase profile.
   /// Returns true on success so the caller can decide what to do next.
-  Future<bool> setDailyPracticeTime(int minutes) async {
+  Future<bool> updateDailyPracticeTime(int minutes) async {
     state = state.copyWith(isLoading: true);
-    final response = await repo.setDailyPracticeTime(minutes);
+    final response = await repo.updateDailyPracticeTime(minutes);
 
     return response.when(
       (_) {
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Persists the chosen [level] to the user's Supabase profile.
+  /// Returns true on success so the caller can advance the page.
+  Future<bool> updateLevel(LevelType level) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.updateLevel(level);
+
+    return response.when(
+      (_) {
+        state.profile?.level = level;
         state = state.copyWith(isLoading: false);
         return true;
       },
