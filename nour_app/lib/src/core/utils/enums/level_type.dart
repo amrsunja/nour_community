@@ -1,3 +1,5 @@
+import 'package:nour/src/core/locale/l10n.dart';
+
 enum LevelType {
   begining,
   growing,
@@ -18,4 +20,30 @@ enum LevelType {
   }
 
   String get dbValue => name;
+
+  String title(AppLocale l) {
+    switch (this) {
+      case LevelType.begining:
+        return l.level_begining_title;
+      case LevelType.growing:
+        return l.level_growing_title;
+      case LevelType.established:
+        return l.level_established_title;
+      case LevelType.returning:
+        return l.level_returning_title;
+    }
+  }
+
+  String description(AppLocale l) {
+    switch (this) {
+      case LevelType.begining:
+        return l.level_begining_description;
+      case LevelType.growing:
+        return l.level_growing_description;
+      case LevelType.established:
+        return l.level_established_description;
+      case LevelType.returning:
+        return l.level_returning_description;
+    }
+  }
 }

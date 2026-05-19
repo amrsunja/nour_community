@@ -6,5 +6,6 @@ part 'onboarding_state.freezed.dart';
 abstract class OnboardingState with _$OnboardingState  {
   const factory OnboardingState({
     required bool isLoading,
+    required int currentPage,
   }) = _OnboardingState;
 }

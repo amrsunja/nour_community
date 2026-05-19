@@ -226,6 +226,192 @@ abstract class AppLocalizations {
   /// **'Are you sure?'**
   String get warning_are_you_sure;
 
+  /// No description provided for @l10nOnboarding.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nOnboarding;
+
+  /// No description provided for @onboarding.
+  ///
+  /// In en, this message translates to:
+  /// **'Onboarding'**
+  String get onboarding;
+
+  /// No description provided for @onboarding_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboarding_skip;
+
+  /// No description provided for @onboarding_next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboarding_next;
+
+  /// No description provided for @onboarding_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboarding_start;
+
+  /// No description provided for @onboarding_screen_1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to Nour'**
+  String get onboarding_screen_1_title;
+
+  /// No description provided for @onboarding_screen_1_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Your premium companion for a beautiful spiritual journey'**
+  String get onboarding_screen_1_description;
+
+  /// No description provided for @onboarding_screen_2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything you need'**
+  String get onboarding_screen_2_title;
+
+  /// No description provided for @onboarding_screen_2_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily practice, sacred texts, and tools — all in one place.'**
+  String get onboarding_screen_2_description;
+
+  /// No description provided for @onboarding_screen_3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Build a beautiful daily routine'**
+  String get onboarding_screen_3_title;
+
+  /// No description provided for @onboarding_screen_3_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Earn ajr through dhikr, find peace in the Qur\'an, and grow in your faith.'**
+  String get onboarding_screen_3_description;
+
+  /// No description provided for @onboarding_screen_4_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you on your journey?'**
+  String get onboarding_screen_4_title;
+
+  /// No description provided for @onboarding_screen_4_description.
+  ///
+  /// In en, this message translates to:
+  /// **'*'**
+  String get onboarding_screen_4_description;
+
+  /// No description provided for @onboarding_screen_5_title.
+  ///
+  /// In en, this message translates to:
+  /// **'How much time daily?'**
+  String get onboarding_screen_5_title;
+
+  /// No description provided for @onboarding_screen_5_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a goal that fits your life.'**
+  String get onboarding_screen_5_description;
+
+  /// No description provided for @onboarding_screen_6_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle reminders'**
+  String get onboarding_screen_6_title;
+
+  /// No description provided for @onboarding_screen_6_description.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'ll only send what you allow.'**
+  String get onboarding_screen_6_description;
+
+  /// No description provided for @onboarding_screen_7_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a voice'**
+  String get onboarding_screen_7_title;
+
+  /// No description provided for @onboarding_screen_7_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your favourite reciter'**
+  String get onboarding_screen_7_description;
+
+  /// No description provided for @onboarding_screen_8_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your language'**
+  String get onboarding_screen_8_title;
+
+  /// No description provided for @onboarding_screen_8_description.
+  ///
+  /// In en, this message translates to:
+  /// **'*'**
+  String get onboarding_screen_8_description;
+
+  /// No description provided for @onboarding_screen_9_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about yourself'**
+  String get onboarding_screen_9_title;
+
+  /// No description provided for @onboarding_screen_9_description.
+  ///
+  /// In en, this message translates to:
+  /// **'To save your daily progress'**
+  String get onboarding_screen_9_description;
+
+  /// No description provided for @level_begining_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Begining'**
+  String get level_begining_title;
+
+  /// No description provided for @level_begining_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Just starting or learning'**
+  String get level_begining_description;
+
+  /// No description provided for @level_growing_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Growing'**
+  String get level_growing_title;
+
+  /// No description provided for @level_growing_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Practicing and learning more'**
+  String get level_growing_description;
+
+  /// No description provided for @level_established_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Established'**
+  String get level_established_title;
+
+  /// No description provided for @level_established_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Committed daily practice'**
+  String get level_established_description;
+
+  /// No description provided for @level_returning_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Returning'**
+  String get level_returning_title;
+
+  /// No description provided for @level_returning_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming back to my faith'**
+  String get level_returning_description;
+
   /// No description provided for @l10nSuccess.
   ///
   /// In en, this message translates to:
@@ -261,72 +447,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Something went wrong. Please check your internet connection'**
   String get error_server_failure;
-
-  /// No description provided for @l10nOnboarding.
-  ///
-  /// In en, this message translates to:
-  /// **'☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠'**
-  String get l10nOnboarding;
-
-  /// No description provided for @onboarding.
-  ///
-  /// In en, this message translates to:
-  /// **'Onboarding'**
-  String get onboarding;
-
-  /// No description provided for @onboarding_skip.
-  ///
-  /// In en, this message translates to:
-  /// **'Skip'**
-  String get onboarding_skip;
-
-  /// No description provided for @onboarding_next.
-  ///
-  /// In en, this message translates to:
-  /// **'Next'**
-  String get onboarding_next;
-
-  /// No description provided for @onboarding_start.
-  ///
-  /// In en, this message translates to:
-  /// **'Get started'**
-  String get onboarding_start;
-
-  /// No description provided for @onboarding_screen_1_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Welcome to Sawm'**
-  String get onboarding_screen_1_title;
-
-  /// No description provided for @onboarding_screen_1_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Screen 1 desc'**
-  String get onboarding_screen_1_description;
-
-  /// No description provided for @onboarding_screen_2_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Screen 2 title'**
-  String get onboarding_screen_2_title;
-
-  /// No description provided for @onboarding_screen_2_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Screen 2 desc'**
-  String get onboarding_screen_2_description;
-
-  /// No description provided for @onboarding_screen_3_title.
-  ///
-  /// In en, this message translates to:
-  /// **'Screen 3 title'**
-  String get onboarding_screen_3_title;
-
-  /// No description provided for @onboarding_screen_3_description.
-  ///
-  /// In en, this message translates to:
-  /// **'Screen 3 desc'**
-  String get onboarding_screen_3_description;
 
   /// No description provided for @l10nStopLineDontTouch.
   ///

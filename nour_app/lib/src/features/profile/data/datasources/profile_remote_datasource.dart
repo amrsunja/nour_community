@@ -36,4 +36,27 @@ class ProfileRemoteDatasource {
       throw ServerException(type: .forbiden, message: 'Bad request for getting Profile');
     }
   }
+
+  Future<void> setDailyPracticeTime(int minutes) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'daily_practice_time': minutes})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to update daily practice time',
+      );
+    }
+  }
 }

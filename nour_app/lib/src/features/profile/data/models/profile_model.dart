@@ -10,11 +10,11 @@ class ProfileModel extends Equatable {
   final String? name;
   final String? avatar;
   final GenderType? gender;
-  final LevelType? level;
+  LevelType? level;
   final LanguageType language;
   final bool onboardingCompleted;
   final int lastOnboardingScreen;
-  final int dailyPracticeTime;
+  int dailyPracticeTime;
   final int currentStreak;
   final DateTime? lastStreakDate;
   final int earnedAjrCount;
@@ -22,7 +22,7 @@ class ProfileModel extends Equatable {
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
-  const ProfileModel({
+  ProfileModel({
     required this.id,
     required this.email,
     required this.name,

@@ -13,6 +13,7 @@ import 'package:nour/src/features/settings/ui/state_management/settings_provider
 
 import 'core/utils/enums/app_theme_type.dart';
 import 'core/utils/extensions/build_context_extensions.dart';
+import 'features/notifications/ui/state_management/notifications_provider.dart';
 
 
 class App extends StatefulHookConsumerWidget {
@@ -36,6 +37,7 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 
 			Future.microtask(() async {
 			  await ref.read(settingsProvider.notifier).initLocalSettings();
+			  await ref.read(notificationsProvider.notifier).initSettings();
 			});
 
 			return null;

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:sqflite_sqlcipher/sqflite.dart';
 
 import '../../../errors/exceptions/database/database_exception.dart' as ex;
@@ -8,7 +9,13 @@ import '../secure_storage/secure_storage_config.dart';
 import '../secure_storage/secure_storage_services.dart';
 import 'sqlite_config.dart';
 
-const int _dbVersion = 1;
+final sqliteServicesProvider = Provider<SQLiteServices>((ref) {
+  return SQLiteServicesImpl(
+    secureStorage: SecureStorageServicesImpl(),
+  );
+});
+
+const int _dbVersion = 2;
 
 abstract class SQLiteServices {
   String dayKey(DateTime date);
@@ -62,13 +69,35 @@ class SQLiteServicesImpl implements SQLiteServices {
               id INTEGER PRIMARY KEY CHECK (id = 1),
               ${SQLiteConfig.languageCodeKey} TEXT,
               ${SQLiteConfig.countryCodeKey} TEXT,
-              ${SQLiteConfig.themeModeKey} TEXT NOT NULL
+              ${SQLiteConfig.themeModeKey} TEXT NOT NULL,
+              ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 1,
+              ${SQLiteConfig.notifMorningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifEveningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0
             );
           ''');
 
           talker.debug('Created All tables for new app database');
         },
         onUpgrade: (db, oldVersion, newVersion) async {
+          if (oldVersion < 2) {
+            await db.execute(
+              'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+              'ADD COLUMN ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 1;',
+            );
+            await db.execute(
+              'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+              'ADD COLUMN ${SQLiteConfig.notifMorningAdhkarKey} INTEGER NOT NULL DEFAULT 0;',
+            );
+            await db.execute(
+              'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+              'ADD COLUMN ${SQLiteConfig.notifEveningAdhkarKey} INTEGER NOT NULL DEFAULT 0;',
+            );
+            await db.execute(
+              'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+              'ADD COLUMN ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0;',
+            );
+          }
         },
         onOpen: (db) async {
           await db.rawQuery('PRAGMA cipher_version;');

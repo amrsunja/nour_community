@@ -82,6 +82,104 @@ class AppLocalizationsEn extends AppLocalizations {
   String get warning_are_you_sure => 'Are you sure?';
 
   @override
+  String get l10nOnboarding => '☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get onboarding => 'Onboarding';
+
+  @override
+  String get onboarding_skip => 'Skip';
+
+  @override
+  String get onboarding_next => 'Next';
+
+  @override
+  String get onboarding_start => 'Get started';
+
+  @override
+  String get onboarding_screen_1_title => 'Welcome to Nour';
+
+  @override
+  String get onboarding_screen_1_description =>
+      'Your premium companion for a beautiful spiritual journey';
+
+  @override
+  String get onboarding_screen_2_title => 'Everything you need';
+
+  @override
+  String get onboarding_screen_2_description =>
+      'Daily practice, sacred texts, and tools — all in one place.';
+
+  @override
+  String get onboarding_screen_3_title => 'Build a beautiful daily routine';
+
+  @override
+  String get onboarding_screen_3_description =>
+      'Earn ajr through dhikr, find peace in the Qur\'an, and grow in your faith.';
+
+  @override
+  String get onboarding_screen_4_title => 'Where are you on your journey?';
+
+  @override
+  String get onboarding_screen_4_description => '*';
+
+  @override
+  String get onboarding_screen_5_title => 'How much time daily?';
+
+  @override
+  String get onboarding_screen_5_description =>
+      'Choose a goal that fits your life.';
+
+  @override
+  String get onboarding_screen_6_title => 'Gentle reminders';
+
+  @override
+  String get onboarding_screen_6_description =>
+      'We\'ll only send what you allow.';
+
+  @override
+  String get onboarding_screen_7_title => 'Choose a voice';
+
+  @override
+  String get onboarding_screen_7_description => 'Choose your favourite reciter';
+
+  @override
+  String get onboarding_screen_8_title => 'Choose your language';
+
+  @override
+  String get onboarding_screen_8_description => '*';
+
+  @override
+  String get onboarding_screen_9_title => 'Tell us about yourself';
+
+  @override
+  String get onboarding_screen_9_description => 'To save your daily progress';
+
+  @override
+  String get level_begining_title => 'Begining';
+
+  @override
+  String get level_begining_description => 'Just starting or learning';
+
+  @override
+  String get level_growing_title => 'Growing';
+
+  @override
+  String get level_growing_description => 'Practicing and learning more';
+
+  @override
+  String get level_established_title => 'Established';
+
+  @override
+  String get level_established_description => 'Committed daily practice';
+
+  @override
+  String get level_returning_title => 'Returning';
+
+  @override
+  String get level_returning_description => 'Coming back to my faith';
+
+  @override
   String get l10nSuccess =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -102,39 +200,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_server_failure =>
       'Something went wrong. Please check your internet connection';
-
-  @override
-  String get l10nOnboarding => '☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠';
-
-  @override
-  String get onboarding => 'Onboarding';
-
-  @override
-  String get onboarding_skip => 'Skip';
-
-  @override
-  String get onboarding_next => 'Next';
-
-  @override
-  String get onboarding_start => 'Get started';
-
-  @override
-  String get onboarding_screen_1_title => 'Welcome to Sawm';
-
-  @override
-  String get onboarding_screen_1_description => 'Screen 1 desc';
-
-  @override
-  String get onboarding_screen_2_title => 'Screen 2 title';
-
-  @override
-  String get onboarding_screen_2_description => 'Screen 2 desc';
-
-  @override
-  String get onboarding_screen_3_title => 'Screen 3 title';
-
-  @override
-  String get onboarding_screen_3_description => 'Screen 3 desc';
 
   @override
   String get l10nStopLineDontTouch =>

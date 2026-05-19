@@ -44,4 +44,23 @@ class ProfilePresenter extends Presenter<ProfileState> {
       }
     );
   }
+
+  /// Persists [minutes] of daily practice to the user's Supabase profile.
+  /// Returns true on success so the caller can decide what to do next.
+  Future<bool> setDailyPracticeTime(int minutes) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.setDailyPracticeTime(minutes);
+
+    return response.when(
+      (_) {
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
 }

@@ -23,4 +23,10 @@ class ProfileRepo {
       return await remoteDatasource.getProfile();
 		});
   }
+
+  Future<SuccessOrError<void>> setDailyPracticeTime(int minutes) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.setDailyPracticeTime(minutes);
+    });
+  }
 }
