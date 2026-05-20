@@ -79,6 +79,12 @@
 
 	"onboarding_screen_9_title": "Parlez-nous de vous",
 	"onboarding_screen_9_description": "Pour enregistrer vos progrès quotidiens",
+	"onboarding_screen_9_name_label": "Votre nom",
+	"onboarding_screen_9_name_hint": "Entrez votre nom",
+	"onboarding_screen_9_gender_question": "Quel est votre genre ?",
+	"onboarding_screen_9_gender_male": "Homme",
+	"onboarding_screen_9_gender_female": "Femme",
+	"onboarding_screen_9_gender_skip": "Passer",
 
 	"level_begining_title": "Débutant",
 	"level_begining_description": "Je débute ou j'apprends",

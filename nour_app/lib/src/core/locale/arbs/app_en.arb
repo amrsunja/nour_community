@@ -79,6 +79,12 @@
 
 	"onboarding_screen_9_title": "Tell us about yourself",
 	"onboarding_screen_9_description": "To save your daily progress",
+	"onboarding_screen_9_name_label": "Your name",
+	"onboarding_screen_9_name_hint": "Enter your name",
+	"onboarding_screen_9_gender_question": "What's your gender?",
+	"onboarding_screen_9_gender_male": "Male",
+	"onboarding_screen_9_gender_female": "Female",
+	"onboarding_screen_9_gender_skip": "Skip",
 
 	"level_begining_title": "Begining",
 	"level_begining_description": "Just starting or learning",

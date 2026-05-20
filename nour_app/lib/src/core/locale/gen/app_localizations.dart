@@ -460,6 +460,42 @@ abstract class AppLocalizations {
   /// **'To save your daily progress'**
   String get onboarding_screen_9_description;
 
+  /// No description provided for @onboarding_screen_9_name_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get onboarding_screen_9_name_label;
+
+  /// No description provided for @onboarding_screen_9_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get onboarding_screen_9_name_hint;
+
+  /// No description provided for @onboarding_screen_9_gender_question.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your gender?'**
+  String get onboarding_screen_9_gender_question;
+
+  /// No description provided for @onboarding_screen_9_gender_male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get onboarding_screen_9_gender_male;
+
+  /// No description provided for @onboarding_screen_9_gender_female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get onboarding_screen_9_gender_female;
+
+  /// No description provided for @onboarding_screen_9_gender_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get onboarding_screen_9_gender_skip;
+
   /// No description provided for @level_begining_title.
   ///
   /// In en, this message translates to:

@@ -197,6 +197,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get onboarding_screen_9_description => 'لحفظ تقدمك اليومي';
 
   @override
+  String get onboarding_screen_9_name_label => 'اسمك';
+
+  @override
+  String get onboarding_screen_9_name_hint => 'أدخل اسمك';
+
+  @override
+  String get onboarding_screen_9_gender_question => 'ما هو جنسك؟';
+
+  @override
+  String get onboarding_screen_9_gender_male => 'ذكر';
+
+  @override
+  String get onboarding_screen_9_gender_female => 'أنثى';
+
+  @override
+  String get onboarding_screen_9_gender_skip => 'تخطي';
+
+  @override
   String get level_begining_title => 'مبتدئ';
 
   @override

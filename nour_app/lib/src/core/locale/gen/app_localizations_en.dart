@@ -201,6 +201,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_screen_9_description => 'To save your daily progress';
 
   @override
+  String get onboarding_screen_9_name_label => 'Your name';
+
+  @override
+  String get onboarding_screen_9_name_hint => 'Enter your name';
+
+  @override
+  String get onboarding_screen_9_gender_question => 'What\'s your gender?';
+
+  @override
+  String get onboarding_screen_9_gender_male => 'Male';
+
+  @override
+  String get onboarding_screen_9_gender_female => 'Female';
+
+  @override
+  String get onboarding_screen_9_gender_skip => 'Skip';
+
+  @override
   String get level_begining_title => 'Begining';
 
   @override
