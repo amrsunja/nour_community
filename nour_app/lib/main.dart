@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio_background/just_audio_background.dart';
-import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:nour/config/app_runner.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
