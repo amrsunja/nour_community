@@ -4,7 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 
 class OnboardingScreen8 extends HookConsumerWidget {
@@ -16,13 +18,14 @@ class OnboardingScreen8 extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final onboarding = ref.read(onboardingProvider.notifier);
     final settingsPresenter = ref.read(settingsProvider.notifier);
+    final profilePresenter = ref.read(profileProvider.notifier);
 
     final storedLocale = ref.watch(
       settingsProvider.select((s) => s.data?.locale),
     );
     final isLoading = ref.watch(
       settingsProvider.select((s) => s.isLoading),
-    );
+    ) || ref.watch(profileProvider.select((s) => s.isLoading));
 
     final options = <_LangOption>[
       _LangOption(locale: L10n.en, label: l10n.onboarding_screen_8_lang_en),
@@ -36,7 +39,10 @@ class OnboardingScreen8 extends HookConsumerWidget {
 
     Future<void> onContinue() async {
       final ok = await settingsPresenter.changeAppLanguage(selected.value);
-      if (ok) onboarding.changePage(8);
+      if (!ok) return;
+      final lang = LanguageType.fromString(selected.value.languageCode);
+      final saved = await profilePresenter.updateLanguage(lang);
+      if (saved) onboarding.changePage(8);
     }
 
     Future<void> onTapLang(Locale locale) async {
@@ -59,7 +65,7 @@ class OnboardingScreen8 extends HookConsumerWidget {
                     child: Text(
                       l10n.onboarding_screen_8_title,
                       textAlign: TextAlign.center,
-                      style: theme.typo.inter.display.copyWith(
+                      style: theme.typo.inter.largeTitle.copyWith(
                         color: UIColorsToken.white,
                       ),
                     ),
@@ -125,7 +131,7 @@ class _LangCard extends StatelessWidget {
 
     return UITap(
       onTap: onTap,
-      child: UISelecteableCard(
+      child: UIGradientCard(
         selected: selected,
         child: Center(
           child: AnimatedDefaultTextStyle(

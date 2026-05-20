@@ -51,7 +51,7 @@ class OnboardingScreen7 extends HookConsumerWidget {
                     child: Text(
                       l10n.onboarding_screen_7_title,
                       textAlign: TextAlign.center,
-                      style: theme.typo.inter.display.copyWith(
+                      style: theme.typo.inter.largeTitle.copyWith(
                         color: UIColorsToken.white,
                       ),
                     ),
@@ -141,40 +141,30 @@ class _ReciterCard extends StatelessWidget {
 
     return UITap(
       onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
-        curve: Curves.easeOut,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(
-            color: selected ? accent : Colors.transparent,
-            width: selected ? 1.5 : 1,
-          ),
-        ),
-        child: UIGradientCard(
-          child: Row(
-            children: [
-              Expanded(
-                child: AnimatedDefaultTextStyle(
-                  duration: const Duration(milliseconds: 220),
-                  style: theme.typo.inter.title.copyWith(
-                    color: selected ? accent : UIColorsToken.white,
-                    fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
-                  ),
-                  child: Text(reciter.displayName),
+      child: UIGradientCard(
+        selected: selected,
+        child: Row(
+          children: [
+            Expanded(
+              child: AnimatedDefaultTextStyle(
+                duration: const Duration(milliseconds: 220),
+                style: theme.typo.inter.title.copyWith(
+                  color: selected ? accent : UIColorsToken.white,
+                  fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
                 ),
+                child: Text(reciter.displayName),
               ),
-              if (isLoadingPreview)
-                UICircularProgressBar(size: 22)
-              else
-                UIIcon(
-                  UIIconsToken.icons.volume,
-                  color: iconColor,
-                  size: 22,
-                  onTap: onPreviewTap,
-                ),
-            ],
-          ),
+            ),
+            if (isLoadingPreview)
+              UICircularProgressBar(size: 22)
+            else
+              UIIcon(
+                UIIconsToken.icons.volume,
+                color: iconColor,
+                size: 22,
+                onTap: onPreviewTap,
+              ),
+          ],
         ),
       ),
     );

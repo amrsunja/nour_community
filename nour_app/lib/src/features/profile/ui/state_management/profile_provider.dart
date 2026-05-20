@@ -1,5 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/utils/enums/gender_type.dart';
+import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
@@ -74,6 +76,101 @@ class ProfilePresenter extends Presenter<ProfileState> {
     return response.when(
       (_) {
         state.profile?.level = level;
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Persists the user's display [name] to the Supabase profile.
+  Future<bool> updateName(String name) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.updateName(name);
+
+    return response.when(
+      (_) {
+        state.profile?.name = name;
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Persists the user's [gender] to the Supabase profile.
+  Future<bool> updateGender(GenderType gender) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.updateGender(gender);
+
+    return response.when(
+      (_) {
+        state.profile?.gender = gender;
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Persists the user's preferred [lang] to the Supabase profile.
+  Future<bool> updateLanguage(LanguageType lang) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.updateLanguage(lang);
+
+    return response.when(
+      (_) {
+        state.profile?.language = lang;
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Persists the last onboarding [page] index so users can resume later.
+  Future<bool> updateLastOnboardingScreen(int page) async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.updateLastOnboardingScreen(page);
+
+    return response.when(
+      (_) {
+        state.profile?.lastOnboardingScreen = page;
+        state = state.copyWith(isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Flags the user's onboarding as completed in the Supabase profile.
+  Future<bool> markOnboardingCompleted() async {
+    state = state.copyWith(isLoading: true);
+    final response = await repo.markOnboardingCompleted();
+
+    return response.when(
+      (_) {
+        state.profile?.onboardingCompleted = true;
         state = state.copyWith(isLoading: false);
         return true;
       },

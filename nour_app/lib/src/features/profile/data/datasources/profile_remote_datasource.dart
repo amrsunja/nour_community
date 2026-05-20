@@ -1,6 +1,8 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
+import 'package:nour/src/core/utils/enums/gender_type.dart';
+import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 
@@ -80,6 +82,121 @@ class ProfileRemoteDatasource {
       throw ServerException(
         type: .badRequest,
         message: 'Failed to update profile level',
+      );
+    }
+  }
+
+  Future<void> updateName(String name) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'name': name})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to update profile name',
+      );
+    }
+  }
+
+  Future<void> updateGender(GenderType gender) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'gender': gender == GenderType.undefined ? null : gender.dbValue})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to update profile gender',
+      );
+    }
+  }
+
+  Future<void> updateLanguage(LanguageType lang) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'language': lang.dbValue})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to update profile language',
+      );
+    }
+  }
+
+  Future<void> updateLastOnboardingScreen(int page) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'last_onboarding_screen': page})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to update last onboarding screen',
+      );
+    }
+  }
+
+  Future<void> markOnboardingCompleted() async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      await supabaseClient
+          .from(_tableName)
+          .update({'onboarding_completed': true})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to mark onboarding as completed',
       );
     }
   }

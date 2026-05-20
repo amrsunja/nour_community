@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OnboardingState {
 
- bool get isLoading; int get currentPage;
+ bool get isLoading;
 /// Create a copy of OnboardingState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $OnboardingStateCopyWith<OnboardingState> get copyWith => _$OnboardingStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OnboardingState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentPage);
+int get hashCode => Object.hash(runtimeType,isLoading);
 
 @override
 String toString() {
-  return 'OnboardingState(isLoading: $isLoading, currentPage: $currentPage)';
+  return 'OnboardingState(isLoading: $isLoading)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $OnboardingStateCopyWith<$Res>  {
   factory $OnboardingStateCopyWith(OnboardingState value, $Res Function(OnboardingState) _then) = _$OnboardingStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, int currentPage
+ bool isLoading
 });
 
 
@@ -62,11 +62,10 @@ class _$OnboardingStateCopyWithImpl<$Res>
 
 /// Create a copy of OnboardingState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? currentPage = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int,
+as bool,
   ));
 }
 
@@ -151,10 +150,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  int currentPage)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OnboardingState() when $default != null:
-return $default(_that.isLoading,_that.currentPage);case _:
+return $default(_that.isLoading);case _:
   return orElse();
 
 }
@@ -172,10 +171,10 @@ return $default(_that.isLoading,_that.currentPage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  int currentPage)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading)  $default,) {final _that = this;
 switch (_that) {
 case _OnboardingState():
-return $default(_that.isLoading,_that.currentPage);case _:
+return $default(_that.isLoading);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +191,10 @@ return $default(_that.isLoading,_that.currentPage);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  int currentPage)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading)?  $default,) {final _that = this;
 switch (_that) {
 case _OnboardingState() when $default != null:
-return $default(_that.isLoading,_that.currentPage);case _:
+return $default(_that.isLoading);case _:
   return null;
 
 }
@@ -207,11 +206,10 @@ return $default(_that.isLoading,_that.currentPage);case _:
 
 
 class _OnboardingState implements OnboardingState {
-  const _OnboardingState({required this.isLoading, required this.currentPage});
+  const _OnboardingState({required this.isLoading});
   
 
 @override final  bool isLoading;
-@override final  int currentPage;
 
 /// Create a copy of OnboardingState
 /// with the given fields replaced by the non-null parameter values.
@@ -223,16 +221,16 @@ _$OnboardingStateCopyWith<_OnboardingState> get copyWith => __$OnboardingStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnboardingState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.currentPage, currentPage) || other.currentPage == currentPage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnboardingState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,currentPage);
+int get hashCode => Object.hash(runtimeType,isLoading);
 
 @override
 String toString() {
-  return 'OnboardingState(isLoading: $isLoading, currentPage: $currentPage)';
+  return 'OnboardingState(isLoading: $isLoading)';
 }
 
 
@@ -243,7 +241,7 @@ abstract mixin class _$OnboardingStateCopyWith<$Res> implements $OnboardingState
   factory _$OnboardingStateCopyWith(_OnboardingState value, $Res Function(_OnboardingState) _then) = __$OnboardingStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, int currentPage
+ bool isLoading
 });
 
 
@@ -260,11 +258,10 @@ class __$OnboardingStateCopyWithImpl<$Res>
 
 /// Create a copy of OnboardingState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? currentPage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,}) {
   return _then(_OnboardingState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,currentPage: null == currentPage ? _self.currentPage : currentPage // ignore: cast_nullable_to_non_nullable
-as int,
+as bool,
   ));
 }
 

@@ -8,6 +8,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/onboarding/ui/widgets/onboarding_screen_1.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../widgets/onboarding_screen_2.dart';
 import '../widgets/onboarding_screen_3.dart';
@@ -27,27 +28,28 @@ class OnboardingPage extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final provider = ref.read(onboardingProvider.notifier);
-    final state = ref.watch(onboardingProvider);
+    final profile = ref.watch(profileProvider).profile;
 
-    int currentPage = state.currentPage;
+    int currentPage = profile?.lastOnboardingScreen ?? 0;
     final pageController = usePageController(initialPage: currentPage);
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         pageController.animateToPage(
-          state.currentPage,
+          currentPage,
           duration: Durations.medium2,
           curve: Curves.fastOutSlowIn
         );
       });
 
       return null;
-    }, [state.currentPage]);
+    }, [profile?.lastOnboardingScreen]);
 
 
 
     final showBars = currentPage > 0;
     return UIGradientLinedScaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
         children: [
           AnimatedOpacity(

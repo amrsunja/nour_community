@@ -1,5 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
+import 'package:nour/src/core/utils/enums/gender_type.dart';
+import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/profile/data/models/profile_model.dart';
@@ -34,6 +36,36 @@ class ProfileRepo {
   Future<SuccessOrError<void>> updateLevel(LevelType level) async {
     return await Failure.exceptionsCatcher(() async {
       await remoteDatasource.updateLevel(level);
+    });
+  }
+
+  Future<SuccessOrError<void>> updateName(String name) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.updateName(name);
+    });
+  }
+
+  Future<SuccessOrError<void>> updateGender(GenderType gender) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.updateGender(gender);
+    });
+  }
+
+  Future<SuccessOrError<void>> updateLanguage(LanguageType lang) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.updateLanguage(lang);
+    });
+  }
+
+  Future<SuccessOrError<void>> updateLastOnboardingScreen(int page) async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.updateLastOnboardingScreen(page);
+    });
+  }
+
+  Future<SuccessOrError<void>> markOnboardingCompleted() async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.markOnboardingCompleted();
     });
   }
 }

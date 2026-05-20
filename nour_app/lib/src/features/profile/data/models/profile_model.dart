@@ -7,13 +7,13 @@ import 'package:nour/src/core/utils/typedefs.dart';
 class ProfileModel extends Equatable {
   final String id;
   final String? email;
-  final String? name;
+  String? name;
   final String? avatar;
-  final GenderType? gender;
+  GenderType? gender;
   LevelType? level;
-  final LanguageType language;
-  final bool onboardingCompleted;
-  final int lastOnboardingScreen;
+  LanguageType language;
+  bool onboardingCompleted;
+  int lastOnboardingScreen;
   int dailyPracticeTime;
   final int currentStreak;
   final DateTime? lastStreakDate;
