@@ -133,5 +133,19 @@
 	"error_unknown": "Something went wrong. Please try again.",
   "error_server_failure": "Something went wrong. Please check your internet connection",
 
+  "l10nAuth": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "auth_connect_title": "Let’s connect your account",
+  "auth_connect_subtitle": "So you don't lose your data and daily progress",
+  "auth_email": "Email",
+  "auth_email_hint": "Enter your email",
+  "auth_password": "Password",
+  "auth_password_hint": "Enter your password",
+  "auth_or_sign_up_with": "or sign up with",
+  "auth_connect": "Connect",
+  "auth_email_required": "Please enter your email",
+  "auth_email_invalid": "Please enter a valid email",
+  "auth_password_too_short": "Password must be at least 8 characters",
+  "auth_link_success": "Your account is connected",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

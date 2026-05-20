@@ -33,15 +33,30 @@ class AuthRepo {
 		});
   }
 
-  Future<SuccessOrError<void>> signIn() async {
-		return await Failure.exceptionsCatcher<void>(() async {
-      throw UnimplementedError();
+  Future<SuccessOrError<bool>> logout() async {
+		return await Failure.exceptionsCatcher(() async {
+      return remoteDatasource.logout();
 		});
   }
 
-  Future<SuccessOrError<void>> logout() async {
+  Future<SuccessOrError<void>> linkEmailPassword({
+    required String email,
+    required String password,
+  }) async {
 		return await Failure.exceptionsCatcher<void>(() async {
-      throw UnimplementedError();
+      await remoteDatasource.linkEmailPassword(email: email, password: password);
+		});
+  }
+
+  Future<SuccessOrError<void>> signInWithGoogle() async {
+		return await Failure.exceptionsCatcher<void>(() async {
+      await remoteDatasource.signInWithGoogle();
+		});
+  }
+
+  Future<SuccessOrError<void>> signInWithApple() async {
+		return await Failure.exceptionsCatcher<void>(() async {
+      await remoteDatasource.signInWithApple();
 		});
   }
 

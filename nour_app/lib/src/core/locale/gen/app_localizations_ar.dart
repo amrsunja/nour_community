@@ -322,6 +322,47 @@ class AppLocalizationsAr extends AppLocalizations {
   String get error_server_failure => 'حدث خطأ ما. تحقق من اتصالك بالإنترنت';
 
   @override
+  String get l10nAuth =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get auth_connect_title => 'لنربط حسابك';
+
+  @override
+  String get auth_connect_subtitle => 'حتى لا تفقد بياناتك وتقدمك اليومي';
+
+  @override
+  String get auth_email => 'البريد الإلكتروني';
+
+  @override
+  String get auth_email_hint => 'أدخل بريدك الإلكتروني';
+
+  @override
+  String get auth_password => 'كلمة المرور';
+
+  @override
+  String get auth_password_hint => 'أدخل كلمة المرور';
+
+  @override
+  String get auth_or_sign_up_with => 'أو سجّل عبر';
+
+  @override
+  String get auth_connect => 'ربط الحساب';
+
+  @override
+  String get auth_email_required => 'يرجى إدخال بريدك الإلكتروني';
+
+  @override
+  String get auth_email_invalid => 'يرجى إدخال بريد إلكتروني صالح';
+
+  @override
+  String get auth_password_too_short =>
+      'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
+
+  @override
+  String get auth_link_success => 'تم ربط حسابك';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

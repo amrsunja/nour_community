@@ -7,6 +7,7 @@ abstract class NavigationServices {
 	void pop();
 
 	void toSignIn();
+	void toHome({bool openSignIn = false});
 	void toSettings();
 }
 
@@ -23,6 +24,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toSignIn() {
 		router.replaceAll([SignInRoute()]);
+  }
+
+  @override
+  void toHome({bool openSignIn = false}) {
+		router.replaceAll([HomeRouterRoute(), if (openSignIn) SignInRoute()]);
   }
 
   @override

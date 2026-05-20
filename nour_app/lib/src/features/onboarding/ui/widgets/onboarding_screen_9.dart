@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
@@ -43,7 +44,12 @@ class OnboardingScreen9 extends HookConsumerWidget {
 
       if (!completed) return ;
 
-      navigationServices.toSignIn();
+      final currentUserEmail = supabaseClient.auth.currentUser?.email;
+      final needToSignIn = currentUserEmail == null || currentUserEmail.isEmpty;
+      print(supabaseClient.auth.currentUser?.email);
+      print(needToSignIn);
+
+      navigationServices.toHome(openSignIn: needToSignIn);
     }
 
     return Padding(

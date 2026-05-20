@@ -128,5 +128,19 @@
 	"error_unknown": "حدث خطأ ما. حاول مرة أخرى.",
   "error_server_failure": "حدث خطأ ما. تحقق من اتصالك بالإنترنت",
 
+  "l10nAuth": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "auth_connect_title": "لنربط حسابك",
+  "auth_connect_subtitle": "حتى لا تفقد بياناتك وتقدمك اليومي",
+  "auth_email": "البريد الإلكتروني",
+  "auth_email_hint": "أدخل بريدك الإلكتروني",
+  "auth_password": "كلمة المرور",
+  "auth_password_hint": "أدخل كلمة المرور",
+  "auth_or_sign_up_with": "أو سجّل عبر",
+  "auth_connect": "ربط الحساب",
+  "auth_email_required": "يرجى إدخال بريدك الإلكتروني",
+  "auth_email_invalid": "يرجى إدخال بريد إلكتروني صالح",
+  "auth_password_too_short": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل",
+  "auth_link_success": "تم ربط حسابك",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

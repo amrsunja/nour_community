@@ -6,7 +6,6 @@ import 'package:nour/src/core/utils/typedefs.dart';
 
 class ProfileModel extends Equatable {
   final String id;
-  final String? email;
   String? name;
   final String? avatar;
   GenderType? gender;
@@ -24,7 +23,6 @@ class ProfileModel extends Equatable {
 
   ProfileModel({
     required this.id,
-    required this.email,
     required this.name,
     required this.avatar,
     required this.gender,
@@ -43,7 +41,6 @@ class ProfileModel extends Equatable {
 
   factory ProfileModel.fromJson(Json json) => ProfileModel(
     id: json['id'],
-    email: json['email'],
     name: json['name'],
     avatar: json['avatar_url'],
     gender: json['gender'] == null ? null : GenderType.fromString(json['gender']),
@@ -63,7 +60,6 @@ class ProfileModel extends Equatable {
   @override
   List<Object?> get props => [
     id,
-    email,
     name,
     avatar,
     gender,

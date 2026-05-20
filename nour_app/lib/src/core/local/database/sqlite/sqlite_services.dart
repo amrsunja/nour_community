@@ -53,7 +53,7 @@ class SQLiteServicesImpl implements SQLiteServices {
 
     _database = await _openDB(psw);
 
-    talker.debug('Opened barometerDB: ${_database?.database.toString()}');
+    talker.debug('Opened database: ${_database?.database.toString()}');
   }
 
   Future<Database?> _openDB(String password) async {

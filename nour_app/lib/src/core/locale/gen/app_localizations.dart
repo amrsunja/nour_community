@@ -694,6 +694,84 @@ abstract class AppLocalizations {
   /// **'Something went wrong. Please check your internet connection'**
   String get error_server_failure;
 
+  /// No description provided for @l10nAuth.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nAuth;
+
+  /// No description provided for @auth_connect_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s connect your account'**
+  String get auth_connect_title;
+
+  /// No description provided for @auth_connect_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'So you don\'t lose your data and daily progress'**
+  String get auth_connect_subtitle;
+
+  /// No description provided for @auth_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get auth_email;
+
+  /// No description provided for @auth_email_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email'**
+  String get auth_email_hint;
+
+  /// No description provided for @auth_password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get auth_password;
+
+  /// No description provided for @auth_password_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your password'**
+  String get auth_password_hint;
+
+  /// No description provided for @auth_or_sign_up_with.
+  ///
+  /// In en, this message translates to:
+  /// **'or sign up with'**
+  String get auth_or_sign_up_with;
+
+  /// No description provided for @auth_connect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect'**
+  String get auth_connect;
+
+  /// No description provided for @auth_email_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your email'**
+  String get auth_email_required;
+
+  /// No description provided for @auth_email_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email'**
+  String get auth_email_invalid;
+
+  /// No description provided for @auth_password_too_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 8 characters'**
+  String get auth_password_too_short;
+
+  /// No description provided for @auth_link_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Your account is connected'**
+  String get auth_link_success;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

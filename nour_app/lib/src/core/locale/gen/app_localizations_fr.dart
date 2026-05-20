@@ -335,6 +335,48 @@ class AppLocalizationsFr extends AppLocalizations {
       'Une erreur est survenue. Vérifiez votre connexion internet';
 
   @override
+  String get l10nAuth =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get auth_connect_title => 'Connectons votre compte';
+
+  @override
+  String get auth_connect_subtitle =>
+      'Pour ne pas perdre vos données et votre progression quotidienne';
+
+  @override
+  String get auth_email => 'E-mail';
+
+  @override
+  String get auth_email_hint => 'Saisissez votre e-mail';
+
+  @override
+  String get auth_password => 'Mot de passe';
+
+  @override
+  String get auth_password_hint => 'Saisissez votre mot de passe';
+
+  @override
+  String get auth_or_sign_up_with => 'ou inscrivez-vous avec';
+
+  @override
+  String get auth_connect => 'Connecter';
+
+  @override
+  String get auth_email_required => 'Veuillez saisir votre e-mail';
+
+  @override
+  String get auth_email_invalid => 'Veuillez saisir un e-mail valide';
+
+  @override
+  String get auth_password_too_short =>
+      'Le mot de passe doit comporter au moins 8 caractères';
+
+  @override
+  String get auth_link_success => 'Votre compte est connecté';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

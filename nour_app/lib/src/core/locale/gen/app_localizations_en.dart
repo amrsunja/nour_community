@@ -329,6 +329,48 @@ class AppLocalizationsEn extends AppLocalizations {
       'Something went wrong. Please check your internet connection';
 
   @override
+  String get l10nAuth =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get auth_connect_title => 'Let’s connect your account';
+
+  @override
+  String get auth_connect_subtitle =>
+      'So you don\'t lose your data and daily progress';
+
+  @override
+  String get auth_email => 'Email';
+
+  @override
+  String get auth_email_hint => 'Enter your email';
+
+  @override
+  String get auth_password => 'Password';
+
+  @override
+  String get auth_password_hint => 'Enter your password';
+
+  @override
+  String get auth_or_sign_up_with => 'or sign up with';
+
+  @override
+  String get auth_connect => 'Connect';
+
+  @override
+  String get auth_email_required => 'Please enter your email';
+
+  @override
+  String get auth_email_invalid => 'Please enter a valid email';
+
+  @override
+  String get auth_password_too_short =>
+      'Password must be at least 8 characters';
+
+  @override
+  String get auth_link_success => 'Your account is connected';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }
