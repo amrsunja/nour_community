@@ -17,6 +17,8 @@ abstract class Failure {
       return Result.error(CacheFailure(exception: e));
     } on DatabaseException catch (e) {
       return Result.error(DatabaseFailure(exception: e));
+    } on ServerException catch (e) {
+      return Result.error(ServerFailure(exception: e));
     } catch (e) {
       debugPrint(e.toString());
       return Result.error(UnknownFailure(exception: e));
@@ -34,6 +36,9 @@ class ServerFailure extends Failure {
   String toMessage(AppLocale locale) {
     if (exception.apiError?.message!= null) {
       return exception.apiError!.message;
+    }
+    if (exception.message != null) {
+      return exception.message!;
     }
     return locale.error_server_failure;
   }
