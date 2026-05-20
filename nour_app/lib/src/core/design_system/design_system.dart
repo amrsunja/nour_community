@@ -26,6 +26,9 @@ export 'src/components/ui_space.dart';
 export 'src/components/ui_glowing_block.dart';
 export 'src/components/ui_toggle.dart';
 
+//--------------------- FIELDS ---------------------
+export 'src/components/fields/ui_input_field.dart';
+
 //--------------------- CARDS ---------------------
 export 'src/components/cards/ui_tool_card.dart';
 export 'src/components/cards/ui_card.dart';

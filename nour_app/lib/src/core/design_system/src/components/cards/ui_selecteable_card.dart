@@ -33,5 +33,3 @@ class UISelecteableCard extends StatelessWidget {
     );
   }
 }
-
-
