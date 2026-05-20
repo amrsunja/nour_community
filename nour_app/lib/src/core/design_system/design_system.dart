@@ -14,6 +14,7 @@ export 'src/tokens/borders/ui_borders_token.dart';
 
 //--------------------- COMPONENTS ---------------------
 export 'src/components/ui_tap.dart';
+export 'src/components/ui_appbar.dart';
 export 'src/components/ui_button.dart';
 export 'src/components/ui_icon.dart';
 export 'src/components/ui_alert.dart';
