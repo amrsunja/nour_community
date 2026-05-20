@@ -114,7 +114,7 @@ class _UIInputFieldState extends State<UIInputField> {
             hintStyle: theme.typo.inter.bodyMedium.copyWith(
               color: UIColorsToken.textParagraph,
             ),
-            contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
             border: _border(Colors.transparent),
             enabledBorder: _border(Colors.transparent),
             focusedBorder: _border(UIColorsToken.textYellow, width: 1.5),

@@ -338,13 +338,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get auth_email_hint => 'أدخل بريدك الإلكتروني';
 
   @override
-  String get auth_password => 'كلمة المرور';
+  String get auth_otp => 'رمز التحقق';
 
   @override
-  String get auth_password_hint => 'أدخل كلمة المرور';
+  String get auth_otp_hint => 'أدخل الرمز';
 
   @override
-  String get auth_or_sign_up_with => 'أو سجّل عبر';
+  String get auth_send_code => 'إرسال الرمز';
+
+  @override
+  String get auth_resend_code => 'إعادة إرسال الرمز';
+
+  @override
+  String get auth_otp_sent => 'أرسلنا رمزًا إلى بريدك الإلكتروني';
+
+  @override
+  String get auth_otp_required => 'يرجى إدخال الرمز';
+
+  @override
+  String get auth_otp_invalid => 'أدخل الرمز المكوّن من 6 أرقام';
+
+  @override
+  String get auth_or_sign_up_with => 'أو مع';
 
   @override
   String get auth_connect => 'ربط الحساب';
@@ -354,10 +369,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get auth_email_invalid => 'يرجى إدخال بريد إلكتروني صالح';
-
-  @override
-  String get auth_password_too_short =>
-      'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل';
 
   @override
   String get auth_link_success => 'تم ربط حسابك';

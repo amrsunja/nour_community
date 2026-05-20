@@ -346,13 +346,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get auth_email_hint => 'Enter your email';
 
   @override
-  String get auth_password => 'Password';
+  String get auth_otp => 'Verification code';
 
   @override
-  String get auth_password_hint => 'Enter your password';
+  String get auth_otp_hint => 'Enter the code';
 
   @override
-  String get auth_or_sign_up_with => 'or sign up with';
+  String get auth_send_code => 'Send Code';
+
+  @override
+  String get auth_resend_code => 'Resend code';
+
+  @override
+  String get auth_otp_sent => 'We sent a code to your email';
+
+  @override
+  String get auth_otp_required => 'Please enter the code';
+
+  @override
+  String get auth_otp_invalid => 'Enter the 6-digit code';
+
+  @override
+  String get auth_or_sign_up_with => 'or with';
 
   @override
   String get auth_connect => 'Connect';
@@ -362,10 +377,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get auth_email_invalid => 'Please enter a valid email';
-
-  @override
-  String get auth_password_too_short =>
-      'Password must be at least 8 characters';
 
   @override
   String get auth_link_success => 'Your account is connected';

@@ -42,41 +42,60 @@ class AuthRemoteDatasource {
   }
 
 
-  /// Connects the current anonymous session to an email/password account.
+  /// The [OtpType] resolved by [sendEmailOtp] and consumed by
+  /// [verifyEmailOtp]. Kept here so Supabase types never leak past the
+  /// data layer.
+  OtpType _pendingOtpType = OtpType.email;
+
+  /// Sends a 6-digit verification code to [email].
   ///
-  /// - If no account exists for [email], the email/password identity is linked
-  ///   to the current anonymous user via [updateUser] — the anonymous data
-  ///   stays attached to the now-permanent account.
-  /// - If an account already exists for [email], we instead sign in to it with
-  ///   [signInWithPassword], swapping the anonymous session for the existing
-  ///   account's session.
-  Future<void> linkEmailPassword({
-    required String email,
-    required String password,
-  }) async {
+  /// - When [email] is free, it is linked to the current anonymous user via
+  ///   [updateUser] — anonymous data stays attached to the now-permanent
+  ///   account and the code is verified as an [OtpType.emailChange].
+  /// - When [email] already belongs to an account, we fall back to
+  ///   passwordless [signInWithOtp], verified as [OtpType.email], swapping the
+  ///   anonymous session for the existing account's session.
+  Future<void> sendEmailOtp({required String email}) async {
     try {
-      await supabaseClient.auth.updateUser(
-        UserAttributes(email: email, password: password),
-      );
+      await supabaseClient.auth.updateUser(UserAttributes(email: email));
+      _pendingOtpType = OtpType.emailChange;
     } on AuthException catch (e) {
-      // The email already belongs to a registered account -> sign in instead.
       if (_isEmailAlreadyRegistered(e)) {
         try {
-          await supabaseClient.auth.signInWithPassword(
-            email: email,
-            password: password,
-          );
+          await supabaseClient.auth.signInWithOtp(email: email);
+          _pendingOtpType = OtpType.email;
           return;
         } on AuthException catch (signInError) {
           talker.info(signInError.message);
-          throw ServerException(type: .unauthorized, message: signInError.message);
+          throw ServerException(type: .badRequest, message: signInError.message);
         }
       }
       talker.info(e.message);
       throw ServerException(type: .badRequest, message: e.message);
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Account linking failed!');
+      throw ServerException(type: .unknown, message: 'Failed to send code!');
+    }
+  }
+
+  /// Verifies the [token] entered by the user against [email], completing the
+  /// link/sign-in started by [sendEmailOtp].
+  Future<void> verifyEmailOtp({
+    required String email,
+    required String token,
+  }) async {
+    try {
+      await supabaseClient.auth.verifyOTP(
+        email: email,
+        token: token,
+        type: _pendingOtpType,
+      );
+    } on AuthException catch (e) {
+      talker.info(e.message);
+      throw ServerException(type: .unauthorized, message: e.message);
+    } catch (e) {
+      talker.info(e);
+      throw ServerException(type: .unknown, message: 'Code verification failed!');
     }
   }
 

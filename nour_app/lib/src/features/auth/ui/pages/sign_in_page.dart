@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
@@ -10,6 +13,8 @@ import 'package:nour/src/features/profile/ui/state_management/profile_provider.d
 
 import '../state_management/auth_provider.dart';
 import '../widgets/social_auth_button.dart';
+
+const _kResendCooldown = 60;
 
 @RoutePage()
 class SignInPage extends HookConsumerWidget {
@@ -24,7 +29,19 @@ class SignInPage extends HookConsumerWidget {
 
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final emailController = useTextEditingController();
-    final passwordController = useTextEditingController();
+    final otpController = useTextEditingController();
+
+    final codeSent = useState(false);
+    final secondsLeft = useState(0);
+
+    // Self-rescheduling 1s tick: decrements until it reaches zero.
+    useEffect(() {
+      if (secondsLeft.value <= 0) return null;
+      final timer = Timer(const Duration(seconds: 1), () {
+        secondsLeft.value -= 1;
+      });
+      return timer.cancel;
+    }, [secondsLeft.value]);
 
     Future<void> close() async {
       if (context.router.canPop()) {
@@ -32,20 +49,35 @@ class SignInPage extends HookConsumerWidget {
       }
     }
 
-    Future<void> onConnect() async {
+    Future<bool> sendCode() {
+      return notifier.sendEmailOtp(email: emailController.text.trim());
+    }
+
+    Future<void> onSubmit() async {
       if (isLoading) return;
       if (!(formKey.currentState?.validate() ?? false)) return;
       FocusScope.of(context).unfocus();
 
-      final ok = await notifier.linkWithEmail(
-        email: emailController.text.trim(),
-        password: passwordController.text,
-      );
+      if (!codeSent.value) {
+        if (!await sendCode()) return;
+        codeSent.value = true;
+        secondsLeft.value = _kResendCooldown;
+        return;
+      }
 
-      if (!ok) return ;
+      final ok = await notifier.linkEmailWithOTP(
+        email: emailController.text.trim(),
+        token: otpController.text.trim(),
+      );
+      if (!ok) return;
 
       await ref.read(profileProvider.notifier).initProfile();
       await close();
+    }
+
+    Future<void> onResend() async {
+      if (isLoading || secondsLeft.value > 0) return;
+      if (await sendCode()) secondsLeft.value = _kResendCooldown;
     }
 
     Future<void> onGoogle() async {
@@ -57,6 +89,8 @@ class SignInPage extends HookConsumerWidget {
       if (isLoading) return;
       if (await notifier.linkWithApple()) await close();
     }
+
+    final canResend = secondsLeft.value == 0 && !isLoading;
 
     return UIGradientLinedScaffold(
       body: Column(
@@ -75,85 +109,100 @@ class SignInPage extends HookConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            l10n.auth_connect_title,
-                            textAlign: .center,
-                            style: theme.typo.inter.largeTitle.copyWith(
-                              color: UIColorsToken.white,
+                    child: Center(
+                      child: SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              l10n.auth_connect_title,
+                              textAlign: TextAlign.center,
+                              style: theme.typo.inter.largeTitle.copyWith(
+                                color: UIColorsToken.white,
+                              ),
                             ),
-                          ),
-                          const UISpace.vert(8),
-                          Text(
-                            l10n.auth_connect_subtitle,
-                            textAlign: TextAlign.center,
-                            style: theme.typo.inter.bodyLarge.copyWith(
-                              color: UIColorsToken.textParagraph,
+                            const UISpace.vert(8),
+                            Text(
+                              l10n.auth_connect_subtitle,
+                              textAlign: TextAlign.center,
+                              style: theme.typo.inter.bodyLarge.copyWith(
+                                color: UIColorsToken.textParagraph,
+                              ),
                             ),
-                          ),
-                          const UISpace.vert(32),
-                          Form(
-                            key: formKey,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                            const UISpace.vert(32),
+                            Form(
+                              key: formKey,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  UIInputField(
+                                    controller: emailController,
+                                    labelText: l10n.auth_email,
+                                    hintText: l10n.auth_email_hint,
+                                    keyboardType: TextInputType.emailAddress,
+                                    enabled: !codeSent.value,
+                                    textInputAction: codeSent.value
+                                        ? TextInputAction.done
+                                        : TextInputAction.next,
+                                    onSubmitted: (_) => onSubmit(),
+                                    validator: (value) =>
+                                        _validateEmail(value, l10n),
+                                  ),
+                                  AnimatedSize(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeOutCubic,
+                                    alignment: Alignment.topCenter,
+                                    child: codeSent.value
+                                        ? _OtpSection(
+                                            controller: otpController,
+                                            l10n: l10n,
+                                            canResend: canResend,
+                                            secondsLeft: secondsLeft.value,
+                                            onResend: onResend,
+                                            onSubmitted: onSubmit,
+                                          )
+                                        : const SizedBox(
+                                            width: double.infinity,
+                                          ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const UISpace.vert(28),
+                            _OrDivider(label: l10n.auth_or_sign_up_with),
+                            const UISpace.vert(20),
+                            Row(
                               children: [
-                                UIInputField(
-                                  controller: emailController,
-                                  labelText: l10n.auth_email,
-                                  hintText: l10n.auth_email_hint,
-                                  keyboardType: TextInputType.emailAddress,
-                                  textInputAction: TextInputAction.next,
-                                  validator: (value) => _validateEmail(value, l10n),
+                                Expanded(
+                                  child: SocialAuthButton(
+                                    image: Assets.images.google,
+                                    enabled: !isLoading,
+                                    onTap: onGoogle,
+                                  ),
                                 ),
-                                const UISpace.vert(20),
-                                UIInputField(
-                                  controller: passwordController,
-                                  labelText: l10n.auth_password,
-                                  hintText: l10n.auth_password_hint,
-                                  obscureText: true,
-                                  textInputAction: TextInputAction.done,
-                                  onSubmitted: (_) => onConnect(),
-                                  validator: (value) =>
-                                      _validatePassword(value, l10n),
+                                const UISpace.horz(16),
+                                Expanded(
+                                  child: SocialAuthButton(
+                                    image: Assets.images.apple,
+                                    enabled: !isLoading,
+                                    onTap: onApple,
+                                  ),
                                 ),
                               ],
                             ),
-                          ),
-                          const UISpace.vert(28),
-                          _OrDivider(label: l10n.auth_or_sign_up_with),
-                          const UISpace.vert(20),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: SocialAuthButton(
-                                  image: Assets.images.google,
-                                  enabled: !isLoading,
-                                  onTap: onGoogle,
-                                ),
-                              ),
-                              const UISpace.horz(16),
-                              Expanded(
-                                child: SocialAuthButton(
-                                  image: Assets.images.apple,
-                                  enabled: !isLoading,
-                                  onTap: onApple,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   const UISpace.vert(12),
                   UIButton.primary(
-                    label: l10n.auth_connect,
+                    label: codeSent.value
+                        ? l10n.auth_connect
+                        : l10n.auth_send_code,
                     fullWidth: true,
                     isBusy: isLoading,
-                    onTap: onConnect,
+                    onTap: onSubmit,
                   ),
                 ],
               ),
@@ -171,9 +220,66 @@ class SignInPage extends HookConsumerWidget {
     if (!regex.hasMatch(email)) return l10n.auth_email_invalid;
     return null;
   }
+}
 
-  String? _validatePassword(String? value, AppLocale l10n) {
-    if ((value ?? '').length < 8) return l10n.auth_password_too_short;
+class _OtpSection extends StatelessWidget {
+  const _OtpSection({
+    required this.controller,
+    required this.l10n,
+    required this.canResend,
+    required this.secondsLeft,
+    required this.onResend,
+    required this.onSubmitted,
+  });
+
+  final TextEditingController controller;
+  final AppLocale l10n;
+  final bool canResend;
+  final int secondsLeft;
+  final VoidCallback onResend;
+  final VoidCallback onSubmitted;
+
+  @override
+  Widget build(BuildContext context) {
+    return UIAppearAnimation(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const UISpace.vert(20),
+          UIInputField(
+            controller: controller,
+            labelText: l10n.auth_otp,
+            hintText: l10n.auth_otp_hint,
+            keyboardType: TextInputType.number,
+            textInputAction: TextInputAction.done,
+            onSubmitted: (_) => onSubmitted(),
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              LengthLimitingTextInputFormatter(8),
+            ],
+            validator: (value) => _validateOtp(value, l10n),
+          ),
+          const UISpace.vert(8),
+          Align(
+            alignment: AlignmentDirectional.centerEnd,
+            child: UIButton.textual(
+              label: canResend
+                  ? l10n.auth_resend_code
+                  : '${l10n.auth_resend_code} ($secondsLeft s)',
+              isSmall: true,
+              contentColor: canResend ? null : UIColorsToken.textParagraph,
+              onTap: canResend ? onResend : null,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  String? _validateOtp(String? value, AppLocale l10n) {
+    final code = value?.trim() ?? '';
+    if (code.isEmpty) return l10n.auth_otp_required;
+    if (code.length != 8) return l10n.auth_otp_invalid;
     return null;
   }
 }

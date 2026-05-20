@@ -724,22 +724,52 @@ abstract class AppLocalizations {
   /// **'Enter your email'**
   String get auth_email_hint;
 
-  /// No description provided for @auth_password.
+  /// No description provided for @auth_otp.
   ///
   /// In en, this message translates to:
-  /// **'Password'**
-  String get auth_password;
+  /// **'Verification code'**
+  String get auth_otp;
 
-  /// No description provided for @auth_password_hint.
+  /// No description provided for @auth_otp_hint.
   ///
   /// In en, this message translates to:
-  /// **'Enter your password'**
-  String get auth_password_hint;
+  /// **'Enter the code'**
+  String get auth_otp_hint;
+
+  /// No description provided for @auth_send_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Code'**
+  String get auth_send_code;
+
+  /// No description provided for @auth_resend_code.
+  ///
+  /// In en, this message translates to:
+  /// **'Resend code'**
+  String get auth_resend_code;
+
+  /// No description provided for @auth_otp_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a code to your email'**
+  String get auth_otp_sent;
+
+  /// No description provided for @auth_otp_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the code'**
+  String get auth_otp_required;
+
+  /// No description provided for @auth_otp_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the 6-digit code'**
+  String get auth_otp_invalid;
 
   /// No description provided for @auth_or_sign_up_with.
   ///
   /// In en, this message translates to:
-  /// **'or sign up with'**
+  /// **'or with'**
   String get auth_or_sign_up_with;
 
   /// No description provided for @auth_connect.
@@ -759,12 +789,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a valid email'**
   String get auth_email_invalid;
-
-  /// No description provided for @auth_password_too_short.
-  ///
-  /// In en, this message translates to:
-  /// **'Password must be at least 8 characters'**
-  String get auth_password_too_short;
 
   /// No description provided for @auth_link_success.
   ///

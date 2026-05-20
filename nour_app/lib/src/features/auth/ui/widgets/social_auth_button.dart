@@ -26,13 +26,7 @@ class SocialAuthButton extends StatelessWidget {
       opacity: enabled ? 1 : 0.5,
       child: UITap(
         onTap: enabled ? onTap : null,
-        child: Container(
-          height: height,
-          alignment: Alignment.center,
-          decoration: BoxDecoration(
-            color: UIColorsToken.bgSurface,
-            borderRadius: BorderRadius.circular(12),
-          ),
+        child: UIGradientCard(
           child: image.image(
             width: logoSize,
             height: logoSize,

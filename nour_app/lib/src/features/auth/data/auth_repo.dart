@@ -39,12 +39,18 @@ class AuthRepo {
 		});
   }
 
-  Future<SuccessOrError<void>> linkEmailPassword({
+  Future<SuccessOrError<void>> sendEmailOtp({required String email}) async {
+		return await Failure.exceptionsCatcher<void>(() async {
+      await remoteDatasource.sendEmailOtp(email: email);
+		});
+  }
+
+  Future<SuccessOrError<void>> verifyEmailOtp({
     required String email,
-    required String password,
+    required String token,
   }) async {
 		return await Failure.exceptionsCatcher<void>(() async {
-      await remoteDatasource.linkEmailPassword(email: email, password: password);
+      await remoteDatasource.verifyEmailOtp(email: email, token: token);
 		});
   }
 

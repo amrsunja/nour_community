@@ -81,14 +81,37 @@ class AuthPresenter extends Presenter<AuthState> {
     );
   }
 
+  /// Sends a one-time code to [email]. Does not authenticate on its own —
+  /// the user must confirm with [linkEmailWithOTP].
+  Future<bool> sendEmailOtp({required String email}) async {
+    if (state.isLoading) return false;
+    state = state.copyWith(isLoading: true);
+
+    final response = await repo.sendEmailOtp(email: email);
+
+    final result = response.when(
+      (_) {
+        appEvents.send(ShowSuccessMessageEvent(locale.auth_otp_sent));
+        return true;
+      },
+      (error) {
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+
+    state = state.copyWith(isLoading: false);
+    return result;
+  }
+
   /// Converts the current anonymous session into a permanent account by
-  /// linking an email/password identity.
-  Future<bool> linkWithEmail({
+  /// verifying the OTP code [token] sent to [email].
+  Future<bool> linkEmailWithOTP({
     required String email,
-    required String password,
+    required String token,
   }) {
     return _runLinking(
-      () => repo.linkEmailPassword(email: email, password: password),
+      () => repo.verifyEmailOtp(email: email, token: token),
     );
   }
 
