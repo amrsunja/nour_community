@@ -104,17 +104,15 @@ class _UIInputFieldState extends State<UIInputField> {
           onTapOutside: (_) => _focusNode.unfocus(),
           cursorColor: UIColorsToken.textYellow,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          style: theme.typo.inter.title.copyWith(
+          style: theme.typo.inter.headline.copyWith(
             color: UIColorsToken.white,
-            fontWeight: FontWeight.w500,
           ),
           decoration: InputDecoration(
             filled: true,
             fillColor: UIColorsToken.bgSurface,
             hintText: widget.hintText,
-            hintStyle: theme.typo.inter.title.copyWith(
+            hintStyle: theme.typo.inter.bodyMedium.copyWith(
               color: UIColorsToken.textParagraph,
-              fontWeight: FontWeight.w400,
             ),
             contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
             border: _border(Colors.transparent),
