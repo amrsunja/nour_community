@@ -46,8 +46,6 @@ class OnboardingScreen9 extends HookConsumerWidget {
 
       final currentUserEmail = supabaseClient.auth.currentUser?.email;
       final needToSignIn = currentUserEmail == null || currentUserEmail.isEmpty;
-      print(supabaseClient.auth.currentUser?.email);
-      print(needToSignIn);
 
       navigationServices.toHome(openSignIn: needToSignIn);
     }

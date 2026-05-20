@@ -5,6 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/network/supabase_client.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/onboarding/ui/widgets/onboarding_screen_1.dart';
@@ -48,6 +51,8 @@ class OnboardingPage extends HookConsumerWidget {
 
 
     final showBars = currentPage > 0;
+    final canSkip = currentPage < 8;
+
     return UIGradientLinedScaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -69,13 +74,20 @@ class OnboardingPage extends HookConsumerWidget {
                       provider.goToPreviousPage();
                     },
                   ),
-                  UITap(
-                    onTap: () {
-                      if (!showBars) return ;
-                    },
-                    child: Text(
-                      l10n.onboarding_skip,
-                      style: theme.typo.inter.bodyMedium,
+
+                  AnimatedOpacity(
+                    opacity: canSkip ? 1 : 0,
+                    duration: Durations.medium2,
+                    child: UITap(
+                      onTap: () async {
+                        if (!showBars) return ;
+                    
+                        provider.changePage(8);
+                      },
+                      child: Text(
+                        l10n.onboarding_skip,
+                        style: theme.typo.inter.bodyMedium,
+                      ),
                     ),
                   )
                 ],
