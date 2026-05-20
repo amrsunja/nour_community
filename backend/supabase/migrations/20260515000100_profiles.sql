@@ -4,7 +4,6 @@
 
 create table if not exists public.profiles (
   id                       uuid primary key references auth.users(id) on delete cascade,
-  email                    text unique,
   name                     text,
   avatar_url               text,
   gender                   public.gender_type,
@@ -22,7 +21,6 @@ create table if not exists public.profiles (
   updated_at               timestamptz not null default now()
 );
 
-create index if not exists profiles_email_idx       on public.profiles(email);
 create index if not exists profiles_language_idx    on public.profiles(language);
 create index if not exists profiles_level_idx       on public.profiles(level);
 
@@ -43,10 +41,9 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, email, name)
+  insert into public.profiles (id, name)
   values (
     new.id,
-    new.email,
     coalesce(new.raw_user_meta_data ->> 'name',
              new.raw_user_meta_data ->> 'full_name')
   )
