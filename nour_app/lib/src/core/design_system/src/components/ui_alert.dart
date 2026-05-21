@@ -11,15 +11,15 @@ class UIAlert extends StatelessWidget {
 	UIAlert.success({
 		super.key,
 		required this.label,
-	}) : color = Color(0xff00A280).withValues(alpha: .2),
+	}) : color = Color(0xff00A280),
        assetIcon = UIIconsToken.icons.check,
 			 contentColor = UIColorsToken.white;
 
 	UIAlert.error({
 		super.key,
 		required this.label
-	}) : color = Color(0xffFF5353).withValues(alpha: .2),
-       assetIcon = UIIconsToken.icons.check,
+	}) : color = Color(0xffFF5353),
+       assetIcon = UIIconsToken.icons.x,
 			 contentColor = UIColorsToken.white;
 
 	const UIAlert.info({
@@ -35,7 +35,8 @@ class UIAlert extends StatelessWidget {
 		return Container(
 			padding: const EdgeInsets.all(12),
 			decoration: BoxDecoration(
-				color: color,
+				color: color.withValues(alpha: 0.8),
+        border: .all(color: color),
 				borderRadius: BorderRadius.circular(12)
 			),
 			child: Row(
