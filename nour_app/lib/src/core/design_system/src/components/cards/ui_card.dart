@@ -7,12 +7,16 @@ class UICard extends StatelessWidget {
     this.width,
     this.height,
     this.padding,
+    this.colors,
+    this.borderRadius = 14,
     required this.child,
   });
 
   final double? width;
   final double? height;
   final EdgeInsets? padding;
+  final List<Color>? colors;
+  final double borderRadius;
   final Widget child;
 
   @override
@@ -22,11 +26,11 @@ class UICard extends StatelessWidget {
       height: height,
       padding: padding,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
-        gradient: const LinearGradient(
+        borderRadius: BorderRadius.circular(borderRadius),
+        gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [
+          colors: colors ?? [
             Color(0xff2A2E27),
             Color(0xff1A1A1A)
           ],

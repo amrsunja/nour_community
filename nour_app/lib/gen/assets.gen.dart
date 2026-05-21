@@ -20,6 +20,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/chevron-left.svg
   String get chevronLeft => 'assets/icons/chevron-left.svg';
 
+  /// File path: assets/icons/dhikr.svg
+  String get dhikr => 'assets/icons/dhikr.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -51,6 +54,7 @@ class $AssetsIconsGen {
   List<String> get values => [
     check,
     chevronLeft,
+    dhikr,
     home,
     impact,
     mute,
@@ -68,6 +72,10 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/apple.png
   AssetGenImage get apple => const AssetGenImage('assets/images/apple.png');
+
+  /// File path: assets/images/arabic_text.png
+  AssetGenImage get arabicText =>
+      const AssetGenImage('assets/images/arabic_text.png');
 
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
@@ -215,6 +223,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     apple,
+    arabicText,
     google,
     illustration1,
     illustration10,

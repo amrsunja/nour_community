@@ -49,10 +49,6 @@ class AppRouter extends RootStackRouter {
           path: RoutePaths.signIn,
           page: SignInRoute.page,
         ),
-        AutoRoute(
-          path: RoutePaths.signUp,
-          page: SignUpRoute.page,
-        ),
 
         AutoRoute(
           path: RoutePaths.onboarding,
@@ -68,7 +64,42 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               path: '',
               page: HomeRoute.page,
+              children: [
+                AutoRoute(
+                  path: RoutePaths.dashboard,
+                  page: DashboardRouterRoute.page,
+                  children: [
+                    AutoRoute(path: '', page: DashboardRoute.page),
+                    ...generalSubPages
+                  ]
+                ),
+                AutoRoute(
+                  path: RoutePaths.source,
+                  page: SourceRouterRoute.page,
+                  children: [
+                    AutoRoute(path: '', page: SourceRoute.page),
+                    ...generalSubPages
+                  ]
+                ),
+                AutoRoute(
+                  path: RoutePaths.impact,
+                  page: ImpactRouterRoute.page,
+                  children: [
+                    AutoRoute(path: '', page: ImpactRoute.page),
+                    ...generalSubPages
+                  ]
+                ),
+                AutoRoute(
+                  path: RoutePaths.tools,
+                  page: ToolsRouterRoute.page,
+                  children: [
+                    AutoRoute(path: '', page: ToolsRoute.page),
+                    ...generalSubPages
+                  ]
+                ),
+              ]
             ),
+
             AutoRoute(
               path: RoutePaths.settings,
               page: SettingsRoute.page,

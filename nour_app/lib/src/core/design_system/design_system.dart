@@ -26,6 +26,7 @@ export 'src/components/ui_circular_progress_bar.dart';
 export 'src/components/ui_space.dart';
 export 'src/components/ui_glowing_block.dart';
 export 'src/components/ui_toggle.dart';
+export 'src/components/ui_navbar.dart';
 
 //--------------------- FIELDS ---------------------
 export 'src/components/fields/ui_input_field.dart';
