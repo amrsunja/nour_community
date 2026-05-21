@@ -42,34 +42,20 @@ class AuthRemoteDatasource {
   }
 
 
-  /// The [OtpType] resolved by [sendEmailOtp] and consumed by
-  /// [verifyEmailOtp]. Kept here so Supabase types never leak past the
-  /// data layer.
-  OtpType _pendingOtpType = OtpType.email;
-
-  /// Sends a 6-digit verification code to [email].
+  /// Sends a 6-digit verification code to [email] via passwordless OTP.
   ///
-  /// - When [email] is free, it is linked to the current anonymous user via
-  ///   [updateUser] — anonymous data stays attached to the now-permanent
-  ///   account and the code is verified as an [OtpType.emailChange].
-  /// - When [email] already belongs to an account, we fall back to
-  ///   passwordless [signInWithOtp], verified as [OtpType.email], swapping the
-  ///   anonymous session for the existing account's session.
+  /// [signInWithOtp] (with the default `shouldCreateUser: true`) handles both
+  /// cases transparently: it creates the account when [email] is new and reuses
+  /// it when the account already exists — always emailing a fresh code.
+  ///
+  /// NOTE: this swaps the anonymous session for the email account's session on
+  /// verification; it does not merge anonymous data into the account. Preserving
+  /// anonymous data would require [updateUser] + an email-change confirmation,
+  /// which is incompatible with email verification being disabled.
   Future<void> sendEmailOtp({required String email}) async {
     try {
-      await supabaseClient.auth.updateUser(UserAttributes(email: email));
-      _pendingOtpType = OtpType.emailChange;
+      await supabaseClient.auth.signInWithOtp(email: email);
     } on AuthException catch (e) {
-      if (_isEmailAlreadyRegistered(e)) {
-        try {
-          await supabaseClient.auth.signInWithOtp(email: email);
-          _pendingOtpType = OtpType.email;
-          return;
-        } on AuthException catch (signInError) {
-          talker.info(signInError.message);
-          throw ServerException(type: .badRequest, message: signInError.message);
-        }
-      }
       talker.info(e.message);
       throw ServerException(type: .badRequest, message: e.message);
     } catch (e) {
@@ -79,7 +65,7 @@ class AuthRemoteDatasource {
   }
 
   /// Verifies the [token] entered by the user against [email], completing the
-  /// link/sign-in started by [sendEmailOtp].
+  /// sign-in/sign-up started by [sendEmailOtp].
   Future<void> verifyEmailOtp({
     required String email,
     required String token,
@@ -88,7 +74,7 @@ class AuthRemoteDatasource {
       await supabaseClient.auth.verifyOTP(
         email: email,
         token: token,
-        type: _pendingOtpType,
+        type: OtpType.email,
       );
     } on AuthException catch (e) {
       talker.info(e.message);
@@ -97,17 +83,6 @@ class AuthRemoteDatasource {
       talker.info(e);
       throw ServerException(type: .unknown, message: 'Code verification failed!');
     }
-  }
-
-  bool _isEmailAlreadyRegistered(AuthException e) {
-    final code = e.code?.toLowerCase();
-    if (code == 'same_password' || code == 'email_exists' || code == 'user_already_exists') return true;
-
-    final message = e.message.toLowerCase();
-    return message.contains('already registered') ||
-        message.contains('already been registered') ||
-        message.contains('password should be differen') ||
-        message.contains('already exists');
   }
 
   /// Native Google sign in -> Supabase [signInWithIdToken].
