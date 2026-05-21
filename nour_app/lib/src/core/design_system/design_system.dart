@@ -15,6 +15,10 @@ export 'src/tokens/borders/ui_borders_token.dart';
 //--------------------- COMPONENTS ---------------------
 export 'src/components/ui_tap.dart';
 export 'src/components/ui_appbar.dart';
+export 'src/components/ui_profile_appbar.dart';
+export 'src/components/ui_streak_card.dart';
+export 'src/components/ui_streak_day.dart';
+export 'src/components/ui_streak_week.dart';
 export 'src/components/ui_button.dart';
 export 'src/components/ui_icon.dart';
 export 'src/components/ui_alert.dart';
@@ -27,6 +31,7 @@ export 'src/components/ui_space.dart';
 export 'src/components/ui_glowing_block.dart';
 export 'src/components/ui_toggle.dart';
 export 'src/components/ui_navbar.dart';
+export 'src/components/ui_avatar.dart';
 
 //--------------------- FIELDS ---------------------
 export 'src/components/fields/ui_input_field.dart';
