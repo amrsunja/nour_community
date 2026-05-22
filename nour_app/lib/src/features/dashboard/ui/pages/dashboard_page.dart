@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 @RoutePage()
@@ -26,10 +27,11 @@ class DashboardPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dhikrState = ref.watch(dhikrProvider);
     final profile = ref.watch(profileProvider).profile;
     final streak = profile?.currentStreak ?? 0;
-    final ajr = profile?.earnedAjrCount ?? 0;
-    const ajrGoal = 33;
+    final dhikrsCount = dhikrState.dhikrs.fold(0, (count, d) => count + dhikrState.currentCountOf(d.id));
+    const dhikrGoal = 33;
 
     return Scaffold(
       appBar: UIProfileAppBar(
@@ -46,13 +48,15 @@ class DashboardPage extends HookConsumerWidget {
                 streakCount: streak + 2,
               ),
               const UISpace.vert(16),
-              UIDailyAjrCard(
-                title: 'Daily Ajr Goal',
-                subtitle: '$ajr/$ajrGoal dikr per day',
-                currentCount: ajr,
-                totalCount: ajrGoal,
-                buttonTitle: 'Start dikr',
-                onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
+              UIAppearAnimation(
+                child: UIDailyAjrCard(
+                  title: 'Daily Dhikr Goal',
+                  subtitle: '$dhikrsCount/$dhikrGoal  dikr per day',
+                  currentCount: dhikrsCount,
+                  totalCount: dhikrGoal,
+                  buttonTitle: 'Start dikr',
+                  onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
+                ),
               ),
             ],
           ),

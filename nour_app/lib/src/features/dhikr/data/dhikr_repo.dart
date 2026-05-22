@@ -29,6 +29,12 @@ class DhikrRepo {
     });
   }
 
+  Future<SuccessOrError<Map<int, int>>> getTodayDhikrAjr() async {
+    return await Failure.exceptionsCatcher(() async {
+      return await remoteDatasource.getTodayDhikrAjr();
+    });
+  }
+
   Future<SuccessOrError<DhikrProgressModel>> saveProgress({
     required int dhikrId,
     required int count,

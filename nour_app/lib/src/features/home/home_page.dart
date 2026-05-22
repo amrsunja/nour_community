@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/app_vibrations.dart';
+import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
 
 @RoutePage()
 class HomePage extends HookConsumerWidget {
@@ -12,6 +14,17 @@ class HomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final dhikrP= ref.read(dhikrProvider.notifier);
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) async {
+          await dhikrP.init();
+        }
+      );
+      return null;
+    }, const []);
+
     return Scaffold(
 			body: AutoTabsRouter(
 				lazyLoad: true,

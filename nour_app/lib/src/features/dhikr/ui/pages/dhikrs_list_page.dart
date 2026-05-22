@@ -1,15 +1,12 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 
-import '../../data/models/dhikr_model.dart';
 import '../state_management/dhikr_provider.dart';
 import '../widgets/dhikr_card_widget.dart';
 
@@ -24,11 +21,6 @@ class DhikrsListPage extends HookConsumerWidget {
     final nav = ref.read(navigationServicesProvider);
     final presenter = ref.read(dhikrProvider.notifier);
     final state = ref.watch(dhikrProvider);
-
-    useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) => presenter.init());
-      return null;
-    }, const []);
 
     final inProgress = state.inProgress;
     final notInProgress = state.notInProgress;

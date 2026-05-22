@@ -1,5 +1,4 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -30,10 +29,19 @@ class DhikrPage extends HookConsumerWidget {
     final dhikrId = useState(selectedId);
     final dhikr = dhikrs.firstWhere((d) => d.id == dhikrId.value);
 
-    final count = useState(state.currentCountOf(dhikr.id));
-    final sessionsCount = (count.value / 33).floor();
+    final dhikrCount = useState(state.currentCountOf(dhikr.id));
+    final counterCount = useState(dhikrCount.value);
+    final sessionsCount = dhikr.minCount > 0 ? dhikrCount.value ~/ dhikr.minCount : 0;
 
-    Future<void> save() => presenter.saveProgress(dhikrId: dhikr.id, count: count.value);
+    // Total ajr earned for this dhikr today (from ajr_log — one row per cycle).
+    // Survives a reset; while actively counting, the live value can run ahead
+    // of the last-saved total, so show whichever is greater.
+    final liveAjr = dhikr.ajr * sessionsCount;
+    final earnedAjr = liveAjr > state.earnedAjrTodayOf(dhikr.id)
+        ? liveAjr
+        : state.earnedAjrTodayOf(dhikr.id);
+
+    Future<void> save() => presenter.saveProgress(dhikrId: dhikr.id, count: dhikrCount.value);
 
     return PopScope(
       // Persist progress whenever the page is dismissed (back / swipe).
@@ -91,10 +99,11 @@ class DhikrPage extends HookConsumerWidget {
                                     dhikr: d,
                                     langCode: langCode,
                                     onTap: () async {
-                                      await presenter.saveProgress(dhikrId: dhikr.id, count: count.value);
+                                      await presenter.saveProgress(dhikrId: dhikr.id, count: dhikrCount.value);
 
                                       dhikrId.value = d.id;
-                                      count.value = state.currentCountOf(dhikrId.value);
+                                      dhikrCount.value = state.currentCountOf(dhikrId.value);
+                                      counterCount.value = dhikrCount.value;
 
                                       if (!context.mounted) return;
 
@@ -131,9 +140,10 @@ class DhikrPage extends HookConsumerWidget {
                   shadow: UIShadowToken.dhikrCounter,
                   child: UIDhikrCounter(
                     totalCount: dhikr.minCount,
-                    currentCount: count.value,
+                    currentCount: counterCount.value,
                     onChange: (value) {
-                      count.value = value;
+                      counterCount.value = value;
+                      dhikrCount.value++;
                     },
                   ),
                 ),
@@ -141,14 +151,14 @@ class DhikrPage extends HookConsumerWidget {
                 Text(
                   l10n.dhikr_tap_to_count,
                   style: UITheme.of(context).typo.inter.bodyMedium.copyWith(
-                        color: UIColorsToken.textYellow.withValues(alpha: 0.7),
-                      ),
+                    color: UIColorsToken.textYellow.withValues(alpha: 0.7),
+                  ),
                 ),
                 const Spacer(),
                 _StatsBar(
                   session: sessionsCount,
-                  today: count.value,
-                  ajr: dhikr.ajr * sessionsCount,
+                  today: dhikrCount.value,
+                  ajr: earnedAjr,
                 ),
                 const UISpace.vert(16),
                 Row(
@@ -170,7 +180,7 @@ class DhikrPage extends HookConsumerWidget {
                     UIButton.primary(
                       assetIcon: UIIconsToken.icons.refresh,
                       onTap: () {
-                        count.value = 0;
+                        counterCount.value = 0;
                       }
                     ),
                   ],

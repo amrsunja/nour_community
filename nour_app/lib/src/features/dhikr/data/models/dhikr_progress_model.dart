@@ -2,9 +2,9 @@ import 'package:equatable/equatable.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
 /// Per-user, per-day progress for a single dhikr.
-/// Mirrors `public.dhikr_progress`. `isCompleted` / `ajrAwarded` are owned by
-/// the DB trigger (`fn_dhikr_progress_after_change`) — the client only writes
-/// `current_count`.
+/// Mirrors `public.dhikr_progress`. `isCompleted` is owned by the DB trigger
+/// (`fn_dhikr_progress_after_change`) — the client only writes `current_count`.
+/// Earned ajr is NOT stored here; it lives in `ajr_log` (one row per cycle).
 class DhikrProgressModel extends Equatable {
   final int dhikrId;
   final int currentCount;

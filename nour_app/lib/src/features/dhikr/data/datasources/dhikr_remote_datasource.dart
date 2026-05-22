@@ -13,6 +13,7 @@ final dhikrRemoteDataProvider = Provider(
 class DhikrRemoteDatasource {
   static const _dhikrsTable = 'dhikrs';
   static const _progressTable = 'dhikr_progress';
+  static const _ajrLogTable = 'ajr_log';
 
   String get _today {
     final now = DateTime.now().toUtc();
@@ -68,6 +69,36 @@ class DhikrRemoteDatasource {
       throw ServerException(
         type: .badRequest,
         message: 'Failed to load dhikr progress',
+      );
+    }
+  }
+
+  /// Total ajr earned per dhikr *today*, summed from `ajr_log` (one row per
+  /// completed cycle). Source of truth for the detail-page stat — survives a
+  /// reset since rows are never removed. Returns a `{dhikrId: totalAjr}` map.
+  Future<Map<int, int>> getTodayDhikrAjr() async {
+    final userId = _requireUserId();
+
+    try {
+      final response = await supabaseClient
+          .from(_ajrLogTable)
+          .select('earned_ajr, source_id')
+          .eq('user_id', userId)
+          .eq('source', 'dhikr')
+          .gte('created_at', '${_today}T00:00:00Z');
+
+      final totals = <int, int>{};
+      for (final row in response as List) {
+        final dhikrId = row['source_id'] as int?;
+        if (dhikrId == null) continue;
+        totals[dhikrId] = (totals[dhikrId] ?? 0) + (row['earned_ajr'] as int? ?? 0);
+      }
+      return totals;
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to load dhikr ajr',
       );
     }
   }
