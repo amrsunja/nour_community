@@ -4,6 +4,7 @@ import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
+// ignore: must_be_immutable
 class ProfileModel extends Equatable {
   final String id;
   String? name;

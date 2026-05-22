@@ -388,6 +388,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get auth_link_success => 'Votre compte est connecté';
 
   @override
+  String get l10nDhikr =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get dhikr_choose_title => 'Choisir un dhikr';
+
+  @override
+  String get dhikr_continue_section => 'Continuer le dhikr';
+
+  @override
+  String get dhikr_essential_section => 'Dhikr essentiels';
+
+  @override
+  String get dhikr_tap_to_count => 'Touchez n\'importe où pour compter';
+
+  @override
+  String get dhikr_done => 'J\'ai terminé';
+
+  @override
+  String get dhikr_session => 'Cette session';
+
+  @override
+  String get dhikr_today => 'Aujourd\'hui';
+
+  @override
+  String get dhikr_ajr_earned => 'Ajr gagné';
+
+  @override
+  String get dhikr_choose_another => 'Choisir un autre dhikr';
+
+  @override
+  String get dhikr_quote => 'Et invoquez Allah fréquemment';
+
+  @override
+  String get dhikr_quote_source => 'Sourate Al-Anfal 8:45';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

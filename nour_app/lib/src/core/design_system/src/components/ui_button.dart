@@ -120,7 +120,7 @@ class UIButton extends StatelessWidget {
 
   EdgeInsets? get _padding => variant == _UIButtonVariant.textual ? null : isSmall
       ? const EdgeInsets.symmetric(horizontal: 10, vertical: 6)
-      : const EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+      : EdgeInsets.symmetric(horizontal: label == null ? 20 : 16, vertical: label == null ? 16 : 12);
 
   double get _radius => isSmall ? 6 : 12;
 
@@ -205,16 +205,16 @@ class UIButton extends StatelessWidget {
         return Flexible(child: text);
       }
 
-      final gap = SizedBox(width: _gap);
+      final text = textCell();
 
       if (leading) {
         return Row(
           mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
+          spacing: text == null ? 0 : _gap,
           children: [
             ?iconWidget,
-            gap,
-            ?textCell(),
+            ?text,
           ],
         );
       }
@@ -222,9 +222,9 @@ class UIButton extends StatelessWidget {
       return Row(
         mainAxisSize: fullWidth ? MainAxisSize.max : MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+          spacing: text == null ? 0 : _gap,
         children: [
-          ?textCell(),
-          gap,
+          ?text,
           ?iconWidget,
         ],
       );

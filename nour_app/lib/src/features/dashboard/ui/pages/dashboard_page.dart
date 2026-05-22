@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 @RoutePage()
@@ -45,13 +46,13 @@ class DashboardPage extends HookConsumerWidget {
                 streakCount: streak + 2,
               ),
               const UISpace.vert(16),
-              UIDailyAdhkarCard(
+              UIDailyAjrCard(
                 title: 'Daily Ajr Goal',
                 subtitle: '$ajr/$ajrGoal dikr per day',
                 currentCount: ajr,
                 totalCount: ajrGoal,
                 buttonTitle: 'Start dikr',
-                onTap: () {},
+                onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
               ),
             ],
           ),

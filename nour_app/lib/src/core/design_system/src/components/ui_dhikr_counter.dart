@@ -196,7 +196,7 @@ class _Bull extends StatelessWidget {
             if (isFilled)
               BoxShadow(
                 color: UIColorsToken.textYellow.withValues(alpha: 0.5),
-                blurRadius: 12,
+                blurRadius: 3,
                 spreadRadius: 1,
               ),
           ]

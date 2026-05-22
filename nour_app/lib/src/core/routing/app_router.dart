@@ -104,6 +104,16 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.settings,
               page: SettingsRoute.page,
             ),
+
+            /// Dhikr (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.dhikrsList,
+              page: DhikrsListRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.dhikr,
+              page: DhikrRoute.page,
+            ),
           ],
         ),
       ],

@@ -6,21 +6,25 @@ class UIBgArabicTextCard extends StatelessWidget {
     super.key,
     this.arabicBgText,
     this.height,
-    required this.child
+    required this.child,
+    this.onTap
   });
 
   final String? arabicBgText;
   final double? height;
   final Widget child;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return UICard(
+      onTap: onTap,
       height: height ?? 208,
       width: .infinity,
       borderRadius: 10,
       begin: .centerLeft,
       end: .centerRight,
+      shadows: [],
       colors: [
         Color(0xff45513F),
         Color(0xff2B3326),

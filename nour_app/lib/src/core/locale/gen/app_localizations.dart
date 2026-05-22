@@ -796,6 +796,78 @@ abstract class AppLocalizations {
   /// **'Your account is connected'**
   String get auth_link_success;
 
+  /// No description provided for @l10nDhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nDhikr;
+
+  /// No description provided for @dhikr_choose_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose Dhikr'**
+  String get dhikr_choose_title;
+
+  /// No description provided for @dhikr_continue_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue dhikr'**
+  String get dhikr_continue_section;
+
+  /// No description provided for @dhikr_essential_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Essential dhikr'**
+  String get dhikr_essential_section;
+
+  /// No description provided for @dhikr_tap_to_count.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap anywhere to count'**
+  String get dhikr_tap_to_count;
+
+  /// No description provided for @dhikr_done.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m done'**
+  String get dhikr_done;
+
+  /// No description provided for @dhikr_session.
+  ///
+  /// In en, this message translates to:
+  /// **'This session'**
+  String get dhikr_session;
+
+  /// No description provided for @dhikr_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get dhikr_today;
+
+  /// No description provided for @dhikr_ajr_earned.
+  ///
+  /// In en, this message translates to:
+  /// **'Ajr earned'**
+  String get dhikr_ajr_earned;
+
+  /// No description provided for @dhikr_choose_another.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose another dhikr'**
+  String get dhikr_choose_another;
+
+  /// No description provided for @dhikr_quote.
+  ///
+  /// In en, this message translates to:
+  /// **'And remember Allah abundantly'**
+  String get dhikr_quote;
+
+  /// No description provided for @dhikr_quote_source.
+  ///
+  /// In en, this message translates to:
+  /// **'Surah Al-Anfal 8:45'**
+  String get dhikr_quote_source;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

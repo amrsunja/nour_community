@@ -80,6 +80,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
 
+  /// File path: assets/images/illustration36.png
+  AssetGenImage get illustration36 =>
+      const AssetGenImage('assets/images/illustration36.png');
+
   /// File path: assets/images/illustration_1.png
   AssetGenImage get illustration1 =>
       const AssetGenImage('assets/images/illustration_1.png');
@@ -225,6 +229,7 @@ class $AssetsImagesGen {
     apple,
     arabicText,
     google,
+    illustration36,
     illustration1,
     illustration10,
     illustration11,

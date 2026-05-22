@@ -23,6 +23,7 @@ class UIGradientLinedScaffold extends StatelessWidget {
     this.rayOpacity = 0.07,
     this.centerRayWidth = 64,
     this.edgeRayWidth = 34,
+    this.bgArabicText,
   });
 
   final Widget? body;
@@ -51,6 +52,8 @@ class UIGradientLinedScaffold extends StatelessWidget {
   /// from edge → center across [rayCount].
   final double edgeRayWidth;
 
+  final String? bgArabicText;
+
   @override
   Widget build(BuildContext context) {
     Widget? content = body;
@@ -59,7 +62,6 @@ class UIGradientLinedScaffold extends StatelessWidget {
     }
 
     return Scaffold(
-      backgroundColor: UIColorsToken.black,
       extendBodyBehindAppBar: true,
       appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
@@ -68,19 +70,48 @@ class UIGradientLinedScaffold extends StatelessWidget {
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: Stack(
         children: [
-          Positioned.fill(
-            child: IgnorePointer(
-              child: CustomPaint(
-                painter: _GradientRaysPainter(
-                  gradientHeightFactor: gradientHeightFactor,
-                  rayCount: rayCount,
-                  rayOpacity: rayOpacity,
-                  centerRayWidth: centerRayWidth,
-                  edgeRayWidth: edgeRayWidth,
+            Positioned.fill(
+              child: IgnorePointer(
+                child: Builder(
+                  builder: (context) {
+                    if (bgArabicText != null) {
+                      return Column(
+                        children: [
+                          UICard(
+                            width: .infinity,
+                            height: 300,
+                            colors: [
+                              Color(0xff45513F),
+                              Color(0xff2B3326),
+                            ],
+                            child: FittedBox(
+                              fit: .fitWidth,
+                              alignment: .topCenter,
+                              child: bgArabicText == null ? null : Text(
+                                bgArabicText!,
+                                style: TextStyle(
+                                  color: UIColorsToken.yellow.withValues(alpha: 0.07)
+                                ),
+                              ),
+                            )
+                          ),
+                        ],
+                      );
+                    }
+
+                    return CustomPaint(
+                      painter: _GradientRaysPainter(
+                        gradientHeightFactor: gradientHeightFactor,
+                        rayCount: rayCount,
+                        rayOpacity: rayOpacity,
+                        centerRayWidth: centerRayWidth,
+                        edgeRayWidth: edgeRayWidth,
+                      ),
+                    );
+                  }
                 ),
               ),
             ),
-          ),
           Positioned.fill(
             child: Container(
               decoration: BoxDecoration(

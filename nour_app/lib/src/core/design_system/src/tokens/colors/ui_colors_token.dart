@@ -15,7 +15,7 @@ class UIColorsToken {
   );
 
   factory UIColorsToken.dark() => UIColorsToken(
-    bgColor: Color(0x00000000),
+    bgColor: Color(0xff000000),
     iconColor: Color(0x00ffffff),
   );
 
@@ -43,10 +43,12 @@ class UIColorsToken {
 
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);
+  static const Color black80 = Color (0xff1A1A1A);
   static final Color textParagraph = white.withValues(alpha: 0.6);
   static const Color textYellow = Color(0xffE8C570);
   static final Color stroke = white.withValues(alpha: 0.3);
   static const Color yellow = Color(0xffC59F54);
   static const Color red = Color(0xffFF5454);
   static const Color green = Color(0xff135911);
+  static const Color pastelGreen = Color(0xff00A280);
 }

@@ -15,8 +15,8 @@ import 'package:nour/src/core/design_system/design_system.dart';
 ///   onTap: () {},
 /// )
 /// ```
-class UIDailyAdhkarCard extends StatelessWidget {
-  const UIDailyAdhkarCard({
+class UIDailyAjrCard extends StatelessWidget {
+  const UIDailyAjrCard({
     super.key,
     required this.title,
     required this.subtitle,
@@ -43,8 +43,7 @@ class UIDailyAdhkarCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
-    final percent =
-        totalCount <= 0 ? 0 : ((currentCount / totalCount) * 100).round();
+    final percent = totalCount <= 0 ? 0 : currentCount >= totalCount ? 100 : ((currentCount / totalCount) * 100).round();
 
     return UIBgArabicTextCard(
       height: 224,

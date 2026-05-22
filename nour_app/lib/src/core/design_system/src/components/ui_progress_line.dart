@@ -12,7 +12,7 @@ class UIProgressLine extends StatelessWidget {
     super.key,
     required this.current,
     required this.total,
-    this.height = 8,
+    this.height = 6,
     this.trackColor,
     this.fillColor,
     this.duration = const Duration(milliseconds: 450),

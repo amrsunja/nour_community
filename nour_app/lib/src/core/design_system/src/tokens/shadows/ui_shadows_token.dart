@@ -22,8 +22,15 @@ class UIShadowToken {
     BoxShadow(blurRadius: 60, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.2))
   ];
 
+  static final dhikrCounter = [
+    BoxShadow(blurRadius: 80, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.1))
+  ];
+
   static final texts = [
     BoxShadow(blurRadius: 30, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.4))
+  ];
+  static final smallTexts = [
+    BoxShadow(blurRadius: 20, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.4))
   ];
 
   static final kXs = [

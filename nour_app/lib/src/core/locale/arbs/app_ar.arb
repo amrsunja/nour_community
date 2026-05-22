@@ -146,5 +146,18 @@
   "auth_email_invalid": "يرجى إدخال بريد إلكتروني صالح",
   "auth_link_success": "تم ربط حسابك",
 
+  "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "dhikr_choose_title": "اختر الذكر",
+  "dhikr_continue_section": "متابعة الذكر",
+  "dhikr_essential_section": "الأذكار الأساسية",
+  "dhikr_tap_to_count": "انقر في أي مكان للعد",
+  "dhikr_done": "لقد انتهيت",
+  "dhikr_session": "هذه الجلسة",
+  "dhikr_today": "اليوم",
+  "dhikr_ajr_earned": "الأجر المكتسب",
+  "dhikr_choose_another": "اختر ذكرًا آخر",
+  "dhikr_quote": "واذكروا الله كثيرًا",
+  "dhikr_quote_source": "سورة الأنفال ٤٥:٨",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

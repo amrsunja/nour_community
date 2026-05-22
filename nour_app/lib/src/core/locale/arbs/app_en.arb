@@ -151,5 +151,18 @@
   "auth_email_invalid": "Please enter a valid email",
   "auth_link_success": "Your account is connected",
 
+  "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "dhikr_choose_title": "Choose Dhikr",
+  "dhikr_continue_section": "Continue dhikr",
+  "dhikr_essential_section": "Essential dhikr",
+  "dhikr_tap_to_count": "Tap anywhere to count",
+  "dhikr_done": "I'm done",
+  "dhikr_session": "This session",
+  "dhikr_today": "Today",
+  "dhikr_ajr_earned": "Ajr earned",
+  "dhikr_choose_another": "Choose another dhikr",
+  "dhikr_quote": "And remember Allah abundantly",
+  "dhikr_quote_source": "Surah Al-Anfal 8:45",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

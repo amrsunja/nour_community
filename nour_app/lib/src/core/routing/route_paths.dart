@@ -15,6 +15,10 @@ abstract class RoutePaths {
   static const tools = 'tools';
   static const settings = 'settings';
 
+  // Dhikr
+  static const dhikrsList = 'dhikrs';
+  static const dhikr = 'dhikr';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

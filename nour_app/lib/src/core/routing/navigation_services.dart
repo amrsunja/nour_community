@@ -9,6 +9,10 @@ abstract class NavigationServices {
 	void toSignIn();
 	void toHome({bool openSignIn = false});
 	void toSettings();
+
+	void toDhikrsList();
+	void toAdhkarsList();
+	void toDhikr({required int selectedId});
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -34,5 +38,20 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toSettings() {
 		router.pushPath(RoutePaths.settings);
+  }
+
+  @override
+  void toDhikrsList() {
+		router.push(DhikrsListRoute());
+  }
+
+  @override
+  void toAdhkarsList() {
+    throw UnimplementedError();
+  }
+
+  @override
+  void toDhikr({required int selectedId}) {
+		router.push(DhikrRoute(selectedId: selectedId));
   }
 }

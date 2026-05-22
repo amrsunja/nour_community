@@ -43,5 +43,5 @@ export 'src/components/cards/ui_card.dart';
 export 'src/components/cards/ui_level_card.dart';
 export 'src/components/cards/ui_selecteable_card.dart';
 export 'src/components/cards/ui_gradient_card.dart';
-export 'src/components/cards/ui_daily_adhkar_card.dart';
+export 'src/components/cards/ui_daily_ajr_card.dart';
 export 'src/components/cards/ui_bg_arabic_text_card.dart';
