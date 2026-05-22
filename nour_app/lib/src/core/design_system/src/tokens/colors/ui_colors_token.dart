@@ -15,7 +15,7 @@ class UIColorsToken {
   );
 
   factory UIColorsToken.dark() => UIColorsToken(
-    bgColor: Color(0xff000000),
+    bgColor: bgPrimary,
     iconColor: Color(0x00ffffff),
   );
 
@@ -40,6 +40,7 @@ class UIColorsToken {
   static const Color bgTertiaryGreen = Color(0xff353F32);
   static const Color bgSurface = Color(0xff1A1A1A);
   static const Color bgSecondaryGreen = Color(0xff2C3427);
+  static const Color bgPrimary = Color(0xff101010);
 
   static const Color white = Color(0xffffffff);
   static const Color black = Color(0xff000000);

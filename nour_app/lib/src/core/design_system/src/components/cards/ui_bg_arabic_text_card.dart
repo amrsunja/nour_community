@@ -7,12 +7,14 @@ class UIBgArabicTextCard extends StatelessWidget {
     this.arabicBgText,
     this.height,
     required this.child,
+    this.padding,
     this.onTap
   });
 
   final String? arabicBgText;
   final double? height;
   final Widget child;
+  final EdgeInsets? padding;
   final VoidCallback? onTap;
 
   @override
@@ -29,6 +31,7 @@ class UIBgArabicTextCard extends StatelessWidget {
         Color(0xff45513F),
         Color(0xff2B3326),
       ],
+      padding: padding,
       child: Stack(
         fit: .expand,
         children: [
