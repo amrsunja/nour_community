@@ -14,6 +14,12 @@ import 'package:flutter/widgets.dart';
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/aa.svg
+  String get aa => 'assets/icons/aa.svg';
+
+  /// File path: assets/icons/arrow-right.svg
+  String get arrowRight => 'assets/icons/arrow-right.svg';
+
   /// File path: assets/icons/check.svg
   String get check => 'assets/icons/check.svg';
 
@@ -35,6 +41,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/refresh.svg
   String get refresh => 'assets/icons/refresh.svg';
 
+  /// File path: assets/icons/share.svg
+  String get share => 'assets/icons/share.svg';
+
   /// File path: assets/icons/source.svg
   String get source => 'assets/icons/source.svg';
 
@@ -52,6 +61,8 @@ class $AssetsIconsGen {
 
   /// List of all assets
   List<String> get values => [
+    aa,
+    arrowRight,
     check,
     chevronLeft,
     dhikr,
@@ -59,6 +70,7 @@ class $AssetsIconsGen {
     impact,
     mute,
     refresh,
+    share,
     source,
     tools,
     unmute,

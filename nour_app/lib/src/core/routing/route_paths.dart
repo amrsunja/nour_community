@@ -19,6 +19,10 @@ abstract class RoutePaths {
   static const dhikrsList = 'dhikrs';
   static const dhikr = 'dhikr';
 
+  // Adhkar
+  static const adhkarsList = 'adhkars-list';
+  static const adhkarDetail = 'adhkar-detail';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

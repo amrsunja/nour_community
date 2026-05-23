@@ -14,6 +14,7 @@ class UICard extends StatelessWidget {
     this.begin = .topCenter,
     this.end = .bottomCenter,
     this.shadows,
+    this.disableBorder = false,
     required this.child,
     this.onTap,
   });
@@ -24,6 +25,7 @@ class UICard extends StatelessWidget {
   final List<Color>? colors;
   final Color? color;
   final double borderRadius;
+  final bool disableBorder;
   final Alignment begin;
   final Alignment end;
   final List<BoxShadow>? shadows;
@@ -52,7 +54,7 @@ class UICard extends StatelessWidget {
               Color(0xff1A1A1A)
             ],
           ),
-          border: Border.all(
+          border: disableBorder ? null : Border.all(
             color: UIColorsToken.white.withValues(alpha: 0.06),
             width: 1,
           ),

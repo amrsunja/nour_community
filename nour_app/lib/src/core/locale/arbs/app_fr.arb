@@ -159,5 +159,12 @@
   "dhikr_quote": "Et invoquez Allah fréquemment",
   "dhikr_quote_source": "Sourate Al-Anfal 8:45",
 
+  "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "adhkar_all_title": "Tous les adhkar",
+  "adhkar_search_hint": "Rechercher",
+  "adhkar_recommended_now": "Recommandé maintenant",
+  "adhkar_no_results": "Aucun adhkar correspondant",
+  "adhkar_empty": "Aucun adhkar ici pour l'instant",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

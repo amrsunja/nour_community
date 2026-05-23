@@ -159,5 +159,12 @@
   "dhikr_quote": "واذكروا الله كثيرًا",
   "dhikr_quote_source": "سورة الأنفال ٤٥:٨",
 
+  "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "adhkar_all_title": "كل الأذكار",
+  "adhkar_search_hint": "بحث",
+  "adhkar_recommended_now": "موصى به الآن",
+  "adhkar_no_results": "لا توجد أذكار مطابقة",
+  "adhkar_empty": "لا توجد أذكار هنا بعد",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

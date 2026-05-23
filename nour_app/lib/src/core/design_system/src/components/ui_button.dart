@@ -163,7 +163,7 @@ class UIButton extends StatelessWidget {
     );
   }
 
-  double get _iconSize => isSmall ? 18 : 16;
+  double get _iconSize => isSmall ? 12 : 14;
 
   double get _spinnerSize => isSmall ? 14 : 20;
 

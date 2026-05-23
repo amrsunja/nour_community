@@ -868,6 +868,42 @@ abstract class AppLocalizations {
   /// **'Surah Al-Anfal 8:45'**
   String get dhikr_quote_source;
 
+  /// No description provided for @l10nAdhkar.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nAdhkar;
+
+  /// No description provided for @adhkar_all_title.
+  ///
+  /// In en, this message translates to:
+  /// **'All Adhkar'**
+  String get adhkar_all_title;
+
+  /// No description provided for @adhkar_search_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get adhkar_search_hint;
+
+  /// No description provided for @adhkar_recommended_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended now'**
+  String get adhkar_recommended_now;
+
+  /// No description provided for @adhkar_no_results.
+  ///
+  /// In en, this message translates to:
+  /// **'No matching adhkar'**
+  String get adhkar_no_results;
+
+  /// No description provided for @adhkar_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No adhkar here yet'**
+  String get adhkar_empty;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

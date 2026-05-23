@@ -411,6 +411,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dhikr_quote_source => 'سورة الأنفال ٤٥:٨';
 
   @override
+  String get l10nAdhkar =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get adhkar_all_title => 'كل الأذكار';
+
+  @override
+  String get adhkar_search_hint => 'بحث';
+
+  @override
+  String get adhkar_recommended_now => 'موصى به الآن';
+
+  @override
+  String get adhkar_no_results => 'لا توجد أذكار مطابقة';
+
+  @override
+  String get adhkar_empty => 'لا توجد أذكار هنا بعد';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

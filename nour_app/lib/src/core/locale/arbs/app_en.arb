@@ -164,5 +164,12 @@
   "dhikr_quote": "And remember Allah abundantly",
   "dhikr_quote_source": "Surah Al-Anfal 8:45",
 
+  "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "adhkar_all_title": "All Adhkar",
+  "adhkar_search_hint": "Search",
+  "adhkar_recommended_now": "Recommended now",
+  "adhkar_no_results": "No matching adhkar",
+  "adhkar_empty": "No adhkar here yet",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

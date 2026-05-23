@@ -425,6 +425,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dhikr_quote_source => 'Sourate Al-Anfal 8:45';
 
   @override
+  String get l10nAdhkar =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get adhkar_all_title => 'Tous les adhkar';
+
+  @override
+  String get adhkar_search_hint => 'Rechercher';
+
+  @override
+  String get adhkar_recommended_now => 'Recommandé maintenant';
+
+  @override
+  String get adhkar_no_results => 'Aucun adhkar correspondant';
+
+  @override
+  String get adhkar_empty => 'Aucun adhkar ici pour l\'instant';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

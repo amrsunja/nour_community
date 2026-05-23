@@ -12,6 +12,7 @@ abstract class NavigationServices {
 
 	void toDhikrsList();
 	void toAdhkarsList();
+	void toAdhkarDetail({required int subcategoryId});
 	void toDhikr({required int selectedId});
 }
 
@@ -47,7 +48,12 @@ class NavigationServicesImpl implements NavigationServices {
 
   @override
   void toAdhkarsList() {
-    throw UnimplementedError();
+		router.push(AdhkarsListRoute());
+  }
+
+  @override
+  void toAdhkarDetail({required int subcategoryId}) {
+		router.push(AdhkarDetailRoute(subcategoryId: subcategoryId));
   }
 
   @override
