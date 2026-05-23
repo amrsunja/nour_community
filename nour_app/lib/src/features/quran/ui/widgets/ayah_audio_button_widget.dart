@@ -42,6 +42,7 @@ class AyahAudioButtonWidget extends ConsumerWidget {
         decoration: BoxDecoration(
           gradient: UIColorsToken.bgPriYellow,
           borderRadius: BorderRadius.circular(8),
+          boxShadow: UIShadowToken.kMd
         ),
         child: isLoading
             ? const UICircularProgressBar(color: UIColorsToken.white, size: 15)
