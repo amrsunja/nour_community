@@ -22,6 +22,7 @@ class UIBgArabicTextCard extends StatelessWidget {
     return UICard(
       onTap: onTap,
       height: height ?? 208,
+      disableBorder: true,
       width: .infinity,
       borderRadius: 10,
       begin: .centerLeft,

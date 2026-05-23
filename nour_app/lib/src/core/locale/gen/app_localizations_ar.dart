@@ -430,6 +430,109 @@ class AppLocalizationsAr extends AppLocalizations {
   String get adhkar_empty => 'لا توجد أذكار هنا بعد';
 
   @override
+  String get l10nTools =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get tools_title => 'الأدوات';
+
+  @override
+  String get tools_daily_ayah => 'آية اليوم';
+
+  @override
+  String get tools_dua_library => 'مكتبة الأدعية';
+
+  @override
+  String get tools_daily_quiz => 'اختبار اليوم';
+
+  @override
+  String get tools_qibla_finder => 'تحديد القبلة';
+
+  @override
+  String get tools_prayer_times => 'أوقات الصلاة';
+
+  @override
+  String get tools_dhikr_counter => 'عداد الذكر';
+
+  @override
+  String get tools_zakat_calculator => 'حاسبة الزكاة';
+
+  @override
+  String get tools_hijri_calendar => 'التقويم الهجري';
+
+  @override
+  String get l10nQuran =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ QURAN / SOURCE ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get source_title => 'المصدر';
+
+  @override
+  String get source_quran => 'القرآن';
+
+  @override
+  String get source_hadith => 'الحديث';
+
+  @override
+  String get source_hadith_coming_soon => 'قسم الحديث قريبًا.';
+
+  @override
+  String get source_hadith_coming_soon_sub => 'سيتم تنفيذ هذه الميزة لاحقًا.';
+
+  @override
+  String get quran_continue_reading => 'متابعة القراءة';
+
+  @override
+  String get quran_all_surahs => 'كل السور';
+
+  @override
+  String get quran_resume => 'استئناف';
+
+  @override
+  String get quran_verse => 'آية';
+
+  @override
+  String get quran_verses => 'آيات';
+
+  @override
+  String get quran_meccan => 'مكية';
+
+  @override
+  String get quran_medinan => 'مدنية';
+
+  @override
+  String get quran_error_title => 'حدث خطأ ما';
+
+  @override
+  String get quran_error_subtitle => 'تعذّر تحميل القرآن الآن.';
+
+  @override
+  String get quran_try_again => 'إعادة المحاولة';
+
+  @override
+  String get quran_empty => 'لا توجد سور متاحة.';
+
+  @override
+  String get quran_title => 'القرآن';
+
+  @override
+  String get quran_done => 'أنهيت';
+
+  @override
+  String get quran_transcription_title => 'النقحرة';
+
+  @override
+  String get quran_transcription_unavailable =>
+      'النقحرة غير متوفرة لهذه الآية بعد.';
+
+  @override
+  String get quran_tafsir_title => 'التفسير';
+
+  @override
+  String get quran_tafsir_note =>
+      'التفسير المفصّل قادم قريبًا. وفي هذه الأثناء، إليك معنى الآية:';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

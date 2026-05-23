@@ -14,6 +14,7 @@ class UICard extends StatelessWidget {
     this.begin = .topCenter,
     this.end = .bottomCenter,
     this.shadows,
+    this.stops,
     this.disableBorder = false,
     required this.child,
     this.onTap,
@@ -29,6 +30,7 @@ class UICard extends StatelessWidget {
   final Alignment begin;
   final Alignment end;
   final List<BoxShadow>? shadows;
+  final List<double>? stops;
   final Widget child;
   final VoidCallback? onTap;
 
@@ -49,6 +51,7 @@ class UICard extends StatelessWidget {
           gradient: color != null ? null : LinearGradient(
             begin: begin,
             end: end,
+            stops: stops,
             colors: colors ?? [
               Color(0xff2A2E27),
               Color(0xff1A1A1A)

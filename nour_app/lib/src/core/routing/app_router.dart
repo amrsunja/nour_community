@@ -124,6 +124,16 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.adhkarDetail,
               page: AdhkarDetailRoute.page,
             ),
+
+            /// Quran (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.surahDetail,
+              page: SurahDetailRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.ayahReader,
+              page: AyahReaderRoute.page,
+            ),
           ],
         ),
       ],

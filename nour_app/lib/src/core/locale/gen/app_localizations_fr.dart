@@ -444,6 +444,112 @@ class AppLocalizationsFr extends AppLocalizations {
   String get adhkar_empty => 'Aucun adhkar ici pour l\'instant';
 
   @override
+  String get l10nTools =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get tools_title => 'Outils';
+
+  @override
+  String get tools_daily_ayah => 'Verset du jour';
+
+  @override
+  String get tools_dua_library => 'Bibliothèque de douas';
+
+  @override
+  String get tools_daily_quiz => 'Quiz du jour';
+
+  @override
+  String get tools_qibla_finder => 'Boussole Qibla';
+
+  @override
+  String get tools_prayer_times => 'Heures de prière';
+
+  @override
+  String get tools_dhikr_counter => 'Compteur de dhikr';
+
+  @override
+  String get tools_zakat_calculator => 'Calculateur de zakat';
+
+  @override
+  String get tools_hijri_calendar => 'Calendrier hégirien';
+
+  @override
+  String get l10nQuran =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ QURAN / SOURCE ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get source_title => 'Source';
+
+  @override
+  String get source_quran => 'Coran';
+
+  @override
+  String get source_hadith => 'Hadith';
+
+  @override
+  String get source_hadith_coming_soon =>
+      'La section des hadiths arrive bientôt.';
+
+  @override
+  String get source_hadith_coming_soon_sub =>
+      'Cette fonctionnalité sera ajoutée plus tard.';
+
+  @override
+  String get quran_continue_reading => 'Continuer la lecture';
+
+  @override
+  String get quran_all_surahs => 'Toutes les sourates';
+
+  @override
+  String get quran_resume => 'Reprendre';
+
+  @override
+  String get quran_verse => 'Verset';
+
+  @override
+  String get quran_verses => 'versets';
+
+  @override
+  String get quran_meccan => 'Mecquoise';
+
+  @override
+  String get quran_medinan => 'Médinoise';
+
+  @override
+  String get quran_error_title => 'Une erreur s\'est produite';
+
+  @override
+  String get quran_error_subtitle =>
+      'Impossible de charger le Coran pour le moment.';
+
+  @override
+  String get quran_try_again => 'Réessayer';
+
+  @override
+  String get quran_empty => 'Aucune sourate disponible.';
+
+  @override
+  String get quran_title => 'Coran';
+
+  @override
+  String get quran_done => 'J\'ai terminé';
+
+  @override
+  String get quran_transcription_title => 'Translittération';
+
+  @override
+  String get quran_transcription_unavailable =>
+      'La translittération n\'est pas encore disponible pour ce verset.';
+
+  @override
+  String get quran_tafsir_title => 'Tafsir';
+
+  @override
+  String get quran_tafsir_note =>
+      'Un tafsir détaillé arrive bientôt. En attendant, voici le sens du verset :';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

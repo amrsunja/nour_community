@@ -8,12 +8,16 @@ abstract class NavigationServices {
 
 	void toSignIn();
 	void toHome({bool openSignIn = false});
+	void navigateToHome();
 	void toSettings();
 
 	void toDhikrsList();
 	void toAdhkarsList();
 	void toAdhkarDetail({required int subcategoryId});
 	void toDhikr({required int selectedId});
+
+	void toSurahDetail({required int surahNumber});
+	void toAyahReader({required int surahNumber, int initialAyah});
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -29,6 +33,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toSignIn() {
 		router.replaceAll([SignInRoute()]);
+  }
+
+  @override
+  void navigateToHome() {
+		router.navigate(HomeRouterRoute());
   }
 
   @override
@@ -59,5 +68,15 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toDhikr({required int selectedId}) {
 		router.push(DhikrRoute(selectedId: selectedId));
+  }
+
+  @override
+  void toSurahDetail({required int surahNumber}) {
+		router.push(SurahDetailRoute(surahNumber: surahNumber));
+  }
+
+  @override
+  void toAyahReader({required int surahNumber, int initialAyah = 1}) {
+		router.push(AyahReaderRoute(surahNumber: surahNumber, initialAyah: initialAyah));
   }
 }

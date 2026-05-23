@@ -904,6 +904,204 @@ abstract class AppLocalizations {
   /// **'No adhkar here yet'**
   String get adhkar_empty;
 
+  /// No description provided for @l10nTools.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nTools;
+
+  /// No description provided for @tools_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get tools_title;
+
+  /// No description provided for @tools_daily_ayah.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily ayah'**
+  String get tools_daily_ayah;
+
+  /// No description provided for @tools_dua_library.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua Library'**
+  String get tools_dua_library;
+
+  /// No description provided for @tools_daily_quiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily quiz'**
+  String get tools_daily_quiz;
+
+  /// No description provided for @tools_qibla_finder.
+  ///
+  /// In en, this message translates to:
+  /// **'Qibla finder'**
+  String get tools_qibla_finder;
+
+  /// No description provided for @tools_prayer_times.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times'**
+  String get tools_prayer_times;
+
+  /// No description provided for @tools_dhikr_counter.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr counter'**
+  String get tools_dhikr_counter;
+
+  /// No description provided for @tools_zakat_calculator.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat calculator'**
+  String get tools_zakat_calculator;
+
+  /// No description provided for @tools_hijri_calendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Hijri calendar'**
+  String get tools_hijri_calendar;
+
+  /// No description provided for @l10nQuran.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ QURAN / SOURCE ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nQuran;
+
+  /// No description provided for @source_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get source_title;
+
+  /// No description provided for @source_quran.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get source_quran;
+
+  /// No description provided for @source_hadith.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get source_hadith;
+
+  /// No description provided for @source_hadith_coming_soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith section coming soon.'**
+  String get source_hadith_coming_soon;
+
+  /// No description provided for @source_hadith_coming_soon_sub.
+  ///
+  /// In en, this message translates to:
+  /// **'This feature will be implemented later.'**
+  String get source_hadith_coming_soon_sub;
+
+  /// No description provided for @quran_continue_reading.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue reading'**
+  String get quran_continue_reading;
+
+  /// No description provided for @quran_all_surahs.
+  ///
+  /// In en, this message translates to:
+  /// **'All Surahs'**
+  String get quran_all_surahs;
+
+  /// No description provided for @quran_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get quran_resume;
+
+  /// No description provided for @quran_verse.
+  ///
+  /// In en, this message translates to:
+  /// **'Verse'**
+  String get quran_verse;
+
+  /// No description provided for @quran_verses.
+  ///
+  /// In en, this message translates to:
+  /// **'verses'**
+  String get quran_verses;
+
+  /// No description provided for @quran_meccan.
+  ///
+  /// In en, this message translates to:
+  /// **'Meccan'**
+  String get quran_meccan;
+
+  /// No description provided for @quran_medinan.
+  ///
+  /// In en, this message translates to:
+  /// **'Medinan'**
+  String get quran_medinan;
+
+  /// No description provided for @quran_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get quran_error_title;
+
+  /// No description provided for @quran_error_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load the Quran right now.'**
+  String get quran_error_subtitle;
+
+  /// No description provided for @quran_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get quran_try_again;
+
+  /// No description provided for @quran_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No surahs available.'**
+  String get quran_empty;
+
+  /// No description provided for @quran_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Quran'**
+  String get quran_title;
+
+  /// No description provided for @quran_done.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m done'**
+  String get quran_done;
+
+  /// No description provided for @quran_transcription_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcription'**
+  String get quran_transcription_title;
+
+  /// No description provided for @quran_transcription_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Transcription isn’t available for this verse yet.'**
+  String get quran_transcription_unavailable;
+
+  /// No description provided for @quran_tafsir_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tafsir'**
+  String get quran_tafsir_title;
+
+  /// No description provided for @quran_tafsir_note.
+  ///
+  /// In en, this message translates to:
+  /// **'A detailed tafsir is on the way. Meanwhile, here is the meaning of the verse:'**
+  String get quran_tafsir_note;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

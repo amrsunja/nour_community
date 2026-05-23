@@ -35,6 +35,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/impact.svg
   String get impact => 'assets/icons/impact.svg';
 
+  /// File path: assets/icons/location.svg
+  String get location => 'assets/icons/location.svg';
+
   /// File path: assets/icons/mute.svg
   String get mute => 'assets/icons/mute.svg';
 
@@ -46,6 +49,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/source.svg
   String get source => 'assets/icons/source.svg';
+
+  /// File path: assets/icons/tafsir.svg
+  String get tafsir => 'assets/icons/tafsir.svg';
 
   /// File path: assets/icons/tools.svg
   String get tools => 'assets/icons/tools.svg';
@@ -68,10 +74,12 @@ class $AssetsIconsGen {
     dhikr,
     home,
     impact,
+    location,
     mute,
     refresh,
     share,
     source,
+    tafsir,
     tools,
     unmute,
     volume,
@@ -236,6 +244,12 @@ class $AssetsImagesGen {
   AssetGenImage get illustration9 =>
       const AssetGenImage('assets/images/illustration_9.png');
 
+  /// File path: assets/images/kaaba.png
+  AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
+
+  /// File path: assets/images/star.png
+  AssetGenImage get star => const AssetGenImage('assets/images/star.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     apple,
@@ -277,6 +291,8 @@ class $AssetsImagesGen {
     illustration7,
     illustration8,
     illustration9,
+    kaaba,
+    star,
   ];
 }
 

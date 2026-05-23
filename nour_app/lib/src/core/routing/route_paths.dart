@@ -23,6 +23,10 @@ abstract class RoutePaths {
   static const adhkarsList = 'adhkars-list';
   static const adhkarDetail = 'adhkar-detail';
 
+  // Quran
+  static const surahDetail = 'surah-detail';
+  static const ayahReader = 'ayah-reader';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

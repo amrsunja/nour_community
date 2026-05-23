@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:blur/blur.dart';
+
 
 /// Bottom navigation: a translucent pill holding the four primary tabs
 /// (Home / Source / Impact / Tools) plus a detached circular Dhikr action
@@ -49,27 +51,29 @@ class UINavBar extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              height: _height,
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-              decoration: BoxDecoration(
-                color: UIColorsToken.bgDeemphasize,
-                borderRadius: BorderRadius.circular(_height),
-                border: Border.all(color: UIColorsToken.stroke, width: 0.5),
-              ),
-              child: Row(
-                children: [
-                  for (var i = 0; i < tabs.length; i++)
-                    Expanded(
-                      child: _NavTab(
-                        item: tabs[i],
-                        selected: i == currentPage,
-                        textStyle: typo.smallCaption,
-                        inactiveColor: _inactive,
-                        onTap: () => onPageChange(i),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(_height),
+              child: Container(
+                height: _height,
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                child: Row(
+                  children: [
+                    for (var i = 0; i < tabs.length; i++)
+                      Expanded(
+                        child: _NavTab(
+                          item: tabs[i],
+                          selected: i == currentPage,
+                          textStyle: typo.smallCaption,
+                          inactiveColor: _inactive,
+                          onTap: () => onPageChange(i),
+                        ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
+              ).frosted(
+                blur: 5,
+                frostColor: Color(0xffAEAEAE),
+                borderRadius: BorderRadius.circular(100),
               ),
             ),
           ),
@@ -199,7 +203,7 @@ class _DhikrButton extends StatelessWidget {
             ],
           ),
         ),
-      ),
+      )
     );
   }
 }
