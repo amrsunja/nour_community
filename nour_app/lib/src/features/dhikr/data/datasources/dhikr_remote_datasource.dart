@@ -15,8 +15,12 @@ class DhikrRemoteDatasource {
   static const _progressTable = 'dhikr_progress';
   static const _ajrLogTable = 'ajr_log';
 
+  /// Device-local calendar date (`YYYY-MM-DD`). The "day" must follow the
+  /// user's wall clock, not UTC — otherwise progress rolls over at UTC
+  /// midnight (3–4am in MENA) and late-night dhikr lands on the wrong day.
+  /// Read + write both use this, so the progress feature stays self-consistent.
   String get _today {
-    final now = DateTime.now().toUtc();
+    final now = DateTime.now();
     return '${now.year.toString().padLeft(4, '0')}-'
         '${now.month.toString().padLeft(2, '0')}-'
         '${now.day.toString().padLeft(2, '0')}';
@@ -85,7 +89,7 @@ class DhikrRemoteDatasource {
           .select('earned_ajr, source_id')
           .eq('user_id', userId)
           .eq('source', 'dhikr')
-          .gte('created_at', '${_today}T00:00:00Z');
+          .eq('earned_on', _today);
 
       final totals = <int, int>{};
       for (final row in response as List) {

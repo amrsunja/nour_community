@@ -440,6 +440,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get tools_daily_ayah => 'آية اليوم';
 
   @override
+  String get tools_daily_dua => 'دعاء اليوم';
+
+  @override
   String get tools_dua_library => 'مكتبة الأدعية';
 
   @override
@@ -555,6 +558,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get hadith_explanation_title => 'الشرح';
+
+  @override
+  String get dua_title => 'دعاء';
+
+  @override
+  String get dua_library_title => 'مكتبة الأدعية';
+
+  @override
+  String get dua_done => 'لقد انتهيت';
+
+  @override
+  String get dua_when_to_recite => 'متى يُقال';
+
+  @override
+  String get dua_explanation_title => 'الشرح';
+
+  @override
+  String get dua_error_title => 'حدث خطأ ما';
+
+  @override
+  String get dua_error_subtitle => 'تعذّر تحميل الأدعية الآن.';
+
+  @override
+  String get dua_try_again => 'حاول مرة أخرى';
+
+  @override
+  String get dua_empty => 'لا توجد أدعية متاحة.';
 
   @override
   String get l10nStopLineDontTouch =>

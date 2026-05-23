@@ -922,6 +922,12 @@ abstract class AppLocalizations {
   /// **'Daily ayah'**
   String get tools_daily_ayah;
 
+  /// No description provided for @tools_daily_dua.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily dua'**
+  String get tools_daily_dua;
+
   /// No description provided for @tools_dua_library.
   ///
   /// In en, this message translates to:
@@ -1149,6 +1155,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Explanation'**
   String get hadith_explanation_title;
+
+  /// No description provided for @dua_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua'**
+  String get dua_title;
+
+  /// No description provided for @dua_library_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua Library'**
+  String get dua_library_title;
+
+  /// No description provided for @dua_done.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m done'**
+  String get dua_done;
+
+  /// No description provided for @dua_when_to_recite.
+  ///
+  /// In en, this message translates to:
+  /// **'When to recite'**
+  String get dua_when_to_recite;
+
+  /// No description provided for @dua_explanation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get dua_explanation_title;
+
+  /// No description provided for @dua_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get dua_error_title;
+
+  /// No description provided for @dua_error_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load the duas right now.'**
+  String get dua_error_subtitle;
+
+  /// No description provided for @dua_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get dua_try_again;
+
+  /// No description provided for @dua_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No duas available.'**
+  String get dua_empty;
 
   /// No description provided for @l10nStopLineDontTouch.
   ///

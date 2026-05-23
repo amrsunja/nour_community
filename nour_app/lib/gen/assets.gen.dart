@@ -32,6 +32,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
+  /// File path: assets/icons/idea.svg
+  String get idea => 'assets/icons/idea.svg';
+
   /// File path: assets/icons/impact.svg
   String get impact => 'assets/icons/impact.svg';
 
@@ -73,6 +76,7 @@ class $AssetsIconsGen {
     chevronLeft,
     dhikr,
     home,
+    idea,
     impact,
     location,
     mute,

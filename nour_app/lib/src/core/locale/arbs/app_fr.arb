@@ -169,6 +169,7 @@
   "l10nTools": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "tools_title": "Outils",
   "tools_daily_ayah": "Verset du jour",
+  "tools_daily_dua": "Doua du jour",
   "tools_dua_library": "Bibliothèque de douas",
   "tools_daily_quiz": "Quiz du jour",
   "tools_qibla_finder": "Boussole Qibla",
@@ -209,6 +210,16 @@
   "hadith_try_again": "Réessayer",
   "hadith_empty": "Aucun hadith disponible.",
   "hadith_explanation_title": "Explication",
+
+  "dua_title": "Doua",
+  "dua_library_title": "Bibliothèque de douas",
+  "dua_done": "J'ai terminé",
+  "dua_when_to_recite": "Quand la réciter",
+  "dua_explanation_title": "Explication",
+  "dua_error_title": "Une erreur s'est produite",
+  "dua_error_subtitle": "Impossible de charger les douas pour le moment.",
+  "dua_try_again": "Réessayer",
+  "dua_empty": "Aucune doua disponible.",
 
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

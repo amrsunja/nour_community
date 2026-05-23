@@ -32,6 +32,11 @@ abstract class RoutePaths {
   static const hadithCollectionDetail = 'hadith-collection-detail';
   static const hadithReader = 'hadith-reader';
 
+  // Dua
+  static const duaLibrary = 'dua-library';
+  static const duaReader = 'dua-reader';
+  static const dailyDua = 'daily-dua';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

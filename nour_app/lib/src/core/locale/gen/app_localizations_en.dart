@@ -448,6 +448,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tools_daily_ayah => 'Daily ayah';
 
   @override
+  String get tools_daily_dua => 'Daily dua';
+
+  @override
   String get tools_dua_library => 'Dua Library';
 
   @override
@@ -564,6 +567,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get hadith_explanation_title => 'Explanation';
+
+  @override
+  String get dua_title => 'Dua';
+
+  @override
+  String get dua_library_title => 'Dua Library';
+
+  @override
+  String get dua_done => 'I\'m done';
+
+  @override
+  String get dua_when_to_recite => 'When to recite';
+
+  @override
+  String get dua_explanation_title => 'Explanation';
+
+  @override
+  String get dua_error_title => 'Something went wrong';
+
+  @override
+  String get dua_error_subtitle => 'We couldn’t load the duas right now.';
+
+  @override
+  String get dua_try_again => 'Try again';
+
+  @override
+  String get dua_empty => 'No duas available.';
 
   @override
   String get l10nStopLineDontTouch =>

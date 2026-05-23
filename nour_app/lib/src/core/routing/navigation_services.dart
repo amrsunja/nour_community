@@ -22,6 +22,10 @@ abstract class NavigationServices {
 
 	void toHadithCollectionDetail({required int collectionId});
 	void toHadithReader({required int collectionId, required int initialHadithId});
+
+	void toDuaLibrary();
+	void toDuaReader({required int initialDuaId});
+	void toDailyDua();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -100,5 +104,20 @@ class NavigationServicesImpl implements NavigationServices {
 			collectionId: collectionId,
 			initialHadithId: initialHadithId,
 		));
+  }
+
+  @override
+  void toDuaLibrary() {
+		router.push(DuaListRoute());
+  }
+
+  @override
+  void toDuaReader({required int initialDuaId}) {
+		router.push(DuaDetailRoute(initialDuaId: initialDuaId));
+  }
+
+  @override
+  void toDailyDua() {
+		router.push(DailyDuaRoute());
   }
 }

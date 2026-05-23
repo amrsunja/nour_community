@@ -28,9 +28,18 @@ class ToolsPage extends HookConsumerWidget {
           }
         ),
         _ToolItem(
-          Assets.images.illustration13, 
+          Assets.images.illustration19,
+          l10n.tools_daily_dua,
+          onTap: () {
+            nav.toDailyDua();
+          }
+        ),
+        _ToolItem(
+          Assets.images.illustration13,
           l10n.tools_dua_library,
-          onTap: () {}
+          onTap: () {
+            nav.toDuaLibrary();
+          }
         ),
         _ToolItem(
           Assets.images.illustration14, 
@@ -70,7 +79,7 @@ class ToolsPage extends HookConsumerWidget {
     return Scaffold(
       appBar: UIAppBar(title: l10n.tools_title),
       body: GridView.builder(
-        padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+        padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
         physics: const BouncingScrollPhysics(),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

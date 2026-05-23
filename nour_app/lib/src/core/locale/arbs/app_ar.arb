@@ -169,6 +169,7 @@
   "l10nTools": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "tools_title": "الأدوات",
   "tools_daily_ayah": "آية اليوم",
+  "tools_daily_dua": "دعاء اليوم",
   "tools_dua_library": "مكتبة الأدعية",
   "tools_daily_quiz": "اختبار اليوم",
   "tools_qibla_finder": "تحديد القبلة",
@@ -209,6 +210,16 @@
   "hadith_try_again": "حاول مرة أخرى",
   "hadith_empty": "لا توجد أحاديث متاحة.",
   "hadith_explanation_title": "الشرح",
+
+  "dua_title": "دعاء",
+  "dua_library_title": "مكتبة الأدعية",
+  "dua_done": "لقد انتهيت",
+  "dua_when_to_recite": "متى يُقال",
+  "dua_explanation_title": "الشرح",
+  "dua_error_title": "حدث خطأ ما",
+  "dua_error_subtitle": "تعذّر تحميل الأدعية الآن.",
+  "dua_try_again": "حاول مرة أخرى",
+  "dua_empty": "لا توجد أدعية متاحة.",
 
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

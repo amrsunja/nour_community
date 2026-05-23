@@ -148,6 +148,20 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.hadithReader,
               page: HadithDetailRoute.page,
             ),
+
+            /// Dua (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.duaLibrary,
+              page: DuaListRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.duaReader,
+              page: DuaDetailRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.dailyDua,
+              page: DailyDuaRoute.page,
+            ),
           ],
         ),
       ],
