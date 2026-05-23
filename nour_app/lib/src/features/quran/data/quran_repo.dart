@@ -76,6 +76,15 @@ class QuranRepo {
     );
   }
 
+  Future<SuccessOrError<Map<int, String>>> getSurahTransliteration(
+    int surahNumber, {
+    String edition = 'en.transliteration',
+  }) async {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.getSurahTransliteration(surahNumber, edition: edition),
+    );
+  }
+
   Future<SuccessOrError<void>> likeAyah({
     required int surahNumber,
     required int ayahNumber,

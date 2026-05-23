@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
@@ -16,6 +17,11 @@ class QuranRemoteDatasource {
   // SECURITY DEFINER RPCs that expose *global* like counts without leaking
   // other users' favorite rows (RLS keeps direct SELECTs scoped to the owner).
   static const _rpcSurahLikes = 'fn_surah_ayah_likes';
+
+  // Public Quran API used only for transliteration (the bundled `quran`
+  // package ships Arabic + translations + audio, but no transliteration).
+  static const _alquranBase = 'https://api.alquran.cloud/v1';
+  final Dio _dio = Dio();
 
   String _requireUserId() {
     final authUser = supabaseClient.auth.currentUser;
@@ -144,6 +150,38 @@ class QuranRemoteDatasource {
       throw ServerException(
         type: .badRequest,
         message: 'Failed to like ayah',
+      );
+    }
+  }
+
+  // ── Transliteration ──────────────────────────────────────────────────────
+
+  /// Latin transliteration for every ayah of [surahNumber], as a
+  /// `{ayahNumber: text}` map. [edition] is the alquran.cloud transliteration
+  /// edition id (defaults to `en.transliteration`). Read-only, anonymous
+  /// endpoint — no auth required.
+  Future<Map<int, String>> getSurahTransliteration(
+    int surahNumber, {
+    String edition = 'en.transliteration',
+  }) async {
+    try {
+      final res = await _dio.get<Map<String, dynamic>>(
+        '$_alquranBase/surah/$surahNumber/$edition',
+      );
+
+      final ayahs = (res.data?['data']?['ayahs'] as List?) ?? const [];
+      final map = <int, String>{};
+      for (final a in ayahs) {
+        final n = a['numberInSurah'] as int?;
+        final t = a['text'] as String?;
+        if (n != null && t != null && t.isNotEmpty) map[n] = t;
+      }
+      return map;
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to load transliteration',
       );
     }
   }

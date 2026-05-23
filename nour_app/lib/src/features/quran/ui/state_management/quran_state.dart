@@ -29,6 +29,12 @@ class QuranState extends Equatable {
   /// Surah numbers whose like data is currently loading.
   final Set<int> loadingLikesSurahs;
 
+  /// Latin transliteration per surah (`{surah: {ayah: text}}`), lazily fetched.
+  final Map<int, Map<int, String>> transliterationsBySurah;
+
+  /// Surah numbers whose transliteration is currently loading.
+  final Set<int> loadingTransliterationSurahs;
+
   const QuranState({
     this.isLoading = false,
     this.surahs = const [],
@@ -37,6 +43,8 @@ class QuranState extends Equatable {
     this.likedAyahsBySurah = const {},
     this.likeCountsBySurah = const {},
     this.loadingLikesSurahs = const {},
+    this.transliterationsBySurah = const {},
+    this.loadingTransliterationSurahs = const {},
   });
 
   bool get isEmpty => surahs.isEmpty;
@@ -50,6 +58,13 @@ class QuranState extends Equatable {
   bool isLoadingLikes(int surahNumber) =>
       loadingLikesSurahs.contains(surahNumber);
 
+  /// Transliteration for a single ayah, or `null` if not loaded / unavailable.
+  String? transliterationOf(int surahNumber, int ayahNumber) =>
+      transliterationsBySurah[surahNumber]?[ayahNumber];
+
+  bool isLoadingTransliteration(int surahNumber) =>
+      loadingTransliterationSurahs.contains(surahNumber);
+
   QuranState copyWith({
     bool? isLoading,
     List<SurahInfo>? surahs,
@@ -58,6 +73,8 @@ class QuranState extends Equatable {
     Map<int, Set<int>>? likedAyahsBySurah,
     Map<int, Map<int, int>>? likeCountsBySurah,
     Set<int>? loadingLikesSurahs,
+    Map<int, Map<int, String>>? transliterationsBySurah,
+    Set<int>? loadingTransliterationSurahs,
   }) =>
       QuranState(
         isLoading: isLoading ?? this.isLoading,
@@ -67,6 +84,10 @@ class QuranState extends Equatable {
         likedAyahsBySurah: likedAyahsBySurah ?? this.likedAyahsBySurah,
         likeCountsBySurah: likeCountsBySurah ?? this.likeCountsBySurah,
         loadingLikesSurahs: loadingLikesSurahs ?? this.loadingLikesSurahs,
+        transliterationsBySurah:
+            transliterationsBySurah ?? this.transliterationsBySurah,
+        loadingTransliterationSurahs:
+            loadingTransliterationSurahs ?? this.loadingTransliterationSurahs,
       );
 
   @override
@@ -78,5 +99,7 @@ class QuranState extends Equatable {
         likedAyahsBySurah,
         likeCountsBySurah,
         loadingLikesSurahs,
+        transliterationsBySurah,
+        loadingTransliterationSurahs,
       ];
 }

@@ -32,6 +32,7 @@ class AyahReaderPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
     final l10n = ref.watch(l10nProvider);
+    final langCode = Localizations.localeOf(context).languageCode;
     final nav = ref.read(navigationServicesProvider);
     final presenter = ref.read(quranProvider.notifier);
     final state = ref.watch(quranProvider);
@@ -54,15 +55,17 @@ class AyahReaderPage extends HookConsumerWidget {
     final showTranscription = useState(false);
 
     useEffect(() {
-      WidgetsBinding.instance
-          .addPostFrameCallback((_) => presenter.loadSurahLikes(surahNumber));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        presenter.loadSurahLikes(surahNumber);
+        presenter.loadSurahTransliteration(surahNumber, langCode: langCode);
+      });
       return null;
-    }, [surahNumber]);
+    }, [surahNumber, langCode]);
 
     Future<void> save() => presenter.saveProgress(
-          surahNumber: surahNumber,
-          ayahNumber: ayahNumber.value,
-        );
+      surahNumber: surahNumber,
+      ayahNumber: ayahNumber.value,
+    );
 
     void goTo(int next) {
       ayahNumber.value = next.clamp(1, total);
@@ -74,8 +77,8 @@ class AyahReaderPage extends HookConsumerWidget {
     final audioUrl =
         presenter.ayahAudioUrl(surahNumber, current, reciter: reciter);
 
-    // Transliteration plug-in point (null today — graceful fallback below).
-    final transliteration = presenter.ayahTransliteration(surahNumber, current);
+    // Transliteration (lazily fetched into state; null until loaded / on error).
+    final transliteration = state.transliterationOf(surahNumber, current);
 
     Future<void> share() => SharePlus.instance.share(
           ShareParams(
@@ -117,6 +120,8 @@ class AyahReaderPage extends HookConsumerWidget {
                   surahNumber: surahNumber,
                   ayahNumber: current,
                 ),
+                // Arabic readers don't need a Latin transliteration.
+                showTranscriptionAction: langCode != 'ar',
                 showTranscription: showTranscription.value,
                 transcriptionText: transliteration ?? l10n.quran_transcription_unavailable,
                 onToggleTranscription: () => showTranscription.value = !showTranscription.value,
@@ -145,8 +150,8 @@ class AyahReaderPage extends HookConsumerWidget {
                 onDone: () async {
                   await save();
 
-                  nav.navigateToHome();
-                  
+                  nav.toHome();
+
                   /*
                   if (current < total) {
                     goTo(current + 1);
@@ -249,6 +254,7 @@ class _AyahCard extends StatelessWidget {
     required this.isLiked,
     required this.likeCount,
     required this.onLike,
+    required this.showTranscriptionAction,
     required this.showTranscription,
     required this.transcriptionText,
     required this.onToggleTranscription,
@@ -265,6 +271,8 @@ class _AyahCard extends StatelessWidget {
   final int likeCount;
   final VoidCallback onLike;
 
+  /// Whether the "Aa" transliteration toggle is shown (hidden for Arabic).
+  final bool showTranscriptionAction;
   final bool showTranscription;
   final String transcriptionText;
   final VoidCallback? onToggleTranscription;
@@ -332,7 +340,7 @@ class _AyahCard extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          if (showTranscription) ...[
+          if (showTranscriptionAction && showTranscription) ...[
             const UISpace.vert(12),
             UIAppearAnimation(
               child: Text(
@@ -358,12 +366,14 @@ class _AyahCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  UIIcon(
-                    UIIconsToken.icons.aa,
-                    color: showTranscription ? UIColorsToken.yellow : _ink,
-                    onTap: onToggleTranscription,
-                  ),
-                  const UISpace.horz(16),
+                  if (showTranscriptionAction) ...[
+                    UIIcon(
+                      UIIconsToken.icons.aa,
+                      color: showTranscription ? UIColorsToken.yellow : _ink,
+                      onTap: onToggleTranscription,
+                    ),
+                    const UISpace.horz(16),
+                  ],
                   if (onTafsir != null)
                     UIIcon(
                       UIIconsToken.icons.tafsir,

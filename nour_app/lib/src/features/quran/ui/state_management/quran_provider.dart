@@ -77,11 +77,55 @@ class QuranPresenter extends Presenter<QuranState> {
   }) =>
       repo.audioUrl(surahNumber, ayahNumber, reciter: reciter);
 
-  /// Latin transliteration for an ayah. The bundled `quran` package ships only
-  /// Arabic text + translations (no transliteration), so this returns `null`
-  /// today — wire a transliteration data source here to light up the "Aa"
-  /// transcription toggle in the reader without touching the UI.
-  String? ayahTransliteration(int surahNumber, int ayahNumber) => null;
+  /// Maps the app language to a transliteration edition. Only a Latin
+  /// (English) transliteration is published, which serves both English and
+  /// French readers, so we default to `en`. Arabic is handled by the caller.
+  static const _transliterationEditions = <String, String>{
+    'en': 'en.transliteration',
+    'fr': 'en.transliteration',
+  };
+
+  /// Lazily fetches the transliteration for [surahNumber] once and caches it.
+  /// The bundled `quran` package has no transliteration, so this pulls a
+  /// transliteration edition (chosen from [langCode]) from the public Quran
+  /// API. Arabic readers don't need a Latin transliteration, so it's skipped
+  /// for `ar`. Failures are swallowed — the reader falls back to a label.
+  Future<void> loadSurahTransliteration(
+    int surahNumber, {
+    required String langCode,
+  }) async {
+    // Arabic: the verse is already shown in Arabic — no transliteration needed.
+    if (langCode == 'ar') return;
+    if (state.transliterationsBySurah.containsKey(surahNumber)) return;
+    if (state.isLoadingTransliteration(surahNumber)) return;
+
+    state = state.copyWith(
+      loadingTransliterationSurahs: {
+        ...state.loadingTransliterationSurahs,
+        surahNumber,
+      },
+    );
+
+    final edition = _transliterationEditions[langCode] ?? 'en.transliteration';
+    final res = await repo.getSurahTransliteration(surahNumber, edition: edition);
+
+    res.when(
+      (map) {
+        state = state.copyWith(
+          transliterationsBySurah: {
+            ...state.transliterationsBySurah,
+            surahNumber: map,
+          },
+        );
+      },
+      (_) {/* silent: graceful fallback in the UI */},
+    );
+
+    state = state.copyWith(
+      loadingTransliterationSurahs: {...state.loadingTransliterationSurahs}
+        ..remove(surahNumber),
+    );
+  }
 
   // ── Reading progress ───────────────────────────────────────────────────────
 
