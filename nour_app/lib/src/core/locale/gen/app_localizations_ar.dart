@@ -533,6 +533,30 @@ class AppLocalizationsAr extends AppLocalizations {
       'التفسير المفصّل قادم قريبًا. وفي هذه الأثناء، إليك معنى الآية:';
 
   @override
+  String get hadith_title => 'حديث';
+
+  @override
+  String get hadith_resume => 'متابعة';
+
+  @override
+  String get hadith_done => 'أنهيت';
+
+  @override
+  String get hadith_error_title => 'حدث خطأ ما';
+
+  @override
+  String get hadith_error_subtitle => 'تعذّر تحميل الأحاديث في الوقت الحالي.';
+
+  @override
+  String get hadith_try_again => 'حاول مرة أخرى';
+
+  @override
+  String get hadith_empty => 'لا توجد أحاديث متاحة.';
+
+  @override
+  String get hadith_explanation_title => 'الشرح';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

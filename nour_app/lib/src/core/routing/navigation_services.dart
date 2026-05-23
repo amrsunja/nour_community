@@ -19,6 +19,9 @@ abstract class NavigationServices {
 	void toSurahDetail({required int surahNumber});
 	void toAyahReader({required int surahNumber, int initialAyah});
 	void toDailyAyah();
+
+	void toHadithCollectionDetail({required int collectionId});
+	void toHadithReader({required int collectionId, required int initialHadithId});
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -84,5 +87,18 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toDailyAyah() {
 		router.push(DailyAyahRoute());
+  }
+
+  @override
+  void toHadithCollectionDetail({required int collectionId}) {
+		router.push(HadithCollectionDetailRoute(collectionId: collectionId));
+  }
+
+  @override
+  void toHadithReader({required int collectionId, required int initialHadithId}) {
+		router.push(HadithDetailRoute(
+			collectionId: collectionId,
+			initialHadithId: initialHadithId,
+		));
   }
 }

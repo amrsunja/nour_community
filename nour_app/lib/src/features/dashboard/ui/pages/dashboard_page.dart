@@ -45,7 +45,7 @@ class DashboardPage extends HookConsumerWidget {
             children: [
               UIStreakWeek(
                 states: _weekStates(streak),
-                streakCount: streak + 2,
+                streakCount: streak,
               ),
               const UISpace.vert(16),
               UIAppearAnimation(

@@ -201,5 +201,14 @@
   "quran_tafsir_title": "Tafsir",
   "quran_tafsir_note": "Un tafsir détaillé arrive bientôt. En attendant, voici le sens du verset :",
 
+  "hadith_title": "Hadith",
+  "hadith_resume": "Reprendre",
+  "hadith_done": "J'ai terminé",
+  "hadith_error_title": "Une erreur est survenue",
+  "hadith_error_subtitle": "Impossible de charger les hadiths pour le moment.",
+  "hadith_try_again": "Réessayer",
+  "hadith_empty": "Aucun hadith disponible.",
+  "hadith_explanation_title": "Explication",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

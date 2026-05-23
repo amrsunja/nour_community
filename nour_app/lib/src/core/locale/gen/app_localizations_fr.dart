@@ -550,6 +550,31 @@ class AppLocalizationsFr extends AppLocalizations {
       'Un tafsir détaillé arrive bientôt. En attendant, voici le sens du verset :';
 
   @override
+  String get hadith_title => 'Hadith';
+
+  @override
+  String get hadith_resume => 'Reprendre';
+
+  @override
+  String get hadith_done => 'J\'ai terminé';
+
+  @override
+  String get hadith_error_title => 'Une erreur est survenue';
+
+  @override
+  String get hadith_error_subtitle =>
+      'Impossible de charger les hadiths pour le moment.';
+
+  @override
+  String get hadith_try_again => 'Réessayer';
+
+  @override
+  String get hadith_empty => 'Aucun hadith disponible.';
+
+  @override
+  String get hadith_explanation_title => 'Explication';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

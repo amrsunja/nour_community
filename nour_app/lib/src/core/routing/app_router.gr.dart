@@ -21,6 +21,10 @@ import 'package:nour/src/features/dashboard/ui/pages/dashboard_page.dart'
     as _i4;
 import 'package:nour/src/features/dhikr/ui/pages/dhikr_page.dart' as _i6;
 import 'package:nour/src/features/dhikr/ui/pages/dhikrs_list_page.dart' as _i7;
+import 'package:nour/src/features/hadith/ui/pages/hadith_collection_detail_page.dart'
+    as _i25;
+import 'package:nour/src/features/hadith/ui/pages/hadith_detail_page.dart'
+    as _i26;
 import 'package:nour/src/features/home/dashboard_router_route.dart' as _i5;
 import 'package:nour/src/features/home/home_page.dart' as _i8;
 import 'package:nour/src/features/home/home_router_page.dart' as _i9;
@@ -168,6 +172,128 @@ class AyahReaderRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^ surahNumber.hashCode ^ initialAyah.hashCode;
+}
+
+/// generated route for
+/// [_i25.HadithCollectionDetailPage]
+class HadithCollectionDetailRoute
+    extends _i22.PageRouteInfo<HadithCollectionDetailRouteArgs> {
+  HadithCollectionDetailRoute({
+    _i23.Key? key,
+    required int collectionId,
+    List<_i22.PageRouteInfo>? children,
+  }) : super(
+         HadithCollectionDetailRoute.name,
+         args: HadithCollectionDetailRouteArgs(
+           key: key,
+           collectionId: collectionId,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'HadithCollectionDetailRoute';
+
+  static _i22.PageInfo page = _i22.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<HadithCollectionDetailRouteArgs>();
+      return _i25.HadithCollectionDetailPage(
+        key: args.key,
+        collectionId: args.collectionId,
+      );
+    },
+  );
+}
+
+class HadithCollectionDetailRouteArgs {
+  const HadithCollectionDetailRouteArgs({
+    this.key,
+    required this.collectionId,
+  });
+
+  final _i23.Key? key;
+
+  final int collectionId;
+
+  @override
+  String toString() {
+    return 'HadithCollectionDetailRouteArgs{key: $key, collectionId: $collectionId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! HadithCollectionDetailRouteArgs) return false;
+    return key == other.key && collectionId == other.collectionId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ collectionId.hashCode;
+}
+
+/// generated route for
+/// [_i26.HadithDetailPage]
+class HadithDetailRoute extends _i22.PageRouteInfo<HadithDetailRouteArgs> {
+  HadithDetailRoute({
+    _i23.Key? key,
+    required int collectionId,
+    required int initialHadithId,
+    List<_i22.PageRouteInfo>? children,
+  }) : super(
+         HadithDetailRoute.name,
+         args: HadithDetailRouteArgs(
+           key: key,
+           collectionId: collectionId,
+           initialHadithId: initialHadithId,
+         ),
+         initialChildren: children,
+       );
+
+  static const String name = 'HadithDetailRoute';
+
+  static _i22.PageInfo page = _i22.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<HadithDetailRouteArgs>();
+      return _i26.HadithDetailPage(
+        key: args.key,
+        collectionId: args.collectionId,
+        initialHadithId: args.initialHadithId,
+      );
+    },
+  );
+}
+
+class HadithDetailRouteArgs {
+  const HadithDetailRouteArgs({
+    this.key,
+    required this.collectionId,
+    required this.initialHadithId,
+  });
+
+  final _i23.Key? key;
+
+  final int collectionId;
+
+  final int initialHadithId;
+
+  @override
+  String toString() {
+    return 'HadithDetailRouteArgs{key: $key, collectionId: $collectionId, initialHadithId: $initialHadithId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! HadithDetailRouteArgs) return false;
+    return key == other.key &&
+        collectionId == other.collectionId &&
+        initialHadithId == other.initialHadithId;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^ collectionId.hashCode ^ initialHadithId.hashCode;
 }
 
 /// generated route for

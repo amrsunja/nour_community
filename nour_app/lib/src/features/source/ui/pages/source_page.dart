@@ -4,9 +4,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/features/hadith/ui/pages/hadiths_page.dart';
 import 'package:nour/src/features/quran/ui/widgets/quran_source_view.dart';
 
-import '../widgets/hadith_placeholder_widget.dart';
 import '../widgets/source_tab_switcher_widget.dart';
 
 @RoutePage()
@@ -39,7 +39,7 @@ class SourcePage extends HookConsumerWidget {
           Expanded(
             child: switch (tab.value) {
               SourceTab.quran => const QuranSourceView(),
-              SourceTab.hadith => const HadithPlaceholderWidget(),
+              SourceTab.hadith => const HadithsPage(),
             },
           ),
         ],

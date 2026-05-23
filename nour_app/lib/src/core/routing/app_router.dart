@@ -138,6 +138,16 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.dailyAyah,
               page: DailyAyahRoute.page,
             ),
+
+            /// Hadith (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.hadithCollectionDetail,
+              page: HadithCollectionDetailRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.hadithReader,
+              page: HadithDetailRoute.page,
+            ),
           ],
         ),
       ],

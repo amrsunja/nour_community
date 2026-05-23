@@ -1102,6 +1102,54 @@ abstract class AppLocalizations {
   /// **'A detailed tafsir is on the way. Meanwhile, here is the meaning of the verse:'**
   String get quran_tafsir_note;
 
+  /// No description provided for @hadith_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadith'**
+  String get hadith_title;
+
+  /// No description provided for @hadith_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get hadith_resume;
+
+  /// No description provided for @hadith_done.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m done'**
+  String get hadith_done;
+
+  /// No description provided for @hadith_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get hadith_error_title;
+
+  /// No description provided for @hadith_error_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn’t load the hadiths right now.'**
+  String get hadith_error_subtitle;
+
+  /// No description provided for @hadith_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get hadith_try_again;
+
+  /// No description provided for @hadith_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No hadiths available.'**
+  String get hadith_empty;
+
+  /// No description provided for @hadith_explanation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Explanation'**
+  String get hadith_explanation_title;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

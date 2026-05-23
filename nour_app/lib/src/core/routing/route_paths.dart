@@ -28,6 +28,10 @@ abstract class RoutePaths {
   static const ayahReader = 'ayah-reader';
   static const dailyAyah = 'daily-ayah';
 
+  // Hadith
+  static const hadithCollectionDetail = 'hadith-collection-detail';
+  static const hadithReader = 'hadith-reader';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

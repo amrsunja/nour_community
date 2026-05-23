@@ -201,5 +201,14 @@
   "quran_tafsir_title": "التفسير",
   "quran_tafsir_note": "التفسير المفصّل قادم قريبًا. وفي هذه الأثناء، إليك معنى الآية:",
 
+  "hadith_title": "حديث",
+  "hadith_resume": "متابعة",
+  "hadith_done": "أنهيت",
+  "hadith_error_title": "حدث خطأ ما",
+  "hadith_error_subtitle": "تعذّر تحميل الأحاديث في الوقت الحالي.",
+  "hadith_try_again": "حاول مرة أخرى",
+  "hadith_empty": "لا توجد أحاديث متاحة.",
+  "hadith_explanation_title": "الشرح",
+
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }
