@@ -26,6 +26,7 @@ abstract class RoutePaths {
   // Quran
   static const surahDetail = 'surah-detail';
   static const ayahReader = 'ayah-reader';
+  static const dailyAyah = 'daily-ayah';
 
 
   // Root dialog

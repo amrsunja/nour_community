@@ -31,6 +31,7 @@ import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i10;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i12;
 import 'package:nour/src/features/quran/ui/pages/ayah_reader_page.dart' as _i3;
+import 'package:nour/src/features/quran/ui/pages/daily_ayah_page.dart' as _i24;
 import 'package:nour/src/features/quran/ui/pages/surah_detail_page.dart'
     as _i19;
 import 'package:nour/src/features/root_page.dart' as _i13;
@@ -167,6 +168,22 @@ class AyahReaderRouteArgs {
   @override
   int get hashCode =>
       key.hashCode ^ surahNumber.hashCode ^ initialAyah.hashCode;
+}
+
+/// generated route for
+/// [_i24.DailyAyahPage]
+class DailyAyahRoute extends _i22.PageRouteInfo<void> {
+  const DailyAyahRoute({List<_i22.PageRouteInfo>? children})
+    : super(DailyAyahRoute.name, initialChildren: children);
+
+  static const String name = 'DailyAyahRoute';
+
+  static _i22.PageInfo page = _i22.PageInfo(
+    name,
+    builder: (data) {
+      return const _i24.DailyAyahPage();
+    },
+  );
 }
 
 /// generated route for

@@ -134,6 +134,10 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.ayahReader,
               page: AyahReaderRoute.page,
             ),
+            AutoRoute(
+              path: RoutePaths.dailyAyah,
+              page: DailyAyahRoute.page,
+            ),
           ],
         ),
       ],

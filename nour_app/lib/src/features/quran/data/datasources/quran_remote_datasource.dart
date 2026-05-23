@@ -4,6 +4,7 @@ import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 
+import '../models/daily_ayah_status_model.dart';
 import '../models/quran_progress_model.dart';
 
 final quranRemoteDataProvider = Provider((ref) => QuranRemoteDatasource());
@@ -17,6 +18,11 @@ class QuranRemoteDatasource {
   // SECURITY DEFINER RPCs that expose *global* like counts without leaking
   // other users' favorite rows (RLS keeps direct SELECTs scoped to the owner).
   static const _rpcSurahLikes = 'fn_surah_ayah_likes';
+
+  // SECURITY DEFINER RPCs for the Daily Ayah quick action. ajr_log INSERTs are
+  // blocked by RLS, so awarding ajr must go through the backend function.
+  static const _rpcDailyAyahStatus = 'fn_daily_ayah_status';
+  static const _rpcAwardDailyAyahAjr = 'fn_award_daily_ayah_ajr';
 
   // Public Quran API used only for transliteration (the bundled `quran`
   // package ships Arabic + translations + audio, but no transliteration).
@@ -131,6 +137,48 @@ class QuranRemoteDatasource {
       // RPC missing / network issue → no global counts, feature still works.
       talker.warning('getSurahLikeCounts fallback: $e');
       return const {};
+    }
+  }
+
+  // ── Daily Ayah ajr ───────────────────────────────────────────────────────
+
+  /// All-time ayah ajr + whether today's ayah is already completed. Backed by a
+  /// SECURITY DEFINER RPC; degrades to [DailyAyahStatusModel.empty] if missing.
+  Future<DailyAyahStatusModel> getDailyAyahStatus() async {
+    _requireUserId();
+    try {
+      final response = await supabaseClient.rpc(_rpcDailyAyahStatus);
+
+      // A TABLE-returning function comes back as a list of rows.
+      final row = response is List
+          ? (response.isNotEmpty ? response.first : null)
+          : response;
+      if (row is Map<String, dynamic>) {
+        return DailyAyahStatusModel.fromJson(row);
+      }
+      return DailyAyahStatusModel.empty;
+    } catch (e) {
+      talker.warning('getDailyAyahStatus fallback: $e');
+      return DailyAyahStatusModel.empty;
+    }
+  }
+
+  /// Awards [ajr] for completing the Daily Ayah (idempotent per UTC day on the
+  /// server). Returns the user's new all-time ayah ajr total.
+  Future<int> awardDailyAyahAjr({int ajr = 5}) async {
+    _requireUserId();
+    try {
+      final response = await supabaseClient.rpc(
+        _rpcAwardDailyAyahAjr,
+        params: {'p_ajr': ajr},
+      );
+      return (response as num?)?.toInt() ?? 0;
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to award daily ayah ajr',
+      );
     }
   }
 

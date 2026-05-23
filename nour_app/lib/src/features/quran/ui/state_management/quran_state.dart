@@ -35,6 +35,20 @@ class QuranState extends Equatable {
   /// Surah numbers whose transliteration is currently loading.
   final Set<int> loadingTransliterationSurahs;
 
+  // ── Daily Ayah ───────────────────────────────────────────────────────────
+
+  /// Ajr awarded for completing the Daily Ayah (the "+N" shown before done).
+  final int dailyAyahEarnableAjr;
+
+  /// All-time ajr the user has earned from ayahs (source = 'ayah').
+  final int dailyAyahTotalAjr;
+
+  /// Whether today's ayah was already completed (button disabled afterwards).
+  final bool dailyAyahDoneToday;
+
+  /// True while the daily ayah status / award round-trip is in flight.
+  final bool isLoadingDailyAyah;
+
   const QuranState({
     this.isLoading = false,
     this.surahs = const [],
@@ -45,6 +59,10 @@ class QuranState extends Equatable {
     this.loadingLikesSurahs = const {},
     this.transliterationsBySurah = const {},
     this.loadingTransliterationSurahs = const {},
+    this.dailyAyahEarnableAjr = 5,
+    this.dailyAyahTotalAjr = 0,
+    this.dailyAyahDoneToday = false,
+    this.isLoadingDailyAyah = false,
   });
 
   bool get isEmpty => surahs.isEmpty;
@@ -75,6 +93,10 @@ class QuranState extends Equatable {
     Set<int>? loadingLikesSurahs,
     Map<int, Map<int, String>>? transliterationsBySurah,
     Set<int>? loadingTransliterationSurahs,
+    int? dailyAyahEarnableAjr,
+    int? dailyAyahTotalAjr,
+    bool? dailyAyahDoneToday,
+    bool? isLoadingDailyAyah,
   }) =>
       QuranState(
         isLoading: isLoading ?? this.isLoading,
@@ -88,6 +110,10 @@ class QuranState extends Equatable {
             transliterationsBySurah ?? this.transliterationsBySurah,
         loadingTransliterationSurahs:
             loadingTransliterationSurahs ?? this.loadingTransliterationSurahs,
+        dailyAyahEarnableAjr: dailyAyahEarnableAjr ?? this.dailyAyahEarnableAjr,
+        dailyAyahTotalAjr: dailyAyahTotalAjr ?? this.dailyAyahTotalAjr,
+        dailyAyahDoneToday: dailyAyahDoneToday ?? this.dailyAyahDoneToday,
+        isLoadingDailyAyah: isLoadingDailyAyah ?? this.isLoadingDailyAyah,
       );
 
   @override
@@ -101,5 +127,9 @@ class QuranState extends Equatable {
         loadingLikesSurahs,
         transliterationsBySurah,
         loadingTransliterationSurahs,
+        dailyAyahEarnableAjr,
+        dailyAyahTotalAjr,
+        dailyAyahDoneToday,
+        isLoadingDailyAyah,
       ];
 }

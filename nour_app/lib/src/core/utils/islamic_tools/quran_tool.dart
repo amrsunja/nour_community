@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:quran/quran.dart' as q;
 
 import '../enums/reciter_type.dart';
@@ -137,6 +139,22 @@ class QuranTool {
       juzNumber: q.getJuzNumber(r.surahNumber, r.verseNumber),
       pageNumber: q.getPageNumber(r.surahNumber, r.verseNumber),
     );
+  }
+
+  /// Deterministic "verse of the day": the same verse for every call within a
+  /// single UTC day, reshuffled the next day. Seeding [Random] with the day
+  /// ordinal makes it stable across app restarts without persisting anything.
+  /// Pass [date] to override (testing / previews).
+  static VerseInfo getDailyVerse({DateTime? date}) {
+    final day = (date ?? DateTime.now()).toUtc();
+    final seed = DateTime.utc(day.year, day.month, day.day)
+            .millisecondsSinceEpoch ~/
+        Duration.millisecondsPerDay;
+    final rng = Random(seed);
+
+    final surah = 1 + rng.nextInt(q.totalSurahCount);
+    final verse = 1 + rng.nextInt(q.getVerseCount(surah));
+    return getVerse(surah, verse);
   }
 
   static bool isSajdahVerse(int surahNumber, int verseNumber) =>

@@ -10,8 +10,7 @@ import 'package:nour/src/features/settings/ui/state_management/settings_provider
 import 'package:share_plus/share_plus.dart';
 
 import '../state_management/quran_provider.dart';
-import '../widgets/ayah_audio_button_widget.dart';
-import '../widgets/ayah_like_button_widget.dart';
+import '../widgets/ayah_reader_card_widget.dart';
 
 /// Immersive single-ayah reader: recitation playback (selected reciter), like
 /// toggle, Arabic + translation, prev / next navigation, plus a share /
@@ -88,14 +87,6 @@ class AyahReaderPage extends HookConsumerWidget {
           ),
         );
 
-    void openTafsir() => _showTafsirSheet(
-          context,
-          l10n: l10n,
-          typo: typo,
-          reference: reference,
-          translation: ayah.translation,
-        );
-
     return PopScope(
       onPopInvokedWithResult: (didPop, _) {
         if (didPop) save();
@@ -108,7 +99,7 @@ class AyahReaderPage extends HookConsumerWidget {
           child: Column(
             children: [
               const UISpace.vert(8),
-              _AyahCard(
+              AyahReaderCardWidget(
                 surahLabel: surahLabel,
                 position: '$current/$total',
                 arabicText: ayah.arabicText,
@@ -126,7 +117,8 @@ class AyahReaderPage extends HookConsumerWidget {
                 transcriptionText: transliteration ?? l10n.quran_transcription_unavailable,
                 onToggleTranscription: () => showTranscription.value = !showTranscription.value,
                 onShare: share,
-                onTafsir: openTafsir,
+                translation: ayah.translation,
+                reference: reference,
               ),
               const UISpace.vert(24),
               Expanded(
@@ -169,226 +161,6 @@ class AyahReaderPage extends HookConsumerWidget {
     );
   }
 
-  /// Bottom sheet showing the verse meaning + a localized note. Built to slot a
-  /// real tafsir data source in later (content already follows the app locale).
-  void _showTafsirSheet(
-    BuildContext context, {
-    required AppLocale l10n,
-    required UITypographyToken typo,
-    required String reference,
-    required String translation,
-  }) {
-    showModalBottomSheet<void>(
-      context: context,
-      backgroundColor: UIColorsToken.bgSurface,
-      isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
-      builder: (ctx) => SafeArea(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            maxHeight: MediaQuery.of(ctx).size.height * 0.6,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-              Center(
-                child: Container(
-                  width: 44,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: UIColorsToken.white.withValues(alpha: 0.3),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                ),
-              ),
-              const UISpace.vert(16),
-              Text(
-                l10n.quran_tafsir_title,
-                style: typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
-              ),
-              const UISpace.vert(4),
-              Text(
-                reference,
-                style: typo.inter.bodySmall.copyWith(color: UIColorsToken.textYellow),
-              ),
-              const UISpace.vert(16),
-              Text(
-                l10n.quran_tafsir_note,
-                style: typo.inter.bodyMedium.copyWith(
-                  color: UIColorsToken.textParagraph,
-                ),
-              ),
-              const UISpace.vert(12),
-              Flexible(
-                child: SingleChildScrollView(
-                  child: Text(
-                    translation,
-                    style: typo.inter.body.copyWith(
-                      color: UIColorsToken.white,
-                      height: 1.6,
-                    ),
-                  ),
-                ),
-              ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _AyahCard extends StatelessWidget {
-  const _AyahCard({
-    required this.surahLabel,
-    required this.position,
-    required this.arabicText,
-    required this.audioUrl,
-    required this.reciterName,
-    required this.isLiked,
-    required this.likeCount,
-    required this.onLike,
-    required this.showTranscriptionAction,
-    required this.showTranscription,
-    required this.transcriptionText,
-    required this.onToggleTranscription,
-    required this.onShare,
-    required this.onTafsir,
-  });
-
-  final String surahLabel;
-  final String position;
-  final String arabicText;
-  final String audioUrl;
-  final String reciterName;
-  final bool isLiked;
-  final int likeCount;
-  final VoidCallback onLike;
-
-  /// Whether the "Aa" transliteration toggle is shown (hidden for Arabic).
-  final bool showTranscriptionAction;
-  final bool showTranscription;
-  final String transcriptionText;
-  final VoidCallback? onToggleTranscription;
-  final VoidCallback onShare;
-  final VoidCallback? onTafsir;
-
-  static const _ink = UIColorsToken.black;
-
-  @override
-  Widget build(BuildContext context) {
-    final typo = UITheme.of(context).typo;
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: const Color(0xffF6EFDD),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AyahAudioButtonWidget(
-                audioUrl: audioUrl,
-                title: surahLabel,
-                artist: reciterName,
-              ),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      surahLabel,
-                      textAlign: TextAlign.center,
-                      style: typo.inter.title.copyWith(
-                        color: UIColorsToken.black,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const UISpace.vert(2),
-                    Text(
-                      position,
-                      style: typo.inter.bodySmall.copyWith(
-                        color: UIColorsToken.black,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              AyahLikeButtonWidget(
-                isLiked: isLiked,
-                count: likeCount,
-                onTap: onLike,
-              ),
-            ],
-          ),
-          const UISpace.vert(20),
-          Text(
-            arabicText,
-            textDirection: TextDirection.rtl,
-            textAlign: TextAlign.center,
-            style: typo.inter.bodyLarge.copyWith(
-              color: UIColorsToken.black,
-              height: 2.0,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          if (showTranscriptionAction && showTranscription) ...[
-            const UISpace.vert(12),
-            UIAppearAnimation(
-              child: Text(
-                transcriptionText,
-                textAlign: TextAlign.center,
-                style: typo.inter.bodyMedium.copyWith(
-                  color: _ink,
-                  fontStyle: FontStyle.italic,
-                ),
-              ),
-            ),
-          ],
-          const UISpace.vert(16),
-
-          // Action row: share | transcription toggle | tafsir.
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              UIIcon(
-                UIIconsToken.icons.share,
-                color: _ink,
-                onTap: onShare,
-              ),
-              Row(
-                children: [
-                  if (showTranscriptionAction) ...[
-                    UIIcon(
-                      UIIconsToken.icons.aa,
-                      color: showTranscription ? UIColorsToken.yellow : _ink,
-                      onTap: onToggleTranscription,
-                    ),
-                    const UISpace.horz(16),
-                  ],
-                  if (onTafsir != null)
-                    UIIcon(
-                      UIIconsToken.icons.tafsir,
-                      color: _ink,
-                      size: 22,
-                      onTap: onTafsir,
-                    ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 class _NavBar extends StatelessWidget {

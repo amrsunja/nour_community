@@ -70,6 +70,9 @@ class QuranPresenter extends Presenter<QuranState> {
   AyahModel getAyah(int surahNumber, int ayahNumber) =>
       repo.getAyah(surahNumber, ayahNumber);
 
+  /// Verse of the day (deterministic per UTC day, computed locally).
+  AyahModel getDailyAyah() => repo.getDailyAyah();
+
   String ayahAudioUrl(
     int surahNumber,
     int ayahNumber, {
@@ -125,6 +128,44 @@ class QuranPresenter extends Presenter<QuranState> {
       loadingTransliterationSurahs: {...state.loadingTransliterationSurahs}
         ..remove(surahNumber),
     );
+  }
+
+  // ── Daily Ayah ─────────────────────────────────────────────────────────────
+
+  /// Loads the all-time ayah ajr total + whether today's ayah is already done.
+  /// Called when the Daily Ayah page opens.
+  Future<void> loadDailyAyahStatus() async {
+    state = state.copyWith(isLoadingDailyAyah: true);
+
+    final res = await repo.getDailyAyahStatus();
+    res.when(
+      (status) => state = state.copyWith(
+        dailyAyahTotalAjr: status.totalAjr,
+        dailyAyahDoneToday: status.doneToday,
+      ),
+      (error) => appEvents.send(ShowErrorEvent(error)),
+    );
+
+    state = state.copyWith(isLoadingDailyAyah: false);
+  }
+
+  /// Awards the daily ayah ajr (server-side idempotent per UTC day) and syncs
+  /// the all-time total. No-ops if already completed today.
+  Future<void> completeDailyAyah() async {
+    if (state.dailyAyahDoneToday) return;
+
+    state = state.copyWith(isLoadingDailyAyah: true);
+
+    final res = await repo.awardDailyAyahAjr(ajr: state.dailyAyahEarnableAjr);
+    res.when(
+      (total) => state = state.copyWith(
+        dailyAyahTotalAjr: total,
+        dailyAyahDoneToday: true,
+      ),
+      (error) => appEvents.send(ShowErrorEvent(error)),
+    );
+
+    state = state.copyWith(isLoadingDailyAyah: false);
   }
 
   // ── Reading progress ───────────────────────────────────────────────────────

@@ -18,6 +18,7 @@ abstract class NavigationServices {
 
 	void toSurahDetail({required int surahNumber});
 	void toAyahReader({required int surahNumber, int initialAyah});
+	void toDailyAyah();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -78,5 +79,10 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toAyahReader({required int surahNumber, int initialAyah = 1}) {
 		router.push(AyahReaderRoute(surahNumber: surahNumber, initialAyah: initialAyah));
+  }
+
+  @override
+  void toDailyAyah() {
+		router.push(DailyAyahRoute());
   }
 }

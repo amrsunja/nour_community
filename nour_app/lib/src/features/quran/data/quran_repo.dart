@@ -7,6 +7,7 @@ import 'package:nour/src/core/utils/typedefs.dart';
 import 'datasources/quran_local_datasource.dart';
 import 'datasources/quran_remote_datasource.dart';
 import 'models/ayah_model.dart';
+import 'models/daily_ayah_status_model.dart';
 import 'models/quran_progress_model.dart';
 
 final quranRepoProvider = Provider(
@@ -37,6 +38,8 @@ class QuranRepo {
   AyahModel getAyah(int surahNumber, int ayahNumber) =>
       localDatasource.getAyah(surahNumber, ayahNumber);
 
+  AyahModel getDailyAyah() => localDatasource.getDailyAyah();
+
   String audioUrl(
     int surahNumber,
     int ayahNumber, {
@@ -59,6 +62,18 @@ class QuranRepo {
         surahNumber: surahNumber,
         ayahNumber: ayahNumber,
       ),
+    );
+  }
+
+  Future<SuccessOrError<DailyAyahStatusModel>> getDailyAyahStatus() async {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.getDailyAyahStatus(),
+    );
+  }
+
+  Future<SuccessOrError<int>> awardDailyAyahAjr({int ajr = 5}) async {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.awardDailyAyahAjr(ajr: ajr),
     );
   }
 

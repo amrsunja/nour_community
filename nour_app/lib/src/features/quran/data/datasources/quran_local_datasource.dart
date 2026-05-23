@@ -38,6 +38,12 @@ class QuranLocalDatasource {
     );
   }
 
+  /// Deterministic verse of the day (stable for the whole UTC day).
+  AyahModel getDailyAyah() {
+    final verse = QuranTool.getDailyVerse();
+    return getAyah(verse.surahNumber, verse.verseNumber);
+  }
+
   /// Network audio URL for [surahNumber]:[ayahNumber] using the user's
   /// selected [reciter].
   String audioUrl(
