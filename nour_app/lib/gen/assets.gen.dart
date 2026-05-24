@@ -251,6 +251,26 @@ class $AssetsImagesGen {
   /// File path: assets/images/kaaba.png
   AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
 
+  /// File path: assets/images/prayer_time_asr.png
+  AssetGenImage get prayerTimeAsr =>
+      const AssetGenImage('assets/images/prayer_time_asr.png');
+
+  /// File path: assets/images/prayer_time_duhr.png
+  AssetGenImage get prayerTimeDuhr =>
+      const AssetGenImage('assets/images/prayer_time_duhr.png');
+
+  /// File path: assets/images/prayer_time_fajr.png
+  AssetGenImage get prayerTimeFajr =>
+      const AssetGenImage('assets/images/prayer_time_fajr.png');
+
+  /// File path: assets/images/prayer_time_isha.png
+  AssetGenImage get prayerTimeIsha =>
+      const AssetGenImage('assets/images/prayer_time_isha.png');
+
+  /// File path: assets/images/prayer_time_maghrib.png
+  AssetGenImage get prayerTimeMaghrib =>
+      const AssetGenImage('assets/images/prayer_time_maghrib.png');
+
   /// File path: assets/images/star.png
   AssetGenImage get star => const AssetGenImage('assets/images/star.png');
 
@@ -296,6 +316,11 @@ class $AssetsImagesGen {
     illustration8,
     illustration9,
     kaaba,
+    prayerTimeAsr,
+    prayerTimeDuhr,
+    prayerTimeFajr,
+    prayerTimeIsha,
+    prayerTimeMaghrib,
     star,
   ];
 }
