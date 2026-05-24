@@ -31,7 +31,7 @@ class DashboardPage extends HookConsumerWidget {
     final profile = ref.watch(profileProvider).profile;
     final streak = profile?.currentStreak ?? 0;
     final dhikrsCount = dhikrState.dhikrs.fold(0, (count, d) => count + dhikrState.currentCountOf(d.id));
-    const dhikrGoal = 33;
+    final dhikrGoal = 33 * dhikrState.dhikrs.length;
 
     return Scaffold(
       appBar: UIProfileAppBar(
