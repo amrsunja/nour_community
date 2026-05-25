@@ -136,7 +136,7 @@ class _Content extends StatelessWidget {
         children: [
           UIAppearAnimation(
             child: PrayerCalcMethodCardWidget(
-              label: l10n.prayer_times_calc_method(settings.method.name),
+              label: l10n.prayer_times_calc_method(settings.method.localizedName(l10n)),
               onTap: onChangeMethod,
             ),
           ),

@@ -667,6 +667,164 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
+  String get calc_methods_comment =>
+      'Prayer-time calculation methods (name + description) for CalculationMethodType.';
+
+  @override
+  String get calc_method_muslim_world_league_name => 'رابطة العالم الإسلامي';
+
+  @override
+  String get calc_method_muslim_world_league_desc =>
+      'رابطة العالم الإسلامي. تُستخدم على نطاق واسع في أوروبا والشرق الأقصى وأجزاء من أمريكا الشمالية. الفجر ١٨°، العشاء ١٧°.';
+
+  @override
+  String get calc_method_france_name => 'فرنسا';
+
+  @override
+  String get calc_method_france_desc =>
+      'اتحاد المنظمات الإسلامية في فرنسا (UOIF). الفجر والعشاء عند ١٢°.';
+
+  @override
+  String get calc_method_egyptian_name => 'الهيئة المصرية العامة للمساحة';
+
+  @override
+  String get calc_method_egyptian_desc =>
+      'الهيئة المصرية العامة للمساحة. شائعة في مصر وأفريقيا وأجزاء من الشرق الأوسط. الفجر ١٩٫٥°، العشاء ١٧٫٥°.';
+
+  @override
+  String get calc_method_karachi_name => 'كراتشي';
+
+  @override
+  String get calc_method_karachi_desc =>
+      'جامعة العلوم الإسلامية، كراتشي. تُستخدم في باكستان والهند وبنغلاديش وأفغانستان. الفجر والعشاء عند ١٨°.';
+
+  @override
+  String get calc_method_umm_al_qura_name => 'أم القرى';
+
+  @override
+  String get calc_method_umm_al_qura_desc =>
+      'جامعة أم القرى، مكة المكرمة. تُستخدم في السعودية. الفجر ١٨٫٥°، العشاء بعد ٩٠ دقيقة من المغرب.';
+
+  @override
+  String get calc_method_dubai_name => 'دبي';
+
+  @override
+  String get calc_method_dubai_desc =>
+      'تُستخدم في الإمارات العربية المتحدة. الفجر والعشاء عند ١٨٫٢°.';
+
+  @override
+  String get calc_method_qatar_name => 'قطر';
+
+  @override
+  String get calc_method_qatar_desc =>
+      'أم القرى المعدّلة. الفجر ١٨°، العشاء بعد ٩٠ دقيقة من المغرب.';
+
+  @override
+  String get calc_method_kuwait_name => 'الكويت';
+
+  @override
+  String get calc_method_kuwait_desc =>
+      'تُستخدم في الكويت. الفجر ١٨°، العشاء ١٧٫٥°.';
+
+  @override
+  String get calc_method_moonsighting_committee_name => 'لجنة رؤية الهلال';
+
+  @override
+  String get calc_method_moonsighting_committee_desc =>
+      'لجنة رؤية الهلال العالمية مع تعديل موسمي لخطوط العرض العالية. الفجر والعشاء عند ١٨°.';
+
+  @override
+  String get calc_method_singapore_name => 'سنغافورة';
+
+  @override
+  String get calc_method_singapore_desc =>
+      'المجلس الديني الإسلامي بسنغافورة. الفجر ٢٠°، العشاء ١٨°.';
+
+  @override
+  String get calc_method_north_america_name => 'أمريكا الشمالية (ISNA)';
+
+  @override
+  String get calc_method_north_america_desc =>
+      'الجمعية الإسلامية لأمريكا الشمالية (ISNA). الفجر والعشاء عند ١٥°.';
+
+  @override
+  String get calc_method_turkey_name => 'تركيا';
+
+  @override
+  String get calc_method_turkey_desc =>
+      'رئاسة الشؤون الدينية (تركيا). الفجر ١٨°، العشاء ١٧°.';
+
+  @override
+  String get calc_method_tehran_name => 'طهران';
+
+  @override
+  String get calc_method_tehran_desc =>
+      'معهد الجيوفيزياء، جامعة طهران. الفجر ١٧٫٧°، العشاء ١٤°.';
+
+  @override
+  String get calc_method_algerian_name => 'الجزائر';
+
+  @override
+  String get calc_method_algerian_desc =>
+      'وزارة الشؤون الدينية والأوقاف الجزائرية. الفجر ١٨°، العشاء ١٧°.';
+
+  @override
+  String get calc_method_gulf_region_name => 'منطقة الخليج';
+
+  @override
+  String get calc_method_gulf_region_desc =>
+      'منطقة الخليج. الفجر ١٩٫٥°، العشاء بعد ٩٠ دقيقة من المغرب.';
+
+  @override
+  String get calc_method_indonesian_name => 'إندونيسيا';
+
+  @override
+  String get calc_method_indonesian_desc =>
+      'وزارة الشؤون الدينية بإندونيسيا (KEMENAG). الفجر ٢٠°، العشاء ١٨°.';
+
+  @override
+  String get calc_method_jafari_name => 'الجعفري (الشيعة)';
+
+  @override
+  String get calc_method_jafari_desc =>
+      'الشيعة الإثنا عشرية، معهد ليفا، قم. الفجر ١٦°، المغرب ٤°، العشاء ١٤°.';
+
+  @override
+  String get calc_method_jordan_name => 'الأردن';
+
+  @override
+  String get calc_method_jordan_desc =>
+      'وزارة الأوقاف والشؤون والمقدسات الإسلامية، الأردن. الفجر والعشاء عند ١٨°.';
+
+  @override
+  String get calc_method_morocco_name => 'المغرب';
+
+  @override
+  String get calc_method_morocco_desc =>
+      'وزارة الأوقاف والشؤون الإسلامية المغربية. الفجر ١٩°، العشاء ١٧°.';
+
+  @override
+  String get calc_method_portugal_name => 'البرتغال';
+
+  @override
+  String get calc_method_portugal_desc =>
+      'الجالية الإسلامية في لشبونة، البرتغال. الفجر ١٨°، العشاء بعد ٧٧ دقيقة من المغرب.';
+
+  @override
+  String get calc_method_russia_name => 'روسيا';
+
+  @override
+  String get calc_method_russia_desc =>
+      'الإدارة الدينية لمسلمي روسيا. الفجر ١٦°، العشاء ١٥°.';
+
+  @override
+  String get calc_method_tunisia_name => 'تونس';
+
+  @override
+  String get calc_method_tunisia_desc =>
+      'وزارة الشؤون الدينية التونسية. الفجر والعشاء عند ١٨°.';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

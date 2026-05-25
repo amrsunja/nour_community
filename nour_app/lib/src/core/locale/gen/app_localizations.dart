@@ -1360,6 +1360,276 @@ abstract class AppLocalizations {
   /// **'In {days} days'**
   String hijri_in_days(int days);
 
+  /// No description provided for @calc_methods_comment.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer-time calculation methods (name + description) for CalculationMethodType.'**
+  String get calc_methods_comment;
+
+  /// No description provided for @calc_method_muslim_world_league_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Muslim World League'**
+  String get calc_method_muslim_world_league_name;
+
+  /// No description provided for @calc_method_muslim_world_league_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Muslim World League. Widely used across Europe, the Far East and parts of North America. Fajr 18°, Isha 17°.'**
+  String get calc_method_muslim_world_league_desc;
+
+  /// No description provided for @calc_method_france_name.
+  ///
+  /// In en, this message translates to:
+  /// **'France'**
+  String get calc_method_france_name;
+
+  /// No description provided for @calc_method_france_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Union des Organisations Islamiques de France (UOIF). Fajr and Isha at 12°.'**
+  String get calc_method_france_desc;
+
+  /// No description provided for @calc_method_egyptian_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Egyptian'**
+  String get calc_method_egyptian_name;
+
+  /// No description provided for @calc_method_egyptian_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Egyptian General Authority of Survey. Common in Egypt, Africa and parts of the Middle East. Fajr 19.5°, Isha 17.5°.'**
+  String get calc_method_egyptian_desc;
+
+  /// No description provided for @calc_method_karachi_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Karachi'**
+  String get calc_method_karachi_name;
+
+  /// No description provided for @calc_method_karachi_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'University of Islamic Sciences, Karachi. Used in Pakistan, India, Bangladesh and Afghanistan. Fajr and Isha at 18°.'**
+  String get calc_method_karachi_desc;
+
+  /// No description provided for @calc_method_umm_al_qura_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Umm al-Qura'**
+  String get calc_method_umm_al_qura_name;
+
+  /// No description provided for @calc_method_umm_al_qura_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Umm al-Qura University, Makkah. Used in Saudi Arabia. Fajr 18.5°, Isha 90 minutes after Maghrib.'**
+  String get calc_method_umm_al_qura_desc;
+
+  /// No description provided for @calc_method_dubai_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Dubai'**
+  String get calc_method_dubai_name;
+
+  /// No description provided for @calc_method_dubai_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Used across the United Arab Emirates. Fajr and Isha at 18.2°.'**
+  String get calc_method_dubai_desc;
+
+  /// No description provided for @calc_method_qatar_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Qatar'**
+  String get calc_method_qatar_name;
+
+  /// No description provided for @calc_method_qatar_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Modified Umm al-Qura. Fajr 18°, Isha 90 minutes after Maghrib.'**
+  String get calc_method_qatar_desc;
+
+  /// No description provided for @calc_method_kuwait_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Kuwait'**
+  String get calc_method_kuwait_name;
+
+  /// No description provided for @calc_method_kuwait_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Used in Kuwait. Fajr 18°, Isha 17.5°.'**
+  String get calc_method_kuwait_desc;
+
+  /// No description provided for @calc_method_moonsighting_committee_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonsighting Committee'**
+  String get calc_method_moonsighting_committee_name;
+
+  /// No description provided for @calc_method_moonsighting_committee_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonsighting Committee Worldwide with a seasonal high-latitude adjustment. Fajr and Isha at 18°.'**
+  String get calc_method_moonsighting_committee_desc;
+
+  /// No description provided for @calc_method_singapore_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Singapore'**
+  String get calc_method_singapore_name;
+
+  /// No description provided for @calc_method_singapore_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Majlis Ugama Islam Singapura. Fajr 20°, Isha 18°.'**
+  String get calc_method_singapore_desc;
+
+  /// No description provided for @calc_method_north_america_name.
+  ///
+  /// In en, this message translates to:
+  /// **'North America (ISNA)'**
+  String get calc_method_north_america_name;
+
+  /// No description provided for @calc_method_north_america_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Islamic Society of North America (ISNA). Fajr and Isha at 15°.'**
+  String get calc_method_north_america_desc;
+
+  /// No description provided for @calc_method_turkey_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Turkey'**
+  String get calc_method_turkey_name;
+
+  /// No description provided for @calc_method_turkey_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Diyanet İşleri Başkanlığı (Turkey). Fajr 18°, Isha 17°.'**
+  String get calc_method_turkey_desc;
+
+  /// No description provided for @calc_method_tehran_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Tehran'**
+  String get calc_method_tehran_name;
+
+  /// No description provided for @calc_method_tehran_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Institute of Geophysics, University of Tehran. Fajr 17.7°, Isha 14°.'**
+  String get calc_method_tehran_desc;
+
+  /// No description provided for @calc_method_algerian_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Algeria'**
+  String get calc_method_algerian_name;
+
+  /// No description provided for @calc_method_algerian_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Algerian Ministry of Religious Affairs and Wakfs. Fajr 18°, Isha 17°.'**
+  String get calc_method_algerian_desc;
+
+  /// No description provided for @calc_method_gulf_region_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Gulf Region'**
+  String get calc_method_gulf_region_name;
+
+  /// No description provided for @calc_method_gulf_region_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Gulf Region. Fajr 19.5°, Isha 90 minutes after Maghrib.'**
+  String get calc_method_gulf_region_desc;
+
+  /// No description provided for @calc_method_indonesian_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Indonesia'**
+  String get calc_method_indonesian_name;
+
+  /// No description provided for @calc_method_indonesian_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Kementerian Agama Republik Indonesia (KEMENAG). Fajr 20°, Isha 18°.'**
+  String get calc_method_indonesian_desc;
+
+  /// No description provided for @calc_method_jafari_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Jafari (Shia)'**
+  String get calc_method_jafari_name;
+
+  /// No description provided for @calc_method_jafari_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Shia Ithna-Ashari, Leva Institute, Qum. Fajr 16°, Maghrib 4°, Isha 14°.'**
+  String get calc_method_jafari_desc;
+
+  /// No description provided for @calc_method_jordan_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Jordan'**
+  String get calc_method_jordan_name;
+
+  /// No description provided for @calc_method_jordan_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ministry of Awqaf, Islamic Affairs and Holy Places, Jordan. Fajr and Isha at 18°.'**
+  String get calc_method_jordan_desc;
+
+  /// No description provided for @calc_method_morocco_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Morocco'**
+  String get calc_method_morocco_name;
+
+  /// No description provided for @calc_method_morocco_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Moroccan Ministry of Habous and Islamic Affairs. Fajr 19°, Isha 17°.'**
+  String get calc_method_morocco_desc;
+
+  /// No description provided for @calc_method_portugal_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Portugal'**
+  String get calc_method_portugal_name;
+
+  /// No description provided for @calc_method_portugal_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Comunidade Islâmica de Lisboa, Portugal. Fajr 18°, Isha 77 minutes after Maghrib.'**
+  String get calc_method_portugal_desc;
+
+  /// No description provided for @calc_method_russia_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Russia'**
+  String get calc_method_russia_name;
+
+  /// No description provided for @calc_method_russia_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Spiritual Administration of Muslims of Russia. Fajr 16°, Isha 15°.'**
+  String get calc_method_russia_desc;
+
+  /// No description provided for @calc_method_tunisia_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Tunisia'**
+  String get calc_method_tunisia_name;
+
+  /// No description provided for @calc_method_tunisia_desc.
+  ///
+  /// In en, this message translates to:
+  /// **'Tunisian Ministry of Religious Affairs. Fajr and Isha at 18°.'**
+  String get calc_method_tunisia_desc;
+
   /// No description provided for @l10nStopLineDontTouch.
   ///
   /// In en, this message translates to:

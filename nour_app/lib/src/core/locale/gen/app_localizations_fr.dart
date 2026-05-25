@@ -686,6 +686,165 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get calc_methods_comment =>
+      'Prayer-time calculation methods (name + description) for CalculationMethodType.';
+
+  @override
+  String get calc_method_muslim_world_league_name => 'Ligue islamique mondiale';
+
+  @override
+  String get calc_method_muslim_world_league_desc =>
+      'Ligue islamique mondiale. Largement utilisée en Europe, en Extrême-Orient et dans certaines régions d\'Amérique du Nord. Fajr 18°, Isha 17°.';
+
+  @override
+  String get calc_method_france_name => 'France';
+
+  @override
+  String get calc_method_france_desc =>
+      'Union des Organisations Islamiques de France (UOIF). Fajr et Isha à 12°.';
+
+  @override
+  String get calc_method_egyptian_name => 'Égypte';
+
+  @override
+  String get calc_method_egyptian_desc =>
+      'Autorité générale égyptienne de la topographie. Courante en Égypte, en Afrique et au Moyen-Orient. Fajr 19,5°, Isha 17,5°.';
+
+  @override
+  String get calc_method_karachi_name => 'Karachi';
+
+  @override
+  String get calc_method_karachi_desc =>
+      'Université des sciences islamiques de Karachi. Utilisée au Pakistan, en Inde, au Bangladesh et en Afghanistan. Fajr et Isha à 18°.';
+
+  @override
+  String get calc_method_umm_al_qura_name => 'Umm al-Qura';
+
+  @override
+  String get calc_method_umm_al_qura_desc =>
+      'Université Umm al-Qura, La Mecque. Utilisée en Arabie saoudite. Fajr 18,5°, Isha 90 minutes après le Maghrib.';
+
+  @override
+  String get calc_method_dubai_name => 'Dubaï';
+
+  @override
+  String get calc_method_dubai_desc =>
+      'Utilisée aux Émirats arabes unis. Fajr et Isha à 18,2°.';
+
+  @override
+  String get calc_method_qatar_name => 'Qatar';
+
+  @override
+  String get calc_method_qatar_desc =>
+      'Umm al-Qura modifiée. Fajr 18°, Isha 90 minutes après le Maghrib.';
+
+  @override
+  String get calc_method_kuwait_name => 'Koweït';
+
+  @override
+  String get calc_method_kuwait_desc =>
+      'Utilisée au Koweït. Fajr 18°, Isha 17,5°.';
+
+  @override
+  String get calc_method_moonsighting_committee_name =>
+      'Moonsighting Committee';
+
+  @override
+  String get calc_method_moonsighting_committee_desc =>
+      'Moonsighting Committee Worldwide avec ajustement saisonnier pour les hautes latitudes. Fajr et Isha à 18°.';
+
+  @override
+  String get calc_method_singapore_name => 'Singapour';
+
+  @override
+  String get calc_method_singapore_desc =>
+      'Majlis Ugama Islam Singapura. Fajr 20°, Isha 18°.';
+
+  @override
+  String get calc_method_north_america_name => 'Amérique du Nord (ISNA)';
+
+  @override
+  String get calc_method_north_america_desc =>
+      'Islamic Society of North America (ISNA). Fajr et Isha à 15°.';
+
+  @override
+  String get calc_method_turkey_name => 'Turquie';
+
+  @override
+  String get calc_method_turkey_desc =>
+      'Diyanet İşleri Başkanlığı (Turquie). Fajr 18°, Isha 17°.';
+
+  @override
+  String get calc_method_tehran_name => 'Téhéran';
+
+  @override
+  String get calc_method_tehran_desc =>
+      'Institut de géophysique, Université de Téhéran. Fajr 17,7°, Isha 14°.';
+
+  @override
+  String get calc_method_algerian_name => 'Algérie';
+
+  @override
+  String get calc_method_algerian_desc =>
+      'Ministère algérien des Affaires religieuses et des Wakfs. Fajr 18°, Isha 17°.';
+
+  @override
+  String get calc_method_gulf_region_name => 'Région du Golfe';
+
+  @override
+  String get calc_method_gulf_region_desc =>
+      'Région du Golfe. Fajr 19,5°, Isha 90 minutes après le Maghrib.';
+
+  @override
+  String get calc_method_indonesian_name => 'Indonésie';
+
+  @override
+  String get calc_method_indonesian_desc =>
+      'Kementerian Agama Republik Indonesia (KEMENAG). Fajr 20°, Isha 18°.';
+
+  @override
+  String get calc_method_jafari_name => 'Jafari (chiite)';
+
+  @override
+  String get calc_method_jafari_desc =>
+      'Chiite Ithna-Ashari, Institut Leva, Qom. Fajr 16°, Maghrib 4°, Isha 14°.';
+
+  @override
+  String get calc_method_jordan_name => 'Jordanie';
+
+  @override
+  String get calc_method_jordan_desc =>
+      'Ministère des Awqaf, des Affaires islamiques et des Lieux saints, Jordanie. Fajr et Isha à 18°.';
+
+  @override
+  String get calc_method_morocco_name => 'Maroc';
+
+  @override
+  String get calc_method_morocco_desc =>
+      'Ministère marocain des Habous et des Affaires islamiques. Fajr 19°, Isha 17°.';
+
+  @override
+  String get calc_method_portugal_name => 'Portugal';
+
+  @override
+  String get calc_method_portugal_desc =>
+      'Comunidade Islâmica de Lisboa, Portugal. Fajr 18°, Isha 77 minutes après le Maghrib.';
+
+  @override
+  String get calc_method_russia_name => 'Russie';
+
+  @override
+  String get calc_method_russia_desc =>
+      'Administration spirituelle des musulmans de Russie. Fajr 16°, Isha 15°.';
+
+  @override
+  String get calc_method_tunisia_name => 'Tunisie';
+
+  @override
+  String get calc_method_tunisia_desc =>
+      'Ministère tunisien des Affaires religieuses. Fajr et Isha à 18°.';
+
+  @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
 }

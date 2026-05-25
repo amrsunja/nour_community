@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/calculation_method_type.dart';
 
 /// Bottom-sheet content listing every [CalculationMethodType] with a short
@@ -43,6 +44,7 @@ class PrayerCalcMethodSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     final media = MediaQuery.of(context);
+    final l10n = AppLocale.of(context);
 
     return SafeArea(
       top: false,
@@ -96,7 +98,7 @@ class PrayerCalcMethodSheet extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Text(
-                                method.name,
+                                method.localizedName(l10n),
                                 style: theme.typo.inter.title.copyWith(
                                   color: UIColorsToken.white,
                                 ),
@@ -112,7 +114,7 @@ class PrayerCalcMethodSheet extends StatelessWidget {
                         ),
                         const SizedBox(height: 6),
                         Text(
-                          method.description,
+                          method.localizedDescription(l10n),
                           style: theme.typo.inter.bodyMedium.copyWith(
                             color: UIColorsToken.textParagraph,
                           ),

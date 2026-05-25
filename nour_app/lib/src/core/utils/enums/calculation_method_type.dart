@@ -1,117 +1,148 @@
 import 'package:adhan_dart/adhan_dart.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 
 /// Prayer-time calculation methods supported by the app.
 ///
 /// Thin wrapper over the `adhan_dart` `CalculationMethodParameters` named
-/// constructors. [id] is the stable value persisted in the settings table,
-/// while [name]/[description] feed the calculation-method bottom sheet.
+/// constructors. [id] is the stable value persisted in the settings table.
+/// Human-readable name/description are resolved per-locale via
+/// [localizedName]/[localizedDescription] using the generated [AppLocale]
+/// strings (keys `calc_method_<id>_name` / `calc_method_<id>_desc`).
 enum CalculationMethodType {
-  muslimWorldLeague(
-    id: 'muslim_world_league',
-    name: 'World league',
-    description:
-        'Muslim World League. Widely used across Europe, the Far East and '
-        'parts of North America. Fajr at 18°, Isha at 17°.',
-  ),
-  france(
-    id: 'france',
-    name: 'France',
-    description:
-        'Union des Organisations Islamiques de France (UOIF) '
-        'Fajr Angle: 12° '
-        'Isha Angle: 12°',
-  ),
+  muslimWorldLeague(id: 'muslim_world_league'),
+  france(id: 'france'),
+  egyptian(id: 'egyptian'),
+  karachi(id: 'karachi'),
+  ummAlQura(id: 'umm_al_qura'),
+  dubai(id: 'dubai'),
+  qatar(id: 'qatar'),
+  kuwait(id: 'kuwait'),
+  moonsightingCommittee(id: 'moonsighting_committee'),
+  singapore(id: 'singapore'),
+  northAmerica(id: 'north_america'),
+  turkey(id: 'turkey'),
+  tehran(id: 'tehran'),
+  algerian(id: 'algerian'),
+  gulfRegion(id: 'gulf_region'),
+  indonesian(id: 'indonesian'),
+  jafari(id: 'jafari'),
+  jordan(id: 'jordan'),
+  morocco(id: 'morocco'),
+  portugal(id: 'portugal'),
+  russia(id: 'russia'),
+  tunisia(id: 'tunisia');
 
-  egyptian(
-    id: 'egyptian',
-    name: 'Egyptian',
-    description:
-        'Egyptian General Authority of Survey. Common in Egypt, Africa and '
-        'parts of the Middle East. Fajr at 19.5°, Isha at 17.5°.',
-  ),
-  karachi(
-    id: 'karachi',
-    name: 'Karachi',
-    description:
-        'University of Islamic Sciences, Karachi. Used in Pakistan, India, '
-        'Bangladesh and Afghanistan. Fajr and Isha at 18°.',
-  ),
-  ummAlQura(
-    id: 'umm_al_qura',
-    name: 'Umm al-Qura',
-    description:
-        'Umm al-Qura University, Makkah. Used in Saudi Arabia. Fajr at 18.5°, '
-        'Isha a fixed 90 minutes after Maghrib.',
-  ),
-  dubai(
-    id: 'dubai',
-    name: 'Dubai',
-    description: 'Used across the United Arab Emirates. Fajr and Isha at 18.2°.',
-  ),
-  qatar(
-    id: 'qatar',
-    name: 'Qatar',
-    description:
-        'Modified Umm al-Qura. Fajr at 18°, Isha a fixed 90 minutes after '
-        'Maghrib.',
-  ),
-  kuwait(
-    id: 'kuwait',
-    name: 'Kuwait',
-    description: 'Used in Kuwait. Fajr at 18°, Isha at 17.5°.',
-  ),
-  moonsightingCommittee(
-    id: 'moonsighting_committee',
-    name: 'Moonsighting Committee',
-    description:
-        'Moonsighting Committee Worldwide with a seasonal adjustment for high '
-        'latitudes. Fajr and Isha at 18°.',
-  ),
-  singapore(
-    id: 'singapore',
-    name: 'Singapore',
-    description: 'Majlis Ugama Islam Singapura. Fajr at 20°, Isha at 18°.',
-  ),
-  northAmerica(
-    id: 'north_america',
-    name: 'North America (ISNA)',
-    description:
-        'Islamic Society of North America. Earlier reference angles. Fajr and '
-        'Isha at 15°.',
-  ),
-  turkey(
-    id: 'turkey',
-    name: 'Turkey',
-    description: 'Diyanet İşleri Başkanlığı (Turkey). Fajr at 18°, Isha at 17°.',
-  ),
-  tehran(
-    id: 'tehran',
-    name: 'Tehran',
-    description:
-        'Institute of Geophysics, University of Tehran. Fajr at 17.7°, '
-        'Isha at 14°.',
-  );
-
-  const CalculationMethodType({
-    required this.id,
-    required this.name,
-    required this.description,
-  });
+  const CalculationMethodType({required this.id});
 
   /// Stable identifier persisted in the database.
   final String id;
-
-  /// Short, human-readable method name shown in the UI.
-  final String name;
-
-  /// Longer explanation surfaced in the calculation-method bottom sheet.
-  final String description;
 
   static const CalculationMethodType defaultMethod =
       CalculationMethodType.muslimWorldLeague;
 
   static CalculationMethodType fromId(String? id) =>
       values.firstWhere((m) => m.id == id, orElse: () => defaultMethod);
+
+  /// Short, human-readable method name for the current locale.
+  String localizedName(AppLocale l10n) {
+    switch (this) {
+      case CalculationMethodType.muslimWorldLeague:
+        return l10n.calc_method_muslim_world_league_name;
+      case CalculationMethodType.france:
+        return l10n.calc_method_france_name;
+      case CalculationMethodType.egyptian:
+        return l10n.calc_method_egyptian_name;
+      case CalculationMethodType.karachi:
+        return l10n.calc_method_karachi_name;
+      case CalculationMethodType.ummAlQura:
+        return l10n.calc_method_umm_al_qura_name;
+      case CalculationMethodType.dubai:
+        return l10n.calc_method_dubai_name;
+      case CalculationMethodType.qatar:
+        return l10n.calc_method_qatar_name;
+      case CalculationMethodType.kuwait:
+        return l10n.calc_method_kuwait_name;
+      case CalculationMethodType.moonsightingCommittee:
+        return l10n.calc_method_moonsighting_committee_name;
+      case CalculationMethodType.singapore:
+        return l10n.calc_method_singapore_name;
+      case CalculationMethodType.northAmerica:
+        return l10n.calc_method_north_america_name;
+      case CalculationMethodType.turkey:
+        return l10n.calc_method_turkey_name;
+      case CalculationMethodType.tehran:
+        return l10n.calc_method_tehran_name;
+      case CalculationMethodType.algerian:
+        return l10n.calc_method_algerian_name;
+      case CalculationMethodType.gulfRegion:
+        return l10n.calc_method_gulf_region_name;
+      case CalculationMethodType.indonesian:
+        return l10n.calc_method_indonesian_name;
+      case CalculationMethodType.jafari:
+        return l10n.calc_method_jafari_name;
+      case CalculationMethodType.jordan:
+        return l10n.calc_method_jordan_name;
+      case CalculationMethodType.morocco:
+        return l10n.calc_method_morocco_name;
+      case CalculationMethodType.portugal:
+        return l10n.calc_method_portugal_name;
+      case CalculationMethodType.russia:
+        return l10n.calc_method_russia_name;
+      case CalculationMethodType.tunisia:
+        return l10n.calc_method_tunisia_name;
+    }
+  }
+
+  /// Longer explanation surfaced in the calculation-method bottom sheet,
+  /// localized for the current locale.
+  String localizedDescription(AppLocale l10n) {
+    switch (this) {
+      case CalculationMethodType.muslimWorldLeague:
+        return l10n.calc_method_muslim_world_league_desc;
+      case CalculationMethodType.france:
+        return l10n.calc_method_france_desc;
+      case CalculationMethodType.egyptian:
+        return l10n.calc_method_egyptian_desc;
+      case CalculationMethodType.karachi:
+        return l10n.calc_method_karachi_desc;
+      case CalculationMethodType.ummAlQura:
+        return l10n.calc_method_umm_al_qura_desc;
+      case CalculationMethodType.dubai:
+        return l10n.calc_method_dubai_desc;
+      case CalculationMethodType.qatar:
+        return l10n.calc_method_qatar_desc;
+      case CalculationMethodType.kuwait:
+        return l10n.calc_method_kuwait_desc;
+      case CalculationMethodType.moonsightingCommittee:
+        return l10n.calc_method_moonsighting_committee_desc;
+      case CalculationMethodType.singapore:
+        return l10n.calc_method_singapore_desc;
+      case CalculationMethodType.northAmerica:
+        return l10n.calc_method_north_america_desc;
+      case CalculationMethodType.turkey:
+        return l10n.calc_method_turkey_desc;
+      case CalculationMethodType.tehran:
+        return l10n.calc_method_tehran_desc;
+      case CalculationMethodType.algerian:
+        return l10n.calc_method_algerian_desc;
+      case CalculationMethodType.gulfRegion:
+        return l10n.calc_method_gulf_region_desc;
+      case CalculationMethodType.indonesian:
+        return l10n.calc_method_indonesian_desc;
+      case CalculationMethodType.jafari:
+        return l10n.calc_method_jafari_desc;
+      case CalculationMethodType.jordan:
+        return l10n.calc_method_jordan_desc;
+      case CalculationMethodType.morocco:
+        return l10n.calc_method_morocco_desc;
+      case CalculationMethodType.portugal:
+        return l10n.calc_method_portugal_desc;
+      case CalculationMethodType.russia:
+        return l10n.calc_method_russia_desc;
+      case CalculationMethodType.tunisia:
+        return l10n.calc_method_tunisia_desc;
+    }
+  }
 
   /// Builds the matching `adhan_dart` parameter set for this method.
   CalculationParameters buildParameters() {
@@ -142,6 +173,24 @@ enum CalculationMethodType {
         return CalculationMethodParameters.tehran();
       case CalculationMethodType.france:
         return CalculationMethodParameters.france();
+      case CalculationMethodType.algerian:
+        return CalculationMethodParameters.algerian();
+      case CalculationMethodType.gulfRegion:
+        return CalculationMethodParameters.gulfRegion();
+      case CalculationMethodType.indonesian:
+        return CalculationMethodParameters.indonesian();
+      case CalculationMethodType.jafari:
+        return CalculationMethodParameters.jafari();
+      case CalculationMethodType.jordan:
+        return CalculationMethodParameters.jordan();
+      case CalculationMethodType.morocco:
+        return CalculationMethodParameters.morocco();
+      case CalculationMethodType.portugal:
+        return CalculationMethodParameters.portugal();
+      case CalculationMethodType.russia:
+        return CalculationMethodParameters.russia();
+      case CalculationMethodType.tunisia:
+        return CalculationMethodParameters.tunisia();
     }
   }
 }
