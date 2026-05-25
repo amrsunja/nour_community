@@ -12,4 +12,8 @@ abstract class SQLiteConfig {
   static String notifMorningAdhkarKey = 'notif_morning_adhkar';
   static String notifEveningAdhkarKey = 'notif_evening_adhkar';
   static String notifDailyAyahKey = 'notif_daily_ayah';
+
+  // Prayer-times preferences serialized as a JSON string
+  // (calculation method + per-prayer notification toggles).
+  static String prayerSettingsKey = 'prayer_settings';
 }

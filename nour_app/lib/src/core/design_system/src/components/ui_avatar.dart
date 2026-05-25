@@ -36,7 +36,9 @@ class UIAvatar extends StatelessWidget {
         child: url == null
           ? Text(
               initial,
-              style: typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
+              style: typo.inter.largeTitle.copyWith(
+                fontSize: size / 2
+              ),
             )
           : null,
       ),

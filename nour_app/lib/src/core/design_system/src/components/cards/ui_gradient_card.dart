@@ -8,6 +8,7 @@ class UIGradientCard extends StatelessWidget {
     this.padding = const EdgeInsets.all(16),
     this.selected = false,
     required this.child,
+    this.reverseGradient = false,
     this.onTap,
   });
 
@@ -15,12 +16,23 @@ class UIGradientCard extends StatelessWidget {
   final bool selected;
   final Widget child;
   final VoidCallback? onTap;
+  final bool reverseGradient;
 
   @override
   Widget build(BuildContext context) {
     final accent = UIColorsToken.textYellow;
     final selectedBg = Color(0xff252219);
     final unselectedBg = Color(0xff1A1A1A);
+    final gradient = [
+      if (!reverseGradient)
+        selectedBg,
+      selected ? selectedBg : unselectedBg,
+      selected ? selectedBg : unselectedBg,
+      if (reverseGradient)
+        selectedBg,
+    ];
+    final List<double> stops = reverseGradient ? [0.8, 0.1, 1] : [0, 0.1, 0.8];
+
 
     return UITap(
       onTap: onTap == null ? null : () {
@@ -42,21 +54,9 @@ class UIGradientCard extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            stops: [0, 0.1,0.8],
-            colors: [
-              selectedBg,
-              selected ? selectedBg : unselectedBg,
-              selected ? selectedBg : unselectedBg,
-            ],
+            stops: stops,
+            colors: gradient,
           ),
-          boxShadow: [
-            BoxShadow(
-              color: UIColorsToken.black.withValues(alpha: 0.45),
-              blurRadius: 28,
-              spreadRadius: -4,
-              offset: const Offset(0, 14),
-            ),
-          ],
         ),
         child: child,
       ),

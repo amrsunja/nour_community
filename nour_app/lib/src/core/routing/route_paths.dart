@@ -14,6 +14,7 @@ abstract class RoutePaths {
   static const impact = 'impact';
   static const tools = 'tools';
   static const settings = 'settings';
+  static const profile = 'profile';
 
   // Dhikr
   static const dhikrsList = 'dhikrs';
@@ -36,6 +37,10 @@ abstract class RoutePaths {
   static const duaLibrary = 'dua-library';
   static const duaReader = 'dua-reader';
   static const dailyDua = 'daily-dua';
+
+  // Tools
+  static const prayerTimes = 'prayer-times';
+  static const hijriCalendar = 'hijri-calendar';
 
 
   // Root dialog

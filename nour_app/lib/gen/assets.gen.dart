@@ -44,6 +44,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/mute.svg
   String get mute => 'assets/icons/mute.svg';
 
+  /// File path: assets/icons/not_notif.svg
+  String get notNotif => 'assets/icons/not_notif.svg';
+
+  /// File path: assets/icons/notif.svg
+  String get notif => 'assets/icons/notif.svg';
+
   /// File path: assets/icons/refresh.svg
   String get refresh => 'assets/icons/refresh.svg';
 
@@ -52,6 +58,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/source.svg
   String get source => 'assets/icons/source.svg';
+
+  /// File path: assets/icons/square-pen.svg
+  String get squarePen => 'assets/icons/square-pen.svg';
 
   /// File path: assets/icons/tafsir.svg
   String get tafsir => 'assets/icons/tafsir.svg';
@@ -80,9 +89,12 @@ class $AssetsIconsGen {
     impact,
     location,
     mute,
+    notNotif,
+    notif,
     refresh,
     share,
     source,
+    squarePen,
     tafsir,
     tools,
     unmute,

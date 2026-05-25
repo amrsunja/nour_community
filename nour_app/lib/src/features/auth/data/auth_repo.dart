@@ -39,9 +39,16 @@ class AuthRepo {
 		});
   }
 
-  Future<SuccessOrError<void>> sendEmailOtp({required String email}) async {
-		return await Failure.exceptionsCatcher<void>(() async {
-      await remoteDatasource.sendEmailOtp(email: email);
+  /// Synchronous session snapshots backed by the locally persisted user.
+  bool isAnonymousSession() => remoteDatasource.isAnonymous();
+
+  String? currentEmail() => remoteDatasource.currentEmail();
+
+  /// Returns `true` when an OTP was sent (existing account -> must verify),
+  /// `false` when the email was linked instantly to the anonymous session.
+  Future<SuccessOrError<bool>> startEmailAuth({required String email}) async {
+		return await Failure.exceptionsCatcher<bool>(() async {
+      return await remoteDatasource.startEmailAuth(email: email);
 		});
   }
 

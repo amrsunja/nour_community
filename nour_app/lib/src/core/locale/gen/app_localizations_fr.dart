@@ -388,6 +388,48 @@ class AppLocalizationsFr extends AppLocalizations {
   String get auth_link_success => 'Votre compte est connecté';
 
   @override
+  String get profile_title => 'Profil';
+
+  @override
+  String get profile_guest => 'Invité';
+
+  @override
+  String get profile_connect_account => 'Connecter mon compte';
+
+  @override
+  String get profile_logout => 'Déconnexion';
+
+  @override
+  String get profile_journey => 'Parcours';
+
+  @override
+  String get profile_preferences => 'Préférences';
+
+  @override
+  String get profile_account => 'Compte';
+
+  @override
+  String get profile_statistics => 'Statistiques';
+
+  @override
+  String get profile_favourites => 'Favoris';
+
+  @override
+  String get profile_reminders => 'Rappels';
+
+  @override
+  String get profile_settings => 'Paramètres';
+
+  @override
+  String get profile_reading_preferences => 'Préférences de lecture';
+
+  @override
+  String get profile_help_support => 'Aide et support';
+
+  @override
+  String get profile_about => 'À propos de Nour';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -604,6 +646,44 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dua_empty => 'Aucune doua disponible.';
+
+  @override
+  String get prayer_times_title => 'Heures de prière';
+
+  @override
+  String prayer_times_calc_method(String method) {
+    return 'Méthode de calcul - $method';
+  }
+
+  @override
+  String get prayer_times_method_sheet_title => 'Méthode de calcul';
+
+  @override
+  String get prayer_times_chourouk => 'Chourouk';
+
+  @override
+  String get prayer_times_jumua => 'Jumu\'a';
+
+  @override
+  String get prayer_times_location_error =>
+      'Impossible de déterminer votre position. Activez la localisation pour des horaires précis.';
+
+  @override
+  String get prayer_times_retry => 'Réessayer';
+
+  @override
+  String get hijri_today => 'Aujourd\'hui';
+
+  @override
+  String get hijri_white_day => 'Jour blanc';
+
+  @override
+  String get hijri_coming_up => 'À venir';
+
+  @override
+  String hijri_in_days(int days) {
+    return 'Dans $days jours';
+  }
 
   @override
   String get l10nStopLineDontTouch =>

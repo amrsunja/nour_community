@@ -12,6 +12,9 @@ import 'package:nour/src/features/profile/ui/state_management/profile_provider.d
 import '../../data/auth_repo.dart';
 import 'auth_state.dart';
 
+/// Outcome of [AuthPresenter.connectEmail].
+enum EmailConnectResult { linked, otpSent, failed }
+
 final authProvider = StateNotifierProvider<AuthPresenter, AuthState>((ref) {
   return AuthPresenter(
     repo: ref.read(authRepoProvider),
@@ -20,6 +23,25 @@ final authProvider = StateNotifierProvider<AuthPresenter, AuthState>((ref) {
     ref: ref
   );
 });
+
+/// Read-only snapshot of the active Supabase session, recomputed whenever
+/// [authProvider] mutates (sign-in, link, logout). Lets the UI branch on
+/// anonymous vs. connected without leaking the data layer into widgets.
+final authSessionProvider = Provider<AuthSession>((ref) {
+  ref.watch(authProvider);
+  final repo = ref.read(authRepoProvider);
+  return AuthSession(
+    isAnonymous: repo.isAnonymousSession(),
+    email: repo.currentEmail(),
+  );
+});
+
+class AuthSession {
+  final bool isAnonymous;
+  final String? email;
+
+  const AuthSession({required this.isAnonymous, this.email});
+}
 
 class AuthPresenter extends Presenter<AuthState> {
   final AuthRepo repo;
@@ -81,22 +103,35 @@ class AuthPresenter extends Presenter<AuthState> {
     );
   }
 
-  /// Sends a one-time code to [email]. Does not authenticate on its own —
-  /// the user must confirm with [linkEmailWithOTP].
-  Future<bool> sendEmailOtp({required String email}) async {
-    if (state.isLoading) return false;
+  /// Starts the connect-email flow from the current anonymous session.
+  ///
+  /// - [EmailConnectResult.linked]  -> email was new; linked instantly and the
+  ///   user is already authenticated (no OTP step).
+  /// - [EmailConnectResult.otpSent] -> email belongs to an existing account;
+  ///   a code was sent and the caller must call [linkEmailWithOTP].
+  /// - [EmailConnectResult.failed]  -> nothing happened.
+  Future<EmailConnectResult> connectEmail({required String email}) async {
+    if (state.isLoading) return EmailConnectResult.failed;
     state = state.copyWith(isLoading: true);
 
-    final response = await repo.sendEmailOtp(email: email);
+    final response = await repo.startEmailAuth(email: email);
 
-    final result = response.when(
-      (_) {
-        appEvents.send(ShowSuccessMessageEvent(locale.auth_otp_sent));
-        return true;
+    final result = await response.when(
+      (otpSent) async {
+        if (otpSent) {
+          appEvents.send(ShowSuccessMessageEvent(locale.auth_otp_sent));
+          return EmailConnectResult.otpSent;
+        }
+        // Instant link: refresh profile bound to the now-permanent account.
+        final ok = await ref.read(profileProvider.notifier).initProfile();
+        if (!ok) return EmailConnectResult.failed;
+        state = state.copyWith(isAuthenticated: true);
+        appEvents.send(ShowSuccessMessageEvent(locale.auth_link_success));
+        return EmailConnectResult.linked;
       },
-      (error) {
+      (error) async {
         appEvents.send(ShowErrorEvent(error));
-        return false;
+        return EmailConnectResult.failed;
       },
     );
 
@@ -153,8 +188,28 @@ class AuthPresenter extends Presenter<AuthState> {
     throw UnimplementedError();
   }
 
+  /// Signs the user out of their permanent account and bounces back to
+  /// [RootRoute], whose bootstrap re-runs [authorization] and provisions a
+  /// fresh anonymous session.
   Future<bool> logout() async {
-    throw UnimplementedError();
+    if (state.isLoading) return false;
+    state = state.copyWith(isLoading: true);
+
+    final response = await repo.logout();
+
+    final result = response.when(
+      (_) {
+        state = state.copyWith(isAuthenticated: false, isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+
+    return result;
   }
 
   Future<bool> deleteUser() async {

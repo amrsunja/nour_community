@@ -105,6 +105,11 @@ class AppRouter extends RootStackRouter {
               page: SettingsRoute.page,
             ),
 
+            AutoRoute(
+              path: RoutePaths.profile,
+              page: ProfileRoute.page,
+            ),
+
             /// Dhikr (full-screen over the bottom navbar)
             AutoRoute(
               path: RoutePaths.dhikrsList,
@@ -161,6 +166,16 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               path: RoutePaths.dailyDua,
               page: DailyDuaRoute.page,
+            ),
+
+            /// Tools (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.prayerTimes,
+              page: PrayerTimesRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.hijriCalendar,
+              page: CalendarRoute.page,
             ),
           ],
         ),

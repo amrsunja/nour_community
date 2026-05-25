@@ -9,50 +9,54 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i28;
-import 'package:flutter/material.dart' as _i29;
+import 'package:auto_route/auto_route.dart' as _i31;
+import 'package:flutter/material.dart' as _i32;
 import 'package:nour/src/features/adhkar/ui/pages/adhkar_detail_page.dart'
     as _i1;
 import 'package:nour/src/features/adhkar/ui/pages/adhkars_list_page.dart'
     as _i2;
-import 'package:nour/src/features/auth/ui/pages/sign_in_page.dart' as _i21;
-import 'package:nour/src/features/auth/ui/pages/sign_up_page.dart' as _i22;
+import 'package:nour/src/features/auth/ui/pages/sign_in_page.dart' as _i24;
+import 'package:nour/src/features/auth/ui/pages/sign_up_page.dart' as _i25;
 import 'package:nour/src/features/dashboard/ui/pages/dashboard_page.dart'
-    as _i6;
-import 'package:nour/src/features/dhikr/ui/pages/dhikr_page.dart' as _i8;
-import 'package:nour/src/features/dhikr/ui/pages/dhikrs_list_page.dart' as _i9;
-import 'package:nour/src/features/dua/ui/pages/daily_dua_page.dart' as _i5;
-import 'package:nour/src/features/dua/ui/pages/dua_detail_page.dart' as _i10;
-import 'package:nour/src/features/dua/ui/pages/dua_list_page.dart' as _i11;
+    as _i7;
+import 'package:nour/src/features/dhikr/ui/pages/dhikr_page.dart' as _i9;
+import 'package:nour/src/features/dhikr/ui/pages/dhikrs_list_page.dart' as _i10;
+import 'package:nour/src/features/dua/ui/pages/daily_dua_page.dart' as _i6;
+import 'package:nour/src/features/dua/ui/pages/dua_detail_page.dart' as _i11;
+import 'package:nour/src/features/dua/ui/pages/dua_list_page.dart' as _i12;
 import 'package:nour/src/features/hadith/ui/pages/hadith_collection_detail_page.dart'
-    as _i12;
-import 'package:nour/src/features/hadith/ui/pages/hadith_detail_page.dart'
     as _i13;
-import 'package:nour/src/features/home/dashboard_router_route.dart' as _i7;
-import 'package:nour/src/features/home/home_page.dart' as _i14;
-import 'package:nour/src/features/home/home_router_page.dart' as _i15;
-import 'package:nour/src/features/home/impact_router_route.dart' as _i17;
-import 'package:nour/src/features/home/source_router_page.dart' as _i24;
-import 'package:nour/src/features/home/tools_router_route.dart' as _i27;
-import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i16;
+import 'package:nour/src/features/hadith/ui/pages/hadith_detail_page.dart'
+    as _i14;
+import 'package:nour/src/features/home/dashboard_router_route.dart' as _i8;
+import 'package:nour/src/features/home/home_page.dart' as _i15;
+import 'package:nour/src/features/home/home_router_page.dart' as _i16;
+import 'package:nour/src/features/home/impact_router_route.dart' as _i18;
+import 'package:nour/src/features/home/source_router_page.dart' as _i27;
+import 'package:nour/src/features/home/tools_router_route.dart' as _i30;
+import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i17;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
-    as _i18;
+    as _i19;
+import 'package:nour/src/features/profile/ui/pages/profile_page.dart' as _i21;
 import 'package:nour/src/features/quran/ui/pages/ayah_reader_page.dart' as _i3;
-import 'package:nour/src/features/quran/ui/pages/daily_ayah_page.dart' as _i4;
+import 'package:nour/src/features/quran/ui/pages/daily_ayah_page.dart' as _i5;
 import 'package:nour/src/features/quran/ui/pages/surah_detail_page.dart'
-    as _i25;
-import 'package:nour/src/features/root_page.dart' as _i19;
-import 'package:nour/src/features/settings/ui/pages/settings_page.dart' as _i20;
-import 'package:nour/src/features/source/ui/pages/source_page.dart' as _i23;
-import 'package:nour/src/features/tools/ui/pages/tools_page.dart' as _i26;
+    as _i28;
+import 'package:nour/src/features/root_page.dart' as _i22;
+import 'package:nour/src/features/settings/ui/pages/settings_page.dart' as _i23;
+import 'package:nour/src/features/source/ui/pages/source_page.dart' as _i26;
+import 'package:nour/src/features/tools/ui/pages/calendar_page.dart' as _i4;
+import 'package:nour/src/features/tools/ui/pages/prayer_times_page.dart'
+    as _i20;
+import 'package:nour/src/features/tools/ui/pages/tools_page.dart' as _i29;
 
 /// generated route for
 /// [_i1.AdhkarDetailPage]
-class AdhkarDetailRoute extends _i28.PageRouteInfo<AdhkarDetailRouteArgs> {
+class AdhkarDetailRoute extends _i31.PageRouteInfo<AdhkarDetailRouteArgs> {
   AdhkarDetailRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int subcategoryId,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          AdhkarDetailRoute.name,
          args: AdhkarDetailRouteArgs(key: key, subcategoryId: subcategoryId),
@@ -61,7 +65,7 @@ class AdhkarDetailRoute extends _i28.PageRouteInfo<AdhkarDetailRouteArgs> {
 
   static const String name = 'AdhkarDetailRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AdhkarDetailRouteArgs>();
@@ -76,7 +80,7 @@ class AdhkarDetailRoute extends _i28.PageRouteInfo<AdhkarDetailRouteArgs> {
 class AdhkarDetailRouteArgs {
   const AdhkarDetailRouteArgs({this.key, required this.subcategoryId});
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int subcategoryId;
 
@@ -98,13 +102,13 @@ class AdhkarDetailRouteArgs {
 
 /// generated route for
 /// [_i2.AdhkarsListPage]
-class AdhkarsListRoute extends _i28.PageRouteInfo<void> {
-  const AdhkarsListRoute({List<_i28.PageRouteInfo>? children})
+class AdhkarsListRoute extends _i31.PageRouteInfo<void> {
+  const AdhkarsListRoute({List<_i31.PageRouteInfo>? children})
     : super(AdhkarsListRoute.name, initialChildren: children);
 
   static const String name = 'AdhkarsListRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       return const _i2.AdhkarsListPage();
@@ -114,12 +118,12 @@ class AdhkarsListRoute extends _i28.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.AyahReaderPage]
-class AyahReaderRoute extends _i28.PageRouteInfo<AyahReaderRouteArgs> {
+class AyahReaderRoute extends _i31.PageRouteInfo<AyahReaderRouteArgs> {
   AyahReaderRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int surahNumber,
     int initialAyah = 1,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          AyahReaderRoute.name,
          args: AyahReaderRouteArgs(
@@ -132,7 +136,7 @@ class AyahReaderRoute extends _i28.PageRouteInfo<AyahReaderRouteArgs> {
 
   static const String name = 'AyahReaderRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<AyahReaderRouteArgs>();
@@ -152,7 +156,7 @@ class AyahReaderRouteArgs {
     this.initialAyah = 1,
   });
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int surahNumber;
 
@@ -178,76 +182,92 @@ class AyahReaderRouteArgs {
 }
 
 /// generated route for
-/// [_i4.DailyAyahPage]
-class DailyAyahRoute extends _i28.PageRouteInfo<void> {
-  const DailyAyahRoute({List<_i28.PageRouteInfo>? children})
+/// [_i4.CalendarPage]
+class CalendarRoute extends _i31.PageRouteInfo<void> {
+  const CalendarRoute({List<_i31.PageRouteInfo>? children})
+    : super(CalendarRoute.name, initialChildren: children);
+
+  static const String name = 'CalendarRoute';
+
+  static _i31.PageInfo page = _i31.PageInfo(
+    name,
+    builder: (data) {
+      return const _i4.CalendarPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i5.DailyAyahPage]
+class DailyAyahRoute extends _i31.PageRouteInfo<void> {
+  const DailyAyahRoute({List<_i31.PageRouteInfo>? children})
     : super(DailyAyahRoute.name, initialChildren: children);
 
   static const String name = 'DailyAyahRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i4.DailyAyahPage();
+      return const _i5.DailyAyahPage();
     },
   );
 }
 
 /// generated route for
-/// [_i5.DailyDuaPage]
-class DailyDuaRoute extends _i28.PageRouteInfo<void> {
-  const DailyDuaRoute({List<_i28.PageRouteInfo>? children})
+/// [_i6.DailyDuaPage]
+class DailyDuaRoute extends _i31.PageRouteInfo<void> {
+  const DailyDuaRoute({List<_i31.PageRouteInfo>? children})
     : super(DailyDuaRoute.name, initialChildren: children);
 
   static const String name = 'DailyDuaRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i5.DailyDuaPage();
+      return const _i6.DailyDuaPage();
     },
   );
 }
 
 /// generated route for
-/// [_i6.DashboardPage]
-class DashboardRoute extends _i28.PageRouteInfo<void> {
-  const DashboardRoute({List<_i28.PageRouteInfo>? children})
+/// [_i7.DashboardPage]
+class DashboardRoute extends _i31.PageRouteInfo<void> {
+  const DashboardRoute({List<_i31.PageRouteInfo>? children})
     : super(DashboardRoute.name, initialChildren: children);
 
   static const String name = 'DashboardRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i6.DashboardPage();
+      return const _i7.DashboardPage();
     },
   );
 }
 
 /// generated route for
-/// [_i7.DashboardRouterPage]
-class DashboardRouterRoute extends _i28.PageRouteInfo<void> {
-  const DashboardRouterRoute({List<_i28.PageRouteInfo>? children})
+/// [_i8.DashboardRouterPage]
+class DashboardRouterRoute extends _i31.PageRouteInfo<void> {
+  const DashboardRouterRoute({List<_i31.PageRouteInfo>? children})
     : super(DashboardRouterRoute.name, initialChildren: children);
 
   static const String name = 'DashboardRouterRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i7.DashboardRouterPage();
+      return const _i8.DashboardRouterPage();
     },
   );
 }
 
 /// generated route for
-/// [_i8.DhikrPage]
-class DhikrRoute extends _i28.PageRouteInfo<DhikrRouteArgs> {
+/// [_i9.DhikrPage]
+class DhikrRoute extends _i31.PageRouteInfo<DhikrRouteArgs> {
   DhikrRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     int selectedId = 0,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          DhikrRoute.name,
          args: DhikrRouteArgs(key: key, selectedId: selectedId),
@@ -256,13 +276,13 @@ class DhikrRoute extends _i28.PageRouteInfo<DhikrRouteArgs> {
 
   static const String name = 'DhikrRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DhikrRouteArgs>(
         orElse: () => const DhikrRouteArgs(),
       );
-      return _i8.DhikrPage(key: args.key, selectedId: args.selectedId);
+      return _i9.DhikrPage(key: args.key, selectedId: args.selectedId);
     },
   );
 }
@@ -270,7 +290,7 @@ class DhikrRoute extends _i28.PageRouteInfo<DhikrRouteArgs> {
 class DhikrRouteArgs {
   const DhikrRouteArgs({this.key, this.selectedId = 0});
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int selectedId;
 
@@ -291,28 +311,28 @@ class DhikrRouteArgs {
 }
 
 /// generated route for
-/// [_i9.DhikrsListPage]
-class DhikrsListRoute extends _i28.PageRouteInfo<void> {
-  const DhikrsListRoute({List<_i28.PageRouteInfo>? children})
+/// [_i10.DhikrsListPage]
+class DhikrsListRoute extends _i31.PageRouteInfo<void> {
+  const DhikrsListRoute({List<_i31.PageRouteInfo>? children})
     : super(DhikrsListRoute.name, initialChildren: children);
 
   static const String name = 'DhikrsListRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i9.DhikrsListPage();
+      return const _i10.DhikrsListPage();
     },
   );
 }
 
 /// generated route for
-/// [_i10.DuaDetailPage]
-class DuaDetailRoute extends _i28.PageRouteInfo<DuaDetailRouteArgs> {
+/// [_i11.DuaDetailPage]
+class DuaDetailRoute extends _i31.PageRouteInfo<DuaDetailRouteArgs> {
   DuaDetailRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int initialDuaId,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          DuaDetailRoute.name,
          args: DuaDetailRouteArgs(key: key, initialDuaId: initialDuaId),
@@ -321,11 +341,11 @@ class DuaDetailRoute extends _i28.PageRouteInfo<DuaDetailRouteArgs> {
 
   static const String name = 'DuaDetailRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<DuaDetailRouteArgs>();
-      return _i10.DuaDetailPage(key: args.key, initialDuaId: args.initialDuaId);
+      return _i11.DuaDetailPage(key: args.key, initialDuaId: args.initialDuaId);
     },
   );
 }
@@ -333,7 +353,7 @@ class DuaDetailRoute extends _i28.PageRouteInfo<DuaDetailRouteArgs> {
 class DuaDetailRouteArgs {
   const DuaDetailRouteArgs({this.key, required this.initialDuaId});
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int initialDuaId;
 
@@ -354,29 +374,29 @@ class DuaDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i11.DuaListPage]
-class DuaListRoute extends _i28.PageRouteInfo<void> {
-  const DuaListRoute({List<_i28.PageRouteInfo>? children})
+/// [_i12.DuaListPage]
+class DuaListRoute extends _i31.PageRouteInfo<void> {
+  const DuaListRoute({List<_i31.PageRouteInfo>? children})
     : super(DuaListRoute.name, initialChildren: children);
 
   static const String name = 'DuaListRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i11.DuaListPage();
+      return const _i12.DuaListPage();
     },
   );
 }
 
 /// generated route for
-/// [_i12.HadithCollectionDetailPage]
+/// [_i13.HadithCollectionDetailPage]
 class HadithCollectionDetailRoute
-    extends _i28.PageRouteInfo<HadithCollectionDetailRouteArgs> {
+    extends _i31.PageRouteInfo<HadithCollectionDetailRouteArgs> {
   HadithCollectionDetailRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int collectionId,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          HadithCollectionDetailRoute.name,
          args: HadithCollectionDetailRouteArgs(
@@ -388,11 +408,11 @@ class HadithCollectionDetailRoute
 
   static const String name = 'HadithCollectionDetailRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<HadithCollectionDetailRouteArgs>();
-      return _i12.HadithCollectionDetailPage(
+      return _i13.HadithCollectionDetailPage(
         key: args.key,
         collectionId: args.collectionId,
       );
@@ -403,7 +423,7 @@ class HadithCollectionDetailRoute
 class HadithCollectionDetailRouteArgs {
   const HadithCollectionDetailRouteArgs({this.key, required this.collectionId});
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int collectionId;
 
@@ -424,13 +444,13 @@ class HadithCollectionDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i13.HadithDetailPage]
-class HadithDetailRoute extends _i28.PageRouteInfo<HadithDetailRouteArgs> {
+/// [_i14.HadithDetailPage]
+class HadithDetailRoute extends _i31.PageRouteInfo<HadithDetailRouteArgs> {
   HadithDetailRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int collectionId,
     required int initialHadithId,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          HadithDetailRoute.name,
          args: HadithDetailRouteArgs(
@@ -443,11 +463,11 @@ class HadithDetailRoute extends _i28.PageRouteInfo<HadithDetailRouteArgs> {
 
   static const String name = 'HadithDetailRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<HadithDetailRouteArgs>();
-      return _i13.HadithDetailPage(
+      return _i14.HadithDetailPage(
         key: args.key,
         collectionId: args.collectionId,
         initialHadithId: args.initialHadithId,
@@ -463,7 +483,7 @@ class HadithDetailRouteArgs {
     required this.initialHadithId,
   });
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int collectionId;
 
@@ -489,188 +509,220 @@ class HadithDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i14.HomePage]
-class HomeRoute extends _i28.PageRouteInfo<void> {
-  const HomeRoute({List<_i28.PageRouteInfo>? children})
+/// [_i15.HomePage]
+class HomeRoute extends _i31.PageRouteInfo<void> {
+  const HomeRoute({List<_i31.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i14.HomePage();
+      return const _i15.HomePage();
     },
   );
 }
 
 /// generated route for
-/// [_i15.HomeRouterPage]
-class HomeRouterRoute extends _i28.PageRouteInfo<void> {
-  const HomeRouterRoute({List<_i28.PageRouteInfo>? children})
+/// [_i16.HomeRouterPage]
+class HomeRouterRoute extends _i31.PageRouteInfo<void> {
+  const HomeRouterRoute({List<_i31.PageRouteInfo>? children})
     : super(HomeRouterRoute.name, initialChildren: children);
 
   static const String name = 'HomeRouterRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i15.HomeRouterPage();
+      return const _i16.HomeRouterPage();
     },
   );
 }
 
 /// generated route for
-/// [_i16.ImpactPage]
-class ImpactRoute extends _i28.PageRouteInfo<void> {
-  const ImpactRoute({List<_i28.PageRouteInfo>? children})
+/// [_i17.ImpactPage]
+class ImpactRoute extends _i31.PageRouteInfo<void> {
+  const ImpactRoute({List<_i31.PageRouteInfo>? children})
     : super(ImpactRoute.name, initialChildren: children);
 
   static const String name = 'ImpactRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i16.ImpactPage();
+      return const _i17.ImpactPage();
     },
   );
 }
 
 /// generated route for
-/// [_i17.ImpactRouterPage]
-class ImpactRouterRoute extends _i28.PageRouteInfo<void> {
-  const ImpactRouterRoute({List<_i28.PageRouteInfo>? children})
+/// [_i18.ImpactRouterPage]
+class ImpactRouterRoute extends _i31.PageRouteInfo<void> {
+  const ImpactRouterRoute({List<_i31.PageRouteInfo>? children})
     : super(ImpactRouterRoute.name, initialChildren: children);
 
   static const String name = 'ImpactRouterRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i17.ImpactRouterPage();
+      return const _i18.ImpactRouterPage();
     },
   );
 }
 
 /// generated route for
-/// [_i18.OnboardingPage]
-class OnboardingRoute extends _i28.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i28.PageRouteInfo>? children})
+/// [_i19.OnboardingPage]
+class OnboardingRoute extends _i31.PageRouteInfo<void> {
+  const OnboardingRoute({List<_i31.PageRouteInfo>? children})
     : super(OnboardingRoute.name, initialChildren: children);
 
   static const String name = 'OnboardingRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i18.OnboardingPage();
+      return const _i19.OnboardingPage();
     },
   );
 }
 
 /// generated route for
-/// [_i19.RootPage]
-class RootRoute extends _i28.PageRouteInfo<void> {
-  const RootRoute({List<_i28.PageRouteInfo>? children})
+/// [_i20.PrayerTimesPage]
+class PrayerTimesRoute extends _i31.PageRouteInfo<void> {
+  const PrayerTimesRoute({List<_i31.PageRouteInfo>? children})
+    : super(PrayerTimesRoute.name, initialChildren: children);
+
+  static const String name = 'PrayerTimesRoute';
+
+  static _i31.PageInfo page = _i31.PageInfo(
+    name,
+    builder: (data) {
+      return const _i20.PrayerTimesPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i21.ProfilePage]
+class ProfileRoute extends _i31.PageRouteInfo<void> {
+  const ProfileRoute({List<_i31.PageRouteInfo>? children})
+    : super(ProfileRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileRoute';
+
+  static _i31.PageInfo page = _i31.PageInfo(
+    name,
+    builder: (data) {
+      return const _i21.ProfilePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i22.RootPage]
+class RootRoute extends _i31.PageRouteInfo<void> {
+  const RootRoute({List<_i31.PageRouteInfo>? children})
     : super(RootRoute.name, initialChildren: children);
 
   static const String name = 'RootRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i19.RootPage();
+      return const _i22.RootPage();
     },
   );
 }
 
 /// generated route for
-/// [_i20.SettingsPage]
-class SettingsRoute extends _i28.PageRouteInfo<void> {
-  const SettingsRoute({List<_i28.PageRouteInfo>? children})
+/// [_i23.SettingsPage]
+class SettingsRoute extends _i31.PageRouteInfo<void> {
+  const SettingsRoute({List<_i31.PageRouteInfo>? children})
     : super(SettingsRoute.name, initialChildren: children);
 
   static const String name = 'SettingsRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i20.SettingsPage();
+      return const _i23.SettingsPage();
     },
   );
 }
 
 /// generated route for
-/// [_i21.SignInPage]
-class SignInRoute extends _i28.PageRouteInfo<void> {
-  const SignInRoute({List<_i28.PageRouteInfo>? children})
+/// [_i24.SignInPage]
+class SignInRoute extends _i31.PageRouteInfo<void> {
+  const SignInRoute({List<_i31.PageRouteInfo>? children})
     : super(SignInRoute.name, initialChildren: children);
 
   static const String name = 'SignInRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i21.SignInPage();
+      return const _i24.SignInPage();
     },
   );
 }
 
 /// generated route for
-/// [_i22.SignUpPage]
-class SignUpRoute extends _i28.PageRouteInfo<void> {
-  const SignUpRoute({List<_i28.PageRouteInfo>? children})
+/// [_i25.SignUpPage]
+class SignUpRoute extends _i31.PageRouteInfo<void> {
+  const SignUpRoute({List<_i31.PageRouteInfo>? children})
     : super(SignUpRoute.name, initialChildren: children);
 
   static const String name = 'SignUpRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i22.SignUpPage();
+      return const _i25.SignUpPage();
     },
   );
 }
 
 /// generated route for
-/// [_i23.SourcePage]
-class SourceRoute extends _i28.PageRouteInfo<void> {
-  const SourceRoute({List<_i28.PageRouteInfo>? children})
+/// [_i26.SourcePage]
+class SourceRoute extends _i31.PageRouteInfo<void> {
+  const SourceRoute({List<_i31.PageRouteInfo>? children})
     : super(SourceRoute.name, initialChildren: children);
 
   static const String name = 'SourceRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i23.SourcePage();
+      return const _i26.SourcePage();
     },
   );
 }
 
 /// generated route for
-/// [_i24.SourceRouterPage]
-class SourceRouterRoute extends _i28.PageRouteInfo<void> {
-  const SourceRouterRoute({List<_i28.PageRouteInfo>? children})
+/// [_i27.SourceRouterPage]
+class SourceRouterRoute extends _i31.PageRouteInfo<void> {
+  const SourceRouterRoute({List<_i31.PageRouteInfo>? children})
     : super(SourceRouterRoute.name, initialChildren: children);
 
   static const String name = 'SourceRouterRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i24.SourceRouterPage();
+      return const _i27.SourceRouterPage();
     },
   );
 }
 
 /// generated route for
-/// [_i25.SurahDetailPage]
-class SurahDetailRoute extends _i28.PageRouteInfo<SurahDetailRouteArgs> {
+/// [_i28.SurahDetailPage]
+class SurahDetailRoute extends _i31.PageRouteInfo<SurahDetailRouteArgs> {
   SurahDetailRoute({
-    _i29.Key? key,
+    _i32.Key? key,
     required int surahNumber,
-    List<_i28.PageRouteInfo>? children,
+    List<_i31.PageRouteInfo>? children,
   }) : super(
          SurahDetailRoute.name,
          args: SurahDetailRouteArgs(key: key, surahNumber: surahNumber),
@@ -679,11 +731,11 @@ class SurahDetailRoute extends _i28.PageRouteInfo<SurahDetailRouteArgs> {
 
   static const String name = 'SurahDetailRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SurahDetailRouteArgs>();
-      return _i25.SurahDetailPage(key: args.key, surahNumber: args.surahNumber);
+      return _i28.SurahDetailPage(key: args.key, surahNumber: args.surahNumber);
     },
   );
 }
@@ -691,7 +743,7 @@ class SurahDetailRoute extends _i28.PageRouteInfo<SurahDetailRouteArgs> {
 class SurahDetailRouteArgs {
   const SurahDetailRouteArgs({this.key, required this.surahNumber});
 
-  final _i29.Key? key;
+  final _i32.Key? key;
 
   final int surahNumber;
 
@@ -712,33 +764,33 @@ class SurahDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i26.ToolsPage]
-class ToolsRoute extends _i28.PageRouteInfo<void> {
-  const ToolsRoute({List<_i28.PageRouteInfo>? children})
+/// [_i29.ToolsPage]
+class ToolsRoute extends _i31.PageRouteInfo<void> {
+  const ToolsRoute({List<_i31.PageRouteInfo>? children})
     : super(ToolsRoute.name, initialChildren: children);
 
   static const String name = 'ToolsRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i26.ToolsPage();
+      return const _i29.ToolsPage();
     },
   );
 }
 
 /// generated route for
-/// [_i27.ToolsRouterPage]
-class ToolsRouterRoute extends _i28.PageRouteInfo<void> {
-  const ToolsRouterRoute({List<_i28.PageRouteInfo>? children})
+/// [_i30.ToolsRouterPage]
+class ToolsRouterRoute extends _i31.PageRouteInfo<void> {
+  const ToolsRouterRoute({List<_i31.PageRouteInfo>? children})
     : super(ToolsRouterRoute.name, initialChildren: children);
 
   static const String name = 'ToolsRouterRoute';
 
-  static _i28.PageInfo page = _i28.PageInfo(
+  static _i31.PageInfo page = _i31.PageInfo(
     name,
     builder: (data) {
-      return const _i27.ToolsRouterPage();
+      return const _i30.ToolsRouterPage();
     },
   );
 }

@@ -34,6 +34,13 @@ class AuthRemoteDatasource {
     return supabaseClient.auth.currentSession != null;
   }
 
+  /// True when there is no session OR the active session is anonymous.
+  /// Synchronous: reads the locally persisted Supabase user.
+  bool isAnonymous() => supabaseClient.auth.currentUser?.isAnonymous ?? true;
+
+  /// Email bound to the active (permanent) account, if any.
+  String? currentEmail() => supabaseClient.auth.currentUser?.email;
+
   Future<bool> logout() async {
     // Supabase persists the session locally; if a session is present,
     // the user is considered authenticated.
@@ -42,30 +49,63 @@ class AuthRemoteDatasource {
   }
 
 
-  /// Sends a 6-digit verification code to [email] via passwordless OTP.
+  /// Starts the connect-email flow from the current ANONYMOUS session.
   ///
-  /// [signInWithOtp] (with the default `shouldCreateUser: true`) handles both
-  /// cases transparently: it creates the account when [email] is new and reuses
-  /// it when the account already exists — always emailing a fresh code.
+  /// Returns `true` when an OTP was sent and the caller must finish via
+  /// [verifyEmailOtp]; `false` when the email was linked INSTANTLY (no OTP).
   ///
-  /// NOTE: this swaps the anonymous session for the email account's session on
-  /// verification; it does not merge anonymous data into the account. Preserving
-  /// anonymous data would require [updateUser] + an email-change confirmation,
-  /// which is incompatible with email verification being disabled.
-  Future<void> sendEmailOtp({required String email}) async {
+  /// - [email] NOT in db  -> [updateUser] attaches it to the current anonymous
+  ///   user. With "Confirm email" OFF this applies immediately: the anonymous
+  ///   user becomes permanent keeping the same `auth.uid()`, so all owned rows
+  ///   (progress, ajr logs, streaks, favorites…) stay attached. No OTP.
+  /// - [email] IN db -> the account already exists; we cannot merge it into the
+  ///   anonymous user. Send a passwordless OTP ([shouldCreateUser] = false);
+  ///   [verifyEmailOtp] then signs into that pre-existing account (the current
+  ///   anonymous session is discarded).
+  Future<bool> startEmailAuth({required String email}) async {
     try {
-      await supabaseClient.auth.signInWithOtp(email: email);
+      final exists = await _emailExists(email);
+
+      if (exists) {
+        await supabaseClient.auth.signInWithOtp(
+          email: email,
+          shouldCreateUser: false,
+        );
+        return true; // OTP sent — caller must verify.
+      }
+
+      await supabaseClient.auth.updateUser(
+        UserAttributes(email: email),
+      );
+      return false; // Linked instantly — user is already signed in.
     } on AuthException catch (e) {
       talker.info(e.message);
       throw ServerException(type: .badRequest, message: e.message);
+    } on ServerException {
+      rethrow;
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Failed to send code!');
+      throw ServerException(type: .unknown, message: 'Failed to start sign in!');
     }
   }
 
-  /// Verifies the [token] entered by the user against [email], completing the
-  /// sign-in/sign-up started by [sendEmailOtp].
+  /// True if a PERMANENT (non-anonymous) account already owns [email].
+  Future<bool> _emailExists(String email) async {
+    try {
+      final result = await supabaseClient.rpc(
+        'email_exists',
+        params: {'p_email': email.trim()},
+      );
+      return result == true;
+    } catch (e) {
+      talker.info(e);
+      throw ServerException(type: .unknown, message: 'Failed to check email!');
+    }
+  }
+
+  /// Verifies the [token] for the EXISTING-account path of [startEmailAuth]
+  /// (the one that returned `true`). On success the session is the pre-existing
+  /// email account; the prior anonymous session is replaced.
   Future<void> verifyEmailOtp({
     required String email,
     required String token,

@@ -796,6 +796,90 @@ abstract class AppLocalizations {
   /// **'Your account is connected'**
   String get auth_link_success;
 
+  /// No description provided for @profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile_title;
+
+  /// No description provided for @profile_guest.
+  ///
+  /// In en, this message translates to:
+  /// **'Guest'**
+  String get profile_guest;
+
+  /// No description provided for @profile_connect_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect my account'**
+  String get profile_connect_account;
+
+  /// No description provided for @profile_logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get profile_logout;
+
+  /// No description provided for @profile_journey.
+  ///
+  /// In en, this message translates to:
+  /// **'Journey'**
+  String get profile_journey;
+
+  /// No description provided for @profile_preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get profile_preferences;
+
+  /// No description provided for @profile_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get profile_account;
+
+  /// No description provided for @profile_statistics.
+  ///
+  /// In en, this message translates to:
+  /// **'Statistics'**
+  String get profile_statistics;
+
+  /// No description provided for @profile_favourites.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourites'**
+  String get profile_favourites;
+
+  /// No description provided for @profile_reminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get profile_reminders;
+
+  /// No description provided for @profile_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get profile_settings;
+
+  /// No description provided for @profile_reading_preferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading preferences'**
+  String get profile_reading_preferences;
+
+  /// No description provided for @profile_help_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Help & support'**
+  String get profile_help_support;
+
+  /// No description provided for @profile_about.
+  ///
+  /// In en, this message translates to:
+  /// **'About Nour'**
+  String get profile_about;
+
   /// No description provided for @l10nDhikr.
   ///
   /// In en, this message translates to:
@@ -1209,6 +1293,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No duas available.'**
   String get dua_empty;
+
+  /// No description provided for @prayer_times_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times'**
+  String get prayer_times_title;
+
+  /// No description provided for @prayer_times_calc_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculation method - {method}'**
+  String prayer_times_calc_method(String method);
+
+  /// No description provided for @prayer_times_method_sheet_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Calculation method'**
+  String get prayer_times_method_sheet_title;
+
+  /// No description provided for @prayer_times_chourouk.
+  ///
+  /// In en, this message translates to:
+  /// **'Chourouk'**
+  String get prayer_times_chourouk;
+
+  /// No description provided for @prayer_times_jumua.
+  ///
+  /// In en, this message translates to:
+  /// **'Jumu\'a'**
+  String get prayer_times_jumua;
+
+  /// No description provided for @prayer_times_location_error.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t determine your location. Enable location access to see accurate prayer times.'**
+  String get prayer_times_location_error;
+
+  /// No description provided for @prayer_times_retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get prayer_times_retry;
+
+  /// No description provided for @hijri_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get hijri_today;
+
+  /// No description provided for @hijri_white_day.
+  ///
+  /// In en, this message translates to:
+  /// **'White day'**
+  String get hijri_white_day;
+
+  /// No description provided for @hijri_coming_up.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming up'**
+  String get hijri_coming_up;
+
+  /// No description provided for @hijri_in_days.
+  ///
+  /// In en, this message translates to:
+  /// **'In {days} days'**
+  String hijri_in_days(int days);
 
   /// No description provided for @l10nStopLineDontTouch.
   ///

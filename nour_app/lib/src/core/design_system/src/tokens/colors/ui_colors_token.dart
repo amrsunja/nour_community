@@ -16,7 +16,7 @@ class UIColorsToken {
 
   factory UIColorsToken.dark() => UIColorsToken(
     bgColor: bgPrimary,
-    iconColor: Color(0x00ffffff),
+    iconColor: Color(0xffffffff),
   );
 
   static const Color shadow = Color(0xff0A0D12);

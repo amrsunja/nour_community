@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
@@ -27,15 +28,17 @@ class DashboardPage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = ref.watch(l10nProvider);
     final dhikrState = ref.watch(dhikrProvider);
     final profile = ref.watch(profileProvider).profile;
     final streak = profile?.currentStreak ?? 0;
     final dhikrsCount = dhikrState.dhikrs.fold(0, (count, d) => count + dhikrState.currentCountOf(d.id));
-    final dhikrGoal = 33 * dhikrState.dhikrs.length;
+    final dhikrGoal = 33;
 
     return Scaffold(
       appBar: UIProfileAppBar(
-        name: profile?.name ?? 'Undefined',
+        name: profile?.name ?? l10n.profile_guest,
+        onAvatarTap: () => ref.read(navigationServicesProvider).toProfile(),
         trailing: UIStreakCard(current: streak, total: 7),
       ),
       body: SafeArea(

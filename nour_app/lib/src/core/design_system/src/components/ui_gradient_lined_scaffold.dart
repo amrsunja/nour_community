@@ -79,10 +79,11 @@ class UIGradientLinedScaffold extends StatelessWidget {
                         children: [
                           UICard(
                             width: .infinity,
-                            height: 300,
+                            height: 250,
                             colors: [
                               Color(0xff45513F),
                               Color(0xff2B3326),
+                              Colors.transparent
                             ],
                             child: FittedBox(
                               fit: .fitWidth,
@@ -116,11 +117,10 @@ class UIGradientLinedScaffold extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                  begin: .topCenter,
+                  begin: .topLeft,
                   end: .bottomCenter,
                   colors: [
-                    Colors.transparent,
-                    UIColorsToken.black.withValues(alpha: 0.95),
+                    UIColorsToken.black.withValues(alpha: 0.15),
                     UIColorsToken.black,
                     UIColorsToken.black,
                   ]

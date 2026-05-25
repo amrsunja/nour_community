@@ -52,9 +52,11 @@ class ToolsPage extends HookConsumerWidget {
           onTap: () {}
         ),
         _ToolItem(
-          Assets.images.illustration16, 
+          Assets.images.illustration16,
           l10n.tools_prayer_times,
-          onTap: () {}
+          onTap: () {
+            nav.toPrayerTimes();
+          }
         ),
         _ToolItem(
           Assets.images.illustration7, 
@@ -69,9 +71,11 @@ class ToolsPage extends HookConsumerWidget {
           onTap: () {}
         ),
         _ToolItem(
-          Assets.images.illustration18, 
+          Assets.images.illustration18,
           l10n.tools_hijri_calendar,
-          onTap: () {}
+          onTap: () {
+            nav.toHijriCalendar();
+          }
         ),
       ];
     });

@@ -374,6 +374,48 @@ class AppLocalizationsAr extends AppLocalizations {
   String get auth_link_success => 'تم ربط حسابك';
 
   @override
+  String get profile_title => 'الملف الشخصي';
+
+  @override
+  String get profile_guest => 'زائر';
+
+  @override
+  String get profile_connect_account => 'ربط حسابي';
+
+  @override
+  String get profile_logout => 'تسجيل الخروج';
+
+  @override
+  String get profile_journey => 'الرحلة';
+
+  @override
+  String get profile_preferences => 'التفضيلات';
+
+  @override
+  String get profile_account => 'الحساب';
+
+  @override
+  String get profile_statistics => 'الإحصائيات';
+
+  @override
+  String get profile_favourites => 'المفضلة';
+
+  @override
+  String get profile_reminders => 'التذكيرات';
+
+  @override
+  String get profile_settings => 'الإعدادات';
+
+  @override
+  String get profile_reading_preferences => 'تفضيلات القراءة';
+
+  @override
+  String get profile_help_support => 'المساعدة والدعم';
+
+  @override
+  String get profile_about => 'حول نور';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -585,6 +627,44 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dua_empty => 'لا توجد أدعية متاحة.';
+
+  @override
+  String get prayer_times_title => 'مواقيت الصلاة';
+
+  @override
+  String prayer_times_calc_method(String method) {
+    return 'طريقة الحساب - $method';
+  }
+
+  @override
+  String get prayer_times_method_sheet_title => 'طريقة الحساب';
+
+  @override
+  String get prayer_times_chourouk => 'الشروق';
+
+  @override
+  String get prayer_times_jumua => 'الجمعة';
+
+  @override
+  String get prayer_times_location_error =>
+      'تعذّر تحديد موقعك. فعّل الوصول إلى الموقع لعرض مواقيت دقيقة.';
+
+  @override
+  String get prayer_times_retry => 'حاول مرة أخرى';
+
+  @override
+  String get hijri_today => 'اليوم';
+
+  @override
+  String get hijri_white_day => 'الأيام البيض';
+
+  @override
+  String get hijri_coming_up => 'القادم';
+
+  @override
+  String hijri_in_days(int days) {
+    return 'خلال $days يوماً';
+  }
 
   @override
   String get l10nStopLineDontTouch =>

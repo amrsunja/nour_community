@@ -151,6 +151,21 @@
   "auth_email_invalid": "Please enter a valid email",
   "auth_link_success": "Your account is connected",
 
+  "profile_title": "Profile",
+  "profile_guest": "Guest",
+  "profile_connect_account": "Connect my account",
+  "profile_logout": "Logout",
+  "profile_journey": "Journey",
+  "profile_preferences": "Preferences",
+  "profile_account": "Account",
+  "profile_statistics": "Statistics",
+  "profile_favourites": "Favourites",
+  "profile_reminders": "Reminders",
+  "profile_settings": "Settings",
+  "profile_reading_preferences": "Reading preferences",
+  "profile_help_support": "Help & support",
+  "profile_about": "About Nour",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "Choose Dhikr",
   "dhikr_continue_section": "Continue dhikr",
@@ -225,6 +240,29 @@
   "dua_error_subtitle": "We couldn’t load the duas right now.",
   "dua_try_again": "Try again",
   "dua_empty": "No duas available.",
+
+  "prayer_times_title": "Prayer times",
+  "prayer_times_calc_method": "Calculation method - {method}",
+  "@prayer_times_calc_method": {
+    "placeholders": {
+      "method": { "type": "String" }
+    }
+  },
+  "prayer_times_method_sheet_title": "Calculation method",
+  "prayer_times_chourouk": "Chourouk",
+  "prayer_times_jumua": "Jumu'a",
+  "prayer_times_location_error": "We couldn't determine your location. Enable location access to see accurate prayer times.",
+  "prayer_times_retry": "Try again",
+
+  "hijri_today": "Today",
+  "hijri_white_day": "White day",
+  "hijri_coming_up": "Coming up",
+  "hijri_in_days": "In {days} days",
+  "@hijri_in_days": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
 
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

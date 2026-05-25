@@ -146,6 +146,21 @@
   "auth_email_invalid": "يرجى إدخال بريد إلكتروني صالح",
   "auth_link_success": "تم ربط حسابك",
 
+  "profile_title": "الملف الشخصي",
+  "profile_guest": "زائر",
+  "profile_connect_account": "ربط حسابي",
+  "profile_logout": "تسجيل الخروج",
+  "profile_journey": "الرحلة",
+  "profile_preferences": "التفضيلات",
+  "profile_account": "الحساب",
+  "profile_statistics": "الإحصائيات",
+  "profile_favourites": "المفضلة",
+  "profile_reminders": "التذكيرات",
+  "profile_settings": "الإعدادات",
+  "profile_reading_preferences": "تفضيلات القراءة",
+  "profile_help_support": "المساعدة والدعم",
+  "profile_about": "حول نور",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "اختر الذكر",
   "dhikr_continue_section": "متابعة الذكر",
@@ -220,6 +235,29 @@
   "dua_error_subtitle": "تعذّر تحميل الأدعية الآن.",
   "dua_try_again": "حاول مرة أخرى",
   "dua_empty": "لا توجد أدعية متاحة.",
+
+  "prayer_times_title": "مواقيت الصلاة",
+  "prayer_times_calc_method": "طريقة الحساب - {method}",
+  "@prayer_times_calc_method": {
+    "placeholders": {
+      "method": { "type": "String" }
+    }
+  },
+  "prayer_times_method_sheet_title": "طريقة الحساب",
+  "prayer_times_chourouk": "الشروق",
+  "prayer_times_jumua": "الجمعة",
+  "prayer_times_location_error": "تعذّر تحديد موقعك. فعّل الوصول إلى الموقع لعرض مواقيت دقيقة.",
+  "prayer_times_retry": "حاول مرة أخرى",
+
+  "hijri_today": "اليوم",
+  "hijri_white_day": "الأيام البيض",
+  "hijri_coming_up": "القادم",
+  "hijri_in_days": "خلال {days} يوماً",
+  "@hijri_in_days": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
 
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠"
 }

@@ -7,9 +7,12 @@ abstract class NavigationServices {
 	void pop();
 
 	void toSignIn();
+	void toRoot();
 	void toHome({bool openSignIn = false});
 	void navigateToHome();
 	void toSettings();
+	void toProfile();
+	void toOnboarding();
 
 	void toDhikrsList();
 	void toAdhkarsList();
@@ -26,6 +29,9 @@ abstract class NavigationServices {
 	void toDuaLibrary();
 	void toDuaReader({required int initialDuaId});
 	void toDailyDua();
+
+	void toPrayerTimes();
+	void toHijriCalendar();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -44,6 +50,16 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
+  void toRoot() {
+		router.replaceAll([RootRoute()]);
+  }
+
+  @override
+  void toOnboarding() {
+		router.replaceAll([OnboardingRoute()]);
+  }
+
+  @override
   void navigateToHome() {
 		router.navigate(HomeRouterRoute());
   }
@@ -56,6 +72,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toSettings() {
 		router.pushPath(RoutePaths.settings);
+  }
+
+  @override
+  void toProfile() {
+		router.push(ProfileRoute());
   }
 
   @override
@@ -119,5 +140,15 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toDailyDua() {
 		router.push(DailyDuaRoute());
+  }
+
+  @override
+  void toPrayerTimes() {
+		router.push(PrayerTimesRoute());
+  }
+
+  @override
+  void toHijriCalendar() {
+		router.push(CalendarRoute());
   }
 }

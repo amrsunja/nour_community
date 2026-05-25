@@ -49,8 +49,8 @@ class SignInPage extends HookConsumerWidget {
       }
     }
 
-    Future<bool> sendCode() {
-      return notifier.sendEmailOtp(email: emailController.text.trim());
+    Future<EmailConnectResult> sendCode() {
+      return notifier.connectEmail(email: emailController.text.trim());
     }
 
     Future<void> onSubmit() async {
@@ -59,10 +59,19 @@ class SignInPage extends HookConsumerWidget {
       FocusScope.of(context).unfocus();
 
       if (!codeSent.value) {
-        if (!await sendCode()) return;
-        codeSent.value = true;
-        secondsLeft.value = _kResendCooldown;
-        return;
+        final res = await sendCode();
+        switch (res) {
+          case EmailConnectResult.failed:
+            return;
+          case EmailConnectResult.linked:
+            // New email: linked instantly, already authenticated.
+            await close();
+            return;
+          case EmailConnectResult.otpSent:
+            codeSent.value = true;
+            secondsLeft.value = _kResendCooldown;
+            return;
+        }
       }
 
       final ok = await notifier.linkEmailWithOTP(
@@ -77,7 +86,9 @@ class SignInPage extends HookConsumerWidget {
 
     Future<void> onResend() async {
       if (isLoading || secondsLeft.value > 0) return;
-      if (await sendCode()) secondsLeft.value = _kResendCooldown;
+      if (await sendCode() == EmailConnectResult.otpSent) {
+        secondsLeft.value = _kResendCooldown;
+      }
     }
 
     Future<void> onGoogle() async {
@@ -197,9 +208,7 @@ class SignInPage extends HookConsumerWidget {
                   ),
                   const UISpace.vert(12),
                   UIButton.primary(
-                    label: codeSent.value
-                        ? l10n.auth_connect
-                        : l10n.auth_send_code,
+                    label:l10n.auth_connect,
                     fullWidth: true,
                     isBusy: isLoading,
                     onTap: onSubmit,
