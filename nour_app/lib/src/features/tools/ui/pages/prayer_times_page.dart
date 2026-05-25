@@ -9,6 +9,8 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_strings.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_tool.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
+import 'package:nour/src/features/notifications/data/models/notifications_settings_model.dart';
+import 'package:nour/src/features/notifications/ui/state_management/notifications_provider.dart';
 
 import '../state_management/prayer_times_provider.dart';
 import '../state_management/prayer_times_state.dart';
@@ -60,9 +62,15 @@ class PrayerTimesPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(prayerTimesProvider.notifier);
     final state = ref.watch(prayerTimesProvider);
+    final notifPresenter = ref.read(notificationsProvider.notifier);
+    final notifSettings =
+        ref.watch(notificationsProvider.select((s) => s.settings));
 
     useEffect(() {
-      WidgetsBinding.instance.addPostFrameCallback((_) => presenter.init());
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        presenter.init();
+        notifPresenter.initSettings();
+      });
       return null;
     }, const []);
 
@@ -75,13 +83,15 @@ class PrayerTimesPage extends HookConsumerWidget {
       body = _Content(
         state: state,
         l10n: l10n,
+        notifSettings: notifSettings,
         onChangeMethod: () => PrayerCalcMethodSheet.show(
           context,
           title: l10n.prayer_times_method_sheet_title,
           selected: state.settings.method,
           onSelect: presenter.changeMethod,
         ),
-        onToggleNotify: presenter.toggleNotify,
+        onToggleNotify: notifPresenter.setPrayer,
+        onToggleAll: notifPresenter.setAllPrayers,
       );
     }
 
@@ -100,14 +110,18 @@ class _Content extends StatelessWidget {
   const _Content({
     required this.state,
     required this.l10n,
+    required this.notifSettings,
     required this.onChangeMethod,
     required this.onToggleNotify,
+    required this.onToggleAll,
   });
 
   final PrayerTimesState state;
   final AppLocale l10n;
+  final NotificationsSettingsModel notifSettings;
   final VoidCallback onChangeMethod;
-  final void Function(PrayerSlot, bool) onToggleNotify;
+  final Future<bool> Function(PrayerSlot, bool) onToggleNotify;
+  final Future<bool> Function(bool) onToggleAll;
 
   @override
   Widget build(BuildContext context) {
@@ -128,6 +142,15 @@ class _Content extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           UIAppearAnimation(
+            delay: const Duration(milliseconds: 150),
+            child: _AllNotificationsCard(
+              label: l10n.notifications_prayer_times_label,
+              enabled: notifSettings.allPrayers,
+              onChanged: (v) => onToggleAll(v),
+            ),
+          ),
+          const SizedBox(height: 16),
+          UIAppearAnimation(
             delay: Duration(milliseconds: 200),
             child: const _DateLine()
           ),
@@ -139,8 +162,9 @@ class _Content extends StatelessWidget {
                 title: PrayerTimesPage._slotTitle(l10n, slot),
                 time: times.forSlot(slot),
                 offsetMinutes: settings.offsetFor(slot),
-                notify: settings.notifyFor(slot),
-                onToggleNotify: () => onToggleNotify(slot, !settings.notifyFor(slot)),
+                notify: notifSettings.prayerFor(slot),
+                onToggleNotify: () =>
+                    onToggleNotify(slot, !notifSettings.prayerFor(slot)),
                 isNext: state.nextSlot == slot,
                 backgroundImage: state.nextSlot == slot ? PrayerTimesPage._slotImage(slot) : null,
                 countdownTarget: state.nextSlot == slot ? state.nextTime : null,
@@ -157,6 +181,48 @@ class _Content extends StatelessWidget {
               jumuaLabel: l10n.prayer_times_jumua,
               jumuaTime: jumua == null ? '--:--' : PrayerTimesPage._hhmm(jumua),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Master switch that enables/disables notifications for all five prayers.
+class _AllNotificationsCard extends StatelessWidget {
+  const _AllNotificationsCard({
+    required this.label,
+    required this.enabled,
+    required this.onChanged,
+  });
+
+  final String label;
+  final bool enabled;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+
+    return UIGradientCard(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: Row(
+        children: [
+          UIIcon(
+            enabled ? UIIconsToken.icons.notif : UIIconsToken.icons.notNotif,
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Text(
+              label,
+              style: theme.typo.inter.title.copyWith(
+                color: UIColorsToken.white,
+              ),
+            ),
+          ),
+          UIToggle(
+            checked: enabled,
+            onCheck: onChanged,
           ),
         ],
       ),
@@ -181,7 +247,6 @@ class _DateLine extends StatelessWidget {
     final style = theme.typo.inter.bodyMedium;
 
     return Row(
-    mainAxisAlignment: .center,
       children: [
         Flexible(
           child: Text(hijriText, maxLines: 1, overflow: TextOverflow.ellipsis, style: style),

@@ -1,12 +1,14 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/notifications/notifications_services.dart';
+import 'package:nour/src/core/utils/enums/calculation_method_type.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
+import 'package:nour/src/features/tools/data/prayer_settings_repo.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 import '../../data/models/notifications_settings_model.dart';
@@ -23,6 +25,10 @@ final notificationsProvider =
   );
 });
 
+/// Single owner of all local-notification scheduling. The prayer-times page and
+/// the onboarding flow drive it through the public `set*` methods; it always
+/// schedules against the calculation method persisted by the prayer-times
+/// feature so the fired notifications match the times shown to the user.
 class NotificationsPresenter extends Presenter<NotificationsState> {
   final NotificationsRepo repo;
   final AppEvents appEvents;
@@ -37,6 +43,16 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   }) : super(NotificationsState.initial);
 
   AppLocale get _l10n => ref.read(l10nProvider);
+
+  /// Calculation method currently selected on the prayer-times page (persisted
+  /// in the settings DB). Falls back to the default when unavailable.
+  Future<CalculationMethodType> _method() async {
+    final response = await ref.read(prayerSettingsRepoProvider).getSettings();
+    return response.when(
+      (settings) => settings.method,
+      (_) => CalculationMethodType.defaultMethod,
+    );
+  }
 
   Map<PrayerSlot, String> _prayerTitles() => {
         PrayerSlot.fajr: _l10n.notifications_prayer_fajr,
@@ -54,18 +70,25 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     );
   }
 
-  Future<bool> setPrayers(bool enable) async {
-    final ok = await _runUpdate(() => repo.setPrayers(enable));
-    if (!ok) return false;
+  // ---------------------------------------------------------------------------
+  // Public toggles
+  // ---------------------------------------------------------------------------
 
-    if (enable) {
-      await _schedulePrayers();
-    } else {
-      await notifications.cancelRange(
-        NotificationIds.prayersBase,
-        NotificationIds.prayersEnd,
-      );
-    }
+  /// Enable/disable the notification for a single prayer. Reschedules the whole
+  /// prayer range so it reflects the new enabled set.
+  Future<bool> setPrayer(PrayerSlot slot, bool enable) async {
+    final ok = await _runUpdate(() => repo.setPrayer(slot, enable));
+    if (!ok) return false;
+    await _schedulePrayers();
+    return true;
+  }
+
+  /// Enable/disable every prayer at once (used by onboarding and the
+  /// prayer-times page "all on/off" control).
+  Future<bool> setAllPrayers(bool enable) async {
+    final ok = await _runUpdate(() => repo.setAllPrayers(enable));
+    if (!ok) return false;
+    await _schedulePrayers();
     return true;
   }
 
@@ -131,10 +154,16 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     return true;
   }
 
-  /// Re-build all schedules from the persisted settings. Call on app start
-  /// (after `NotificationsServices.initialize`) and whenever location changes.
+  /// Re-build all schedules from the persisted settings using the currently
+  /// selected calculation method. Call on app start (after
+  /// `NotificationsServices.initialize`), whenever the calculation method
+  /// changes, and whenever location changes.
   Future<void> rescheduleAll() async {
+    // Make sure we operate on the freshest persisted toggles.
+    await initSettings();
     final s = state.settings;
+    final method = await _method();
+
     await notifications.cancelRange(
       NotificationIds.prayersBase,
       NotificationIds.prayersEnd,
@@ -148,7 +177,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
       NotificationIds.eveningAdhkarEnd,
     );
 
-    if (s.prayers) await _schedulePrayers();
+    if (s.anyPrayer) await _schedulePrayers(method: method);
     if (s.morningAdhkar) {
       await _scheduleAdhkar(
         baseId: NotificationIds.morningAdhkarBase,
@@ -156,6 +185,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         body: _l10n.notifications_morning_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterFajr,
+        method: method,
       );
     }
     if (s.eveningAdhkar) {
@@ -165,6 +195,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         body: _l10n.notifications_evening_adhkar_body,
         offsetMinutes: 30,
         anchor: _AdhkarAnchor.afterMaghrib,
+        method: method,
       );
     }
     if (s.dailyAyah) {
@@ -182,26 +213,38 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   // Internal scheduling
   // ---------------------------------------------------------------------------
 
-  Future<void> _schedulePrayers() async {
+  /// Cancels the prayer ID range then re-schedules exact-time notifications for
+  /// the enabled prayers across the next [NotificationIds.prayersDaysAhead]
+  /// days. [method] defaults to the persisted selection.
+  Future<void> _schedulePrayers({CalculationMethodType? method}) async {
     try {
       await notifications.initialize();
-      final week = await IslamicTools.getUpcomingPrayerTimes(
-        days: NotificationIds.prayersDaysAhead,
+      await notifications.cancelRange(
+        NotificationIds.prayersBase,
+        NotificationIds.prayersEnd,
       );
 
+      final settings = state.settings;
+      if (!settings.anyPrayer) return;
+
+      final resolvedMethod = method ?? await _method();
+      final week = await IslamicTools.getUpcomingPrayerTimes(
+        days: NotificationIds.prayersDaysAhead,
+        method: resolvedMethod,
+      );
       final titles = _prayerTitles();
 
       for (int day = 0; day < week.length; day++) {
         final times = week[day];
         for (final slot in PrayerSlot.values) {
+          if (!settings.prayerFor(slot)) continue;
           final when = tz.TZDateTime.from(times.forSlot(slot), tz.local);
-          final id =
-              NotificationIds.prayersBase + (day * 5) + slot.index;
-          final prayerName = titles[slot]!;
+          final id = NotificationIds.prayersBase + (day * 5) + slot.index;
+          final name = titles[slot]!;
           await notifications.scheduleAt(
             id: id,
-            title: prayerName,
-            body: _l10n.notifications_prayer_body(prayerName),
+            title: name,
+            body: _l10n.notifications_prayer_body(name),
             when: when,
           );
         }
@@ -223,11 +266,14 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     required String body,
     required int offsetMinutes,
     required _AdhkarAnchor anchor,
+    CalculationMethodType? method,
   }) async {
     try {
       await notifications.initialize();
+      final resolvedMethod = method ?? await _method();
       final week = await IslamicTools.getUpcomingPrayerTimes(
         days: NotificationIds.prayersDaysAhead,
+        method: resolvedMethod,
       );
 
       for (int day = 0; day < week.length; day++) {

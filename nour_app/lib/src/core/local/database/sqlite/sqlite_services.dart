@@ -15,7 +15,7 @@ final sqliteServicesProvider = Provider<SQLiteServices>((ref) {
   );
 });
 
-const int _dbVersion = 4;
+const int _dbVersion = 5;
 
 abstract class SQLiteServices {
   String dayKey(DateTime date);
@@ -70,7 +70,11 @@ class SQLiteServicesImpl implements SQLiteServices {
               ${SQLiteConfig.languageCodeKey} TEXT,
               ${SQLiteConfig.countryCodeKey} TEXT,
               ${SQLiteConfig.themeModeKey} TEXT NOT NULL,
-              ${SQLiteConfig.notifPrayersKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifPrayerFajrKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifPrayerDhuhrKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifPrayerAsrKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifPrayerMaghribKey} INTEGER NOT NULL DEFAULT 0,
+              ${SQLiteConfig.notifPrayerIshaKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifMorningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifEveningAdhkarKey} INTEGER NOT NULL DEFAULT 0,
               ${SQLiteConfig.notifDailyAyahKey} INTEGER NOT NULL DEFAULT 0,
@@ -110,6 +114,31 @@ class SQLiteServicesImpl implements SQLiteServices {
             await db.execute(
               'ALTER TABLE ${SQLiteConfig.settingsTableName} '
               'ADD COLUMN ${SQLiteConfig.prayerSettingsKey} TEXT;',
+            );
+          }
+          if (oldVersion < 5) {
+            // Per-prayer notification columns replace the single notif_prayers
+            // flag. Seed each from the legacy flag so existing users keep their
+            // "prayers on/off" choice (all five inherit the old value).
+            for (final column in [
+              SQLiteConfig.notifPrayerFajrKey,
+              SQLiteConfig.notifPrayerDhuhrKey,
+              SQLiteConfig.notifPrayerAsrKey,
+              SQLiteConfig.notifPrayerMaghribKey,
+              SQLiteConfig.notifPrayerIshaKey,
+            ]) {
+              await db.execute(
+                'ALTER TABLE ${SQLiteConfig.settingsTableName} '
+                'ADD COLUMN $column INTEGER NOT NULL DEFAULT 0;',
+              );
+            }
+            await db.execute(
+              'UPDATE ${SQLiteConfig.settingsTableName} SET '
+              '${SQLiteConfig.notifPrayerFajrKey} = ${SQLiteConfig.notifPrayersKey}, '
+              '${SQLiteConfig.notifPrayerDhuhrKey} = ${SQLiteConfig.notifPrayersKey}, '
+              '${SQLiteConfig.notifPrayerAsrKey} = ${SQLiteConfig.notifPrayersKey}, '
+              '${SQLiteConfig.notifPrayerMaghribKey} = ${SQLiteConfig.notifPrayersKey}, '
+              '${SQLiteConfig.notifPrayerIshaKey} = ${SQLiteConfig.notifPrayersKey};',
             );
           }
         },

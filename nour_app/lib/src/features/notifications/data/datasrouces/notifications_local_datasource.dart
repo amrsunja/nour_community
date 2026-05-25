@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/local/database/sqlite/sqlite_config.dart';
 import 'package:nour/src/core/local/database/sqlite/sqlite_services.dart';
+import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 
 import '../models/notifications_settings_model.dart';
 
@@ -15,6 +16,32 @@ class NotificationsLocalDatasource {
 
   NotificationsLocalDatasource({required this.services});
 
+  static const List<String> _columns = [
+    SQLiteConfig.notifPrayerFajrKey,
+    SQLiteConfig.notifPrayerDhuhrKey,
+    SQLiteConfig.notifPrayerAsrKey,
+    SQLiteConfig.notifPrayerMaghribKey,
+    SQLiteConfig.notifPrayerIshaKey,
+    SQLiteConfig.notifMorningAdhkarKey,
+    SQLiteConfig.notifEveningAdhkarKey,
+    SQLiteConfig.notifDailyAyahKey,
+  ];
+
+  static String _prayerColumn(PrayerSlot slot) {
+    switch (slot) {
+      case PrayerSlot.fajr:
+        return SQLiteConfig.notifPrayerFajrKey;
+      case PrayerSlot.dhuhr:
+        return SQLiteConfig.notifPrayerDhuhrKey;
+      case PrayerSlot.asr:
+        return SQLiteConfig.notifPrayerAsrKey;
+      case PrayerSlot.maghrib:
+        return SQLiteConfig.notifPrayerMaghribKey;
+      case PrayerSlot.isha:
+        return SQLiteConfig.notifPrayerIshaKey;
+    }
+  }
+
   /// Reads the singleton settings row and projects only the notification
   /// columns. Falls back to [NotificationsSettingsModel.initial] if no row
   /// exists yet.
@@ -24,12 +51,7 @@ class NotificationsLocalDatasource {
 
     final rows = await db.query(
       SQLiteConfig.settingsTableName,
-      columns: [
-        SQLiteConfig.notifPrayersKey,
-        SQLiteConfig.notifMorningAdhkarKey,
-        SQLiteConfig.notifEveningAdhkarKey,
-        SQLiteConfig.notifDailyAyahKey,
-      ],
+      columns: _columns,
       where: 'id = ?',
       whereArgs: [1],
       limit: 1,
@@ -39,31 +61,39 @@ class NotificationsLocalDatasource {
     return NotificationsSettingsModel.fromJson(rows.first);
   }
 
-  Future<NotificationsSettingsModel> setPrayers(bool enable) =>
-      _updateColumn(SQLiteConfig.notifPrayersKey, enable);
+  Future<NotificationsSettingsModel> setPrayer(PrayerSlot slot, bool enable) =>
+      _updateColumns({_prayerColumn(slot): enable ? 1 : 0});
+
+  Future<NotificationsSettingsModel> setAllPrayers(bool enable) {
+    final value = enable ? 1 : 0;
+    return _updateColumns({
+      SQLiteConfig.notifPrayerFajrKey: value,
+      SQLiteConfig.notifPrayerDhuhrKey: value,
+      SQLiteConfig.notifPrayerAsrKey: value,
+      SQLiteConfig.notifPrayerMaghribKey: value,
+      SQLiteConfig.notifPrayerIshaKey: value,
+    });
+  }
 
   Future<NotificationsSettingsModel> setMorningAdhkar(bool enable) =>
-      _updateColumn(SQLiteConfig.notifMorningAdhkarKey, enable);
+      _updateColumns({SQLiteConfig.notifMorningAdhkarKey: enable ? 1 : 0});
 
   Future<NotificationsSettingsModel> setEveningAdhkar(bool enable) =>
-      _updateColumn(SQLiteConfig.notifEveningAdhkarKey, enable);
+      _updateColumns({SQLiteConfig.notifEveningAdhkarKey: enable ? 1 : 0});
 
   Future<NotificationsSettingsModel> setDailyAyah(bool enable) =>
-      _updateColumn(SQLiteConfig.notifDailyAyahKey, enable);
+      _updateColumns({SQLiteConfig.notifDailyAyahKey: enable ? 1 : 0});
 
-  Future<NotificationsSettingsModel> _updateColumn(
-    String column,
-    bool enable,
+  Future<NotificationsSettingsModel> _updateColumns(
+    Map<String, Object?> values,
   ) async {
     await services.initDatabase();
     final db = services.db;
 
-    final value = enable ? 1 : 0;
-
     // Upsert the singleton settings row (id = 1).
     final updated = await db.update(
       SQLiteConfig.settingsTableName,
-      {column: value},
+      values,
       where: 'id = ?',
       whereArgs: [1],
     );
@@ -72,7 +102,7 @@ class NotificationsLocalDatasource {
       await db.insert(SQLiteConfig.settingsTableName, {
         'id': 1,
         SQLiteConfig.themeModeKey: 'system',
-        column: value,
+        ...values,
       });
     }
 

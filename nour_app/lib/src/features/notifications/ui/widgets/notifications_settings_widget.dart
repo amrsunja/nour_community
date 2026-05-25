@@ -30,8 +30,8 @@ class NotificationsSettingsWidget extends HookConsumerWidget {
     final items = <_NotificationItem>[
       _NotificationItem(
         label: l10n.notifications_prayer_times_label,
-        value: settings.prayers,
-        onChange: presenter.setPrayers,
+        value: settings.allPrayers,
+        onChange: presenter.setAllPrayers,
       ),
       _NotificationItem(
         label: l10n.notifications_morning_adhkar_label,

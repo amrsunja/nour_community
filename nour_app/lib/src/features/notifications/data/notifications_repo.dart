@@ -1,5 +1,6 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
+import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
 import 'datasrouces/notifications_local_datasource.dart';
@@ -20,8 +21,21 @@ class NotificationsRepo {
     return Failure.exceptionsCatcher(() => localDatasource.getSettings());
   }
 
-  Future<SuccessOrError<NotificationsSettingsModel>> setPrayers(bool enable) {
-    return Failure.exceptionsCatcher(() => localDatasource.setPrayers(enable));
+  Future<SuccessOrError<NotificationsSettingsModel>> setPrayer(
+    PrayerSlot slot,
+    bool enable,
+  ) {
+    return Failure.exceptionsCatcher(
+      () => localDatasource.setPrayer(slot, enable),
+    );
+  }
+
+  Future<SuccessOrError<NotificationsSettingsModel>> setAllPrayers(
+    bool enable,
+  ) {
+    return Failure.exceptionsCatcher(
+      () => localDatasource.setAllPrayers(enable),
+    );
   }
 
   Future<SuccessOrError<NotificationsSettingsModel>> setMorningAdhkar(

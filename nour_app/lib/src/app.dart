@@ -37,7 +37,9 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 
 			Future.microtask(() async {
 			  await ref.read(settingsProvider.notifier).initLocalSettings();
-			  await ref.read(notificationsProvider.notifier).initSettings();
+			  // Reschedule against today's prayer times so the rolling 7-day
+			  // window stays accurate on every cold start (also loads settings).
+			  await ref.read(notificationsProvider.notifier).rescheduleAll();
 			});
 
 			return null;
