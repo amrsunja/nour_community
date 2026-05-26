@@ -166,6 +166,22 @@
   "profile_help_support": "Help & support",
   "profile_about": "About Nour",
 
+  "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "dashboard_daily_dhikr_goal": "Daily Dhikr Goal",
+  "dashboard_dhikr_goal_progress": "{current}/{goal}  dhikr per day",
+  "@dashboard_dhikr_goal_progress": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "goal": { "type": "int" }
+    }
+  },
+  "dashboard_start_dhikr": "Start dhikr",
+  "dashboard_quick_actions": "Quick actions",
+  "dashboard_next_prayer": "Next prayer",
+  "dashboard_view_all": "View all",
+  "dashboard_quick_tools": "Quick tools",
+  "dashboard_see_all": "See all",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "Choose Dhikr",
   "dhikr_continue_section": "Continue dhikr",
@@ -178,6 +194,8 @@
   "dhikr_choose_another": "Choose another dhikr",
   "dhikr_quote": "And remember Allah abundantly",
   "dhikr_quote_source": "Surah Al-Anfal 8:45",
+  "dhikr_browse_all_adhkar": "Browse all adhkar",
+  "dhikr_browse_all_adhkar_subtitle": "Morning, evening, situational du’as",
 
   "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "adhkar_all_title": "All Adhkar",

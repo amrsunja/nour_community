@@ -430,6 +430,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_about => 'À propos de Nour';
 
   @override
+  String get l10nDashboard =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get dashboard_daily_dhikr_goal => 'Objectif de dhikr quotidien';
+
+  @override
+  String dashboard_dhikr_goal_progress(int current, int goal) {
+    return '$current/$goal  dhikr par jour';
+  }
+
+  @override
+  String get dashboard_start_dhikr => 'Commencer le dhikr';
+
+  @override
+  String get dashboard_quick_actions => 'Actions rapides';
+
+  @override
+  String get dashboard_next_prayer => 'Prochaine prière';
+
+  @override
+  String get dashboard_view_all => 'Voir tout';
+
+  @override
+  String get dashboard_quick_tools => 'Outils rapides';
+
+  @override
+  String get dashboard_see_all => 'Voir tout';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -465,6 +495,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dhikr_quote_source => 'Sourate Al-Anfal 8:45';
+
+  @override
+  String get dhikr_browse_all_adhkar => 'Parcourir tous les adhkar';
+
+  @override
+  String get dhikr_browse_all_adhkar_subtitle =>
+      'Du’as du matin, du soir et de circonstance';
 
   @override
   String get l10nAdhkar =>

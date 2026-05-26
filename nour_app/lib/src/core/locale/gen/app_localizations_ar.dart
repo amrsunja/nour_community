@@ -416,6 +416,36 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_about => 'حول نور';
 
   @override
+  String get l10nDashboard =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get dashboard_daily_dhikr_goal => 'هدف الذكر اليومي';
+
+  @override
+  String dashboard_dhikr_goal_progress(int current, int goal) {
+    return '$current/$goal  ذكر في اليوم';
+  }
+
+  @override
+  String get dashboard_start_dhikr => 'ابدأ الذكر';
+
+  @override
+  String get dashboard_quick_actions => 'إجراءات سريعة';
+
+  @override
+  String get dashboard_next_prayer => 'الصلاة القادمة';
+
+  @override
+  String get dashboard_view_all => 'عرض الكل';
+
+  @override
+  String get dashboard_quick_tools => 'أدوات سريعة';
+
+  @override
+  String get dashboard_see_all => 'عرض الكل';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -451,6 +481,13 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get dhikr_quote_source => 'سورة الأنفال ٤٥:٨';
+
+  @override
+  String get dhikr_browse_all_adhkar => 'تصفّح كل الأذكار';
+
+  @override
+  String get dhikr_browse_all_adhkar_subtitle =>
+      'أذكار الصباح والمساء والمناسبات';
 
   @override
   String get l10nAdhkar =>

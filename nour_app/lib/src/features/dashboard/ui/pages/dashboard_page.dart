@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/tools/ui/state_management/prayer_times_provider.dart';
+import 'package:nour/src/features/tools/ui/widgets/next_prayer_widget.dart';
 
 @RoutePage()
 class DashboardPage extends HookConsumerWidget {
@@ -26,14 +32,55 @@ class DashboardPage extends HookConsumerWidget {
     });
   }
 
+  static AssetGenImage _slotImage(PrayerSlot slot) {
+    final images = Assets.images;
+    switch (slot) {
+      case PrayerSlot.fajr:
+        return images.prayerTimeFajr;
+      case PrayerSlot.dhuhr:
+        return images.prayerTimeDuhr;
+      case PrayerSlot.asr:
+        return images.prayerTimeAsr;
+      case PrayerSlot.maghrib:
+        return images.prayerTimeMaghrib;
+      case PrayerSlot.isha:
+        return images.prayerTimeIsha;
+    }
+  }
+
+  static String _slotTitle(AppLocale l10n, PrayerSlot slot) {
+    switch (slot) {
+      case PrayerSlot.fajr:
+        return l10n.notifications_prayer_fajr;
+      case PrayerSlot.dhuhr:
+        return l10n.notifications_prayer_dhuhr;
+      case PrayerSlot.asr:
+        return l10n.notifications_prayer_asr;
+      case PrayerSlot.maghrib:
+        return l10n.notifications_prayer_maghrib;
+      case PrayerSlot.isha:
+        return l10n.notifications_prayer_isha;
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
+    final nav = ref.read(navigationServicesProvider);
     final dhikrState = ref.watch(dhikrProvider);
     final profile = ref.watch(profileProvider).profile;
     final streak = profile?.currentStreak ?? 0;
-    final dhikrsCount = dhikrState.dhikrs.fold(0, (count, d) => count + dhikrState.currentCountOf(d.id));
+    final dhikrsCount = dhikrState.dhikrs
+        .fold(0, (count, d) => count + dhikrState.currentCountOf(d.id));
     final dhikrGoal = 33;
+
+    final prayerState = ref.watch(prayerTimesProvider);
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(prayerTimesProvider.notifier).init();
+      });
+      return null;
+    }, const []);
 
     return Scaffold(
       appBar: UIProfileAppBar(
@@ -43,8 +90,9 @@ class DashboardPage extends HookConsumerWidget {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding, vertical: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UIStreakWeek(
                 states: _weekStates(streak),
@@ -53,17 +101,296 @@ class DashboardPage extends HookConsumerWidget {
               const UISpace.vert(16),
               UIAppearAnimation(
                 child: UIDailyAjrCard(
-                  title: 'Daily Dhikr Goal',
-                  subtitle: '$dhikrsCount/$dhikrGoal  dikr per day',
+                  title: l10n.dashboard_daily_dhikr_goal,
+                  subtitle: l10n.dashboard_dhikr_goal_progress(dhikrsCount, dhikrGoal),
                   currentCount: dhikrsCount,
                   totalCount: dhikrGoal,
-                  buttonTitle: 'Start dikr',
+                  buttonTitle: l10n.dashboard_start_dhikr,
                   onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
                 ),
               ),
+
+              // ---------------- Quick actions ----------------
+              const UISpace.vert(24),
+              _SectionHeader(title: l10n.dashboard_quick_actions),
+              const UISpace.vert(12),
+              UIAppearAnimation(
+                delay: const Duration(milliseconds: 100),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _QuickActionCard(
+                        asset: Assets.images.illustration12,
+                        label: l10n.tools_daily_ayah,
+                        points: 5,
+                        onTap: nav.toDailyAyah,
+                      ),
+                    ),
+                    const UISpace.horz(12),
+                    Expanded(
+                      child: _QuickActionCard(
+                        asset: Assets.images.illustration19,
+                        label: l10n.tools_daily_dua,
+                        points: 5,
+                        onTap: nav.toDailyDua,
+                      ),
+                    ),
+                    const UISpace.horz(12),
+                    Expanded(
+                      child: _QuickActionCard(
+                        asset: Assets.images.illustration14,
+                        label: l10n.tools_daily_quiz,
+                        points: 10,
+                        // Navigation to be implemented later.
+                        onTap: () {},
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // ---------------- Next prayer ----------------
+              const UISpace.vert(24),
+              if (prayerState.nextSlot != null &&
+                  prayerState.nextTime != null)
+                UIAppearAnimation(
+                  delay: const Duration(milliseconds: 150),
+                  child: NextPrayerWidget(
+                    nextPrayerLabel: l10n.dashboard_next_prayer,
+                    viewAllLabel: l10n.dashboard_view_all,
+                    prayerName: _slotTitle(l10n, prayerState.nextSlot!),
+                    countdownTarget: prayerState.nextTime!,
+                    backgroundImage: _slotImage(prayerState.nextSlot!),
+                    onViewAll: nav.toPrayerTimes,
+                  ),
+                ),
+
+              // ---------------- Quick tools ----------------
+              const UISpace.vert(24),
+              _SectionHeader(
+                title: l10n.dashboard_quick_tools,
+                actionLabel: l10n.dashboard_see_all,
+                // Tools is tab index 3 in the home AutoTabsRouter.
+                onAction: () => context.tabsRouter.setActiveIndex(3),
+              ),
+              const UISpace.vert(12),
+              UIAppearAnimation(
+                delay: const Duration(milliseconds: 200),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _QuickToolCard(
+                        asset: Assets.images.illustration15,
+                        label: l10n.tools_qibla_finder,
+                        onTap: nav.toQiblaFinder,
+                      ),
+                    ),
+                    const UISpace.horz(12),
+                    Expanded(
+                      child: _QuickToolCard(
+                        asset: Assets.images.illustration16,
+                        label: l10n.tools_prayer_times,
+                        onTap: nav.toPrayerTimes,
+                      ),
+                    ),
+                    const UISpace.horz(12),
+                    Expanded(
+                      child: _QuickToolCard(
+                        asset: Assets.images.illustration18,
+                        label: l10n.tools_hijri_calendar,
+                        onTap: nav.toHijriCalendar,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              UISpace.vert(100)
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Section title row with an optional trailing text action ("View all" / "See all").
+class _SectionHeader extends StatelessWidget {
+  const _SectionHeader({
+    required this.title,
+    this.actionLabel,
+    this.onAction,
+  });
+
+  final String title;
+  final String? actionLabel;
+  final VoidCallback? onAction;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Expanded(
+          child: Text(
+            title,
+            style: theme.typo.inter.title.copyWith(
+              color: UIColorsToken.white,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        if (actionLabel != null)
+          UITap(
+            onTap: onAction,
+            child: Text(
+              actionLabel!,
+              style: theme.typo.inter.bodyMedium.copyWith(
+                color: UIColorsToken.white,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+/// Quick-action tile: label top-left, points pill top-right, glowing
+/// illustration filling the body.
+class _QuickActionCard extends StatelessWidget {
+  const _QuickActionCard({
+    required this.asset,
+    required this.label,
+    required this.points,
+    this.onTap,
+  });
+
+  final AssetGenImage asset;
+  final String label;
+  final int points;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+
+    return UICard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(12),
+      color: UIColorsToken.black80,
+      disableBorder: true,
+      borderRadius: 10,
+      shadows: [],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.typo.inter.bodyMedium.copyWith(
+                    color: UIColorsToken.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 4),
+              _PointsBadge(points: points),
+            ],
+          ),
+          const SizedBox(height: 8),
+          AspectRatio(
+            aspectRatio: 1.5,
+            child: Center(
+              child: FittedBox(
+                fit: BoxFit.contain,
+                child: UIGlowingBlock(
+                  shadow: UIShadowToken.texts,
+                  child: asset.image(
+                    height: 56,
+                    filterQuality: FilterQuality.high,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _PointsBadge extends StatelessWidget {
+  const _PointsBadge({required this.points});
+
+  final int points;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      decoration: BoxDecoration(
+        color: UIColorsToken.bgTertiaryGreen,
+        borderRadius: BorderRadius.circular(4),
+      ),
+      child: Text(
+        '+$points',
+        style: theme.typo.inter.bodySmall.copyWith(
+          color: UIColorsToken.white,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+  }
+}
+
+/// Compact tool tile: centered glowing icon with a label beneath.
+class _QuickToolCard extends StatelessWidget {
+  const _QuickToolCard({
+    required this.asset,
+    required this.label,
+    this.onTap,
+  });
+
+  final AssetGenImage asset;
+  final String label;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+
+    return UICard(
+      onTap: onTap,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+      color: UIColorsToken.black80,
+      disableBorder: true,
+      shadows: [],
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          UIGlowingBlock(
+            shadow: UIShadowToken.texts,
+            child: asset.image(
+              height: 44,
+              filterQuality: FilterQuality.high,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.typo.inter.bodyMedium.copyWith(
+              color: UIColorsToken.white,
+            ),
+          ),
+        ],
       ),
     );
   }

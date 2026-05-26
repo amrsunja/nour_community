@@ -61,13 +61,6 @@ class ToolsPage extends HookConsumerWidget {
           }
         ),
         _ToolItem(
-          Assets.images.illustration7, 
-          l10n.tools_dhikr_counter,
-          onTap: () {
-            nav.toDhikrsList();
-          }
-        ),
-        _ToolItem(
           Assets.images.illustration17, 
           l10n.tools_zakat_calculator,
           onTap: () {}
@@ -77,6 +70,20 @@ class ToolsPage extends HookConsumerWidget {
           l10n.tools_hijri_calendar,
           onTap: () {
             nav.toHijriCalendar();
+          }
+        ),
+        _ToolItem(
+          Assets.images.illustration18,
+          l10n.tools_hijri_calendar,
+          onTap: () {
+            nav.toHijriCalendar();
+          }
+        ),
+        _ToolItem(
+          Assets.images.illustration36, 
+          l10n.adhkar_all_title,
+          onTap: () {
+            nav.toAdhkarsList();
           }
         ),
       ];

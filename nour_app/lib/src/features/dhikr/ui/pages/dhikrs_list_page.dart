@@ -92,11 +92,11 @@ class DhikrsListPage extends HookConsumerWidget {
                             crossAxisAlignment: .start,
                             children: [
                               Text(
-                                'Browse all adhkar',
+                                l10n.dhikr_browse_all_adhkar,
                                 style: theme.typo.inter.title,
                               ),
                               Text(
-                                'Morning, evening, situational du’as',
+                                l10n.dhikr_browse_all_adhkar_subtitle,
                                 style: theme.typo.inter.caption.copyWith(
                                   color: UIColorsToken.textParagraph
                                 ),

@@ -161,6 +161,16 @@
   "profile_help_support": "Aide et support",
   "profile_about": "À propos de Nour",
 
+  "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "dashboard_daily_dhikr_goal": "Objectif de dhikr quotidien",
+  "dashboard_dhikr_goal_progress": "{current}/{goal}  dhikr par jour",
+  "dashboard_start_dhikr": "Commencer le dhikr",
+  "dashboard_quick_actions": "Actions rapides",
+  "dashboard_next_prayer": "Prochaine prière",
+  "dashboard_view_all": "Voir tout",
+  "dashboard_quick_tools": "Outils rapides",
+  "dashboard_see_all": "Voir tout",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "Choisir un dhikr",
   "dhikr_continue_section": "Continuer le dhikr",
@@ -173,6 +183,8 @@
   "dhikr_choose_another": "Choisir un autre dhikr",
   "dhikr_quote": "Et invoquez Allah fréquemment",
   "dhikr_quote_source": "Sourate Al-Anfal 8:45",
+  "dhikr_browse_all_adhkar": "Parcourir tous les adhkar",
+  "dhikr_browse_all_adhkar_subtitle": "Du’as du matin, du soir et de circonstance",
 
   "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "adhkar_all_title": "Tous les adhkar",

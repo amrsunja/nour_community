@@ -117,9 +117,11 @@ class PrayerTimeWidget extends HookWidget {
     if (!isNext) return content;
 
     return Container(
+      height: 150,
+      width: .infinity,
       decoration: BoxDecoration(
         color: UIColorsToken.black80,
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(10),
       ),
       clipBehavior: Clip.antiAlias,
       child: content,

@@ -880,6 +880,60 @@ abstract class AppLocalizations {
   /// **'About Nour'**
   String get profile_about;
 
+  /// No description provided for @l10nDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nDashboard;
+
+  /// No description provided for @dashboard_daily_dhikr_goal.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily Dhikr Goal'**
+  String get dashboard_daily_dhikr_goal;
+
+  /// No description provided for @dashboard_dhikr_goal_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'{current}/{goal}  dhikr per day'**
+  String dashboard_dhikr_goal_progress(int current, int goal);
+
+  /// No description provided for @dashboard_start_dhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Start dhikr'**
+  String get dashboard_start_dhikr;
+
+  /// No description provided for @dashboard_quick_actions.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick actions'**
+  String get dashboard_quick_actions;
+
+  /// No description provided for @dashboard_next_prayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Next prayer'**
+  String get dashboard_next_prayer;
+
+  /// No description provided for @dashboard_view_all.
+  ///
+  /// In en, this message translates to:
+  /// **'View all'**
+  String get dashboard_view_all;
+
+  /// No description provided for @dashboard_quick_tools.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick tools'**
+  String get dashboard_quick_tools;
+
+  /// No description provided for @dashboard_see_all.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get dashboard_see_all;
+
   /// No description provided for @l10nDhikr.
   ///
   /// In en, this message translates to:
@@ -951,6 +1005,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Surah Al-Anfal 8:45'**
   String get dhikr_quote_source;
+
+  /// No description provided for @dhikr_browse_all_adhkar.
+  ///
+  /// In en, this message translates to:
+  /// **'Browse all adhkar'**
+  String get dhikr_browse_all_adhkar;
+
+  /// No description provided for @dhikr_browse_all_adhkar_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning, evening, situational du’as'**
+  String get dhikr_browse_all_adhkar_subtitle;
 
   /// No description provided for @l10nAdhkar.
   ///

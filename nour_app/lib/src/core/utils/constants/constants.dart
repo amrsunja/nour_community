@@ -7,4 +7,4 @@ const String kPrivacyPolicyUrl = 'https://sawm.io/privacy';
 const String kAboutSawmUrl = 'https://sawm.io/guide';
 const String kTelegramLink = 'https://t.me/sawm_io';
 
-const double kPageHorzPadding = 20;
+const double kPageHorzPadding = 16;

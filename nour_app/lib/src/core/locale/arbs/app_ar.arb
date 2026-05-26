@@ -161,6 +161,16 @@
   "profile_help_support": "المساعدة والدعم",
   "profile_about": "حول نور",
 
+  "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "dashboard_daily_dhikr_goal": "هدف الذكر اليومي",
+  "dashboard_dhikr_goal_progress": "{current}/{goal}  ذكر في اليوم",
+  "dashboard_start_dhikr": "ابدأ الذكر",
+  "dashboard_quick_actions": "إجراءات سريعة",
+  "dashboard_next_prayer": "الصلاة القادمة",
+  "dashboard_view_all": "عرض الكل",
+  "dashboard_quick_tools": "أدوات سريعة",
+  "dashboard_see_all": "عرض الكل",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "اختر الذكر",
   "dhikr_continue_section": "متابعة الذكر",
@@ -173,6 +183,8 @@
   "dhikr_choose_another": "اختر ذكرًا آخر",
   "dhikr_quote": "واذكروا الله كثيرًا",
   "dhikr_quote_source": "سورة الأنفال ٤٥:٨",
+  "dhikr_browse_all_adhkar": "تصفّح كل الأذكار",
+  "dhikr_browse_all_adhkar_subtitle": "أذكار الصباح والمساء والمناسبات",
 
   "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "adhkar_all_title": "كل الأذكار",
