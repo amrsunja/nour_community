@@ -48,6 +48,8 @@ import 'package:nour/src/features/source/ui/pages/source_page.dart' as _i26;
 import 'package:nour/src/features/tools/ui/pages/calendar_page.dart' as _i4;
 import 'package:nour/src/features/tools/ui/pages/prayer_times_page.dart'
     as _i20;
+import 'package:nour/src/features/tools/ui/pages/qibla_finder_page.dart'
+    as _i33;
 import 'package:nour/src/features/tools/ui/pages/tools_page.dart' as _i29;
 
 /// generated route for
@@ -600,6 +602,22 @@ class PrayerTimesRoute extends _i31.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i20.PrayerTimesPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i33.QiblaFinderPage]
+class QiblaFinderRoute extends _i31.PageRouteInfo<void> {
+  const QiblaFinderRoute({List<_i31.PageRouteInfo>? children})
+    : super(QiblaFinderRoute.name, initialChildren: children);
+
+  static const String name = 'QiblaFinderRoute';
+
+  static _i31.PageInfo page = _i31.PageInfo(
+    name,
+    builder: (data) {
+      return const _i33.QiblaFinderPage();
     },
   );
 }

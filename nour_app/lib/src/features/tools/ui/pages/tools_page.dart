@@ -47,9 +47,11 @@ class ToolsPage extends HookConsumerWidget {
           onTap: () {}
         ),
         _ToolItem(
-          Assets.images.illustration15, 
+          Assets.images.illustration15,
           l10n.tools_qibla_finder,
-          onTap: () {}
+          onTap: () {
+            nav.toQiblaFinder();
+          }
         ),
         _ToolItem(
           Assets.images.illustration16,

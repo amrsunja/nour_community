@@ -177,6 +177,10 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.hijriCalendar,
               page: CalendarRoute.page,
             ),
+            AutoRoute(
+              path: RoutePaths.qiblaFinder,
+              page: QiblaFinderRoute.page,
+            ),
           ],
         ),
       ],

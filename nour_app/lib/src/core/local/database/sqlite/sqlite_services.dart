@@ -59,7 +59,7 @@ class SQLiteServicesImpl implements SQLiteServices {
   Future<Database?> _openDB(String password) async {
     try {
       return await openDatabase(
-        'sawmio.db',
+        'nourcommunity.db',
         password: password,
         version: _dbVersion,
         onCreate: (db, version) async {

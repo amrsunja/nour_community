@@ -254,6 +254,15 @@
   "prayer_times_location_error": "We couldn't determine your location. Enable location access to see accurate prayer times.",
   "prayer_times_retry": "Try again",
 
+  "qibla_distance_to_mecca": "{distance} km to Mecca",
+  "@qibla_distance_to_mecca": {
+    "placeholders": {
+      "distance": { "type": "String" }
+    }
+  },
+  "qibla_aligned": "Facing the Qibla",
+  "qibla_sensor_error": "Your device doesn't have a compass sensor.",
+
   "hijri_today": "Today",
   "hijri_white_day": "White day",
   "hijri_coming_up": "Coming up",

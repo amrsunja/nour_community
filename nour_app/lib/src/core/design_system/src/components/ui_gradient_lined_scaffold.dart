@@ -80,6 +80,7 @@ class UIGradientLinedScaffold extends StatelessWidget {
                           UICard(
                             width: .infinity,
                             height: 250,
+                            disableBorder: true,
                             colors: [
                               Color(0xff45513F),
                               Color(0xff2B3326),
@@ -121,6 +122,7 @@ class UIGradientLinedScaffold extends StatelessWidget {
                   end: .bottomCenter,
                   colors: [
                     UIColorsToken.black.withValues(alpha: 0.15),
+                    UIColorsToken.black,
                     UIColorsToken.black,
                     UIColorsToken.black,
                   ]

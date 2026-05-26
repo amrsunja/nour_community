@@ -1336,6 +1336,24 @@ abstract class AppLocalizations {
   /// **'Try again'**
   String get prayer_times_retry;
 
+  /// No description provided for @qibla_distance_to_mecca.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} km to Mecca'**
+  String qibla_distance_to_mecca(String distance);
+
+  /// No description provided for @qibla_aligned.
+  ///
+  /// In en, this message translates to:
+  /// **'Facing the Qibla'**
+  String get qibla_aligned;
+
+  /// No description provided for @qibla_sensor_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Your device doesn\'t have a compass sensor.'**
+  String get qibla_sensor_error;
+
   /// No description provided for @hijri_today.
   ///
   /// In en, this message translates to:

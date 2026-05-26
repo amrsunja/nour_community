@@ -32,6 +32,7 @@ abstract class NavigationServices {
 
 	void toPrayerTimes();
 	void toHijriCalendar();
+	void toQiblaFinder();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -150,5 +151,10 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toHijriCalendar() {
 		router.push(CalendarRoute());
+  }
+
+  @override
+  void toQiblaFinder() {
+		router.push(QiblaFinderRoute());
   }
 }

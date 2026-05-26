@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:adhan_dart/adhan_dart.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:geolocator/geolocator.dart';
@@ -8,6 +10,15 @@ import '../enums/calculation_method_type.dart';
 import '../geolocator/geolocator_tools.dart';
 
 enum PrayerSlot { fajr, dhuhr, asr, maghrib, isha }
+
+/// Qibla solution for a given coordinate: the [bearing] to the Kaaba measured
+/// clockwise from true north (0..360) and the great-circle [distanceKm].
+class QiblaInfo {
+  final double bearing;
+  final double distanceKm;
+
+  const QiblaInfo({required this.bearing, required this.distanceKm});
+}
 
 /// A single prayer occurrence: which [slot] it is and the absolute [time]
 /// (already in the local timezone). Used to resolve the "next prayer".
@@ -201,4 +212,70 @@ class IslamicTools {
     );
     return times.dhuhr;
   }
+
+  // ── Qibla ──────────────────────────────────────────────────────────────────
+
+  /// Kaaba (Masjid al-Haram) coordinates.
+  static const double kaabaLatitude = 21.4225241;
+  static const double kaabaLongitude = 39.8261818;
+
+  /// Mean Earth radius in km (haversine).
+  static const double _earthRadiusKm = 6371.0088;
+
+  /// Qibla bearing from [latitude]/[longitude] to the Kaaba, measured
+  /// clockwise from true north (0..360). Uses the great-circle initial
+  /// bearing formula — independent of any package so it can't drift with
+  /// upstream API changes.
+  static double qiblaBearing({
+    required double latitude,
+    required double longitude,
+  }) {
+    final phi1 = _toRad(latitude);
+    final phi2 = _toRad(kaabaLatitude);
+    final deltaLambda = _toRad(kaabaLongitude - longitude);
+
+    final y = math.sin(deltaLambda) * math.cos(phi2);
+    final x = math.cos(phi1) * math.sin(phi2) -
+        math.sin(phi1) * math.cos(phi2) * math.cos(deltaLambda);
+
+    final theta = math.atan2(y, x);
+    return (_toDeg(theta) + 360) % 360;
+  }
+
+  /// Great-circle distance from [latitude]/[longitude] to the Kaaba, in km.
+  static double distanceToMeccaKm({
+    required double latitude,
+    required double longitude,
+  }) {
+    final phi1 = _toRad(latitude);
+    final phi2 = _toRad(kaabaLatitude);
+    final deltaPhi = _toRad(kaabaLatitude - latitude);
+    final deltaLambda = _toRad(kaabaLongitude - longitude);
+
+    final a = math.sin(deltaPhi / 2) * math.sin(deltaPhi / 2) +
+        math.cos(phi1) *
+            math.cos(phi2) *
+            math.sin(deltaLambda / 2) *
+            math.sin(deltaLambda / 2);
+    final c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a));
+    return _earthRadiusKm * c;
+  }
+
+  /// Resolves the [QiblaInfo] (bearing + distance) at the device location.
+  static Future<QiblaInfo> getQibla({Position? position}) async {
+    final pos = position ?? await GeolocatorTools.currentOrCachedPosition();
+    return QiblaInfo(
+      bearing: qiblaBearing(
+        latitude: pos.latitude,
+        longitude: pos.longitude,
+      ),
+      distanceKm: distanceToMeccaKm(
+        latitude: pos.latitude,
+        longitude: pos.longitude,
+      ),
+    );
+  }
+
+  static double _toRad(double deg) => deg * math.pi / 180.0;
+  static double _toDeg(double rad) => rad * 180.0 / math.pi;
 }

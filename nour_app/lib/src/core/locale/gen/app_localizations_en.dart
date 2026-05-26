@@ -662,6 +662,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get prayer_times_retry => 'Try again';
 
   @override
+  String qibla_distance_to_mecca(String distance) {
+    return '$distance km to Mecca';
+  }
+
+  @override
+  String get qibla_aligned => 'Facing the Qibla';
+
+  @override
+  String get qibla_sensor_error =>
+      'Your device doesn\'t have a compass sensor.';
+
+  @override
   String get hijri_today => 'Today';
 
   @override

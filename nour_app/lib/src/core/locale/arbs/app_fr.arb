@@ -249,6 +249,15 @@
   "prayer_times_location_error": "Impossible de déterminer votre position. Activez la localisation pour des horaires précis.",
   "prayer_times_retry": "Réessayer",
 
+  "qibla_distance_to_mecca": "{distance} km jusqu'à La Mecque",
+  "@qibla_distance_to_mecca": {
+    "placeholders": {
+      "distance": { "type": "String" }
+    }
+  },
+  "qibla_aligned": "Direction de la Qibla",
+  "qibla_sensor_error": "Votre appareil ne dispose pas de boussole.",
+
   "hijri_today": "Aujourd'hui",
   "hijri_white_day": "Jour blanc",
   "hijri_coming_up": "À venir",

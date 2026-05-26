@@ -653,6 +653,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get prayer_times_retry => 'حاول مرة أخرى';
 
   @override
+  String qibla_distance_to_mecca(String distance) {
+    return '$distance كم إلى مكة';
+  }
+
+  @override
+  String get qibla_aligned => 'اتجاه القبلة';
+
+  @override
+  String get qibla_sensor_error => 'جهازك لا يحتوي على مستشعر بوصلة.';
+
+  @override
   String get hijri_today => 'اليوم';
 
   @override

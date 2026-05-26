@@ -79,6 +79,10 @@ dependencies:
   adhan_dart: ^2.0.1
   hijri: ^3.0.0
 
+  # Qibla (device heading + reverse-geocoding for the location label)
+  flutter_compass: ^0.8.1
+  geocoding: ^4.0.0
+
   # Utils
   flutter_inappwebview: ^6.1.5
   url_launcher: ^6.3.2

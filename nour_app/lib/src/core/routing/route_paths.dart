@@ -41,6 +41,7 @@ abstract class RoutePaths {
   // Tools
   static const prayerTimes = 'prayer-times';
   static const hijriCalendar = 'hijri-calendar';
+  static const qiblaFinder = 'qibla-finder';
 
 
   // Root dialog
