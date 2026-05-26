@@ -262,6 +262,7 @@
   },
   "qibla_aligned": "Facing the Qibla",
   "qibla_sensor_error": "Your device doesn't have a compass sensor.",
+  "qibla_locating": "Locating…",
 
   "hijri_today": "Today",
   "hijri_white_day": "White day",

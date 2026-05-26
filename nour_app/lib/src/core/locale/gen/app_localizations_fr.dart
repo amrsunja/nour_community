@@ -683,6 +683,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get qibla_sensor_error => 'Votre appareil ne dispose pas de boussole.';
 
   @override
+  String get qibla_locating => 'Localisation…';
+
+  @override
   String get hijri_today => 'Aujourd\'hui';
 
   @override

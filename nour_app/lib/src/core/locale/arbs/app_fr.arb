@@ -257,6 +257,7 @@
   },
   "qibla_aligned": "Direction de la Qibla",
   "qibla_sensor_error": "Votre appareil ne dispose pas de boussole.",
+  "qibla_locating": "Localisation…",
 
   "hijri_today": "Aujourd'hui",
   "hijri_white_day": "Jour blanc",

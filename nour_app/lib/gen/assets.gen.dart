@@ -113,6 +113,10 @@ class $AssetsImagesGen {
   AssetGenImage get arabicText =>
       const AssetGenImage('assets/images/arabic_text.png');
 
+  /// File path: assets/images/compass_lines.png
+  AssetGenImage get compassLines =>
+      const AssetGenImage('assets/images/compass_lines.png');
+
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
 
@@ -290,6 +294,7 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     apple,
     arabicText,
+    compassLines,
     google,
     illustration36,
     illustration1,

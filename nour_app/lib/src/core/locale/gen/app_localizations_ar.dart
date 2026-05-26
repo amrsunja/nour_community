@@ -664,6 +664,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get qibla_sensor_error => 'جهازك لا يحتوي على مستشعر بوصلة.';
 
   @override
+  String get qibla_locating => 'جارٍ تحديد الموقع…';
+
+  @override
   String get hijri_today => 'اليوم';
 
   @override

@@ -257,6 +257,7 @@
   },
   "qibla_aligned": "اتجاه القبلة",
   "qibla_sensor_error": "جهازك لا يحتوي على مستشعر بوصلة.",
+  "qibla_locating": "جارٍ تحديد الموقع…",
 
   "hijri_today": "اليوم",
   "hijri_white_day": "الأيام البيض",

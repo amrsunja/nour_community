@@ -1354,6 +1354,12 @@ abstract class AppLocalizations {
   /// **'Your device doesn\'t have a compass sensor.'**
   String get qibla_sensor_error;
 
+  /// No description provided for @qibla_locating.
+  ///
+  /// In en, this message translates to:
+  /// **'Locating…'**
+  String get qibla_locating;
+
   /// No description provided for @hijri_today.
   ///
   /// In en, this message translates to:

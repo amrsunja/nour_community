@@ -674,6 +674,9 @@ class AppLocalizationsEn extends AppLocalizations {
       'Your device doesn\'t have a compass sensor.';
 
   @override
+  String get qibla_locating => 'Locating…';
+
+  @override
   String get hijri_today => 'Today';
 
   @override

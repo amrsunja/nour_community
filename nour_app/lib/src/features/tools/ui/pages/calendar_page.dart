@@ -91,7 +91,7 @@ class CalendarPage extends HookConsumerWidget {
                   delay: Duration(milliseconds: 600 + (i * 300)),
                   child: HijriEventCardWidget(
                     name: HijriStrings.eventName(events[i].event.id, lang),
-                    relative: l10n.hijri_in_days(events[i].daysUntil),
+                    relative: events[i].daysUntil <= 0 ? l10n.hijri_today : l10n.hijri_in_days(events[i].daysUntil),
                     highlighted: i == 0,
                   ),
                 ),
