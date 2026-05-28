@@ -27,6 +27,10 @@ class ProfileRepo {
 		});
   }
 
+  /// Live profile stream (Supabase Realtime). Errors surface through the
+  /// stream's `onError`; the presenter keeps the last good state on failure.
+  Stream<ProfileModel> watchProfile() => remoteDatasource.watchProfile();
+
   Future<SuccessOrError<void>> updateDailyPracticeTime(int minutes) async {
     return await Failure.exceptionsCatcher(() async {
       await remoteDatasource.updateDailyPracticeTime(minutes);

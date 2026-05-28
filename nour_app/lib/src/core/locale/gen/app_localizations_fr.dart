@@ -460,6 +460,39 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dashboard_see_all => 'Voir tout';
 
   @override
+  String get l10nRewards =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String reward_streak_day_title(int day) {
+    return 'Jour $day';
+  }
+
+  @override
+  String reward_streak_congrats(int count) {
+    return 'Félicitations ! Votre série est maintenant de $count jour(s)';
+  }
+
+  @override
+  String get reward_dhikr_title => 'MashaAllah';
+
+  @override
+  String get reward_dhikr_subtitle =>
+      'Vous avez terminé votre dhikr et gagné votre ajr quotidien';
+
+  @override
+  String get reward_ajr_earned => 'Ajr gagné';
+
+  @override
+  String get reward_dhikr_completed => 'Dhikr complétés';
+
+  @override
+  String get reward_alhamdulilah => 'Alhamdulilah';
+
+  @override
+  String get reward_go_further => 'Aller plus loin dans ma pratique';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

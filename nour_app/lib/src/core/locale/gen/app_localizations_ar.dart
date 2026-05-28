@@ -446,6 +446,38 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboard_see_all => 'عرض الكل';
 
   @override
+  String get l10nRewards =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String reward_streak_day_title(int day) {
+    return 'اليوم $day';
+  }
+
+  @override
+  String reward_streak_congrats(int count) {
+    return 'تهانينا! سلسلتك الآن $count يوم/أيام';
+  }
+
+  @override
+  String get reward_dhikr_title => 'ما شاء الله';
+
+  @override
+  String get reward_dhikr_subtitle => 'لقد أكملت ذكرك، وكسبت أجرك اليومي';
+
+  @override
+  String get reward_ajr_earned => 'الأجر المكتسب';
+
+  @override
+  String get reward_dhikr_completed => 'الأذكار المكتملة';
+
+  @override
+  String get reward_alhamdulilah => 'الحمد لله';
+
+  @override
+  String get reward_go_further => 'تعمّق أكثر في ممارستي';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

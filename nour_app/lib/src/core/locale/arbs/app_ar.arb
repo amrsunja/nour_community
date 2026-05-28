@@ -171,6 +171,16 @@
   "dashboard_quick_tools": "أدوات سريعة",
   "dashboard_see_all": "عرض الكل",
 
+  "l10nRewards": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "reward_streak_day_title": "اليوم {day}",
+  "reward_streak_congrats": "تهانينا! سلسلتك الآن {count} يوم/أيام",
+  "reward_dhikr_title": "ما شاء الله",
+  "reward_dhikr_subtitle": "لقد أكملت ذكرك، وكسبت أجرك اليومي",
+  "reward_ajr_earned": "الأجر المكتسب",
+  "reward_dhikr_completed": "الأذكار المكتملة",
+  "reward_alhamdulilah": "الحمد لله",
+  "reward_go_further": "تعمّق أكثر في ممارستي",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "اختر الذكر",
   "dhikr_continue_section": "متابعة الذكر",

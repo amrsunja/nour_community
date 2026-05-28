@@ -43,6 +43,10 @@ abstract class RoutePaths {
   static const hijriCalendar = 'hijri-calendar';
   static const qiblaFinder = 'qibla-finder';
 
+  // Rewards (full-screen celebratory pages over the navbar)
+  static const rewardStreak = 'reward-streak';
+  static const rewardDailyDhikr = 'reward-daily-dhikr';
+
 
   // Root dialog
 	static const String chooseLanguage = 'choose-language';

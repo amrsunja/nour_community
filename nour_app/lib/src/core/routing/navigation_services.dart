@@ -33,6 +33,9 @@ abstract class NavigationServices {
 	void toPrayerTimes();
 	void toHijriCalendar();
 	void toQiblaFinder();
+
+	void toStreakReward({required int streakDay});
+	void toDailyDhikrReward({required int dhikrCompleted, required int ajrEarned});
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -156,5 +159,18 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toQiblaFinder() {
 		router.push(QiblaFinderRoute());
+  }
+
+  @override
+  void toStreakReward({required int streakDay}) {
+		router.push(RewardStreakRoute(streakDay: streakDay));
+  }
+
+  @override
+  void toDailyDhikrReward({required int dhikrCompleted, required int ajrEarned}) {
+		router.push(RewardDailyDhikrRoute(
+			dhikrCompleted: dhikrCompleted,
+			ajrEarned: ajrEarned,
+		));
   }
 }

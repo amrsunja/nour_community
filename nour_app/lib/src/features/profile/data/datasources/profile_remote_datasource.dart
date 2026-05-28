@@ -15,6 +15,35 @@ final profileRemoteDataProvider = Provider(
 class ProfileRemoteDatasource {
   static const _tableName = 'profiles';
 
+  /// Realtime stream of the authenticated user's profile row.
+  ///
+  /// Backed by Supabase Realtime (`profiles` is in the `supabase_realtime`
+  /// publication) and scoped by RLS to the caller's own row, so
+  /// `current_streak` / `earned_ajr_count` stay live without polling.
+  Stream<ProfileModel> watchProfile() {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    return supabaseClient
+        .from(_tableName)
+        .stream(primaryKey: ['id'])
+        .eq('id', authUser.id)
+        .map((rows) {
+          if (rows.isEmpty) {
+            throw ServerException(
+              type: .notFound,
+              message: 'Can\'t find correct Profile Model',
+            );
+          }
+          return ProfileModel.fromJson(rows.first);
+        });
+  }
+
   Future<ProfileModel> getProfile() async {
     final authUser = supabaseClient.auth.currentUser;
     if (authUser == null) {

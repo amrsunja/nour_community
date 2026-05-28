@@ -934,6 +934,60 @@ abstract class AppLocalizations {
   /// **'See all'**
   String get dashboard_see_all;
 
+  /// No description provided for @l10nRewards.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nRewards;
+
+  /// No description provided for @reward_streak_day_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day}'**
+  String reward_streak_day_title(int day);
+
+  /// No description provided for @reward_streak_congrats.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! Your streak is now at {count} day(s)'**
+  String reward_streak_congrats(int count);
+
+  /// No description provided for @reward_dhikr_title.
+  ///
+  /// In en, this message translates to:
+  /// **'MashaAllah'**
+  String get reward_dhikr_title;
+
+  /// No description provided for @reward_dhikr_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You completed your dhikr, and earned your daily ajr'**
+  String get reward_dhikr_subtitle;
+
+  /// No description provided for @reward_ajr_earned.
+  ///
+  /// In en, this message translates to:
+  /// **'Ajr earned'**
+  String get reward_ajr_earned;
+
+  /// No description provided for @reward_dhikr_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Dikr completed'**
+  String get reward_dhikr_completed;
+
+  /// No description provided for @reward_alhamdulilah.
+  ///
+  /// In en, this message translates to:
+  /// **'Alhamdulilah'**
+  String get reward_alhamdulilah;
+
+  /// No description provided for @reward_go_further.
+  ///
+  /// In en, this message translates to:
+  /// **'Go further in my practice'**
+  String get reward_go_further;
+
   /// No description provided for @l10nDhikr.
   ///
   /// In en, this message translates to:

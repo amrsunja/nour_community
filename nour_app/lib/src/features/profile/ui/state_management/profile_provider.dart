@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
@@ -6,6 +8,7 @@ import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
+import 'package:nour/src/core/utils/talker/talker.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_state.dart';
 
 import '../../data/profile_repo.dart';
@@ -33,6 +36,8 @@ class ProfilePresenter extends Presenter<ProfileState> {
       profile: null
     ));
 
+  StreamSubscription<dynamic>? _profileSub;
+
   Future<bool> initProfile() async {
     final response = await repo.getProfile();
 
@@ -46,6 +51,23 @@ class ProfilePresenter extends Presenter<ProfileState> {
         return false;
       }
     );
+  }
+
+  /// Subscribes to the live profile row so `current_streak` / `earned_ajr_count`
+  /// reflect Supabase updates the instant a trigger writes them (idempotent —
+  /// safe to call more than once). The last good state is preserved on error.
+  void subscribeRealtime() {
+    _profileSub?.cancel();
+    _profileSub = repo.watchProfile().listen(
+      (profile) => state = state.copyWith(profile: profile),
+      onError: (Object e) => talker.error('profile realtime: $e'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _profileSub?.cancel();
+    super.dispose();
   }
 
   /// Persists [minutes] of daily practice to the user's Supabase profile.

@@ -8,6 +8,8 @@ import 'package:nour/src/core/providers/routing/navigation_services_provider.dar
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/app_vibrations.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/profile/ui/state_management/reward_provider.dart';
 
 @RoutePage()
 class HomePage extends HookConsumerWidget {
@@ -17,10 +19,17 @@ class HomePage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final dhikrP= ref.read(dhikrProvider.notifier);
 
+    // Reward coordinator: pushes the streak / daily-dhikr reward pages off the
+    // realtime daily_activity stream (once per day, claimed server-side).
+    ref.watch(rewardListenerProvider);
+
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback(
         (_) async {
           await dhikrP.init();
+          // Keep the streak live + start watching for reward triggers.
+          ref.read(profileProvider.notifier).subscribeRealtime();
+          ref.read(rewardProvider.notifier).init();
         }
       );
       return null;

@@ -171,6 +171,16 @@
   "dashboard_quick_tools": "Outils rapides",
   "dashboard_see_all": "Voir tout",
 
+  "l10nRewards": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "reward_streak_day_title": "Jour {day}",
+  "reward_streak_congrats": "Félicitations ! Votre série est maintenant de {count} jour(s)",
+  "reward_dhikr_title": "MashaAllah",
+  "reward_dhikr_subtitle": "Vous avez terminé votre dhikr et gagné votre ajr quotidien",
+  "reward_ajr_earned": "Ajr gagné",
+  "reward_dhikr_completed": "Dhikr complétés",
+  "reward_alhamdulilah": "Alhamdulilah",
+  "reward_go_further": "Aller plus loin dans ma pratique",
+
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "Choisir un dhikr",
   "dhikr_continue_section": "Continuer le dhikr",

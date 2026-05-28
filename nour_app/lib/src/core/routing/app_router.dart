@@ -181,6 +181,20 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.qiblaFinder,
               page: QiblaFinderRoute.page,
             ),
+
+            /// Rewards (full-screen over the bottom navbar, fade-in pop)
+            customRoute(
+              path: RoutePaths.rewardStreak,
+              page: RewardStreakRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              durationInMilliseconds: 400,
+            ),
+            customRoute(
+              path: RoutePaths.rewardDailyDhikr,
+              page: RewardDailyDhikrRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              durationInMilliseconds: 400,
+            ),
           ],
         ),
       ],
