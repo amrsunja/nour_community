@@ -38,10 +38,14 @@ abstract class RoutePaths {
   static const duaReader = 'dua-reader';
   static const dailyDua = 'daily-dua';
 
+  // Quiz
+  static const quiz = 'quiz';
+
   // Tools
   static const prayerTimes = 'prayer-times';
   static const hijriCalendar = 'hijri-calendar';
   static const qiblaFinder = 'qibla-finder';
+  static const zakatCalculator = 'zakat-calculator';
 
   // Rewards (full-screen celebratory pages over the navbar)
   static const rewardStreak = 'reward-streak';

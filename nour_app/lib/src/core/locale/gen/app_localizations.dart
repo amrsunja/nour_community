@@ -988,6 +988,96 @@ abstract class AppLocalizations {
   /// **'Go further in my practice'**
   String get reward_go_further;
 
+  /// No description provided for @quiz_question_progress.
+  ///
+  /// In en, this message translates to:
+  /// **'Question {current} of {total}'**
+  String quiz_question_progress(int current, int total);
+
+  /// No description provided for @quiz_validate.
+  ///
+  /// In en, this message translates to:
+  /// **'Validate'**
+  String get quiz_validate;
+
+  /// No description provided for @quiz_correct_title.
+  ///
+  /// In en, this message translates to:
+  /// **'MashaAllah!'**
+  String get quiz_correct_title;
+
+  /// No description provided for @quiz_wrong_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Not quite'**
+  String get quiz_wrong_title;
+
+  /// No description provided for @quiz_good_answer.
+  ///
+  /// In en, this message translates to:
+  /// **'Good answer: {answer}'**
+  String quiz_good_answer(String answer);
+
+  /// No description provided for @quiz_reward_title.
+  ///
+  /// In en, this message translates to:
+  /// **'MashaAllah'**
+  String get quiz_reward_title;
+
+  /// No description provided for @quiz_reward_perfect_title.
+  ///
+  /// In en, this message translates to:
+  /// **'BarakaAllahufik'**
+  String get quiz_reward_perfect_title;
+
+  /// No description provided for @quiz_reward_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You answered {correct} of {total} correctly'**
+  String quiz_reward_subtitle(int correct, int total);
+
+  /// No description provided for @quiz_reward_perfect_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You did a perfect quiz and answered all {total} correctly'**
+  String quiz_reward_perfect_subtitle(int total);
+
+  /// No description provided for @quiz_reward_bonus.
+  ///
+  /// In en, this message translates to:
+  /// **'+{ajr} Ajr bonus'**
+  String quiz_reward_bonus(int ajr);
+
+  /// No description provided for @quiz_reward_score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get quiz_reward_score;
+
+  /// No description provided for @quiz_already_played_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Come back tomorrow'**
+  String get quiz_already_played_title;
+
+  /// No description provided for @quiz_already_played_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'ve already completed today\'s quiz. A new one awaits tomorrow, inshaAllah.'**
+  String get quiz_already_played_subtitle;
+
+  /// No description provided for @quiz_empty_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No quiz available'**
+  String get quiz_empty_title;
+
+  /// No description provided for @quiz_empty_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no questions for you right now. Please check back later.'**
+  String get quiz_empty_subtitle;
+
   /// No description provided for @l10nDhikr.
   ///
   /// In en, this message translates to:
@@ -1773,6 +1863,168 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tunisian Ministry of Religious Affairs. Fajr and Isha at 18°.'**
   String get calc_method_tunisia_desc;
+
+  /// No description provided for @zakat_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat calculator'**
+  String get zakat_title;
+
+  /// No description provided for @zakat_total_assets.
+  ///
+  /// In en, this message translates to:
+  /// **'Total assets'**
+  String get zakat_total_assets;
+
+  /// No description provided for @zakat_total_debts.
+  ///
+  /// In en, this message translates to:
+  /// **'Total debts'**
+  String get zakat_total_debts;
+
+  /// No description provided for @zakat_net_assets.
+  ///
+  /// In en, this message translates to:
+  /// **'Net assets'**
+  String get zakat_net_assets;
+
+  /// No description provided for @zakat_above_nisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Above Nisab threshold'**
+  String get zakat_above_nisab;
+
+  /// No description provided for @zakat_below_nisab.
+  ///
+  /// In en, this message translates to:
+  /// **'Below Nisab threshold'**
+  String get zakat_below_nisab;
+
+  /// No description provided for @zakat_your_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Your zakat (2.5%)'**
+  String get zakat_your_zakat;
+
+  /// No description provided for @zakat_obligation_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat is obligatory on every adult Muslim whose wealth reaches the Nisab and has been in possession for one full lunar year'**
+  String get zakat_obligation_note;
+
+  /// No description provided for @zakat_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get zakat_reset;
+
+  /// No description provided for @zakat_give.
+  ///
+  /// In en, this message translates to:
+  /// **'Give zakat'**
+  String get zakat_give;
+
+  /// No description provided for @zakat_section_precious_metals.
+  ///
+  /// In en, this message translates to:
+  /// **'Precious metals'**
+  String get zakat_section_precious_metals;
+
+  /// No description provided for @zakat_section_cash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash & savings'**
+  String get zakat_section_cash;
+
+  /// No description provided for @zakat_section_investments.
+  ///
+  /// In en, this message translates to:
+  /// **'Investments'**
+  String get zakat_section_investments;
+
+  /// No description provided for @zakat_section_debts.
+  ///
+  /// In en, this message translates to:
+  /// **'Debts you owe'**
+  String get zakat_section_debts;
+
+  /// No description provided for @zakat_field_gold.
+  ///
+  /// In en, this message translates to:
+  /// **'Value of gold'**
+  String get zakat_field_gold;
+
+  /// No description provided for @zakat_field_silver.
+  ///
+  /// In en, this message translates to:
+  /// **'Value of silver'**
+  String get zakat_field_silver;
+
+  /// No description provided for @zakat_per_gram.
+  ///
+  /// In en, this message translates to:
+  /// **'/gram'**
+  String get zakat_per_gram;
+
+  /// No description provided for @zakat_field_cash.
+  ///
+  /// In en, this message translates to:
+  /// **'Cash & bank balance'**
+  String get zakat_field_cash;
+
+  /// No description provided for @zakat_field_savings.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved for future use'**
+  String get zakat_field_savings;
+
+  /// No description provided for @zakat_field_investments.
+  ///
+  /// In en, this message translates to:
+  /// **'Stocks, ETFs, crypto'**
+  String get zakat_field_investments;
+
+  /// No description provided for @zakat_field_loans_given.
+  ///
+  /// In en, this message translates to:
+  /// **'Loans given to others'**
+  String get zakat_field_loans_given;
+
+  /// No description provided for @zakat_field_personal_loans.
+  ///
+  /// In en, this message translates to:
+  /// **'Personal loans, credit'**
+  String get zakat_field_personal_loans;
+
+  /// No description provided for @zakat_field_bills.
+  ///
+  /// In en, this message translates to:
+  /// **'Bills & rent due now'**
+  String get zakat_field_bills;
+
+  /// No description provided for @zakat_footer_quote.
+  ///
+  /// In en, this message translates to:
+  /// **'Take from their wealth a charity by which you purify them...'**
+  String get zakat_footer_quote;
+
+  /// No description provided for @zakat_field_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other valuables'**
+  String get zakat_field_other;
+
+  /// No description provided for @zakat_nisab_threshold.
+  ///
+  /// In en, this message translates to:
+  /// **'Nisab threshold'**
+  String get zakat_nisab_threshold;
+
+  /// No description provided for @zakat_api_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Live zakat service unavailable — showing offline estimate.'**
+  String get zakat_api_unavailable;
 
   /// No description provided for @l10nStopLineDontTouch.
   ///

@@ -487,6 +487,63 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reward_go_further => 'Go further in my practice';
 
   @override
+  String quiz_question_progress(int current, int total) {
+    return 'Question $current of $total';
+  }
+
+  @override
+  String get quiz_validate => 'Validate';
+
+  @override
+  String get quiz_correct_title => 'MashaAllah!';
+
+  @override
+  String get quiz_wrong_title => 'Not quite';
+
+  @override
+  String quiz_good_answer(String answer) {
+    return 'Good answer: $answer';
+  }
+
+  @override
+  String get quiz_reward_title => 'MashaAllah';
+
+  @override
+  String get quiz_reward_perfect_title => 'BarakaAllahufik';
+
+  @override
+  String quiz_reward_subtitle(int correct, int total) {
+    return 'You answered $correct of $total correctly';
+  }
+
+  @override
+  String quiz_reward_perfect_subtitle(int total) {
+    return 'You did a perfect quiz and answered all $total correctly';
+  }
+
+  @override
+  String quiz_reward_bonus(int ajr) {
+    return '+$ajr Ajr bonus';
+  }
+
+  @override
+  String get quiz_reward_score => 'Score';
+
+  @override
+  String get quiz_already_played_title => 'Come back tomorrow';
+
+  @override
+  String get quiz_already_played_subtitle =>
+      'You\'ve already completed today\'s quiz. A new one awaits tomorrow, inshaAllah.';
+
+  @override
+  String get quiz_empty_title => 'No quiz available';
+
+  @override
+  String get quiz_empty_subtitle =>
+      'There are no questions for you right now. Please check back later.';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -917,6 +974,90 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get calc_method_tunisia_desc =>
       'Tunisian Ministry of Religious Affairs. Fajr and Isha at 18°.';
+
+  @override
+  String get zakat_title => 'Zakat calculator';
+
+  @override
+  String get zakat_total_assets => 'Total assets';
+
+  @override
+  String get zakat_total_debts => 'Total debts';
+
+  @override
+  String get zakat_net_assets => 'Net assets';
+
+  @override
+  String get zakat_above_nisab => 'Above Nisab threshold';
+
+  @override
+  String get zakat_below_nisab => 'Below Nisab threshold';
+
+  @override
+  String get zakat_your_zakat => 'Your zakat (2.5%)';
+
+  @override
+  String get zakat_obligation_note =>
+      'Zakat is obligatory on every adult Muslim whose wealth reaches the Nisab and has been in possession for one full lunar year';
+
+  @override
+  String get zakat_reset => 'Reset';
+
+  @override
+  String get zakat_give => 'Give zakat';
+
+  @override
+  String get zakat_section_precious_metals => 'Precious metals';
+
+  @override
+  String get zakat_section_cash => 'Cash & savings';
+
+  @override
+  String get zakat_section_investments => 'Investments';
+
+  @override
+  String get zakat_section_debts => 'Debts you owe';
+
+  @override
+  String get zakat_field_gold => 'Value of gold';
+
+  @override
+  String get zakat_field_silver => 'Value of silver';
+
+  @override
+  String get zakat_per_gram => '/gram';
+
+  @override
+  String get zakat_field_cash => 'Cash & bank balance';
+
+  @override
+  String get zakat_field_savings => 'Saved for future use';
+
+  @override
+  String get zakat_field_investments => 'Stocks, ETFs, crypto';
+
+  @override
+  String get zakat_field_loans_given => 'Loans given to others';
+
+  @override
+  String get zakat_field_personal_loans => 'Personal loans, credit';
+
+  @override
+  String get zakat_field_bills => 'Bills & rent due now';
+
+  @override
+  String get zakat_footer_quote =>
+      'Take from their wealth a charity by which you purify them...';
+
+  @override
+  String get zakat_field_other => 'Other valuables';
+
+  @override
+  String get zakat_nisab_threshold => 'Nisab threshold';
+
+  @override
+  String get zakat_api_unavailable =>
+      'Live zakat service unavailable — showing offline estimate.';
 
   @override
   String get l10nStopLineDontTouch =>

@@ -42,9 +42,11 @@ class ToolsPage extends HookConsumerWidget {
           }
         ),
         _ToolItem(
-          Assets.images.illustration14, 
+          Assets.images.illustration14,
           l10n.tools_daily_quiz,
-          onTap: () {}
+          onTap: () {
+            nav.toQuiz();
+          }
         ),
         _ToolItem(
           Assets.images.illustration15,
@@ -63,7 +65,9 @@ class ToolsPage extends HookConsumerWidget {
         _ToolItem(
           Assets.images.illustration17, 
           l10n.tools_zakat_calculator,
-          onTap: () {}
+          onTap: () {
+            nav.toZakatCalculator();
+          }
         ),
         _ToolItem(
           Assets.images.illustration18,

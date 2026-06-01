@@ -168,6 +168,12 @@ class AppRouter extends RootStackRouter {
               page: DailyDuaRoute.page,
             ),
 
+            /// Quiz (full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.quiz,
+              page: QuizRoute.page,
+            ),
+
             /// Tools (full-screen over the bottom navbar)
             AutoRoute(
               path: RoutePaths.prayerTimes,
@@ -180,6 +186,10 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               path: RoutePaths.qiblaFinder,
               page: QiblaFinderRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.zakatCalculator,
+              page: ZakatCalculatorRoute.page,
             ),
 
             /// Rewards (full-screen over the bottom navbar, fade-in pop)

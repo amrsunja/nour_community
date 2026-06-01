@@ -478,6 +478,63 @@ class AppLocalizationsAr extends AppLocalizations {
   String get reward_go_further => 'تعمّق أكثر في ممارستي';
 
   @override
+  String quiz_question_progress(int current, int total) {
+    return 'السؤال $current من $total';
+  }
+
+  @override
+  String get quiz_validate => 'تأكيد';
+
+  @override
+  String get quiz_correct_title => 'ما شاء الله!';
+
+  @override
+  String get quiz_wrong_title => 'ليس تماماً';
+
+  @override
+  String quiz_good_answer(String answer) {
+    return 'الإجابة الصحيحة: $answer';
+  }
+
+  @override
+  String get quiz_reward_title => 'ما شاء الله';
+
+  @override
+  String get quiz_reward_perfect_title => 'بارك الله فيك';
+
+  @override
+  String quiz_reward_subtitle(int correct, int total) {
+    return 'أجبت بشكل صحيح عن $correct من $total';
+  }
+
+  @override
+  String quiz_reward_perfect_subtitle(int total) {
+    return 'اختبار مثالي! أجبت بشكل صحيح عن جميع الأسئلة ($total)';
+  }
+
+  @override
+  String quiz_reward_bonus(int ajr) {
+    return '+$ajr أجر إضافي';
+  }
+
+  @override
+  String get quiz_reward_score => 'النتيجة';
+
+  @override
+  String get quiz_already_played_title => 'عُد غداً';
+
+  @override
+  String get quiz_already_played_subtitle =>
+      'لقد أكملت اختبار اليوم بالفعل. اختبار جديد بانتظارك غداً إن شاء الله.';
+
+  @override
+  String get quiz_empty_title => 'لا يوجد اختبار متاح';
+
+  @override
+  String get quiz_empty_subtitle =>
+      'لا توجد أسئلة لك في الوقت الحالي. يرجى التحقق لاحقاً.';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -906,6 +963,91 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get calc_method_tunisia_desc =>
       'وزارة الشؤون الدينية التونسية. الفجر والعشاء عند ١٨°.';
+
+  @override
+  String get zakat_title => 'حاسبة الزكاة';
+
+  @override
+  String get zakat_total_assets => 'إجمالي الأصول';
+
+  @override
+  String get zakat_total_debts => 'إجمالي الديون';
+
+  @override
+  String get zakat_net_assets => 'صافي الأصول';
+
+  @override
+  String get zakat_above_nisab => 'فوق نصاب الزكاة';
+
+  @override
+  String get zakat_below_nisab => 'دون نصاب الزكاة';
+
+  @override
+  String get zakat_your_zakat => 'زكاتك (2.5%)';
+
+  @override
+  String get zakat_obligation_note =>
+      'الزكاة واجبة على كل مسلم بالغ بلغ ماله النصاب وحال عليه الحول';
+
+  @override
+  String get zakat_reset => 'إعادة تعيين';
+
+  @override
+  String get zakat_give => 'إخراج الزكاة';
+
+  @override
+  String get zakat_section_precious_metals => 'المعادن الثمينة';
+
+  @override
+  String get zakat_section_cash => 'النقد والمدخرات';
+
+  @override
+  String get zakat_section_investments => 'الاستثمارات';
+
+  @override
+  String get zakat_section_debts => 'الديون المستحقة عليك';
+
+  @override
+  String get zakat_field_gold => 'قيمة الذهب';
+
+  @override
+  String get zakat_field_silver => 'قيمة الفضة';
+
+  @override
+  String get zakat_per_gram => '/غرام';
+
+  @override
+  String get zakat_field_cash => 'النقد والرصيد البنكي';
+
+  @override
+  String get zakat_field_savings => 'مدخرات للاستخدام المستقبلي';
+
+  @override
+  String get zakat_field_investments =>
+      'الأسهم وصناديق المؤشرات والعملات الرقمية';
+
+  @override
+  String get zakat_field_loans_given => 'القروض الممنوحة للآخرين';
+
+  @override
+  String get zakat_field_personal_loans =>
+      'القروض الشخصية والبطاقات الائتمانية';
+
+  @override
+  String get zakat_field_bills => 'الفواتير والإيجار المستحق';
+
+  @override
+  String get zakat_footer_quote => 'خذ من أموالهم صدقة تطهرهم وتزكيهم بها...';
+
+  @override
+  String get zakat_field_other => 'ممتلكات ثمينة أخرى';
+
+  @override
+  String get zakat_nisab_threshold => 'نصاب الزكاة';
+
+  @override
+  String get zakat_api_unavailable =>
+      'خدمة حساب الزكاة غير متوفرة — عرض تقدير غير متصل.';
 
   @override
   String get l10nStopLineDontTouch =>

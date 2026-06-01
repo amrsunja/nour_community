@@ -30,9 +30,12 @@ abstract class NavigationServices {
 	void toDuaReader({required int initialDuaId});
 	void toDailyDua();
 
+	void toQuiz();
+
 	void toPrayerTimes();
 	void toHijriCalendar();
 	void toQiblaFinder();
+	void toZakatCalculator();
 
 	void toStreakReward({required int streakDay});
 	void toDailyDhikrReward({required int dhikrCompleted, required int ajrEarned});
@@ -147,6 +150,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
+  void toQuiz() {
+		router.push(QuizRoute());
+  }
+
+  @override
   void toPrayerTimes() {
 		router.push(PrayerTimesRoute());
   }
@@ -159,6 +167,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toQiblaFinder() {
 		router.push(QiblaFinderRoute());
+  }
+
+  @override
+  void toZakatCalculator() {
+		router.push(ZakatCalculatorRoute());
   }
 
   @override

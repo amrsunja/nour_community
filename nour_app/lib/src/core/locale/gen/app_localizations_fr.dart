@@ -493,6 +493,63 @@ class AppLocalizationsFr extends AppLocalizations {
   String get reward_go_further => 'Aller plus loin dans ma pratique';
 
   @override
+  String quiz_question_progress(int current, int total) {
+    return 'Question $current sur $total';
+  }
+
+  @override
+  String get quiz_validate => 'Valider';
+
+  @override
+  String get quiz_correct_title => 'MashaAllah !';
+
+  @override
+  String get quiz_wrong_title => 'Pas tout à fait';
+
+  @override
+  String quiz_good_answer(String answer) {
+    return 'Bonne réponse : $answer';
+  }
+
+  @override
+  String get quiz_reward_title => 'MashaAllah';
+
+  @override
+  String get quiz_reward_perfect_title => 'BarakaAllahufik';
+
+  @override
+  String quiz_reward_subtitle(int correct, int total) {
+    return 'Vous avez répondu correctement à $correct sur $total';
+  }
+
+  @override
+  String quiz_reward_perfect_subtitle(int total) {
+    return 'Quiz parfait ! Vous avez répondu correctement aux $total questions';
+  }
+
+  @override
+  String quiz_reward_bonus(int ajr) {
+    return '+$ajr Ajr bonus';
+  }
+
+  @override
+  String get quiz_reward_score => 'Score';
+
+  @override
+  String get quiz_already_played_title => 'Revenez demain';
+
+  @override
+  String get quiz_already_played_subtitle =>
+      'Vous avez déjà terminé le quiz d\'aujourd\'hui. Un nouveau vous attend demain, inchaAllah.';
+
+  @override
+  String get quiz_empty_title => 'Aucun quiz disponible';
+
+  @override
+  String get quiz_empty_subtitle =>
+      'Il n\'y a aucune question pour vous pour le moment. Revenez plus tard.';
+
+  @override
   String get l10nDhikr =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -927,6 +984,90 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get calc_method_tunisia_desc =>
       'Ministère tunisien des Affaires religieuses. Fajr et Isha à 18°.';
+
+  @override
+  String get zakat_title => 'Calculateur de Zakat';
+
+  @override
+  String get zakat_total_assets => 'Total des actifs';
+
+  @override
+  String get zakat_total_debts => 'Total des dettes';
+
+  @override
+  String get zakat_net_assets => 'Actifs nets';
+
+  @override
+  String get zakat_above_nisab => 'Au-dessus du seuil Nisab';
+
+  @override
+  String get zakat_below_nisab => 'En dessous du seuil Nisab';
+
+  @override
+  String get zakat_your_zakat => 'Votre zakat (2,5 %)';
+
+  @override
+  String get zakat_obligation_note =>
+      'La Zakat est obligatoire pour tout musulman adulte dont la richesse atteint le Nisab et est détenue pendant une année lunaire complète';
+
+  @override
+  String get zakat_reset => 'Réinitialiser';
+
+  @override
+  String get zakat_give => 'Donner la zakat';
+
+  @override
+  String get zakat_section_precious_metals => 'Métaux précieux';
+
+  @override
+  String get zakat_section_cash => 'Liquidités et épargne';
+
+  @override
+  String get zakat_section_investments => 'Investissements';
+
+  @override
+  String get zakat_section_debts => 'Dettes à votre charge';
+
+  @override
+  String get zakat_field_gold => 'Valeur de l\'or';
+
+  @override
+  String get zakat_field_silver => 'Valeur de l\'argent';
+
+  @override
+  String get zakat_per_gram => '/gramme';
+
+  @override
+  String get zakat_field_cash => 'Liquidités et solde bancaire';
+
+  @override
+  String get zakat_field_savings => 'Épargne pour usage futur';
+
+  @override
+  String get zakat_field_investments => 'Actions, ETF, crypto';
+
+  @override
+  String get zakat_field_loans_given => 'Prêts accordés à autrui';
+
+  @override
+  String get zakat_field_personal_loans => 'Prêts personnels, crédit';
+
+  @override
+  String get zakat_field_bills => 'Factures et loyer dus';
+
+  @override
+  String get zakat_footer_quote =>
+      'Prélève de leurs biens une aumône par laquelle tu les purifies...';
+
+  @override
+  String get zakat_field_other => 'Autres biens de valeur';
+
+  @override
+  String get zakat_nisab_threshold => 'Seuil du Nisab';
+
+  @override
+  String get zakat_api_unavailable =>
+      'Service de calcul indisponible — estimation hors ligne.';
 
   @override
   String get l10nStopLineDontTouch =>
