@@ -51,5 +51,6 @@ class UIColorsToken {
   static const Color yellow = Color(0xffC59F54);
   static const Color red = Color(0xffFF5454);
   static const Color green = Color(0xff135911);
+  static const Color greenAccent = Color(0xff09CCA3);
   static const Color pastelGreen = Color(0xff00A280);
 }

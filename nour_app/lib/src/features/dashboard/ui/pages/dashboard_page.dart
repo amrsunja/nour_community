@@ -141,8 +141,7 @@ class DashboardPage extends HookConsumerWidget {
                         asset: Assets.images.illustration14,
                         label: l10n.tools_daily_quiz,
                         points: 10,
-                        // Navigation to be implemented later.
-                        onTap: () {},
+                        onTap: nav.toQuiz,
                       ),
                     ),
                   ],

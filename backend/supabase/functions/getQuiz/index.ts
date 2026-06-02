@@ -25,6 +25,9 @@ const LEVEL_ORDER: Record<LevelType, number> = {
 
 const LEVELS: LevelType[] = ["begining", "growing", "established", "returning"];
 
+// Max quiz plays allowed per user per day.
+const MAX_DAILY_PLAYS = 2;
+
 function eligibleLevels(userLevel: LevelType): LevelType[] {
   const max = LEVEL_ORDER[userLevel];
   return LEVELS.filter((l) => LEVEL_ORDER[l] <= max);
@@ -44,11 +47,10 @@ function shuffle<T>(arr: T[]): T[] {
   return a;
 }
 
-function stripAnswer(q: Record<string, unknown>) {
-  // Never expose correct_option_index in the response.
-  const { correct_option_index: _ignored, ...rest } = q;
-  return rest;
-}
+// NOTE: correct_option_index is intentionally returned to the client so the
+// quiz UI can give instant per-question feedback (correct/wrong highlight +
+// toast) the moment the user validates. submitQuiz remains the authoritative
+// source for scoring, ajr and streak — the client value is presentation only.
 
 serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -89,17 +91,22 @@ serve(async (req) => {
     }
     const userLevel = profile.level as LevelType;
 
-    // 3. Already played today?
+    // 3. Reached daily play limit? (max MAX_DAILY_PLAYS rows per day)
     const today = new Date().toISOString().slice(0, 10);
-    const { data: play } = await sb
+    const { count: playsToday } = await sb
       .from("quiz_plays")
-      .select("id")
+      .select("id", { count: "exact", head: true })
       .eq("user_id", userId)
-      .eq("play_date", today)
-      .maybeSingle();
+      .eq("play_date", today);
 
-    if (play) {
-      return jsonResponse({ quizs: [], already_played: true });
+    const playsCount = playsToday ?? 0;
+    if (playsCount >= MAX_DAILY_PLAYS) {
+      return jsonResponse({
+        quizs: [],
+        already_played: true,
+        plays_today: playsCount,
+        plays_remaining: 0,
+      });
     }
 
     // 4. Fetch eligible questions
@@ -121,8 +128,8 @@ serve(async (req) => {
       );
     }
 
-    // 5. Pick 3 random questions at-or-below level
-    const picks = shuffle(pool).slice(0, 3);
+    // 5. Pick 4 random questions at-or-below level
+    const picks = shuffle(pool).slice(0, 4);
 
     // 6. Pick the 4th: one level higher if available
     const challengeLevel = nextLevel(userLevel);
@@ -149,8 +156,10 @@ serve(async (req) => {
     const quizs = challenge ? [...picks, challenge] : picks;
 
     return jsonResponse({
-      quizs: quizs.map(stripAnswer),
+      quizs,
       already_played: false,
+      plays_today: playsCount,
+      plays_remaining: MAX_DAILY_PLAYS - playsCount,
     });
   } catch (err) {
     console.error("[getQuiz]", err);

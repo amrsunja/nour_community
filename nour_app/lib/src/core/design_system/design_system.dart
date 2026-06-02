@@ -45,3 +45,9 @@ export 'src/components/cards/ui_selecteable_card.dart';
 export 'src/components/cards/ui_gradient_card.dart';
 export 'src/components/cards/ui_daily_ajr_card.dart';
 export 'src/components/cards/ui_bg_arabic_text_card.dart';
+
+//--------------------- PAINTERS ---------------------
+export 'src/components/painters/ui_gradient_rays_painter.dart';
+
+//--------------------- ANIMATIONS ---------------------
+export 'src/components/animations/ui_repeat_shimer_animation.dart';

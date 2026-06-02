@@ -65,15 +65,17 @@ serve(async (req) => {
     const sb = serviceClient();
     const today = new Date().toISOString().slice(0, 10);
 
-    // Block double-play same day
-    const { data: existingPlay } = await sb
+    // Max quiz plays allowed per user per day.
+    const MAX_DAILY_PLAYS = 2;
+
+    // Block once the daily play limit is reached.
+    const { count: playsToday } = await sb
       .from("quiz_plays")
-      .select("id")
+      .select("id", { count: "exact", head: true })
       .eq("user_id", userId)
-      .eq("play_date", today)
-      .maybeSingle();
-    if (existingPlay) {
-      return errorResponse("already_played", "Already played today", 409);
+      .eq("play_date", today);
+    if ((playsToday ?? 0) >= MAX_DAILY_PLAYS) {
+      return errorResponse("already_played", "Daily quiz limit reached", 409);
     }
 
     // Fetch authoritative questions

@@ -56,7 +56,7 @@ class NextPrayerWidget extends HookWidget {
           children: [
             if (backgroundImage != null)
               Positioned.fill(
-                left: 140,
+                left: 170,
                 child: _Background(image: backgroundImage!),
               ),
             Padding(

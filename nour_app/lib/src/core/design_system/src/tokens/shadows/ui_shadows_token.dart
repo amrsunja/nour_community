@@ -33,6 +33,10 @@ class UIShadowToken {
     BoxShadow(blurRadius: 20, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.4))
   ];
 
+  static final sliderBull = [
+    BoxShadow(blurRadius: 10, spreadRadius: 1, color: UIColorsToken.yellow.withValues(alpha: 0.4))
+  ];
+
   static final kXs = [
     shadow(y: 0, blur: 2, colorOpacity: 0.05)
   ];
