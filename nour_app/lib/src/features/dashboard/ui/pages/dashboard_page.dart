@@ -82,6 +82,16 @@ class DashboardPage extends HookConsumerWidget {
       return null;
     }, const []);
 
+    // Re-sync when returning from background: Dart timers don't fire while the
+    // app is suspended, so a prayer may have elapsed off-screen.
+    final lifecycle = useAppLifecycleState();
+    useEffect(() {
+      if (lifecycle == AppLifecycleState.resumed) {
+        ref.read(prayerTimesProvider.notifier).refresh();
+      }
+      return null;
+    }, [lifecycle]);
+
     return Scaffold(
       appBar: UIProfileAppBar(
         name: profile?.name ?? l10n.profile_guest,

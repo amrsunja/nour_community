@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/utils/enums/calculation_method_type.dart';
 import 'package:nour/src/core/utils/geolocator/geolocator_tools.dart';
@@ -26,11 +28,21 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
   final AppEvents appEvents;
   final Ref ref;
 
+  /// Fires when the current `nextTime` elapses to roll the state over to the
+  /// following prayer, keeping the dashboard countdown self-advancing.
+  Timer? _rolloverTimer;
+
   PrayerTimesPresenter({
     required this.repo,
     required this.appEvents,
     required this.ref,
   }) : super(const PrayerTimesState());
+
+  @override
+  void dispose() {
+    _rolloverTimer?.cancel();
+    super.dispose();
+  }
 
   Future<void> init() async {
     state = state.copyWith(isLoading: true);
@@ -43,6 +55,10 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
 
     await _recompute();
   }
+
+  /// Lightweight re-sync of the current/next prayer without re-reading
+  /// settings. Used on app resume to recover from suspended timers.
+  Future<void> refresh() => _recompute();
 
   /// Persists the new calculation method and reschedules every notification
   /// (prayers + adhkar + daily ayah) so they match the new prayer times.
@@ -92,9 +108,30 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
         nextTime: next.time,
         jumua: jumua,
       );
+
+      _scheduleRollover(next.time);
     } catch (e, st) {
       talker.handle(e, st, 'Failed to compute prayer times');
       state = state.copyWith(isLoading: false, hasLocationError: true);
     }
+  }
+
+  /// Schedules a one-shot timer to recompute the next prayer the instant the
+  /// current one elapses, so the countdown rolls over in real time without a
+  /// manual refresh. A 1s buffer guards against firing a hair early.
+  void _scheduleRollover(DateTime nextTime) {
+    _rolloverTimer?.cancel();
+
+    final delay = nextTime.difference(DateTime.now()) + const Duration(seconds: 1);
+    if (delay.isNegative) {
+      // Target already passed (e.g. stale data) — recompute immediately.
+      unawaited(_recompute());
+      return;
+    }
+
+    _rolloverTimer = Timer(delay, () {
+      if (!mounted) return;
+      unawaited(_recompute());
+    });
   }
 }
