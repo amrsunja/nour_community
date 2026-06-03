@@ -33,6 +33,7 @@ export 'src/components/ui_glowing_block.dart';
 export 'src/components/ui_toggle.dart';
 export 'src/components/ui_navbar.dart';
 export 'src/components/ui_avatar.dart';
+export 'src/components/ui_tabs.dart';
 
 //--------------------- FIELDS ---------------------
 export 'src/components/fields/ui_input_field.dart';

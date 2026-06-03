@@ -12,6 +12,7 @@ abstract class NavigationServices {
 	void navigateToHome();
 	void toSettings();
 	void toProfile();
+	void toProfileStatistics();
 	void toOnboarding();
 
 	void toDhikrsList();
@@ -84,6 +85,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toProfile() {
 		router.push(ProfileRoute());
+  }
+
+  @override
+  void toProfileStatistics() {
+		router.push(ProfileStatisticsRoute());
   }
 
   @override

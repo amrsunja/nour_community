@@ -412,6 +412,24 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_statistics => 'Statistiques';
 
   @override
+  String get statistics_filter_all => 'Tout';
+
+  @override
+  String get statistics_filter_week => 'Semaine';
+
+  @override
+  String get statistics_filter_today => 'Aujourd\'hui';
+
+  @override
+  String get statistics_earned_ajr => 'Ajr gagné';
+
+  @override
+  String get statistics_dhikr_completed => 'Dhikr complétés';
+
+  @override
+  String get statistics_completed_deeds => 'Bonnes actions';
+
+  @override
   String get profile_favourites => 'Favoris';
 
   @override

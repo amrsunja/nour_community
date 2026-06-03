@@ -110,6 +110,11 @@ class AppRouter extends RootStackRouter {
               page: ProfileRoute.page,
             ),
 
+            AutoRoute(
+              path: RoutePaths.profileStatistics,
+              page: ProfileStatisticsRoute.page,
+            ),
+
             /// Dhikr (full-screen over the bottom navbar)
             AutoRoute(
               path: RoutePaths.dhikrsList,

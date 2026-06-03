@@ -105,7 +105,9 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.emoji_events_outlined,
                         label: l10n.profile_statistics,
-                        onTap: () {},
+                        onTap: () => ref
+                            .read(navigationServicesProvider)
+                            .toProfileStatistics(),
                       ),
                       ProfileMenuRow(
                         icon: Icons.favorite_border,

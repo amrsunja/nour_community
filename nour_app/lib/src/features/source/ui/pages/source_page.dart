@@ -7,7 +7,8 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/features/hadith/ui/pages/hadiths_page.dart';
 import 'package:nour/src/features/quran/ui/widgets/quran_source_view.dart';
 
-import '../widgets/source_tab_switcher_widget.dart';
+/// The two source categories shown on the [SourcePage] header.
+enum SourceTab { quran, hadith }
 
 @RoutePage()
 class SourcePage extends HookConsumerWidget {
@@ -30,8 +31,12 @@ class SourcePage extends HookConsumerWidget {
           const UISpace.vert(16),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: SourceTabSwitcherWidget(
-              current: tab.value,
+            child: UITabs<SourceTab>(
+              selected: tab.value,
+              items: [
+                UITabItem(value: SourceTab.quran, label: l10n.source_quran),
+                UITabItem(value: SourceTab.hadith, label: l10n.source_hadith),
+              ],
               onChanged: (t) => tab.value = t,
             ),
           ),

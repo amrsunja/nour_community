@@ -406,6 +406,24 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_statistics => 'Statistics';
 
   @override
+  String get statistics_filter_all => 'All';
+
+  @override
+  String get statistics_filter_week => 'Week';
+
+  @override
+  String get statistics_filter_today => 'Today';
+
+  @override
+  String get statistics_earned_ajr => 'Earned Ajr';
+
+  @override
+  String get statistics_dhikr_completed => 'Dikr completed';
+
+  @override
+  String get statistics_completed_deeds => 'Completed deeds';
+
+  @override
   String get profile_favourites => 'Favourites';
 
   @override

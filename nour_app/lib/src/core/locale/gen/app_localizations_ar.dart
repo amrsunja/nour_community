@@ -398,6 +398,24 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_statistics => 'الإحصائيات';
 
   @override
+  String get statistics_filter_all => 'الكل';
+
+  @override
+  String get statistics_filter_week => 'الأسبوع';
+
+  @override
+  String get statistics_filter_today => 'اليوم';
+
+  @override
+  String get statistics_earned_ajr => 'الأجر المكتسب';
+
+  @override
+  String get statistics_dhikr_completed => 'الأذكار المكتملة';
+
+  @override
+  String get statistics_completed_deeds => 'الأعمال المنجزة';
+
+  @override
   String get profile_favourites => 'المفضلة';
 
   @override

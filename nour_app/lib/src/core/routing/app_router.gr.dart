@@ -38,6 +38,8 @@ import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i17;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i19;
 import 'package:nour/src/features/profile/ui/pages/profile_page.dart' as _i21;
+import 'package:nour/src/features/profile/ui/pages/profile_statistics_page.dart'
+    as _i38;
 import 'package:nour/src/features/profile/ui/pages/reward_daily_dhikr_page.dart'
     as _i24;
 import 'package:nour/src/features/profile/ui/pages/reward_streak_page.dart'
@@ -625,6 +627,22 @@ class ProfileRoute extends _i36.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i21.ProfilePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i38.ProfileStatisticsPage]
+class ProfileStatisticsRoute extends _i36.PageRouteInfo<void> {
+  const ProfileStatisticsRoute({List<_i36.PageRouteInfo>? children})
+    : super(ProfileStatisticsRoute.name, initialChildren: children);
+
+  static const String name = 'ProfileStatisticsRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i38.ProfileStatisticsPage();
     },
   );
 }

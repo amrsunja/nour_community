@@ -844,6 +844,42 @@ abstract class AppLocalizations {
   /// **'Statistics'**
   String get profile_statistics;
 
+  /// No description provided for @statistics_filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get statistics_filter_all;
+
+  /// No description provided for @statistics_filter_week.
+  ///
+  /// In en, this message translates to:
+  /// **'Week'**
+  String get statistics_filter_week;
+
+  /// No description provided for @statistics_filter_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get statistics_filter_today;
+
+  /// No description provided for @statistics_earned_ajr.
+  ///
+  /// In en, this message translates to:
+  /// **'Earned Ajr'**
+  String get statistics_earned_ajr;
+
+  /// No description provided for @statistics_dhikr_completed.
+  ///
+  /// In en, this message translates to:
+  /// **'Dikr completed'**
+  String get statistics_dhikr_completed;
+
+  /// No description provided for @statistics_completed_deeds.
+  ///
+  /// In en, this message translates to:
+  /// **'Completed deeds'**
+  String get statistics_completed_deeds;
+
   /// No description provided for @profile_favourites.
   ///
   /// In en, this message translates to:

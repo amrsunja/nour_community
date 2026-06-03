@@ -15,6 +15,7 @@ abstract class RoutePaths {
   static const tools = 'tools';
   static const settings = 'settings';
   static const profile = 'profile';
+  static const profileStatistics = 'profile-statistics';
 
   // Dhikr
   static const dhikrsList = 'dhikrs';
