@@ -18,6 +18,7 @@ class ProfilePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final nav = ref.read(navigationServicesProvider);
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
 
@@ -105,15 +106,12 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.emoji_events_outlined,
                         label: l10n.profile_statistics,
-                        onTap: () => ref
-                            .read(navigationServicesProvider)
-                            .toProfileStatistics(),
+                        onTap: () => nav.toProfileStatistics(),
                       ),
                       ProfileMenuRow(
                         icon: Icons.favorite_border,
                         label: l10n.profile_favourites,
-                        onTap: () =>
-                            ref.read(navigationServicesProvider).toFavorites(),
+                        onTap: () => nav.toFavorites(),
                       ),
                     ],
                   ),
@@ -126,7 +124,7 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.history,
                         label: l10n.profile_reminders,
-                        onTap: () {},
+                        onTap: () => nav.toRemindersSettings(),
                       ),
                       ProfileMenuRow(
                         icon: Icons.settings_outlined,

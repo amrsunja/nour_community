@@ -52,6 +52,8 @@ import 'package:nour/src/features/quran/ui/pages/daily_ayah_page.dart' as _i5;
 import 'package:nour/src/features/quran/ui/pages/surah_detail_page.dart'
     as _i32;
 import 'package:nour/src/features/root_page.dart' as _i26;
+import 'package:nour/src/features/settings/ui/pages/reminders_page.dart'
+    as _i40;
 import 'package:nour/src/features/settings/ui/pages/settings_page.dart' as _i27;
 import 'package:nour/src/features/source/ui/pages/source_page.dart' as _i30;
 import 'package:nour/src/features/tools/ui/pages/calendar_page.dart' as _i4;
@@ -879,6 +881,22 @@ class RootRoute extends _i36.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i26.RootPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i40.RemindersPage]
+class RemindersRoute extends _i36.PageRouteInfo<void> {
+  const RemindersRoute({List<_i36.PageRouteInfo>? children})
+    : super(RemindersRoute.name, initialChildren: children);
+
+  static const String name = 'RemindersRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i40.RemindersPage();
     },
   );
 }

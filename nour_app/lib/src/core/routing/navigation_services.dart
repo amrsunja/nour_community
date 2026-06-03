@@ -41,6 +41,8 @@ abstract class NavigationServices {
 
 	void toStreakReward({required int streakDay});
 	void toDailyDhikrReward({required int dhikrCompleted, required int ajrEarned});
+
+	void toRemindersSettings();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -208,5 +210,10 @@ class NavigationServicesImpl implements NavigationServices {
 			dhikrCompleted: dhikrCompleted,
 			ajrEarned: ajrEarned,
 		));
+  }
+
+  @override
+  void toRemindersSettings() {
+		router.push(RemindersRoute());
   }
 }

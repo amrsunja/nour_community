@@ -106,6 +106,11 @@ class AppRouter extends RootStackRouter {
             ),
 
             AutoRoute(
+              path: RoutePaths.reminders,
+              page: RemindersRoute.page,
+            ),
+
+            AutoRoute(
               path: RoutePaths.profile,
               page: ProfileRoute.page,
             ),

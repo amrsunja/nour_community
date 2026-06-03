@@ -17,6 +17,7 @@ abstract class RoutePaths {
   static const profile = 'profile';
   static const profileStatistics = 'profile-statistics';
   static const favorites = 'favorites';
+  static const reminders = 'reminders';
 
   // Dhikr
   static const dhikrsList = 'dhikrs';
