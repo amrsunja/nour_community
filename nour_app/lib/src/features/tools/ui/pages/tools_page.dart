@@ -77,13 +77,6 @@ class ToolsPage extends HookConsumerWidget {
           }
         ),
         _ToolItem(
-          Assets.images.illustration18,
-          l10n.tools_hijri_calendar,
-          onTap: () {
-            nav.toHijriCalendar();
-          }
-        ),
-        _ToolItem(
           Assets.images.illustration36, 
           l10n.adhkar_all_title,
           onTap: () {
