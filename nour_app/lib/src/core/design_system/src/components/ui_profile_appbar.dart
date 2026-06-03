@@ -61,25 +61,28 @@ class UIProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               const UISpace.horz(12),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      greeting,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: typo.inter.bodyMedium
-                          .copyWith(color: UIColorsToken.textParagraph),
-                    ),
-                    Text(
-                      name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: typo.inter.bodyMedium
-                          .copyWith(color: UIColorsToken.white),
-                    ),
-                  ],
+                child: UITap(
+                  onTap: onAvatarTap,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        greeting,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: typo.inter.bodyMedium
+                            .copyWith(color: UIColorsToken.textParagraph),
+                      ),
+                      Text(
+                        name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: typo.inter.bodyMedium
+                            .copyWith(color: UIColorsToken.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               if (trailing != null) ...[
@@ -89,49 +92,6 @@ class UIProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _Avatar extends StatelessWidget {
-  const _Avatar({
-    required this.url,
-    required this.initial,
-    required this.color,
-    required this.size,
-    required this.typo,
-    this.onTap,
-  });
-
-  final String? url;
-  final String initial;
-  final Color color;
-  final double size;
-  final UITypographyToken typo;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return UITap(
-      onTap: onTap,
-      child: Container(
-        width: size,
-        height: size,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: color,
-          image: url != null
-              ? DecorationImage(image: NetworkImage(url!), fit: BoxFit.cover)
-              : null,
-        ),
-        child: url == null
-            ? Text(
-                initial,
-                style: typo.inter.title.copyWith(color: UIColorsToken.white),
-              )
-            : null,
       ),
     );
   }
