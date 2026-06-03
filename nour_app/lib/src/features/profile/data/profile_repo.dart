@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
@@ -64,6 +66,19 @@ class ProfileRepo {
   Future<SuccessOrError<void>> updateLastOnboardingScreen(int page) async {
     return await Failure.exceptionsCatcher(() async {
       await remoteDatasource.updateLastOnboardingScreen(page);
+    });
+  }
+
+  /// Uploads a new avatar and returns its public URL on success.
+  Future<SuccessOrError<String>> uploadAvatar(File file) async {
+    return await Failure.exceptionsCatcher(() async {
+      return await remoteDatasource.uploadAvatar(file);
+    });
+  }
+
+  Future<SuccessOrError<void>> deleteAvatar() async {
+    return await Failure.exceptionsCatcher(() async {
+      await remoteDatasource.deleteAvatar();
     });
   }
 

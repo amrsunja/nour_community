@@ -880,6 +880,48 @@ abstract class AppLocalizations {
   /// **'About Nour'**
   String get profile_about;
 
+  /// No description provided for @profile_avatar_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile photo'**
+  String get profile_avatar_title;
+
+  /// No description provided for @profile_avatar_take_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Take photo'**
+  String get profile_avatar_take_photo;
+
+  /// No description provided for @profile_avatar_choose_gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get profile_avatar_choose_gallery;
+
+  /// No description provided for @profile_avatar_remove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get profile_avatar_remove;
+
+  /// No description provided for @profile_avatar_remove_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove profile photo?'**
+  String get profile_avatar_remove_title;
+
+  /// No description provided for @profile_avatar_remove_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current photo will be permanently deleted.'**
+  String get profile_avatar_remove_message;
+
+  /// No description provided for @profile_avatar_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profile_avatar_cancel;
+
   /// No description provided for @l10nDashboard.
   ///
   /// In en, this message translates to:

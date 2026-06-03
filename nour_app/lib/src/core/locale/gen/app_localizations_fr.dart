@@ -430,6 +430,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_about => 'À propos de Nour';
 
   @override
+  String get profile_avatar_title => 'Photo de profil';
+
+  @override
+  String get profile_avatar_take_photo => 'Prendre une photo';
+
+  @override
+  String get profile_avatar_choose_gallery => 'Choisir dans la galerie';
+
+  @override
+  String get profile_avatar_remove => 'Supprimer la photo';
+
+  @override
+  String get profile_avatar_remove_title => 'Supprimer la photo de profil ?';
+
+  @override
+  String get profile_avatar_remove_message =>
+      'Votre photo actuelle sera définitivement supprimée.';
+
+  @override
+  String get profile_avatar_cancel => 'Annuler';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

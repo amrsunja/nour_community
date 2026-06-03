@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProfileState {
 
- bool get isLoading; ProfileModel? get profile;
+ bool get isLoading; AvatarStatus get avatarStatus; ProfileModel? get profile;
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ProfileStateCopyWith<ProfileState> get copyWith => _$ProfileStateCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.profile, profile) || other.profile == profile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProfileState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.avatarStatus, avatarStatus) || other.avatarStatus == avatarStatus)&&(identical(other.profile, profile) || other.profile == profile));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,profile);
+int get hashCode => Object.hash(runtimeType,isLoading,avatarStatus,profile);
 
 @override
 String toString() {
-  return 'ProfileState(isLoading: $isLoading, profile: $profile)';
+  return 'ProfileState(isLoading: $isLoading, avatarStatus: $avatarStatus, profile: $profile)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ProfileStateCopyWith<$Res>  {
   factory $ProfileStateCopyWith(ProfileState value, $Res Function(ProfileState) _then) = _$ProfileStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, ProfileModel? profile
+ bool isLoading, AvatarStatus avatarStatus, ProfileModel? profile
 });
 
 
@@ -62,10 +62,11 @@ class _$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? profile = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? avatarStatus = null,Object? profile = freezed,}) {
   return _then(_self.copyWith(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
+as bool,avatarStatus: null == avatarStatus ? _self.avatarStatus : avatarStatus // ignore: cast_nullable_to_non_nullable
+as AvatarStatus,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
 as ProfileModel?,
   ));
 }
@@ -151,10 +152,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  ProfileModel? profile)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isLoading,  AvatarStatus avatarStatus,  ProfileModel? profile)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.isLoading,_that.profile);case _:
+return $default(_that.isLoading,_that.avatarStatus,_that.profile);case _:
   return orElse();
 
 }
@@ -172,10 +173,10 @@ return $default(_that.isLoading,_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  ProfileModel? profile)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isLoading,  AvatarStatus avatarStatus,  ProfileModel? profile)  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState():
-return $default(_that.isLoading,_that.profile);case _:
+return $default(_that.isLoading,_that.avatarStatus,_that.profile);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,10 +193,10 @@ return $default(_that.isLoading,_that.profile);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  ProfileModel? profile)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isLoading,  AvatarStatus avatarStatus,  ProfileModel? profile)?  $default,) {final _that = this;
 switch (_that) {
 case _ProfileState() when $default != null:
-return $default(_that.isLoading,_that.profile);case _:
+return $default(_that.isLoading,_that.avatarStatus,_that.profile);case _:
   return null;
 
 }
@@ -207,10 +208,11 @@ return $default(_that.isLoading,_that.profile);case _:
 
 
 class _ProfileState implements ProfileState {
-  const _ProfileState({required this.isLoading, this.profile});
-  
+  const _ProfileState({required this.isLoading, this.avatarStatus = AvatarStatus.idle, this.profile});
+
 
 @override final  bool isLoading;
+@override@JsonKey() final  AvatarStatus avatarStatus;
 @override final  ProfileModel? profile;
 
 /// Create a copy of ProfileState
@@ -223,16 +225,16 @@ _$ProfileStateCopyWith<_ProfileState> get copyWith => __$ProfileStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.profile, profile) || other.profile == profile));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProfileState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.avatarStatus, avatarStatus) || other.avatarStatus == avatarStatus)&&(identical(other.profile, profile) || other.profile == profile));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,profile);
+int get hashCode => Object.hash(runtimeType,isLoading,avatarStatus,profile);
 
 @override
 String toString() {
-  return 'ProfileState(isLoading: $isLoading, profile: $profile)';
+  return 'ProfileState(isLoading: $isLoading, avatarStatus: $avatarStatus, profile: $profile)';
 }
 
 
@@ -243,7 +245,7 @@ abstract mixin class _$ProfileStateCopyWith<$Res> implements $ProfileStateCopyWi
   factory _$ProfileStateCopyWith(_ProfileState value, $Res Function(_ProfileState) _then) = __$ProfileStateCopyWithImpl;
 @override @useResult
 $Res call({
- bool isLoading, ProfileModel? profile
+ bool isLoading, AvatarStatus avatarStatus, ProfileModel? profile
 });
 
 
@@ -260,10 +262,11 @@ class __$ProfileStateCopyWithImpl<$Res>
 
 /// Create a copy of ProfileState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? profile = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? isLoading = null,Object? avatarStatus = null,Object? profile = freezed,}) {
   return _then(_ProfileState(
 isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
+as bool,avatarStatus: null == avatarStatus ? _self.avatarStatus : avatarStatus // ignore: cast_nullable_to_non_nullable
+as AvatarStatus,profile: freezed == profile ? _self.profile : profile // ignore: cast_nullable_to_non_nullable
 as ProfileModel?,
   ));
 }

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
@@ -14,6 +17,104 @@ final profileRemoteDataProvider = Provider(
 
 class ProfileRemoteDatasource {
   static const _tableName = 'profiles';
+  static const _avatarBucket = 'avatars';
+
+  static const _contentTypes = <String, String>{
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'png': 'image/png',
+    'webp': 'image/webp',
+    'heic': 'image/heic',
+  };
+
+  /// Uploads [file] to the user's `avatars/<uid>/` folder, replaces any existing
+  /// avatar (single file per user), persists the new public URL on the profile
+  /// row and returns it. Uses a timestamped object name so the public URL is
+  /// unique and never served stale from the CDN.
+  Future<String> uploadAvatar(File file) async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      final storage = supabaseClient.storage.from(_avatarBucket);
+      final folder = authUser.id;
+
+      // Drop any previously stored avatar(s) so the folder holds a single file.
+      final existing = await storage.list(path: folder);
+      if (existing.isNotEmpty) {
+        await storage.remove(
+          existing.map((f) => '$folder/${f.name}').toList(),
+        );
+      }
+
+      final ext = file.path.split('.').last.toLowerCase();
+      final objectPath =
+          '$folder/avatar_${DateTime.now().millisecondsSinceEpoch}.$ext';
+
+      await storage.upload(
+        objectPath,
+        file,
+        fileOptions: FileOptions(
+          upsert: true,
+          contentType: _contentTypes[ext] ?? 'image/jpeg',
+        ),
+      );
+
+      final url = storage.getPublicUrl(objectPath);
+
+      await supabaseClient
+          .from(_tableName)
+          .update({'avatar_url': url})
+          .eq('id', authUser.id);
+
+      return url;
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to upload avatar',
+      );
+    }
+  }
+
+  /// Removes every object in the user's avatar folder and clears `avatar_url`.
+  Future<void> deleteAvatar() async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) {
+      throw ServerException(
+        type: .unauthorized,
+        message: 'The user is not authenticated',
+      );
+    }
+
+    try {
+      final storage = supabaseClient.storage.from(_avatarBucket);
+      final folder = authUser.id;
+
+      final existing = await storage.list(path: folder);
+      if (existing.isNotEmpty) {
+        await storage.remove(
+          existing.map((f) => '$folder/${f.name}').toList(),
+        );
+      }
+
+      await supabaseClient
+          .from(_tableName)
+          .update({'avatar_url': null})
+          .eq('id', authUser.id);
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        message: 'Failed to delete avatar',
+      );
+    }
+  }
 
   /// Realtime stream of the authenticated user's profile row.
   ///

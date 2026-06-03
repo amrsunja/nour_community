@@ -8,7 +8,7 @@ import 'package:nour/src/core/utils/typedefs.dart';
 class ProfileModel extends Equatable {
   final String id;
   String? name;
-  final String? avatar;
+  String? avatar;
   GenderType? gender;
   LevelType? level;
   LanguageType language;

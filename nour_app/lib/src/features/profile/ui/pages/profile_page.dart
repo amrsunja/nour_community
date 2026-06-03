@@ -8,6 +8,7 @@ import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/auth/ui/state_management/auth_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/profile/ui/widgets/profile_avatar.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_menu_row.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_section.dart';
 
@@ -63,8 +64,7 @@ class ProfilePage extends HookConsumerWidget {
                 children: [
                   // ---------- Identity ----------
                   Center(
-                    child: _Avatar(
-                      url: profile?.avatar,
+                    child: ProfileAvatar(
                       initial: name.isNotEmpty ? name[0] : '?',
                     ),
                   ),
@@ -186,51 +186,5 @@ class ProfilePage extends HookConsumerWidget {
     if (trimmed.isEmpty) return null;
     final slug = trimmed.toLowerCase().replaceAll(RegExp(r'\s+'), '_');
     return '@$slug';
-  }
-}
-
-/// Identity avatar with a decorative camera badge. The picker itself is not
-/// wired here (out of scope).
-class _Avatar extends StatelessWidget {
-  const _Avatar({required this.url, required this.initial});
-
-  final String? url;
-  final String initial;
-
-  static const double _size = 100;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: _size,
-      height: _size,
-      child: Stack(
-        children: [
-          UIAvatar(
-            url: url,
-            initial: initial.toUpperCase(),
-            color: const Color(0xff4F5BF0),
-            size: _size,
-          ),
-          PositionedDirectional(
-            end: 4,
-            bottom: 4,
-            child: Container(
-              padding: const EdgeInsets.all(7),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: UIColorsToken.bgSurface,
-                border: Border.all(color: UIColorsToken.yellow, width: 1.5),
-              ),
-              child: const Icon(
-                Icons.photo_camera_outlined,
-                size: 16,
-                color: UIColorsToken.yellow,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

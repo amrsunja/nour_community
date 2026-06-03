@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
@@ -68,6 +69,46 @@ class ProfilePresenter extends Presenter<ProfileState> {
   void dispose() {
     _profileSub?.cancel();
     super.dispose();
+  }
+
+  /// Uploads [file] as the user's new avatar. Toggles [AvatarStatus.uploading]
+  /// so the UI can show progress, then writes the returned URL onto the live
+  /// profile (Realtime will echo the same change). Returns true on success.
+  Future<bool> uploadAvatar(File file) async {
+    state = state.copyWith(avatarStatus: AvatarStatus.uploading);
+    final response = await repo.uploadAvatar(file);
+
+    return response.when(
+      (url) {
+        state.profile?.avatar = url;
+        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+  }
+
+  /// Removes the user's avatar from storage and clears it on the profile.
+  Future<bool> deleteAvatar() async {
+    state = state.copyWith(avatarStatus: AvatarStatus.deleting);
+    final response = await repo.deleteAvatar();
+
+    return response.when(
+      (_) {
+        state.profile?.avatar = null;
+        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
   }
 
   /// Persists [minutes] of daily practice to the user's Supabase profile.

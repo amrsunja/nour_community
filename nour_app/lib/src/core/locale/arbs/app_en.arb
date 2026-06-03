@@ -165,6 +165,13 @@
   "profile_reading_preferences": "Reading preferences",
   "profile_help_support": "Help & support",
   "profile_about": "About Nour",
+  "profile_avatar_title": "Profile photo",
+  "profile_avatar_take_photo": "Take photo",
+  "profile_avatar_choose_gallery": "Choose from gallery",
+  "profile_avatar_remove": "Remove photo",
+  "profile_avatar_remove_title": "Remove profile photo?",
+  "profile_avatar_remove_message": "Your current photo will be permanently deleted.",
+  "profile_avatar_cancel": "Cancel",
 
   "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dashboard_daily_dhikr_goal": "Daily Dhikr Goal",

@@ -416,6 +416,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_about => 'حول نور';
 
   @override
+  String get profile_avatar_title => 'صورة الملف الشخصي';
+
+  @override
+  String get profile_avatar_take_photo => 'التقاط صورة';
+
+  @override
+  String get profile_avatar_choose_gallery => 'اختيار من المعرض';
+
+  @override
+  String get profile_avatar_remove => 'إزالة الصورة';
+
+  @override
+  String get profile_avatar_remove_title => 'إزالة صورة الملف الشخصي؟';
+
+  @override
+  String get profile_avatar_remove_message => 'سيتم حذف صورتك الحالية نهائيًا.';
+
+  @override
+  String get profile_avatar_cancel => 'إلغاء';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

@@ -160,6 +160,13 @@
   "profile_reading_preferences": "تفضيلات القراءة",
   "profile_help_support": "المساعدة والدعم",
   "profile_about": "حول نور",
+  "profile_avatar_title": "صورة الملف الشخصي",
+  "profile_avatar_take_photo": "التقاط صورة",
+  "profile_avatar_choose_gallery": "اختيار من المعرض",
+  "profile_avatar_remove": "إزالة الصورة",
+  "profile_avatar_remove_title": "إزالة صورة الملف الشخصي؟",
+  "profile_avatar_remove_message": "سيتم حذف صورتك الحالية نهائيًا.",
+  "profile_avatar_cancel": "إلغاء",
 
   "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dashboard_daily_dhikr_goal": "هدف الذكر اليومي",
