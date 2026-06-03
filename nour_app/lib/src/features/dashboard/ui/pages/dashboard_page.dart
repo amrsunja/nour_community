@@ -17,18 +17,37 @@ import 'package:nour/src/features/tools/ui/widgets/next_prayer_widget.dart';
 class DashboardPage extends HookConsumerWidget {
   const DashboardPage({super.key});
 
-  /// Builds Mon→Sun day states from the profile streak count: past days within
-  /// the streak are validated, earlier ones missed, today is the actual day,
-  /// and future days are upcoming.
-  List<UIStreakDayState> _weekStates(int streak) {
-    final todayIdx = DateTime.now().weekday - 1; // 0 = Monday
+  /// Builds Mon→Sun day states for the current week from the authoritative
+  /// streak: a day is [validated] when its calendar date falls inside the
+  /// streak window `[lastStreakDate - (streak-1) … lastStreakDate]`. Past
+  /// days outside that window are [missed], future days [upcoming]. Today is
+  /// [validated] if already counted, otherwise [actual].
+  List<UIStreakDayState> _weekStates(int streak, DateTime? lastStreakDate) {
+    final today = DateUtils.dateOnly(DateTime.now());
+    final todayIdx = today.weekday - 1; // 0 = Monday
+    final weekStart = DateUtils.addDaysToDate(today, -todayIdx);
+
+    // Normalize to UTC midnight so day diffs are exact (DST-safe).
+    final last = lastStreakDate == null
+        ? null
+        : DateTime.utc(
+            lastStreakDate.year, lastStreakDate.month, lastStreakDate.day);
+
+    bool isValidated(DateTime day) {
+      if (last == null || streak <= 0) return false;
+      final d = DateTime.utc(day.year, day.month, day.day);
+      if (d.isAfter(last)) return false;
+      return last.difference(d).inDays < streak;
+    }
+
     return List.generate(7, (i) {
       if (i > todayIdx) return UIStreakDayState.upcoming;
-      if (i == todayIdx) return UIStreakDayState.actual;
-      final daysAgo = todayIdx - i;
-      return daysAgo < streak
-          ? UIStreakDayState.validated
-          : UIStreakDayState.missed;
+      final day = DateUtils.addDaysToDate(weekStart, i);
+      final validated = isValidated(day);
+      if (i == todayIdx) {
+        return validated ? UIStreakDayState.validated : UIStreakDayState.actual;
+      }
+      return validated ? UIStreakDayState.validated : UIStreakDayState.missed;
     });
   }
 
@@ -105,7 +124,7 @@ class DashboardPage extends HookConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               UIStreakWeek(
-                states: _weekStates(streak),
+                states: _weekStates(streak, profile?.lastStreakDate),
                 streakCount: streak,
               ),
               const UISpace.vert(16),
