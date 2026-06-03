@@ -22,10 +22,15 @@ class AyahReaderPage extends HookConsumerWidget {
     super.key,
     required this.surahNumber,
     this.initialAyah = 1,
+    this.recordProgress = true,
   });
 
   final int surahNumber;
   final int initialAyah;
+
+  /// When false (e.g. opened from Favourites), reading position is never
+  /// persisted — neither on navigation nor on leaving the page.
+  final bool recordProgress;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,10 +66,13 @@ class AyahReaderPage extends HookConsumerWidget {
       return null;
     }, [surahNumber, langCode]);
 
-    Future<void> save() => presenter.saveProgress(
-      surahNumber: surahNumber,
-      ayahNumber: ayahNumber.value,
-    );
+    Future<void> save() async {
+      if (!recordProgress) return;
+      await presenter.saveProgress(
+        surahNumber: surahNumber,
+        ayahNumber: ayahNumber.value,
+      );
+    }
 
     void goTo(int next) {
       ayahNumber.value = next.clamp(1, total);

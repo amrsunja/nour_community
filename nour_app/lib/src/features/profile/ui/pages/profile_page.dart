@@ -112,7 +112,8 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.favorite_border,
                         label: l10n.profile_favourites,
-                        onTap: () {},
+                        onTap: () =>
+                            ref.read(navigationServicesProvider).toFavorites(),
                       ),
                     ],
                   ),

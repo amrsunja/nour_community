@@ -37,6 +37,8 @@ import 'package:nour/src/features/home/tools_router_route.dart' as _i34;
 import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i17;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i19;
+import 'package:nour/src/features/profile/ui/pages/favorites_page.dart'
+    as _i39;
 import 'package:nour/src/features/profile/ui/pages/profile_page.dart' as _i21;
 import 'package:nour/src/features/profile/ui/pages/profile_statistics_page.dart'
     as _i38;
@@ -67,10 +69,15 @@ class AdhkarDetailRoute extends _i36.PageRouteInfo<AdhkarDetailRouteArgs> {
   AdhkarDetailRoute({
     _i37.Key? key,
     required int subcategoryId,
+    int? initialAdhkarId,
     List<_i36.PageRouteInfo>? children,
   }) : super(
          AdhkarDetailRoute.name,
-         args: AdhkarDetailRouteArgs(key: key, subcategoryId: subcategoryId),
+         args: AdhkarDetailRouteArgs(
+           key: key,
+           subcategoryId: subcategoryId,
+           initialAdhkarId: initialAdhkarId,
+         ),
          initialChildren: children,
        );
 
@@ -83,32 +90,42 @@ class AdhkarDetailRoute extends _i36.PageRouteInfo<AdhkarDetailRouteArgs> {
       return _i1.AdhkarDetailPage(
         key: args.key,
         subcategoryId: args.subcategoryId,
+        initialAdhkarId: args.initialAdhkarId,
       );
     },
   );
 }
 
 class AdhkarDetailRouteArgs {
-  const AdhkarDetailRouteArgs({this.key, required this.subcategoryId});
+  const AdhkarDetailRouteArgs({
+    this.key,
+    required this.subcategoryId,
+    this.initialAdhkarId,
+  });
 
   final _i37.Key? key;
 
   final int subcategoryId;
 
+  final int? initialAdhkarId;
+
   @override
   String toString() {
-    return 'AdhkarDetailRouteArgs{key: $key, subcategoryId: $subcategoryId}';
+    return 'AdhkarDetailRouteArgs{key: $key, subcategoryId: $subcategoryId, initialAdhkarId: $initialAdhkarId}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! AdhkarDetailRouteArgs) return false;
-    return key == other.key && subcategoryId == other.subcategoryId;
+    return key == other.key &&
+        subcategoryId == other.subcategoryId &&
+        initialAdhkarId == other.initialAdhkarId;
   }
 
   @override
-  int get hashCode => key.hashCode ^ subcategoryId.hashCode;
+  int get hashCode =>
+      key.hashCode ^ subcategoryId.hashCode ^ initialAdhkarId.hashCode;
 }
 
 /// generated route for
@@ -134,6 +151,7 @@ class AyahReaderRoute extends _i36.PageRouteInfo<AyahReaderRouteArgs> {
     _i37.Key? key,
     required int surahNumber,
     int initialAyah = 1,
+    bool recordProgress = true,
     List<_i36.PageRouteInfo>? children,
   }) : super(
          AyahReaderRoute.name,
@@ -141,6 +159,7 @@ class AyahReaderRoute extends _i36.PageRouteInfo<AyahReaderRouteArgs> {
            key: key,
            surahNumber: surahNumber,
            initialAyah: initialAyah,
+           recordProgress: recordProgress,
          ),
          initialChildren: children,
        );
@@ -155,6 +174,7 @@ class AyahReaderRoute extends _i36.PageRouteInfo<AyahReaderRouteArgs> {
         key: args.key,
         surahNumber: args.surahNumber,
         initialAyah: args.initialAyah,
+        recordProgress: args.recordProgress,
       );
     },
   );
@@ -165,6 +185,7 @@ class AyahReaderRouteArgs {
     this.key,
     required this.surahNumber,
     this.initialAyah = 1,
+    this.recordProgress = true,
   });
 
   final _i37.Key? key;
@@ -173,9 +194,11 @@ class AyahReaderRouteArgs {
 
   final int initialAyah;
 
+  final bool recordProgress;
+
   @override
   String toString() {
-    return 'AyahReaderRouteArgs{key: $key, surahNumber: $surahNumber, initialAyah: $initialAyah}';
+    return 'AyahReaderRouteArgs{key: $key, surahNumber: $surahNumber, initialAyah: $initialAyah, recordProgress: $recordProgress}';
   }
 
   @override
@@ -184,12 +207,16 @@ class AyahReaderRouteArgs {
     if (other is! AyahReaderRouteArgs) return false;
     return key == other.key &&
         surahNumber == other.surahNumber &&
-        initialAyah == other.initialAyah;
+        initialAyah == other.initialAyah &&
+        recordProgress == other.recordProgress;
   }
 
   @override
   int get hashCode =>
-      key.hashCode ^ surahNumber.hashCode ^ initialAyah.hashCode;
+      key.hashCode ^
+      surahNumber.hashCode ^
+      initialAyah.hashCode ^
+      recordProgress.hashCode;
 }
 
 /// generated route for
@@ -343,10 +370,15 @@ class DuaDetailRoute extends _i36.PageRouteInfo<DuaDetailRouteArgs> {
   DuaDetailRoute({
     _i37.Key? key,
     required int initialDuaId,
+    bool recordProgress = true,
     List<_i36.PageRouteInfo>? children,
   }) : super(
          DuaDetailRoute.name,
-         args: DuaDetailRouteArgs(key: key, initialDuaId: initialDuaId),
+         args: DuaDetailRouteArgs(
+           key: key,
+           initialDuaId: initialDuaId,
+           recordProgress: recordProgress,
+         ),
          initialChildren: children,
        );
 
@@ -356,32 +388,45 @@ class DuaDetailRoute extends _i36.PageRouteInfo<DuaDetailRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<DuaDetailRouteArgs>();
-      return _i11.DuaDetailPage(key: args.key, initialDuaId: args.initialDuaId);
+      return _i11.DuaDetailPage(
+        key: args.key,
+        initialDuaId: args.initialDuaId,
+        recordProgress: args.recordProgress,
+      );
     },
   );
 }
 
 class DuaDetailRouteArgs {
-  const DuaDetailRouteArgs({this.key, required this.initialDuaId});
+  const DuaDetailRouteArgs({
+    this.key,
+    required this.initialDuaId,
+    this.recordProgress = true,
+  });
 
   final _i37.Key? key;
 
   final int initialDuaId;
 
+  final bool recordProgress;
+
   @override
   String toString() {
-    return 'DuaDetailRouteArgs{key: $key, initialDuaId: $initialDuaId}';
+    return 'DuaDetailRouteArgs{key: $key, initialDuaId: $initialDuaId, recordProgress: $recordProgress}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! DuaDetailRouteArgs) return false;
-    return key == other.key && initialDuaId == other.initialDuaId;
+    return key == other.key &&
+        initialDuaId == other.initialDuaId &&
+        recordProgress == other.recordProgress;
   }
 
   @override
-  int get hashCode => key.hashCode ^ initialDuaId.hashCode;
+  int get hashCode =>
+      key.hashCode ^ initialDuaId.hashCode ^ recordProgress.hashCode;
 }
 
 /// generated route for
@@ -461,6 +506,7 @@ class HadithDetailRoute extends _i36.PageRouteInfo<HadithDetailRouteArgs> {
     _i37.Key? key,
     required int collectionId,
     required int initialHadithId,
+    bool recordProgress = true,
     List<_i36.PageRouteInfo>? children,
   }) : super(
          HadithDetailRoute.name,
@@ -468,6 +514,7 @@ class HadithDetailRoute extends _i36.PageRouteInfo<HadithDetailRouteArgs> {
            key: key,
            collectionId: collectionId,
            initialHadithId: initialHadithId,
+           recordProgress: recordProgress,
          ),
          initialChildren: children,
        );
@@ -482,6 +529,7 @@ class HadithDetailRoute extends _i36.PageRouteInfo<HadithDetailRouteArgs> {
         key: args.key,
         collectionId: args.collectionId,
         initialHadithId: args.initialHadithId,
+        recordProgress: args.recordProgress,
       );
     },
   );
@@ -492,6 +540,7 @@ class HadithDetailRouteArgs {
     this.key,
     required this.collectionId,
     required this.initialHadithId,
+    this.recordProgress = true,
   });
 
   final _i37.Key? key;
@@ -500,9 +549,11 @@ class HadithDetailRouteArgs {
 
   final int initialHadithId;
 
+  final bool recordProgress;
+
   @override
   String toString() {
-    return 'HadithDetailRouteArgs{key: $key, collectionId: $collectionId, initialHadithId: $initialHadithId}';
+    return 'HadithDetailRouteArgs{key: $key, collectionId: $collectionId, initialHadithId: $initialHadithId, recordProgress: $recordProgress}';
   }
 
   @override
@@ -511,12 +562,16 @@ class HadithDetailRouteArgs {
     if (other is! HadithDetailRouteArgs) return false;
     return key == other.key &&
         collectionId == other.collectionId &&
-        initialHadithId == other.initialHadithId;
+        initialHadithId == other.initialHadithId &&
+        recordProgress == other.recordProgress;
   }
 
   @override
   int get hashCode =>
-      key.hashCode ^ collectionId.hashCode ^ initialHadithId.hashCode;
+      key.hashCode ^
+      collectionId.hashCode ^
+      initialHadithId.hashCode ^
+      recordProgress.hashCode;
 }
 
 /// generated route for
@@ -627,6 +682,22 @@ class ProfileRoute extends _i36.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i21.ProfilePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i39.FavoritesPage]
+class FavoritesRoute extends _i36.PageRouteInfo<void> {
+  const FavoritesRoute({List<_i36.PageRouteInfo>? children})
+    : super(FavoritesRoute.name, initialChildren: children);
+
+  static const String name = 'FavoritesRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i39.FavoritesPage();
     },
   );
 }

@@ -886,6 +886,54 @@ abstract class AppLocalizations {
   /// **'Favourites'**
   String get profile_favourites;
 
+  /// No description provided for @favorites_tab_ayahs.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayahs'**
+  String get favorites_tab_ayahs;
+
+  /// No description provided for @favorites_tab_adhkars.
+  ///
+  /// In en, this message translates to:
+  /// **'Adhkars'**
+  String get favorites_tab_adhkars;
+
+  /// No description provided for @favorites_tab_duas.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas'**
+  String get favorites_tab_duas;
+
+  /// No description provided for @favorites_tab_hadiths.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadiths'**
+  String get favorites_tab_hadiths;
+
+  /// No description provided for @favorites_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No favourites yet.'**
+  String get favorites_empty;
+
+  /// No description provided for @favorites_error_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong'**
+  String get favorites_error_title;
+
+  /// No description provided for @favorites_error_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t load your favourites. Please try again.'**
+  String get favorites_error_subtitle;
+
+  /// No description provided for @favorites_try_again.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get favorites_try_again;
+
   /// No description provided for @profile_reminders.
   ///
   /// In en, this message translates to:

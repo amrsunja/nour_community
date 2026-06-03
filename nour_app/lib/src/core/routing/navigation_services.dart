@@ -13,22 +13,23 @@ abstract class NavigationServices {
 	void toSettings();
 	void toProfile();
 	void toProfileStatistics();
+	void toFavorites();
 	void toOnboarding();
 
 	void toDhikrsList();
 	void toAdhkarsList();
-	void toAdhkarDetail({required int subcategoryId});
+	void toAdhkarDetail({required int subcategoryId, int? initialAdhkarId});
 	void toDhikr({required int selectedId});
 
 	void toSurahDetail({required int surahNumber});
-	void toAyahReader({required int surahNumber, int initialAyah});
+	void toAyahReader({required int surahNumber, int initialAyah, bool recordProgress});
 	void toDailyAyah();
 
 	void toHadithCollectionDetail({required int collectionId});
-	void toHadithReader({required int collectionId, required int initialHadithId});
+	void toHadithReader({required int collectionId, required int initialHadithId, bool recordProgress});
 
 	void toDuaLibrary();
-	void toDuaReader({required int initialDuaId});
+	void toDuaReader({required int initialDuaId, bool recordProgress});
 	void toDailyDua();
 
 	void toQuiz();
@@ -93,6 +94,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
+  void toFavorites() {
+		router.push(FavoritesRoute());
+  }
+
+  @override
   void toDhikrsList() {
 		router.push(DhikrsListRoute());
   }
@@ -103,8 +109,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toAdhkarDetail({required int subcategoryId}) {
-		router.push(AdhkarDetailRoute(subcategoryId: subcategoryId));
+  void toAdhkarDetail({required int subcategoryId, int? initialAdhkarId}) {
+		router.push(AdhkarDetailRoute(
+			subcategoryId: subcategoryId,
+			initialAdhkarId: initialAdhkarId,
+		));
   }
 
   @override
@@ -118,8 +127,12 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toAyahReader({required int surahNumber, int initialAyah = 1}) {
-		router.push(AyahReaderRoute(surahNumber: surahNumber, initialAyah: initialAyah));
+  void toAyahReader({required int surahNumber, int initialAyah = 1, bool recordProgress = true}) {
+		router.push(AyahReaderRoute(
+			surahNumber: surahNumber,
+			initialAyah: initialAyah,
+			recordProgress: recordProgress,
+		));
   }
 
   @override
@@ -133,10 +146,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toHadithReader({required int collectionId, required int initialHadithId}) {
+  void toHadithReader({required int collectionId, required int initialHadithId, bool recordProgress = true}) {
 		router.push(HadithDetailRoute(
 			collectionId: collectionId,
 			initialHadithId: initialHadithId,
+			recordProgress: recordProgress,
 		));
   }
 
@@ -146,8 +160,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toDuaReader({required int initialDuaId}) {
-		router.push(DuaDetailRoute(initialDuaId: initialDuaId));
+  void toDuaReader({required int initialDuaId, bool recordProgress = true}) {
+		router.push(DuaDetailRoute(
+			initialDuaId: initialDuaId,
+			recordProgress: recordProgress,
+		));
   }
 
   @override

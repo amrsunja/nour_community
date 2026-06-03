@@ -20,9 +20,14 @@ class DuaDetailPage extends HookConsumerWidget {
   const DuaDetailPage({
     super.key,
     required this.initialDuaId,
+    this.recordProgress = true,
   });
 
   final int initialDuaId;
+
+  /// When false (e.g. opened from Favourites), reading position is never
+  /// persisted — neither on navigation nor on leaving the page.
+  final bool recordProgress;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -58,7 +63,10 @@ class DuaDetailPage extends HookConsumerWidget {
     final transcription = dua.transcription(langCode);
     final hasTranscription = langCode != 'ar' && transcription.isNotEmpty;
 
-    Future<void> save() => presenter.saveProgress(dua);
+    Future<void> save() async {
+      if (!recordProgress) return;
+      await presenter.saveProgress(dua);
+    }
 
     void goTo(int next) {
       index.value = next.clamp(0, total - 1);

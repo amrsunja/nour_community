@@ -17,9 +17,14 @@ class AdhkarDetailPage extends HookConsumerWidget {
   const AdhkarDetailPage({
     super.key,
     required this.subcategoryId,
+    this.initialAdhkarId,
   });
 
   final int subcategoryId;
+
+  /// When set (e.g. opened from Favourites), the pager jumps straight to this
+  /// adhkar within the subcategory instead of starting at the first one.
+  final int? initialAdhkarId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -42,6 +47,28 @@ class AdhkarDetailPage extends HookConsumerWidget {
       );
       return null;
     }, const []);
+
+    // Jump to the requested adhkar once the list is available (deep-link from
+    // Favourites). Runs once: guarded by [jumped].
+    final jumped = useRef(false);
+    useEffect(() {
+      if (jumped.value || initialAdhkarId == null || adhkars.isEmpty) {
+        return null;
+      }
+      final target = adhkars.indexWhere((a) => a.id == initialAdhkarId);
+      if (target > 0) {
+        jumped.value = true;
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (pageController.hasClients) {
+            pageController.jumpToPage(target);
+          }
+          index.value = target;
+        });
+      } else if (target == 0) {
+        jumped.value = true;
+      }
+      return null;
+    }, [adhkars.length]);
 
     final isLoading = state.isLoadingAdhkars(subcategoryId) && adhkars.isEmpty;
 

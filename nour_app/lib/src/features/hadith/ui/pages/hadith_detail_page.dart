@@ -21,10 +21,15 @@ class HadithDetailPage extends HookConsumerWidget {
     super.key,
     required this.collectionId,
     required this.initialHadithId,
+    this.recordProgress = true,
   });
 
   final int collectionId;
   final int initialHadithId;
+
+  /// When false (e.g. opened from Favourites), reading position is never
+  /// persisted — neither on navigation nor on leaving the page.
+  final bool recordProgress;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -67,10 +72,13 @@ class HadithDetailPage extends HookConsumerWidget {
     final transcription = hadith.transcription(langCode);
     final hasTranscription = langCode != 'ar' && transcription.isNotEmpty;
 
-    Future<void> save() => presenter.saveProgress(
-          collectionId: collectionId,
-          hadith: hadith,
-        );
+    Future<void> save() async {
+      if (!recordProgress) return;
+      await presenter.saveProgress(
+        collectionId: collectionId,
+        hadith: hadith,
+      );
+    }
 
     void goTo(int next) {
       index.value = next.clamp(0, total - 1);

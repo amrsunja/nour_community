@@ -433,6 +433,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String get profile_favourites => 'Favoris';
 
   @override
+  String get favorites_tab_ayahs => 'Versets';
+
+  @override
+  String get favorites_tab_adhkars => 'Adhkars';
+
+  @override
+  String get favorites_tab_duas => 'Invocations';
+
+  @override
+  String get favorites_tab_hadiths => 'Hadiths';
+
+  @override
+  String get favorites_empty => 'Aucun favori pour le moment.';
+
+  @override
+  String get favorites_error_title => 'Une erreur est survenue';
+
+  @override
+  String get favorites_error_subtitle =>
+      'Impossible de charger vos favoris. Veuillez réessayer.';
+
+  @override
+  String get favorites_try_again => 'Réessayer';
+
+  @override
   String get profile_reminders => 'Rappels';
 
   @override

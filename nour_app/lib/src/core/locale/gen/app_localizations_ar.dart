@@ -419,6 +419,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_favourites => 'المفضلة';
 
   @override
+  String get favorites_tab_ayahs => 'الآيات';
+
+  @override
+  String get favorites_tab_adhkars => 'الأذكار';
+
+  @override
+  String get favorites_tab_duas => 'الأدعية';
+
+  @override
+  String get favorites_tab_hadiths => 'الأحاديث';
+
+  @override
+  String get favorites_empty => 'لا توجد مفضلة بعد.';
+
+  @override
+  String get favorites_error_title => 'حدث خطأ ما';
+
+  @override
+  String get favorites_error_subtitle =>
+      'تعذّر تحميل المفضلة. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get favorites_try_again => 'إعادة المحاولة';
+
+  @override
   String get profile_reminders => 'التذكيرات';
 
   @override
