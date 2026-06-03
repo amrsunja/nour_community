@@ -1,4 +1,4 @@
-const String kAppName = 'Sawm';
+const String kAppName = 'Nour';
 
 //const String kCopyrightInfoUrl = 'https://';
 const String kSupportUrl = 'mailto:contact@sawm.io';

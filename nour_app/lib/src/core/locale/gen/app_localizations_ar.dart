@@ -25,6 +25,28 @@ class AppLocalizationsAr extends AppLocalizations {
   String get common_maybe_later => 'لاحقاً';
 
   @override
+  String get common_assalamu_alaykum => 'السَّلَامُ عَلَيْكُمْ';
+
+  @override
+  String get l10nNavBar =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get nav_home => 'الرئيسية';
+
+  @override
+  String get nav_source => 'المصدر';
+
+  @override
+  String get nav_impact => 'الأثر';
+
+  @override
+  String get nav_tools => 'الأدوات';
+
+  @override
+  String get nav_dhikr => 'ذكر';
+
+  @override
   String get l10nSettings =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

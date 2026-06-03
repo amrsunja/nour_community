@@ -115,6 +115,7 @@ class DashboardPage extends HookConsumerWidget {
       appBar: UIProfileAppBar(
         name: profile?.name ?? l10n.profile_guest,
         avatarUrl: profile?.avatar,
+        greeting: l10n.common_assalamu_alaykum,
         onAvatarTap: () => ref.read(navigationServicesProvider).toProfile(),
         trailing: UIStreakCard(current: streak, total: 7),
       ),

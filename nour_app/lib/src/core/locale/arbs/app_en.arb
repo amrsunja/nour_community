@@ -5,6 +5,15 @@
 	"common_continue": "Continue",
 	"common_skip": "Skip",
 	"common_maybe_later": "Maybe later",
+  "common_assalamu_alaykum": "As-salamu Alaykum",
+
+
+	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+	"nav_home": "Home",
+	"nav_source": "Source",
+	"nav_impact": "Impact",
+	"nav_tools": "Tools",
+	"nav_dhikr": "Dhikr",
 
 
 	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",

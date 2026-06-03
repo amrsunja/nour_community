@@ -4,6 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/app_vibrations.dart';
@@ -18,6 +19,7 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dhikrP= ref.read(dhikrProvider.notifier);
+    final l10n = ref.watch(l10nProvider);
 
     // Reward coordinator: pushes the streak / daily-dhikr reward pages off the
     // realtime daily_activity stream (once per day, claimed server-side).
@@ -71,6 +73,11 @@ class HomePage extends HookConsumerWidget {
                       highlightColor: Colors.transparent,
                     ),
                     child: UINavBar(
+                      homeLabel: l10n.nav_home,
+                      sourceLabel: l10n.nav_source,
+                      impactLabel: l10n.nav_impact,
+                      toolsLabel: l10n.nav_tools,
+                      dhikrLabel: l10n.nav_dhikr,
                       currentPage: tabsRouter.activeIndex,
                       onPageChange: (index) {
                         AppVibrations.buttonClick();

@@ -84,7 +84,7 @@ class ToolsPage extends HookConsumerWidget {
           }
         ),
       ];
-    });
+    }, [l10n]);
 
     return Scaffold(
       appBar: UIAppBar(title: l10n.tools_title),

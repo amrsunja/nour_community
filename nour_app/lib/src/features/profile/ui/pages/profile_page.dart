@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/config/app_config.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
@@ -154,20 +155,23 @@ class ProfilePage extends HookConsumerWidget {
                         label: l10n.profile_about,
                         onTap: () {},
                       ),
+                      if (!session.isAnonymous) ...[
+                        ProfileMenuRow(
+                          icon: Icons.logout,
+                          label: l10n.profile_logout,
+                          onTap: onLogout,
+                        ),
+                      ]
                     ],
                   ),
 
-                  // ---------- Logout (connected only) ----------
-                  if (!session.isAnonymous) ...[
-                    const UISpace.vert(32),
-                    UIButton.textual(
-                      label: l10n.profile_logout,
-                      fullWidth: true,
-                      isBusy: isLoading,
-                      contentColor: UIColorsToken.red,
-                      onTap: onLogout,
+                  const UISpace.vert(30),
+                  Center(
+                    child: Text(
+                      '$kAppName - ${AppConfig.shared.appVersion}',
+                      style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.yellow.withValues(alpha: 0.3)),
                     ),
-                  ],
+                  )
                 ],
               ),
             ),

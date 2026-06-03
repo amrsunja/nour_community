@@ -136,12 +136,18 @@ class _StartButton extends StatelessWidget {
                 height: 28
               ),
               const UISpace.vert(4),
-              Text(
-                title,
-                style: typo.inter.bodyMedium.copyWith(
-                  color: UIColorsToken.white,
-                  fontSize: 12,
-                  fontWeight: .bold
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Text(
+                  title,
+                  maxLines: 2,
+                  overflow: .ellipsis,
+                  textAlign: .center,
+                  style: typo.inter.bodyMedium.copyWith(
+                    color: UIColorsToken.white,
+                    fontSize: 12,
+                    fontWeight: .bold
+                  ),
                 ),
               ),
             ],

@@ -25,6 +25,28 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_maybe_later => 'Maybe later';
 
   @override
+  String get common_assalamu_alaykum => 'As-salamu Alaykum';
+
+  @override
+  String get l10nNavBar =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get nav_home => 'Home';
+
+  @override
+  String get nav_source => 'Source';
+
+  @override
+  String get nav_impact => 'Impact';
+
+  @override
+  String get nav_tools => 'Tools';
+
+  @override
+  String get nav_dhikr => 'Dhikr';
+
+  @override
   String get l10nSettings =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

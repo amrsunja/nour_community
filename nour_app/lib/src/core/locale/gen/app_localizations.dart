@@ -130,6 +130,48 @@ abstract class AppLocalizations {
   /// **'Maybe later'**
   String get common_maybe_later;
 
+  /// No description provided for @common_assalamu_alaykum.
+  ///
+  /// In en, this message translates to:
+  /// **'As-salamu Alaykum'**
+  String get common_assalamu_alaykum;
+
+  /// No description provided for @l10nNavBar.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nNavBar;
+
+  /// No description provided for @nav_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get nav_home;
+
+  /// No description provided for @nav_source.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get nav_source;
+
+  /// No description provided for @nav_impact.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact'**
+  String get nav_impact;
+
+  /// No description provided for @nav_tools.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get nav_tools;
+
+  /// No description provided for @nav_dhikr.
+  ///
+  /// In en, this message translates to:
+  /// **'Dhikr'**
+  String get nav_dhikr;
+
   /// No description provided for @l10nSettings.
   ///
   /// In en, this message translates to:

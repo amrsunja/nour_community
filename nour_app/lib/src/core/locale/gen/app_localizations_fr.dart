@@ -25,6 +25,28 @@ class AppLocalizationsFr extends AppLocalizations {
   String get common_maybe_later => 'Plus tard';
 
   @override
+  String get common_assalamu_alaykum => 'As-salamu Alaykum';
+
+  @override
+  String get l10nNavBar =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get nav_home => 'Accueil';
+
+  @override
+  String get nav_source => 'Source';
+
+  @override
+  String get nav_impact => 'Impact';
+
+  @override
+  String get nav_tools => 'Outils';
+
+  @override
+  String get nav_dhikr => 'Dhikr';
+
+  @override
   String get l10nSettings =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
