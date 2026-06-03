@@ -12,6 +12,8 @@
   "settings_general": "Général",
   "settings_language": "Langue",
   "settings_language_info": "Sélectionnez votre langue préférée pour l'interface de l'application.",
+  "settings_favorite_reciter": "Récitateur favori",
+  "settings_favorite_reciter_info": "Choisissez le récitateur utilisé pour la lecture audio du Coran.",
 
   "settings_theme": "Thème",
   "settings_theme_system": "Système",

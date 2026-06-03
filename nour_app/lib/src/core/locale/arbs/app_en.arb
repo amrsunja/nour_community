@@ -12,6 +12,8 @@
   "settings_general": "General",
   "settings_language": "Language",
   "settings_language_info": "Select your preferred language for the application interface.",
+  "settings_favorite_reciter": "Favourite reciter",
+  "settings_favorite_reciter_info": "Choose the reciter used for Quran audio playback.",
 
   "settings_theme": "Theme",
   "settings_theme_system": "System",

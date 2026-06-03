@@ -42,6 +42,13 @@ class AppLocalizationsEn extends AppLocalizations {
       'Select your preferred language for the application interface.';
 
   @override
+  String get settings_favorite_reciter => 'Favourite reciter';
+
+  @override
+  String get settings_favorite_reciter_info =>
+      'Choose the reciter used for Quran audio playback.';
+
+  @override
   String get settings_theme => 'Theme';
 
   @override

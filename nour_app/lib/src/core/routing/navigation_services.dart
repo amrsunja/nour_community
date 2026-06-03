@@ -43,6 +43,8 @@ abstract class NavigationServices {
 	void toDailyDhikrReward({required int dhikrCompleted, required int ajrEarned});
 
 	void toRemindersSettings();
+	void toFavoriteReciterSettings();
+	void toLanguageSettings();
 }
 
 class NavigationServicesImpl implements NavigationServices {
@@ -215,5 +217,15 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toRemindersSettings() {
 		router.push(RemindersRoute());
+  }
+
+  @override
+  void toFavoriteReciterSettings() {
+		router.push(FavoriteReciterRoute());
+  }
+
+  @override
+  void toLanguageSettings() {
+		router.push(LanguageRoute());
   }
 }

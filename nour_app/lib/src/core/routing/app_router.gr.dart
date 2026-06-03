@@ -55,6 +55,10 @@ import 'package:nour/src/features/root_page.dart' as _i26;
 import 'package:nour/src/features/settings/ui/pages/reminders_page.dart'
     as _i40;
 import 'package:nour/src/features/settings/ui/pages/settings_page.dart' as _i27;
+import 'package:nour/src/features/settings/ui/pages/favorite_reciter_page.dart'
+    as _i41;
+import 'package:nour/src/features/settings/ui/pages/language_page.dart'
+    as _i42;
 import 'package:nour/src/features/source/ui/pages/source_page.dart' as _i30;
 import 'package:nour/src/features/tools/ui/pages/calendar_page.dart' as _i4;
 import 'package:nour/src/features/tools/ui/pages/prayer_times_page.dart'
@@ -913,6 +917,38 @@ class SettingsRoute extends _i36.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i27.SettingsPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i41.FavoriteReciterPage]
+class FavoriteReciterRoute extends _i36.PageRouteInfo<void> {
+  const FavoriteReciterRoute({List<_i36.PageRouteInfo>? children})
+    : super(FavoriteReciterRoute.name, initialChildren: children);
+
+  static const String name = 'FavoriteReciterRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i41.FavoriteReciterPage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i42.LanguagePage]
+class LanguageRoute extends _i36.PageRouteInfo<void> {
+  const LanguageRoute({List<_i36.PageRouteInfo>? children})
+    : super(LanguageRoute.name, initialChildren: children);
+
+  static const String name = 'LanguageRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i42.LanguagePage();
     },
   );
 }

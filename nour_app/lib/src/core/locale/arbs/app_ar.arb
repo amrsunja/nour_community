@@ -12,6 +12,8 @@
   "settings_general": "عام",
   "settings_language": "اللغة",
   "settings_language_info": "اختر لغتك المفضلة لواجهة التطبيق.",
+  "settings_favorite_reciter": "القارئ المفضل",
+  "settings_favorite_reciter_info": "اختر القارئ المستخدم لتشغيل تلاوة القرآن.",
 
   "settings_theme": "المظهر",
   "settings_theme_system": "النظام",

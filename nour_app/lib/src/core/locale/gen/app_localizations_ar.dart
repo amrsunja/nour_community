@@ -41,6 +41,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get settings_language_info => 'اختر لغتك المفضلة لواجهة التطبيق.';
 
   @override
+  String get settings_favorite_reciter => 'القارئ المفضل';
+
+  @override
+  String get settings_favorite_reciter_info =>
+      'اختر القارئ المستخدم لتشغيل تلاوة القرآن.';
+
+  @override
   String get settings_theme => 'المظهر';
 
   @override

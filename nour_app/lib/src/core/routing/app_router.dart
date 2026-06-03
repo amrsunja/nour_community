@@ -111,6 +111,16 @@ class AppRouter extends RootStackRouter {
             ),
 
             AutoRoute(
+              path: RoutePaths.favoriteReciter,
+              page: FavoriteReciterRoute.page,
+            ),
+
+            AutoRoute(
+              path: RoutePaths.language,
+              page: LanguageRoute.page,
+            ),
+
+            AutoRoute(
               path: RoutePaths.profile,
               page: ProfileRoute.page,
             ),

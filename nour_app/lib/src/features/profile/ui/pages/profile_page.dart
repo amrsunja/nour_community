@@ -129,7 +129,7 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.settings_outlined,
                         label: l10n.profile_settings,
-                        onTap: () {},
+                        onTap: () => nav.toSettings(),
                       ),
                       ProfileMenuRow(
                         icon: Icons.menu_book_outlined,

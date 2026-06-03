@@ -160,6 +160,18 @@ abstract class AppLocalizations {
   /// **'Select your preferred language for the application interface.'**
   String get settings_language_info;
 
+  /// No description provided for @settings_favorite_reciter.
+  ///
+  /// In en, this message translates to:
+  /// **'Favourite reciter'**
+  String get settings_favorite_reciter;
+
+  /// No description provided for @settings_favorite_reciter_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the reciter used for Quran audio playback.'**
+  String get settings_favorite_reciter_info;
+
   /// No description provided for @settings_theme.
   ///
   /// In en, this message translates to:
