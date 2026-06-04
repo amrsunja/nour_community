@@ -330,4 +330,21 @@ class ProfileRemoteDatasource {
       );
     }
   }
+
+  /// Reports the device's current UTC offset (minutes) so the server can derive
+  /// the user's local calendar day itself (`fn_local_date`) instead of trusting
+  /// a client-sent date. Best-effort: a failure here only means the day falls
+  /// back to a stale/UTC value, so it degrades silently.
+  Future<void> reportTimezoneOffset() async {
+    final authUser = supabaseClient.auth.currentUser;
+    if (authUser == null) return;
+    try {
+      await supabaseClient.rpc(
+        'fn_set_tz_offset',
+        params: {'p_minutes': DateTime.now().timeZoneOffset.inMinutes},
+      );
+    } catch (e) {
+      talker.warning('reportTimezoneOffset fallback: $e');
+    }
+  }
 }

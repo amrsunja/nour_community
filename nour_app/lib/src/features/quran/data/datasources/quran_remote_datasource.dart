@@ -40,16 +40,6 @@ class QuranRemoteDatasource {
     return authUser.id;
   }
 
-  /// Device-local calendar date (`YYYY-MM-DD`) — the day key the streak /
-  /// daily_activity system buckets by (must match the dhikr feature's local day
-  /// so dhikr_done + quick_action_done land on the same row).
-  String get _localDate {
-    final now = DateTime.now();
-    return '${now.year.toString().padLeft(4, '0')}-'
-        '${now.month.toString().padLeft(2, '0')}-'
-        '${now.day.toString().padLeft(2, '0')}';
-  }
-
   // ── Reading progress ───────────────────────────────────────────────────────
 
   /// The user's single `quran_progress` row. Returns [QuranProgressModel.initial]
@@ -180,7 +170,7 @@ class QuranRemoteDatasource {
     try {
       final response = await supabaseClient.rpc(
         _rpcAwardDailyAyahAjr,
-        params: {'p_ajr': ajr, 'p_local_date': _localDate},
+        params: {'p_ajr': ajr},
       );
       return (response as num?)?.toInt() ?? 0;
     } catch (e) {

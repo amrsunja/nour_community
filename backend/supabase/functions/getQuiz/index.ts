@@ -75,7 +75,7 @@ serve(async (req) => {
     const sb = serviceClient();
     const { data: profile, error: profileErr } = await sb
       .from("profiles")
-      .select("id, level")
+      .select("id, level, tz_offset_minutes")
       .eq("id", userId)
       .single();
 
@@ -92,7 +92,13 @@ serve(async (req) => {
     const userLevel = profile.level as LevelType;
 
     // 3. Reached daily play limit? (max MAX_DAILY_PLAYS rows per day)
-    const today = new Date().toISOString().slice(0, 10);
+    // The "day" follows the caller's LOCAL calendar day, derived SERVER-SIDE
+    // from the profile's stored UTC offset (set via fn_set_tz_offset). The
+    // client never sends a date, so it can't spoof the daily cap.
+    const offsetMin = (profile.tz_offset_minutes as number | null) ?? 0;
+    const today = new Date(Date.now() + offsetMin * 60000)
+      .toISOString()
+      .slice(0, 10);
     const { count: playsToday } = await sb
       .from("quiz_plays")
       .select("id", { count: "exact", head: true })

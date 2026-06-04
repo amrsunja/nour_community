@@ -34,16 +34,6 @@ class DuaRemoteDatasource {
     return authUser.id;
   }
 
-  /// Device-local calendar date (`YYYY-MM-DD`) — the day key the streak /
-  /// daily_activity system buckets by (must match the dhikr feature's local day
-  /// so dhikr_done + quick_action_done land on the same row).
-  String get _localDate {
-    final now = DateTime.now();
-    return '${now.year.toString().padLeft(4, '0')}-'
-        '${now.month.toString().padLeft(2, '0')}-'
-        '${now.day.toString().padLeft(2, '0')}';
-  }
-
   // ── Library ────────────────────────────────────────────────────────────────
 
   /// The whole active dua library, ordered by `position` then `id` (a stable
@@ -125,7 +115,7 @@ class DuaRemoteDatasource {
     try {
       await supabaseClient.rpc(
         _rpcAwardDuaAjr,
-        params: {'p_dua_id': duaId, 'p_local_date': _localDate},
+        params: {'p_dua_id': duaId},
       );
     } catch (e) {
       talker.warning('awardDuaAjr fallback: $e');
@@ -162,7 +152,7 @@ class DuaRemoteDatasource {
     try {
       final response = await supabaseClient.rpc(
         _rpcAwardDailyDuaAjr,
-        params: {'p_ajr': ajr, 'p_local_date': _localDate},
+        params: {'p_ajr': ajr},
       );
       return (response as num?)?.toInt() ?? 0;
     } catch (e) {

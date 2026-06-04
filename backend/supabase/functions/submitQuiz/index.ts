@@ -63,7 +63,19 @@ serve(async (req) => {
     }
 
     const sb = serviceClient();
-    const today = new Date().toISOString().slice(0, 10);
+
+    // The "day" follows the caller's LOCAL calendar day, derived SERVER-SIDE
+    // from the profile's stored UTC offset (set via fn_set_tz_offset). The
+    // client never sends a date, so it can't spoof the daily cap or streak.
+    const { data: prof } = await sb
+      .from("profiles")
+      .select("tz_offset_minutes")
+      .eq("id", userId)
+      .single();
+    const offsetMin = (prof?.tz_offset_minutes as number | null) ?? 0;
+    const today = new Date(Date.now() + offsetMin * 60000)
+      .toISOString()
+      .slice(0, 10);
 
     // Max quiz plays allowed per user per day.
     const MAX_DAILY_PLAYS = 2;
@@ -151,6 +163,7 @@ serve(async (req) => {
     await sb.rpc("fn_mark_daily_activity", {
       p_user_id: userId,
       p_mark: "quick_action",
+      p_day: today,
     });
 
     return jsonResponse({

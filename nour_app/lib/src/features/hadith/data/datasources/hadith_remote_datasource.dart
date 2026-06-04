@@ -35,16 +35,6 @@ class HadithRemoteDatasource {
     return authUser.id;
   }
 
-  /// Device-local calendar date (`YYYY-MM-DD`) — the day key the streak /
-  /// daily_activity system buckets by (must match the dhikr feature's local day
-  /// so dhikr_done + quick_action_done land on the same row).
-  String get _localDate {
-    final now = DateTime.now();
-    return '${now.year.toString().padLeft(4, '0')}-'
-        '${now.month.toString().padLeft(2, '0')}-'
-        '${now.day.toString().padLeft(2, '0')}';
-  }
-
   // ── Collections ──────────────────────────────────────────────────────────
 
   /// Active collections (ordered by `position`) with their `totalHadiths`
@@ -227,7 +217,7 @@ class HadithRemoteDatasource {
     try {
       await supabaseClient.rpc(
         _rpcAwardHadithAjr,
-        params: {'p_hadith_id': hadithId, 'p_local_date': _localDate},
+        params: {'p_hadith_id': hadithId},
       );
     } catch (e) {
       // RPC missing / network issue → progress still saved, feature works.

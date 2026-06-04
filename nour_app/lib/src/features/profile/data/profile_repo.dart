@@ -33,6 +33,11 @@ class ProfileRepo {
   /// stream's `onError`; the presenter keeps the last good state on failure.
   Stream<ProfileModel> watchProfile() => remoteDatasource.watchProfile();
 
+  /// Reports the device UTC offset so the server derives the local day itself.
+  /// Best-effort, never throws.
+  Future<void> reportTimezoneOffset() =>
+      remoteDatasource.reportTimezoneOffset();
+
   Future<SuccessOrError<void>> updateDailyPracticeTime(int minutes) async {
     return await Failure.exceptionsCatcher(() async {
       await remoteDatasource.updateDailyPracticeTime(minutes);

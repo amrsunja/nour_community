@@ -63,6 +63,10 @@ class ProfilePresenter extends Presenter<ProfileState> {
       (profile) => state = state.copyWith(profile: profile),
       onError: (Object e) => talker.error('profile realtime: $e'),
     );
+    // Keep the server's notion of the user's local day in sync with the device
+    // (server derives the day from this offset — see fn_local_date). Fire-and-
+    // forget; never blocks the realtime subscription.
+    repo.reportTimezoneOffset();
   }
 
   @override
