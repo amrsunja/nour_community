@@ -6,6 +6,7 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/enums/reciter_type.dart';
+import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -52,8 +53,8 @@ class AyahReaderPage extends HookConsumerWidget {
     final ayahNumber = useState(initialAyah.clamp(1, total));
     final current = ayahNumber.value;
     final ayah = useMemoized(
-      () => presenter.getAyah(surahNumber, current),
-      [surahNumber, current],
+      () => presenter.getAyah(surahNumber, current, langCode: langCode),
+      [surahNumber, current, langCode],
     );
 
     final showTranscription = useState(false);
@@ -79,8 +80,9 @@ class AyahReaderPage extends HookConsumerWidget {
       save();
     }
 
-    final surahLabel = '${surah.number}. ${surah.nameEnglish}';
-    final reference = '${surah.nameEnglish} (${surah.number}:$current)';
+    final surahName = QuranTool.localizedSurahName(surah, langCode);
+    final surahLabel = '${surah.number}. $surahName';
+    final reference = '$surahName (${surah.number}:$current)';
     final audioUrl =
         presenter.ayahAudioUrl(surahNumber, current, reciter: reciter);
 

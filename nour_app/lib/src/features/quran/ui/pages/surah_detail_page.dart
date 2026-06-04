@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
 
 import '../state_management/quran_provider.dart';
 import '../widgets/quran_ayah_card_widget.dart';
@@ -25,13 +26,16 @@ class SurahDetailPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
     final l10n = ref.watch(l10nProvider);
+    final langCode = Localizations.localeOf(context).languageCode;
     final nav = ref.read(navigationServicesProvider);
     final presenter = ref.read(quranProvider.notifier);
     final state = ref.watch(quranProvider);
 
     final surah = useMemoized(() => presenter.getSurah(surahNumber), [surahNumber]);
-    final ayahs =
-        useMemoized(() => presenter.getSurahAyahs(surahNumber), [surahNumber]);
+    final ayahs = useMemoized(
+      () => presenter.getSurahAyahs(surahNumber, langCode: langCode),
+      [surahNumber, langCode],
+    );
 
     useEffect(() {
       WidgetsBinding.instance
@@ -54,7 +58,10 @@ class SurahDetailPage extends HookConsumerWidget {
         if (didPop) persistOnLeave();
       },
       child: Scaffold(
-        appBar: UIAppBar(title: surah.nameEnglish, onBack: context.pop),
+        appBar: UIAppBar(
+          title: QuranTool.localizedSurahName(surah, langCode),
+          onBack: context.pop,
+        ),
         body: CustomScrollView(
           slivers: [
             SliverToBoxAdapter(

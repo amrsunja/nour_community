@@ -32,13 +32,18 @@ class QuranRepo {
 
   SurahInfo getSurah(int surahNumber) => localDatasource.getSurah(surahNumber);
 
-  List<AyahModel> getSurahAyahs(int surahNumber) =>
-      localDatasource.getSurahAyahs(surahNumber);
+  List<AyahModel> getSurahAyahs(int surahNumber, {required String langCode}) =>
+      localDatasource.getSurahAyahs(surahNumber, langCode: langCode);
 
-  AyahModel getAyah(int surahNumber, int ayahNumber) =>
-      localDatasource.getAyah(surahNumber, ayahNumber);
+  AyahModel getAyah(
+    int surahNumber,
+    int ayahNumber, {
+    required String langCode,
+  }) =>
+      localDatasource.getAyah(surahNumber, ayahNumber, langCode: langCode);
 
-  AyahModel getDailyAyah() => localDatasource.getDailyAyah();
+  AyahModel getDailyAyah({required String langCode}) =>
+      localDatasource.getDailyAyah(langCode: langCode);
 
   String audioUrl(
     int surahNumber,

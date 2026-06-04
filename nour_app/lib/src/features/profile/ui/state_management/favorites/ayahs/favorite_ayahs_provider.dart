@@ -31,17 +31,21 @@ class FavoriteAyahsPresenter extends Presenter<FavoriteAyahsState> {
   }) : super(const FavoriteAyahsState());
 
   /// Loads favourites the first time the tab is opened. No-ops once data has
-  /// been loaded (or is loading) — call [refresh] to force a reload.
-  Future<void> init() async {
-    if (state.loaded || state.isLoading) return;
-    await _load();
+  /// been loaded (or is loading) for the current [langCode] — call [refresh] to
+  /// force a reload. Re-fetches when the app language changed so the cached
+  /// translations follow the profile language.
+  Future<void> init(String langCode) async {
+    if (state.isLoading) return;
+    if (state.loaded && state.loadedLangCode == langCode) return;
+    await _load(langCode: langCode);
   }
 
   /// Pull-to-refresh: always re-fetches, keeping the current list on screen
   /// until the new one arrives.
-  Future<void> refresh() => _load(silent: true);
+  Future<void> refresh(String langCode) =>
+      _load(langCode: langCode, silent: true);
 
-  Future<void> _load({bool silent = false}) async {
+  Future<void> _load({required String langCode, bool silent = false}) async {
     state = state.copyWith(isLoading: !silent, hasError: false);
 
     final res = await repo.getFavoriteAyahs();
@@ -54,11 +58,17 @@ class FavoriteAyahsPresenter extends Presenter<FavoriteAyahsState> {
               ayahNumber: ref.ayahNumber,
               surahNameEn: quranRepo.getSurah(ref.surahNumber).nameEnglish,
               surahNameAr: quranRepo.getSurah(ref.surahNumber).nameArabic,
-              translation:
-                  quranRepo.getAyah(ref.surahNumber, ref.ayahNumber).translation,
+              translation: quranRepo
+                  .getAyah(ref.surahNumber, ref.ayahNumber, langCode: langCode)
+                  .translation,
             ),
         ];
-        state = state.copyWith(items: items, loaded: true, isLoading: false);
+        state = state.copyWith(
+          items: items,
+          loaded: true,
+          isLoading: false,
+          loadedLangCode: langCode,
+        );
       },
       (error) {
         state = state.copyWith(isLoading: false, hasError: !silent);

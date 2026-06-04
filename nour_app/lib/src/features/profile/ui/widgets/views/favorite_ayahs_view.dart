@@ -22,14 +22,6 @@ class _FavoriteAyahsViewState extends ConsumerState<FavoriteAyahsView>
   bool get wantKeepAlive => true;
 
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ref.read(favoriteAyahsProvider.notifier).init(),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     final langCode = Localizations.localeOf(context).languageCode;
@@ -37,13 +29,19 @@ class _FavoriteAyahsViewState extends ConsumerState<FavoriteAyahsView>
     final state = ref.watch(favoriteAyahsProvider);
     final nav = ref.read(navigationServicesProvider);
 
+    // Loads on first build and re-fetches when the app language changes so the
+    // cached translations follow the profile language (init() self-guards).
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => presenter.init(langCode),
+    );
+
     return FavoriteListScaffold(
       isLoading: state.isLoading,
       hasError: state.hasError,
       isEmpty: state.isEmpty,
       itemCount: state.items.length,
-      onRefresh: presenter.refresh,
-      onRetry: presenter.refresh,
+      onRefresh: () => presenter.refresh(langCode),
+      onRetry: () => presenter.refresh(langCode),
       itemBuilder: (context, index) {
         final item = state.items[index];
         return FavoriteCard(

@@ -64,14 +64,19 @@ class QuranPresenter extends Presenter<QuranState> {
 
   SurahInfo getSurah(int surahNumber) => repo.getSurah(surahNumber);
 
-  List<AyahModel> getSurahAyahs(int surahNumber) =>
-      repo.getSurahAyahs(surahNumber);
+  List<AyahModel> getSurahAyahs(int surahNumber, {required String langCode}) =>
+      repo.getSurahAyahs(surahNumber, langCode: langCode);
 
-  AyahModel getAyah(int surahNumber, int ayahNumber) =>
-      repo.getAyah(surahNumber, ayahNumber);
+  AyahModel getAyah(
+    int surahNumber,
+    int ayahNumber, {
+    required String langCode,
+  }) =>
+      repo.getAyah(surahNumber, ayahNumber, langCode: langCode);
 
   /// Verse of the day (deterministic per UTC day, computed locally).
-  AyahModel getDailyAyah() => repo.getDailyAyah();
+  AyahModel getDailyAyah({required String langCode}) =>
+      repo.getDailyAyah(langCode: langCode);
 
   String ayahAudioUrl(
     int surahNumber,

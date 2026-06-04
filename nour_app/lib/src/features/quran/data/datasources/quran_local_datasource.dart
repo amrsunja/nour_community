@@ -18,30 +18,38 @@ class QuranLocalDatasource {
 
   int versesCountOf(int surahNumber) => QuranTool.getVersesCount(surahNumber);
 
-  /// All ayahs of [surahNumber] with localized translation.
-  List<AyahModel> getSurahAyahs(int surahNumber) {
+  /// All ayahs of [surahNumber] with the translation in [langCode].
+  List<AyahModel> getSurahAyahs(int surahNumber, {required String langCode}) {
     final count = QuranTool.getVersesCount(surahNumber);
     return [
-      for (int v = 1; v <= count; v++) getAyah(surahNumber, v),
+      for (int v = 1; v <= count; v++) getAyah(surahNumber, v, langCode: langCode),
     ];
   }
 
-  AyahModel getAyah(int surahNumber, int ayahNumber) {
+  AyahModel getAyah(
+    int surahNumber,
+    int ayahNumber, {
+    required String langCode,
+  }) {
     final verse = QuranTool.getVerse(surahNumber, ayahNumber);
     return AyahModel(
       surahNumber: surahNumber,
       ayahNumber: ayahNumber,
       arabicText: verse.text,
-      translation: QuranTool.getVerseTranslation(surahNumber, ayahNumber),
+      translation: QuranTool.getVerseTranslation(
+        surahNumber,
+        ayahNumber,
+        langCode: langCode,
+      ),
       juzNumber: verse.juzNumber,
       pageNumber: verse.pageNumber,
     );
   }
 
   /// Deterministic verse of the day (stable for the whole UTC day).
-  AyahModel getDailyAyah() {
+  AyahModel getDailyAyah({required String langCode}) {
     final verse = QuranTool.getDailyVerse();
-    return getAyah(verse.surahNumber, verse.verseNumber);
+    return getAyah(verse.surahNumber, verse.verseNumber, langCode: langCode);
   }
 
   /// Network audio URL for [surahNumber]:[ayahNumber] using the user's

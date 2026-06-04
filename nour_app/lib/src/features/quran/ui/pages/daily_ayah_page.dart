@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/reciter_type.dart';
+import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -36,7 +37,8 @@ class DailyAyahPage extends HookConsumerWidget {
         ) ??
         ReciterType.defaultReciter;
 
-    final ayah = useMemoized(() => presenter.getDailyAyah());
+    final ayah =
+        useMemoized(() => presenter.getDailyAyah(langCode: langCode), [langCode]);
     final surah = useMemoized(
       () => presenter.getSurah(ayah.surahNumber),
       [ayah.surahNumber],
@@ -53,9 +55,9 @@ class DailyAyahPage extends HookConsumerWidget {
       return null;
     }, [ayah.surahNumber, langCode]);
 
-    final surahLabel = '${surah.number}. ${surah.nameEnglish}';
-    final reference =
-        '${surah.nameEnglish} (${surah.number}:${ayah.ayahNumber})';
+    final surahName = QuranTool.localizedSurahName(surah, langCode);
+    final surahLabel = '${surah.number}. $surahName';
+    final reference = '$surahName (${surah.number}:${ayah.ayahNumber})';
     final audioUrl = presenter.ayahAudioUrl(
       ayah.surahNumber,
       ayah.ayahNumber,

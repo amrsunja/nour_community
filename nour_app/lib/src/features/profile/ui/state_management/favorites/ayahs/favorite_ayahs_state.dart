@@ -15,11 +15,16 @@ class FavoriteAyahsState extends Equatable {
   final bool loaded;
   final List<FavoriteAyahItem> items;
 
+  /// Language the cached [items] translations were built for. Used to re-fetch
+  /// when the app language changes.
+  final String? loadedLangCode;
+
   const FavoriteAyahsState({
     this.isLoading = false,
     this.hasError = false,
     this.loaded = false,
     this.items = const [],
+    this.loadedLangCode,
   });
 
   bool get isEmpty => items.isEmpty;
@@ -29,14 +34,17 @@ class FavoriteAyahsState extends Equatable {
     bool? hasError,
     bool? loaded,
     List<FavoriteAyahItem>? items,
+    String? loadedLangCode,
   }) =>
       FavoriteAyahsState(
         isLoading: isLoading ?? this.isLoading,
         hasError: hasError ?? this.hasError,
         loaded: loaded ?? this.loaded,
         items: items ?? this.items,
+        loadedLangCode: loadedLangCode ?? this.loadedLangCode,
       );
 
   @override
-  List<Object?> get props => [isLoading, hasError, loaded, items];
+  List<Object?> get props =>
+      [isLoading, hasError, loaded, items, loadedLangCode];
 }

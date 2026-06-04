@@ -110,15 +110,37 @@ class QuranTool {
   static String getVerseTranslation(
     int surahNumber,
     int verseNumber, {
-    q.Translation translation = q.Translation.enSaheeh,
+    String langCode = 'en',
   }) {
     _assertVerse(surahNumber, verseNumber);
     return q.getVerseTranslation(
       surahNumber,
       verseNumber,
-      translation: translation,
+      translation: translationForLanguage(langCode),
     );
   }
+
+  // ── Language mapping ──────────────────────────────────────────────────────
+
+  /// Maps an app language code (`en`, `fr`, `ar`) to a bundled translation
+  /// edition. The `quran` package ships no Arabic translation — Arabic is the
+  /// source text — so Arabic falls back to the English Saheeh meaning (used by
+  /// the tafsir / meaning views; the Arabic verse itself is always shown as-is).
+  static q.Translation translationForLanguage(String langCode) {
+    switch (langCode) {
+      case 'fr':
+        return q.Translation.frHamidullah;
+      case 'en':
+      case 'ar':
+      default:
+        return q.Translation.enSaheeh;
+    }
+  }
+
+  /// Surah name to display for [langCode]: Arabic script for `ar`, otherwise
+  /// the English name. (The package ships no localized French surah name.)
+  static String localizedSurahName(SurahInfo surah, String langCode) =>
+      langCode == 'ar' ? surah.nameArabic : surah.nameEnglish;
 
   static List<VerseInfo> getSurahVerses(int surahNumber) {
     _assertSurah(surahNumber);
