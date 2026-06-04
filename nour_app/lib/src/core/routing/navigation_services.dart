@@ -14,6 +14,7 @@ abstract class NavigationServices {
 	void toProfile();
 	void toProfileStatistics();
 	void toAccountInformation();
+	void toWebView({required String url, required String title});
 	void toFavorites();
 	void toOnboarding();
 
@@ -101,6 +102,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toAccountInformation() {
 		router.push(AccountInformationRoute());
+  }
+
+  @override
+  void toWebView({required String url, required String title}) {
+		router.push(WebViewRoute(url: url, title: title));
   }
 
   @override

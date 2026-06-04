@@ -1090,6 +1090,18 @@ abstract class AppLocalizations {
   /// **'About Nour'**
   String get profile_about;
 
+  /// No description provided for @profile_privacy_policy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy policy'**
+  String get profile_privacy_policy;
+
+  /// No description provided for @profile_terms_of_use.
+  ///
+  /// In en, this message translates to:
+  /// **'Terms of use'**
+  String get profile_terms_of_use;
+
   /// No description provided for @profile_avatar_title.
   ///
   /// In en, this message translates to:

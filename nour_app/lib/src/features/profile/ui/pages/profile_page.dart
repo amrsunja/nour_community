@@ -7,6 +7,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/core/utils/url_launcher_service.dart';
 import 'package:nour/src/features/auth/ui/state_management/auth_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_avatar.dart';
@@ -132,11 +133,12 @@ class ProfilePage extends HookConsumerWidget {
                         label: l10n.profile_settings,
                         onTap: () => nav.toSettings(),
                       ),
-                      ProfileMenuRow(
+                      /*ProfileMenuRow(
                         icon: Icons.menu_book_outlined,
                         label: l10n.profile_reading_preferences,
                         onTap: () {},
                       ),
+                      */
                     ],
                   ),
                   const UISpace.vert(24),
@@ -153,12 +155,34 @@ class ProfilePage extends HookConsumerWidget {
                       ProfileMenuRow(
                         icon: Icons.help_outline,
                         label: l10n.profile_help_support,
-                        onTap: () {},
+                        onTap: () => UrlLauncherService.sendEmail(
+                          kSupportEmail,
+                          subject: kSupportSubject,
+                        ),
                       ),
                       ProfileMenuRow(
                         icon: Icons.info_outline,
                         label: l10n.profile_about,
-                        onTap: () {},
+                        onTap: () => nav.toWebView(
+                          url: kAboutSawmUrl,
+                          title: l10n.profile_about,
+                        ),
+                      ),
+                      ProfileMenuRow(
+                        icon: Icons.privacy_tip_outlined,
+                        label: l10n.profile_privacy_policy,
+                        onTap: () => nav.toWebView(
+                          url: kPrivacyPolicyUrl,
+                          title: l10n.profile_privacy_policy,
+                        ),
+                      ),
+                      ProfileMenuRow(
+                        icon: Icons.description_outlined,
+                        label: l10n.profile_terms_of_use,
+                        onTap: () => nav.toWebView(
+                          url: kTermsOfUseUrl,
+                          title: l10n.profile_terms_of_use,
+                        ),
                       ),
                       if (!session.isAnonymous) ...[
                         ProfileMenuRow(

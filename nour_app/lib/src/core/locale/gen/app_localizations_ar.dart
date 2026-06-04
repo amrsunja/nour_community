@@ -524,6 +524,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get profile_about => 'حول نور';
 
   @override
+  String get profile_privacy_policy => 'سياسة الخصوصية';
+
+  @override
+  String get profile_terms_of_use => 'شروط الاستخدام';
+
+  @override
   String get profile_avatar_title => 'صورة الملف الشخصي';
 
   @override

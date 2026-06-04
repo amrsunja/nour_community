@@ -39,6 +39,7 @@ import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i19;
 import 'package:nour/src/features/profile/ui/pages/account_information_page.dart'
     as _i43;
+import 'package:nour/src/features/webview/ui/pages/web_view_page.dart' as _i44;
 import 'package:nour/src/features/profile/ui/pages/favorites_page.dart'
     as _i39;
 import 'package:nour/src/features/profile/ui/pages/profile_page.dart' as _i21;
@@ -708,6 +709,56 @@ class AccountInformationRoute extends _i36.PageRouteInfo<void> {
       return const _i43.AccountInformationPage();
     },
   );
+}
+
+/// generated route for
+/// [_i44.WebViewPage]
+class WebViewRoute extends _i36.PageRouteInfo<WebViewRouteArgs> {
+  WebViewRoute({
+    _i37.Key? key,
+    required String url,
+    required String title,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
+         WebViewRoute.name,
+         args: WebViewRouteArgs(key: key, url: url, title: title),
+         initialChildren: children,
+       );
+
+  static const String name = 'WebViewRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<WebViewRouteArgs>();
+      return _i44.WebViewPage(key: args.key, url: args.url, title: args.title);
+    },
+  );
+}
+
+class WebViewRouteArgs {
+  const WebViewRouteArgs({this.key, required this.url, required this.title});
+
+  final _i37.Key? key;
+
+  final String url;
+
+  final String title;
+
+  @override
+  String toString() {
+    return 'WebViewRouteArgs{key: $key, url: $url, title: $title}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! WebViewRouteArgs) return false;
+    return key == other.key && url == other.url && title == other.title;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ url.hashCode ^ title.hashCode;
 }
 
 /// generated route for

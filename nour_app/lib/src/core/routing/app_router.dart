@@ -136,6 +136,11 @@ class AppRouter extends RootStackRouter {
             ),
 
             AutoRoute(
+              path: RoutePaths.webView,
+              page: WebViewRoute.page,
+            ),
+
+            AutoRoute(
               path: RoutePaths.favorites,
               page: FavoritesRoute.page,
             ),

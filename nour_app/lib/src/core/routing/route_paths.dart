@@ -17,6 +17,7 @@ abstract class RoutePaths {
   static const profile = 'profile';
   static const profileStatistics = 'profile-statistics';
   static const accountInformation = 'account-information';
+  static const webView = 'web-view';
   static const favorites = 'favorites';
   static const reminders = 'reminders';
   static const favoriteReciter = 'favorite-reciter';

@@ -533,6 +533,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_about => 'About Nour';
 
   @override
+  String get profile_privacy_policy => 'Privacy policy';
+
+  @override
+  String get profile_terms_of_use => 'Terms of use';
+
+  @override
   String get profile_avatar_title => 'Profile photo';
 
   @override
