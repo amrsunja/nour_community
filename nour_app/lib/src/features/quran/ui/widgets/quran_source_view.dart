@@ -64,12 +64,14 @@ class QuranSourceView extends HookConsumerWidget {
             ),
             const UISpace.vert(12),
             UIAppearAnimation(
-              child: QuranContinueCardWidget(
-                surah: continueSurah,
-                ayahNumber: progress!.ayahNumber,
-                onResume: () => nav.toAyahReader(
-                  surahNumber: continueSurah.number,
-                  initialAyah: progress.ayahNumber,
+              child: UiRepeatShimerAnimation(
+                child: QuranContinueCardWidget(
+                  surah: continueSurah,
+                  ayahNumber: progress!.ayahNumber,
+                  onResume: () => nav.toAyahReader(
+                    surahNumber: continueSurah.number,
+                    initialAyah: progress.ayahNumber,
+                  ),
                 ),
               ),
             ),
