@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 
@@ -114,7 +115,39 @@ class _StartButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return UITap(
       onTap: onTap,
-      child: Container(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Breathing yellow light pulse behind the button.
+          Container(
+            width: _size,
+            height: _size,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  UIColorsToken.yellow,
+                  UIColorsToken.yellow.withValues(alpha: 0),
+                ],
+              ),
+            ),
+          )
+              .animate(onPlay: (c) => c.repeat(reverse: true))
+              .scaleXY(
+                begin: 0.9,
+                end: 1.4,
+                duration: const Duration(milliseconds: 1600),
+                curve: Curves.easeInOut,
+              )
+              .fadeIn(duration: const Duration(milliseconds: 600)),
+          _buildButton(),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildButton() {
+    return Container(
         width: _size,
         height: _size,
         padding: const EdgeInsets.all(6),
@@ -153,7 +186,6 @@ class _StartButton extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }
