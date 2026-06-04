@@ -35,6 +35,8 @@ import 'package:nour/src/features/home/impact_router_route.dart' as _i18;
 import 'package:nour/src/features/home/source_router_page.dart' as _i31;
 import 'package:nour/src/features/home/tools_router_route.dart' as _i34;
 import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i17;
+import 'package:nour/src/features/impact/ui/pages/impact_project_detail_page.dart'
+    as _i45;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i19;
 import 'package:nour/src/features/profile/ui/pages/account_information_page.dart'
@@ -629,6 +631,57 @@ class ImpactRoute extends _i36.PageRouteInfo<void> {
       return const _i17.ImpactPage();
     },
   );
+}
+
+/// generated route for
+/// [_i45.ImpactProjectDetailPage]
+class ImpactProjectDetailRoute
+    extends _i36.PageRouteInfo<ImpactProjectDetailRouteArgs> {
+  ImpactProjectDetailRoute({
+    _i37.Key? key,
+    required int projectId,
+    List<_i36.PageRouteInfo>? children,
+  }) : super(
+         ImpactProjectDetailRoute.name,
+         args: ImpactProjectDetailRouteArgs(key: key, projectId: projectId),
+         initialChildren: children,
+       );
+
+  static const String name = 'ImpactProjectDetailRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ImpactProjectDetailRouteArgs>();
+      return _i45.ImpactProjectDetailPage(
+        key: args.key,
+        projectId: args.projectId,
+      );
+    },
+  );
+}
+
+class ImpactProjectDetailRouteArgs {
+  const ImpactProjectDetailRouteArgs({this.key, required this.projectId});
+
+  final _i37.Key? key;
+
+  final int projectId;
+
+  @override
+  String toString() {
+    return 'ImpactProjectDetailRouteArgs{key: $key, projectId: $projectId}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ImpactProjectDetailRouteArgs) return false;
+    return key == other.key && projectId == other.projectId;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ projectId.hashCode;
 }
 
 /// generated route for

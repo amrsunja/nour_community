@@ -4,6 +4,7 @@ import 'package:nour/src/core/utils/typedefs.dart';
 
 import '../../adhkar/data/models/adhkar_model.dart';
 import '../../dua/data/models/dua_model.dart';
+import '../../impact/data/models/impact_project_model.dart';
 import 'datasources/favorites_remote_datasource.dart';
 import 'models/favorite_hadith_item.dart';
 
@@ -34,5 +35,12 @@ class FavoritesRepo {
 
   Future<SuccessOrError<List<FavoriteHadithItem>>> getFavoriteHadiths() async {
     return Failure.exceptionsCatcher(remoteDatasource.getFavoriteHadiths);
+  }
+
+  Future<SuccessOrError<List<ImpactProjectModel>>>
+  getFavoriteImpactProjects() async {
+    return Failure.exceptionsCatcher(
+      remoteDatasource.getFavoriteImpactProjects,
+    );
   }
 }

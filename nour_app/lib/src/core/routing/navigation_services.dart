@@ -23,6 +23,8 @@ abstract class NavigationServices {
 	void toAdhkarDetail({required int subcategoryId, int? initialAdhkarId});
 	void toDhikr({required int selectedId});
 
+	void toImpactProjectDetail({required int projectId});
+
 	void toSurahDetail({required int surahNumber});
 	void toAyahReader({required int surahNumber, int initialAyah, bool recordProgress});
 	void toDailyAyah();
@@ -135,6 +137,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toDhikr({required int selectedId}) {
 		router.push(DhikrRoute(selectedId: selectedId));
+  }
+
+  @override
+  void toImpactProjectDetail({required int projectId}) {
+		router.push(ImpactProjectDetailRoute(projectId: projectId));
   }
 
   @override

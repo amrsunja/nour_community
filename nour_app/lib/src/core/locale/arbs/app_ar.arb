@@ -181,6 +181,47 @@
   "favorites_error_title": "حدث خطأ ما",
   "favorites_error_subtitle": "تعذّر تحميل المفضلة. يرجى المحاولة مرة أخرى.",
   "favorites_try_again": "إعادة المحاولة",
+  "favorites_tab_impact": "الأثر",
+  "impact_title": "الأثر",
+  "impact_filter_all": "الكل",
+  "impact_empty": "لا توجد مشاريع هنا بعد.",
+  "impact_about_project": "عن المشروع",
+  "impact_read_more": "اقرأ المزيد",
+  "impact_read_less": "اقرأ أقل",
+  "impact_partner_org": "المنظمة الشريكة",
+  "impact_verified": "موثّقة",
+  "impact_stories_title": "قصص من الميدان",
+  "impact_donors": "{count} شخص تبرّعوا",
+  "@impact_donors": {
+    "placeholders": {
+      "count": { "type": "String" }
+    }
+  },
+  "impact_time_just_now": "الآن",
+  "impact_time_hours_ago": "قبل {hours} ساعة",
+  "@impact_time_hours_ago": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "impact_time_days_ago": "قبل {days} يوم",
+  "@impact_time_days_ago": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "impact_time_weeks_ago": "قبل {weeks} أسبوع",
+  "@impact_time_weeks_ago": {
+    "placeholders": {
+      "weeks": { "type": "int" }
+    }
+  },
+  "impact_time_months_ago": "قبل {months} شهر",
+  "@impact_time_months_ago": {
+    "placeholders": {
+      "months": { "type": "int" }
+    }
+  },
   "profile_reminders": "التذكيرات",
   "profile_settings": "الإعدادات",
   "profile_reading_preferences": "تفضيلات القراءة",

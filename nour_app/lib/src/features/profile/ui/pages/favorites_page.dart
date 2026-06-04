@@ -9,9 +9,10 @@ import '../widgets/views/favorite_adhkars_view.dart';
 import '../widgets/views/favorite_ayahs_view.dart';
 import '../widgets/views/favorite_duas_view.dart';
 import '../widgets/views/favorite_hadiths_view.dart';
+import '../widgets/views/favorite_impact_projects_view.dart';
 
-/// The four favourite categories shown on the [FavoritesPage] header.
-enum FavoritesTab { ayahs, adhkars, duas, hadiths }
+/// The favourite categories shown on the [FavoritesPage] header.
+enum FavoritesTab { ayahs, adhkars, duas, hadiths, impactProjects }
 
 /// Profile → Favourites. A swipeable [PageView] of four keep-alive views, with
 /// the segmented [UITabs] header kept in sync with the page. Each view owns its
@@ -44,6 +45,7 @@ class FavoritesPage extends HookConsumerWidget {
           FavoritesTab.adhkars => l10n.favorites_tab_adhkars,
           FavoritesTab.duas => l10n.favorites_tab_duas,
           FavoritesTab.hadiths => l10n.favorites_tab_hadiths,
+          FavoritesTab.impactProjects => l10n.favorites_tab_impact,
         };
 
     return Scaffold(
@@ -74,6 +76,7 @@ class FavoritesPage extends HookConsumerWidget {
                   FavoriteAdhkarsView(),
                   FavoriteDuasView(),
                   FavoriteHadithsView(),
+                  FavoriteImpactProjectsView(),
                 ],
               ),
             ),

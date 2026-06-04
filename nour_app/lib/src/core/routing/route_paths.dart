@@ -31,6 +31,9 @@ abstract class RoutePaths {
   static const adhkarsList = 'adhkars-list';
   static const adhkarDetail = 'adhkar-detail';
 
+  // Impact
+  static const impactProjectDetail = 'impact-project-detail';
+
   // Quran
   static const surahDetail = 'surah-detail';
   static const ayahReader = 'ayah-reader';

@@ -476,6 +476,64 @@ class AppLocalizationsAr extends AppLocalizations {
   String get favorites_try_again => 'إعادة المحاولة';
 
   @override
+  String get favorites_tab_impact => 'الأثر';
+
+  @override
+  String get impact_title => 'الأثر';
+
+  @override
+  String get impact_filter_all => 'الكل';
+
+  @override
+  String get impact_empty => 'لا توجد مشاريع هنا بعد.';
+
+  @override
+  String get impact_about_project => 'عن المشروع';
+
+  @override
+  String get impact_read_more => 'اقرأ المزيد';
+
+  @override
+  String get impact_read_less => 'اقرأ أقل';
+
+  @override
+  String get impact_partner_org => 'المنظمة الشريكة';
+
+  @override
+  String get impact_verified => 'موثّقة';
+
+  @override
+  String get impact_stories_title => 'قصص من الميدان';
+
+  @override
+  String impact_donors(String count) {
+    return '$count شخص تبرّعوا';
+  }
+
+  @override
+  String get impact_time_just_now => 'الآن';
+
+  @override
+  String impact_time_hours_ago(int hours) {
+    return 'قبل $hours ساعة';
+  }
+
+  @override
+  String impact_time_days_ago(int days) {
+    return 'قبل $days يوم';
+  }
+
+  @override
+  String impact_time_weeks_ago(int weeks) {
+    return 'قبل $weeks أسبوع';
+  }
+
+  @override
+  String impact_time_months_ago(int months) {
+    return 'قبل $months شهر';
+  }
+
+  @override
   String get profile_reminders => 'التذكيرات';
 
   @override

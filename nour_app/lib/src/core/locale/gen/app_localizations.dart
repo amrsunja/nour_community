@@ -994,6 +994,102 @@ abstract class AppLocalizations {
   /// **'Try again'**
   String get favorites_try_again;
 
+  /// No description provided for @favorites_tab_impact.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact'**
+  String get favorites_tab_impact;
+
+  /// No description provided for @impact_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Impact'**
+  String get impact_title;
+
+  /// No description provided for @impact_filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get impact_filter_all;
+
+  /// No description provided for @impact_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No projects here yet.'**
+  String get impact_empty;
+
+  /// No description provided for @impact_about_project.
+  ///
+  /// In en, this message translates to:
+  /// **'About the project'**
+  String get impact_about_project;
+
+  /// No description provided for @impact_read_more.
+  ///
+  /// In en, this message translates to:
+  /// **'Read more'**
+  String get impact_read_more;
+
+  /// No description provided for @impact_read_less.
+  ///
+  /// In en, this message translates to:
+  /// **'Read less'**
+  String get impact_read_less;
+
+  /// No description provided for @impact_partner_org.
+  ///
+  /// In en, this message translates to:
+  /// **'Partner organization'**
+  String get impact_partner_org;
+
+  /// No description provided for @impact_verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get impact_verified;
+
+  /// No description provided for @impact_stories_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Stories from the field'**
+  String get impact_stories_title;
+
+  /// No description provided for @impact_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} people have donated'**
+  String impact_donors(String count);
+
+  /// No description provided for @impact_time_just_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get impact_time_just_now;
+
+  /// No description provided for @impact_time_hours_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{hours} hour(s) ago'**
+  String impact_time_hours_ago(int hours);
+
+  /// No description provided for @impact_time_days_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{days} day(s) ago'**
+  String impact_time_days_ago(int days);
+
+  /// No description provided for @impact_time_weeks_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{weeks} week(s) ago'**
+  String impact_time_weeks_ago(int weeks);
+
+  /// No description provided for @impact_time_months_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{months} month(s) ago'**
+  String impact_time_months_ago(int months);
+
   /// No description provided for @profile_reminders.
   ///
   /// In en, this message translates to:

@@ -181,6 +181,47 @@
   "favorites_error_title": "Une erreur est survenue",
   "favorites_error_subtitle": "Impossible de charger vos favoris. Veuillez réessayer.",
   "favorites_try_again": "Réessayer",
+  "favorites_tab_impact": "Impact",
+  "impact_title": "Impact",
+  "impact_filter_all": "Tous",
+  "impact_empty": "Aucun projet ici pour l'instant.",
+  "impact_about_project": "À propos du projet",
+  "impact_read_more": "Lire plus",
+  "impact_read_less": "Lire moins",
+  "impact_partner_org": "Organisation partenaire",
+  "impact_verified": "Vérifié",
+  "impact_stories_title": "Nouvelles du terrain",
+  "impact_donors": "{count} personnes ont fait un don",
+  "@impact_donors": {
+    "placeholders": {
+      "count": { "type": "String" }
+    }
+  },
+  "impact_time_just_now": "À l'instant",
+  "impact_time_hours_ago": "Il y a {hours} heure(s)",
+  "@impact_time_hours_ago": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "impact_time_days_ago": "Il y a {days} jour(s)",
+  "@impact_time_days_ago": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "impact_time_weeks_ago": "Il y a {weeks} semaine(s)",
+  "@impact_time_weeks_ago": {
+    "placeholders": {
+      "weeks": { "type": "int" }
+    }
+  },
+  "impact_time_months_ago": "Il y a {months} mois",
+  "@impact_time_months_ago": {
+    "placeholders": {
+      "months": { "type": "int" }
+    }
+  },
   "profile_reminders": "Rappels",
   "profile_settings": "Paramètres",
   "profile_reading_preferences": "Préférences de lecture",

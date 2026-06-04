@@ -186,6 +186,47 @@
   "favorites_error_title": "Something went wrong",
   "favorites_error_subtitle": "We couldn't load your favourites. Please try again.",
   "favorites_try_again": "Try again",
+  "favorites_tab_impact": "Impact",
+  "impact_title": "Impact",
+  "impact_filter_all": "All",
+  "impact_empty": "No projects here yet.",
+  "impact_about_project": "About the project",
+  "impact_read_more": "Read more",
+  "impact_read_less": "Read less",
+  "impact_partner_org": "Partner organization",
+  "impact_verified": "Verified",
+  "impact_stories_title": "Stories from the field",
+  "impact_donors": "{count} people have donated",
+  "@impact_donors": {
+    "placeholders": {
+      "count": { "type": "String" }
+    }
+  },
+  "impact_time_just_now": "Just now",
+  "impact_time_hours_ago": "{hours} hour(s) ago",
+  "@impact_time_hours_ago": {
+    "placeholders": {
+      "hours": { "type": "int" }
+    }
+  },
+  "impact_time_days_ago": "{days} day(s) ago",
+  "@impact_time_days_ago": {
+    "placeholders": {
+      "days": { "type": "int" }
+    }
+  },
+  "impact_time_weeks_ago": "{weeks} week(s) ago",
+  "@impact_time_weeks_ago": {
+    "placeholders": {
+      "weeks": { "type": "int" }
+    }
+  },
+  "impact_time_months_ago": "{months} month(s) ago",
+  "@impact_time_months_ago": {
+    "placeholders": {
+      "months": { "type": "int" }
+    }
+  },
   "profile_reminders": "Reminders",
   "profile_settings": "Settings",
   "profile_reading_preferences": "Reading preferences",

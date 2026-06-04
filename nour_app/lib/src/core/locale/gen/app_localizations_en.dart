@@ -484,6 +484,64 @@ class AppLocalizationsEn extends AppLocalizations {
   String get favorites_try_again => 'Try again';
 
   @override
+  String get favorites_tab_impact => 'Impact';
+
+  @override
+  String get impact_title => 'Impact';
+
+  @override
+  String get impact_filter_all => 'All';
+
+  @override
+  String get impact_empty => 'No projects here yet.';
+
+  @override
+  String get impact_about_project => 'About the project';
+
+  @override
+  String get impact_read_more => 'Read more';
+
+  @override
+  String get impact_read_less => 'Read less';
+
+  @override
+  String get impact_partner_org => 'Partner organization';
+
+  @override
+  String get impact_verified => 'Verified';
+
+  @override
+  String get impact_stories_title => 'Stories from the field';
+
+  @override
+  String impact_donors(String count) {
+    return '$count people have donated';
+  }
+
+  @override
+  String get impact_time_just_now => 'Just now';
+
+  @override
+  String impact_time_hours_ago(int hours) {
+    return '$hours hour(s) ago';
+  }
+
+  @override
+  String impact_time_days_ago(int days) {
+    return '$days day(s) ago';
+  }
+
+  @override
+  String impact_time_weeks_ago(int weeks) {
+    return '$weeks week(s) ago';
+  }
+
+  @override
+  String impact_time_months_ago(int months) {
+    return '$months month(s) ago';
+  }
+
+  @override
   String get profile_reminders => 'Reminders';
 
   @override
