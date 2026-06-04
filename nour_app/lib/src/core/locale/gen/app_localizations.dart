@@ -130,6 +130,12 @@ abstract class AppLocalizations {
   /// **'Maybe later'**
   String get common_maybe_later;
 
+  /// No description provided for @common_save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get common_save;
+
   /// No description provided for @common_assalamu_alaykum.
   ///
   /// In en, this message translates to:
@@ -1005,6 +1011,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reading preferences'**
   String get profile_reading_preferences;
+
+  /// No description provided for @profile_account_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Account information'**
+  String get profile_account_information;
+
+  /// No description provided for @account_information_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Account information'**
+  String get account_information_title;
+
+  /// No description provided for @account_information_name_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name'**
+  String get account_information_name_label;
+
+  /// No description provided for @account_information_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your name'**
+  String get account_information_name_hint;
+
+  /// No description provided for @account_information_gender_question.
+  ///
+  /// In en, this message translates to:
+  /// **'What\'s your gender?'**
+  String get account_information_gender_question;
+
+  /// No description provided for @account_information_gender_male.
+  ///
+  /// In en, this message translates to:
+  /// **'Male'**
+  String get account_information_gender_male;
+
+  /// No description provided for @account_information_gender_female.
+  ///
+  /// In en, this message translates to:
+  /// **'Female'**
+  String get account_information_gender_female;
+
+  /// No description provided for @account_information_gender_skip.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer not to say'**
+  String get account_information_gender_skip;
+
+  /// No description provided for @account_information_daily_practice_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily practice time'**
+  String get account_information_daily_practice_title;
+
+  /// No description provided for @account_information_minutes_per_day.
+  ///
+  /// In en, this message translates to:
+  /// **'minutes per day'**
+  String get account_information_minutes_per_day;
+
+  /// No description provided for @account_information_level_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Where are you on your journey?'**
+  String get account_information_level_title;
 
   /// No description provided for @profile_help_support.
   ///

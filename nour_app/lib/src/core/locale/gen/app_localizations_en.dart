@@ -25,6 +25,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get common_maybe_later => 'Maybe later';
 
   @override
+  String get common_save => 'Save';
+
+  @override
   String get common_assalamu_alaykum => 'As-salamu Alaykum';
 
   @override
@@ -488,6 +491,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profile_reading_preferences => 'Reading preferences';
+
+  @override
+  String get profile_account_information => 'Account information';
+
+  @override
+  String get account_information_title => 'Account information';
+
+  @override
+  String get account_information_name_label => 'Your name';
+
+  @override
+  String get account_information_name_hint => 'Enter your name';
+
+  @override
+  String get account_information_gender_question => 'What\'s your gender?';
+
+  @override
+  String get account_information_gender_male => 'Male';
+
+  @override
+  String get account_information_gender_female => 'Female';
+
+  @override
+  String get account_information_gender_skip => 'Prefer not to say';
+
+  @override
+  String get account_information_daily_practice_title => 'Daily practice time';
+
+  @override
+  String get account_information_minutes_per_day => 'minutes per day';
+
+  @override
+  String get account_information_level_title =>
+      'Where are you on your journey?';
 
   @override
   String get profile_help_support => 'Help & support';

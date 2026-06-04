@@ -131,6 +131,11 @@ class AppRouter extends RootStackRouter {
             ),
 
             AutoRoute(
+              path: RoutePaths.accountInformation,
+              page: AccountInformationRoute.page,
+            ),
+
+            AutoRoute(
               path: RoutePaths.favorites,
               page: FavoritesRoute.page,
             ),

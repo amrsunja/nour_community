@@ -146,6 +146,11 @@ class ProfilePage extends HookConsumerWidget {
                     title: l10n.profile_account,
                     children: [
                       ProfileMenuRow(
+                        icon: Icons.person_outline,
+                        label: l10n.profile_account_information,
+                        onTap: () => nav.toAccountInformation(),
+                      ),
+                      ProfileMenuRow(
                         icon: Icons.help_outline,
                         label: l10n.profile_help_support,
                         onTap: () {},

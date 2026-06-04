@@ -13,6 +13,7 @@ abstract class NavigationServices {
 	void toSettings();
 	void toProfile();
 	void toProfileStatistics();
+	void toAccountInformation();
 	void toFavorites();
 	void toOnboarding();
 
@@ -95,6 +96,11 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toProfileStatistics() {
 		router.push(ProfileStatisticsRoute());
+  }
+
+  @override
+  void toAccountInformation() {
+		router.push(AccountInformationRoute());
   }
 
   @override

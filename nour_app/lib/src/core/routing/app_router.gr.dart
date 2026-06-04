@@ -37,6 +37,8 @@ import 'package:nour/src/features/home/tools_router_route.dart' as _i34;
 import 'package:nour/src/features/impact/ui/pages/impact_page.dart' as _i17;
 import 'package:nour/src/features/onboarding/ui/pages/onboarding_page.dart'
     as _i19;
+import 'package:nour/src/features/profile/ui/pages/account_information_page.dart'
+    as _i43;
 import 'package:nour/src/features/profile/ui/pages/favorites_page.dart'
     as _i39;
 import 'package:nour/src/features/profile/ui/pages/profile_page.dart' as _i21;
@@ -688,6 +690,22 @@ class ProfileRoute extends _i36.PageRouteInfo<void> {
     name,
     builder: (data) {
       return const _i21.ProfilePage();
+    },
+  );
+}
+
+/// generated route for
+/// [_i43.AccountInformationPage]
+class AccountInformationRoute extends _i36.PageRouteInfo<void> {
+  const AccountInformationRoute({List<_i36.PageRouteInfo>? children})
+    : super(AccountInformationRoute.name, initialChildren: children);
+
+  static const String name = 'AccountInformationRoute';
+
+  static _i36.PageInfo page = _i36.PageInfo(
+    name,
+    builder: (data) {
+      return const _i43.AccountInformationPage();
     },
   );
 }
