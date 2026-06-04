@@ -107,7 +107,18 @@ class SignInPage extends HookConsumerWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          UIAppBar(onBack: close),
+          UIAppBar(
+            onBack: close,
+            leadingIcons: [
+              UITap(
+                onTap: () => context.pop(),
+                child: Text(
+                  l10n.common_maybe_later,
+                  style: theme.typo.inter.bodyMedium,
+                ),
+              ),
+            ],
+          ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(

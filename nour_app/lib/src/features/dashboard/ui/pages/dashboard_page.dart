@@ -131,13 +131,15 @@ class DashboardPage extends HookConsumerWidget {
               ),
               const UISpace.vert(16),
               UIAppearAnimation(
-                child: UIDailyAjrCard(
-                  title: l10n.dashboard_daily_dhikr_goal,
-                  subtitle: l10n.dashboard_dhikr_goal_progress(dhikrsCount, dhikrGoal),
-                  currentCount: dhikrsCount,
-                  totalCount: dhikrGoal,
-                  buttonTitle: l10n.dashboard_start_dhikr,
-                  onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
+                child: UiRepeatShimerAnimation(
+                  child: UIDailyAjrCard(
+                    title: l10n.dashboard_daily_dhikr_goal,
+                    subtitle: l10n.dashboard_dhikr_goal_progress(dhikrsCount, dhikrGoal),
+                    currentCount: dhikrsCount,
+                    totalCount: dhikrGoal,
+                    buttonTitle: l10n.dashboard_start_dhikr,
+                    onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
+                  ),
                 ),
               ),
 

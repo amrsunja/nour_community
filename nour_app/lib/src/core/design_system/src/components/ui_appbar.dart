@@ -53,7 +53,7 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(
-                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: .spaceBetween,
                   children: [
                     if (onBack != null)
                       UIIcon(
@@ -61,7 +61,12 @@ class UIAppBar extends StatelessWidget implements PreferredSizeWidget {
                         color: UIColorsToken.yellow,
                         onTap: onBack,
                       ),
-                    ...leadingIcons,
+                    Row(
+                      spacing: 8,
+                      children: [
+                        ...leadingIcons,
+                      ],
+                    )
                   ],
                 ),
               ),

@@ -33,7 +33,7 @@ class UITabs<T> extends StatelessWidget {
     this.spacing = 0,
     this.padding,
     this.trackColor,
-    this.borderRadius = 8,
+    this.borderRadius = 6,
     this.activeGradient,
     this.activeTextColor,
     this.inactiveTextColor,
@@ -79,9 +79,11 @@ class UITabs<T> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
-    final baseStyle = textStyle ?? typo.inter.title;
+    final baseStyle = textStyle ?? typo.inter.bodyMedium;
 
     Widget row = Row(
+      spacing: 4,
+      mainAxisAlignment: .center,
       children: [
         for (var i = 0; i < items.length; i++) ...[
           if (i > 0 && spacing > 0) SizedBox(width: spacing),
@@ -93,8 +95,7 @@ class UITabs<T> extends StatelessWidget {
               borderRadius: borderRadius,
               activeGradient: activeGradient ?? UIColorsToken.bgPriYellow,
               activeTextColor: activeTextColor ?? UIColorsToken.black,
-              inactiveTextColor:
-                  inactiveTextColor ?? UIColorsToken.textParagraph,
+              inactiveTextColor: inactiveTextColor ?? UIColorsToken.textParagraph,
               baseStyle: baseStyle,
               onTap: () => onChanged(items[i].value),
             ),
@@ -148,7 +149,7 @@ class _Segment extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         curve: Curves.easeOut,
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           gradient: active ? activeGradient : null,

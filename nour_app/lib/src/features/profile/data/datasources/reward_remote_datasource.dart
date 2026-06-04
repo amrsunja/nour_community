@@ -12,12 +12,13 @@ final rewardRemoteDataProvider = Provider(
 class RewardRemoteDatasource {
   static const _table = 'daily_activity';
 
-  /// UTC calendar date (`YYYY-MM-DD`). `daily_activity` rows are keyed by the
-  /// UTC day on the server (`fn_mark_daily_activity` / `fn_sync_daily_dhikr_
-  /// totals`), so the client must read + claim the same row by UTC date —
-  /// otherwise it could land on a different row near the UTC-midnight boundary.
+  /// Device-local calendar date (`YYYY-MM-DD`). `daily_activity` rows are keyed
+  /// by the client's local day on the server (`fn_mark_daily_activity` /
+  /// `fn_sync_daily_dhikr_totals` are fed the dhikr progress row's local
+  /// `progress_date`), so the client must read + claim the same row by the
+  /// local date — matching the dhikr datasource's `_today`.
   String get _today {
-    final now = DateTime.now().toUtc();
+    final now = DateTime.now();
     return '${now.year.toString().padLeft(4, '0')}-'
         '${now.month.toString().padLeft(2, '0')}-'
         '${now.day.toString().padLeft(2, '0')}';

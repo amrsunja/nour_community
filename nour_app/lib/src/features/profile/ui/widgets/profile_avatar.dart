@@ -111,13 +111,13 @@ class ProfileAvatar extends HookConsumerWidget {
             child: UITap(
               onTap: busy ? null : onBadgeTap,
               child: Container(
-                padding: const EdgeInsets.all(7),
+                padding: const EdgeInsets.all(3),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: UIColorsToken.bgSurface,
                   border: Border.all(
                     color: hasAvatar ? UIColorsToken.red : UIColorsToken.yellow,
-                    width: 1.5,
+                    width: 0.6,
                   ),
                 ),
                 child: Icon(
