@@ -53,3 +53,4 @@ export 'src/components/painters/ui_gradient_rays_painter.dart';
 
 //--------------------- ANIMATIONS ---------------------
 export 'src/components/animations/ui_repeat_shimer_animation.dart';
+export 'src/components/animations/ui_repeating_stars_animation.dart';

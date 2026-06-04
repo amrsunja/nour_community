@@ -30,9 +30,11 @@ class OnboardingScreen1 extends ConsumerWidget {
                   duration: const Duration(milliseconds: 900),
                   offsetY: 32,
                   beginScale: 0.92,
-                  child: UIGlowingBlock(
-                    child: Assets.images.illustration3.image(
-                      filterQuality: .high
+                  child: UiRepeatingStarsAnimation(
+                    child: UIGlowingBlock(
+                      child: Assets.images.illustration3.image(
+                        filterQuality: .high
+                      ),
                     ),
                   ),
                 ),
