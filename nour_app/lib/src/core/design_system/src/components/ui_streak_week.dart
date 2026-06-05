@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/utils/app_vibrations.dart';
 
 /// Weekly streak progress card.
 ///
@@ -53,6 +54,7 @@ class _UIStreakWeekState extends State<UIStreakWeek> {
 
   void _toggle() {
     if (!_canShowInfo) return;
+    AppVibrations.buttonClick();
     setState(() => _showInfo = !_showInfo);
   }
 

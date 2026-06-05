@@ -45,13 +45,6 @@ class RewardScaffold extends StatelessWidget {
 
             const SizedBox(height: 36),
 
-            _RingDot()
-                .animate(delay: const Duration(milliseconds: 250))
-                .fadeIn(duration: const Duration(milliseconds: 400))
-                .scaleXY(begin: 0.4, end: 1, curve: Curves.easeOutBack),
-
-            const SizedBox(height: 16),
-
             Text(
               title,
               textAlign: TextAlign.center,
@@ -117,63 +110,47 @@ class _AnimatedBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        // Breathing glow.
-        Container(
-          width: 220,
-          height: 220,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: RadialGradient(
-              colors: [
-                UIColorsToken.yellow.withValues(alpha: 0.22),
-                UIColorsToken.yellow.withValues(alpha: 0.0),
-              ],
+    return UiRepeatingStarsAnimation(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          // Breathing glow.
+          Container(
+            width: 220,
+            height: 220,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  UIColorsToken.yellow.withValues(alpha: 0.22),
+                  UIColorsToken.yellow.withValues(alpha: 0.0),
+                ],
+              ),
             ),
-          ),
-        )
-            .animate(onPlay: (c) => c.repeat(reverse: true))
-            .scaleXY(
-              begin: 0.85,
-              end: 1.15,
-              duration: const Duration(milliseconds: 1800),
-              curve: Curves.easeInOut,
-            ),
-
-        badge
-            .animate()
-            .scaleXY(
-              begin: 0.5,
-              end: 1,
-              duration: const Duration(milliseconds: 850),
-              curve: Curves.elasticOut,
-            )
-            .fadeIn(duration: const Duration(milliseconds: 450))
-            .then()
-            .shimmer(
-              duration: const Duration(milliseconds: 1500),
-              color: UIColorsToken.white.withValues(alpha: 0.35),
-            ),
-      ],
-    );
-  }
-}
-
-/// Tiny decorative ring above the title (matches the design).
-class _RingDot extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 11,
-      height: 11,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: const Color(0xffD98FB0),
-          width: 2,
-        ),
+          )
+              .animate(onPlay: (c) => c.repeat(reverse: true))
+              .scaleXY(
+                begin: 0.85,
+                end: 1.15,
+                duration: const Duration(milliseconds: 1800),
+                curve: Curves.easeInOut,
+              ),
+      
+          badge
+              .animate()
+              .scaleXY(
+                begin: 0.5,
+                end: 1,
+                duration: const Duration(milliseconds: 850),
+                curve: Curves.elasticOut,
+              )
+              .fadeIn(duration: const Duration(milliseconds: 450))
+              .then()
+              .shimmer(
+                duration: const Duration(milliseconds: 1500),
+                color: UIColorsToken.white.withValues(alpha: 0.35),
+              ),
+        ],
       ),
     );
   }

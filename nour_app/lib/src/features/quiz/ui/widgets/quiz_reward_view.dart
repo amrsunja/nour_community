@@ -45,16 +45,18 @@ class QuizRewardView extends StatelessWidget {
           children: [
             const Spacer(flex: 3),
 
-            _Halo(
-              child: const QuizRewardBadge()
-                .animate()
-                .scaleXY(
-                  begin: 0.5,
-                  end: 1,
-                  duration: const Duration(milliseconds: 850),
-                  curve: Curves.elasticOut,
-                )
-                .fadeIn(duration: const Duration(milliseconds: 450))
+            UiRepeatingStarsAnimation(
+              child: _Halo(
+                child: const QuizRewardBadge()
+                  .animate()
+                  .scaleXY(
+                    begin: 0.5,
+                    end: 1,
+                    duration: const Duration(milliseconds: 850),
+                    curve: Curves.elasticOut,
+                  )
+                  .fadeIn(duration: const Duration(milliseconds: 450))
+              ),
             ),
 
             const SizedBox(height: 28),

@@ -6,6 +6,7 @@ import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/utils/app_vibrations.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
@@ -138,7 +139,10 @@ class DashboardPage extends HookConsumerWidget {
                     currentCount: dhikrsCount,
                     totalCount: dhikrGoal,
                     buttonTitle: l10n.dashboard_start_dhikr,
-                    onTap: () => ref.read(navigationServicesProvider).toDhikrsList(),
+                    onTap: () {
+                      AppVibrations.buttonClick();
+                      ref.read(navigationServicesProvider).toDhikrsList();
+                    },
                   ),
                 ),
               ),
