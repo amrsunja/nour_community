@@ -1294,6 +1294,18 @@ abstract class AppLocalizations {
   /// **'See all'**
   String get dashboard_see_all;
 
+  /// No description provided for @dashboard_impact_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Nour impact'**
+  String get dashboard_impact_projects;
+
+  /// No description provided for @dashboard_see_all_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'See all projects'**
+  String get dashboard_see_all_projects;
+
   /// No description provided for @l10nRewards.
   ///
   /// In en, this message translates to:

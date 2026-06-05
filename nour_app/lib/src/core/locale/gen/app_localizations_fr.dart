@@ -656,6 +656,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dashboard_see_all => 'Voir tout';
 
   @override
+  String get dashboard_impact_projects => 'Impact Nour';
+
+  @override
+  String get dashboard_see_all_projects => 'Voir tous les projets';
+
+  @override
   String get l10nRewards =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

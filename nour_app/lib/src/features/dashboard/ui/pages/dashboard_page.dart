@@ -10,6 +10,9 @@ import 'package:nour/src/core/utils/app_vibrations.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
+import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
+import 'package:nour/src/features/impact/ui/state_management/impact_provider.dart';
+import 'package:nour/src/features/impact/ui/widgets/impact_project_card_widget.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/features/tools/ui/state_management/prayer_times_provider.dart';
 import 'package:nour/src/features/tools/ui/widgets/next_prayer_widget.dart';
@@ -95,9 +98,15 @@ class DashboardPage extends HookConsumerWidget {
     final dhikrGoal = 33;
 
     final prayerState = ref.watch(prayerTimesProvider);
+    // Top 3 impact projects for the dashboard carousel; the rest live behind
+    // "See all projects" on the Impact tab.
+    final impactProjects =
+        ref.watch(impactProvider).projects.take(3).toList();
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         ref.read(prayerTimesProvider.notifier).init();
+        // App-lifetime provider; init() is a no-op once the Impact tab loaded.
+        ref.read(impactProvider.notifier).init();
       });
       return null;
     }, const []);
@@ -240,6 +249,27 @@ class DashboardPage extends HookConsumerWidget {
                   ],
                 ),
               ),
+
+              // ---------------- Nour impact ----------------
+              if (impactProjects.isNotEmpty) ...[
+                const UISpace.vert(24),
+                _SectionHeader(
+                  title: l10n.dashboard_impact_projects,
+                  actionLabel: l10n.dashboard_see_all_projects,
+                  // Impact is tab index 2 in the home AutoTabsRouter.
+                  onAction: () => context.tabsRouter.setActiveIndex(2),
+                ),
+                const UISpace.vert(12),
+                UIAppearAnimation(
+                  delay: const Duration(milliseconds: 250),
+                  child: _ImpactProjectsCarousel(
+                    projects: impactProjects,
+                    onProjectTap: (project) =>
+                        nav.toImpactProjectDetail(projectId: project.id),
+                  ),
+                ),
+              ],
+
               UISpace.vert(100)
             ],
           ),
@@ -380,6 +410,97 @@ class _PointsBadge extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
+    );
+  }
+}
+
+/// Horizontal, swipeable carousel of the top impact projects. Each page is an
+/// [ImpactProjectCardWidget] with a peek of the next card; a page-dots slider
+/// sits underneath.
+class _ImpactProjectsCarousel extends HookWidget {
+  const _ImpactProjectsCarousel({
+    required this.projects,
+    required this.onProjectTap,
+  });
+
+  final List<ImpactProjectModel> projects;
+  final ValueChanged<ImpactProjectModel> onProjectTap;
+
+  static const double _cardHeight = 230;
+
+  @override
+  Widget build(BuildContext context) {
+    final controller = usePageController(viewportFraction: 0.88);
+    final pageIndex = useState(0);
+
+    useEffect(() {
+      void listener() {
+        final page = controller.page?.round() ?? 0;
+        if (page != pageIndex.value) pageIndex.value = page;
+      }
+
+      controller.addListener(listener);
+      return () => controller.removeListener(listener);
+    }, [controller]);
+
+    return Column(
+      children: [
+        SizedBox(
+          height: _cardHeight,
+          child: PageView.builder(
+            controller: controller,
+            padEnds: false,
+            itemCount: projects.length,
+            itemBuilder: (context, i) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  right: i == projects.length - 1 ? 0 : 12,
+                ),
+                child: ImpactProjectCardWidget(
+                  project: projects[i],
+                  onTap: () => onProjectTap(projects[i]),
+                ),
+              );
+            },
+          ),
+        ),
+        if (projects.length > 1) ...[
+          const UISpace.vert(12),
+          _CarouselDots(count: projects.length, activeIndex: pageIndex.value),
+        ],
+      ],
+    );
+  }
+}
+
+/// Page-position slider: the active page is a white pill, the others dimmed
+/// dots.
+class _CarouselDots extends StatelessWidget {
+  const _CarouselDots({required this.count, required this.activeIndex});
+
+  final int count;
+  final int activeIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(count, (i) {
+        final active = i == activeIndex;
+        return AnimatedContainer(
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeOut,
+          margin: const EdgeInsets.symmetric(horizontal: 3),
+          width: active ? 22 : 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: active
+                ? UIColorsToken.white
+                : UIColorsToken.white.withValues(alpha: 0.3),
+            borderRadius: BorderRadius.circular(100),
+          ),
+        );
+      }),
     );
   }
 }

@@ -257,6 +257,8 @@
   "dashboard_view_all": "عرض الكل",
   "dashboard_quick_tools": "أدوات سريعة",
   "dashboard_see_all": "عرض الكل",
+  "dashboard_impact_projects": "أثر نور",
+  "dashboard_see_all_projects": "عرض كل المشاريع",
 
   "l10nRewards": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "reward_streak_day_title": "اليوم {day}",

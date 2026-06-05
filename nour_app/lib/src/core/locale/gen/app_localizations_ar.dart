@@ -639,6 +639,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get dashboard_see_all => 'عرض الكل';
 
   @override
+  String get dashboard_impact_projects => 'أثر نور';
+
+  @override
+  String get dashboard_see_all_projects => 'عرض كل المشاريع';
+
+  @override
   String get l10nRewards =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

@@ -257,6 +257,8 @@
   "dashboard_view_all": "Voir tout",
   "dashboard_quick_tools": "Outils rapides",
   "dashboard_see_all": "Voir tout",
+  "dashboard_impact_projects": "Impact Nour",
+  "dashboard_see_all_projects": "Voir tous les projets",
 
   "l10nRewards": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "reward_streak_day_title": "Jour {day}",
