@@ -1,7 +1,9 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/notifications/notifications_services.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:nour/src/core/utils/enums/calculation_method_type.dart';
+import 'package:nour/src/core/utils/geolocator/geolocator_tools.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
@@ -52,6 +54,19 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
       (settings) => settings.method,
       (_) => CalculationMethodType.defaultMethod,
     );
+  }
+
+  /// Resolve a location for scheduling without ever depending on a live GPS
+  /// fix. Returns `null` when no location has ever been obtained/set — callers
+  /// skip scheduling in that case instead of throwing.
+  Future<Position?> _schedulingPosition() async {
+    final pos = await GeolocatorTools.positionForScheduling();
+    if (pos == null) {
+      talker.info(
+        'Skipping notification scheduling: no location available yet.',
+      );
+    }
+    return pos;
   }
 
   Map<PrayerSlot, String> _prayerTitles() => {
@@ -227,9 +242,13 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
       final settings = state.settings;
       if (!settings.anyPrayer) return;
 
+      final position = await _schedulingPosition();
+      if (position == null) return;
+
       final resolvedMethod = method ?? await _method();
       final week = await IslamicTools.getUpcomingPrayerTimes(
         days: NotificationIds.prayersDaysAhead,
+        position: position,
         method: resolvedMethod,
       );
       final titles = _prayerTitles();
@@ -270,9 +289,13 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   }) async {
     try {
       await notifications.initialize();
+      final position = await _schedulingPosition();
+      if (position == null) return;
+
       final resolvedMethod = method ?? await _method();
       final week = await IslamicTools.getUpcomingPrayerTimes(
         days: NotificationIds.prayersDaysAhead,
+        position: position,
         method: resolvedMethod,
       );
 

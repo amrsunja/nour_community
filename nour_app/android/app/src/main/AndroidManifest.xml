@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 		<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 		<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 		<!-- Gallery permissions -->
 		<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
@@ -21,7 +22,12 @@
 
 		<!-- Backgournd audio player permissions -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+      <!-- ALSO ADD THIS PERMISSION IF TARGETING SDK 34 -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+      <!-- ADD THESE TWO PERMISSIONS -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
 
   	<!-- Provide required visibility configuration for API level 30 and above -->
@@ -60,7 +66,7 @@
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
-            android:name=".MainActivity"
+            android:name="com.ryanheise.audioservice.AudioServiceActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""
@@ -106,18 +112,20 @@
             android:name="com.dexterous.flutterlocalnotifications.FlutterLocalNotificationsReceiver"/>
 
       <!-- Backgournd audio playing -->
+          <!-- ADD THIS "SERVICE" element -->
       <service android:name="com.ryanheise.audioservice.AudioService"
           android:foregroundServiceType="mediaPlayback"
           android:exported="true" tools:ignore="Instantiatable">
-          <intent-filter>
-              <action android:name="android.media.browse.MediaBrowserService" />
-          </intent-filter>
+        <intent-filter>
+          <action android:name="android.media.browse.MediaBrowserService" />
+        </intent-filter>
       </service>
+          <!-- ADD THIS "RECEIVER" element -->
       <receiver android:name="com.ryanheise.audioservice.MediaButtonReceiver"
-          android:exported="true">
-          <intent-filter>
-              <action android:name="android.intent.action.MEDIA_BUTTON" />
-          </intent-filter>
+          android:exported="true" tools:ignore="Instantiatable">
+        <intent-filter>
+          <action android:name="android.intent.action.MEDIA_BUTTON" />
+        </intent-filter>
       </receiver>
 
     </application>
