@@ -209,7 +209,7 @@ return $default(_that.isLoading,_that.avatarStatus,_that.profile);case _:
 
 class _ProfileState implements ProfileState {
   const _ProfileState({required this.isLoading, this.avatarStatus = AvatarStatus.idle, this.profile});
-
+  
 
 @override final  bool isLoading;
 @override@JsonKey() final  AvatarStatus avatarStatus;

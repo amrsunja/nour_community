@@ -2,8 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_compass/flutter_compass.dart';
 import 'package:nour/gen/assets.gen.dart';
+import 'package:nour/src/features/tools/ui/widgets/compass_heading.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 
@@ -33,13 +33,8 @@ class QiblaCompassWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stream = FlutterCompass.events;
-
-    // Platform without the plugin / no magnetometer at all.
-    if (stream == null) return _NoSensor(size: size);
-
-    return StreamBuilder<CompassEvent>(
-      stream: stream,
+    return StreamBuilder<double?>(
+      stream: CompassHeading.events(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return SizedBox(
@@ -48,8 +43,8 @@ class QiblaCompassWidget extends StatelessWidget {
           );
         }
 
-        final heading = snapshot.data?.heading;
-        // Some devices report a null heading when no compass is available.
+        final heading = snapshot.data;
+        // No magnetometer, or a momentarily-unreliable reading.
         if (heading == null) return _NoSensor(size: size);
 
         return _CompassView(
