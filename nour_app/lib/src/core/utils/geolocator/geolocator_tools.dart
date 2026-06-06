@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,11 +23,25 @@ class GeolocatorTools {
         now.difference(_cachedAt!) < _cacheTtl) {
       return _cached!;
     }
-    final pos = await determinePosition();
-    _cached = pos;
-    _cachedAt = now;
-    await _persist(pos, manual: false);
-    return pos;
+    try {
+      final pos = await determinePosition();
+      _cached = pos;
+      _cachedAt = now;
+      await _persist(pos, manual: false);
+      return pos;
+    } on TimeoutException {
+      // GPS couldn't produce a fix in time (indoors, simulator, weak signal).
+      // Degrade gracefully: OS last-known fix → last persisted coordinate.
+      // For prayer times / Qibla a stale coordinate is perfectly adequate.
+      final fallback =
+          await Geolocator.getLastKnownPosition() ?? await _lastPersisted();
+      if (fallback == null) rethrow;
+      _cached = fallback;
+      // Short TTL so we retry a real fix soon instead of pinning stale data
+      // for the full cache window.
+      _cachedAt = now.subtract(_cacheTtl - const Duration(minutes: 10));
+      return fallback;
+    }
   }
 
   /// Non-throwing resolver for background / notification-scheduling contexts.
