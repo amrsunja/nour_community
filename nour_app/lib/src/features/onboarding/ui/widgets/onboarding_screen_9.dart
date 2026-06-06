@@ -183,7 +183,10 @@ class _GenderChip extends StatelessWidget {
             color: selected ? accent : UIColorsToken.white,
             fontWeight: selected ? FontWeight.w600 : FontWeight.w500,
           ),
-          child: Text(label),
+          child: Text(
+            label,
+            textAlign: .center,
+          ),
         ),
       ),
     );
