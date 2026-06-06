@@ -21,9 +21,6 @@ import '../widgets/ayah_reader_card_widget.dart';
 class DailyAyahPage extends HookConsumerWidget {
   const DailyAyahPage({super.key});
 
-  /// Arabic app-bar title ("Daily ayah") — shown regardless of app locale.
-  static const _arabicTitle = 'آية اليوم';
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
