@@ -165,17 +165,17 @@ class _CompassViewState extends State<_CompassView> {
                 children: [
                   Center(
                     child: Assets.images.compassLines.image(
-                      height: size * 0.96,
+                      height: size * 0.75,
                       fit: BoxFit.contain,
                     ),
                   ),
                   Positioned(
-                    top: -14,
+                    top: -10,
                     left: 0,
                     right: 0,
                     child: Center(
                       child: Assets.images.kaaba.image(
-                        width: 54,
+                        width: 40,
                         fit: BoxFit.contain,
                       ),
                     ),
@@ -197,13 +197,13 @@ class _DialPainter extends CustomPainter {
 
   final bool aligned;
 
-  static const _gold = UIColorsToken.textYellow;
+  static const _gold = UIColorsToken.yellow;
 
   @override
   void paint(Canvas canvas, Size size) {
     final center = size.center(Offset.zero);
     final radius = size.width / 2;
-    final discRadius = radius - 14;
+    final discRadius = radius - 6;
 
     // 1. Outer glow — wide soft halo + a tighter brighter rim.
     canvas.drawCircle(
@@ -211,7 +211,7 @@ class _DialPainter extends CustomPainter {
       discRadius,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 18
+        ..strokeWidth = 48
         ..color = _gold.withValues(alpha: aligned ? 0.55 : 0.32)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 26),
     );
@@ -220,7 +220,7 @@ class _DialPainter extends CustomPainter {
       discRadius,
       Paint()
         ..style = PaintingStyle.stroke
-        ..strokeWidth = 6
+        ..strokeWidth = 2
         ..color = _gold.withValues(alpha: aligned ? 0.9 : 0.6)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
     );
@@ -248,7 +248,7 @@ class _DialPainter extends CustomPainter {
     );
 
     // 4. Dotted ring (72 ticks, every 9th — the cardinals — is a dash).
-    final dotOrbit = discRadius - 18;
+    final dotOrbit = discRadius - 6;
     for (var i = 0; i < 72; i++) {
       final angle = (i * 5) * math.pi / 180 - math.pi / 2;
       final isCardinal = i % 18 == 0; // 0,18,36,54 → N,E,S,W
@@ -259,12 +259,12 @@ class _DialPainter extends CustomPainter {
         final inner = center +
             Offset(math.cos(angle), math.sin(angle)) * (dotOrbit - 6);
         final outer = center +
-            Offset(math.cos(angle), math.sin(angle)) * (dotOrbit + 6);
+            Offset(math.cos(angle), math.sin(angle)) * (dotOrbit);
         canvas.drawLine(
           inner,
           outer,
           Paint()
-            ..strokeWidth = 2
+            ..strokeWidth = 2.5
             ..strokeCap = StrokeCap.round
             ..color = _gold.withValues(alpha: 0.85),
         );
@@ -278,7 +278,7 @@ class _DialPainter extends CustomPainter {
     }
 
     // 5. Cardinal letters.
-    final letterOrbit = discRadius - 44;
+    final letterOrbit = discRadius - 26;
     const labels = {0: 'N', 90: 'E', 180: 'S', 270: 'W'};
     labels.forEach((deg, label) {
       final angle = deg * math.pi / 180 - math.pi / 2;
