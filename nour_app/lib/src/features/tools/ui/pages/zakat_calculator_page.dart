@@ -343,8 +343,7 @@ class _SummaryCard extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Row(
-            mainAxisAlignment: .center,
-            spacing: 80,
+            mainAxisAlignment: .spaceEvenly,
             children: [
               UIButton.textual(
                 label: l10n.zakat_reset,
