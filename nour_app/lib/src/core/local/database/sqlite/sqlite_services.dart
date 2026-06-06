@@ -144,6 +144,18 @@ class SQLiteServicesImpl implements SQLiteServices {
         },
         onOpen: (db) async {
           await db.rawQuery('PRAGMA cipher_version;');
+          // Guarantee the singleton settings row exists. Without it every
+          // `UPDATE ... WHERE id = 1` (language, reciter, etc.) silently
+          // affects 0 rows and reads fall back to defaults. Runs after
+          // onCreate/onUpgrade and is idempotent (INSERT OR IGNORE).
+          await db.insert(
+            SQLiteConfig.settingsTableName,
+            {
+              'id': 1,
+              SQLiteConfig.themeModeKey: 'system',
+            },
+            conflictAlgorithm: ConflictAlgorithm.ignore,
+          );
         },
       );
     } catch (e) {
