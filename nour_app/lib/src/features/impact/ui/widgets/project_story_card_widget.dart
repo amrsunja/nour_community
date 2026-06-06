@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 
@@ -39,8 +40,10 @@ class ProjectStoryCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
     final l10n = AppLocale.of(context);
-    final imageUrl =
-        ImpactRemoteDatasource.publicStoryImageUrl(story.coverImage);
+    final imageUrls = [
+      for (final ref in story.images)
+        if (ImpactRemoteDatasource.publicStoryImageUrl(ref) case final url?) url,
+    ];
 
     return IntrinsicHeight(
       child: Row(
@@ -56,24 +59,8 @@ class ProjectStoryCardWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (imageUrl != null) ...[
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(14),
-                      child: CachedNetworkImage(
-                        imageUrl: imageUrl,
-                        height: 150,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        placeholder: (_, _) => Container(
-                          height: 150,
-                          color: UIColorsToken.bgSurface,
-                        ),
-                        errorWidget: (_, _, _) => Container(
-                          height: 150,
-                          color: UIColorsToken.bgSurface,
-                        ),
-                      ),
-                    ),
+                  if (imageUrls.isNotEmpty) ...[
+                    _StoryImageSlider(imageUrls: imageUrls),
                     const UISpace.vert(10),
                   ],
                   Text(
@@ -105,6 +92,91 @@ class ProjectStoryCardWidget extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Horizontal image carousel for a story. Falls back to a single static image
+/// when there is only one, otherwise a swipeable [PageView] with a dot indicator.
+class _StoryImageSlider extends HookWidget {
+  const _StoryImageSlider({required this.imageUrls});
+
+  final List<String> imageUrls;
+
+  static const double _height = 150;
+
+  @override
+  Widget build(BuildContext context) {
+    if (imageUrls.length == 1) {
+      return _SliderImage(url: imageUrls.first);
+    }
+
+    final controller = usePageController();
+    final index = useState(0);
+
+    return Column(
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(14),
+          child: SizedBox(
+            height: _height,
+            width: double.infinity,
+            child: PageView.builder(
+              controller: controller,
+              onPageChanged: (i) => index.value = i,
+              itemCount: imageUrls.length,
+              itemBuilder: (_, i) => _SliderImage(url: imageUrls[i]),
+            ),
+          ),
+        ),
+        const UISpace.vert(8),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (var i = 0; i < imageUrls.length; i++)
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 250),
+                margin: const EdgeInsets.symmetric(horizontal: 3),
+                width: index.value == i ? 18 : 6,
+                height: 6,
+                decoration: BoxDecoration(
+                  color: index.value == i
+                      ? UIColorsToken.yellow
+                      : UIColorsToken.yellow.withValues(alpha: 0.3),
+                  borderRadius: BorderRadius.circular(3),
+                ),
+              ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// A single cached, rounded image used inside the slider.
+class _SliderImage extends StatelessWidget {
+  const _SliderImage({required this.url});
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(14),
+      child: CachedNetworkImage(
+        imageUrl: url,
+        height: _StoryImageSlider._height,
+        width: double.infinity,
+        fit: BoxFit.cover,
+        placeholder: (_, _) => Container(
+          height: _StoryImageSlider._height,
+          color: UIColorsToken.bgSurface,
+        ),
+        errorWidget: (_, _, _) => Container(
+          height: _StoryImageSlider._height,
+          color: UIColorsToken.bgSurface,
+        ),
       ),
     );
   }
