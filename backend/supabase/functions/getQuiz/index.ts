@@ -1,9 +1,10 @@
 // =============================================================================
 // getQuiz Edge Function
 // -----------------------------------------------------------------------------
-// Returns 4 quiz questions filtered by the caller's level.
-//   - Q1..Q3 : level <= user.level
-//   - Q4     : level > user.level (challenge); if none exists, fall back to
+// Returns 5 quiz questions filtered by the caller's level.
+//   - Q1..Q4 : level <= user.level (topped up from the next level if the
+//              at-or-below pool has fewer than 4 questions)
+//   - Q5     : level > user.level (challenge); if none exists, fall back to
 //              another level <= user.level question
 // If the user already played today (row in quiz_plays for today), returns
 // { quizs: [], already_played: true } per README spec.
@@ -137,20 +138,28 @@ serve(async (req) => {
     // 5. Pick 4 random questions at-or-below level
     const picks = shuffle(pool).slice(0, 4);
 
-    // 6. Pick the 4th: one level higher if available
+    // 6. Fetch challenge pool (one level higher) once
     const challengeLevel = nextLevel(userLevel);
-    let challenge: Record<string, unknown> | null = null;
+    let challengePool: Record<string, unknown>[] = [];
 
     if (challengeLevel) {
-      const { data: challengePool } = await sb
+      const { data } = await sb
         .from("quiz_questions")
         .select("*")
         .eq("is_active", true)
         .eq("level", challengeLevel);
-      if (challengePool && challengePool.length > 0) {
-        challenge = shuffle(challengePool)[0];
-      }
+      challengePool = shuffle(data ?? []);
     }
+
+    // 6a. If at-or-below pool was too small (< 4), top up picks from the
+    // challenge pool so the quiz always has 5 questions when possible.
+    while (picks.length < 4 && challengePool.length > 1) {
+      picks.push(challengePool.shift()!);
+    }
+
+    // 6b. Pick the 5th: one level higher if available
+    let challenge: Record<string, unknown> | null = challengePool.shift() ??
+      null;
 
     if (!challenge) {
       // Fallback: another at-or-below question that isn't already picked
