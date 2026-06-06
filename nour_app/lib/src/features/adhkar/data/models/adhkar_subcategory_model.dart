@@ -58,7 +58,7 @@ class AdhkarSubcategoryModel extends Equatable {
     );
   }
 
-  /// Localized title resolved from the profile language code.
+  /// Localized title resolved from the app language code (local settings).
   String title(String langCode) => switch (langCode) {
     'fr' => titleFr,
     'ar' => titleAr,

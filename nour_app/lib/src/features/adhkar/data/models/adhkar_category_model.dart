@@ -24,7 +24,7 @@ class AdhkarCategoryModel extends Equatable {
     position: json['position'] ?? 0,
   );
 
-  /// Localized section title resolved from the profile language code.
+  /// Localized section title resolved from the app language code (local settings).
   String title(String langCode) => switch (langCode) {
     'fr' => titleFr,
     'ar' => titleAr,

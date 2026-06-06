@@ -5,7 +5,6 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
-import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 
@@ -258,29 +257,6 @@ class ProfileRemoteDatasource {
       throw ServerException(
         type: .badRequest,
         message: 'Failed to update profile gender',
-      );
-    }
-  }
-
-  Future<void> updateLanguage(LanguageType lang) async {
-    final authUser = supabaseClient.auth.currentUser;
-    if (authUser == null) {
-      throw ServerException(
-        type: .unauthorized,
-        message: 'The user is not authenticated',
-      );
-    }
-
-    try {
-      await supabaseClient
-          .from(_tableName)
-          .update({'language': lang.dbValue})
-          .eq('id', authUser.id);
-    } catch (e) {
-      talker.error(e);
-      throw ServerException(
-        type: .badRequest,
-        message: 'Failed to update profile language',
       );
     }
   }

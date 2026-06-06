@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
-import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
@@ -181,25 +180,6 @@ class ProfilePresenter extends Presenter<ProfileState> {
     return response.when(
       (_) {
         state.profile?.gender = gender;
-        state = state.copyWith(isLoading: false);
-        return true;
-      },
-      (error) {
-        state = state.copyWith(isLoading: false);
-        appEvents.send(ShowErrorEvent(error));
-        return false;
-      },
-    );
-  }
-
-  /// Persists the user's preferred [lang] to the Supabase profile.
-  Future<bool> updateLanguage(LanguageType lang) async {
-    state = state.copyWith(isLoading: true);
-    final response = await repo.updateLanguage(lang);
-
-    return response.when(
-      (_) {
-        state.profile?.language = lang;
         state = state.copyWith(isLoading: false);
         return true;
       },

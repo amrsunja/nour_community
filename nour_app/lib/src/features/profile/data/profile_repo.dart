@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
-import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/profile/data/models/profile_model.dart';
@@ -59,12 +58,6 @@ class ProfileRepo {
   Future<SuccessOrError<void>> updateGender(GenderType gender) async {
     return await Failure.exceptionsCatcher(() async {
       await remoteDatasource.updateGender(gender);
-    });
-  }
-
-  Future<SuccessOrError<void>> updateLanguage(LanguageType lang) async {
-    return await Failure.exceptionsCatcher(() async {
-      await remoteDatasource.updateLanguage(lang);
     });
   }
 

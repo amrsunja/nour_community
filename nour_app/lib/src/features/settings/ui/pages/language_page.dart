@@ -5,13 +5,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
-import 'package:nour/src/core/utils/enums/language_type.dart';
-import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 
 /// Settings › Language. Mirrors onboarding screen 8 but persists the selection
 /// immediately on tap (no continue button). Changing the language live-updates
-/// the whole UI and syncs the profile's language preference.
+/// the whole UI. Local settings are the single source of truth for language.
 @RoutePage()
 class LanguagePage extends HookConsumerWidget {
   const LanguagePage({super.key});
@@ -21,7 +19,6 @@ class LanguagePage extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final settingsPresenter = ref.read(settingsProvider.notifier);
-    final profilePresenter = ref.read(profileProvider.notifier);
 
     final storedLocale = ref.watch(
       settingsProvider.select((s) => s.data?.locale),
@@ -37,10 +34,7 @@ class LanguagePage extends HookConsumerWidget {
         (storedLocale ?? L10n.defaultLocale).languageCode;
 
     Future<void> onSelect(Locale locale) async {
-      final ok = await settingsPresenter.changeAppLanguage(locale);
-      if (!ok) return;
-      final lang = LanguageType.fromString(locale.languageCode);
-      await profilePresenter.updateLanguage(lang);
+      await settingsPresenter.changeAppLanguage(locale);
     }
 
     return Scaffold(

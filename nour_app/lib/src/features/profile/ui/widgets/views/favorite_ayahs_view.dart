@@ -30,7 +30,7 @@ class _FavoriteAyahsViewState extends ConsumerState<FavoriteAyahsView>
     final nav = ref.read(navigationServicesProvider);
 
     // Loads on first build and re-fetches when the app language changes so the
-    // cached translations follow the profile language (init() self-guards).
+    // cached translations follow the app language (init() self-guards).
     WidgetsBinding.instance.addPostFrameCallback(
       (_) => presenter.init(langCode),
     );

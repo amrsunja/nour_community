@@ -33,7 +33,7 @@ class FavoriteAyahsPresenter extends Presenter<FavoriteAyahsState> {
   /// Loads favourites the first time the tab is opened. No-ops once data has
   /// been loaded (or is loading) for the current [langCode] — call [refresh] to
   /// force a reload. Re-fetches when the app language changed so the cached
-  /// translations follow the profile language.
+  /// translations follow the app language.
   Future<void> init(String langCode) async {
     if (state.isLoading) return;
     if (state.loaded && state.loadedLangCode == langCode) return;

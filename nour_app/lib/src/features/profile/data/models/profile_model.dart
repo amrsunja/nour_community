@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
-import 'package:nour/src/core/utils/enums/language_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
@@ -11,7 +10,6 @@ class ProfileModel extends Equatable {
   String? avatar;
   GenderType? gender;
   LevelType? level;
-  LanguageType language;
   bool onboardingCompleted;
   int lastOnboardingScreen;
   int dailyPracticeTime;
@@ -28,7 +26,6 @@ class ProfileModel extends Equatable {
     required this.avatar,
     required this.gender,
     required this.level,
-    required this.language,
     required this.onboardingCompleted,
     required this.lastOnboardingScreen,
     required this.dailyPracticeTime,
@@ -46,7 +43,6 @@ class ProfileModel extends Equatable {
     avatar: json['avatar_url'],
     gender: json['gender'] == null ? null : GenderType.fromString(json['gender']),
     level: json['level'] == null ? null : LevelType.fromString(json['level']),
-    language: LanguageType.fromString(json['language']),
     onboardingCompleted: json['onboarding_completed'],
     lastOnboardingScreen: json['last_onboarding_screen'],
     dailyPracticeTime: json['daily_practice_time'],
@@ -65,7 +61,6 @@ class ProfileModel extends Equatable {
     avatar,
     gender,
     level,
-    language,
     onboardingCompleted,
     lastOnboardingScreen,
     dailyPracticeTime,

@@ -40,7 +40,6 @@ This enums will be core enums for bougth app and backend and they should be used
 
 **levelType**: (begining, growing, established, returning)
 **genderType**: (male, female)
-**languageType**: (en, fr, ar)
 **errorKey**: (error_message_key...) for supabase edge functions etc.. that we will return for some logic
 
 #### Supabase error model
@@ -69,7 +68,6 @@ here is the official documentation that you need to know [https://supabase.com/d
   "avatar_url": "https://link_to", // Can be null,
   "gender": "GenderType or null", // genderType enum - can be null
   "level": "LevelType or null", // levelType enum - can be null
-  "language": "LanguageType or null", // languageType enum
   "onboarding_completed": false,
   "last_onboarding_screen": 4, // this is a last onboaridng screen where user was before completing it
   "daily_practice_time": 5, // minutes - int,
