@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:nour/src/core/utils/share_services.dart';
 
 import '../state_management/dua_provider.dart';
 import '../widgets/dua_reader_card_widget.dart';
@@ -52,12 +52,12 @@ class DailyDuaPage extends HookConsumerWidget {
     final transcription = dua.transcription(langCode);
     final hasTranscription = langCode != 'ar' && transcription.isNotEmpty;
 
-    Future<void> share() => SharePlus.instance.share(
-          ShareParams(
-            text: '${dua.arabicText}\n\n'
-                '$translation\n\n'
-                '— ${reference.isNotEmpty ? reference : dua.title(langCode)}',
-          ),
+    Future<void> share() => ShareServices.shareDua(
+          title: dua.title(langCode),
+          arabicText: dua.arabicText,
+          translation: translation,
+          reference: reference,
+          duaId: dua.id,
         );
 
     Future<void> onDone() async {

@@ -6,8 +6,8 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
+import 'package:nour/src/core/utils/share_services.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../state_management/quran_provider.dart';
 import '../widgets/ayah_reader_card_widget.dart';
@@ -63,12 +63,12 @@ class DailyAyahPage extends HookConsumerWidget {
     final transliteration =
         state.transliterationOf(ayah.surahNumber, ayah.ayahNumber);
 
-    Future<void> share() => SharePlus.instance.share(
-          ShareParams(
-            text: '${ayah.arabicText}\n\n'
-                '${ayah.translation}\n\n'
-                '— $reference',
-          ),
+    Future<void> share() => ShareServices.shareAyah(
+          surahName: surahName,
+          surahNumber: ayah.surahNumber,
+          ayahNumber: ayah.ayahNumber,
+          arabicText: ayah.arabicText,
+          translation: ayah.translation,
         );
 
     Future<void> onDone() async {

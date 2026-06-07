@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:nour/src/core/utils/share_services.dart';
 
 import '../../data/models/hadith_model.dart';
 import '../state_management/hadith_provider.dart';
@@ -88,12 +88,13 @@ class HadithDetailPage extends HookConsumerWidget {
     final reference = hadith.reference(langCode);
     final translation = hadith.translation(langCode);
 
-    Future<void> share() => SharePlus.instance.share(
-          ShareParams(
-            text: '${hadith.arabicText}\n\n'
-                '$translation\n\n'
-                '— ${reference.isNotEmpty ? reference : hadith.title(langCode)}',
-          ),
+    Future<void> share() => ShareServices.shareHadith(
+          title: hadith.title(langCode),
+          arabicText: hadith.arabicText,
+          translation: translation,
+          reference: reference,
+          collectionId: collectionId,
+          hadithId: hadith.id,
         );
 
     return PopScope(

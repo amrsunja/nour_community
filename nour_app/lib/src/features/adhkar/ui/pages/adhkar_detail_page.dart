@@ -7,7 +7,7 @@ import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
-import 'package:share_plus/share_plus.dart';
+import 'package:nour/src/core/utils/share_services.dart';
 
 import '../../data/models/adhkar_model.dart';
 import '../state_management/adhkar_provider.dart';
@@ -133,17 +133,15 @@ class AdhkarDetailPage extends HookConsumerWidget {
     );
   }
 
-  Future<void> _share(AdhkarModel adhkar, String langCode) async {
-    final parts = <String>[
-      adhkar.arabicText,
-      if (adhkar.translation(langCode)?.isNotEmpty ?? false)
-        adhkar.translation(langCode)!,
-      if (adhkar.reference(langCode)?.isNotEmpty ?? false)
-        adhkar.reference(langCode)!,
-      'https://nour.app/adhkar/${adhkar.subcategoryId}?i=${adhkar.id}',
-    ];
-    await SharePlus.instance.share(ShareParams(text: parts.join('\n\n')));
-  }
+  Future<void> _share(AdhkarModel adhkar, String langCode) =>
+      ShareServices.shareAdhkar(
+        title: adhkar.when(langCode),
+        arabicText: adhkar.arabicText,
+        translation: adhkar.translation(langCode),
+        reference: adhkar.reference(langCode),
+        subcategoryId: adhkar.subcategoryId,
+        adhkarId: adhkar.id,
+      );
 }
 
 /// One swipeable adhkar: the green top card + the translation below it.

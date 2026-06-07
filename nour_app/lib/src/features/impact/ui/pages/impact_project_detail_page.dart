@@ -6,10 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
-import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/core/utils/share_services.dart';
 import 'package:nour/src/features/impact/ui/widgets/category_badge_widget.dart';
 import 'package:nour/src/features/impact/ui/widgets/donors_avatars_widget.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../data/datasources/impact_remote_datasource.dart';
 import '../../data/models/impact_project_model.dart';
@@ -43,9 +42,10 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
 
     Future<void> share() {
       if (project == null) return Future.value();
-      final link = '$website/impact/${project.id}';
-      return SharePlus.instance.share(
-        ShareParams(text: '${project.title(langCode)}\n\n$link'),
+      return ShareServices.shareProject(
+        title: project.title(langCode),
+        description: project.subtitle(langCode),
+        projectId: project.id,
       );
     }
 
