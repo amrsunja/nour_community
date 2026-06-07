@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/audio/sound_effect_provider.dart';
 
 import 'quiz_reward_badge.dart';
 
 /// Final celebration (screen 6). Branded sunrise backdrop, an animated medallion
 /// badge, the verdict copy, an optional bonus-ajr chip, the score/ajr stats, and
 /// the two closing actions — every element staggered for a "wow" reveal.
-class QuizRewardView extends StatelessWidget {
+class QuizRewardView extends HookConsumerWidget {
   const QuizRewardView({
     super.key,
     required this.l10n,
@@ -33,9 +36,16 @@ class QuizRewardView extends StatelessWidget {
   final VoidCallback onSecondary;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
     final showBonus = isPerfect && (bonusAjr ?? 0) > 0;
+
+    // Reward sound, once, in sync with the entrance animations.
+    useEffect(() {
+      ref.read(soundEffectServiceProvider).playReward();
+      return null;
+    }, const []);
+
 
     return UIGradientLinedScaffold(
       body: Padding(

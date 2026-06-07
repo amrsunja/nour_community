@@ -38,6 +38,9 @@ dependencies:
   # Server
   supabase_flutter: ^2.12.0
 
+  # Sound effects (low-latency one-shots)
+  sound_effect: ^0.1.3
+
   # OAuth (native id-token sign in)
   google_sign_in: ^6.2.2
   sign_in_with_apple: ^6.1.4
@@ -131,4 +134,5 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lotties/
+    - assets/sounds/
     - .env

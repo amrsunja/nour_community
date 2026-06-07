@@ -26,7 +26,9 @@ class RootPage extends HookConsumerWidget {
           return SplashWidget();
         }
         return AutoRouter(
-          placeholder: (context) => SplashWidget(),
+          placeholder: (context) => SplashWidget(
+            playSound: false,
+          ),
         );
       },
     );

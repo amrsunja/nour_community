@@ -1818,6 +1818,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  sound_effect:
+    dependency: "direct main"
+    description:
+      name: sound_effect
+      sha256: "9641f586e0249d39a17097627b53955dfa4ebf0dcc3b503e904f01242df6379d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.3"
   source_gen:
     dependency: transitive
     description:

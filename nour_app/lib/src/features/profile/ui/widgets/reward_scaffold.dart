@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
+import 'package:nour/src/core/providers/audio/sound_effect_provider.dart';
 
 /// Shared celebratory layout for both reward screens: branded sunrise backdrop,
 /// an animated hero [badge], a title/subtitle, a [content] slot (week row or
 /// stats), and the two bottom actions. Every element makes a staggered
-/// entrance for the "wow" moment.
-class RewardScaffold extends StatelessWidget {
+/// entrance for the "wow" moment, backed by the reward sound effect.
+class RewardScaffold extends HookConsumerWidget {
   const RewardScaffold({
     super.key,
     required this.badge,
@@ -29,8 +32,14 @@ class RewardScaffold extends StatelessWidget {
   final VoidCallback onSecondary;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
+
+    // Reward sound, once, in sync with the entrance animations.
+    useEffect(() {
+      ref.read(soundEffectServiceProvider).playReward();
+      return null;
+    }, const []);
 
     return UIGradientLinedScaffold(
       body: Padding(
