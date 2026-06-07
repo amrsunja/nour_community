@@ -17,7 +17,7 @@ import '../widgets/quran_ayah_card_widget.dart';
 class SurahDetailPage extends HookConsumerWidget {
   const SurahDetailPage({
     super.key,
-    required this.surahNumber,
+    @PathParam('surahId') required this.surahNumber,
   });
 
   final int surahNumber;

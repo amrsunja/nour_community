@@ -29,23 +29,43 @@ abstract class RoutePaths {
 
   // Adhkar
   static const adhkarsList = 'adhkars-list';
-  static const adhkarDetail = 'adhkar-detail';
+
+  /// `adhkar/87` — `:id` is the subcategory id.
+  /// Optional `?adhkarId=` query param jumps to a specific adhkar.
+  static String adhkarDetail({int? id}) => 'adhkar/${id ?? ':id'}';
 
   // Impact
-  static const impactProjectDetail = 'impact-project-detail';
+
+  /// `project/12` — `:id` is the impact project id.
+  static String impactProjectDetail({int? id}) => 'project/${id ?? ':id'}';
 
   // Quran
-  static const surahDetail = 'surah-detail';
-  static const ayahReader = 'ayah-reader';
+
+  /// `surah/2` — `:surahId` is the surah number.
+  static String surahDetail({int? surahId}) => 'surah/${surahId ?? ':surahId'}';
+
+  /// `surah/2/ayah/255` — exact ayah in the immersive reader.
+  static String ayahReader({int? surahId, int? ayahId}) =>
+      'surah/${surahId ?? ':surahId'}/ayah/${ayahId ?? ':ayahId'}';
+
   static const dailyAyah = 'daily-ayah';
 
   // Hadith
-  static const hadithCollectionDetail = 'hadith-collection-detail';
-  static const hadithReader = 'hadith-reader';
+
+  /// `hadith-collection/3` — `:id` is the collection id.
+  static String hadithCollectionDetail({int? id}) =>
+      'hadith-collection/${id ?? ':id'}';
+
+  /// `hadith/3/123` — collection id + hadith id (the reader needs both).
+  static String hadithReader({int? collectionId, int? hadithId}) =>
+      'hadith/${collectionId ?? ':collectionId'}/${hadithId ?? ':hadithId'}';
 
   // Dua
   static const duaLibrary = 'dua-library';
-  static const duaReader = 'dua-reader';
+
+  /// `dua/45` — `:id` is the dua id.
+  static String duaReader({int? id}) => 'dua/${id ?? ':id'}';
+
   static const dailyDua = 'daily-dua';
 
   // Quiz

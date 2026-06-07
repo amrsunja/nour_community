@@ -32,44 +32,42 @@ abstract class ShareServices {
           )
           .toString();
 
-  /// Deep link to the hadith reader (`RoutePaths.hadithReader`).
+  /// Deep link to the hadith reader (`hadith/:collectionId/:hadithId`).
   static String hadithLink({
     required int collectionId,
     required int hadithId,
   }) =>
-      link(RoutePaths.hadithReader, {
-        'collectionId': '$collectionId',
-        'initialHadithId': '$hadithId',
-      });
+      link(RoutePaths.hadithReader(
+        collectionId: collectionId,
+        hadithId: hadithId,
+      ));
 
-  /// Deep link to the exact ayah in the reader (`RoutePaths.ayahReader`).
+  /// Deep link to the exact ayah in the reader (`surah/:surahId/ayah/:ayahId`).
   static String ayahLink({
     required int surahNumber,
     required int ayahNumber,
   }) =>
-      link(RoutePaths.ayahReader, {
-        'surahNumber': '$surahNumber',
-        'initialAyah': '$ayahNumber',
-      });
+      link(RoutePaths.ayahReader(
+        surahId: surahNumber,
+        ayahId: ayahNumber,
+      ));
 
-  /// Deep link to the dua reader (`RoutePaths.duaReader`).
+  /// Deep link to the dua reader (`dua/:id`).
   static String duaLink({required int duaId}) =>
-      link(RoutePaths.duaReader, {'initialDuaId': '$duaId'});
+      link(RoutePaths.duaReader(id: duaId));
 
-  /// Deep link to the adhkar detail pager (`RoutePaths.adhkarDetail`).
+  /// Deep link to the adhkar detail pager (`adhkar/:id?adhkarId=`).
   static String adhkarLink({
     required int subcategoryId,
     int? adhkarId,
   }) =>
-      link(RoutePaths.adhkarDetail, {
-        'subcategoryId': '$subcategoryId',
-        if (adhkarId != null) 'initialAdhkarId': '$adhkarId',
+      link(RoutePaths.adhkarDetail(id: subcategoryId), {
+        if (adhkarId != null) 'adhkarId': '$adhkarId',
       });
 
-  /// Deep link to the impact project detail
-  /// (`RoutePaths.impactProjectDetail`).
+  /// Deep link to the impact project detail (`project/:id`).
   static String projectLink({required int projectId}) =>
-      link(RoutePaths.impactProjectDetail, {'projectId': '$projectId'});
+      link(RoutePaths.impactProjectDetail(id: projectId));
 
   // ---------------------------------------------------------------------------
   // Share actions

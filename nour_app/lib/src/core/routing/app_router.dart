@@ -157,7 +157,7 @@ class AppRouter extends RootStackRouter {
 
             /// Impact (full-screen over the bottom navbar)
             AutoRoute(
-              path: RoutePaths.impactProjectDetail,
+              path: RoutePaths.impactProjectDetail(),
               page: ImpactProjectDetailRoute.page,
             ),
 
@@ -167,17 +167,17 @@ class AppRouter extends RootStackRouter {
               page: AdhkarsListRoute.page,
             ),
             AutoRoute(
-              path: RoutePaths.adhkarDetail,
+              path: RoutePaths.adhkarDetail(),
               page: AdhkarDetailRoute.page,
             ),
 
             /// Quran (full-screen over the bottom navbar)
             AutoRoute(
-              path: RoutePaths.surahDetail,
+              path: RoutePaths.surahDetail(),
               page: SurahDetailRoute.page,
             ),
             AutoRoute(
-              path: RoutePaths.ayahReader,
+              path: RoutePaths.ayahReader(),
               page: AyahReaderRoute.page,
             ),
             AutoRoute(
@@ -187,11 +187,11 @@ class AppRouter extends RootStackRouter {
 
             /// Hadith (full-screen over the bottom navbar)
             AutoRoute(
-              path: RoutePaths.hadithCollectionDetail,
+              path: RoutePaths.hadithCollectionDetail(),
               page: HadithCollectionDetailRoute.page,
             ),
             AutoRoute(
-              path: RoutePaths.hadithReader,
+              path: RoutePaths.hadithReader(),
               page: HadithDetailRoute.page,
             ),
 
@@ -201,7 +201,7 @@ class AppRouter extends RootStackRouter {
               page: DuaListRoute.page,
             ),
             AutoRoute(
-              path: RoutePaths.duaReader,
+              path: RoutePaths.duaReader(),
               page: DuaDetailRoute.page,
             ),
             AutoRoute(

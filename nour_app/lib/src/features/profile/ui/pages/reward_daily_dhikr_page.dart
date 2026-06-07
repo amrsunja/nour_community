@@ -17,8 +17,8 @@ import '../widgets/reward_stat_row.dart';
 class RewardDailyDhikrPage extends ConsumerWidget {
   const RewardDailyDhikrPage({
     super.key,
-    this.dhikrCompleted = 0,
-    this.ajrEarned = 0,
+    @QueryParam('dhikrCompleted') this.dhikrCompleted = 0,
+    @QueryParam('ajrEarned') this.ajrEarned = 0,
   });
 
   final int dhikrCompleted;

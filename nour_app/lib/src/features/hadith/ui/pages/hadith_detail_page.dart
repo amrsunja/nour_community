@@ -19,9 +19,9 @@ import '../widgets/hadith_reader_card_widget.dart';
 class HadithDetailPage extends HookConsumerWidget {
   const HadithDetailPage({
     super.key,
-    required this.collectionId,
-    required this.initialHadithId,
-    this.recordProgress = true,
+    @PathParam('collectionId') required this.collectionId,
+    @PathParam('hadithId') required this.initialHadithId,
+    @QueryParam('recordProgress') this.recordProgress = true,
   });
 
   final int collectionId;

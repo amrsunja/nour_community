@@ -13,7 +13,10 @@ import '../widgets/reward_week_row.dart';
 /// realtime reward coordinator; displays "Day N" with the week progress.
 @RoutePage()
 class RewardStreakPage extends ConsumerWidget {
-  const RewardStreakPage({super.key, this.streakDay = 1});
+  const RewardStreakPage({
+    super.key,
+    @QueryParam('streakDay') this.streakDay = 1,
+  });
 
   final int streakDay;
 

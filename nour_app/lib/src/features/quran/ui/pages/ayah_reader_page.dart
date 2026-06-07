@@ -21,9 +21,9 @@ import '../widgets/ayah_reader_card_widget.dart';
 class AyahReaderPage extends HookConsumerWidget {
   const AyahReaderPage({
     super.key,
-    required this.surahNumber,
-    this.initialAyah = 1,
-    this.recordProgress = true,
+    @PathParam('surahId') required this.surahNumber,
+    @PathParam('ayahId') this.initialAyah = 1,
+    @QueryParam('recordProgress') this.recordProgress = true,
   });
 
   final int surahNumber;

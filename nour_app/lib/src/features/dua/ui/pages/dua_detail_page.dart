@@ -19,8 +19,8 @@ import '../widgets/dua_when_box_widget.dart';
 class DuaDetailPage extends HookConsumerWidget {
   const DuaDetailPage({
     super.key,
-    required this.initialDuaId,
-    this.recordProgress = true,
+    @PathParam('id') required this.initialDuaId,
+    @QueryParam('recordProgress') this.recordProgress = true,
   });
 
   final int initialDuaId;

@@ -22,7 +22,10 @@ import '../widgets/project_story_card_widget.dart';
 /// donation provides" block is intentionally left out (handled separately).
 @RoutePage()
 class ImpactProjectDetailPage extends HookConsumerWidget {
-  const ImpactProjectDetailPage({super.key, required this.projectId});
+  const ImpactProjectDetailPage({
+    super.key,
+    @PathParam('id') required this.projectId,
+  });
 
   final int projectId;
 

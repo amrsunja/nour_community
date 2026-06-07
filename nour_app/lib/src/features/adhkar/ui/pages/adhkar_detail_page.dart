@@ -16,8 +16,8 @@ import '../state_management/adhkar_provider.dart';
 class AdhkarDetailPage extends HookConsumerWidget {
   const AdhkarDetailPage({
     super.key,
-    required this.subcategoryId,
-    this.initialAdhkarId,
+    @PathParam('id') required this.subcategoryId,
+    @QueryParam('adhkarId') this.initialAdhkarId,
   });
 
   final int subcategoryId;

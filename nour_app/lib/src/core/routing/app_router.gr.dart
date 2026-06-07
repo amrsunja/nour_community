@@ -103,6 +103,8 @@ class AdhkarDetailRoute extends _i44.PageRouteInfo<AdhkarDetailRouteArgs> {
            subcategoryId: subcategoryId,
            initialAdhkarId: initialAdhkarId,
          ),
+         rawPathParams: {'id': subcategoryId},
+         rawQueryParams: {'adhkarId': initialAdhkarId},
          initialChildren: children,
        );
 
@@ -111,7 +113,14 @@ class AdhkarDetailRoute extends _i44.PageRouteInfo<AdhkarDetailRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AdhkarDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<AdhkarDetailRouteArgs>(
+        orElse: () => AdhkarDetailRouteArgs(
+          subcategoryId: pathParams.getInt('id'),
+          initialAdhkarId: queryParams.optInt('adhkarId'),
+        ),
+      );
       return _i2.AdhkarDetailPage(
         key: args.key,
         subcategoryId: args.subcategoryId,
@@ -186,6 +195,8 @@ class AyahReaderRoute extends _i44.PageRouteInfo<AyahReaderRouteArgs> {
            initialAyah: initialAyah,
            recordProgress: recordProgress,
          ),
+         rawPathParams: {'surahId': surahNumber, 'ayahId': initialAyah},
+         rawQueryParams: {'recordProgress': recordProgress},
          initialChildren: children,
        );
 
@@ -194,7 +205,15 @@ class AyahReaderRoute extends _i44.PageRouteInfo<AyahReaderRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<AyahReaderRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<AyahReaderRouteArgs>(
+        orElse: () => AyahReaderRouteArgs(
+          surahNumber: pathParams.getInt('surahId'),
+          initialAyah: pathParams.getInt('ayahId', 1),
+          recordProgress: queryParams.getBool('recordProgress', true),
+        ),
+      );
       return _i4.AyahReaderPage(
         key: args.key,
         surahNumber: args.surahNumber,
@@ -334,6 +353,7 @@ class DhikrRoute extends _i44.PageRouteInfo<DhikrRouteArgs> {
   }) : super(
          DhikrRoute.name,
          args: DhikrRouteArgs(key: key, selectedId: selectedId),
+         rawQueryParams: {'id': selectedId},
          initialChildren: children,
        );
 
@@ -342,8 +362,9 @@ class DhikrRoute extends _i44.PageRouteInfo<DhikrRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
+      final queryParams = data.queryParams;
       final args = data.argsAs<DhikrRouteArgs>(
-        orElse: () => const DhikrRouteArgs(),
+        orElse: () => DhikrRouteArgs(selectedId: queryParams.getInt('id', 0)),
       );
       return _i10.DhikrPage(key: args.key, selectedId: args.selectedId);
     },
@@ -404,6 +425,8 @@ class DuaDetailRoute extends _i44.PageRouteInfo<DuaDetailRouteArgs> {
            initialDuaId: initialDuaId,
            recordProgress: recordProgress,
          ),
+         rawPathParams: {'id': initialDuaId},
+         rawQueryParams: {'recordProgress': recordProgress},
          initialChildren: children,
        );
 
@@ -412,7 +435,14 @@ class DuaDetailRoute extends _i44.PageRouteInfo<DuaDetailRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<DuaDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<DuaDetailRouteArgs>(
+        orElse: () => DuaDetailRouteArgs(
+          initialDuaId: pathParams.getInt('id'),
+          recordProgress: queryParams.getBool('recordProgress', true),
+        ),
+      );
       return _i12.DuaDetailPage(
         key: args.key,
         initialDuaId: args.initialDuaId,
@@ -516,6 +546,7 @@ class HadithCollectionDetailRoute
            key: key,
            collectionId: collectionId,
          ),
+         rawPathParams: {'id': collectionId},
          initialChildren: children,
        );
 
@@ -524,7 +555,12 @@ class HadithCollectionDetailRoute
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<HadithCollectionDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<HadithCollectionDetailRouteArgs>(
+        orElse: () => HadithCollectionDetailRouteArgs(
+          collectionId: pathParams.getInt('id'),
+        ),
+      );
       return _i16.HadithCollectionDetailPage(
         key: args.key,
         collectionId: args.collectionId,
@@ -573,6 +609,11 @@ class HadithDetailRoute extends _i44.PageRouteInfo<HadithDetailRouteArgs> {
            initialHadithId: initialHadithId,
            recordProgress: recordProgress,
          ),
+         rawPathParams: {
+           'collectionId': collectionId,
+           'hadithId': initialHadithId,
+         },
+         rawQueryParams: {'recordProgress': recordProgress},
          initialChildren: children,
        );
 
@@ -581,7 +622,15 @@ class HadithDetailRoute extends _i44.PageRouteInfo<HadithDetailRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<HadithDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final queryParams = data.queryParams;
+      final args = data.argsAs<HadithDetailRouteArgs>(
+        orElse: () => HadithDetailRouteArgs(
+          collectionId: pathParams.getInt('collectionId'),
+          initialHadithId: pathParams.getInt('hadithId'),
+          recordProgress: queryParams.getBool('recordProgress', true),
+        ),
+      );
       return _i17.HadithDetailPage(
         key: args.key,
         collectionId: args.collectionId,
@@ -690,6 +739,7 @@ class ImpactProjectDetailRoute
   }) : super(
          ImpactProjectDetailRoute.name,
          args: ImpactProjectDetailRouteArgs(key: key, projectId: projectId),
+         rawPathParams: {'id': projectId},
          initialChildren: children,
        );
 
@@ -698,7 +748,11 @@ class ImpactProjectDetailRoute
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<ImpactProjectDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<ImpactProjectDetailRouteArgs>(
+        orElse: () =>
+            ImpactProjectDetailRouteArgs(projectId: pathParams.getInt('id')),
+      );
       return _i21.ImpactProjectDetailPage(
         key: args.key,
         projectId: args.projectId,
@@ -890,6 +944,10 @@ class RewardDailyDhikrRoute
            dhikrCompleted: dhikrCompleted,
            ajrEarned: ajrEarned,
          ),
+         rawQueryParams: {
+           'dhikrCompleted': dhikrCompleted,
+           'ajrEarned': ajrEarned,
+         },
          initialChildren: children,
        );
 
@@ -898,8 +956,12 @@ class RewardDailyDhikrRoute
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
+      final queryParams = data.queryParams;
       final args = data.argsAs<RewardDailyDhikrRouteArgs>(
-        orElse: () => const RewardDailyDhikrRouteArgs(),
+        orElse: () => RewardDailyDhikrRouteArgs(
+          dhikrCompleted: queryParams.getInt('dhikrCompleted', 0),
+          ajrEarned: queryParams.getInt('ajrEarned', 0),
+        ),
       );
       return _i31.RewardDailyDhikrPage(
         key: args.key,
@@ -952,6 +1014,7 @@ class RewardStreakRoute extends _i44.PageRouteInfo<RewardStreakRouteArgs> {
   }) : super(
          RewardStreakRoute.name,
          args: RewardStreakRouteArgs(key: key, streakDay: streakDay),
+         rawQueryParams: {'streakDay': streakDay},
          initialChildren: children,
        );
 
@@ -960,8 +1023,11 @@ class RewardStreakRoute extends _i44.PageRouteInfo<RewardStreakRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
+      final queryParams = data.queryParams;
       final args = data.argsAs<RewardStreakRouteArgs>(
-        orElse: () => const RewardStreakRouteArgs(),
+        orElse: () => RewardStreakRouteArgs(
+          streakDay: queryParams.getInt('streakDay', 1),
+        ),
       );
       return _i32.RewardStreakPage(key: args.key, streakDay: args.streakDay);
     },
@@ -1097,6 +1163,7 @@ class SurahDetailRoute extends _i44.PageRouteInfo<SurahDetailRouteArgs> {
   }) : super(
          SurahDetailRoute.name,
          args: SurahDetailRouteArgs(key: key, surahNumber: surahNumber),
+         rawPathParams: {'surahId': surahNumber},
          initialChildren: children,
        );
 
@@ -1105,7 +1172,11 @@ class SurahDetailRoute extends _i44.PageRouteInfo<SurahDetailRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<SurahDetailRouteArgs>();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<SurahDetailRouteArgs>(
+        orElse: () =>
+            SurahDetailRouteArgs(surahNumber: pathParams.getInt('surahId')),
+      );
       return _i39.SurahDetailPage(key: args.key, surahNumber: args.surahNumber);
     },
   );
@@ -1171,12 +1242,13 @@ class ToolsRouterRoute extends _i44.PageRouteInfo<void> {
 class WebViewRoute extends _i44.PageRouteInfo<WebViewRouteArgs> {
   WebViewRoute({
     _i45.Key? key,
-    required String url,
-    required String title,
+    String url = '',
+    String title = '',
     List<_i44.PageRouteInfo>? children,
   }) : super(
          WebViewRoute.name,
          args: WebViewRouteArgs(key: key, url: url, title: title),
+         rawQueryParams: {'url': url, 'title': title},
          initialChildren: children,
        );
 
@@ -1185,14 +1257,20 @@ class WebViewRoute extends _i44.PageRouteInfo<WebViewRouteArgs> {
   static _i44.PageInfo page = _i44.PageInfo(
     name,
     builder: (data) {
-      final args = data.argsAs<WebViewRouteArgs>();
+      final queryParams = data.queryParams;
+      final args = data.argsAs<WebViewRouteArgs>(
+        orElse: () => WebViewRouteArgs(
+          url: queryParams.getString('url', ''),
+          title: queryParams.getString('title', ''),
+        ),
+      );
       return _i42.WebViewPage(key: args.key, url: args.url, title: args.title);
     },
   );
 }
 
 class WebViewRouteArgs {
-  const WebViewRouteArgs({this.key, required this.url, required this.title});
+  const WebViewRouteArgs({this.key, this.url = '', this.title = ''});
 
   final _i45.Key? key;
 

@@ -12,7 +12,7 @@ import '../state_management/dhikr_provider.dart';
 class DhikrPage extends HookConsumerWidget {
   const DhikrPage({
     super.key,
-    this.selectedId = 0,
+    @QueryParam('id') this.selectedId = 0,
   });
 
   final int selectedId;
