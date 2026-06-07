@@ -88,6 +88,13 @@
 	"onboarding_screen_8_lang_en": "English",
 	"onboarding_screen_8_lang_ar": "العربيه",
 	"onboarding_screen_8_lang_fr": "Français",
+	"onboarding_screen_8_lang_de": "Deutsch",
+	"onboarding_screen_8_lang_nl": "Nederlands",
+	"onboarding_screen_8_lang_tr": "Türkçe",
+	"onboarding_screen_8_lang_id": "Bahasa Indonesia",
+	"onboarding_screen_8_lang_ur": "اردو",
+	"onboarding_screen_8_lang_bn": "বাংলা",
+	"onboarding_screen_8_lang_ms": "Bahasa Melayu",
 
 	"onboarding_screen_9_title": "Parlez-nous de vous",
 	"onboarding_screen_9_description": "Pour enregistrer vos progrès quotidiens",

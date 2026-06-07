@@ -1,0 +1,311 @@
+-- =============================================================================
+-- New content languages: German (de), Dutch (nl), Turkish (tr),
+-- Indonesian (id), Urdu (ur), Bengali (bn), Malay (ms)
+--
+-- Mirrors the existing *_en / *_fr / *_ar column pattern on every table that
+-- carries localized content. All new columns are NULLABLE on purpose:
+--   * existing rows are not broken (no backfill required),
+--   * content can be seeded incrementally per language,
+--   * the app falls back to the *_en value when a translation is missing.
+-- English (en) stays the default language; *_en columns keep their original
+-- constraints.
+--
+-- Note: there is intentionally no transcription_ar / translation_ar in the
+-- original schema (the Arabic source text lives in arabic_text), so the new
+-- languages add transcription_* / translation_* alongside en/fr only.
+-- =============================================================================
+
+-- ── dhikrs ───────────────────────────────────────────────────────────────────
+alter table public.dhikrs
+  add column if not exists transcription_de text,
+  add column if not exists transcription_nl text,
+  add column if not exists transcription_tr text,
+  add column if not exists transcription_id text,
+  add column if not exists transcription_ur text,
+  add column if not exists transcription_bn text,
+  add column if not exists transcription_ms text,
+  add column if not exists translation_de   text,
+  add column if not exists translation_nl   text,
+  add column if not exists translation_tr   text,
+  add column if not exists translation_id   text,
+  add column if not exists translation_ur   text,
+  add column if not exists translation_bn   text,
+  add column if not exists translation_ms   text;
+
+-- ── adhkar_categories ────────────────────────────────────────────────────────
+alter table public.adhkar_categories
+  add column if not exists title_de text,
+  add column if not exists title_nl text,
+  add column if not exists title_tr text,
+  add column if not exists title_id text,
+  add column if not exists title_ur text,
+  add column if not exists title_bn text,
+  add column if not exists title_ms text;
+
+-- ── adhkar_subcategories ─────────────────────────────────────────────────────
+alter table public.adhkar_subcategories
+  add column if not exists title_de text,
+  add column if not exists title_nl text,
+  add column if not exists title_tr text,
+  add column if not exists title_id text,
+  add column if not exists title_ur text,
+  add column if not exists title_bn text,
+  add column if not exists title_ms text;
+
+-- ── adhkars ──────────────────────────────────────────────────────────────────
+alter table public.adhkars
+  add column if not exists transcription_de text,
+  add column if not exists transcription_nl text,
+  add column if not exists transcription_tr text,
+  add column if not exists transcription_id text,
+  add column if not exists transcription_ur text,
+  add column if not exists transcription_bn text,
+  add column if not exists transcription_ms text,
+  add column if not exists translation_de   text,
+  add column if not exists translation_nl   text,
+  add column if not exists translation_tr   text,
+  add column if not exists translation_id   text,
+  add column if not exists translation_ur   text,
+  add column if not exists translation_bn   text,
+  add column if not exists translation_ms   text,
+  add column if not exists when_de          text,
+  add column if not exists when_nl          text,
+  add column if not exists when_tr          text,
+  add column if not exists when_id          text,
+  add column if not exists when_ur          text,
+  add column if not exists when_bn          text,
+  add column if not exists when_ms          text,
+  add column if not exists reference_de     text,
+  add column if not exists reference_nl     text,
+  add column if not exists reference_tr     text,
+  add column if not exists reference_id     text,
+  add column if not exists reference_ur     text,
+  add column if not exists reference_bn     text,
+  add column if not exists reference_ms     text;
+
+-- ── duas ─────────────────────────────────────────────────────────────────────
+alter table public.duas
+  add column if not exists title_de         text,
+  add column if not exists title_nl         text,
+  add column if not exists title_tr         text,
+  add column if not exists title_id         text,
+  add column if not exists title_ur         text,
+  add column if not exists title_bn         text,
+  add column if not exists title_ms         text,
+  add column if not exists transcription_de text,
+  add column if not exists transcription_nl text,
+  add column if not exists transcription_tr text,
+  add column if not exists transcription_id text,
+  add column if not exists transcription_ur text,
+  add column if not exists transcription_bn text,
+  add column if not exists transcription_ms text,
+  add column if not exists translation_de   text,
+  add column if not exists translation_nl   text,
+  add column if not exists translation_tr   text,
+  add column if not exists translation_id   text,
+  add column if not exists translation_ur   text,
+  add column if not exists translation_bn   text,
+  add column if not exists translation_ms   text,
+  add column if not exists when_de          text,
+  add column if not exists when_nl          text,
+  add column if not exists when_tr          text,
+  add column if not exists when_id          text,
+  add column if not exists when_ur          text,
+  add column if not exists when_bn          text,
+  add column if not exists when_ms          text,
+  add column if not exists reference_de     text,
+  add column if not exists reference_nl     text,
+  add column if not exists reference_tr     text,
+  add column if not exists reference_id     text,
+  add column if not exists reference_ur     text,
+  add column if not exists reference_bn     text,
+  add column if not exists reference_ms     text,
+  add column if not exists tafsir_de        text,
+  add column if not exists tafsir_nl        text,
+  add column if not exists tafsir_tr        text,
+  add column if not exists tafsir_id        text,
+  add column if not exists tafsir_ur        text,
+  add column if not exists tafsir_bn        text,
+  add column if not exists tafsir_ms        text;
+
+-- ── hadith_collections ───────────────────────────────────────────────────────
+alter table public.hadith_collections
+  add column if not exists title_de       text,
+  add column if not exists title_nl       text,
+  add column if not exists title_tr       text,
+  add column if not exists title_id       text,
+  add column if not exists title_ur       text,
+  add column if not exists title_bn       text,
+  add column if not exists title_ms       text,
+  add column if not exists description_de text,
+  add column if not exists description_nl text,
+  add column if not exists description_tr text,
+  add column if not exists description_id text,
+  add column if not exists description_ur text,
+  add column if not exists description_bn text,
+  add column if not exists description_ms text;
+
+-- ── hadiths ──────────────────────────────────────────────────────────────────
+alter table public.hadiths
+  add column if not exists title_de         text,
+  add column if not exists title_nl         text,
+  add column if not exists title_tr         text,
+  add column if not exists title_id         text,
+  add column if not exists title_ur         text,
+  add column if not exists title_bn         text,
+  add column if not exists title_ms         text,
+  add column if not exists description_de   text,
+  add column if not exists description_nl   text,
+  add column if not exists description_tr   text,
+  add column if not exists description_id   text,
+  add column if not exists description_ur   text,
+  add column if not exists description_bn   text,
+  add column if not exists description_ms   text,
+  add column if not exists transcription_de text,
+  add column if not exists transcription_nl text,
+  add column if not exists transcription_tr text,
+  add column if not exists transcription_id text,
+  add column if not exists transcription_ur text,
+  add column if not exists transcription_bn text,
+  add column if not exists transcription_ms text,
+  add column if not exists translation_de   text,
+  add column if not exists translation_nl   text,
+  add column if not exists translation_tr   text,
+  add column if not exists translation_id   text,
+  add column if not exists translation_ur   text,
+  add column if not exists translation_bn   text,
+  add column if not exists translation_ms   text,
+  add column if not exists reference_de     text,
+  add column if not exists reference_nl     text,
+  add column if not exists reference_tr     text,
+  add column if not exists reference_id     text,
+  add column if not exists reference_ur     text,
+  add column if not exists reference_bn     text,
+  add column if not exists reference_ms     text,
+  add column if not exists tafsir_de        text,
+  add column if not exists tafsir_nl        text,
+  add column if not exists tafsir_tr        text,
+  add column if not exists tafsir_id        text,
+  add column if not exists tafsir_ur        text,
+  add column if not exists tafsir_bn        text,
+  add column if not exists tafsir_ms        text;
+
+-- ── quiz_questions ───────────────────────────────────────────────────────────
+alter table public.quiz_questions
+  add column if not exists question_de        text,
+  add column if not exists question_nl        text,
+  add column if not exists question_tr        text,
+  add column if not exists question_id        text,
+  add column if not exists question_ur        text,
+  add column if not exists question_bn        text,
+  add column if not exists question_ms        text,
+  add column if not exists transcription_de   text,
+  add column if not exists transcription_nl   text,
+  add column if not exists transcription_tr   text,
+  add column if not exists transcription_id   text,
+  add column if not exists transcription_ur   text,
+  add column if not exists transcription_bn   text,
+  add column if not exists transcription_ms   text,
+  add column if not exists subtitle_de        text,
+  add column if not exists subtitle_nl        text,
+  add column if not exists subtitle_tr        text,
+  add column if not exists subtitle_id        text,
+  add column if not exists subtitle_ur        text,
+  add column if not exists subtitle_bn        text,
+  add column if not exists subtitle_ms        text,
+  add column if not exists option_a_de        text,
+  add column if not exists option_a_nl        text,
+  add column if not exists option_a_tr        text,
+  add column if not exists option_a_id        text,
+  add column if not exists option_a_ur        text,
+  add column if not exists option_a_bn        text,
+  add column if not exists option_a_ms        text,
+  add column if not exists option_b_de        text,
+  add column if not exists option_b_nl        text,
+  add column if not exists option_b_tr        text,
+  add column if not exists option_b_id        text,
+  add column if not exists option_b_ur        text,
+  add column if not exists option_b_bn        text,
+  add column if not exists option_b_ms        text,
+  add column if not exists option_c_de        text,
+  add column if not exists option_c_nl        text,
+  add column if not exists option_c_tr        text,
+  add column if not exists option_c_id        text,
+  add column if not exists option_c_ur        text,
+  add column if not exists option_c_bn        text,
+  add column if not exists option_c_ms        text,
+  add column if not exists option_d_de        text,
+  add column if not exists option_d_nl        text,
+  add column if not exists option_d_tr        text,
+  add column if not exists option_d_id        text,
+  add column if not exists option_d_ur        text,
+  add column if not exists option_d_bn        text,
+  add column if not exists option_d_ms        text,
+  add column if not exists congratulation_de  text,
+  add column if not exists congratulation_nl  text,
+  add column if not exists congratulation_tr  text,
+  add column if not exists congratulation_id  text,
+  add column if not exists congratulation_ur  text,
+  add column if not exists congratulation_bn  text,
+  add column if not exists congratulation_ms  text;
+
+-- ── project_categories ───────────────────────────────────────────────────────
+alter table public.project_categories
+  add column if not exists title_de text,
+  add column if not exists title_nl text,
+  add column if not exists title_tr text,
+  add column if not exists title_id text,
+  add column if not exists title_ur text,
+  add column if not exists title_bn text,
+  add column if not exists title_ms text;
+
+-- ── partner_organizations ────────────────────────────────────────────────────
+alter table public.partner_organizations
+  add column if not exists name_de text,
+  add column if not exists name_nl text,
+  add column if not exists name_tr text,
+  add column if not exists name_id text,
+  add column if not exists name_ur text,
+  add column if not exists name_bn text,
+  add column if not exists name_ms text;
+
+-- ── impact_projects ──────────────────────────────────────────────────────────
+alter table public.impact_projects
+  add column if not exists title_de       text,
+  add column if not exists title_nl       text,
+  add column if not exists title_tr       text,
+  add column if not exists title_id       text,
+  add column if not exists title_ur       text,
+  add column if not exists title_bn       text,
+  add column if not exists title_ms       text,
+  add column if not exists subtitle_de    text,
+  add column if not exists subtitle_nl    text,
+  add column if not exists subtitle_tr    text,
+  add column if not exists subtitle_id    text,
+  add column if not exists subtitle_ur    text,
+  add column if not exists subtitle_bn    text,
+  add column if not exists subtitle_ms    text,
+  add column if not exists description_de text,
+  add column if not exists description_nl text,
+  add column if not exists description_tr text,
+  add column if not exists description_id text,
+  add column if not exists description_ur text,
+  add column if not exists description_bn text,
+  add column if not exists description_ms text;
+
+-- ── project_stories ──────────────────────────────────────────────────────────
+alter table public.project_stories
+  add column if not exists title_de       text,
+  add column if not exists title_nl       text,
+  add column if not exists title_tr       text,
+  add column if not exists title_id       text,
+  add column if not exists title_ur       text,
+  add column if not exists title_bn       text,
+  add column if not exists title_ms       text,
+  add column if not exists description_de text,
+  add column if not exists description_nl text,
+  add column if not exists description_tr text,
+  add column if not exists description_id text,
+  add column if not exists description_ur text,
+  add column if not exists description_bn text,
+  add column if not exists description_ms text;

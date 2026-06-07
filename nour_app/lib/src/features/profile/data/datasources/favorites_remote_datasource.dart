@@ -122,7 +122,7 @@ class FavoritesRemoteDatasource {
       final response = await supabaseClient
           .from(_favoriteHadithsTable)
           .select(
-            'created_at, hadiths(*, hadith_collections(title_en, title_fr, title_ar))',
+            'created_at, hadiths(*, hadith_collections(title_en, title_fr, title_ar, title_de, title_nl, title_tr, title_id, title_ur, title_bn, title_ms))',
           )
           .eq('user_id', userId)
           .order('created_at', ascending: false);

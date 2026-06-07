@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:nour/src/core/utils/extensions/localized_string_extensions.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
 import 'partner_organization_model.dart';
@@ -16,12 +17,33 @@ class ImpactProjectModel extends Equatable {
   final String titleEn;
   final String titleFr;
   final String titleAr;
+  final String? titleDe;
+  final String? titleNl;
+  final String? titleTr;
+  final String? titleId;
+  final String? titleUr;
+  final String? titleBn;
+  final String? titleMs;
   final String subtitleEn;
   final String subtitleFr;
   final String subtitleAr;
+  final String? subtitleDe;
+  final String? subtitleNl;
+  final String? subtitleTr;
+  final String? subtitleId;
+  final String? subtitleUr;
+  final String? subtitleBn;
+  final String? subtitleMs;
   final String descriptionEn;
   final String descriptionFr;
   final String descriptionAr;
+  final String? descriptionDe;
+  final String? descriptionNl;
+  final String? descriptionTr;
+  final String? descriptionId;
+  final String? descriptionUr;
+  final String? descriptionBn;
+  final String? descriptionMs;
   final String? coverImageUrl;
   final double requiredAmount;
   final double collectedAmount;
@@ -41,12 +63,33 @@ class ImpactProjectModel extends Equatable {
     required this.titleEn,
     required this.titleFr,
     required this.titleAr,
+    this.titleDe,
+    this.titleNl,
+    this.titleTr,
+    this.titleId,
+    this.titleUr,
+    this.titleBn,
+    this.titleMs,
     required this.subtitleEn,
     required this.subtitleFr,
     required this.subtitleAr,
+    this.subtitleDe,
+    this.subtitleNl,
+    this.subtitleTr,
+    this.subtitleId,
+    this.subtitleUr,
+    this.subtitleBn,
+    this.subtitleMs,
     required this.descriptionEn,
     required this.descriptionFr,
     required this.descriptionAr,
+    this.descriptionDe,
+    this.descriptionNl,
+    this.descriptionTr,
+    this.descriptionId,
+    this.descriptionUr,
+    this.descriptionBn,
+    this.descriptionMs,
     required this.coverImageUrl,
     required this.requiredAmount,
     required this.collectedAmount,
@@ -74,12 +117,33 @@ class ImpactProjectModel extends Equatable {
       titleEn: json['title_en'] ?? '',
       titleFr: json['title_fr'] ?? '',
       titleAr: json['title_ar'] ?? '',
+      titleDe: json['title_de'],
+      titleNl: json['title_nl'],
+      titleTr: json['title_tr'],
+      titleId: json['title_id'],
+      titleUr: json['title_ur'],
+      titleBn: json['title_bn'],
+      titleMs: json['title_ms'],
       subtitleEn: json['subtitle_en'] ?? '',
       subtitleFr: json['subtitle_fr'] ?? '',
       subtitleAr: json['subtitle_ar'] ?? '',
+      subtitleDe: json['subtitle_de'],
+      subtitleNl: json['subtitle_nl'],
+      subtitleTr: json['subtitle_tr'],
+      subtitleId: json['subtitle_id'],
+      subtitleUr: json['subtitle_ur'],
+      subtitleBn: json['subtitle_bn'],
+      subtitleMs: json['subtitle_ms'],
       descriptionEn: json['description_en'] ?? '',
       descriptionFr: json['description_fr'] ?? '',
       descriptionAr: json['description_ar'] ?? '',
+      descriptionDe: json['description_de'],
+      descriptionNl: json['description_nl'],
+      descriptionTr: json['description_tr'],
+      descriptionId: json['description_id'],
+      descriptionUr: json['description_ur'],
+      descriptionBn: json['description_bn'],
+      descriptionMs: json['description_ms'],
       coverImageUrl: json['cover_image_url'],
       requiredAmount: _toDouble(json['required_amount']),
       collectedAmount: _toDouble(json['collected_amount']),
@@ -104,18 +168,39 @@ class ImpactProjectModel extends Equatable {
   String title(String langCode) => switch (langCode) {
     'fr' => titleFr,
     'ar' => titleAr,
+    'de' => titleDe.orLoc(titleEn),
+    'nl' => titleNl.orLoc(titleEn),
+    'tr' => titleTr.orLoc(titleEn),
+    'id' => titleId.orLoc(titleEn),
+    'ur' => titleUr.orLoc(titleEn),
+    'bn' => titleBn.orLoc(titleEn),
+    'ms' => titleMs.orLoc(titleEn),
     _ => titleEn,
   };
 
   String subtitle(String langCode) => switch (langCode) {
     'fr' => subtitleFr,
     'ar' => subtitleAr,
+    'de' => subtitleDe.orLoc(subtitleEn),
+    'nl' => subtitleNl.orLoc(subtitleEn),
+    'tr' => subtitleTr.orLoc(subtitleEn),
+    'id' => subtitleId.orLoc(subtitleEn),
+    'ur' => subtitleUr.orLoc(subtitleEn),
+    'bn' => subtitleBn.orLoc(subtitleEn),
+    'ms' => subtitleMs.orLoc(subtitleEn),
     _ => subtitleEn,
   };
 
   String description(String langCode) => switch (langCode) {
     'fr' => descriptionFr,
     'ar' => descriptionAr,
+    'de' => descriptionDe.orLoc(descriptionEn),
+    'nl' => descriptionNl.orLoc(descriptionEn),
+    'tr' => descriptionTr.orLoc(descriptionEn),
+    'id' => descriptionId.orLoc(descriptionEn),
+    'ur' => descriptionUr.orLoc(descriptionEn),
+    'bn' => descriptionBn.orLoc(descriptionEn),
+    'ms' => descriptionMs.orLoc(descriptionEn),
     _ => descriptionEn,
   };
 
@@ -132,12 +217,33 @@ class ImpactProjectModel extends Equatable {
     titleEn,
     titleFr,
     titleAr,
+    titleDe,
+    titleNl,
+    titleTr,
+    titleId,
+    titleUr,
+    titleBn,
+    titleMs,
     subtitleEn,
     subtitleFr,
     subtitleAr,
+    subtitleDe,
+    subtitleNl,
+    subtitleTr,
+    subtitleId,
+    subtitleUr,
+    subtitleBn,
+    subtitleMs,
     descriptionEn,
     descriptionFr,
     descriptionAr,
+    descriptionDe,
+    descriptionNl,
+    descriptionTr,
+    descriptionId,
+    descriptionUr,
+    descriptionBn,
+    descriptionMs,
     coverImageUrl,
     requiredAmount,
     collectedAmount,

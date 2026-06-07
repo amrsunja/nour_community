@@ -227,6 +227,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get onboarding_screen_8_lang_fr => 'Français';
 
   @override
+  String get onboarding_screen_8_lang_de => 'Deutsch';
+
+  @override
+  String get onboarding_screen_8_lang_nl => 'Nederlands';
+
+  @override
+  String get onboarding_screen_8_lang_tr => 'Türkçe';
+
+  @override
+  String get onboarding_screen_8_lang_id => 'Bahasa Indonesia';
+
+  @override
+  String get onboarding_screen_8_lang_ur => 'اردو';
+
+  @override
+  String get onboarding_screen_8_lang_bn => 'বাংলা';
+
+  @override
+  String get onboarding_screen_8_lang_ms => 'Bahasa Melayu';
+
+  @override
   String get onboarding_screen_9_title => 'Tell us about yourself';
 
   @override

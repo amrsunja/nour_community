@@ -28,6 +28,13 @@ class LanguagePage extends HookConsumerWidget {
       _LangOption(locale: L10n.en, label: l10n.onboarding_screen_8_lang_en),
       _LangOption(locale: L10n.ar, label: l10n.onboarding_screen_8_lang_ar),
       _LangOption(locale: L10n.fr, label: l10n.onboarding_screen_8_lang_fr),
+      _LangOption(locale: L10n.de, label: l10n.onboarding_screen_8_lang_de),
+      _LangOption(locale: L10n.nl, label: l10n.onboarding_screen_8_lang_nl),
+      _LangOption(locale: L10n.tr, label: l10n.onboarding_screen_8_lang_tr),
+      _LangOption(locale: L10n.id, label: l10n.onboarding_screen_8_lang_id),
+      _LangOption(locale: L10n.ur, label: l10n.onboarding_screen_8_lang_ur),
+      _LangOption(locale: L10n.bn, label: l10n.onboarding_screen_8_lang_bn),
+      _LangOption(locale: L10n.ms, label: l10n.onboarding_screen_8_lang_ms),
     ];
 
     final activeCode =

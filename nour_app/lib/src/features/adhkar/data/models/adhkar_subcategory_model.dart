@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:nour/src/core/utils/extensions/localized_string_extensions.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
 class AdhkarSubcategoryModel extends Equatable {
@@ -7,6 +8,13 @@ class AdhkarSubcategoryModel extends Equatable {
   final String titleEn;
   final String titleFr;
   final String titleAr;
+  final String? titleDe;
+  final String? titleNl;
+  final String? titleTr;
+  final String? titleId;
+  final String? titleUr;
+  final String? titleBn;
+  final String? titleMs;
   final int position;
 
   /// Object path inside the public `app_images` storage bucket
@@ -29,6 +37,13 @@ class AdhkarSubcategoryModel extends Equatable {
     required this.titleEn,
     required this.titleFr,
     required this.titleAr,
+    this.titleDe,
+    this.titleNl,
+    this.titleTr,
+    this.titleId,
+    this.titleUr,
+    this.titleBn,
+    this.titleMs,
     required this.position,
     this.imgUrl,
     this.recommendedStartMinute,
@@ -50,6 +65,13 @@ class AdhkarSubcategoryModel extends Equatable {
       titleEn: json['title_en'] ?? '',
       titleFr: json['title_fr'] ?? '',
       titleAr: json['title_ar'] ?? '',
+      titleDe: json['title_de'],
+      titleNl: json['title_nl'],
+      titleTr: json['title_tr'],
+      titleId: json['title_id'],
+      titleUr: json['title_ur'],
+      titleBn: json['title_bn'],
+      titleMs: json['title_ms'],
       position: json['position'] ?? 0,
       imgUrl: json['img_url'],
       recommendedStartMinute: json['recommended_start_minute'],
@@ -62,6 +84,13 @@ class AdhkarSubcategoryModel extends Equatable {
   String title(String langCode) => switch (langCode) {
     'fr' => titleFr,
     'ar' => titleAr,
+    'de' => titleDe.orLoc(titleEn),
+    'nl' => titleNl.orLoc(titleEn),
+    'tr' => titleTr.orLoc(titleEn),
+    'id' => titleId.orLoc(titleEn),
+    'ur' => titleUr.orLoc(titleEn),
+    'bn' => titleBn.orLoc(titleEn),
+    'ms' => titleMs.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -89,6 +118,13 @@ class AdhkarSubcategoryModel extends Equatable {
     titleEn,
     titleFr,
     titleAr,
+    titleDe,
+    titleNl,
+    titleTr,
+    titleId,
+    titleUr,
+    titleBn,
+    titleMs,
     position,
     imgUrl,
     recommendedStartMinute,

@@ -6,8 +6,15 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_ar.dart';
+import 'app_localizations_bn.dart';
+import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
 import 'app_localizations_fr.dart';
+import 'app_localizations_id.dart';
+import 'app_localizations_ms.dart';
+import 'app_localizations_nl.dart';
+import 'app_localizations_tr.dart';
+import 'app_localizations_ur.dart';
 
 // ignore_for_file: type=lint
 
@@ -96,8 +103,15 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('ar'),
+    Locale('bn'),
+    Locale('de'),
     Locale('en'),
     Locale('fr'),
+    Locale('id'),
+    Locale('ms'),
+    Locale('nl'),
+    Locale('tr'),
+    Locale('ur'),
   ];
 
   /// No description provided for @appLanguage.
@@ -507,6 +521,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Français'**
   String get onboarding_screen_8_lang_fr;
+
+  /// No description provided for @onboarding_screen_8_lang_de.
+  ///
+  /// In en, this message translates to:
+  /// **'Deutsch'**
+  String get onboarding_screen_8_lang_de;
+
+  /// No description provided for @onboarding_screen_8_lang_nl.
+  ///
+  /// In en, this message translates to:
+  /// **'Nederlands'**
+  String get onboarding_screen_8_lang_nl;
+
+  /// No description provided for @onboarding_screen_8_lang_tr.
+  ///
+  /// In en, this message translates to:
+  /// **'Türkçe'**
+  String get onboarding_screen_8_lang_tr;
+
+  /// No description provided for @onboarding_screen_8_lang_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Indonesia'**
+  String get onboarding_screen_8_lang_id;
+
+  /// No description provided for @onboarding_screen_8_lang_ur.
+  ///
+  /// In en, this message translates to:
+  /// **'اردو'**
+  String get onboarding_screen_8_lang_ur;
+
+  /// No description provided for @onboarding_screen_8_lang_bn.
+  ///
+  /// In en, this message translates to:
+  /// **'বাংলা'**
+  String get onboarding_screen_8_lang_bn;
+
+  /// No description provided for @onboarding_screen_8_lang_ms.
+  ///
+  /// In en, this message translates to:
+  /// **'Bahasa Melayu'**
+  String get onboarding_screen_8_lang_ms;
 
   /// No description provided for @onboarding_screen_9_title.
   ///
@@ -2415,8 +2471,18 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['ar', 'en', 'fr'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'ar',
+    'bn',
+    'de',
+    'en',
+    'fr',
+    'id',
+    'ms',
+    'nl',
+    'tr',
+    'ur',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -2427,10 +2493,24 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   switch (locale.languageCode) {
     case 'ar':
       return AppLocalizationsAr();
+    case 'bn':
+      return AppLocalizationsBn();
+    case 'de':
+      return AppLocalizationsDe();
     case 'en':
       return AppLocalizationsEn();
     case 'fr':
       return AppLocalizationsFr();
+    case 'id':
+      return AppLocalizationsId();
+    case 'ms':
+      return AppLocalizationsMs();
+    case 'nl':
+      return AppLocalizationsNl();
+    case 'tr':
+      return AppLocalizationsTr();
+    case 'ur':
+      return AppLocalizationsUr();
   }
 
   throw FlutterError(

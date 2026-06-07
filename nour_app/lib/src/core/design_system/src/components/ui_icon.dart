@@ -29,7 +29,7 @@ class UIIcon extends StatelessWidget {
 		return UITap(
 			onTap: onTap,
 			child: Transform.flip(
-        flipX: locale.languageCode == L10n.ar.languageCode,// || locale.languageCode == L10n.ur.languageCode,
+        flipX: locale.languageCode == L10n.ar.languageCode || locale.languageCode == L10n.ur.languageCode,
 			  child: Padding(
 			    padding: padding ?? const EdgeInsets.all(0),
 			    child: UIIconsToken.toIcon(

@@ -34,14 +34,21 @@ class AdhkarState extends Equatable {
   List<AdhkarSubcategoryModel> subcategoriesOf(int categoryId) =>
       subcategories.where((s) => s.categoryId == categoryId).toList();
 
-  /// Subcategories matching the current [query] across en/fr/ar titles.
+  /// Subcategories matching the current [query] across all localized titles.
   List<AdhkarSubcategoryModel> get searchResults {
     final q = query.trim().toLowerCase();
     if (q.isEmpty) return const [];
     return subcategories.where((s) {
       return s.titleEn.toLowerCase().contains(q) ||
           s.titleFr.toLowerCase().contains(q) ||
-          s.titleAr.toLowerCase().contains(q);
+          s.titleAr.toLowerCase().contains(q) ||
+          (s.titleDe?.toLowerCase().contains(q) ?? false) ||
+          (s.titleNl?.toLowerCase().contains(q) ?? false) ||
+          (s.titleTr?.toLowerCase().contains(q) ?? false) ||
+          (s.titleId?.toLowerCase().contains(q) ?? false) ||
+          (s.titleUr?.toLowerCase().contains(q) ?? false) ||
+          (s.titleBn?.toLowerCase().contains(q) ?? false) ||
+          (s.titleMs?.toLowerCase().contains(q) ?? false);
     }).toList();
   }
 

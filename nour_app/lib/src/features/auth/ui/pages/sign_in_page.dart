@@ -92,11 +92,13 @@ class SignInPage extends HookConsumerWidget {
     }
 
     Future<void> onGoogle() async {
+      return ;
       if (isLoading) return;
       if (await notifier.linkWithGoogle()) await close();
     }
 
     Future<void> onApple() async {
+      return ;
       if (isLoading) return;
       if (await notifier.linkWithApple()) await close();
     }

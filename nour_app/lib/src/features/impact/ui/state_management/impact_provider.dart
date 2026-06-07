@@ -31,6 +31,13 @@ class ImpactPresenter extends Presenter<ImpactState> {
     titleEn: 'All',
     titleFr: 'Tous',
     titleAr: 'الكل',
+    titleDe: 'Alle',
+    titleNl: 'Alle',
+    titleTr: 'Tümü',
+    titleId: 'Semua',
+    titleUr: 'سب',
+    titleBn: 'সব',
+    titleMs: 'Semua',
     position: -1,
   );
 
