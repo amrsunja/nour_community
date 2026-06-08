@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/audio/sound_effect_provider.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/routing/navigation_services.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
@@ -56,7 +57,7 @@ class QuizPage extends HookConsumerWidget {
         UIGradientLinedScaffold(
           bgArabicText: 'اختبار يومي',
           appBar: UIAppBar(title: l10n.tools_daily_quiz, onBack: context.pop),
-          body: _body(context, l10n, presenter, state, langCode, pageController),
+          body: _body(context, ref, l10n, presenter, state, langCode, pageController),
         ),
       ],
     );
@@ -64,6 +65,7 @@ class QuizPage extends HookConsumerWidget {
 
   Widget _body(
     BuildContext context,
+    WidgetRef ref,
     AppLocale l10n,
     QuizPresenter presenter,
     QuizState state,
@@ -147,7 +149,14 @@ class QuizPage extends HookConsumerWidget {
               : _ValidateButton(
                   enabled: state.canValidate,
                   label: l10n.quiz_validate,
-                  onTap: presenter.validate,
+                  onTap: () {
+                    // Feedback sound fires on the same gesture that reveals the
+                    // result, so it stays in sync with the toast.
+                    ref
+                        .read(soundEffectServiceProvider)
+                        .playQuizAnswer(isCorrect: isCorrect);
+                    presenter.validate();
+                  },
                 ),
         ),
       ],

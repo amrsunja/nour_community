@@ -367,8 +367,26 @@ class $AssetsLottiesGen {
 class $AssetsSoundsGen {
   const $AssetsSoundsGen();
 
+  /// File path: assets/sounds/achievement_1.wav
+  String get achievement1 => 'assets/sounds/achievement_1.wav';
+
+  /// File path: assets/sounds/achievement_2.wav
+  String get achievement2 => 'assets/sounds/achievement_2.wav';
+
+  /// File path: assets/sounds/achievement_3.wav
+  String get achievement3 => 'assets/sounds/achievement_3.wav';
+
+  /// File path: assets/sounds/correct-answer.wav
+  String get correctAnswer => 'assets/sounds/correct-answer.wav';
+
   /// File path: assets/sounds/logo.mp3
   String get logo => 'assets/sounds/logo.mp3';
+
+  /// File path: assets/sounds/long-pop.wav
+  String get longPop => 'assets/sounds/long-pop.wav';
+
+  /// File path: assets/sounds/paper-slide.wav
+  String get paperSlide => 'assets/sounds/paper-slide.wav';
 
   /// File path: assets/sounds/reward.wav
   String get reward => 'assets/sounds/reward.wav';
@@ -376,8 +394,22 @@ class $AssetsSoundsGen {
   /// File path: assets/sounds/reward2.wav
   String get reward2 => 'assets/sounds/reward2.wav';
 
+  /// File path: assets/sounds/wrong-answer.mp3
+  String get wrongAnswer => 'assets/sounds/wrong-answer.mp3';
+
   /// List of all assets
-  List<String> get values => [logo, reward, reward2];
+  List<String> get values => [
+    achievement1,
+    achievement2,
+    achievement3,
+    correctAnswer,
+    logo,
+    longPop,
+    paperSlide,
+    reward,
+    reward2,
+    wrongAnswer,
+  ];
 }
 
 class Assets {

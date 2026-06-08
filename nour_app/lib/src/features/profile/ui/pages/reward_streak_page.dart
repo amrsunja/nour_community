@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/src/core/audio/app_sound.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
@@ -44,6 +45,10 @@ class RewardStreakPage extends ConsumerWidget {
     final nav = ref.read(navigationServicesProvider);
 
     return RewardScaffold(
+      // A completed 7-day streak is a significant milestone (achievement_2);
+      // ordinary streak days are a basic achievement (achievement_1).
+      celebrationSound:
+          streakDay >= 7 ? AppSound.achievement2 : AppSound.achievement1,
       badge: RewardStreakFlame(streakDay: streakDay),
       title: l10n.reward_streak_day_title(streakDay),
       subtitle: l10n.reward_streak_congrats(streakDay),

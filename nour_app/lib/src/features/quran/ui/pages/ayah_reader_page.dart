@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/audio/sound_effect_provider.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
@@ -76,7 +77,11 @@ class AyahReaderPage extends HookConsumerWidget {
     }
 
     void goTo(int next) {
-      ayahNumber.value = next.clamp(1, total);
+      final target = next.clamp(1, total);
+      if (target == ayahNumber.value) return; // already at the edge → no-op
+      ayahNumber.value = target;
+      // Page-turn feedback on every Quran page change (next / previous).
+      ref.read(soundEffectServiceProvider).playPageTurn();
       save();
     }
 

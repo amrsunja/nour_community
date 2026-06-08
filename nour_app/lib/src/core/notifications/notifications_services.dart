@@ -80,16 +80,34 @@ class NotificationsServices {
     _isInitialized = true;
   }
 
+  /// Default notification sound, bundled on both platforms:
+  ///  - Android: `android/app/src/main/res/raw/long_pop.wav` (referenced by
+  ///    resource name, no extension).
+  ///  - iOS: `ios/Runner/long_pop.wav` (added to the Runner bundle resources).
+  static const String _soundFile = 'long_pop'; // raw resource name (Android)
+  static const String _iosSoundFile = 'long_pop.wav'; // bundle file (iOS)
+
+  /// Android channel carrying the custom sound. The channel id is versioned
+  /// (`_v2`) because a channel's sound is locked once the OS creates it —
+  /// shipping a new id forces Android to recreate it with [_soundFile].
+  static const String _channelId = 'nour_default_channel_v2';
+
   NotificationDetails notificationDetails() {
     return const NotificationDetails(
       android: AndroidNotificationDetails(
-        'daily_chanel_id',
-        'Daily Notifications',
-        channelDescription: 'Daily Notification Channel',
+        _channelId,
+        'Nour Notifications',
+        channelDescription:
+            'Prayers, reminders and other Nour notifications',
         importance: Importance.max,
-        priority: Priority.high
+        priority: Priority.high,
+        playSound: true,
+        sound: RawResourceAndroidNotificationSound(_soundFile),
       ),
-      iOS: DarwinNotificationDetails()
+      iOS: DarwinNotificationDetails(
+        presentSound: true,
+        sound: _iosSoundFile,
+      ),
     );
   }
 
