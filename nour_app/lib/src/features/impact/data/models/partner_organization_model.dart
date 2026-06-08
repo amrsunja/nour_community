@@ -16,6 +16,7 @@ class PartnerOrganizationModel extends Equatable {
   final String? nameUr;
   final String? nameBn;
   final String? nameMs;
+  final String? nameRu;
   final String? avatarUrl;
   final bool isVerified;
 
@@ -31,6 +32,7 @@ class PartnerOrganizationModel extends Equatable {
     this.nameUr,
     this.nameBn,
     this.nameMs,
+    this.nameRu,
     this.avatarUrl,
     required this.isVerified,
   });
@@ -48,6 +50,7 @@ class PartnerOrganizationModel extends Equatable {
         nameUr: json['name_ur'],
         nameBn: json['name_bn'],
         nameMs: json['name_ms'],
+        nameRu: json['name_ru'],
         avatarUrl: json['avatar_url'],
         isVerified: json['is_verified'] ?? false,
       );
@@ -62,6 +65,7 @@ class PartnerOrganizationModel extends Equatable {
     'ur' => nameUr.orLoc(nameEn),
     'bn' => nameBn.orLoc(nameEn),
     'ms' => nameMs.orLoc(nameEn),
+    'ru' => nameRu.orLoc(nameEn),
     _ => nameEn,
   };
 
@@ -78,6 +82,7 @@ class PartnerOrganizationModel extends Equatable {
     nameUr,
     nameBn,
     nameMs,
+    nameRu,
     avatarUrl,
     isVerified,
   ];

@@ -24,6 +24,7 @@ class ImpactProjectModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final String subtitleEn;
   final String subtitleFr;
   final String subtitleAr;
@@ -34,6 +35,7 @@ class ImpactProjectModel extends Equatable {
   final String? subtitleUr;
   final String? subtitleBn;
   final String? subtitleMs;
+  final String? subtitleRu;
   final String descriptionEn;
   final String descriptionFr;
   final String descriptionAr;
@@ -44,6 +46,7 @@ class ImpactProjectModel extends Equatable {
   final String? descriptionUr;
   final String? descriptionBn;
   final String? descriptionMs;
+  final String? descriptionRu;
   final String? coverImageUrl;
   final double requiredAmount;
   final double collectedAmount;
@@ -70,6 +73,7 @@ class ImpactProjectModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.subtitleEn,
     required this.subtitleFr,
     required this.subtitleAr,
@@ -80,6 +84,7 @@ class ImpactProjectModel extends Equatable {
     this.subtitleUr,
     this.subtitleBn,
     this.subtitleMs,
+    this.subtitleRu,
     required this.descriptionEn,
     required this.descriptionFr,
     required this.descriptionAr,
@@ -90,6 +95,7 @@ class ImpactProjectModel extends Equatable {
     this.descriptionUr,
     this.descriptionBn,
     this.descriptionMs,
+    this.descriptionRu,
     required this.coverImageUrl,
     required this.requiredAmount,
     required this.collectedAmount,
@@ -124,6 +130,7 @@ class ImpactProjectModel extends Equatable {
       titleUr: json['title_ur'],
       titleBn: json['title_bn'],
       titleMs: json['title_ms'],
+      titleRu: json['title_ru'],
       subtitleEn: json['subtitle_en'] ?? '',
       subtitleFr: json['subtitle_fr'] ?? '',
       subtitleAr: json['subtitle_ar'] ?? '',
@@ -134,6 +141,7 @@ class ImpactProjectModel extends Equatable {
       subtitleUr: json['subtitle_ur'],
       subtitleBn: json['subtitle_bn'],
       subtitleMs: json['subtitle_ms'],
+      subtitleRu: json['subtitle_ru'],
       descriptionEn: json['description_en'] ?? '',
       descriptionFr: json['description_fr'] ?? '',
       descriptionAr: json['description_ar'] ?? '',
@@ -144,6 +152,7 @@ class ImpactProjectModel extends Equatable {
       descriptionUr: json['description_ur'],
       descriptionBn: json['description_bn'],
       descriptionMs: json['description_ms'],
+      descriptionRu: json['description_ru'],
       coverImageUrl: json['cover_image_url'],
       requiredAmount: _toDouble(json['required_amount']),
       collectedAmount: _toDouble(json['collected_amount']),
@@ -175,6 +184,7 @@ class ImpactProjectModel extends Equatable {
     'ur' => titleUr.orLoc(titleEn),
     'bn' => titleBn.orLoc(titleEn),
     'ms' => titleMs.orLoc(titleEn),
+    'ru' => titleRu.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -188,6 +198,7 @@ class ImpactProjectModel extends Equatable {
     'ur' => subtitleUr.orLoc(subtitleEn),
     'bn' => subtitleBn.orLoc(subtitleEn),
     'ms' => subtitleMs.orLoc(subtitleEn),
+    'ru' => subtitleRu.orLoc(subtitleEn),
     _ => subtitleEn,
   };
 
@@ -201,6 +212,7 @@ class ImpactProjectModel extends Equatable {
     'ur' => descriptionUr.orLoc(descriptionEn),
     'bn' => descriptionBn.orLoc(descriptionEn),
     'ms' => descriptionMs.orLoc(descriptionEn),
+    'ru' => descriptionRu.orLoc(descriptionEn),
     _ => descriptionEn,
   };
 
@@ -224,6 +236,7 @@ class ImpactProjectModel extends Equatable {
     titleUr,
     titleBn,
     titleMs,
+    titleRu,
     subtitleEn,
     subtitleFr,
     subtitleAr,
@@ -234,6 +247,7 @@ class ImpactProjectModel extends Equatable {
     subtitleUr,
     subtitleBn,
     subtitleMs,
+    subtitleRu,
     descriptionEn,
     descriptionFr,
     descriptionAr,
@@ -244,6 +258,7 @@ class ImpactProjectModel extends Equatable {
     descriptionUr,
     descriptionBn,
     descriptionMs,
+    descriptionRu,
     coverImageUrl,
     requiredAmount,
     collectedAmount,

@@ -15,6 +15,7 @@ class AdhkarModel extends Equatable {
   final String? transcriptionUr;
   final String? transcriptionBn;
   final String? transcriptionMs;
+  final String? transcriptionRu;
   final String? translationEn;
   final String? translationFr;
   final String? translationDe;
@@ -24,6 +25,7 @@ class AdhkarModel extends Equatable {
   final String? translationUr;
   final String? translationBn;
   final String? translationMs;
+  final String? translationRu;
   final String? whenEn;
   final String? whenFr;
   final String? whenAr;
@@ -34,6 +36,7 @@ class AdhkarModel extends Equatable {
   final String? whenUr;
   final String? whenBn;
   final String? whenMs;
+  final String? whenRu;
   final String? referenceEn;
   final String? referenceFr;
   final String? referenceAr;
@@ -44,6 +47,7 @@ class AdhkarModel extends Equatable {
   final String? referenceUr;
   final String? referenceBn;
   final String? referenceMs;
+  final String? referenceRu;
   final int minCount;
   final int ajr;
   final int likesCount;
@@ -62,6 +66,7 @@ class AdhkarModel extends Equatable {
     this.transcriptionUr,
     this.transcriptionBn,
     this.transcriptionMs,
+    this.transcriptionRu,
     this.translationEn,
     this.translationFr,
     this.translationDe,
@@ -71,6 +76,7 @@ class AdhkarModel extends Equatable {
     this.translationUr,
     this.translationBn,
     this.translationMs,
+    this.translationRu,
     this.whenEn,
     this.whenFr,
     this.whenAr,
@@ -81,6 +87,7 @@ class AdhkarModel extends Equatable {
     this.whenUr,
     this.whenBn,
     this.whenMs,
+    this.whenRu,
     this.referenceEn,
     this.referenceFr,
     this.referenceAr,
@@ -91,6 +98,7 @@ class AdhkarModel extends Equatable {
     this.referenceUr,
     this.referenceBn,
     this.referenceMs,
+    this.referenceRu,
     this.minCount = 1,
     this.ajr = 5,
     this.likesCount = 0,
@@ -110,6 +118,7 @@ class AdhkarModel extends Equatable {
     transcriptionUr: json['transcription_ur'],
     transcriptionBn: json['transcription_bn'],
     transcriptionMs: json['transcription_ms'],
+    transcriptionRu: json['transcription_ru'],
     translationEn: json['translation_en'],
     translationFr: json['translation_fr'],
     translationDe: json['translation_de'],
@@ -119,6 +128,7 @@ class AdhkarModel extends Equatable {
     translationUr: json['translation_ur'],
     translationBn: json['translation_bn'],
     translationMs: json['translation_ms'],
+    translationRu: json['translation_ru'],
     whenEn: json['when_en'],
     whenFr: json['when_fr'],
     whenAr: json['when_ar'],
@@ -129,6 +139,7 @@ class AdhkarModel extends Equatable {
     whenUr: json['when_ur'],
     whenBn: json['when_bn'],
     whenMs: json['when_ms'],
+    whenRu: json['when_ru'],
     referenceEn: json['reference_en'],
     referenceFr: json['reference_fr'],
     referenceAr: json['reference_ar'],
@@ -139,6 +150,7 @@ class AdhkarModel extends Equatable {
     referenceUr: json['reference_ur'],
     referenceBn: json['reference_bn'],
     referenceMs: json['reference_ms'],
+    referenceRu: json['reference_ru'],
     minCount: json['min_count'] ?? 1,
     ajr: json['ajr'] ?? 5,
     likesCount: json['likes_count'] ?? 0,
@@ -156,6 +168,7 @@ class AdhkarModel extends Equatable {
     'ur' => whenUr.orLocNullable(whenEn),
     'bn' => whenBn.orLocNullable(whenEn),
     'ms' => whenMs.orLocNullable(whenEn),
+    'ru' => whenRu.orLocNullable(whenEn),
     _ => whenEn,
   };
 
@@ -170,6 +183,7 @@ class AdhkarModel extends Equatable {
     'ur' => referenceUr.orLocNullable(referenceEn),
     'bn' => referenceBn.orLocNullable(referenceEn),
     'ms' => referenceMs.orLocNullable(referenceEn),
+    'ru' => referenceRu.orLocNullable(referenceEn),
     _ => referenceEn,
   };
 
@@ -183,6 +197,7 @@ class AdhkarModel extends Equatable {
     'ur' => transcriptionUr.orLocNullable(transcriptionEn),
     'bn' => transcriptionBn.orLocNullable(transcriptionEn),
     'ms' => transcriptionMs.orLocNullable(transcriptionEn),
+    'ru' => transcriptionRu.orLocNullable(transcriptionEn),
     _ => transcriptionEn,
   };
 
@@ -196,6 +211,7 @@ class AdhkarModel extends Equatable {
     'ur' => translationUr.orLocNullable(translationEn),
     'bn' => translationBn.orLocNullable(translationEn),
     'ms' => translationMs.orLocNullable(translationEn),
+    'ru' => translationRu.orLocNullable(translationEn),
     _ => translationEn,
   };
 
@@ -213,6 +229,7 @@ class AdhkarModel extends Equatable {
     transcriptionUr,
     transcriptionBn,
     transcriptionMs,
+    transcriptionRu,
     translationEn,
     translationFr,
     translationDe,
@@ -222,6 +239,7 @@ class AdhkarModel extends Equatable {
     translationUr,
     translationBn,
     translationMs,
+    translationRu,
     whenEn,
     whenFr,
     whenAr,
@@ -232,6 +250,7 @@ class AdhkarModel extends Equatable {
     whenUr,
     whenBn,
     whenMs,
+    whenRu,
     referenceEn,
     referenceFr,
     referenceAr,
@@ -242,6 +261,7 @@ class AdhkarModel extends Equatable {
     referenceUr,
     referenceBn,
     referenceMs,
+    referenceRu,
     minCount,
     ajr,
     likesCount,

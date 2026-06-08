@@ -38,6 +38,7 @@ class ImpactPresenter extends Presenter<ImpactState> {
     titleUr: 'سب',
     titleBn: 'সব',
     titleMs: 'Semua',
+    titleRu: 'Все',
     position: -1,
   );
 

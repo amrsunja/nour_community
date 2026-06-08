@@ -248,6 +248,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get onboarding_screen_8_lang_ms => 'Bahasa Melayu';
 
   @override
+  String get onboarding_screen_8_lang_ru => 'Русский';
+
+  @override
   String get onboarding_screen_9_title => 'Vertel ons over jezelf';
 
   @override

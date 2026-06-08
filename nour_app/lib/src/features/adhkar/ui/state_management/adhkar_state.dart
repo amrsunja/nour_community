@@ -48,7 +48,8 @@ class AdhkarState extends Equatable {
           (s.titleId?.toLowerCase().contains(q) ?? false) ||
           (s.titleUr?.toLowerCase().contains(q) ?? false) ||
           (s.titleBn?.toLowerCase().contains(q) ?? false) ||
-          (s.titleMs?.toLowerCase().contains(q) ?? false);
+          (s.titleMs?.toLowerCase().contains(q) ?? false) ||
+          (s.titleRu?.toLowerCase().contains(q) ?? false);
     }).toList();
   }
 

@@ -17,6 +17,7 @@ class ProjectCategoryModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final int position;
 
   const ProjectCategoryModel({
@@ -31,6 +32,7 @@ class ProjectCategoryModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.position,
   });
 
@@ -49,6 +51,7 @@ class ProjectCategoryModel extends Equatable {
     titleUr: json['title_ur'],
     titleBn: json['title_bn'],
     titleMs: json['title_ms'],
+    titleRu: json['title_ru'],
     position: json['position'] ?? 0,
   );
 
@@ -64,6 +67,7 @@ class ProjectCategoryModel extends Equatable {
     'ur' => titleUr.orLoc(titleEn),
     'bn' => titleBn.orLoc(titleEn),
     'ms' => titleMs.orLoc(titleEn),
+    'ru' => titleRu.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -80,6 +84,7 @@ class ProjectCategoryModel extends Equatable {
     titleUr,
     titleBn,
     titleMs,
+    titleRu,
     position,
   ];
 }

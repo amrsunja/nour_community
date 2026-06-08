@@ -22,6 +22,7 @@ class FavoriteHadithItem extends Equatable {
     this.collectionTitleUr,
     this.collectionTitleBn,
     this.collectionTitleMs,
+    this.collectionTitleRu,
   });
 
   final HadithModel hadith;
@@ -35,6 +36,7 @@ class FavoriteHadithItem extends Equatable {
   final String? collectionTitleUr;
   final String? collectionTitleBn;
   final String? collectionTitleMs;
+  final String? collectionTitleRu;
 
   /// Builds the item from a `favorite_hadiths` row whose `hadiths` join also
   /// embeds the parent `hadith_collections` row.
@@ -53,6 +55,7 @@ class FavoriteHadithItem extends Equatable {
       collectionTitleUr: collection['title_ur'],
       collectionTitleBn: collection['title_bn'],
       collectionTitleMs: collection['title_ms'],
+      collectionTitleRu: collection['title_ru'],
     );
   }
 
@@ -66,6 +69,7 @@ class FavoriteHadithItem extends Equatable {
         'ur' => collectionTitleUr.orLoc(collectionTitleEn),
         'bn' => collectionTitleBn.orLoc(collectionTitleEn),
         'ms' => collectionTitleMs.orLoc(collectionTitleEn),
+        'ru' => collectionTitleRu.orLoc(collectionTitleEn),
         _ => collectionTitleEn,
       };
 
@@ -82,5 +86,6 @@ class FavoriteHadithItem extends Equatable {
         collectionTitleUr,
         collectionTitleBn,
         collectionTitleMs,
+        collectionTitleRu,
       ];
 }

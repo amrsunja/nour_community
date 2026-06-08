@@ -20,6 +20,7 @@ class QuizQuestionModel extends Equatable {
   final String? questionUr;
   final String? questionBn;
   final String? questionMs;
+  final String? questionRu;
 
   final String? arabicText;
 
@@ -32,6 +33,7 @@ class QuizQuestionModel extends Equatable {
   final String? transcriptionUr;
   final String? transcriptionBn;
   final String? transcriptionMs;
+  final String? transcriptionRu;
 
   final String? subtitleEn;
   final String? subtitleFr;
@@ -43,6 +45,7 @@ class QuizQuestionModel extends Equatable {
   final String? subtitleUr;
   final String? subtitleBn;
   final String? subtitleMs;
+  final String? subtitleRu;
 
   final String optionAEn;
   final String optionAFr;
@@ -54,6 +57,7 @@ class QuizQuestionModel extends Equatable {
   final String? optionAUr;
   final String? optionABn;
   final String? optionAMs;
+  final String? optionARu;
   final String optionBEn;
   final String optionBFr;
   final String optionBAr;
@@ -64,6 +68,7 @@ class QuizQuestionModel extends Equatable {
   final String? optionBUr;
   final String? optionBBn;
   final String? optionBMs;
+  final String? optionBRu;
   final String optionCEn;
   final String optionCFr;
   final String optionCAr;
@@ -74,6 +79,7 @@ class QuizQuestionModel extends Equatable {
   final String? optionCUr;
   final String? optionCBn;
   final String? optionCMs;
+  final String? optionCRu;
   final String optionDEn;
   final String optionDFr;
   final String optionDAr;
@@ -84,6 +90,7 @@ class QuizQuestionModel extends Equatable {
   final String? optionDUr;
   final String? optionDBn;
   final String? optionDMs;
+  final String? optionDRu;
 
   final String? congratulationEn;
   final String? congratulationFr;
@@ -95,6 +102,7 @@ class QuizQuestionModel extends Equatable {
   final String? congratulationUr;
   final String? congratulationBn;
   final String? congratulationMs;
+  final String? congratulationRu;
 
   final int correctOptionIndex;
   final int ajr;
@@ -113,6 +121,7 @@ class QuizQuestionModel extends Equatable {
     this.questionUr,
     this.questionBn,
     this.questionMs,
+    this.questionRu,
     this.arabicText,
     this.transcriptionEn,
     this.transcriptionFr,
@@ -123,6 +132,7 @@ class QuizQuestionModel extends Equatable {
     this.transcriptionUr,
     this.transcriptionBn,
     this.transcriptionMs,
+    this.transcriptionRu,
     this.subtitleEn,
     this.subtitleFr,
     this.subtitleAr,
@@ -133,6 +143,7 @@ class QuizQuestionModel extends Equatable {
     this.subtitleUr,
     this.subtitleBn,
     this.subtitleMs,
+    this.subtitleRu,
     required this.optionAEn,
     required this.optionAFr,
     required this.optionAAr,
@@ -143,6 +154,7 @@ class QuizQuestionModel extends Equatable {
     this.optionAUr,
     this.optionABn,
     this.optionAMs,
+    this.optionARu,
     required this.optionBEn,
     required this.optionBFr,
     required this.optionBAr,
@@ -153,6 +165,7 @@ class QuizQuestionModel extends Equatable {
     this.optionBUr,
     this.optionBBn,
     this.optionBMs,
+    this.optionBRu,
     required this.optionCEn,
     required this.optionCFr,
     required this.optionCAr,
@@ -163,6 +176,7 @@ class QuizQuestionModel extends Equatable {
     this.optionCUr,
     this.optionCBn,
     this.optionCMs,
+    this.optionCRu,
     required this.optionDEn,
     required this.optionDFr,
     required this.optionDAr,
@@ -173,6 +187,7 @@ class QuizQuestionModel extends Equatable {
     this.optionDUr,
     this.optionDBn,
     this.optionDMs,
+    this.optionDRu,
     this.congratulationEn,
     this.congratulationFr,
     this.congratulationAr,
@@ -183,6 +198,7 @@ class QuizQuestionModel extends Equatable {
     this.congratulationUr,
     this.congratulationBn,
     this.congratulationMs,
+    this.congratulationRu,
     required this.correctOptionIndex,
     required this.ajr,
     this.bonusAjr,
@@ -201,6 +217,7 @@ class QuizQuestionModel extends Equatable {
     questionUr: _str(json['question_ur']),
     questionBn: _str(json['question_bn']),
     questionMs: _str(json['question_ms']),
+    questionRu: _str(json['question_ru']),
     arabicText: _str(json['arabic_text']),
     transcriptionEn: _str(json['transcription_en']),
     transcriptionFr: _str(json['transcription_fr']),
@@ -211,6 +228,7 @@ class QuizQuestionModel extends Equatable {
     transcriptionUr: _str(json['transcription_ur']),
     transcriptionBn: _str(json['transcription_bn']),
     transcriptionMs: _str(json['transcription_ms']),
+    transcriptionRu: _str(json['transcription_ru']),
     subtitleEn: _str(json['subtitle_en']),
     subtitleFr: _str(json['subtitle_fr']),
     subtitleAr: _str(json['subtitle_ar']),
@@ -221,6 +239,7 @@ class QuizQuestionModel extends Equatable {
     subtitleUr: _str(json['subtitle_ur']),
     subtitleBn: _str(json['subtitle_bn']),
     subtitleMs: _str(json['subtitle_ms']),
+    subtitleRu: _str(json['subtitle_ru']),
     optionAEn: json['option_a_en'] as String,
     optionAFr: json['option_a_fr'] as String,
     optionAAr: json['option_a_ar'] as String,
@@ -231,6 +250,7 @@ class QuizQuestionModel extends Equatable {
     optionAUr: _str(json['option_a_ur']),
     optionABn: _str(json['option_a_bn']),
     optionAMs: _str(json['option_a_ms']),
+    optionARu: _str(json['option_a_ru']),
     optionBEn: json['option_b_en'] as String,
     optionBFr: json['option_b_fr'] as String,
     optionBAr: json['option_b_ar'] as String,
@@ -241,6 +261,7 @@ class QuizQuestionModel extends Equatable {
     optionBUr: _str(json['option_b_ur']),
     optionBBn: _str(json['option_b_bn']),
     optionBMs: _str(json['option_b_ms']),
+    optionBRu: _str(json['option_b_ru']),
     optionCEn: json['option_c_en'] as String,
     optionCFr: json['option_c_fr'] as String,
     optionCAr: json['option_c_ar'] as String,
@@ -251,6 +272,7 @@ class QuizQuestionModel extends Equatable {
     optionCUr: _str(json['option_c_ur']),
     optionCBn: _str(json['option_c_bn']),
     optionCMs: _str(json['option_c_ms']),
+    optionCRu: _str(json['option_c_ru']),
     optionDEn: json['option_d_en'] as String,
     optionDFr: json['option_d_fr'] as String,
     optionDAr: json['option_d_ar'] as String,
@@ -261,6 +283,7 @@ class QuizQuestionModel extends Equatable {
     optionDUr: _str(json['option_d_ur']),
     optionDBn: _str(json['option_d_bn']),
     optionDMs: _str(json['option_d_ms']),
+    optionDRu: _str(json['option_d_ru']),
     congratulationEn: _str(json['congratulation_en']),
     congratulationFr: _str(json['congratulation_fr']),
     congratulationAr: _str(json['congratulation_ar']),
@@ -271,6 +294,7 @@ class QuizQuestionModel extends Equatable {
     congratulationUr: _str(json['congratulation_ur']),
     congratulationBn: _str(json['congratulation_bn']),
     congratulationMs: _str(json['congratulation_ms']),
+    congratulationRu: _str(json['congratulation_ru']),
     correctOptionIndex: json['correct_option_index'] as int,
     ajr: json['ajr'] as int,
     bonusAjr: json['bonus_ajr'] as int?,
@@ -293,6 +317,7 @@ class QuizQuestionModel extends Equatable {
     'ur' => questionUr.orLoc(questionEn),
     'bn' => questionBn.orLoc(questionEn),
     'ms' => questionMs.orLoc(questionEn),
+    'ru' => questionRu.orLoc(questionEn),
     _ => questionEn,
   };
 
@@ -306,6 +331,7 @@ class QuizQuestionModel extends Equatable {
     'ur' => transcriptionUr.orLocNullable(transcriptionEn),
     'bn' => transcriptionBn.orLocNullable(transcriptionEn),
     'ms' => transcriptionMs.orLocNullable(transcriptionEn),
+    'ru' => transcriptionRu.orLocNullable(transcriptionEn),
     _ => transcriptionEn,
   };
 
@@ -319,6 +345,7 @@ class QuizQuestionModel extends Equatable {
     'ur' => subtitleUr.orLocNullable(subtitleEn),
     'bn' => subtitleBn.orLocNullable(subtitleEn),
     'ms' => subtitleMs.orLocNullable(subtitleEn),
+    'ru' => subtitleRu.orLocNullable(subtitleEn),
     _ => subtitleEn,
   };
 
@@ -368,6 +395,12 @@ class QuizQuestionModel extends Equatable {
       optionCMs.orLoc(optionCEn),
       optionDMs.orLoc(optionDEn),
     ],
+    'ru' => [
+      optionARu.orLoc(optionAEn),
+      optionBRu.orLoc(optionBEn),
+      optionCRu.orLoc(optionCEn),
+      optionDRu.orLoc(optionDEn),
+    ],
     _ => [optionAEn, optionBEn, optionCEn, optionDEn],
   };
 
@@ -383,6 +416,7 @@ class QuizQuestionModel extends Equatable {
     'ur' => congratulationUr.orLocNullable(congratulationEn),
     'bn' => congratulationBn.orLocNullable(congratulationEn),
     'ms' => congratulationMs.orLocNullable(congratulationEn),
+    'ru' => congratulationRu.orLocNullable(congratulationEn),
     _ => congratulationEn,
   };
 
@@ -403,6 +437,7 @@ class QuizQuestionModel extends Equatable {
     questionUr,
     questionBn,
     questionMs,
+    questionRu,
     arabicText,
     transcriptionEn,
     transcriptionFr,
@@ -413,6 +448,7 @@ class QuizQuestionModel extends Equatable {
     transcriptionUr,
     transcriptionBn,
     transcriptionMs,
+    transcriptionRu,
     subtitleEn,
     subtitleFr,
     subtitleAr,
@@ -423,6 +459,7 @@ class QuizQuestionModel extends Equatable {
     subtitleUr,
     subtitleBn,
     subtitleMs,
+    subtitleRu,
     optionAEn,
     optionAFr,
     optionAAr,
@@ -433,6 +470,7 @@ class QuizQuestionModel extends Equatable {
     optionAUr,
     optionABn,
     optionAMs,
+    optionARu,
     optionBEn,
     optionBFr,
     optionBAr,
@@ -443,6 +481,7 @@ class QuizQuestionModel extends Equatable {
     optionBUr,
     optionBBn,
     optionBMs,
+    optionBRu,
     optionCEn,
     optionCFr,
     optionCAr,
@@ -453,6 +492,7 @@ class QuizQuestionModel extends Equatable {
     optionCUr,
     optionCBn,
     optionCMs,
+    optionCRu,
     optionDEn,
     optionDFr,
     optionDAr,
@@ -463,6 +503,7 @@ class QuizQuestionModel extends Equatable {
     optionDUr,
     optionDBn,
     optionDMs,
+    optionDRu,
     congratulationEn,
     congratulationFr,
     congratulationAr,
@@ -473,6 +514,7 @@ class QuizQuestionModel extends Equatable {
     congratulationUr,
     congratulationBn,
     congratulationMs,
+    congratulationRu,
     correctOptionIndex,
     ajr,
     bonusAjr,

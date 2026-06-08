@@ -15,6 +15,7 @@ class AdhkarSubcategoryModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final int position;
 
   /// Object path inside the public `app_images` storage bucket
@@ -44,6 +45,7 @@ class AdhkarSubcategoryModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.position,
     this.imgUrl,
     this.recommendedStartMinute,
@@ -72,6 +74,7 @@ class AdhkarSubcategoryModel extends Equatable {
       titleUr: json['title_ur'],
       titleBn: json['title_bn'],
       titleMs: json['title_ms'],
+      titleRu: json['title_ru'],
       position: json['position'] ?? 0,
       imgUrl: json['img_url'],
       recommendedStartMinute: json['recommended_start_minute'],
@@ -91,6 +94,7 @@ class AdhkarSubcategoryModel extends Equatable {
     'ur' => titleUr.orLoc(titleEn),
     'bn' => titleBn.orLoc(titleEn),
     'ms' => titleMs.orLoc(titleEn),
+    'ru' => titleRu.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -125,6 +129,7 @@ class AdhkarSubcategoryModel extends Equatable {
     titleUr,
     titleBn,
     titleMs,
+    titleRu,
     position,
     imgUrl,
     recommendedStartMinute,

@@ -13,6 +13,7 @@ import 'app_localizations_fr.dart';
 import 'app_localizations_id.dart';
 import 'app_localizations_ms.dart';
 import 'app_localizations_nl.dart';
+import 'app_localizations_ru.dart';
 import 'app_localizations_tr.dart';
 import 'app_localizations_ur.dart';
 
@@ -110,6 +111,7 @@ abstract class AppLocalizations {
     Locale('id'),
     Locale('ms'),
     Locale('nl'),
+    Locale('ru'),
     Locale('tr'),
     Locale('ur'),
   ];
@@ -563,6 +565,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Bahasa Melayu'**
   String get onboarding_screen_8_lang_ms;
+
+  /// No description provided for @onboarding_screen_8_lang_ru.
+  ///
+  /// In en, this message translates to:
+  /// **'Русский'**
+  String get onboarding_screen_8_lang_ru;
 
   /// No description provided for @onboarding_screen_9_title.
   ///
@@ -2480,6 +2488,7 @@ class _AppLocalizationsDelegate
     'id',
     'ms',
     'nl',
+    'ru',
     'tr',
     'ur',
   ].contains(locale.languageCode);
@@ -2507,6 +2516,8 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
       return AppLocalizationsMs();
     case 'nl':
       return AppLocalizationsNl();
+    case 'ru':
+      return AppLocalizationsRu();
     case 'tr':
       return AppLocalizationsTr();
     case 'ur':

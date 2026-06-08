@@ -14,6 +14,7 @@ class DhikrModel extends Equatable {
   final String? transcriptionUr;
   final String? transcriptionBn;
   final String? transcriptionMs;
+  final String? transcriptionRu;
   final String translationEn;
   final String translationFr;
   final String? translationDe;
@@ -23,6 +24,7 @@ class DhikrModel extends Equatable {
   final String? translationUr;
   final String? translationBn;
   final String? translationMs;
+  final String? translationRu;
   final int minCount;
   final int ajr;
   final bool isActive;
@@ -39,6 +41,7 @@ class DhikrModel extends Equatable {
     this.transcriptionUr,
     this.transcriptionBn,
     this.transcriptionMs,
+    this.transcriptionRu,
     required this.translationEn,
     required this.translationFr,
     this.translationDe,
@@ -48,6 +51,7 @@ class DhikrModel extends Equatable {
     this.translationUr,
     this.translationBn,
     this.translationMs,
+    this.translationRu,
     required this.minCount,
     required this.ajr,
     required this.isActive,
@@ -65,6 +69,7 @@ class DhikrModel extends Equatable {
     transcriptionUr: json['transcription_ur'],
     transcriptionBn: json['transcription_bn'],
     transcriptionMs: json['transcription_ms'],
+    transcriptionRu: json['transcription_ru'],
     translationEn: json['translation_en'],
     translationFr: json['translation_fr'],
     translationDe: json['translation_de'],
@@ -74,6 +79,7 @@ class DhikrModel extends Equatable {
     translationUr: json['translation_ur'],
     translationBn: json['translation_bn'],
     translationMs: json['translation_ms'],
+    translationRu: json['translation_ru'],
     minCount: json['min_count'],
     ajr: json['ajr'],
     isActive: json['is_active'] ?? true,
@@ -90,6 +96,7 @@ class DhikrModel extends Equatable {
     'ur' => transcriptionUr.orLoc(transcriptionEn),
     'bn' => transcriptionBn.orLoc(transcriptionEn),
     'ms' => transcriptionMs.orLoc(transcriptionEn),
+    'ru' => transcriptionRu.orLoc(transcriptionEn),
     _ => transcriptionEn,
   };
 
@@ -103,6 +110,7 @@ class DhikrModel extends Equatable {
     'ur' => translationUr.orLoc(translationEn),
     'bn' => translationBn.orLoc(translationEn),
     'ms' => translationMs.orLoc(translationEn),
+    'ru' => translationRu.orLoc(translationEn),
     _ => translationEn,
   };
 
@@ -119,6 +127,7 @@ class DhikrModel extends Equatable {
     transcriptionUr,
     transcriptionBn,
     transcriptionMs,
+    transcriptionRu,
     translationEn,
     translationFr,
     translationDe,
@@ -128,6 +137,7 @@ class DhikrModel extends Equatable {
     translationUr,
     translationBn,
     translationMs,
+    translationRu,
     minCount,
     ajr,
     isActive,

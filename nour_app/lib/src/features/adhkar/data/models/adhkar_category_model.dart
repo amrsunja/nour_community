@@ -14,6 +14,7 @@ class AdhkarCategoryModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final int position;
 
   const AdhkarCategoryModel({
@@ -28,6 +29,7 @@ class AdhkarCategoryModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.position,
   });
 
@@ -43,6 +45,7 @@ class AdhkarCategoryModel extends Equatable {
     titleUr: json['title_ur'],
     titleBn: json['title_bn'],
     titleMs: json['title_ms'],
+    titleRu: json['title_ru'],
     position: json['position'] ?? 0,
   );
 
@@ -57,6 +60,7 @@ class AdhkarCategoryModel extends Equatable {
     'ur' => titleUr.orLoc(titleEn),
     'bn' => titleBn.orLoc(titleEn),
     'ms' => titleMs.orLoc(titleEn),
+    'ru' => titleRu.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -73,6 +77,7 @@ class AdhkarCategoryModel extends Equatable {
     titleUr,
     titleBn,
     titleMs,
+    titleRu,
     position,
   ];
 }

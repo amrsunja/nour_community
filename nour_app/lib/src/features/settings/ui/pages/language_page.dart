@@ -35,6 +35,7 @@ class LanguagePage extends HookConsumerWidget {
       _LangOption(locale: L10n.ur, label: l10n.onboarding_screen_8_lang_ur),
       _LangOption(locale: L10n.bn, label: l10n.onboarding_screen_8_lang_bn),
       _LangOption(locale: L10n.ms, label: l10n.onboarding_screen_8_lang_ms),
+      _LangOption(locale: L10n.ru, label: l10n.onboarding_screen_8_lang_ru),
     ];
 
     final activeCode =

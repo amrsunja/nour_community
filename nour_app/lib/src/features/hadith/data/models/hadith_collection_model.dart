@@ -20,6 +20,7 @@ class HadithCollectionModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final String descriptionEn;
   final String descriptionFr;
   final String descriptionAr;
@@ -30,6 +31,7 @@ class HadithCollectionModel extends Equatable {
   final String? descriptionUr;
   final String? descriptionBn;
   final String? descriptionMs;
+  final String? descriptionRu;
   final int position;
   final bool isActive;
   final int totalHadiths;
@@ -46,6 +48,7 @@ class HadithCollectionModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     this.descriptionEn = '',
     this.descriptionFr = '',
     this.descriptionAr = '',
@@ -56,6 +59,7 @@ class HadithCollectionModel extends Equatable {
     this.descriptionUr,
     this.descriptionBn,
     this.descriptionMs,
+    this.descriptionRu,
     this.position = 0,
     this.isActive = true,
     this.totalHadiths = 0,
@@ -73,6 +77,7 @@ class HadithCollectionModel extends Equatable {
         titleUr: json['title_ur'],
         titleBn: json['title_bn'],
         titleMs: json['title_ms'],
+        titleRu: json['title_ru'],
         descriptionEn: json['description_en'] ?? '',
         descriptionFr: json['description_fr'] ?? '',
         descriptionAr: json['description_ar'] ?? '',
@@ -83,6 +88,7 @@ class HadithCollectionModel extends Equatable {
         descriptionUr: json['description_ur'],
         descriptionBn: json['description_bn'],
         descriptionMs: json['description_ms'],
+        descriptionRu: json['description_ru'],
         position: json['position'] ?? 0,
         isActive: json['is_active'] ?? true,
         totalHadiths: json['total_hadiths'] ?? 0,
@@ -99,6 +105,7 @@ class HadithCollectionModel extends Equatable {
         'ur' => titleUr.orLoc(titleEn),
         'bn' => titleBn.orLoc(titleEn),
         'ms' => titleMs.orLoc(titleEn),
+        'ru' => titleRu.orLoc(titleEn),
         _ => titleEn,
       };
 
@@ -113,6 +120,7 @@ class HadithCollectionModel extends Equatable {
         'ur' => descriptionUr.orLoc(descriptionEn),
         'bn' => descriptionBn.orLoc(descriptionEn),
         'ms' => descriptionMs.orLoc(descriptionEn),
+        'ru' => descriptionRu.orLoc(descriptionEn),
         _ => descriptionEn,
       };
 
@@ -128,6 +136,7 @@ class HadithCollectionModel extends Equatable {
         titleUr: titleUr,
         titleBn: titleBn,
         titleMs: titleMs,
+        titleRu: titleRu,
         descriptionEn: descriptionEn,
         descriptionFr: descriptionFr,
         descriptionAr: descriptionAr,
@@ -138,6 +147,7 @@ class HadithCollectionModel extends Equatable {
         descriptionUr: descriptionUr,
         descriptionBn: descriptionBn,
         descriptionMs: descriptionMs,
+        descriptionRu: descriptionRu,
         position: position,
         isActive: isActive,
         totalHadiths: totalHadiths ?? this.totalHadiths,
@@ -156,6 +166,7 @@ class HadithCollectionModel extends Equatable {
         titleUr,
         titleBn,
         titleMs,
+        titleRu,
         descriptionEn,
         descriptionFr,
         descriptionAr,
@@ -166,6 +177,7 @@ class HadithCollectionModel extends Equatable {
         descriptionUr,
         descriptionBn,
         descriptionMs,
+        descriptionRu,
         position,
         isActive,
         totalHadiths,

@@ -36,6 +36,7 @@ class L10n {
 	static Locale get ur => all[7];
 	static Locale get bn => all[8];
 	static Locale get ms => all[9];
+	static Locale get ru => all[10];
 
   static final all = [
     const Locale('en', 'EN'),
@@ -48,6 +49,7 @@ class L10n {
     const Locale('ur', 'UR'),
     const Locale('bn', 'BN'),
     const Locale('ms', 'MS'),
+    const Locale('ru', 'RU'),
   ];
 
 	/// Default to English. Device locale only matched if it is one of the

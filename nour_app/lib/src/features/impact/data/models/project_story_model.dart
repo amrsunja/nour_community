@@ -17,6 +17,7 @@ class ProjectStoryModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
   final String descriptionEn;
   final String descriptionFr;
   final String descriptionAr;
@@ -27,6 +28,7 @@ class ProjectStoryModel extends Equatable {
   final String? descriptionUr;
   final String? descriptionBn;
   final String? descriptionMs;
+  final String? descriptionRu;
   final List<String> images;
   final DateTime createdAt;
 
@@ -43,6 +45,7 @@ class ProjectStoryModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.descriptionEn,
     required this.descriptionFr,
     required this.descriptionAr,
@@ -53,6 +56,7 @@ class ProjectStoryModel extends Equatable {
     this.descriptionUr,
     this.descriptionBn,
     this.descriptionMs,
+    this.descriptionRu,
     required this.images,
     required this.createdAt,
   });
@@ -70,6 +74,7 @@ class ProjectStoryModel extends Equatable {
     titleUr: json['title_ur'],
     titleBn: json['title_bn'],
     titleMs: json['title_ms'],
+    titleRu: json['title_ru'],
     descriptionEn: json['description_en'] ?? '',
     descriptionFr: json['description_fr'] ?? '',
     descriptionAr: json['description_ar'] ?? '',
@@ -80,6 +85,7 @@ class ProjectStoryModel extends Equatable {
     descriptionUr: json['description_ur'],
     descriptionBn: json['description_bn'],
     descriptionMs: json['description_ms'],
+    descriptionRu: json['description_ru'],
     images: [
       for (final e in (json['images'] as List? ?? const []))
         if (e is String && e.isNotEmpty) e,
@@ -98,6 +104,7 @@ class ProjectStoryModel extends Equatable {
     'ur' => titleUr.orLoc(titleEn),
     'bn' => titleBn.orLoc(titleEn),
     'ms' => titleMs.orLoc(titleEn),
+    'ru' => titleRu.orLoc(titleEn),
     _ => titleEn,
   };
 
@@ -111,6 +118,7 @@ class ProjectStoryModel extends Equatable {
     'ur' => descriptionUr.orLoc(descriptionEn),
     'bn' => descriptionBn.orLoc(descriptionEn),
     'ms' => descriptionMs.orLoc(descriptionEn),
+    'ru' => descriptionRu.orLoc(descriptionEn),
     _ => descriptionEn,
   };
 
@@ -130,6 +138,7 @@ class ProjectStoryModel extends Equatable {
     titleUr,
     titleBn,
     titleMs,
+    titleRu,
     descriptionEn,
     descriptionFr,
     descriptionAr,
@@ -140,6 +149,7 @@ class ProjectStoryModel extends Equatable {
     descriptionUr,
     descriptionBn,
     descriptionMs,
+    descriptionRu,
     images,
     createdAt,
   ];

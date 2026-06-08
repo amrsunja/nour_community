@@ -22,6 +22,7 @@ class HadithModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
 
   final String descriptionEn;
   final String descriptionFr;
@@ -33,6 +34,7 @@ class HadithModel extends Equatable {
   final String? descriptionUr;
   final String? descriptionBn;
   final String? descriptionMs;
+  final String? descriptionRu;
 
   final String arabicText;
 
@@ -45,6 +47,7 @@ class HadithModel extends Equatable {
   final String? transcriptionUr;
   final String? transcriptionBn;
   final String? transcriptionMs;
+  final String? transcriptionRu;
 
   final String translationEn;
   final String translationFr;
@@ -55,6 +58,7 @@ class HadithModel extends Equatable {
   final String? translationUr;
   final String? translationBn;
   final String? translationMs;
+  final String? translationRu;
 
   final String referenceEn;
   final String referenceFr;
@@ -66,6 +70,7 @@ class HadithModel extends Equatable {
   final String? referenceUr;
   final String? referenceBn;
   final String? referenceMs;
+  final String? referenceRu;
 
   final String tafsirEn;
   final String tafsirFr;
@@ -77,6 +82,7 @@ class HadithModel extends Equatable {
   final String? tafsirUr;
   final String? tafsirBn;
   final String? tafsirMs;
+  final String? tafsirRu;
 
   final String? audioUrl;
   final int ajr;
@@ -97,6 +103,7 @@ class HadithModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     this.descriptionEn = '',
     this.descriptionFr = '',
     this.descriptionAr = '',
@@ -107,6 +114,7 @@ class HadithModel extends Equatable {
     this.descriptionUr,
     this.descriptionBn,
     this.descriptionMs,
+    this.descriptionRu,
     required this.arabicText,
     this.transcriptionEn = '',
     this.transcriptionFr = '',
@@ -117,6 +125,7 @@ class HadithModel extends Equatable {
     this.transcriptionUr,
     this.transcriptionBn,
     this.transcriptionMs,
+    this.transcriptionRu,
     this.translationEn = '',
     this.translationFr = '',
     this.translationDe,
@@ -126,6 +135,7 @@ class HadithModel extends Equatable {
     this.translationUr,
     this.translationBn,
     this.translationMs,
+    this.translationRu,
     this.referenceEn = '',
     this.referenceFr = '',
     this.referenceAr = '',
@@ -136,6 +146,7 @@ class HadithModel extends Equatable {
     this.referenceUr,
     this.referenceBn,
     this.referenceMs,
+    this.referenceRu,
     this.tafsirEn = '',
     this.tafsirFr = '',
     this.tafsirAr = '',
@@ -146,6 +157,7 @@ class HadithModel extends Equatable {
     this.tafsirUr,
     this.tafsirBn,
     this.tafsirMs,
+    this.tafsirRu,
     this.audioUrl,
     this.ajr = 5,
     this.likesCount = 0,
@@ -166,6 +178,7 @@ class HadithModel extends Equatable {
         titleUr: json['title_ur'],
         titleBn: json['title_bn'],
         titleMs: json['title_ms'],
+        titleRu: json['title_ru'],
         descriptionEn: json['description_en'] ?? '',
         descriptionFr: json['description_fr'] ?? '',
         descriptionAr: json['description_ar'] ?? '',
@@ -176,6 +189,7 @@ class HadithModel extends Equatable {
         descriptionUr: json['description_ur'],
         descriptionBn: json['description_bn'],
         descriptionMs: json['description_ms'],
+        descriptionRu: json['description_ru'],
         arabicText: json['arabic_text'] ?? '',
         transcriptionEn: json['transcription_en'] ?? '',
         transcriptionFr: json['transcription_fr'] ?? '',
@@ -186,6 +200,7 @@ class HadithModel extends Equatable {
         transcriptionUr: json['transcription_ur'],
         transcriptionBn: json['transcription_bn'],
         transcriptionMs: json['transcription_ms'],
+        transcriptionRu: json['transcription_ru'],
         translationEn: json['translation_en'] ?? '',
         translationFr: json['translation_fr'] ?? '',
         translationDe: json['translation_de'],
@@ -195,6 +210,7 @@ class HadithModel extends Equatable {
         translationUr: json['translation_ur'],
         translationBn: json['translation_bn'],
         translationMs: json['translation_ms'],
+        translationRu: json['translation_ru'],
         referenceEn: json['reference_en'] ?? '',
         referenceFr: json['reference_fr'] ?? '',
         referenceAr: json['reference_ar'] ?? '',
@@ -205,6 +221,7 @@ class HadithModel extends Equatable {
         referenceUr: json['reference_ur'],
         referenceBn: json['reference_bn'],
         referenceMs: json['reference_ms'],
+        referenceRu: json['reference_ru'],
         tafsirEn: json['tafsir_en'] ?? '',
         tafsirFr: json['tafsir_fr'] ?? '',
         tafsirAr: json['tafsir_ar'] ?? '',
@@ -215,6 +232,7 @@ class HadithModel extends Equatable {
         tafsirUr: json['tafsir_ur'],
         tafsirBn: json['tafsir_bn'],
         tafsirMs: json['tafsir_ms'],
+        tafsirRu: json['tafsir_ru'],
         audioUrl: (json['audio_url'] as String?)?.trim().isEmpty ?? true
             ? null
             : json['audio_url'] as String,
@@ -236,6 +254,7 @@ class HadithModel extends Equatable {
         'ur' => titleUr.orLoc(titleEn),
         'bn' => titleBn.orLoc(titleEn),
         'ms' => titleMs.orLoc(titleEn),
+        'ru' => titleRu.orLoc(titleEn),
         _ => titleEn,
       };
 
@@ -252,6 +271,7 @@ class HadithModel extends Equatable {
       'ur' => descriptionUr.orLoc(descriptionEn),
       'bn' => descriptionBn.orLoc(descriptionEn),
       'ms' => descriptionMs.orLoc(descriptionEn),
+      'ru' => descriptionRu.orLoc(descriptionEn),
       _ => descriptionEn,
     };
     if (desc.isNotEmpty) return desc;
@@ -268,6 +288,7 @@ class HadithModel extends Equatable {
         'ur' => transcriptionUr.orLoc(transcriptionEn),
         'bn' => transcriptionBn.orLoc(transcriptionEn),
         'ms' => transcriptionMs.orLoc(transcriptionEn),
+        'ru' => transcriptionRu.orLoc(transcriptionEn),
         _ => transcriptionEn,
       };
 
@@ -280,6 +301,7 @@ class HadithModel extends Equatable {
         'ur' => translationUr.orLoc(translationEn),
         'bn' => translationBn.orLoc(translationEn),
         'ms' => translationMs.orLoc(translationEn),
+        'ru' => translationRu.orLoc(translationEn),
         _ => translationEn,
       };
 
@@ -294,6 +316,7 @@ class HadithModel extends Equatable {
         'ur' => referenceUr.orLoc(referenceEn),
         'bn' => referenceBn.orLoc(referenceEn),
         'ms' => referenceMs.orLoc(referenceEn),
+        'ru' => referenceRu.orLoc(referenceEn),
         _ => referenceEn,
       };
 
@@ -307,6 +330,7 @@ class HadithModel extends Equatable {
         'ur' => tafsirUr.orLoc(tafsirEn),
         'bn' => tafsirBn.orLoc(tafsirEn),
         'ms' => tafsirMs.orLoc(tafsirEn),
+        'ru' => tafsirRu.orLoc(tafsirEn),
         _ => tafsirEn,
       };
 
@@ -323,6 +347,7 @@ class HadithModel extends Equatable {
         titleUr: titleUr,
         titleBn: titleBn,
         titleMs: titleMs,
+        titleRu: titleRu,
         descriptionEn: descriptionEn,
         descriptionFr: descriptionFr,
         descriptionAr: descriptionAr,
@@ -333,6 +358,7 @@ class HadithModel extends Equatable {
         descriptionUr: descriptionUr,
         descriptionBn: descriptionBn,
         descriptionMs: descriptionMs,
+        descriptionRu: descriptionRu,
         arabicText: arabicText,
         transcriptionEn: transcriptionEn,
         transcriptionFr: transcriptionFr,
@@ -343,6 +369,7 @@ class HadithModel extends Equatable {
         transcriptionUr: transcriptionUr,
         transcriptionBn: transcriptionBn,
         transcriptionMs: transcriptionMs,
+        transcriptionRu: transcriptionRu,
         translationEn: translationEn,
         translationFr: translationFr,
         translationDe: translationDe,
@@ -352,6 +379,7 @@ class HadithModel extends Equatable {
         translationUr: translationUr,
         translationBn: translationBn,
         translationMs: translationMs,
+        translationRu: translationRu,
         referenceEn: referenceEn,
         referenceFr: referenceFr,
         referenceAr: referenceAr,
@@ -362,6 +390,7 @@ class HadithModel extends Equatable {
         referenceUr: referenceUr,
         referenceBn: referenceBn,
         referenceMs: referenceMs,
+        referenceRu: referenceRu,
         tafsirEn: tafsirEn,
         tafsirFr: tafsirFr,
         tafsirAr: tafsirAr,
@@ -372,6 +401,7 @@ class HadithModel extends Equatable {
         tafsirUr: tafsirUr,
         tafsirBn: tafsirBn,
         tafsirMs: tafsirMs,
+        tafsirRu: tafsirRu,
         audioUrl: audioUrl,
         ajr: ajr,
         likesCount: likesCount ?? this.likesCount,
@@ -393,6 +423,7 @@ class HadithModel extends Equatable {
         titleUr,
         titleBn,
         titleMs,
+        titleRu,
         descriptionEn,
         descriptionFr,
         descriptionAr,
@@ -403,6 +434,7 @@ class HadithModel extends Equatable {
         descriptionUr,
         descriptionBn,
         descriptionMs,
+        descriptionRu,
         arabicText,
         transcriptionEn,
         transcriptionFr,
@@ -413,6 +445,7 @@ class HadithModel extends Equatable {
         transcriptionUr,
         transcriptionBn,
         transcriptionMs,
+        transcriptionRu,
         translationEn,
         translationFr,
         translationDe,
@@ -422,6 +455,7 @@ class HadithModel extends Equatable {
         translationUr,
         translationBn,
         translationMs,
+        translationRu,
         referenceEn,
         referenceFr,
         referenceAr,
@@ -432,6 +466,7 @@ class HadithModel extends Equatable {
         referenceUr,
         referenceBn,
         referenceMs,
+        referenceRu,
         tafsirEn,
         tafsirFr,
         tafsirAr,
@@ -442,6 +477,7 @@ class HadithModel extends Equatable {
         tafsirUr,
         tafsirBn,
         tafsirMs,
+        tafsirRu,
         audioUrl,
         ajr,
         likesCount,

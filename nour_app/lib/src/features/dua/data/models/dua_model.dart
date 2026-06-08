@@ -23,6 +23,7 @@ class DuaModel extends Equatable {
   final String? titleUr;
   final String? titleBn;
   final String? titleMs;
+  final String? titleRu;
 
   final String arabicText;
 
@@ -35,6 +36,7 @@ class DuaModel extends Equatable {
   final String? transcriptionUr;
   final String? transcriptionBn;
   final String? transcriptionMs;
+  final String? transcriptionRu;
 
   final String translationEn;
   final String translationFr;
@@ -45,6 +47,7 @@ class DuaModel extends Equatable {
   final String? translationUr;
   final String? translationBn;
   final String? translationMs;
+  final String? translationRu;
 
   final String whenEn;
   final String whenFr;
@@ -56,6 +59,7 @@ class DuaModel extends Equatable {
   final String? whenUr;
   final String? whenBn;
   final String? whenMs;
+  final String? whenRu;
 
   final String referenceEn;
   final String referenceFr;
@@ -67,6 +71,7 @@ class DuaModel extends Equatable {
   final String? referenceUr;
   final String? referenceBn;
   final String? referenceMs;
+  final String? referenceRu;
 
   final String tafsirEn;
   final String tafsirFr;
@@ -78,6 +83,7 @@ class DuaModel extends Equatable {
   final String? tafsirUr;
   final String? tafsirBn;
   final String? tafsirMs;
+  final String? tafsirRu;
 
   final String? audioUrl;
   final int ajr;
@@ -97,6 +103,7 @@ class DuaModel extends Equatable {
     this.titleUr,
     this.titleBn,
     this.titleMs,
+    this.titleRu,
     required this.arabicText,
     this.transcriptionEn = '',
     this.transcriptionFr = '',
@@ -107,6 +114,7 @@ class DuaModel extends Equatable {
     this.transcriptionUr,
     this.transcriptionBn,
     this.transcriptionMs,
+    this.transcriptionRu,
     this.translationEn = '',
     this.translationFr = '',
     this.translationDe,
@@ -116,6 +124,7 @@ class DuaModel extends Equatable {
     this.translationUr,
     this.translationBn,
     this.translationMs,
+    this.translationRu,
     this.whenEn = '',
     this.whenFr = '',
     this.whenAr = '',
@@ -126,6 +135,7 @@ class DuaModel extends Equatable {
     this.whenUr,
     this.whenBn,
     this.whenMs,
+    this.whenRu,
     this.referenceEn = '',
     this.referenceFr = '',
     this.referenceAr = '',
@@ -136,6 +146,7 @@ class DuaModel extends Equatable {
     this.referenceUr,
     this.referenceBn,
     this.referenceMs,
+    this.referenceRu,
     this.tafsirEn = '',
     this.tafsirFr = '',
     this.tafsirAr = '',
@@ -146,6 +157,7 @@ class DuaModel extends Equatable {
     this.tafsirUr,
     this.tafsirBn,
     this.tafsirMs,
+    this.tafsirRu,
     this.audioUrl,
     this.ajr = 5,
     this.likesCount = 0,
@@ -165,6 +177,7 @@ class DuaModel extends Equatable {
         titleUr: json['title_ur'],
         titleBn: json['title_bn'],
         titleMs: json['title_ms'],
+        titleRu: json['title_ru'],
         arabicText: json['arabic_text'] ?? '',
         transcriptionEn: json['transcription_en'] ?? '',
         transcriptionFr: json['transcription_fr'] ?? '',
@@ -175,6 +188,7 @@ class DuaModel extends Equatable {
         transcriptionUr: json['transcription_ur'],
         transcriptionBn: json['transcription_bn'],
         transcriptionMs: json['transcription_ms'],
+        transcriptionRu: json['transcription_ru'],
         translationEn: json['translation_en'] ?? '',
         translationFr: json['translation_fr'] ?? '',
         translationDe: json['translation_de'],
@@ -184,6 +198,7 @@ class DuaModel extends Equatable {
         translationUr: json['translation_ur'],
         translationBn: json['translation_bn'],
         translationMs: json['translation_ms'],
+        translationRu: json['translation_ru'],
         whenEn: json['when_en'] ?? '',
         whenFr: json['when_fr'] ?? '',
         whenAr: json['when_ar'] ?? '',
@@ -194,6 +209,7 @@ class DuaModel extends Equatable {
         whenUr: json['when_ur'],
         whenBn: json['when_bn'],
         whenMs: json['when_ms'],
+        whenRu: json['when_ru'],
         referenceEn: json['reference_en'] ?? '',
         referenceFr: json['reference_fr'] ?? '',
         referenceAr: json['reference_ar'] ?? '',
@@ -204,6 +220,7 @@ class DuaModel extends Equatable {
         referenceUr: json['reference_ur'],
         referenceBn: json['reference_bn'],
         referenceMs: json['reference_ms'],
+        referenceRu: json['reference_ru'],
         tafsirEn: json['tafsir_en'] ?? '',
         tafsirFr: json['tafsir_fr'] ?? '',
         tafsirAr: json['tafsir_ar'] ?? '',
@@ -214,6 +231,7 @@ class DuaModel extends Equatable {
         tafsirUr: json['tafsir_ur'],
         tafsirBn: json['tafsir_bn'],
         tafsirMs: json['tafsir_ms'],
+        tafsirRu: json['tafsir_ru'],
         audioUrl: (json['audio_url'] as String?)?.trim().isEmpty ?? true
             ? null
             : json['audio_url'] as String,
@@ -238,6 +256,7 @@ class DuaModel extends Equatable {
       'ur' => titleUr.orLoc(titleEn),
       'bn' => titleBn.orLoc(titleEn),
       'ms' => titleMs.orLoc(titleEn),
+      'ru' => titleRu.orLoc(titleEn),
       _ => titleEn,
     };
     if (t.isNotEmpty) return t;
@@ -264,6 +283,7 @@ class DuaModel extends Equatable {
         'ur' => transcriptionUr.orLoc(transcriptionEn),
         'bn' => transcriptionBn.orLoc(transcriptionEn),
         'ms' => transcriptionMs.orLoc(transcriptionEn),
+        'ru' => transcriptionRu.orLoc(transcriptionEn),
         _ => transcriptionEn,
       };
 
@@ -276,6 +296,7 @@ class DuaModel extends Equatable {
         'ur' => translationUr.orLoc(translationEn),
         'bn' => translationBn.orLoc(translationEn),
         'ms' => translationMs.orLoc(translationEn),
+        'ru' => translationRu.orLoc(translationEn),
         _ => translationEn,
       };
 
@@ -290,6 +311,7 @@ class DuaModel extends Equatable {
         'ur' => whenUr.orLoc(whenEn),
         'bn' => whenBn.orLoc(whenEn),
         'ms' => whenMs.orLoc(whenEn),
+        'ru' => whenRu.orLoc(whenEn),
         _ => whenEn,
       };
 
@@ -304,6 +326,7 @@ class DuaModel extends Equatable {
         'ur' => referenceUr.orLoc(referenceEn),
         'bn' => referenceBn.orLoc(referenceEn),
         'ms' => referenceMs.orLoc(referenceEn),
+        'ru' => referenceRu.orLoc(referenceEn),
         _ => referenceEn,
       };
 
@@ -317,6 +340,7 @@ class DuaModel extends Equatable {
         'ur' => tafsirUr.orLoc(tafsirEn),
         'bn' => tafsirBn.orLoc(tafsirEn),
         'ms' => tafsirMs.orLoc(tafsirEn),
+        'ru' => tafsirRu.orLoc(tafsirEn),
         _ => tafsirEn,
       };
 
@@ -332,6 +356,7 @@ class DuaModel extends Equatable {
         titleUr: titleUr,
         titleBn: titleBn,
         titleMs: titleMs,
+        titleRu: titleRu,
         arabicText: arabicText,
         transcriptionEn: transcriptionEn,
         transcriptionFr: transcriptionFr,
@@ -342,6 +367,7 @@ class DuaModel extends Equatable {
         transcriptionUr: transcriptionUr,
         transcriptionBn: transcriptionBn,
         transcriptionMs: transcriptionMs,
+        transcriptionRu: transcriptionRu,
         translationEn: translationEn,
         translationFr: translationFr,
         translationDe: translationDe,
@@ -351,6 +377,7 @@ class DuaModel extends Equatable {
         translationUr: translationUr,
         translationBn: translationBn,
         translationMs: translationMs,
+        translationRu: translationRu,
         whenEn: whenEn,
         whenFr: whenFr,
         whenAr: whenAr,
@@ -361,6 +388,7 @@ class DuaModel extends Equatable {
         whenUr: whenUr,
         whenBn: whenBn,
         whenMs: whenMs,
+        whenRu: whenRu,
         referenceEn: referenceEn,
         referenceFr: referenceFr,
         referenceAr: referenceAr,
@@ -371,6 +399,7 @@ class DuaModel extends Equatable {
         referenceUr: referenceUr,
         referenceBn: referenceBn,
         referenceMs: referenceMs,
+        referenceRu: referenceRu,
         tafsirEn: tafsirEn,
         tafsirFr: tafsirFr,
         tafsirAr: tafsirAr,
@@ -381,6 +410,7 @@ class DuaModel extends Equatable {
         tafsirUr: tafsirUr,
         tafsirBn: tafsirBn,
         tafsirMs: tafsirMs,
+        tafsirRu: tafsirRu,
         audioUrl: audioUrl,
         ajr: ajr,
         likesCount: likesCount ?? this.likesCount,
@@ -401,6 +431,7 @@ class DuaModel extends Equatable {
         titleUr,
         titleBn,
         titleMs,
+        titleRu,
         arabicText,
         transcriptionEn,
         transcriptionFr,
@@ -411,6 +442,7 @@ class DuaModel extends Equatable {
         transcriptionUr,
         transcriptionBn,
         transcriptionMs,
+        transcriptionRu,
         translationEn,
         translationFr,
         translationDe,
@@ -420,6 +452,7 @@ class DuaModel extends Equatable {
         translationUr,
         translationBn,
         translationMs,
+        translationRu,
         whenEn,
         whenFr,
         whenAr,
@@ -430,6 +463,7 @@ class DuaModel extends Equatable {
         whenUr,
         whenBn,
         whenMs,
+        whenRu,
         referenceEn,
         referenceFr,
         referenceAr,
@@ -440,6 +474,7 @@ class DuaModel extends Equatable {
         referenceUr,
         referenceBn,
         referenceMs,
+        referenceRu,
         tafsirEn,
         tafsirFr,
         tafsirAr,
@@ -450,6 +485,7 @@ class DuaModel extends Equatable {
         tafsirUr,
         tafsirBn,
         tafsirMs,
+        tafsirRu,
         audioUrl,
         ajr,
         likesCount,
