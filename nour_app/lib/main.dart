@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -49,7 +50,7 @@ void main() {
       );
 
 			// Init Firebase
-  		//await Firebase.initializeApp();
+  		await Firebase.initializeApp();
 
   		//FlutterNativeSplash.remove();
       //FlutterError.onError = (errorDetails) {
