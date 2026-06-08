@@ -122,14 +122,41 @@ class QuranTool {
 
   // ── Language mapping ──────────────────────────────────────────────────────
 
-  /// Maps an app language code (`en`, `fr`, `ar`) to a bundled translation
-  /// edition. The `quran` package ships no Arabic translation — Arabic is the
-  /// source text — so Arabic falls back to the English Saheeh meaning (used by
-  /// the tafsir / meaning views; the Arabic verse itself is always shown as-is).
+  /// Maps an app language code to a bundled translation edition shipped with the
+  /// `quran` package. Codes with no matching edition (e.g. `ar` — Arabic is the
+  /// source text, not a translation; `de`, `ms`) fall back to English Saheeh.
+  /// Normalises region suffixes (`pt_BR` → `pt`) and lower-cases before matching.
   static q.Translation translationForLanguage(String langCode) {
-    switch (langCode) {
+    final code = langCode.toLowerCase().split(RegExp('[-_]')).first;
+    switch (code) {
       case 'fr':
         return q.Translation.frHamidullah;
+      case 'tr':
+        return q.Translation.trSaheeh;
+      case 'ml':
+        return q.Translation.mlAbdulHameed;
+      case 'fa':
+        return q.Translation.faHusseinDari;
+      case 'pt':
+        return q.Translation.portuguese;
+      case 'it':
+        return q.Translation.itPiccardo;
+      case 'nl':
+        return q.Translation.nlSiregar;
+      case 'ru':
+        return q.Translation.ruKuliev;
+      case 'bn':
+        return q.Translation.bengali;
+      case 'zh':
+        return q.Translation.chinese;
+      case 'sv':
+        return q.Translation.swedish;
+      case 'es':
+        return q.Translation.spanish;
+      case 'ur':
+        return q.Translation.urdu;
+      case 'id':
+        return q.Translation.indonesian;
       case 'en':
       case 'ar':
       default:
