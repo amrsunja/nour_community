@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:just_audio_background/just_audio_background.dart';
@@ -60,16 +62,18 @@ void main() {
       await FirebaseAnalytics.instance
           .setAnalyticsCollectionEnabled(AppConfig.shared.isProd);
 
-  		//FlutterNativeSplash.remove();
-      //FlutterError.onError = (errorDetails) {
-        //FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
-      //};
+      // Crashlytics: only collect in prod (avoids noise from debug builds).
+      await FirebaseCrashlytics.instance
+          .setCrashlyticsCollectionEnabled(AppConfig.shared.isProd);
 
-      // Pass all uncaught asynchronous errors that aren't handled by the Flutter framework to Crashlytics
-      //PlatformDispatcher.instance.onError = (error, stack) {
-        //FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
-        //return true;
-      //};
+      // Route Flutter framework errors to Crashlytics.
+      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+
+      // Route uncaught async/platform errors to Crashlytics.
+      PlatformDispatcher.instance.onError = (error, stack) {
+        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        return true;
+      };
 
 			// Lock screen rotation
 			ScreenRotation.toPortrait();
@@ -78,6 +82,7 @@ void main() {
 
 		}, (error, stack) async {
       talker.error(error.toString(), error, stack);
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
 		}
 	);
 }
