@@ -12,6 +12,13 @@ class SurahInfo {
   final String name;
   final String nameArabic;
   final String nameEnglish;
+
+  /// Localized surah names shipped by the `quran` package. Only these four
+  /// scripts are bundled; every other locale falls back to [nameEnglish].
+  final String nameTurkish;
+  final String nameFrench;
+  final String nameRussian;
+
   final int versesCount;
   final RevelationPlace place;
 
@@ -20,6 +27,9 @@ class SurahInfo {
     required this.name,
     required this.nameArabic,
     required this.nameEnglish,
+    required this.nameTurkish,
+    required this.nameFrench,
+    required this.nameRussian,
     required this.versesCount,
     required this.place,
   });
@@ -72,6 +82,9 @@ class QuranTool {
       name: q.getSurahName(surahNumber),
       nameArabic: q.getSurahNameArabic(surahNumber),
       nameEnglish: q.getSurahNameEnglish(surahNumber),
+      nameTurkish: q.getSurahNameTurkish(surahNumber),
+      nameFrench: q.getSurahNameFrench(surahNumber),
+      nameRussian: q.getSurahNameRussian(surahNumber),
       versesCount: q.getVerseCount(surahNumber),
       place: q.getPlaceOfRevelation(surahNumber).toLowerCase() == 'makkah'
           ? RevelationPlace.makkah
@@ -164,10 +177,48 @@ class QuranTool {
     }
   }
 
-  /// Surah name to display for [langCode]: Arabic script for `ar`, otherwise
-  /// the English name. (The package ships no localized French surah name.)
-  static String localizedSurahName(SurahInfo surah, String langCode) =>
-      langCode == 'ar' ? surah.nameArabic : surah.nameEnglish;
+  /// Surah name to display for [langCode]. The `quran` package ships localized
+  /// names only for Arabic, Turkish, French and Russian; every other locale
+  /// falls back to the (transliterated) English name.
+  static String localizedSurahName(SurahInfo surah, String langCode) {
+    switch (langCode.toLowerCase().split(RegExp('[-_]')).first) {
+      case 'ar':
+        return surah.nameArabic;
+      case 'tr':
+        return surah.nameTurkish;
+      case 'fr':
+        return surah.nameFrench;
+      case 'ru':
+        return surah.nameRussian;
+      default:
+        return surah.nameEnglish;
+    }
+  }
+
+  // ── Edition mapping (remote alquran.cloud editions) ─────────────────────────
+
+  /// alquran.cloud tafsir edition id for [langCode], or `null` when no tafsir
+  /// is published for that language (caller then shows the meaning fallback).
+  /// alquran.cloud's text tafsir catalogue is limited, hence the short map.
+  static String? tafsirEditionForLanguage(String langCode) {
+    switch (langCode.toLowerCase().split(RegExp('[-_]')).first) {
+      case 'ar':
+        return 'ar.muyassar';
+      case 'en':
+        return 'en.maududi';
+      default:
+        return null;
+    }
+  }
+
+  /// alquran.cloud transliteration edition for [langCode]. Only a Latin
+  /// transliteration is published (it is script-, not language-, specific), so
+  /// every non-Arabic locale shares `en.transliteration`. Arabic needs none.
+  static String? transliterationEditionForLanguage(String langCode) {
+    final code = langCode.toLowerCase().split(RegExp('[-_]')).first;
+    if (code == 'ar') return null;
+    return '$code.transliteration';
+  }
 
   static List<VerseInfo> getSurahVerses(int surahNumber) {
     _assertSurah(surahNumber);

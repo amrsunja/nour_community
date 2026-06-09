@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Не удалось записать вашу ежедневную награду за аят.",
 	"error_api_quran_like_ayah_failed": "Не удалось отметить этот аят.",
 	"error_api_quran_transliteration_load_failed": "Не удалось загрузить транслитерацию.",
+	"error_api_quran_tafsir_load_failed": "Не удалось загрузить тафсир.",
 	"error_api_quran_unlike_ayah_failed": "Не удалось убрать отметку с этого аята."
 }

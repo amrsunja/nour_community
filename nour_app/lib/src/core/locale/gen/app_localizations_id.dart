@@ -1543,6 +1543,9 @@ class AppLocalizationsId extends AppLocalizations {
       'Tidak dapat memuat transliterasi.';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'Tidak dapat memuat tafsir.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Tidak dapat menghapus suka dari ayat ini.';
 }

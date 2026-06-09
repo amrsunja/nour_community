@@ -2858,6 +2858,12 @@ abstract class AppLocalizations {
   /// **'Couldn\'t load the transliteration.'**
   String get error_api_quran_transliteration_load_failed;
 
+  /// No description provided for @error_api_quran_tafsir_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the tafsir.'**
+  String get error_api_quran_tafsir_load_failed;
+
   /// No description provided for @error_api_quran_unlike_ayah_failed.
   ///
   /// In en, this message translates to:

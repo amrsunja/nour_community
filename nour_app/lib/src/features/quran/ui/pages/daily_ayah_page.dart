@@ -45,14 +45,23 @@ class DailyAyahPage extends HookConsumerWidget {
 
     final showTranscription = useState(false);
 
+    final transliterationEdition =
+        QuranTool.transliterationEditionForLanguage(langCode);
+    final tafsirEdition = QuranTool.tafsirEditionForLanguage(langCode);
+
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         presenter.loadDailyAyahStatus();
         presenter.loadSurahLikes(ayah.surahNumber);
         presenter.loadSurahTransliteration(ayah.surahNumber, langCode: langCode);
+        presenter.loadAyahTafsir(
+          ayah.surahNumber,
+          ayah.ayahNumber,
+          langCode: langCode,
+        );
       });
       return null;
-    }, [ayah.surahNumber, langCode]);
+    }, [ayah.surahNumber, ayah.ayahNumber, langCode]);
 
     final surahName = QuranTool.localizedSurahName(surah, langCode);
     final surahLabel = '${surah.number}. $surahName';
@@ -62,8 +71,13 @@ class DailyAyahPage extends HookConsumerWidget {
       ayah.ayahNumber,
       reciter: reciter,
     );
-    final transliteration =
-        state.transliterationOf(ayah.surahNumber, ayah.ayahNumber);
+    final transliteration = state.transliterationOf(
+      ayah.surahNumber,
+      ayah.ayahNumber,
+      transliterationEdition,
+    );
+    final tafsir =
+        state.tafsirOf(ayah.surahNumber, ayah.ayahNumber, tafsirEdition);
 
     Future<void> share() => ShareServices.shareAyah(
           surahName: surahName,
@@ -112,6 +126,7 @@ class DailyAyahPage extends HookConsumerWidget {
                   showTranscription.value = !showTranscription.value,
               onShare: share,
               translation: ayah.translation,
+              tafsirText: tafsir,
               reference: reference,
             ),
             const UISpace.vert(24),

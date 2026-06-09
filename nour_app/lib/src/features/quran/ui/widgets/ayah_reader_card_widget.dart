@@ -26,6 +26,7 @@ class AyahReaderCardWidget extends StatelessWidget {
     required this.onShare,
     required this.translation,
     required this.reference,
+    this.tafsirText,
     this.showTafsir = true,
     this.onListen,
   });
@@ -50,6 +51,10 @@ class AyahReaderCardWidget extends StatelessWidget {
   /// sheet that this card opens itself.
   final String translation;
   final String reference;
+
+  /// Real tafsir text for this ayah in the app locale, or `null` when no tafsir
+  /// edition exists for the locale (the sheet then shows the meaning fallback).
+  final String? tafsirText;
 
   /// Whether the tafsir action (and its sheet) is available.
   final bool showTafsir;
@@ -169,11 +174,15 @@ class AyahReaderCardWidget extends StatelessWidget {
     );
   }
 
-  /// Bottom sheet showing the verse meaning + a localized note. Built to slot a
-  /// real tafsir data source in later (content already follows the app locale).
+  /// Bottom sheet showing the ayah's tafsir. When a real tafsir for the app
+  /// locale is available ([tafsirText]) it is shown directly; otherwise it
+  /// degrades to a localized note + the verse meaning.
   void _openTafsir(BuildContext context) {
     final l10n = AppLocale.of(context);
     final typo = UITheme.of(context).typo;
+
+    final hasTafsir = tafsirText != null && tafsirText!.trim().isNotEmpty;
+    final bodyText = hasTafsir ? tafsirText! : translation;
 
     showModalBottomSheet<void>(
       context: context,
@@ -216,17 +225,20 @@ class AyahReaderCardWidget extends StatelessWidget {
                       .copyWith(color: UIColorsToken.textYellow),
                 ),
                 const UISpace.vert(16),
-                Text(
-                  l10n.quran_tafsir_note,
-                  style: typo.inter.bodyMedium.copyWith(
-                    color: UIColorsToken.textParagraph,
+                // Only show the "coming soon" note when falling back to meaning.
+                if (!hasTafsir) ...[
+                  Text(
+                    l10n.quran_tafsir_note,
+                    style: typo.inter.bodyMedium.copyWith(
+                      color: UIColorsToken.textParagraph,
+                    ),
                   ),
-                ),
-                const UISpace.vert(12),
+                  const UISpace.vert(12),
+                ],
                 Flexible(
                   child: SingleChildScrollView(
                     child: Text(
-                      translation,
+                      bodyText,
                       style: typo.inter.body.copyWith(
                         color: UIColorsToken.white,
                         height: 1.6,

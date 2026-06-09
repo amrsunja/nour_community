@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Günlük ayet ödülünüz kaydedilemedi.",
 	"error_api_quran_like_ayah_failed": "Bu ayet beğenilemedi.",
 	"error_api_quran_transliteration_load_failed": "Okunuş yüklenemedi.",
+	"error_api_quran_tafsir_load_failed": "Tefsir yüklenemedi.",
 	"error_api_quran_unlike_ayah_failed": "Bu ayetin beğenisi kaldırılamadı."
 }

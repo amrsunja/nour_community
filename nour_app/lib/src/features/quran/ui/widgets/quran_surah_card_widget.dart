@@ -26,6 +26,7 @@ class QuranSurahCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
     final l10n = AppLocale.of(context);
+    final langCode = Localizations.localeOf(context).languageCode;
     final place = surah.isMakki ? l10n.quran_meccan : l10n.quran_medinan;
 
     return UIGradientCard(
@@ -41,7 +42,7 @@ class QuranSurahCardWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  surah.nameEnglish,
+                  QuranTool.localizedSurahName(surah, langCode),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: typo.inter.title.copyWith(color: UIColorsToken.white),

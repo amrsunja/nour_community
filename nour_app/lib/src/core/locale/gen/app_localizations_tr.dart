@@ -1535,6 +1535,9 @@ class AppLocalizationsTr extends AppLocalizations {
       'Okunuş yüklenemedi.';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'Tefsir yüklenemedi.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Bu ayetin beğenisi kaldırılamadı.';
 }

@@ -1517,6 +1517,9 @@ class AppLocalizationsAr extends AppLocalizations {
       'تعذّر تحميل النقل الصوتي.';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'تعذّر تحميل التفسير.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'تعذّر إزالة الإعجاب من هذه الآية.';
 }

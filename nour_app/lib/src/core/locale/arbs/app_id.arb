@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Tidak dapat mencatat pahala ayat harian Anda.",
 	"error_api_quran_like_ayah_failed": "Tidak dapat menyukai ayat ini.",
 	"error_api_quran_transliteration_load_failed": "Tidak dapat memuat transliterasi.",
+	"error_api_quran_tafsir_load_failed": "Tidak dapat memuat tafsir.",
 	"error_api_quran_unlike_ayah_failed": "Tidak dapat menghapus suka dari ayat ini."
 }

@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Kan je dagelijkse ayah-beloning niet registreren.",
 	"error_api_quran_like_ayah_failed": "Kan deze ayah niet liken.",
 	"error_api_quran_transliteration_load_failed": "Kan de transliteratie niet laden.",
+	"error_api_quran_tafsir_load_failed": "Kan de tafsir niet laden.",
 	"error_api_quran_unlike_ayah_failed": "Kan de like van deze ayah niet verwijderen."
 }

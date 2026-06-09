@@ -85,53 +85,79 @@ class QuranPresenter extends Presenter<QuranState> {
   }) =>
       repo.audioUrl(surahNumber, ayahNumber, reciter: reciter);
 
-  /// Maps the app language to a transliteration edition. Only a Latin
-  /// (English) transliteration is published, which serves both English and
-  /// French readers, so we default to `en`. Arabic is handled by the caller.
-  static const _transliterationEditions = <String, String>{
-    'en': 'en.transliteration',
-    'fr': 'en.transliteration',
-  };
-
-  /// Lazily fetches the transliteration for [surahNumber] once and caches it.
-  /// The bundled `quran` package has no transliteration, so this pulls a
-  /// transliteration edition (chosen from [langCode]) from the public Quran
-  /// API. Arabic readers don't need a Latin transliteration, so it's skipped
-  /// for `ar`. Failures are swallowed — the reader falls back to a label.
+  /// Lazily fetches the transliteration for [surahNumber] once per edition and
+  /// caches it under `"surah:edition"`. The bundled `quran` package has no
+  /// transliteration, so this pulls the locale's edition (resolved by
+  /// [QuranTool.transliterationEditionForLanguage]) from the public Quran API.
+  /// Arabic readers need none (edition `null`). Failures are swallowed — the
+  /// reader falls back to a label.
   Future<void> loadSurahTransliteration(
     int surahNumber, {
     required String langCode,
   }) async {
-    // Arabic: the verse is already shown in Arabic — no transliteration needed.
-    if (langCode == 'ar') return;
-    if (state.transliterationsBySurah.containsKey(surahNumber)) return;
-    if (state.isLoadingTransliteration(surahNumber)) return;
+    final edition = QuranTool.transliterationEditionForLanguage(langCode);
+    if (edition == null) return; // Arabic — verse already in Arabic.
+
+    final key = '$surahNumber:$edition';
+    if (state.transliterationsByKey.containsKey(key)) return;
+    if (state.isLoadingTransliteration(surahNumber, edition)) return;
 
     state = state.copyWith(
-      loadingTransliterationSurahs: {
-        ...state.loadingTransliterationSurahs,
-        surahNumber,
-      },
+      loadingTransliterationKeys: {...state.loadingTransliterationKeys, key},
     );
 
-    final edition = _transliterationEditions[langCode] ?? 'en.transliteration';
     final res = await repo.getSurahTransliteration(surahNumber, edition: edition);
 
     res.when(
       (map) {
         state = state.copyWith(
-          transliterationsBySurah: {
-            ...state.transliterationsBySurah,
-            surahNumber: map,
-          },
+          transliterationsByKey: {...state.transliterationsByKey, key: map},
         );
       },
       (_) {/* silent: graceful fallback in the UI */},
     );
 
     state = state.copyWith(
-      loadingTransliterationSurahs: {...state.loadingTransliterationSurahs}
-        ..remove(surahNumber),
+      loadingTransliterationKeys: {...state.loadingTransliterationKeys}
+        ..remove(key),
+    );
+  }
+
+  /// Lazily fetches the tafsir for a single ayah in the locale's edition
+  /// (resolved by [QuranTool.tafsirEditionForLanguage]) and caches it under
+  /// `"surah:ayah:edition"`. No-ops when no tafsir edition exists for the
+  /// locale — the UI then shows the meaning fallback. Failures are swallowed.
+  Future<void> loadAyahTafsir(
+    int surahNumber,
+    int ayahNumber, {
+    required String langCode,
+  }) async {
+    final edition = QuranTool.tafsirEditionForLanguage(langCode);
+    if (edition == null) return; // No tafsir published for this locale.
+
+    final key = '$surahNumber:$ayahNumber:$edition';
+    if (state.tafsirByKey.containsKey(key)) return;
+    if (state.isLoadingTafsir(surahNumber, ayahNumber, edition)) return;
+
+    state = state.copyWith(
+      loadingTafsirKeys: {...state.loadingTafsirKeys, key},
+    );
+
+    final res = await repo.getAyahTafsir(surahNumber, ayahNumber, edition: edition);
+
+    res.when(
+      (text) {
+        if (text != null && text.isNotEmpty) {
+          state = state.copyWith(
+            tafsirByKey: {...state.tafsirByKey, key: text},
+          );
+        }
+      },
+      (_) {/* silent: graceful fallback in the UI */},
+    );
+
+    state = state.copyWith(
+      loadingTafsirKeys: {...state.loadingTafsirKeys}..remove(key),
     );
   }
 

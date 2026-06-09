@@ -1535,6 +1535,9 @@ class AppLocalizationsNl extends AppLocalizations {
       'Kan de transliteratie niet laden.';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'Kan de tafsir niet laden.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Kan de like van deze ayah niet verwijderen.';
 }

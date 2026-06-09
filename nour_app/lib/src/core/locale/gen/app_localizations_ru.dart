@@ -1543,6 +1543,10 @@ class AppLocalizationsRu extends AppLocalizations {
       'Не удалось загрузить транслитерацию.';
 
   @override
+  String get error_api_quran_tafsir_load_failed =>
+      'Не удалось загрузить тафсир.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Не удалось убрать отметку с этого аята.';
 }

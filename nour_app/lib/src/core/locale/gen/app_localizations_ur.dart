@@ -1537,6 +1537,9 @@ class AppLocalizationsUr extends AppLocalizations {
       'رومن متن لوڈ نہیں ہو سکا۔';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'تفسیر لوڈ نہیں ہو سکی۔';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'اس آیت سے پسند ہٹائی نہیں جا سکی۔';
 }

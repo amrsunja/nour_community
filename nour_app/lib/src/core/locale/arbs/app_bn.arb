@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "আপনার দৈনিক আয়াতের সওয়াব রেকর্ড করা যায়নি।",
 	"error_api_quran_like_ayah_failed": "এই আয়াতটি পছন্দ করা যায়নি।",
 	"error_api_quran_transliteration_load_failed": "প্রতিবর্ণীকরণ লোড করা যায়নি।",
+	"error_api_quran_tafsir_load_failed": "তাফসির লোড করা যায়নি।",
 	"error_api_quran_unlike_ayah_failed": "এই আয়াত থেকে পছন্দ সরানো যায়নি।"
 }

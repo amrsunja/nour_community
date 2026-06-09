@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Impossible d’enregistrer votre récompense quotidienne de verset.",
 	"error_api_quran_like_ayah_failed": "Impossible d’aimer ce verset.",
 	"error_api_quran_transliteration_load_failed": "Impossible de charger la translittération.",
+	"error_api_quran_tafsir_load_failed": "Impossible de charger le tafsir.",
 	"error_api_quran_unlike_ayah_failed": "Impossible de retirer le j’aime de ce verset."
 }

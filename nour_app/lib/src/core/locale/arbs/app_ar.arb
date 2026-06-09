@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "تعذّر تسجيل أجرك اليومي للآية.",
 	"error_api_quran_like_ayah_failed": "تعذّر الإعجاب بهذه الآية.",
 	"error_api_quran_transliteration_load_failed": "تعذّر تحميل النقل الصوتي.",
+	"error_api_quran_tafsir_load_failed": "تعذّر تحميل التفسير.",
 	"error_api_quran_unlike_ayah_failed": "تعذّر إزالة الإعجاب من هذه الآية."
 }

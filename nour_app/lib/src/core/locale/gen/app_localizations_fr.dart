@@ -1552,6 +1552,10 @@ class AppLocalizationsFr extends AppLocalizations {
       'Impossible de charger la translittération.';
 
   @override
+  String get error_api_quran_tafsir_load_failed =>
+      'Impossible de charger le tafsir.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Impossible de retirer le j’aime de ce verset.';
 }

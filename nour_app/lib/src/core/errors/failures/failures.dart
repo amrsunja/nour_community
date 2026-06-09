@@ -188,6 +188,8 @@ class ServerFailure extends Failure {
         return l.error_api_quran_like_ayah_failed;
       case ApiErrorKey.quranTransliterationLoadFailed:
         return l.error_api_quran_transliteration_load_failed;
+      case ApiErrorKey.quranTafsirLoadFailed:
+        return l.error_api_quran_tafsir_load_failed;
       case ApiErrorKey.quranUnlikeAyahFailed:
         return l.error_api_quran_unlike_ayah_failed;
     }

@@ -1554,6 +1554,10 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die Transliteration konnte nicht geladen werden.';
 
   @override
+  String get error_api_quran_tafsir_load_failed =>
+      'Der Tafsir konnte nicht geladen werden.';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'Das Like für diesen Vers konnte nicht entfernt werden.';
 }

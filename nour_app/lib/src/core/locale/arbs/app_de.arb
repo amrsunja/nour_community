@@ -545,5 +545,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Deine tägliche Vers-Belohnung konnte nicht erfasst werden.",
 	"error_api_quran_like_ayah_failed": "Dieser Vers konnte nicht geliked werden.",
 	"error_api_quran_transliteration_load_failed": "Die Transliteration konnte nicht geladen werden.",
+	"error_api_quran_tafsir_load_failed": "Der Tafsir konnte nicht geladen werden.",
 	"error_api_quran_unlike_ayah_failed": "Das Like für diesen Vers konnte nicht entfernt werden."
 }

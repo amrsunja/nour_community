@@ -593,5 +593,6 @@
 	"error_api_quran_ayah_ajr_award_failed": "Couldn't record your daily ayah reward.",
 	"error_api_quran_like_ayah_failed": "Couldn't like this ayah.",
 	"error_api_quran_transliteration_load_failed": "Couldn't load the transliteration.",
+	"error_api_quran_tafsir_load_failed": "Couldn't load the tafsir.",
 	"error_api_quran_unlike_ayah_failed": "Couldn't remove the like from this ayah."
 }

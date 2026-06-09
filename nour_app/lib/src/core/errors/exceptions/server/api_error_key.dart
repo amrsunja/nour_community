@@ -92,5 +92,6 @@ enum ApiErrorKey {
   quranAyahAjrAwardFailed,
   quranLikeAyahFailed,
   quranTransliterationLoadFailed,
+  quranTafsirLoadFailed,
   quranUnlikeAyahFailed,
 }

@@ -29,11 +29,20 @@ class QuranState extends Equatable {
   /// Surah numbers whose like data is currently loading.
   final Set<int> loadingLikesSurahs;
 
-  /// Latin transliteration per surah (`{surah: {ayah: text}}`), lazily fetched.
-  final Map<int, Map<int, String>> transliterationsBySurah;
+  /// Transliteration per surah, keyed by `"surah:edition"` so a locale change
+  /// (different edition) fetches its own copy instead of reusing a stale one.
+  /// Value is `{ayah: text}`.
+  final Map<String, Map<int, String>> transliterationsByKey;
 
-  /// Surah numbers whose transliteration is currently loading.
-  final Set<int> loadingTransliterationSurahs;
+  /// `"surah:edition"` keys whose transliteration is currently loading.
+  final Set<String> loadingTransliterationKeys;
+
+  /// Tafsir per ayah, keyed by `"surah:ayah:edition"`. Lazily fetched; absent
+  /// when no tafsir is published for the locale.
+  final Map<String, String> tafsirByKey;
+
+  /// `"surah:ayah:edition"` keys whose tafsir is currently loading.
+  final Set<String> loadingTafsirKeys;
 
   // ── Daily Ayah ───────────────────────────────────────────────────────────
 
@@ -57,8 +66,10 @@ class QuranState extends Equatable {
     this.likedAyahsBySurah = const {},
     this.likeCountsBySurah = const {},
     this.loadingLikesSurahs = const {},
-    this.transliterationsBySurah = const {},
-    this.loadingTransliterationSurahs = const {},
+    this.transliterationsByKey = const {},
+    this.loadingTransliterationKeys = const {},
+    this.tafsirByKey = const {},
+    this.loadingTafsirKeys = const {},
     this.dailyAyahEarnableAjr = 5,
     this.dailyAyahTotalAjr = 0,
     this.dailyAyahDoneToday = false,
@@ -76,12 +87,27 @@ class QuranState extends Equatable {
   bool isLoadingLikes(int surahNumber) =>
       loadingLikesSurahs.contains(surahNumber);
 
-  /// Transliteration for a single ayah, or `null` if not loaded / unavailable.
-  String? transliterationOf(int surahNumber, int ayahNumber) =>
-      transliterationsBySurah[surahNumber]?[ayahNumber];
+  /// Transliteration for a single ayah in [edition], or `null` if not loaded /
+  /// unavailable (e.g. Arabic locale, where [edition] is `null`).
+  String? transliterationOf(int surahNumber, int ayahNumber, String? edition) {
+    if (edition == null) return null;
+    return transliterationsByKey['$surahNumber:$edition']?[ayahNumber];
+  }
 
-  bool isLoadingTransliteration(int surahNumber) =>
-      loadingTransliterationSurahs.contains(surahNumber);
+  bool isLoadingTransliteration(int surahNumber, String? edition) =>
+      edition != null &&
+      loadingTransliterationKeys.contains('$surahNumber:$edition');
+
+  /// Tafsir for a single ayah in [edition], or `null` if not loaded / no tafsir
+  /// exists for the locale (edition `null`).
+  String? tafsirOf(int surahNumber, int ayahNumber, String? edition) {
+    if (edition == null) return null;
+    return tafsirByKey['$surahNumber:$ayahNumber:$edition'];
+  }
+
+  bool isLoadingTafsir(int surahNumber, int ayahNumber, String? edition) =>
+      edition != null &&
+      loadingTafsirKeys.contains('$surahNumber:$ayahNumber:$edition');
 
   QuranState copyWith({
     bool? isLoading,
@@ -91,8 +117,10 @@ class QuranState extends Equatable {
     Map<int, Set<int>>? likedAyahsBySurah,
     Map<int, Map<int, int>>? likeCountsBySurah,
     Set<int>? loadingLikesSurahs,
-    Map<int, Map<int, String>>? transliterationsBySurah,
-    Set<int>? loadingTransliterationSurahs,
+    Map<String, Map<int, String>>? transliterationsByKey,
+    Set<String>? loadingTransliterationKeys,
+    Map<String, String>? tafsirByKey,
+    Set<String>? loadingTafsirKeys,
     int? dailyAyahEarnableAjr,
     int? dailyAyahTotalAjr,
     bool? dailyAyahDoneToday,
@@ -106,10 +134,12 @@ class QuranState extends Equatable {
         likedAyahsBySurah: likedAyahsBySurah ?? this.likedAyahsBySurah,
         likeCountsBySurah: likeCountsBySurah ?? this.likeCountsBySurah,
         loadingLikesSurahs: loadingLikesSurahs ?? this.loadingLikesSurahs,
-        transliterationsBySurah:
-            transliterationsBySurah ?? this.transliterationsBySurah,
-        loadingTransliterationSurahs:
-            loadingTransliterationSurahs ?? this.loadingTransliterationSurahs,
+        transliterationsByKey:
+            transliterationsByKey ?? this.transliterationsByKey,
+        loadingTransliterationKeys:
+            loadingTransliterationKeys ?? this.loadingTransliterationKeys,
+        tafsirByKey: tafsirByKey ?? this.tafsirByKey,
+        loadingTafsirKeys: loadingTafsirKeys ?? this.loadingTafsirKeys,
         dailyAyahEarnableAjr: dailyAyahEarnableAjr ?? this.dailyAyahEarnableAjr,
         dailyAyahTotalAjr: dailyAyahTotalAjr ?? this.dailyAyahTotalAjr,
         dailyAyahDoneToday: dailyAyahDoneToday ?? this.dailyAyahDoneToday,
@@ -125,8 +155,10 @@ class QuranState extends Equatable {
         likedAyahsBySurah,
         likeCountsBySurah,
         loadingLikesSurahs,
-        transliterationsBySurah,
-        loadingTransliterationSurahs,
+        transliterationsByKey,
+        loadingTransliterationKeys,
+        tafsirByKey,
+        loadingTafsirKeys,
         dailyAyahEarnableAjr,
         dailyAyahTotalAjr,
         dailyAyahDoneToday,

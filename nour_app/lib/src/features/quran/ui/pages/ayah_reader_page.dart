@@ -60,6 +60,10 @@ class AyahReaderPage extends HookConsumerWidget {
 
     final showTranscription = useState(false);
 
+    final transliterationEdition =
+        QuranTool.transliterationEditionForLanguage(langCode);
+    final tafsirEdition = QuranTool.tafsirEditionForLanguage(langCode);
+
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         presenter.loadSurahLikes(surahNumber);
@@ -67,6 +71,14 @@ class AyahReaderPage extends HookConsumerWidget {
       });
       return null;
     }, [surahNumber, langCode]);
+
+    // Tafsir is per-ayah — (re)load whenever the ayah or locale changes.
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        presenter.loadAyahTafsir(surahNumber, current, langCode: langCode);
+      });
+      return null;
+    }, [surahNumber, current, langCode]);
 
     Future<void> save() async {
       if (!recordProgress) return;
@@ -92,7 +104,11 @@ class AyahReaderPage extends HookConsumerWidget {
         presenter.ayahAudioUrl(surahNumber, current, reciter: reciter);
 
     // Transliteration (lazily fetched into state; null until loaded / on error).
-    final transliteration = state.transliterationOf(surahNumber, current);
+    final transliteration =
+        state.transliterationOf(surahNumber, current, transliterationEdition);
+
+    // Real tafsir for this ayah/locale; null when none exists → UI falls back.
+    final tafsir = state.tafsirOf(surahNumber, current, tafsirEdition);
 
     Future<void> share() => ShareServices.shareAyah(
           surahName: surahName,
@@ -133,6 +149,7 @@ class AyahReaderPage extends HookConsumerWidget {
                 onToggleTranscription: () => showTranscription.value = !showTranscription.value,
                 onShare: share,
                 translation: ayah.translation,
+                tafsirText: tafsir,
                 reference: reference,
               ),
               const UISpace.vert(24),

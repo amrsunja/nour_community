@@ -105,6 +105,20 @@ class QuranRepo {
     );
   }
 
+  Future<SuccessOrError<String?>> getAyahTafsir(
+    int surahNumber,
+    int ayahNumber, {
+    required String edition,
+  }) async {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.getAyahTafsir(
+        surahNumber,
+        ayahNumber,
+        edition: edition,
+      ),
+    );
+  }
+
   Future<SuccessOrError<void>> likeAyah({
     required int surahNumber,
     required int ayahNumber,

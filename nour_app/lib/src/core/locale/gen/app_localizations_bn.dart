@@ -1535,6 +1535,9 @@ class AppLocalizationsBn extends AppLocalizations {
       'প্রতিবর্ণীকরণ লোড করা যায়নি।';
 
   @override
+  String get error_api_quran_tafsir_load_failed => 'তাফসির লোড করা যায়নি।';
+
+  @override
   String get error_api_quran_unlike_ayah_failed =>
       'এই আয়াত থেকে পছন্দ সরানো যায়নি।';
 }

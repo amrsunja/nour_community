@@ -22,6 +22,7 @@ class QuranContinueCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
     final l10n = AppLocale.of(context);
+    final langCode = Localizations.localeOf(context).languageCode;
     final total = surah.versesCount;
 
     return UIBgArabicTextCard(
@@ -32,7 +33,7 @@ class QuranContinueCardWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            surah.nameEnglish,
+            QuranTool.localizedSurahName(surah, langCode),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: typo.inter.largeTitle.copyWith(color: UIColorsToken.white),

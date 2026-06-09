@@ -234,6 +234,33 @@ class QuranRemoteDatasource {
     }
   }
 
+  // ── Tafsir ────────────────────────────────────────────────────────────────
+
+  /// Tafsir text for a single ayah from the alquran.cloud [edition]
+  /// (e.g. `en.maududi`, `ar.muyassar`). Read-only, anonymous endpoint.
+  /// Returns `null` when the edition has no entry for this ayah.
+  Future<String?> getAyahTafsir(
+    int surahNumber,
+    int ayahNumber, {
+    required String edition,
+  }) async {
+    try {
+      final res = await _dio.get<Map<String, dynamic>>(
+        '$_alquranBase/ayah/$surahNumber:$ayahNumber/$edition',
+      );
+
+      final text = res.data?['data']?['text'] as String?;
+      if (text == null || text.isEmpty) return null;
+      return text;
+    } catch (e) {
+      talker.error(e);
+      throw ServerException(
+        type: .badRequest,
+        messageKey: ApiErrorKey.quranTafsirLoadFailed,
+      );
+    }
+  }
+
   Future<void> unlikeAyah({
     required int surahNumber,
     required int ayahNumber,
