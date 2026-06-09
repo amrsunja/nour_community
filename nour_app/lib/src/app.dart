@@ -9,6 +9,7 @@ import 'package:nour/src/core/providers/routing/navigation_services_provider.dar
 import 'package:nour/src/core/providers/widgets/scaffold_messenger_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
+import 'package:nour/src/features/analytics/data/analytics_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 
 import 'core/utils/enums/app_theme_type.dart';
@@ -86,6 +87,10 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 				localizationsDelegates: AppLocale.localizationsDelegates,
 			  scaffoldMessengerKey: ref.read(scaffoldMessengerProvider),
 				routerConfig: appRouter.router.config(
+          // Auto screen_view tracking for every route push/replace + tab change.
+          // Builder (not a singleton): auto_route reuses observers across nested
+          // navigators, and one observer instance can't be attached to two.
+          navigatorObservers: ref.read(analyticsObserverBuilderProvider),
           //deepLinkTransformer: DeepLink.prefixStripper('/app'),
 					//deepLinkBuilder: DeepLinksServices.navigateDeepLink
         ),

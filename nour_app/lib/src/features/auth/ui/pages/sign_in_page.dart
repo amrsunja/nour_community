@@ -9,6 +9,7 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/gen/assets.gen.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../state_management/auth_provider.dart';
@@ -26,6 +27,7 @@ class SignInPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final isLoading = ref.watch(authProvider.select((s) => s.isLoading));
     final notifier = ref.read(authProvider.notifier);
+    final analytics = ref.read(analyticsRepoProvider);
 
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final emailController = useTextEditingController();
@@ -59,6 +61,7 @@ class SignInPage extends HookConsumerWidget {
       FocusScope.of(context).unfocus();
 
       if (!codeSent.value) {
+        analytics.trackSignInClick(method: 'email');
         final res = await sendCode();
         switch (res) {
           case EmailConnectResult.failed:
@@ -92,13 +95,17 @@ class SignInPage extends HookConsumerWidget {
     }
 
     Future<void> onGoogle() async {
+      analytics.trackSignInClick(method: 'google');
       return ;
+      // ignore: dead_code
       if (isLoading) return;
       if (await notifier.linkWithGoogle()) await close();
     }
 
     Future<void> onApple() async {
+      analytics.trackSignInClick(method: 'apple');
       return ;
+      // ignore: dead_code
       if (isLoading) return;
       if (await notifier.linkWithApple()) await close();
     }

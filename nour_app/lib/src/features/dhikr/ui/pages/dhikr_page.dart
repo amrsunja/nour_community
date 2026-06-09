@@ -4,6 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 
 import '../../data/models/dhikr_model.dart';
 import '../state_management/dhikr_provider.dart';
@@ -21,6 +22,7 @@ class DhikrPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(dhikrProvider.notifier);
+    final analytics = ref.read(analyticsRepoProvider);
     final state = ref.read(dhikrProvider);
     final langCode = Localizations.localeOf(context).languageCode;
 
@@ -101,6 +103,12 @@ class DhikrPage extends HookConsumerWidget {
                                     onTap: () async {
                                       await presenter.saveProgress(dhikrId: dhikr.id, count: dhikrCount.value);
 
+                                      // Which glorification formula the user picked.
+                                      analytics.trackDhikrPhraseSelected(
+                                        dhikrId: d.id,
+                                        phrase: d.transcription(langCode),
+                                      );
+
                                       dhikrId.value = d.id;
                                       dhikrCount.value = state.currentCountOf(dhikrId.value);
                                       counterCount.value = dhikrCount.value;
@@ -144,6 +152,23 @@ class DhikrPage extends HookConsumerWidget {
                     onChange: (value) {
                       counterCount.value = value;
                       dhikrCount.value++;
+
+                      // Every tap on the Tasbih counter.
+                      final phrase = dhikr.transcription(langCode);
+                      analytics.trackDhikrIncrement(
+                        dhikrId: dhikr.id,
+                        phrase: phrase,
+                        count: dhikrCount.value,
+                      );
+                      // A full cycle (multiple of the phrase's target count).
+                      if (dhikr.minCount > 0 &&
+                          dhikrCount.value % dhikr.minCount == 0) {
+                        analytics.trackDhikrCycleComplete(
+                          dhikrId: dhikr.id,
+                          phrase: phrase,
+                          cycles: dhikrCount.value ~/ dhikr.minCount,
+                        );
+                      }
                     },
                   ),
                 ),

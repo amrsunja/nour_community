@@ -6,6 +6,7 @@ import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 
 import '../widgets/tool_card_widget.dart';
 
@@ -17,6 +18,7 @@ class ToolsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final nav = ref.read(navigationServicesProvider);
+    final analytics = ref.read(analyticsRepoProvider);
 
     final tools = useMemoized(() {
       return [
@@ -24,6 +26,7 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration12,
           l10n.tools_daily_ayah,
           onTap: () {
+            analytics.trackDailyVerseView(source: 'tools');
             nav.toDailyAyah();
           }
         ),
@@ -31,6 +34,7 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration19,
           l10n.tools_daily_dua,
           onTap: () {
+            analytics.trackDailyDuaRecite(period: 'daily');
             nav.toDailyDua();
           }
         ),
@@ -38,6 +42,7 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration13,
           l10n.tools_dua_library,
           onTap: () {
+            analytics.trackFeatureOpen('dua_library', source: 'tools');
             nav.toDuaLibrary();
           }
         ),
@@ -45,6 +50,7 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration14,
           l10n.tools_daily_quiz,
           onTap: () {
+            analytics.trackFeatureOpen('quiz', source: 'tools');
             nav.toQuiz();
           }
         ),
@@ -52,6 +58,7 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration15,
           l10n.tools_qibla_finder,
           onTap: () {
+            analytics.trackFeatureOpen('qibla_finder', source: 'tools');
             nav.toQiblaFinder();
           }
         ),
@@ -59,13 +66,15 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration16,
           l10n.tools_prayer_times,
           onTap: () {
+            analytics.trackFeatureOpen('prayer_times', source: 'tools');
             nav.toPrayerTimes();
           }
         ),
         _ToolItem(
-          Assets.images.illustration17, 
+          Assets.images.illustration17,
           l10n.tools_zakat_calculator,
           onTap: () {
+            analytics.trackFeatureOpen('zakat_calculator', source: 'tools');
             nav.toZakatCalculator();
           }
         ),
@@ -73,13 +82,15 @@ class ToolsPage extends HookConsumerWidget {
           Assets.images.illustration18,
           l10n.tools_hijri_calendar,
           onTap: () {
+            analytics.trackFeatureOpen('hijri_calendar', source: 'tools');
             nav.toHijriCalendar();
           }
         ),
         _ToolItem(
-          Assets.images.illustration36, 
+          Assets.images.illustration36,
           l10n.adhkar_all_title,
           onTap: () {
+            analytics.trackFeatureOpen('adhkars_list', source: 'tools');
             nav.toAdhkarsList();
           }
         ),

@@ -5,6 +5,8 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
+import 'package:nour/src/features/analytics/data/constants/analytics_screens.dart';
 
 /// Settings hub. Lists the configurable preferences as navigation cards. Each
 /// card opens a dedicated page that persists its choice immediately (no save).
@@ -16,17 +18,26 @@ class SettingsPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final nav = ref.read(navigationServicesProvider);
+    final analytics = ref.read(analyticsRepoProvider);
 
     final items = <_SettingsItem>[
       _SettingsItem(
         icon: UIIconsToken.icons.volume,
         label: l10n.settings_favorite_reciter,
-        onTap: nav.toFavoriteReciterSettings,
+        onTap: () {
+          analytics.trackButtonClick('favorite_reciter',
+              screen: AnalyticsScreens.settings);
+          nav.toFavoriteReciterSettings();
+        },
       ),
       _SettingsItem(
         icon: UIIconsToken.icons.aa,
         label: l10n.settings_language,
-        onTap: nav.toLanguageSettings,
+        onTap: () {
+          analytics.trackButtonClick('language',
+              screen: AnalyticsScreens.settings);
+          nav.toLanguageSettings();
+        },
       ),
     ];
 

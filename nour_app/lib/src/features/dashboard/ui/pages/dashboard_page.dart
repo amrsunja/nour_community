@@ -9,6 +9,7 @@ import 'package:nour/src/core/providers/routing/navigation_services_provider.dar
 import 'package:nour/src/core/utils/app_vibrations.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/dhikr/ui/state_management/dhikr_provider.dart';
 import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
 import 'package:nour/src/features/impact/ui/state_management/impact_provider.dart';
@@ -90,6 +91,7 @@ class DashboardPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final nav = ref.read(navigationServicesProvider);
+    final analytics = ref.read(analyticsRepoProvider);
     final dhikrState = ref.watch(dhikrProvider);
     final profile = ref.watch(profileProvider).profile;
     final streak = profile?.currentStreak ?? 0;
@@ -150,6 +152,7 @@ class DashboardPage extends HookConsumerWidget {
                     buttonTitle: l10n.dashboard_start_dhikr,
                     onTap: () {
                       AppVibrations.buttonClick();
+                      analytics.trackFeatureOpen('dhikr', source: 'dashboard');
                       ref.read(navigationServicesProvider).toDhikrsList();
                     },
                   ),
@@ -169,7 +172,10 @@ class DashboardPage extends HookConsumerWidget {
                         asset: Assets.images.illustration12,
                         label: l10n.tools_daily_ayah,
                         points: 5,
-                        onTap: nav.toDailyAyah,
+                        onTap: () {
+                          analytics.trackDailyVerseView();
+                          nav.toDailyAyah();
+                        },
                       ),
                     ),
                     const UISpace.horz(12),
@@ -178,7 +184,10 @@ class DashboardPage extends HookConsumerWidget {
                         asset: Assets.images.illustration19,
                         label: l10n.tools_daily_dua,
                         points: 5,
-                        onTap: nav.toDailyDua,
+                        onTap: () {
+                          analytics.trackDailyDuaRecite(period: 'daily');
+                          nav.toDailyDua();
+                        },
                       ),
                     ),
                     const UISpace.horz(12),
@@ -187,7 +196,10 @@ class DashboardPage extends HookConsumerWidget {
                         asset: Assets.images.illustration14,
                         label: l10n.tools_daily_quiz,
                         points: 10,
-                        onTap: nav.toQuiz,
+                        onTap: () {
+                          analytics.trackFeatureOpen('quiz', source: 'dashboard');
+                          nav.toQuiz();
+                        },
                       ),
                     ),
                   ],

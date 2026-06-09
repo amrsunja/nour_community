@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -51,6 +52,13 @@ void main() {
 
 			// Init Firebase
   		await Firebase.initializeApp();
+
+      // Analytics: collection on in prod; in app stores it respects the
+      // platform consent prompt. Screen views are auto-tracked by the
+      // AnalyticsRouteObserver (see app.dart); custom events go through
+      // analyticsRepoProvider.
+      await FirebaseAnalytics.instance
+          .setAnalyticsCollectionEnabled(AppConfig.shared.isProd);
 
   		//FlutterNativeSplash.remove();
       //FlutterError.onError = (errorDetails) {

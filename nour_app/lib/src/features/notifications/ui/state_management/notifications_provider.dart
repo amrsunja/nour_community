@@ -10,6 +10,7 @@ import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/tools/data/prayer_settings_repo.dart';
 import 'package:timezone/timezone.dart' as tz;
 
@@ -45,6 +46,8 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   }) : super(NotificationsState.initial);
 
   AppLocale get _l10n => ref.read(l10nProvider);
+
+  AnalyticsRepo get _analytics => ref.read(analyticsRepoProvider);
 
   /// Calculation method currently selected on the prayer-times page (persisted
   /// in the settings DB). Falls back to the default when unavailable.
@@ -95,6 +98,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     final ok = await _runUpdate(() => repo.setPrayer(slot, enable));
     if (!ok) return false;
     await _schedulePrayers();
+    _analytics.trackAdhanToggle(prayer: slot.name, enabled: enable);
     return true;
   }
 
@@ -104,6 +108,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     final ok = await _runUpdate(() => repo.setAllPrayers(enable));
     if (!ok) return false;
     await _schedulePrayers();
+    _analytics.trackAdhanToggle(prayer: 'all', enabled: enable);
     return true;
   }
 
@@ -125,6 +130,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         NotificationIds.morningAdhkarEnd,
       );
     }
+    _analytics.trackAdhkarReminderToggle(period: 'morning', enabled: enable);
     return true;
   }
 
@@ -146,6 +152,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         NotificationIds.eveningAdhkarEnd,
       );
     }
+    _analytics.trackAdhkarReminderToggle(period: 'evening', enabled: enable);
     return true;
   }
 
@@ -166,6 +173,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
         NotificationIds.dailyAyah,
       );
     }
+    _analytics.trackDailyAyahReminderToggle(enabled: enable);
     return true;
   }
 

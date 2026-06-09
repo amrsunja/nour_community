@@ -13,11 +13,16 @@ class AyahAudioButtonWidget extends ConsumerWidget {
     required this.audioUrl,
     required this.title,
     this.artist,
+    this.onListen,
   });
 
   final String audioUrl;
   final String title;
   final String? artist;
+
+  /// Fired when the user starts playback (not on pause). Optional; used for
+  /// analytics ("listen" engagement).
+  final VoidCallback? onListen;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,12 +34,16 @@ class AyahAudioButtonWidget extends ConsumerWidget {
     final isPlaying = isCurrent && audio.isPlaying;
 
     return UITap(
-      onTap: () => controller.toggle(
-        url: audioUrl,
-        title: title,
-        artist: artist,
-        id: audioUrl,
-      ),
+      onTap: () {
+        // Only a transition into playback counts as a "listen".
+        if (!isPlaying) onListen?.call();
+        controller.toggle(
+          url: audioUrl,
+          title: title,
+          artist: artist,
+          id: audioUrl,
+        );
+      },
       child: Container(
         height: 30,
         width: 40,

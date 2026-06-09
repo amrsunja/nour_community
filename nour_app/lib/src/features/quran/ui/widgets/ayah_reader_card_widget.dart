@@ -27,6 +27,7 @@ class AyahReaderCardWidget extends StatelessWidget {
     required this.translation,
     required this.reference,
     this.showTafsir = true,
+    this.onListen,
   });
 
   final String surahLabel;
@@ -53,6 +54,9 @@ class AyahReaderCardWidget extends StatelessWidget {
   /// Whether the tafsir action (and its sheet) is available.
   final bool showTafsir;
 
+  /// Fired when recitation playback starts. Optional (analytics hook).
+  final VoidCallback? onListen;
+
   static const _ink = UIColorsToken.black;
 
   @override
@@ -74,6 +78,7 @@ class AyahReaderCardWidget extends StatelessWidget {
                 audioUrl: audioUrl,
                 title: surahLabel,
                 artist: reciterName,
+                onListen: onListen,
               ),
               Expanded(
                 child: Column(

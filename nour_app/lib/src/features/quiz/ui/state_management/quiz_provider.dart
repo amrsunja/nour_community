@@ -2,6 +2,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 
 import '../../data/quiz_repo.dart';
 import 'quiz_state.dart';
@@ -10,15 +11,20 @@ final quizProvider = StateNotifierProvider.autoDispose<QuizPresenter, QuizState>
   (ref) => QuizPresenter(
     repo: ref.read(quizRepoProvider),
     appEvents: ref.read(appEventProvider),
+    analytics: ref.read(analyticsRepoProvider),
   ),
 );
 
 class QuizPresenter extends Presenter<QuizState> {
   final QuizRepo repo;
   final AppEvents appEvents;
+  final AnalyticsRepo analytics;
 
-  QuizPresenter({required this.repo, required this.appEvents})
-    : super(const QuizState());
+  QuizPresenter({
+    required this.repo,
+    required this.appEvents,
+    required this.analytics,
+  }) : super(const QuizState());
 
   Future<void> init() async {
     if (state.isLoading) return;
@@ -28,6 +34,9 @@ class QuizPresenter extends Presenter<QuizState> {
 
     res.when(
       (bundle) {
+        // Participation: only count a fresh attempt, not a re-open of a
+        // quiz already played today.
+        if (!bundle.alreadyPlayed) analytics.trackQuizStart();
         return state = state.copyWith(
           isLoading: false,
           hasLoaded: true,
@@ -80,7 +89,13 @@ class QuizPresenter extends Presenter<QuizState> {
     final res = await repo.submitQuiz(state.selectedByQuestionId);
 
     res.when(
-      (result) => state = state.copyWith(isSubmitting: false, result: result),
+      (result) {
+        analytics.trackQuizComplete(
+          score: result.correctCount,
+          total: result.total,
+        );
+        return state = state.copyWith(isSubmitting: false, result: result);
+      },
       (error) {
         state = state.copyWith(isSubmitting: false);
         appEvents.send(ShowErrorEvent(error));

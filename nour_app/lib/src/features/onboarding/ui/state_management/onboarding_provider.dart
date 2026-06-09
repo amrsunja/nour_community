@@ -1,6 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../../data/onboarding_repo.dart';
@@ -30,6 +31,7 @@ class OnboardingPresenter extends Presenter<OnboardingState> {
 	);
 
   void changePage(int page) async {
+    ref.read(analyticsRepoProvider).trackOnboardingPage(page);
     await ref.read(profileProvider.notifier).updateLastOnboardingScreen(page);
   }
 

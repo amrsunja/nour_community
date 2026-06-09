@@ -7,6 +7,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
 import 'package:nour/src/core/utils/share_services.dart';
+import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
 
 import '../state_management/quran_provider.dart';
@@ -27,6 +28,7 @@ class DailyAyahPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final langCode = Localizations.localeOf(context).languageCode;
     final presenter = ref.read(quranProvider.notifier);
+    final analytics = ref.read(analyticsRepoProvider);
     final state = ref.watch(quranProvider);
 
     final reciter = ref.watch(
@@ -72,6 +74,8 @@ class DailyAyahPage extends HookConsumerWidget {
         );
 
     Future<void> onDone() async {
+      // "Read" engagement: the user marked today's verse as done.
+      analytics.trackDailyVerseView(source: 'completed');
       await presenter.completeDailyAyah();
       if (context.mounted) context.pop();
     }
@@ -90,6 +94,10 @@ class DailyAyahPage extends HookConsumerWidget {
               arabicText: ayah.arabicText,
               audioUrl: audioUrl,
               reciterName: reciter.displayName,
+              onListen: () => analytics.trackDailyVerseListen(
+                surah: ayah.surahNumber,
+                ayah: ayah.ayahNumber,
+              ),
               isLiked: state.isAyahLiked(ayah.surahNumber, ayah.ayahNumber),
               likeCount: state.ayahLikeCount(ayah.surahNumber, ayah.ayahNumber),
               onLike: () => presenter.toggleLike(
