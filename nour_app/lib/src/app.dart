@@ -1,6 +1,7 @@
 // ignore_for_file: curly_braces_in_flow_control_structures
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
@@ -16,6 +17,15 @@ import 'core/utils/enums/app_theme_type.dart';
 import 'core/utils/extensions/build_context_extensions.dart';
 import 'features/notifications/ui/state_management/notifications_provider.dart';
 
+
+/// White status bar icons (Android: light icon brightness; iOS: dark status bar
+/// brightness). Transparent bar so the page gradient shows through.
+const _overlayStyle = SystemUiOverlayStyle(
+	statusBarColor: Colors.transparent,
+	statusBarIconBrightness: Brightness.light, // Android
+	statusBarBrightness: Brightness.light, // iOS
+  systemNavigationBarIconBrightness: .light
+);
 
 class App extends StatefulHookConsumerWidget {
 	const App({super.key});
@@ -35,6 +45,9 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 
 		useEffect(() {
 		  WidgetsBinding.instance.addObserver(this);
+
+			// White status bar icons globally (dark-only app).
+			SystemChrome.setSystemUIOverlayStyle(_overlayStyle);
 
 			Future.microtask(() async {
 			  await ref.read(settingsProvider.notifier).initLocalSettings();
@@ -74,6 +87,8 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 						elevation: 0,
 						titleSpacing: 0,
 						scrolledUnderElevation: 0.0,
+						// Keep white status bar icons even when an AppBar is present.
+						systemOverlayStyle: _overlayStyle,
 					),
 					// Change splash effect colors
 					//splashColor: UIColorToken.pri100,
