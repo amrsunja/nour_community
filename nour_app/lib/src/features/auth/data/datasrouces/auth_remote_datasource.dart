@@ -24,7 +24,7 @@ class AuthRemoteDatasource {
       await supabaseClient.auth.signInAnonymously();
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .forbiden, message: 'Anonime sign in failed!');
+      throw ServerException(type: .forbiden, messageKey: ApiErrorKey.authAnonymousFailed);
     }
   }
 
@@ -85,7 +85,7 @@ class AuthRemoteDatasource {
       rethrow;
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Failed to start sign in!');
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authStartFailed);
     }
   }
 
@@ -99,7 +99,7 @@ class AuthRemoteDatasource {
       return result == true;
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Failed to check email!');
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authCheckEmailFailed);
     }
   }
 
@@ -121,7 +121,7 @@ class AuthRemoteDatasource {
       throw ServerException(type: .unauthorized, message: e.message);
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Code verification failed!');
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authCodeVerificationFailed);
     }
   }
 
@@ -140,7 +140,7 @@ class AuthRemoteDatasource {
       final account = await googleSignIn.signIn();
       if (account == null) {
         // User aborted the picker.
-        throw ServerException(type: .cancel, message: 'Sign in cancelled');
+        throw ServerException(type: .cancel, messageKey: ApiErrorKey.authSignInCancelled);
       }
 
       final auth = await account.authentication;
@@ -148,7 +148,7 @@ class AuthRemoteDatasource {
       final accessToken = auth.accessToken;
 
       if (idToken == null) {
-        throw ServerException(type: .unauthorized, message: 'Missing Google id token');
+        throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.authMissingGoogleToken);
       }
 
       await supabaseClient.auth.signInWithIdToken(
@@ -163,7 +163,7 @@ class AuthRemoteDatasource {
       throw ServerException(type: .badRequest, message: e.message);
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Google sign in failed!');
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authGoogleFailed);
     }
   }
 
@@ -183,7 +183,7 @@ class AuthRemoteDatasource {
 
       final idToken = credential.identityToken;
       if (idToken == null) {
-        throw ServerException(type: .unauthorized, message: 'Missing Apple id token');
+        throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.authMissingAppleToken);
       }
 
       await supabaseClient.auth.signInWithIdToken(
@@ -195,7 +195,7 @@ class AuthRemoteDatasource {
       rethrow;
     } on SignInWithAppleAuthorizationException catch (e) {
       if (e.code == AuthorizationErrorCode.canceled) {
-        throw ServerException(type: .cancel, message: 'Sign in cancelled');
+        throw ServerException(type: .cancel, messageKey: ApiErrorKey.authSignInCancelled);
       }
       talker.info(e.message);
       throw ServerException(type: .badRequest, message: e.message);
@@ -204,7 +204,7 @@ class AuthRemoteDatasource {
       throw ServerException(type: .badRequest, message: e.message);
     } catch (e) {
       talker.info(e);
-      throw ServerException(type: .unknown, message: 'Apple sign in failed!');
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authAppleFailed);
     }
   }
 

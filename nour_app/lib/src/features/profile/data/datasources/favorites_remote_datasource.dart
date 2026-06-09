@@ -31,7 +31,7 @@ class FavoritesRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -59,7 +59,7 @@ class FavoritesRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite ayahs',
+        messageKey: ApiErrorKey.favoritesAyahsLoadFailed,
       );
     }
   }
@@ -84,7 +84,7 @@ class FavoritesRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite adhkars',
+        messageKey: ApiErrorKey.favoritesAdhkarsLoadFailed,
       );
     }
   }
@@ -109,7 +109,7 @@ class FavoritesRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite duas',
+        messageKey: ApiErrorKey.favoritesDuasLoadFailed,
       );
     }
   }
@@ -136,7 +136,7 @@ class FavoritesRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite hadiths',
+        messageKey: ApiErrorKey.favoritesHadithsLoadFailed,
       );
     }
   }
@@ -165,7 +165,7 @@ class FavoritesRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite projects',
+        messageKey: ApiErrorKey.favoritesProjectsLoadFailed,
       );
     }
   }

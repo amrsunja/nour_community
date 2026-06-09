@@ -41,7 +41,7 @@ class AdhkarRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load adhkar categories',
+        messageKey: ApiErrorKey.adhkarCategoriesLoadFailed,
       );
     }
   }
@@ -61,7 +61,7 @@ class AdhkarRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load adhkar subcategories',
+        messageKey: ApiErrorKey.adhkarSubcategoriesLoadFailed,
       );
     }
   }
@@ -82,7 +82,7 @@ class AdhkarRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load adhkars',
+        messageKey: ApiErrorKey.adhkarsLoadFailed,
       );
     }
   }

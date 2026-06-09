@@ -35,7 +35,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -76,7 +76,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to upload avatar',
+        messageKey: ApiErrorKey.profileAvatarUploadFailed,
       );
     }
   }
@@ -87,7 +87,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -110,7 +110,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to delete avatar',
+        messageKey: ApiErrorKey.profileAvatarDeleteFailed,
       );
     }
   }
@@ -125,7 +125,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -137,7 +137,7 @@ class ProfileRemoteDatasource {
           if (rows.isEmpty) {
             throw ServerException(
               type: .notFound,
-              message: 'Can\'t find correct Profile Model',
+              messageKey: ApiErrorKey.profileInvalid,
             );
           }
           return ProfileModel.fromJson(rows.first);
@@ -147,7 +147,7 @@ class ProfileRemoteDatasource {
   Future<ProfileModel> getProfile() async {
     final authUser = supabaseClient.auth.currentUser;
     if (authUser == null) {
-      throw ServerException(type: .unauthorized, message: 'The user is not authenticated');
+      throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.userNotAuthenticated);
     }
 
     try {
@@ -158,14 +158,14 @@ class ProfileRemoteDatasource {
           .maybeSingle();
 
       if (response == null) {
-        throw ServerException(type: .badRequest, message: 'Can\'t find correct Profile Model');
+        throw ServerException(type: .badRequest, messageKey: ApiErrorKey.profileInvalid);
       }
 
       return ProfileModel.fromJson(response);
 
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .forbiden, message: 'Bad request for getting Profile');
+      throw ServerException(type: .forbiden, messageKey: ApiErrorKey.profileLoadFailed);
     }
   }
 
@@ -174,7 +174,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -187,7 +187,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to update daily practice time',
+        messageKey: ApiErrorKey.profileUpdatePracticeTimeFailed,
       );
     }
   }
@@ -197,7 +197,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -210,7 +210,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to update profile level',
+        messageKey: ApiErrorKey.profileUpdateLevelFailed,
       );
     }
   }
@@ -220,7 +220,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -233,7 +233,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to update profile name',
+        messageKey: ApiErrorKey.profileUpdateNameFailed,
       );
     }
   }
@@ -243,7 +243,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -256,7 +256,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to update profile gender',
+        messageKey: ApiErrorKey.profileUpdateGenderFailed,
       );
     }
   }
@@ -266,7 +266,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -279,7 +279,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to update last onboarding screen',
+        messageKey: ApiErrorKey.profileUpdateOnboardingScreenFailed,
       );
     }
   }
@@ -289,7 +289,7 @@ class ProfileRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -302,7 +302,7 @@ class ProfileRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to mark onboarding as completed',
+        messageKey: ApiErrorKey.profileCompleteOnboardingFailed,
       );
     }
   }

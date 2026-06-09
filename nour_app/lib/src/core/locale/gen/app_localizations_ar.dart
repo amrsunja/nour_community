@@ -1275,4 +1275,248 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'فشل تسجيل الدخول كضيف. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'تعذّر بدء تسجيل الدخول. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'تعذّر التحقق من البريد الإلكتروني. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'فشل التحقق من الرمز. تحقق من الرمز وحاول مرة أخرى.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'تم إلغاء تسجيل الدخول.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'رمز هوية Google مفقود. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'فشل تسجيل الدخول عبر Google. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'رمز هوية Apple مفقود. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'فشل تسجيل الدخول عبر Apple. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'لم تسجّل الدخول. يرجى تسجيل الدخول والمحاولة مرة أخرى.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'تعذّر رفع صورتك. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'تعذّر حذف صورتك. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'تعذّر تحميل ملفك الشخصي. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'تعذّر تحميل ملفك الشخصي. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'تعذّر تحديث وقت ممارستك اليومي.';
+
+  @override
+  String get error_api_profile_update_level_failed => 'تعذّر تحديث مستواك.';
+
+  @override
+  String get error_api_profile_update_name_failed => 'تعذّر تحديث اسمك.';
+
+  @override
+  String get error_api_profile_update_gender_failed => 'تعذّر تحديث الجنس.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'تعذّر حفظ تقدمك.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'تعذّر إكمال الإعداد.';
+
+  @override
+  String get error_api_reward_streak_load_failed => 'تعذّر تحميل سلسلة أيامك.';
+
+  @override
+  String get error_api_reward_claim_failed => 'تعذّر استلام مكافأتك.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'استجابة غير متوقعة أثناء تحميل الاختبار.';
+
+  @override
+  String get error_api_quiz_load_failed => 'تعذّر تحميل الاختبار.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'استجابة غير متوقعة أثناء إرسال الاختبار.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'تعذّر إرسال الاختبار.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'تعذّر تحميل الآيات المفضّلة لديك.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'تعذّر تحميل الأذكار المفضّلة لديك.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'تعذّر تحميل الأدعية المفضّلة لديك.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'تعذّر تحميل الأحاديث المفضّلة لديك.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'تعذّر تحميل المشاريع المفضّلة لديك.';
+
+  @override
+  String get error_api_dua_load_failed => 'تعذّر تحميل الأدعية.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'تعذّر تحميل تقدمك في الأدعية.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'تعذّر حفظ تقدمك في الأدعية.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'تعذّر تسجيل أجرك اليومي للدعاء.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'تعذّر تحميل الأدعية التي أعجبتك.';
+
+  @override
+  String get error_api_dua_like_failed => 'تعذّر الإعجاب بهذا الدعاء.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'تعذّر إزالة الإعجاب من هذا الدعاء.';
+
+  @override
+  String get error_api_statistics_load_failed => 'تعذّر تحميل إحصاءاتك.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'تعذّر تحميل فئات الأذكار.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'تعذّر تحميل الفئات الفرعية للأذكار.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'تعذّر تحميل الأذكار.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'تعذّر تحميل الأذكار.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'تعذّر تحميل تقدمك في الذِّكر.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed => 'تعذّر تحميل أجر الذِّكر.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'تعذّر حفظ تقدمك في الذِّكر.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'تعذّر تحميل مجموعات الأحاديث.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'تعذّر تحميل الأحاديث.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'تعذّر تحميل تقدمك في الأحاديث.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'تعذّر حفظ تقدمك في الأحاديث.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'تعذّر تحميل الأحاديث التي أعجبتك.';
+
+  @override
+  String get error_api_hadith_like_failed => 'تعذّر الإعجاب بهذا الحديث.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'تعذّر إزالة الإعجاب من هذا الحديث.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'تعذّر تحميل فئات المشاريع.';
+
+  @override
+  String get error_api_impact_projects_load_failed => 'تعذّر تحميل المشاريع.';
+
+  @override
+  String get error_api_impact_project_load_failed => 'تعذّر تحميل المشروع.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'تعذّر الإضافة إلى المفضّلة.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'تعذّر الإزالة من المفضّلة.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'تعذّر تحميل تقدمك في القرآن.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'تعذّر حفظ تقدمك في القرآن.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'تعذّر تحميل الآيات التي أعجبتك.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'تعذّر تسجيل أجرك اليومي للآية.';
+
+  @override
+  String get error_api_quran_like_ayah_failed => 'تعذّر الإعجاب بهذه الآية.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'تعذّر تحميل النقل الصوتي.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'تعذّر إزالة الإعجاب من هذه الآية.';
 }

@@ -1286,4 +1286,255 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Anoniem aanmelden is mislukt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Kan het aanmelden niet starten. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'Kan het e-mailadres niet verifiëren. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Codeverificatie is mislukt. Controleer de code en probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Aanmelden geannuleerd.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Google-ID-token ontbreekt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Aanmelden met Google is mislukt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Apple-ID-token ontbreekt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Aanmelden met Apple is mislukt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'Je bent niet aangemeld. Meld je aan en probeer het opnieuw.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Kan je foto niet uploaden. Probeer het opnieuw.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Kan je foto niet verwijderen. Probeer het opnieuw.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Kan je profiel niet laden. Probeer het opnieuw.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Kan je profiel niet laden. Probeer het opnieuw.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Kan je dagelijkse oefentijd niet bijwerken.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Kan je niveau niet bijwerken.';
+
+  @override
+  String get error_api_profile_update_name_failed =>
+      'Kan je naam niet bijwerken.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Kan je geslacht niet bijwerken.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'Kan je voortgang niet opslaan.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Kan de onboarding niet voltooien.';
+
+  @override
+  String get error_api_reward_streak_load_failed => 'Kan je reeks niet laden.';
+
+  @override
+  String get error_api_reward_claim_failed => 'Kan je beloning niet claimen.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Onverwacht antwoord bij het laden van de quiz.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Kan de quiz niet laden.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Onverwacht antwoord bij het versturen van de quiz.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Kan de quiz niet versturen.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Kan je favoriete ayahs niet laden.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Kan je favoriete adhkar niet laden.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Kan je favoriete dua\'s niet laden.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Kan je favoriete hadiths niet laden.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Kan je favoriete projecten niet laden.';
+
+  @override
+  String get error_api_dua_load_failed => 'Kan dua\'s niet laden.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Kan je dua-voortgang niet laden.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Kan je dua-voortgang niet opslaan.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Kan je dagelijkse dua-beloning niet registreren.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Kan je gelikete dua\'s niet laden.';
+
+  @override
+  String get error_api_dua_like_failed => 'Kan deze dua niet liken.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'Kan de like van deze dua niet verwijderen.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'Kan je statistieken niet laden.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Kan adhkar-categorieën niet laden.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Kan adhkar-subcategorieën niet laden.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'Kan adhkar niet laden.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Kan dhikr niet laden.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Kan je dhikr-voortgang niet laden.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed =>
+      'Kan je dhikr-beloning niet laden.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Kan je dhikr-voortgang niet opslaan.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Kan hadith-collecties niet laden.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'Kan hadiths niet laden.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Kan je hadith-voortgang niet laden.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Kan je hadith-voortgang niet opslaan.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Kan je gelikete hadiths niet laden.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Kan deze hadith niet liken.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Kan de like van deze hadith niet verwijderen.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Kan projectcategorieën niet laden.';
+
+  @override
+  String get error_api_impact_projects_load_failed =>
+      'Kan projecten niet laden.';
+
+  @override
+  String get error_api_impact_project_load_failed =>
+      'Kan het project niet laden.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'Kan niet aan favorieten toevoegen.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Kan niet uit favorieten verwijderen.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Kan je Koran-voortgang niet laden.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Kan je Koran-voortgang niet opslaan.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Kan je gelikete ayahs niet laden.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Kan je dagelijkse ayah-beloning niet registreren.';
+
+  @override
+  String get error_api_quran_like_ayah_failed => 'Kan deze ayah niet liken.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Kan de transliteratie niet laden.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Kan de like van deze ayah niet verwijderen.';
 }

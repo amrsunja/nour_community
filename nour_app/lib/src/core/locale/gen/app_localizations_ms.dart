@@ -1291,4 +1291,258 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Log masuk tanpa nama gagal. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Tidak dapat memulakan log masuk. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'Tidak dapat mengesahkan alamat e-mel. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Pengesahan kod gagal. Semak kod dan cuba lagi.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Log masuk dibatalkan.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Token ID Google tiada. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Log masuk Google gagal. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Token ID Apple tiada. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Log masuk Apple gagal. Sila cuba lagi.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'Anda belum log masuk. Sila log masuk dan cuba lagi.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Tidak dapat memuat naik foto anda. Sila cuba lagi.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Tidak dapat memadam foto anda. Sila cuba lagi.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Tidak dapat memuatkan profil anda. Sila cuba lagi.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Tidak dapat memuatkan profil anda. Sila cuba lagi.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Tidak dapat mengemas kini masa latihan harian anda.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Tidak dapat mengemas kini tahap anda.';
+
+  @override
+  String get error_api_profile_update_name_failed =>
+      'Tidak dapat mengemas kini nama anda.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Tidak dapat mengemas kini jantina anda.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'Tidak dapat menyimpan kemajuan anda.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Tidak dapat melengkapkan pengenalan.';
+
+  @override
+  String get error_api_reward_streak_load_failed =>
+      'Tidak dapat memuatkan rentetan anda.';
+
+  @override
+  String get error_api_reward_claim_failed =>
+      'Tidak dapat menuntut ganjaran anda.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Respons tidak dijangka semasa memuatkan kuiz.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Tidak dapat memuatkan kuiz.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Respons tidak dijangka semasa menghantar kuiz.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Tidak dapat menghantar kuiz.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Tidak dapat memuatkan ayat kegemaran anda.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Tidak dapat memuatkan adhkar kegemaran anda.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Tidak dapat memuatkan doa kegemaran anda.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Tidak dapat memuatkan hadis kegemaran anda.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Tidak dapat memuatkan projek kegemaran anda.';
+
+  @override
+  String get error_api_dua_load_failed => 'Tidak dapat memuatkan doa.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Tidak dapat memuatkan kemajuan doa anda.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Tidak dapat menyimpan kemajuan doa anda.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Tidak dapat merekod ganjaran doa harian anda.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Tidak dapat memuatkan doa yang anda sukai.';
+
+  @override
+  String get error_api_dua_like_failed => 'Tidak dapat menyukai doa ini.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'Tidak dapat membuang sukaan daripada doa ini.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'Tidak dapat memuatkan statistik anda.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Tidak dapat memuatkan kategori adhkar.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Tidak dapat memuatkan subkategori adhkar.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'Tidak dapat memuatkan adhkar.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Tidak dapat memuatkan zikir.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Tidak dapat memuatkan kemajuan zikir anda.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed =>
+      'Tidak dapat memuatkan ganjaran zikir anda.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Tidak dapat menyimpan kemajuan zikir anda.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Tidak dapat memuatkan koleksi hadis.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'Tidak dapat memuatkan hadis.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Tidak dapat memuatkan kemajuan hadis anda.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Tidak dapat menyimpan kemajuan hadis anda.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Tidak dapat memuatkan hadis yang anda sukai.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Tidak dapat menyukai hadis ini.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Tidak dapat membuang sukaan daripada hadis ini.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Tidak dapat memuatkan kategori projek.';
+
+  @override
+  String get error_api_impact_projects_load_failed =>
+      'Tidak dapat memuatkan projek.';
+
+  @override
+  String get error_api_impact_project_load_failed =>
+      'Tidak dapat memuatkan projek.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'Tidak dapat menambah ke kegemaran.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Tidak dapat membuang daripada kegemaran.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Tidak dapat memuatkan kemajuan Al-Quran anda.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Tidak dapat menyimpan kemajuan Al-Quran anda.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Tidak dapat memuatkan ayat yang anda sukai.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Tidak dapat merekod ganjaran ayat harian anda.';
+
+  @override
+  String get error_api_quran_like_ayah_failed =>
+      'Tidak dapat menyukai ayat ini.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Tidak dapat memuatkan transliterasi.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Tidak dapat membuang sukaan daripada ayat ini.';
 }

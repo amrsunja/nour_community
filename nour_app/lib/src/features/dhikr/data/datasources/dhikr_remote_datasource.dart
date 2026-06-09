@@ -31,7 +31,7 @@ class DhikrRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -50,7 +50,7 @@ class DhikrRemoteDatasource {
           .toList();
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .badRequest, message: 'Failed to load dhikrs');
+      throw ServerException(type: .badRequest, messageKey: ApiErrorKey.dhikrsLoadFailed);
     }
   }
 
@@ -72,7 +72,7 @@ class DhikrRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load dhikr progress',
+        messageKey: ApiErrorKey.dhikrProgressLoadFailed,
       );
     }
   }
@@ -102,7 +102,7 @@ class DhikrRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load dhikr ajr',
+        messageKey: ApiErrorKey.dhikrAjrLoadFailed,
       );
     }
   }
@@ -132,7 +132,7 @@ class DhikrRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to save dhikr progress',
+        messageKey: ApiErrorKey.dhikrProgressSaveFailed,
       );
     }
   }

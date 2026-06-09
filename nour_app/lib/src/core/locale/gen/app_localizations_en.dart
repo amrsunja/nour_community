@@ -1287,4 +1287,256 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Anonymous sign-in failed. Please try again.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Couldn\'t start sign-in. Please try again.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'Couldn\'t verify the email address. Please try again.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Code verification failed. Please check the code and try again.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Sign-in was cancelled.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Missing Google ID token. Please try again.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Google sign-in failed. Please try again.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Missing Apple ID token. Please try again.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Apple sign-in failed. Please try again.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'You\'re not signed in. Please sign in and try again.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Couldn\'t upload your photo. Please try again.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Couldn\'t delete your photo. Please try again.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Couldn\'t load your profile. Please try again.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Couldn\'t load your profile. Please try again.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Couldn\'t update your daily practice time.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Couldn\'t update your level.';
+
+  @override
+  String get error_api_profile_update_name_failed =>
+      'Couldn\'t update your name.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Couldn\'t update your gender.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'Couldn\'t save your progress.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Couldn\'t complete onboarding.';
+
+  @override
+  String get error_api_reward_streak_load_failed =>
+      'Couldn\'t load your streak.';
+
+  @override
+  String get error_api_reward_claim_failed => 'Couldn\'t claim your reward.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Unexpected response while loading the quiz.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Couldn\'t load the quiz.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Unexpected response while submitting the quiz.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Couldn\'t submit the quiz.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Couldn\'t load your favourite ayahs.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Couldn\'t load your favourite adhkar.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Couldn\'t load your favourite duas.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Couldn\'t load your favourite hadiths.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Couldn\'t load your favourite projects.';
+
+  @override
+  String get error_api_dua_load_failed => 'Couldn\'t load duas.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Couldn\'t load your dua progress.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Couldn\'t save your dua progress.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Couldn\'t record your daily dua reward.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Couldn\'t load your liked duas.';
+
+  @override
+  String get error_api_dua_like_failed => 'Couldn\'t like this dua.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'Couldn\'t remove the like from this dua.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'Couldn\'t load your statistics.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Couldn\'t load adhkar categories.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Couldn\'t load adhkar subcategories.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'Couldn\'t load adhkar.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Couldn\'t load dhikr.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Couldn\'t load your dhikr progress.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed =>
+      'Couldn\'t load your dhikr reward.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Couldn\'t save your dhikr progress.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Couldn\'t load hadith collections.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'Couldn\'t load hadiths.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Couldn\'t load your hadith progress.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Couldn\'t save your hadith progress.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Couldn\'t load your liked hadiths.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Couldn\'t like this hadith.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Couldn\'t remove the like from this hadith.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Couldn\'t load project categories.';
+
+  @override
+  String get error_api_impact_projects_load_failed =>
+      'Couldn\'t load projects.';
+
+  @override
+  String get error_api_impact_project_load_failed =>
+      'Couldn\'t load the project.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'Couldn\'t add to favourites.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Couldn\'t remove from favourites.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Couldn\'t load your Quran progress.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Couldn\'t save your Quran progress.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Couldn\'t load your liked ayahs.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Couldn\'t record your daily ayah reward.';
+
+  @override
+  String get error_api_quran_like_ayah_failed => 'Couldn\'t like this ayah.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Couldn\'t load the transliteration.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Couldn\'t remove the like from this ayah.';
 }

@@ -1298,4 +1298,260 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Échec de la connexion anonyme. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Impossible de démarrer la connexion. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'Impossible de vérifier l’adresse e-mail. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Échec de la vérification du code. Vérifiez le code et réessayez.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Connexion annulée.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Jeton d’identification Google manquant. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Échec de la connexion Google. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Jeton d’identification Apple manquant. Veuillez réessayer.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Échec de la connexion Apple. Veuillez réessayer.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'Vous n’êtes pas connecté. Veuillez vous connecter et réessayer.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Impossible d’envoyer votre photo. Veuillez réessayer.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Impossible de supprimer votre photo. Veuillez réessayer.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Impossible de charger votre profil. Veuillez réessayer.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Impossible de charger votre profil. Veuillez réessayer.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Impossible de mettre à jour votre temps de pratique quotidien.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Impossible de mettre à jour votre niveau.';
+
+  @override
+  String get error_api_profile_update_name_failed =>
+      'Impossible de mettre à jour votre nom.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Impossible de mettre à jour votre genre.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'Impossible d’enregistrer votre progression.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Impossible de terminer l’intégration.';
+
+  @override
+  String get error_api_reward_streak_load_failed =>
+      'Impossible de charger votre série.';
+
+  @override
+  String get error_api_reward_claim_failed =>
+      'Impossible de réclamer votre récompense.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Réponse inattendue lors du chargement du quiz.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Impossible de charger le quiz.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Réponse inattendue lors de l’envoi du quiz.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Impossible d’envoyer le quiz.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Impossible de charger vos versets favoris.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Impossible de charger vos adhkar favoris.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Impossible de charger vos douas favorites.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Impossible de charger vos hadiths favoris.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Impossible de charger vos projets favoris.';
+
+  @override
+  String get error_api_dua_load_failed => 'Impossible de charger les douas.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Impossible de charger votre progression des douas.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Impossible d’enregistrer votre progression des douas.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Impossible d’enregistrer votre récompense quotidienne de doua.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Impossible de charger vos douas aimées.';
+
+  @override
+  String get error_api_dua_like_failed => 'Impossible d’aimer cette doua.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'Impossible de retirer le j’aime de cette doua.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'Impossible de charger vos statistiques.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Impossible de charger les catégories d’adhkar.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Impossible de charger les sous-catégories d’adhkar.';
+
+  @override
+  String get error_api_adhkars_load_failed =>
+      'Impossible de charger les adhkar.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Impossible de charger les dhikr.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Impossible de charger votre progression des dhikr.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed =>
+      'Impossible de charger votre récompense de dhikr.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Impossible d’enregistrer votre progression des dhikr.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Impossible de charger les collections de hadiths.';
+
+  @override
+  String get error_api_hadiths_load_failed =>
+      'Impossible de charger les hadiths.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Impossible de charger votre progression des hadiths.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Impossible d’enregistrer votre progression des hadiths.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Impossible de charger vos hadiths aimés.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Impossible d’aimer ce hadith.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Impossible de retirer le j’aime de ce hadith.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Impossible de charger les catégories de projets.';
+
+  @override
+  String get error_api_impact_projects_load_failed =>
+      'Impossible de charger les projets.';
+
+  @override
+  String get error_api_impact_project_load_failed =>
+      'Impossible de charger le projet.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'Impossible d’ajouter aux favoris.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Impossible de retirer des favoris.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Impossible de charger votre progression du Coran.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Impossible d’enregistrer votre progression du Coran.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Impossible de charger vos versets aimés.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Impossible d’enregistrer votre récompense quotidienne de verset.';
+
+  @override
+  String get error_api_quran_like_ayah_failed =>
+      'Impossible d’aimer ce verset.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Impossible de charger la translittération.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Impossible de retirer le j’aime de ce verset.';
 }

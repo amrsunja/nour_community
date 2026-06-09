@@ -28,7 +28,7 @@ class DuaRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -52,7 +52,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load duas',
+        messageKey: ApiErrorKey.duaLoadFailed,
       );
     }
   }
@@ -77,7 +77,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load dua progress',
+        messageKey: ApiErrorKey.duaProgressLoadFailed,
       );
     }
   }
@@ -101,7 +101,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to save dua progress',
+        messageKey: ApiErrorKey.duaProgressSaveFailed,
       );
     }
   }
@@ -159,7 +159,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to award daily dua ajr',
+        messageKey: ApiErrorKey.duaAjrAwardFailed,
       );
     }
   }
@@ -180,7 +180,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load liked duas',
+        messageKey: ApiErrorKey.duaLikedLoadFailed,
       );
     }
   }
@@ -194,7 +194,7 @@ class DuaRemoteDatasource {
       }, onConflict: 'user_id,dua_id');
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .badRequest, message: 'Failed to like dua');
+      throw ServerException(type: .badRequest, messageKey: ApiErrorKey.duaLikeFailed);
     }
   }
 
@@ -210,7 +210,7 @@ class DuaRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to unlike dua',
+        messageKey: ApiErrorKey.duaUnlikeFailed,
       );
     }
   }

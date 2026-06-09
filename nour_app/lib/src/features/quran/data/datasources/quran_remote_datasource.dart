@@ -34,7 +34,7 @@ class QuranRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -59,7 +59,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load Quran progress',
+        messageKey: ApiErrorKey.quranProgressLoadFailed,
       );
     }
   }
@@ -87,7 +87,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to save Quran progress',
+        messageKey: ApiErrorKey.quranProgressSaveFailed,
       );
     }
   }
@@ -111,7 +111,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load liked ayahs',
+        messageKey: ApiErrorKey.quranLikedAyahsLoadFailed,
       );
     }
   }
@@ -177,7 +177,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to award daily ayah ajr',
+        messageKey: ApiErrorKey.quranAyahAjrAwardFailed,
       );
     }
   }
@@ -197,7 +197,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to like ayah',
+        messageKey: ApiErrorKey.quranLikeAyahFailed,
       );
     }
   }
@@ -229,7 +229,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load transliteration',
+        messageKey: ApiErrorKey.quranTransliterationLoadFailed,
       );
     }
   }
@@ -250,7 +250,7 @@ class QuranRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to unlike ayah',
+        messageKey: ApiErrorKey.quranUnlikeAyahFailed,
       );
     }
   }

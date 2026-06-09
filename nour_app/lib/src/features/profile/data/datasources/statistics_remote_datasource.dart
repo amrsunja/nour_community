@@ -17,7 +17,7 @@ class StatisticsRemoteDatasource {
     if (supabaseClient.auth.currentUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
 
@@ -38,7 +38,7 @@ class StatisticsRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load statistics',
+        messageKey: ApiErrorKey.statisticsLoadFailed,
       );
     }
   }

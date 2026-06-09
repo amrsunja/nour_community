@@ -26,7 +26,7 @@ class QuizRemoteDatasource {
       if (data is! Map) {
         throw ServerException(
           type: .badRequest,
-          message: 'Unexpected getQuiz response',
+          messageKey: ApiErrorKey.quizUnexpectedGetResponse,
         );
       }
 
@@ -41,7 +41,7 @@ class QuizRemoteDatasource {
       rethrow;
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .badRequest, message: 'Failed to load quiz');
+      throw ServerException(type: .badRequest, messageKey: ApiErrorKey.quizLoadFailed);
     }
   }
 
@@ -67,7 +67,7 @@ class QuizRemoteDatasource {
       if (data is! Map) {
         throw ServerException(
           type: .badRequest,
-          message: 'Unexpected submitQuiz response',
+          messageKey: ApiErrorKey.quizUnexpectedSubmitResponse,
         );
       }
 
@@ -76,7 +76,7 @@ class QuizRemoteDatasource {
       rethrow;
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .badRequest, message: 'Failed to submit quiz');
+      throw ServerException(type: .badRequest, messageKey: ApiErrorKey.quizSubmitFailed);
     }
   }
 }

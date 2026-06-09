@@ -1292,4 +1292,249 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Anonim giriş başarısız oldu. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Giriş başlatılamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'E-posta adresi doğrulanamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Kod doğrulaması başarısız oldu. Kodu kontrol edip tekrar deneyin.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Giriş iptal edildi.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Google kimlik belirteci eksik. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Google ile giriş başarısız oldu. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Apple kimlik belirteci eksik. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Apple ile giriş başarısız oldu. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'Giriş yapmadınız. Lütfen giriş yapıp tekrar deneyin.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Fotoğrafınız yüklenemedi. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Fotoğrafınız silinemedi. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Profiliniz yüklenemedi. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Profiliniz yüklenemedi. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Günlük pratik süreniz güncellenemedi.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Seviyeniz güncellenemedi.';
+
+  @override
+  String get error_api_profile_update_name_failed => 'Adınız güncellenemedi.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Cinsiyetiniz güncellenemedi.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'İlerlemeniz kaydedilemedi.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Tanıtım tamamlanamadı.';
+
+  @override
+  String get error_api_reward_streak_load_failed => 'Seriniz yüklenemedi.';
+
+  @override
+  String get error_api_reward_claim_failed => 'Ödülünüz alınamadı.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Test yüklenirken beklenmeyen yanıt.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Test yüklenemedi.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Test gönderilirken beklenmeyen yanıt.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Test gönderilemedi.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Favori ayetleriniz yüklenemedi.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Favori zikirleriniz yüklenemedi.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Favori dualarınız yüklenemedi.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Favori hadisleriniz yüklenemedi.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Favori projeleriniz yüklenemedi.';
+
+  @override
+  String get error_api_dua_load_failed => 'Dualar yüklenemedi.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Dua ilerlemeniz yüklenemedi.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Dua ilerlemeniz kaydedilemedi.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Günlük dua ödülünüz kaydedilemedi.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Beğendiğiniz dualar yüklenemedi.';
+
+  @override
+  String get error_api_dua_like_failed => 'Bu dua beğenilemedi.';
+
+  @override
+  String get error_api_dua_unlike_failed => 'Bu duanın beğenisi kaldırılamadı.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'İstatistikleriniz yüklenemedi.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Zikir kategorileri yüklenemedi.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Zikir alt kategorileri yüklenemedi.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'Zikirler yüklenemedi.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Zikirler yüklenemedi.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Zikir ilerlemeniz yüklenemedi.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed => 'Zikir ödülünüz yüklenemedi.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Zikir ilerlemeniz kaydedilemedi.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Hadis koleksiyonları yüklenemedi.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'Hadisler yüklenemedi.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Hadis ilerlemeniz yüklenemedi.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Hadis ilerlemeniz kaydedilemedi.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Beğendiğiniz hadisler yüklenemedi.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Bu hadis beğenilemedi.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Bu hadisin beğenisi kaldırılamadı.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Proje kategorileri yüklenemedi.';
+
+  @override
+  String get error_api_impact_projects_load_failed => 'Projeler yüklenemedi.';
+
+  @override
+  String get error_api_impact_project_load_failed => 'Proje yüklenemedi.';
+
+  @override
+  String get error_api_impact_add_favorite_failed => 'Favorilere eklenemedi.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Favorilerden çıkarılamadı.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Kur\'an ilerlemeniz yüklenemedi.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Kur\'an ilerlemeniz kaydedilemedi.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Beğendiğiniz ayetler yüklenemedi.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Günlük ayet ödülünüz kaydedilemedi.';
+
+  @override
+  String get error_api_quran_like_ayah_failed => 'Bu ayet beğenilemedi.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Okunuş yüklenemedi.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Bu ayetin beğenisi kaldırılamadı.';
 }

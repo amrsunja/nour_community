@@ -29,7 +29,7 @@ class RewardRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -73,7 +73,7 @@ class RewardRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to read current streak',
+        messageKey: ApiErrorKey.rewardStreakLoadFailed,
       );
     }
   }
@@ -105,7 +105,7 @@ class RewardRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to claim reward',
+        messageKey: ApiErrorKey.rewardClaimFailed,
       );
     }
   }

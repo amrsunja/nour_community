@@ -29,7 +29,7 @@ class HadithRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -64,7 +64,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load hadith collections',
+        messageKey: ApiErrorKey.hadithCollectionsLoadFailed,
       );
     }
   }
@@ -110,7 +110,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load hadiths',
+        messageKey: ApiErrorKey.hadithsLoadFailed,
       );
     }
   }
@@ -151,7 +151,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load hadith progress',
+        messageKey: ApiErrorKey.hadithProgressLoadFailed,
       );
     }
   }
@@ -203,7 +203,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to save hadith progress',
+        messageKey: ApiErrorKey.hadithProgressSaveFailed,
       );
     }
   }
@@ -241,7 +241,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load liked hadiths',
+        messageKey: ApiErrorKey.hadithLikedLoadFailed,
       );
     }
   }
@@ -255,7 +255,7 @@ class HadithRemoteDatasource {
       }, onConflict: 'user_id,hadith_id');
     } catch (e) {
       talker.error(e);
-      throw ServerException(type: .badRequest, message: 'Failed to like hadith');
+      throw ServerException(type: .badRequest, messageKey: ApiErrorKey.hadithLikeFailed);
     }
   }
 
@@ -271,7 +271,7 @@ class HadithRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to unlike hadith',
+        messageKey: ApiErrorKey.hadithUnlikeFailed,
       );
     }
   }

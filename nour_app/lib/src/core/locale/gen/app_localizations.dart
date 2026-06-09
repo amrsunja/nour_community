@@ -2467,6 +2467,402 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠'**
   String get l10nStopLineDontTouch;
+
+  /// No description provided for @l10nApiErrors.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nApiErrors;
+
+  /// No description provided for @error_api_auth_anonymous_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous sign-in failed. Please try again.'**
+  String get error_api_auth_anonymous_failed;
+
+  /// No description provided for @error_api_auth_start_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t start sign-in. Please try again.'**
+  String get error_api_auth_start_failed;
+
+  /// No description provided for @error_api_auth_check_email_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t verify the email address. Please try again.'**
+  String get error_api_auth_check_email_failed;
+
+  /// No description provided for @error_api_auth_code_verification_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Code verification failed. Please check the code and try again.'**
+  String get error_api_auth_code_verification_failed;
+
+  /// No description provided for @error_api_auth_sign_in_cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in was cancelled.'**
+  String get error_api_auth_sign_in_cancelled;
+
+  /// No description provided for @error_api_auth_missing_google_token.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Google ID token. Please try again.'**
+  String get error_api_auth_missing_google_token;
+
+  /// No description provided for @error_api_auth_google_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in failed. Please try again.'**
+  String get error_api_auth_google_failed;
+
+  /// No description provided for @error_api_auth_missing_apple_token.
+  ///
+  /// In en, this message translates to:
+  /// **'Missing Apple ID token. Please try again.'**
+  String get error_api_auth_missing_apple_token;
+
+  /// No description provided for @error_api_auth_apple_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple sign-in failed. Please try again.'**
+  String get error_api_auth_apple_failed;
+
+  /// No description provided for @error_api_user_not_authenticated.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re not signed in. Please sign in and try again.'**
+  String get error_api_user_not_authenticated;
+
+  /// No description provided for @error_api_profile_avatar_upload_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload your photo. Please try again.'**
+  String get error_api_profile_avatar_upload_failed;
+
+  /// No description provided for @error_api_profile_avatar_delete_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete your photo. Please try again.'**
+  String get error_api_profile_avatar_delete_failed;
+
+  /// No description provided for @error_api_profile_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile. Please try again.'**
+  String get error_api_profile_invalid;
+
+  /// No description provided for @error_api_profile_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your profile. Please try again.'**
+  String get error_api_profile_load_failed;
+
+  /// No description provided for @error_api_profile_update_practice_time_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update your daily practice time.'**
+  String get error_api_profile_update_practice_time_failed;
+
+  /// No description provided for @error_api_profile_update_level_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update your level.'**
+  String get error_api_profile_update_level_failed;
+
+  /// No description provided for @error_api_profile_update_name_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update your name.'**
+  String get error_api_profile_update_name_failed;
+
+  /// No description provided for @error_api_profile_update_gender_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update your gender.'**
+  String get error_api_profile_update_gender_failed;
+
+  /// No description provided for @error_api_profile_update_onboarding_screen_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your progress.'**
+  String get error_api_profile_update_onboarding_screen_failed;
+
+  /// No description provided for @error_api_profile_complete_onboarding_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t complete onboarding.'**
+  String get error_api_profile_complete_onboarding_failed;
+
+  /// No description provided for @error_api_reward_streak_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your streak.'**
+  String get error_api_reward_streak_load_failed;
+
+  /// No description provided for @error_api_reward_claim_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t claim your reward.'**
+  String get error_api_reward_claim_failed;
+
+  /// No description provided for @error_api_quiz_unexpected_get_response.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected response while loading the quiz.'**
+  String get error_api_quiz_unexpected_get_response;
+
+  /// No description provided for @error_api_quiz_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the quiz.'**
+  String get error_api_quiz_load_failed;
+
+  /// No description provided for @error_api_quiz_unexpected_submit_response.
+  ///
+  /// In en, this message translates to:
+  /// **'Unexpected response while submitting the quiz.'**
+  String get error_api_quiz_unexpected_submit_response;
+
+  /// No description provided for @error_api_quiz_submit_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t submit the quiz.'**
+  String get error_api_quiz_submit_failed;
+
+  /// No description provided for @error_api_favorites_ayahs_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your favourite ayahs.'**
+  String get error_api_favorites_ayahs_load_failed;
+
+  /// No description provided for @error_api_favorites_adhkars_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your favourite adhkar.'**
+  String get error_api_favorites_adhkars_load_failed;
+
+  /// No description provided for @error_api_favorites_duas_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your favourite duas.'**
+  String get error_api_favorites_duas_load_failed;
+
+  /// No description provided for @error_api_favorites_hadiths_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your favourite hadiths.'**
+  String get error_api_favorites_hadiths_load_failed;
+
+  /// No description provided for @error_api_favorites_projects_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your favourite projects.'**
+  String get error_api_favorites_projects_load_failed;
+
+  /// No description provided for @error_api_dua_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load duas.'**
+  String get error_api_dua_load_failed;
+
+  /// No description provided for @error_api_dua_progress_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your dua progress.'**
+  String get error_api_dua_progress_load_failed;
+
+  /// No description provided for @error_api_dua_progress_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your dua progress.'**
+  String get error_api_dua_progress_save_failed;
+
+  /// No description provided for @error_api_dua_ajr_award_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t record your daily dua reward.'**
+  String get error_api_dua_ajr_award_failed;
+
+  /// No description provided for @error_api_dua_liked_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your liked duas.'**
+  String get error_api_dua_liked_load_failed;
+
+  /// No description provided for @error_api_dua_like_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t like this dua.'**
+  String get error_api_dua_like_failed;
+
+  /// No description provided for @error_api_dua_unlike_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove the like from this dua.'**
+  String get error_api_dua_unlike_failed;
+
+  /// No description provided for @error_api_statistics_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your statistics.'**
+  String get error_api_statistics_load_failed;
+
+  /// No description provided for @error_api_adhkar_categories_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load adhkar categories.'**
+  String get error_api_adhkar_categories_load_failed;
+
+  /// No description provided for @error_api_adhkar_subcategories_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load adhkar subcategories.'**
+  String get error_api_adhkar_subcategories_load_failed;
+
+  /// No description provided for @error_api_adhkars_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load adhkar.'**
+  String get error_api_adhkars_load_failed;
+
+  /// No description provided for @error_api_dhikrs_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load dhikr.'**
+  String get error_api_dhikrs_load_failed;
+
+  /// No description provided for @error_api_dhikr_progress_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your dhikr progress.'**
+  String get error_api_dhikr_progress_load_failed;
+
+  /// No description provided for @error_api_dhikr_ajr_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your dhikr reward.'**
+  String get error_api_dhikr_ajr_load_failed;
+
+  /// No description provided for @error_api_dhikr_progress_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your dhikr progress.'**
+  String get error_api_dhikr_progress_save_failed;
+
+  /// No description provided for @error_api_hadith_collections_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load hadith collections.'**
+  String get error_api_hadith_collections_load_failed;
+
+  /// No description provided for @error_api_hadiths_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load hadiths.'**
+  String get error_api_hadiths_load_failed;
+
+  /// No description provided for @error_api_hadith_progress_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your hadith progress.'**
+  String get error_api_hadith_progress_load_failed;
+
+  /// No description provided for @error_api_hadith_progress_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your hadith progress.'**
+  String get error_api_hadith_progress_save_failed;
+
+  /// No description provided for @error_api_hadith_liked_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your liked hadiths.'**
+  String get error_api_hadith_liked_load_failed;
+
+  /// No description provided for @error_api_hadith_like_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t like this hadith.'**
+  String get error_api_hadith_like_failed;
+
+  /// No description provided for @error_api_hadith_unlike_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove the like from this hadith.'**
+  String get error_api_hadith_unlike_failed;
+
+  /// No description provided for @error_api_impact_categories_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load project categories.'**
+  String get error_api_impact_categories_load_failed;
+
+  /// No description provided for @error_api_impact_projects_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load projects.'**
+  String get error_api_impact_projects_load_failed;
+
+  /// No description provided for @error_api_impact_project_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the project.'**
+  String get error_api_impact_project_load_failed;
+
+  /// No description provided for @error_api_impact_add_favorite_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t add to favourites.'**
+  String get error_api_impact_add_favorite_failed;
+
+  /// No description provided for @error_api_impact_remove_favorite_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove from favourites.'**
+  String get error_api_impact_remove_favorite_failed;
+
+  /// No description provided for @error_api_quran_progress_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your Quran progress.'**
+  String get error_api_quran_progress_load_failed;
+
+  /// No description provided for @error_api_quran_progress_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save your Quran progress.'**
+  String get error_api_quran_progress_save_failed;
+
+  /// No description provided for @error_api_quran_liked_ayahs_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your liked ayahs.'**
+  String get error_api_quran_liked_ayahs_load_failed;
+
+  /// No description provided for @error_api_quran_ayah_ajr_award_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t record your daily ayah reward.'**
+  String get error_api_quran_ayah_ajr_award_failed;
+
+  /// No description provided for @error_api_quran_like_ayah_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t like this ayah.'**
+  String get error_api_quran_like_ayah_failed;
+
+  /// No description provided for @error_api_quran_transliteration_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the transliteration.'**
+  String get error_api_quran_transliteration_load_failed;
+
+  /// No description provided for @error_api_quran_unlike_ayah_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t remove the like from this ayah.'**
+  String get error_api_quran_unlike_ayah_failed;
 }
 
 class _AppLocalizationsDelegate

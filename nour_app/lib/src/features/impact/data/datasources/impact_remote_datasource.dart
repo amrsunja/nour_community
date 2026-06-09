@@ -30,7 +30,7 @@ class ImpactRemoteDatasource {
     if (authUser == null) {
       throw ServerException(
         type: .unauthorized,
-        message: 'The user is not authenticated',
+        messageKey: ApiErrorKey.userNotAuthenticated,
       );
     }
     return authUser.id;
@@ -60,7 +60,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load project categories',
+        messageKey: ApiErrorKey.impactCategoriesLoadFailed,
       );
     }
   }
@@ -91,7 +91,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load impact projects',
+        messageKey: ApiErrorKey.impactProjectsLoadFailed,
       );
     }
   }
@@ -110,7 +110,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load the project',
+        messageKey: ApiErrorKey.impactProjectLoadFailed,
       );
     }
   }
@@ -133,7 +133,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite projects',
+        messageKey: ApiErrorKey.favoritesProjectsLoadFailed,
       );
     }
   }
@@ -149,7 +149,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to add favourite',
+        messageKey: ApiErrorKey.impactAddFavoriteFailed,
       );
     }
   }
@@ -166,7 +166,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to remove favourite',
+        messageKey: ApiErrorKey.impactRemoveFavoriteFailed,
       );
     }
   }
@@ -193,7 +193,7 @@ class ImpactRemoteDatasource {
       talker.error(e);
       throw ServerException(
         type: .badRequest,
-        message: 'Failed to load favourite projects',
+        messageKey: ApiErrorKey.favoritesProjectsLoadFailed,
       );
     }
   }

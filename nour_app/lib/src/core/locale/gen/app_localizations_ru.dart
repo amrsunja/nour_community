@@ -1291,4 +1291,258 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get l10nStopLineDontTouch =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠ Don\'t touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get l10nApiErrors => '☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get error_api_auth_anonymous_failed =>
+      'Не удалось войти анонимно. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_start_failed =>
+      'Не удалось начать вход. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_check_email_failed =>
+      'Не удалось проверить адрес электронной почты. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_code_verification_failed =>
+      'Не удалось подтвердить код. Проверьте код и попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_sign_in_cancelled => 'Вход отменён.';
+
+  @override
+  String get error_api_auth_missing_google_token =>
+      'Отсутствует идентификационный токен Google. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_google_failed =>
+      'Не удалось войти через Google. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_missing_apple_token =>
+      'Отсутствует идентификационный токен Apple. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_apple_failed =>
+      'Не удалось войти через Apple. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_user_not_authenticated =>
+      'Вы не вошли в систему. Пожалуйста, войдите и попробуйте ещё раз.';
+
+  @override
+  String get error_api_profile_avatar_upload_failed =>
+      'Не удалось загрузить ваше фото. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_profile_avatar_delete_failed =>
+      'Не удалось удалить ваше фото. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_profile_invalid =>
+      'Не удалось загрузить ваш профиль. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_profile_load_failed =>
+      'Не удалось загрузить ваш профиль. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_profile_update_practice_time_failed =>
+      'Не удалось обновить ваше ежедневное время практики.';
+
+  @override
+  String get error_api_profile_update_level_failed =>
+      'Не удалось обновить ваш уровень.';
+
+  @override
+  String get error_api_profile_update_name_failed =>
+      'Не удалось обновить ваше имя.';
+
+  @override
+  String get error_api_profile_update_gender_failed =>
+      'Не удалось обновить ваш пол.';
+
+  @override
+  String get error_api_profile_update_onboarding_screen_failed =>
+      'Не удалось сохранить ваш прогресс.';
+
+  @override
+  String get error_api_profile_complete_onboarding_failed =>
+      'Не удалось завершить знакомство с приложением.';
+
+  @override
+  String get error_api_reward_streak_load_failed =>
+      'Не удалось загрузить вашу серию.';
+
+  @override
+  String get error_api_reward_claim_failed =>
+      'Не удалось получить вашу награду.';
+
+  @override
+  String get error_api_quiz_unexpected_get_response =>
+      'Неожиданный ответ при загрузке викторины.';
+
+  @override
+  String get error_api_quiz_load_failed => 'Не удалось загрузить викторину.';
+
+  @override
+  String get error_api_quiz_unexpected_submit_response =>
+      'Неожиданный ответ при отправке викторины.';
+
+  @override
+  String get error_api_quiz_submit_failed => 'Не удалось отправить викторину.';
+
+  @override
+  String get error_api_favorites_ayahs_load_failed =>
+      'Не удалось загрузить ваши избранные аяты.';
+
+  @override
+  String get error_api_favorites_adhkars_load_failed =>
+      'Не удалось загрузить ваши избранные азкары.';
+
+  @override
+  String get error_api_favorites_duas_load_failed =>
+      'Не удалось загрузить ваши избранные дуа.';
+
+  @override
+  String get error_api_favorites_hadiths_load_failed =>
+      'Не удалось загрузить ваши избранные хадисы.';
+
+  @override
+  String get error_api_favorites_projects_load_failed =>
+      'Не удалось загрузить ваши избранные проекты.';
+
+  @override
+  String get error_api_dua_load_failed => 'Не удалось загрузить дуа.';
+
+  @override
+  String get error_api_dua_progress_load_failed =>
+      'Не удалось загрузить ваш прогресс по дуа.';
+
+  @override
+  String get error_api_dua_progress_save_failed =>
+      'Не удалось сохранить ваш прогресс по дуа.';
+
+  @override
+  String get error_api_dua_ajr_award_failed =>
+      'Не удалось записать вашу ежедневную награду за дуа.';
+
+  @override
+  String get error_api_dua_liked_load_failed =>
+      'Не удалось загрузить понравившиеся дуа.';
+
+  @override
+  String get error_api_dua_like_failed => 'Не удалось отметить эту дуа.';
+
+  @override
+  String get error_api_dua_unlike_failed =>
+      'Не удалось убрать отметку с этой дуа.';
+
+  @override
+  String get error_api_statistics_load_failed =>
+      'Не удалось загрузить вашу статистику.';
+
+  @override
+  String get error_api_adhkar_categories_load_failed =>
+      'Не удалось загрузить категории азкаров.';
+
+  @override
+  String get error_api_adhkar_subcategories_load_failed =>
+      'Не удалось загрузить подкатегории азкаров.';
+
+  @override
+  String get error_api_adhkars_load_failed => 'Не удалось загрузить азкары.';
+
+  @override
+  String get error_api_dhikrs_load_failed => 'Не удалось загрузить зикры.';
+
+  @override
+  String get error_api_dhikr_progress_load_failed =>
+      'Не удалось загрузить ваш прогресс по зикру.';
+
+  @override
+  String get error_api_dhikr_ajr_load_failed =>
+      'Не удалось загрузить вашу награду за зикр.';
+
+  @override
+  String get error_api_dhikr_progress_save_failed =>
+      'Не удалось сохранить ваш прогресс по зикру.';
+
+  @override
+  String get error_api_hadith_collections_load_failed =>
+      'Не удалось загрузить сборники хадисов.';
+
+  @override
+  String get error_api_hadiths_load_failed => 'Не удалось загрузить хадисы.';
+
+  @override
+  String get error_api_hadith_progress_load_failed =>
+      'Не удалось загрузить ваш прогресс по хадисам.';
+
+  @override
+  String get error_api_hadith_progress_save_failed =>
+      'Не удалось сохранить ваш прогресс по хадисам.';
+
+  @override
+  String get error_api_hadith_liked_load_failed =>
+      'Не удалось загрузить понравившиеся хадисы.';
+
+  @override
+  String get error_api_hadith_like_failed => 'Не удалось отметить этот хадис.';
+
+  @override
+  String get error_api_hadith_unlike_failed =>
+      'Не удалось убрать отметку с этого хадиса.';
+
+  @override
+  String get error_api_impact_categories_load_failed =>
+      'Не удалось загрузить категории проектов.';
+
+  @override
+  String get error_api_impact_projects_load_failed =>
+      'Не удалось загрузить проекты.';
+
+  @override
+  String get error_api_impact_project_load_failed =>
+      'Не удалось загрузить проект.';
+
+  @override
+  String get error_api_impact_add_favorite_failed =>
+      'Не удалось добавить в избранное.';
+
+  @override
+  String get error_api_impact_remove_favorite_failed =>
+      'Не удалось удалить из избранного.';
+
+  @override
+  String get error_api_quran_progress_load_failed =>
+      'Не удалось загрузить ваш прогресс по Корану.';
+
+  @override
+  String get error_api_quran_progress_save_failed =>
+      'Не удалось сохранить ваш прогресс по Корану.';
+
+  @override
+  String get error_api_quran_liked_ayahs_load_failed =>
+      'Не удалось загрузить понравившиеся аяты.';
+
+  @override
+  String get error_api_quran_ayah_ajr_award_failed =>
+      'Не удалось записать вашу ежедневную награду за аят.';
+
+  @override
+  String get error_api_quran_like_ayah_failed =>
+      'Не удалось отметить этот аят.';
+
+  @override
+  String get error_api_quran_transliteration_load_failed =>
+      'Не удалось загрузить транслитерацию.';
+
+  @override
+  String get error_api_quran_unlike_ayah_failed =>
+      'Не удалось убрать отметку с этого аята.';
 }
