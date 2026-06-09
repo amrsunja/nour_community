@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ splash. The OS ignores windowBackground for the cold-start splash and
+         uses these attributes instead. Without this file it defaults to white. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowSplashScreenBackground">@color/splash_color</item>
+        <item name="android:windowBackground">@color/splash_color</item>
+    </style>
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@color/splash_color</item>
+    </style>
+</resources>
