@@ -216,8 +216,14 @@ class QuranTool {
   /// every non-Arabic locale shares `en.transliteration`. Arabic needs none.
   static String? transliterationEditionForLanguage(String langCode) {
     final code = langCode.toLowerCase().split(RegExp('[-_]')).first;
-    if (code == 'ar') return null;
-    return '$code.transliteration';
+    if (code == 'ar') {
+      return null;
+    } else if (code == 'ru') {
+      return 'ru.transliteration';
+    } else if (code == 'tr') {
+      return 'tr.transliteration';
+    }
+    return 'en.transliteration';
   }
 
   static List<VerseInfo> getSurahVerses(int surahNumber) {
