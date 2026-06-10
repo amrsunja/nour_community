@@ -27,6 +27,11 @@ class QuranRemoteDatasource {
   // Public Quran API used only for transliteration (the bundled `quran`
   // package ships Arabic + translations + audio, but no transliteration).
   static const _alquranBase = 'https://api.alquran.cloud/v1';
+
+  // spa5k tafsir_api — static JSON on jsDelivr, keyed by edition *slug*
+  // (`{slug}/{surah}/{ayah}.json`). Free, no rate limit, multilingual.
+  // https://github.com/spa5k/tafsir_api
+  static const _tafsirBase = 'https://cdn.jsdelivr.net/gh/spa5k/tafsir_api@main/tafsir';
   final Dio _dio = Dio();
 
   String _requireUserId() {
@@ -236,9 +241,14 @@ class QuranRemoteDatasource {
 
   // ── Tafsir ────────────────────────────────────────────────────────────────
 
-  /// Tafsir text for a single ayah from the alquran.cloud [edition]
-  /// (e.g. `en.maududi`, `ar.muyassar`). Read-only, anonymous endpoint.
-  /// Returns `null` when the edition has no entry for this ayah.
+  /// Tafsir text for a single ayah from the spa5k tafsir_api [edition] slug
+  /// (e.g. `en-tafsir-al-mukhtasar`, `ar-tafsir-al-mukhtasar`) resolved from the
+  /// app locale by [QuranTool.tafsirEditionForLanguage]. Static CDN JSON shaped
+  /// `{"text": ..., "ayah": n, "surah": n}`. Read-only, anonymous, no auth.
+  ///
+  /// Returns `null` when the edition has no entry for this ayah (e.g. an empty
+  /// ayah, or a 404) so the UI degrades to the meaning fallback instead of
+  /// surfacing an error.
   Future<String?> getAyahTafsir(
     int surahNumber,
     int ayahNumber, {
@@ -246,11 +256,17 @@ class QuranRemoteDatasource {
   }) async {
     try {
       final res = await _dio.get<Map<String, dynamic>>(
-        '$_alquranBase/ayah/$surahNumber:$ayahNumber/$edition',
+        '$_tafsirBase/$edition/$surahNumber/$ayahNumber.json',
+        options: Options(
+          // Treat "not found" as a soft miss (→ null), not a thrown error.
+          validateStatus: (status) => status != null && status < 500,
+        ),
       );
 
-      final text = res.data?['data']?['text'] as String?;
-      if (text == null || text.isEmpty) return null;
+      if (res.statusCode == 404) return null;
+
+      final text = res.data?['text'] as String?;
+      if (text == null || text.trim().isEmpty) return null;
       return text;
     } catch (e) {
       talker.error(e);

@@ -195,17 +195,38 @@ class QuranTool {
     }
   }
 
-  // ── Edition mapping (remote alquran.cloud editions) ─────────────────────────
+  // ── Edition mapping (spa5k tafsir_api editions) ─────────────────────────────
 
-  /// alquran.cloud tafsir edition id for [langCode], or `null` when no tafsir
+  /// spa5k tafsir_api edition *slug* for [langCode], or `null` when no tafsir
   /// is published for that language (caller then shows the meaning fallback).
-  /// alquran.cloud's text tafsir catalogue is limited, hence the short map.
+  ///
+  /// Prefers the *Al-Mukhtasar* (abridged) family for a uniform style/length
+  /// across locales; Urdu has no Mukhtasar edition so it uses Ibn Kathir.
+  /// Slugs are passed straight to the CDN path
+  /// (`/tafsir/{slug}/{surah}/{ayah}.json`) — see [QuranRemoteDatasource].
+  ///
+  /// Catalogue: https://github.com/spa5k/tafsir_api#editions
   static String? tafsirEditionForLanguage(String langCode) {
     switch (langCode.toLowerCase().split(RegExp('[-_]')).first) {
       case 'ar':
-        return 'ar.muyassar';
+        return 'ar-tafsir-al-mukhtasar';
       case 'en':
-        return 'en.maududi';
+        return 'en-tafsir-al-mukhtasar';
+      case 'fr':
+        return 'french-mokhtasar';
+      case 'id':
+      // No Malay edition published; Indonesian is mutually intelligible.
+      case 'ms':
+        return 'indonesian-mokhtasar';
+      case 'ru':
+        return 'russian-mokhtasar';
+      case 'tr':
+        return 'turkish-mokhtasar';
+      case 'bn':
+        return 'bengali-mokhtasar';
+      case 'ur':
+        return 'tafseer-ibn-e-kaseer-urdu';
+      // `de`, `nl` — no published tafsir → meaning fallback in the UI.
       default:
         return null;
     }
