@@ -66,6 +66,7 @@ class DhikrPage extends HookConsumerWidget {
                     await showModalBottomSheet<DhikrModel>(
                       context: context,
                       backgroundColor: UIColorsToken.bgSurface,
+                      isScrollControlled: true,
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
                       ),
