@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,7 @@ class SignInPage extends HookConsumerWidget {
 
     Future<void> onApple() async {
       analytics.trackSignInClick(method: 'apple');
-      return ;
+      //return ;
       // ignore: dead_code
       if (isLoading) return;
       if (await notifier.linkWithApple()) await close();
@@ -211,14 +212,16 @@ class SignInPage extends HookConsumerWidget {
                                     onTap: onGoogle,
                                   ),
                                 ),
-                                const UISpace.horz(16),
-                                Expanded(
-                                  child: SocialAuthButton(
-                                    image: Assets.images.apple,
-                                    enabled: !isLoading,
-                                    onTap: onApple,
+                                if (!Platform.isIOS) ...[
+                                  const UISpace.horz(16),
+                                  Expanded(
+                                    child: SocialAuthButton(
+                                      image: Assets.images.apple,
+                                      enabled: !isLoading,
+                                      onTap: onApple,
+                                    ),
                                   ),
-                                ),
+                                ]
                               ],
                             ),
                           ],
