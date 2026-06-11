@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
@@ -97,16 +98,14 @@ class SignInPage extends HookConsumerWidget {
 
     Future<void> onGoogle() async {
       analytics.trackSignInClick(method: 'google');
+      ref.read(snackbarProvider).showInfo('Comming soon');
       return ;
-      // ignore: dead_code
       if (isLoading) return;
       if (await notifier.linkWithGoogle()) await close();
     }
 
     Future<void> onApple() async {
       analytics.trackSignInClick(method: 'apple');
-      //return ;
-      // ignore: dead_code
       if (isLoading) return;
       if (await notifier.linkWithApple()) await close();
     }
@@ -212,7 +211,7 @@ class SignInPage extends HookConsumerWidget {
                                     onTap: onGoogle,
                                   ),
                                 ),
-                                if (!Platform.isIOS) ...[
+                                if (Platform.isIOS) ...[
                                   const UISpace.horz(16),
                                   Expanded(
                                     child: SocialAuthButton(

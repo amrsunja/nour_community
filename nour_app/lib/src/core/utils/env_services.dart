@@ -10,7 +10,6 @@ abstract class EnvServices {
 	// OAuth providers
 	static String googleWebClientId = getEnvValue(envKey: 'GOOGLE_WEB_CLIENT_ID');
 	static String googleIosClientId = getEnvValue(envKey: 'GOOGLE_IOS_CLIENT_ID');
-	static String appleServiceId = getEnvValue(envKey: 'APPLE_SERVICE_ID');
 
 	static const String _error = 'error-env-value/';
 
