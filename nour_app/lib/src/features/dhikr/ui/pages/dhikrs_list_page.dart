@@ -74,7 +74,9 @@ class DhikrsListPage extends HookConsumerWidget {
                     ),
                   ),
                   UICard(
-                    colors: [UIColorsToken.bgSurface, UIColorsToken.bgSurface],
+                    color: UIColorsToken.bgSurface,
+                    shadows: [],
+                    disableBorder: true,
                     padding: .symmetric(horizontal: 16, vertical: 20),
                     onTap: () {
                       nav.toAdhkarsList();
