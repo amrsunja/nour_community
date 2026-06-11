@@ -125,11 +125,15 @@ class AuthRemoteDatasource {
     }
   }
 
-  /// Native Google sign in -> Supabase [signInWithIdToken].
+  /// Native Google sign in connected to the current ANONYMOUS session.
   ///
-  /// NOTE: id-token sign in authenticates against the Google identity directly;
-  /// it does not merge an existing anonymous session. Configure the provider in
-  /// the Supabase dashboard and the client ids in [EnvServices].
+  /// Mirrors the email flow: when the session is anonymous and the Google email
+  /// is NOT already owned by a permanent account, the identity is LINKED to the
+  /// anonymous user via [linkIdentityWithIdToken] keeping the same `auth.uid()`,
+  /// so all owned rows stay attached. Otherwise (existing account, or an already
+  /// permanent session) it falls back to [signInWithIdToken].
+  /// Configure the provider in the Supabase dashboard and the client ids in
+  /// [EnvServices]. "Enable Manual Linking" must be ON in Auth settings.
   Future<void> signInWithGoogle() async {
     try {
       final googleSignIn = GoogleSignIn(
@@ -151,10 +155,11 @@ class AuthRemoteDatasource {
         throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.authMissingGoogleToken);
       }
 
-      await supabaseClient.auth.signInWithIdToken(
+      await _connectIdentity(
         provider: OAuthProvider.google,
         idToken: idToken,
         accessToken: accessToken,
+        email: account.email,
       );
     } on ServerException {
       rethrow;
@@ -167,7 +172,12 @@ class AuthRemoteDatasource {
     }
   }
 
-  /// Native Apple sign in -> Supabase [signInWithIdToken] using a hashed nonce.
+  /// Native Apple sign in connected to the current ANONYMOUS session using a
+  /// hashed nonce. Same link-or-signin logic as [signInWithGoogle].
+  ///
+  /// Apple only returns the email on the FIRST authorization, so the email is
+  /// read from the id-token `email` claim ([_emailFromJwt]) rather than the
+  /// credential.
   Future<void> signInWithApple() async {
     try {
       final rawNonce = _generateNonce();
@@ -186,10 +196,11 @@ class AuthRemoteDatasource {
         throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.authMissingAppleToken);
       }
 
-      await supabaseClient.auth.signInWithIdToken(
+      await _connectIdentity(
         provider: OAuthProvider.apple,
         idToken: idToken,
         nonce: rawNonce,
+        email: credential.email ?? _emailFromJwt(idToken),
       );
     } on ServerException {
       rethrow;
@@ -205,6 +216,70 @@ class AuthRemoteDatasource {
     } catch (e) {
       talker.info(e);
       throw ServerException(type: .unknown, messageKey: ApiErrorKey.authAppleFailed);
+    }
+  }
+
+  /// Connects an OAuth id-token identity to the active session, mirroring the
+  /// email-link logic of [startEmailAuth]:
+  ///
+  /// - ANONYMOUS session + [email] NOT owned by a permanent account ->
+  ///   [linkIdentityWithIdToken] attaches the identity to the current anonymous
+  ///   user, keeping the same `auth.uid()`. All owned rows stay attached.
+  /// - existing permanent account (or already-permanent session) ->
+  ///   [signInWithIdToken] signs into that account; the anonymous session is
+  ///   discarded (same trade-off as the OTP existing-account path).
+  ///
+  /// Requires "Enable Manual Linking" in the Supabase Auth settings.
+  Future<void> _connectIdentity({
+    required OAuthProvider provider,
+    required String idToken,
+    String? accessToken,
+    String? nonce,
+    required String? email,
+  }) async {
+    final canLink = isAnonymous() &&
+        email != null &&
+        email.isNotEmpty &&
+        !(await _emailExists(email));
+
+    if (canLink) {
+      try {
+        await supabaseClient.auth.linkIdentityWithIdToken(
+          provider: provider,
+          idToken: idToken,
+          accessToken: accessToken,
+          nonce: nonce,
+        );
+        return;
+      } on AuthException catch (e) {
+        // The provider identity is already linked to another user even though
+        // _emailExists missed it -> fall through to a normal id-token sign in.
+        if (e.code != 'identity_already_exists') rethrow;
+      }
+    }
+
+    await supabaseClient.auth.signInWithIdToken(
+      provider: provider,
+      idToken: idToken,
+      accessToken: accessToken,
+      nonce: nonce,
+    );
+  }
+
+  /// Reads the `email` claim from an unverified JWT payload. The token is still
+  /// verified server-side by Supabase; this is only used to decide the link vs
+  /// sign-in branch.
+  String? _emailFromJwt(String token) {
+    try {
+      final parts = token.split('.');
+      if (parts.length != 3) return null;
+      final payload = json.decode(
+        utf8.decode(base64Url.decode(base64Url.normalize(parts[1]))),
+      ) as Map<String, dynamic>;
+      final email = payload['email'];
+      return email is String ? email : null;
+    } catch (_) {
+      return null;
     }
   }
 
