@@ -30,6 +30,8 @@ class AdhkarSubcategoryCardWidget extends StatelessWidget {
       child: UICard(
         onTap: onTap,
         color: UIColorsToken.black80,
+        shadows: [],
+        disableBorder: true,
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
         child: Row(
           children: [

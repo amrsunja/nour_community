@@ -28,6 +28,7 @@ class ToolCardWidget extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       color: UIColorsToken.black80,
       disableBorder: true,
+      shadows: [],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
