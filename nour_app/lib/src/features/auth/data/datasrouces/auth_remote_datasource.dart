@@ -137,6 +137,9 @@ class AuthRemoteDatasource {
   Future<void> signInWithGoogle() async {
     try {
       final googleSignIn = GoogleSignIn(
+        // 6.x: clientId must be null on Android (the app is identified by
+        // package name + SHA-1). Passing the Android client id here breaks the
+        // token audience and crashes signIn(). iOS still needs its clientId.
         clientId: Platform.isIOS ? EnvServices.googleIosClientId : null,
         serverClientId: EnvServices.googleWebClientId,
       );

@@ -98,8 +98,6 @@ class SignInPage extends HookConsumerWidget {
 
     Future<void> onGoogle() async {
       analytics.trackSignInClick(method: 'google');
-      ref.read(snackbarProvider).showInfo('Comming soon');
-      return ;
       if (isLoading) return;
       if (await notifier.linkWithGoogle()) await close();
     }
