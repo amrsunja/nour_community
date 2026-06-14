@@ -13,11 +13,16 @@ import 'package:nour/src/core/utils/app_vibrations.dart';
 ///
 /// Controlled component: the parent owns [currentCount] and updates it
 /// inside [onChange].
+///
+/// Pass a [controller] to trigger taps programmatically from a larger hit
+/// area on the host page (e.g. "tap anywhere to count") — it runs the exact
+/// same path as a direct tap (haptics + glow + [onChange]).
 class UIDhikrCounter extends StatefulWidget {
   const UIDhikrCounter({
     super.key,
     required this.totalCount,
     required this.onChange,
+    this.controller,
     this.currentCount = 0,
     this.bullSize = 17,
     this.diameter = 220,
@@ -27,6 +32,7 @@ class UIDhikrCounter extends StatefulWidget {
   final int totalCount;
   final int? currentCount;
   final ValueChanged<int> onChange;
+  final UIDhikrCounterController? controller;
 
   /// Diameter of each bull (unscaled).
   final double bullSize;
@@ -40,6 +46,15 @@ class UIDhikrCounter extends StatefulWidget {
 
   @override
   State<UIDhikrCounter> createState() => _UIDhikrCounterState();
+}
+
+/// Drives a [UIDhikrCounter] from outside — lets the host page make a much
+/// larger region (or the whole page) increment the counter.
+class UIDhikrCounterController {
+  VoidCallback? _tap;
+
+  /// Increment the counter as if the user tapped it directly.
+  void tap() => _tap?.call();
 }
 
 class _UIDhikrCounterState extends State<UIDhikrCounter>
@@ -62,11 +77,22 @@ class _UIDhikrCounterState extends State<UIDhikrCounter>
       vsync: this,
       duration: const Duration(milliseconds: 450),
     );
+    widget.controller?._tap = _onTap;
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    widget.controller?._tap = _onTap;
   }
 
   @override
   void didUpdateWidget(covariant UIDhikrCounter oldWidget) {
     super.didUpdateWidget(oldWidget);
+    if (oldWidget.controller != widget.controller) {
+      if (oldWidget.controller?._tap == _onTap) oldWidget.controller!._tap = null;
+      widget.controller?._tap = _onTap;
+    }
     final oldCount = oldWidget.currentCount ?? 0;
     final newCount = widget.currentCount ?? 0;
 
@@ -78,6 +104,7 @@ class _UIDhikrCounterState extends State<UIDhikrCounter>
 
   @override
   void dispose() {
+    if (widget.controller?._tap == _onTap) widget.controller!._tap = null;
     _waveController.dispose();
     _tapController.dispose();
     super.dispose();

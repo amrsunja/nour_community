@@ -36,6 +36,7 @@ class DhikrPage extends HookConsumerWidget {
 
     final dhikrCount = useState(state.currentCountOf(dhikr.id));
     final counterCount = useState(dhikrCount.value);
+    final counterController = useMemoized(() => UIDhikrCounterController());
     final sessionsCount = dhikr.minCount > 0 ? dhikrCount.value ~/ dhikr.minCount : 0;
 
     // Total ajr earned for this dhikr today (from ajr_log — one row per cycle).
@@ -147,48 +148,61 @@ class DhikrPage extends HookConsumerWidget {
                         color: UIColorsToken.textYellow,
                       ),
                 ),
-                const Spacer(),
-                UIGlowingBlock(
-                  shadow: UIShadowToken.dhikrCounter,
-                  child: UIDhikrCounter(
-                    totalCount: dhikr.minCount,
-                    currentCount: counterCount.value,
-                    onChange: (value) {
-                      counterCount.value = value;
-                      dhikrCount.value++;
-
-                      // Every tap on the Tasbih counter.
-                      final phrase = dhikr.transcription(langCode);
-                      analytics.trackDhikrIncrement(
-                        dhikrId: dhikr.id,
-                        phrase: phrase,
-                        count: dhikrCount.value,
-                      );
-                      // A full ring completed (33 / 66 / 99 …) → celebratory pop.
-                      if (dhikr.minCount > 0 && value > 0 &&
-                          value % dhikr.minCount == 0) {
-                        sfx.play(AppSound.longPop);
-                      }
-                      // A full cycle (multiple of the phrase's target count).
-                      if (dhikr.minCount > 0 &&
-                          dhikrCount.value % dhikr.minCount == 0) {
-                        analytics.trackDhikrCycleComplete(
-                          dhikrId: dhikr.id,
-                          phrase: phrase,
-                          cycles: dhikrCount.value ~/ dhikr.minCount,
-                        );
-                      }
-                    },
+                Expanded(
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: counterController.tap,
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          UIGlowingBlock(
+                            shadow: UIShadowToken.dhikrCounter,
+                            child: UIDhikrCounter(
+                              totalCount: dhikr.minCount,
+                              currentCount: counterCount.value,
+                              controller: counterController,
+                              onChange: (value) {
+                                counterCount.value = value;
+                                dhikrCount.value++;
+                          
+                                // Every tap on the Tasbih counter.
+                                final phrase = dhikr.transcription(langCode);
+                                analytics.trackDhikrIncrement(
+                                  dhikrId: dhikr.id,
+                                  phrase: phrase,
+                                  count: dhikrCount.value,
+                                );
+                                // A full ring completed (33 / 66 / 99 …) → celebratory pop.
+                                if (dhikr.minCount > 0 && value > 0 &&
+                                    value % dhikr.minCount == 0) {
+                                  sfx.play(AppSound.longPop);
+                                }
+                                // A full cycle (multiple of the phrase's target count).
+                                if (dhikr.minCount > 0 &&
+                                    dhikrCount.value % dhikr.minCount == 0) {
+                                  analytics.trackDhikrCycleComplete(
+                                    dhikrId: dhikr.id,
+                                    phrase: phrase,
+                                    cycles: dhikrCount.value ~/ dhikr.minCount,
+                                  );
+                                }
+                              },
+                            ),
+                          ),
+                          const UISpace.vert(50),
+                          Text(
+                            l10n.dhikr_tap_to_count,
+                            style: UITheme.of(context).typo.inter.bodyMedium.copyWith(
+                              color: UIColorsToken.textYellow.withValues(alpha: 0.7),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-                const UISpace.vert(50),
-                Text(
-                  l10n.dhikr_tap_to_count,
-                  style: UITheme.of(context).typo.inter.bodyMedium.copyWith(
-                    color: UIColorsToken.textYellow.withValues(alpha: 0.7),
-                  ),
-                ),
-                const Spacer(),
                 _StatsBar(
                   session: sessionsCount,
                   today: dhikrCount.value,
