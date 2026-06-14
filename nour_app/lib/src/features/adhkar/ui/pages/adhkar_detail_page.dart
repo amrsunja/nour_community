@@ -3,7 +3,6 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
@@ -115,17 +114,17 @@ class AdhkarDetailPage extends HookConsumerWidget {
                   _BottomBar(
                     current: index.value + 1,
                     total: adhkars.length,
+                    isFirst: index.value <= 0,
                     isLast: index.value >= adhkars.length - 1,
-                    onNext: () {
-                      if (index.value >= adhkars.length - 1) {
-                        context.pop();
-                        return;
-                      }
-                      pageController.nextPage(
-                        duration: const Duration(milliseconds: 300),
-                        curve: Curves.easeOutCubic,
-                      );
-                    },
+                    onPrev: () => pageController.previousPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutCubic,
+                    ),
+                    onNext: () => pageController.nextPage(
+                      duration: const Duration(milliseconds: 300),
+                      curve: Curves.easeOutCubic,
+                    ),
+                    onDone: context.pop,
                   ),
                   const UISpace.vert(12),
                 ],
@@ -256,54 +255,102 @@ class _BottomBar extends StatelessWidget {
   const _BottomBar({
     required this.current,
     required this.total,
+    required this.isFirst,
     required this.isLast,
+    required this.onPrev,
     required this.onNext,
+    required this.onDone,
   });
 
   final int current;
   final int total;
+  final bool isFirst;
   final bool isLast;
+  final VoidCallback onPrev;
   final VoidCallback onNext;
+  final VoidCallback onDone;
 
   @override
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        SizedBox(),
-        Padding(
-          padding: const EdgeInsets.only(right: kPageHorzPadding),
-          child: Row(
-            spacing: 14,
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        spacing: 16,
+        children: [
+          Expanded(
+            child: _ArrowButton(
+              icon: Icons.arrow_back_rounded,
+              enabled: !isFirst,
+              onTap: onPrev,
+            ),
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Text(
                 '$current/$total',
+                textAlign: TextAlign.center,
                 style: typo.inter.title.copyWith(color: UIColorsToken.white),
               ),
-              if (isLast)
+              if (isLast) ...[
+                const UISpace.vert(8),
                 UIAppearAnimation(
                   child: SizedBox(
                     width: 120,
                     child: UIButton.primary(
                       label: AppLocale.of(context).dhikr_done,
-                      onTap: onNext,
+                      onTap: onDone,
                     ),
                   ),
-                )
-              else
-                SizedBox(
-                  width: 120,
-                  child: UIButton.secondary(
-                    assetIcon: Assets.icons.arrowRight,
-                    onTap: onNext,
-                  ),
-                )
+                ),
+              ],
             ],
           ),
+          Expanded(
+            child: _ArrowButton(
+              icon: Icons.arrow_forward_rounded,
+              enabled: !isLast,
+              onTap: onNext,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ArrowButton extends StatelessWidget {
+  const _ArrowButton({
+    required this.icon,
+    required this.enabled,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final bool enabled;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: enabled ? 1 : 0.35,
+      child: UITap(
+        onTap: enabled ? onTap : null,
+        child: Container(
+          height: 52,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: UIColorsToken.bgSurface,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: UIColorsToken.stroke),
+          ),
+          child: Icon(icon, color: UIColorsToken.white, size: 22),
         ),
-      ],
+      ),
     );
   }
 }
