@@ -388,6 +388,9 @@ class $AssetsSoundsGen {
   /// File path: assets/sounds/paper-slide.wav
   String get paperSlide => 'assets/sounds/paper-slide.wav';
 
+  /// File path: assets/sounds/pop_dhikr.mp3
+  String get popDhikr => 'assets/sounds/pop_dhikr.mp3';
+
   /// File path: assets/sounds/reward.wav
   String get reward => 'assets/sounds/reward.wav';
 
@@ -406,6 +409,7 @@ class $AssetsSoundsGen {
     logo,
     longPop,
     paperSlide,
+    popDhikr,
     reward,
     reward2,
     wrongAnswer,

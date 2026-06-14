@@ -21,8 +21,11 @@ class UITap extends StatelessWidget {
 		  child: InkWell(
 		  	onTap: onTap,
         onLongPress: onLongPress,
+        hoverColor: color,
+        focusColor: color,
 		  	highlightColor: color,
 		  	splashColor: color,
+        overlayColor: WidgetStateProperty.all(color),
 		  	child: child,
 		  ),
 		);

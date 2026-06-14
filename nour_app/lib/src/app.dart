@@ -91,9 +91,9 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 						systemOverlayStyle: _overlayStyle,
 					),
 					// Change splash effect colors
-					//splashColor: UIColorToken.pri100,
-					//highlightColor: UIColorToken.pri100,
-					//hoverColor: UIColorToken.pri100,
+					splashColor: Colors.transparent,
+					highlightColor: Colors.transparent,
+					hoverColor: Colors.transparent,
 				),
 				title: kAppName,
 			  debugShowCheckedModeBanner: false,

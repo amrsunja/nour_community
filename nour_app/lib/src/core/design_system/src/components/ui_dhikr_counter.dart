@@ -43,8 +43,11 @@ class UIDhikrCounter extends StatefulWidget {
 }
 
 class _UIDhikrCounterState extends State<UIDhikrCounter>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late final AnimationController _waveController;
+
+  /// Short glow pulse fired on every tap.
+  late final AnimationController _tapController;
 
   int get _current => widget.currentCount ?? 0;
 
@@ -54,6 +57,10 @@ class _UIDhikrCounterState extends State<UIDhikrCounter>
     _waveController = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1600),
+    );
+    _tapController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 450),
     );
   }
 
@@ -72,11 +79,13 @@ class _UIDhikrCounterState extends State<UIDhikrCounter>
   @override
   void dispose() {
     _waveController.dispose();
+    _tapController.dispose();
     super.dispose();
   }
 
   void _onTap() {
     AppVibrations.buttonClick();
+    _tapController.forward(from: 0);
     widget.onChange(_current + 1);
   }
 
@@ -94,29 +103,50 @@ class _UIDhikrCounterState extends State<UIDhikrCounter>
         width: widget.diameter,
         height: widget.diameter,
         child: AnimatedBuilder(
-          animation: _waveController,
+          animation: Listenable.merge([_waveController, _tapController]),
           builder: (context, _) {
+            // 0 → 1 → 0 in-out pulse for the per-tap glow.
+            final tapPulse = math.sin(Curves.easeOut.transform(_tapController.value) * math.pi);
             return Stack(
               alignment: Alignment.center,
               children: [
+                // Radial glow that pulses behind the number on every tap.
+                Container(
+                  width: 130,
+                  height: 130,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: UIColorsToken.yellow
+                            .withValues(alpha: 0.2 * tapPulse),
+                        blurRadius: 40 * tapPulse + 6,
+                        spreadRadius: 8 * tapPulse,
+                      ),
+                    ],
+                  ),
+                ),
                 // Counter text in the center of the ring.
-                Column(
-                  mainAxisSize: .min,
-                  children: [
-                    Text(
-                      '$_current',
-                      style: theme.typo.inter.hero.copyWith(
-                        color: UIColorsToken.white,
-                        fontSize: 60
+                Transform.scale(
+                  scale: 1 + 0.08 * tapPulse,
+                  child: Column(
+                    mainAxisSize: .min,
+                    children: [
+                      Text(
+                        '$_current',
+                        style: theme.typo.inter.hero.copyWith(
+                          color: UIColorsToken.white,
+                          fontSize: 60
+                        ),
                       ),
-                    ),
-                    Text(
-                      'of ${widget.totalCount}',
-                      style: theme.typo.inter.bodyMedium.copyWith(
-                        color: UIColorsToken.textYellow
-                      ),
-                    )
-                  ],
+                      Text(
+                        'of ${widget.totalCount}',
+                        style: theme.typo.inter.bodyMedium.copyWith(
+                          color: UIColorsToken.textYellow
+                        ),
+                      )
+                    ],
+                  ),
                 ),
                 // Bulls positioned around the ring.
                 ...List.generate(widget.totalCount, (i) {

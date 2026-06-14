@@ -2,8 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/src/core/audio/app_sound.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/audio/sound_effect_provider.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 
 import '../../data/models/dhikr_model.dart';
@@ -23,6 +25,7 @@ class DhikrPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(dhikrProvider.notifier);
     final analytics = ref.read(analyticsRepoProvider);
+    final sfx = ref.read(soundEffectServiceProvider);
     final state = ref.read(dhikrProvider);
     final langCode = Localizations.localeOf(context).languageCode;
 
@@ -161,6 +164,11 @@ class DhikrPage extends HookConsumerWidget {
                         phrase: phrase,
                         count: dhikrCount.value,
                       );
+                      // A full ring completed (33 / 66 / 99 …) → celebratory pop.
+                      if (dhikr.minCount > 0 && value > 0 &&
+                          value % dhikr.minCount == 0) {
+                        sfx.play(AppSound.longPop);
+                      }
                       // A full cycle (multiple of the phrase's target count).
                       if (dhikr.minCount > 0 &&
                           dhikrCount.value % dhikr.minCount == 0) {

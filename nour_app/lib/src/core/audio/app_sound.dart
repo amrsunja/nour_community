@@ -30,6 +30,10 @@ enum AppSound {
   // ---- Quran ----
   /// Quran page turn (next / previous ayah).
   paperSlide,
+
+  // ---- Dhikr ----
+  /// Tasbih cycle completed (every full ring: 33 / 66 / 99 …).
+  longPop,
 }
 
 extension AppSoundAsset on AppSound {
@@ -51,6 +55,8 @@ extension AppSoundAsset on AppSound {
         return Assets.sounds.achievement3;
       case AppSound.paperSlide:
         return Assets.sounds.paperSlide;
+      case AppSound.longPop:
+        return Assets.sounds.popDhikr;
     }
   }
 
