@@ -75,11 +75,6 @@ class ZakatCalculatorPage extends HookConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _CurrencySelector(
-                selected: currency,
-                onSelected: presenter.setCurrency,
-              ),
-              const SizedBox(height: 16),
               UIAppearAnimation(
                 child: _SummaryCard(
                   l10n: l10n,
@@ -89,6 +84,11 @@ class ZakatCalculatorPage extends HookConsumerWidget {
                   onReset: onReset,
                   onGive: () {}, // Implemented later by the app owner.
                 ),
+              ),
+              const SizedBox(height: 16),
+              _CurrencySelector(
+                selected: currency,
+                onSelected: presenter.setCurrency,
               ),
               const SizedBox(height: 24),
               _Section(title: l10n.zakat_section_precious_metals),
@@ -350,10 +350,12 @@ class _SummaryCard extends StatelessWidget {
                 contentColor: UIColorsToken.white,
                 onTap: onReset,
               ),
+              /*
               UIButton.primary(
                 label: l10n.zakat_give,
                 onTap: onGive,
               ),
+              */
             ],
           ),
         ],
