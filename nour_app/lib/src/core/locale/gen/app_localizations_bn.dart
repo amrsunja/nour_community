@@ -31,6 +31,27 @@ class AppLocalizationsBn extends AppLocalizations {
   String get common_assalamu_alaykum => 'আসসালামু আলাইকুম';
 
   @override
+  String get common_monday_tag => 'সোম';
+
+  @override
+  String get common_tuesday_tag => 'মঙ্গল';
+
+  @override
+  String get common_wednesday_tag => 'বুধ';
+
+  @override
+  String get common_thursday_tag => 'বৃহ';
+
+  @override
+  String get common_friday_tag => 'শুক্র';
+
+  @override
+  String get common_saturday_tag => 'শনি';
+
+  @override
+  String get common_sunday_tag => 'রবি';
+
+  @override
   String get l10nNavBar =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

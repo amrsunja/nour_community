@@ -31,6 +31,27 @@ class AppLocalizationsUr extends AppLocalizations {
   String get common_assalamu_alaykum => 'السلام علیکم';
 
   @override
+  String get common_monday_tag => 'پیر';
+
+  @override
+  String get common_tuesday_tag => 'منگل';
+
+  @override
+  String get common_wednesday_tag => 'بدھ';
+
+  @override
+  String get common_thursday_tag => 'جمعرات';
+
+  @override
+  String get common_friday_tag => 'جمعہ';
+
+  @override
+  String get common_saturday_tag => 'ہفتہ';
+
+  @override
+  String get common_sunday_tag => 'اتوار';
+
+  @override
   String get l10nNavBar =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

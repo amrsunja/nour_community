@@ -31,6 +31,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_assalamu_alaykum => 'Ассаляму алейкум';
 
   @override
+  String get common_monday_tag => 'П';
+
+  @override
+  String get common_tuesday_tag => 'В';
+
+  @override
+  String get common_wednesday_tag => 'С';
+
+  @override
+  String get common_thursday_tag => 'Ч';
+
+  @override
+  String get common_friday_tag => 'П';
+
+  @override
+  String get common_saturday_tag => 'С';
+
+  @override
+  String get common_sunday_tag => 'В';
+
+  @override
   String get l10nNavBar =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

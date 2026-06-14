@@ -31,6 +31,27 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_assalamu_alaykum => 'As-salamu Alaykum';
 
   @override
+  String get common_monday_tag => 'M';
+
+  @override
+  String get common_tuesday_tag => 'D';
+
+  @override
+  String get common_wednesday_tag => 'W';
+
+  @override
+  String get common_thursday_tag => 'D';
+
+  @override
+  String get common_friday_tag => 'F';
+
+  @override
+  String get common_saturday_tag => 'Z';
+
+  @override
+  String get common_sunday_tag => 'Z';
+
+  @override
   String get l10nNavBar =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 

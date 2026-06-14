@@ -7,6 +7,13 @@
 	"common_maybe_later": "পরে করব",
 	"common_save": "সংরক্ষণ করুন",
   "common_assalamu_alaykum": "আসসালামু আলাইকুম",
+  "common_monday_tag": "সোম",
+  "common_tuesday_tag": "মঙ্গল",
+  "common_wednesday_tag": "বুধ",
+  "common_thursday_tag": "বৃহ",
+  "common_friday_tag": "শুক্র",
+  "common_saturday_tag": "শনি",
+  "common_sunday_tag": "রবি",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "মুসলিম ওয়ার্ল্ড লীগ",
   "calc_method_muslim_world_league_desc": "মুসলিম ওয়ার্ল্ড লীগ। ইউরোপ, দূরপ্রাচ্য ও উত্তর আমেরিকার কিছু অংশে বহুল ব্যবহৃত। ফজর 18°, এশা 17°।",
   "calc_method_france_name": "ফ্রান্স",

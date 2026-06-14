@@ -7,6 +7,13 @@
 	"common_maybe_later": "شاید بعد میں",
 	"common_save": "محفوظ کریں",
   "common_assalamu_alaykum": "السلام علیکم",
+  "common_monday_tag": "پیر",
+  "common_tuesday_tag": "منگل",
+  "common_wednesday_tag": "بدھ",
+  "common_thursday_tag": "جمعرات",
+  "common_friday_tag": "جمعہ",
+  "common_saturday_tag": "ہفتہ",
+  "common_sunday_tag": "اتوار",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "رابطہ عالم اسلامی",
   "calc_method_muslim_world_league_desc": "رابطہ عالم اسلامی۔ یورپ، مشرق بعید اور شمالی امریکہ کے بعض حصوں میں وسیع پیمانے پر استعمال ہوتا ہے۔ فجر 18°، عشاء 17°۔",
   "calc_method_france_name": "فرانس",

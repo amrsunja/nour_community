@@ -7,6 +7,13 @@
 	"common_maybe_later": "Belki daha sonra",
 	"common_save": "Kaydet",
   "common_assalamu_alaykum": "Es-selamu aleyküm",
+  "common_monday_tag": "P",
+  "common_tuesday_tag": "S",
+  "common_wednesday_tag": "Ç",
+  "common_thursday_tag": "P",
+  "common_friday_tag": "C",
+  "common_saturday_tag": "C",
+  "common_sunday_tag": "P",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "Dünya İslam Birliği",
   "calc_method_muslim_world_league_desc": "Dünya İslam Birliği. Avrupa, Uzak Doğu ve Kuzey Amerika'nın bazı bölgelerinde yaygın olarak kullanılır. Fajr 18°, Isha 17°.",
   "calc_method_france_name": "Fransa",

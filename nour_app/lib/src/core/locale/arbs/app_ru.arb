@@ -7,6 +7,13 @@
 	"common_maybe_later": "Позже",
 	"common_save": "Сохранить",
   "common_assalamu_alaykum": "Ассаляму алейкум",
+  "common_monday_tag": "П",
+  "common_tuesday_tag": "В",
+  "common_wednesday_tag": "С",
+  "common_thursday_tag": "Ч",
+  "common_friday_tag": "П",
+  "common_saturday_tag": "С",
+  "common_sunday_tag": "В",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "Всемирная исламская лига",
   "calc_method_muslim_world_league_desc": "Всемирная исламская лига. Широко используется в Европе, на Дальнем Востоке и в части Северной Америки. Фаджр 18°, Иша 17°.",
   "calc_method_france_name": "Франция",

@@ -7,6 +7,13 @@
 	"common_maybe_later": "Plus tard",
 	"common_save": "Enregistrer",
   "common_assalamu_alaykum": "As-salamu Alaykum",
+  "common_monday_tag": "L",
+  "common_tuesday_tag": "Ma",
+  "common_wednesday_tag": "Me",
+  "common_thursday_tag": "J",
+  "common_friday_tag": "V",
+  "common_saturday_tag": "S",
+  "common_sunday_tag": "D",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "Ligue islamique mondiale",
   "calc_method_muslim_world_league_desc": "Ligue islamique mondiale. Largement utilisée en Europe, en Extrême-Orient et dans certaines régions d'Amérique du Nord. Fajr 18°, Isha 17°.",
   "calc_method_france_name": "France",

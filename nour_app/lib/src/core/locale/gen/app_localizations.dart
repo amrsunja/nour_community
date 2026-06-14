@@ -158,6 +158,48 @@ abstract class AppLocalizations {
   /// **'As-salamu Alaykum'**
   String get common_assalamu_alaykum;
 
+  /// No description provided for @common_monday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'M'**
+  String get common_monday_tag;
+
+  /// No description provided for @common_tuesday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'T'**
+  String get common_tuesday_tag;
+
+  /// No description provided for @common_wednesday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'W'**
+  String get common_wednesday_tag;
+
+  /// No description provided for @common_thursday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'T'**
+  String get common_thursday_tag;
+
+  /// No description provided for @common_friday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'F'**
+  String get common_friday_tag;
+
+  /// No description provided for @common_saturday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'S'**
+  String get common_saturday_tag;
+
+  /// No description provided for @common_sunday_tag.
+  ///
+  /// In en, this message translates to:
+  /// **'S'**
+  String get common_sunday_tag;
+
   /// No description provided for @l10nNavBar.
   ///
   /// In en, this message translates to:

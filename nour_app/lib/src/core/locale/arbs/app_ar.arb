@@ -7,6 +7,13 @@
 	"common_maybe_later": "لاحقاً",
 	"common_save": "حفظ",
   "common_assalamu_alaykum": "السَّلَامُ عَلَيْكُمْ",
+  "common_monday_tag": "ن",
+  "common_tuesday_tag": "ث",
+  "common_wednesday_tag": "ر",
+  "common_thursday_tag": "خ",
+  "common_friday_tag": "ج",
+  "common_saturday_tag": "س",
+  "common_sunday_tag": "ح",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "رابطة العالم الإسلامي",
   "calc_method_muslim_world_league_desc": "رابطة العالم الإسلامي. تُستخدم على نطاق واسع في أوروبا والشرق الأقصى وأجزاء من أمريكا الشمالية. الفجر ١٨°، العشاء ١٧°.",
   "calc_method_france_name": "فرنسا",

@@ -7,6 +7,13 @@
 	"common_maybe_later": "Mungkin kemudian",
 	"common_save": "Simpan",
   "common_assalamu_alaykum": "Assalamualaikum",
+  "common_monday_tag": "I",
+  "common_tuesday_tag": "S",
+  "common_wednesday_tag": "R",
+  "common_thursday_tag": "K",
+  "common_friday_tag": "J",
+  "common_saturday_tag": "S",
+  "common_sunday_tag": "A",
 
 
 	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
@@ -405,7 +412,7 @@
   },
 
 
-  "_calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
+  "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "Liga Muslim Sedunia",
   "calc_method_muslim_world_league_desc": "Liga Muslim Sedunia. Digunakan secara meluas di Eropah, Timur Jauh dan sebahagian Amerika Utara. Subuh 18°, Isyak 17°.",
   "calc_method_france_name": "Perancis",

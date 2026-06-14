@@ -140,6 +140,15 @@ class DashboardPage extends HookConsumerWidget {
               UIStreakWeek(
                 states: _weekStates(streak, profile?.lastStreakDate),
                 streakCount: streak,
+                dayTags: [
+                  l10n.common_monday_tag,
+                  l10n.common_tuesday_tag,
+                  l10n.common_wednesday_tag,
+                  l10n.common_thursday_tag,
+                  l10n.common_friday_tag,
+                  l10n.common_saturday_tag,
+                  l10n.common_sunday_tag
+                ],
               ),
               const UISpace.vert(16),
               UIAppearAnimation(
