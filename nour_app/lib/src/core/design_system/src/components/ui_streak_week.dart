@@ -148,7 +148,10 @@ class _InfoState extends StatelessWidget {
 
     return Row(
       children: [
-        flame,
+        UIAppearAnimation(
+          delay: Duration(milliseconds: 100),
+          child: flame
+        ),
         Expanded(
           child: Text(
             message,
@@ -158,7 +161,10 @@ class _InfoState extends StatelessWidget {
             style: typo.inter.title.copyWith(color: UIColorsToken.white),
           ),
         ),
-        flame,
+        UIAppearAnimation(
+          delay: Duration(milliseconds: 400),
+          child: flame
+        ),
       ],
     );
   }
