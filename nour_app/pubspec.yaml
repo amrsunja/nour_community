@@ -140,3 +140,37 @@ flutter:
     - assets/lotties/
     - assets/sounds/
     - .env
+
+  fonts:
+    - family: Saans
+      fonts:
+        - asset: assets/fonts/Saans-TRIAL-Light.otf
+          weight: 300
+        - asset: assets/fonts/Saans-TRIAL-LightItalic.otf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/Saans-TRIAL-Regular.otf
+          weight: 400
+        - asset: assets/fonts/Saans-TRIAL-RegularItalic.otf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/Saans-TRIAL-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Saans-TRIAL-MediumItalic.otf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Saans-TRIAL-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Saans-TRIAL-SemiBoldItalic.otf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/Saans-TRIAL-Bold.otf
+          weight: 700
+        - asset: assets/fonts/Saans-TRIAL-BoldItalic.otf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/Saans-TRIAL-Heavy.otf
+          weight: 800
+        - asset: assets/fonts/Saans-TRIAL-HeavyItalic.otf
+          weight: 800
+          style: italic

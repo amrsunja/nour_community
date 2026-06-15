@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-/// Inter body and small text styles. Use [InterStyle.light] or [InterStyle.dark]
+/// Saans body and small text styles. Use [InterStyle.light] or [InterStyle.dark]
 /// for text color on light/dark surfaces.
 class InterStyle {
   InterStyle._(Color color)
@@ -81,7 +80,8 @@ class InterStyle {
     double? lineHeight,
     FontWeight? fontWeight,
   }) {
-    return GoogleFonts.inter(
+    return TextStyle(
+      fontFamily: 'Saans',
       fontSize: fontSize,
       height: lineHeight == null ? null : lineHeight / fontSize,
       fontWeight: fontWeight,
