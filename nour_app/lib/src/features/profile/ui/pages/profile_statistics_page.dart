@@ -46,13 +46,22 @@ class _ProfileStatisticsPageState
     ];
 
     return Scaffold(
+      appBar: UIAppBar(
+        onBack: () => context.router.maybePop(),
+        title: l10n.profile_statistics,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          UIAppBar(
-            onBack: () => context.router.maybePop(),
-            title: l10n.profile_statistics,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding),
+            child: UITabs<StatRange>(
+              selected: state.range,
+              items: tabs,
+              onChanged: notifier.load,
+            ),
           ),
+          const UISpace.vert(10),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(
@@ -65,12 +74,6 @@ class _ProfileStatisticsPageState
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 spacing: 10,
                 children: [
-                  UITabs<StatRange>(
-                    selected: state.range,
-                    items: tabs,
-                    onChanged: notifier.load,
-                  ),
-                  const UISpace.vert(10),
 
                   // ---- Top row: earned ajr + dhikr completed ----
                   Row(
@@ -88,6 +91,48 @@ class _ProfileStatisticsPageState
                           label: l10n.statistics_dhikr_completed,
                           value: stats.dhikrCompleted,
                           asset: Assets.images.illustration7,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // ---- Row: ayahs read + hadiths read ----
+                  Row(
+                    spacing: 10,
+                    children: [
+                      Expanded(
+                        child: StatisticsCard(
+                          label: l10n.statistics_ayahs_read,
+                          value: stats.ayahsRead,
+                          asset: Assets.images.illustration24,
+                        ),
+                      ),
+                      Expanded(
+                        child: StatisticsCard(
+                          label: l10n.statistics_hadiths_read,
+                          value: stats.hadithsRead,
+                          asset: Assets.images.illustration12,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  // ---- Row: duas recited + active days ----
+                  Row(
+                    spacing: 10,
+                    children: [
+                      Expanded(
+                        child: StatisticsCard(
+                          label: l10n.statistics_duas_recited,
+                          value: stats.duasRecited,
+                          asset: Assets.images.illustration3,
+                        ),
+                      ),
+                      Expanded(
+                        child: StatisticsCard(
+                          label: l10n.statistics_active_days,
+                          value: stats.activeDays,
+                          asset: Assets.images.illustration4,
                         ),
                       ),
                     ],
