@@ -501,6 +501,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get statistics_completed_deeds => 'Completed deeds';
 
   @override
+  String get statistics_ayahs_read => 'Ayahs read';
+
+  @override
+  String get statistics_hadiths_read => 'Hadiths read';
+
+  @override
+  String get statistics_duas_recited => 'Duas recited';
+
+  @override
+  String get statistics_active_days => 'Active days';
+
+  @override
   String get profile_favourites => 'Favourites';
 
   @override

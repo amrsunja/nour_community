@@ -493,6 +493,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get statistics_completed_deeds => 'الأعمال المنجزة';
 
   @override
+  String get statistics_ayahs_read => 'الآيات المقروءة';
+
+  @override
+  String get statistics_hadiths_read => 'الأحاديث المقروءة';
+
+  @override
+  String get statistics_duas_recited => 'الأدعية المقروءة';
+
+  @override
+  String get statistics_active_days => 'الأيام النشطة';
+
+  @override
   String get profile_favourites => 'المفضلة';
 
   @override

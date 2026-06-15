@@ -508,6 +508,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get statistics_completed_deeds => 'Gute Taten';
 
   @override
+  String get statistics_ayahs_read => 'Gelesene Verse';
+
+  @override
+  String get statistics_hadiths_read => 'Gelesene Hadithe';
+
+  @override
+  String get statistics_duas_recited => 'Rezitierte Bittgebete';
+
+  @override
+  String get statistics_active_days => 'Aktive Tage';
+
+  @override
   String get profile_favourites => 'Favoriten';
 
   @override

@@ -504,6 +504,18 @@ class AppLocalizationsUr extends AppLocalizations {
   String get statistics_completed_deeds => 'مکمل کیے گئے اعمال';
 
   @override
+  String get statistics_ayahs_read => 'پڑھی گئی آیات';
+
+  @override
+  String get statistics_hadiths_read => 'پڑھی گئی احادیث';
+
+  @override
+  String get statistics_duas_recited => 'پڑھی گئی دعائیں';
+
+  @override
+  String get statistics_active_days => 'متحرک دن';
+
+  @override
   String get profile_favourites => 'پسندیدہ';
 
   @override

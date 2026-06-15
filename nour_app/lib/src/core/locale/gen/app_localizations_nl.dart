@@ -501,6 +501,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statistics_completed_deeds => 'Voltooide goede daden';
 
   @override
+  String get statistics_ayahs_read => 'Gelezen verzen';
+
+  @override
+  String get statistics_hadiths_read => 'Gelezen hadiths';
+
+  @override
+  String get statistics_duas_recited => 'Gereciteerde smeekbeden';
+
+  @override
+  String get statistics_active_days => 'Actieve dagen';
+
+  @override
   String get profile_favourites => 'Favorieten';
 
   @override

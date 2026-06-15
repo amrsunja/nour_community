@@ -1046,6 +1046,30 @@ abstract class AppLocalizations {
   /// **'Completed deeds'**
   String get statistics_completed_deeds;
 
+  /// No description provided for @statistics_ayahs_read.
+  ///
+  /// In en, this message translates to:
+  /// **'Ayahs read'**
+  String get statistics_ayahs_read;
+
+  /// No description provided for @statistics_hadiths_read.
+  ///
+  /// In en, this message translates to:
+  /// **'Hadiths read'**
+  String get statistics_hadiths_read;
+
+  /// No description provided for @statistics_duas_recited.
+  ///
+  /// In en, this message translates to:
+  /// **'Duas recited'**
+  String get statistics_duas_recited;
+
+  /// No description provided for @statistics_active_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Active days'**
+  String get statistics_active_days;
+
   /// No description provided for @profile_favourites.
   ///
   /// In en, this message translates to:

@@ -504,6 +504,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String get statistics_completed_deeds => 'সম্পন্ন আমল';
 
   @override
+  String get statistics_ayahs_read => 'পঠিত আয়াত';
+
+  @override
+  String get statistics_hadiths_read => 'পঠিত হাদিস';
+
+  @override
+  String get statistics_duas_recited => 'পঠিত দোয়া';
+
+  @override
+  String get statistics_active_days => 'সক্রিয় দিন';
+
+  @override
   String get profile_favourites => 'প্রিয়';
 
   @override

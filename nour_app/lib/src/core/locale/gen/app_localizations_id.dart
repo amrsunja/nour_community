@@ -503,6 +503,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get statistics_completed_deeds => 'Amalan selesai';
 
   @override
+  String get statistics_ayahs_read => 'Ayat dibaca';
+
+  @override
+  String get statistics_hadiths_read => 'Hadis dibaca';
+
+  @override
+  String get statistics_duas_recited => 'Doa dibaca';
+
+  @override
+  String get statistics_active_days => 'Hari aktif';
+
+  @override
   String get profile_favourites => 'Favorit';
 
   @override

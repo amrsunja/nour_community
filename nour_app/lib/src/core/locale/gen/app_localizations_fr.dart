@@ -507,6 +507,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statistics_completed_deeds => 'Bonnes actions';
 
   @override
+  String get statistics_ayahs_read => 'Versets lus';
+
+  @override
+  String get statistics_hadiths_read => 'Hadiths lus';
+
+  @override
+  String get statistics_duas_recited => 'Invocations récitées';
+
+  @override
+  String get statistics_active_days => 'Jours actifs';
+
+  @override
   String get profile_favourites => 'Favoris';
 
   @override

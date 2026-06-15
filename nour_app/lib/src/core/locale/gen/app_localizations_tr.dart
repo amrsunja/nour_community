@@ -506,6 +506,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statistics_completed_deeds => 'Tamamlanan ameller';
 
   @override
+  String get statistics_ayahs_read => 'Okunan ayetler';
+
+  @override
+  String get statistics_hadiths_read => 'Okunan hadisler';
+
+  @override
+  String get statistics_duas_recited => 'Okunan dualar';
+
+  @override
+  String get statistics_active_days => 'Aktif günler';
+
+  @override
   String get profile_favourites => 'Favoriler';
 
   @override

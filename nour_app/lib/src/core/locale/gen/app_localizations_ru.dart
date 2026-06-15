@@ -504,6 +504,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get statistics_completed_deeds => 'Совершённые деяния';
 
   @override
+  String get statistics_ayahs_read => 'Прочитано аятов';
+
+  @override
+  String get statistics_hadiths_read => 'Прочитано хадисов';
+
+  @override
+  String get statistics_duas_recited => 'Прочитано дуа';
+
+  @override
+  String get statistics_active_days => 'Активные дни';
+
+  @override
   String get profile_favourites => 'Избранное';
 
   @override
