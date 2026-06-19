@@ -15,6 +15,7 @@ enum ApiErrorKey {
   authGoogleFailed,
   authMissingAppleToken,
   authAppleFailed,
+  authDeleteFailed,
   userNotAuthenticated,
 
   // Profile

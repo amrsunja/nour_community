@@ -677,6 +677,22 @@ class AppLocalizationsMs extends AppLocalizations {
   String get profile_avatar_cancel => 'Batal';
 
   @override
+  String get profile_delete_account => 'Padam akaun';
+
+  @override
+  String get profile_delete_account_title => 'Padam akaun?';
+
+  @override
+  String get profile_delete_account_message =>
+      'Semua data anda akan dipadam secara kekal dan tidak boleh dipulihkan. Adakah anda pasti mahu meneruskan?';
+
+  @override
+  String get profile_delete_account_confirm => 'Padam';
+
+  @override
+  String get profile_delete_account_cancel => 'Batal';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1362,6 +1378,10 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Log masuk Apple gagal. Sila cuba lagi.';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'Akaun anda tidak dapat dipadamkan. Sila cuba lagi.';
 
   @override
   String get error_api_user_not_authenticated =>

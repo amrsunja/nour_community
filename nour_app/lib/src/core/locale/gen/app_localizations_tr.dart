@@ -681,6 +681,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get profile_avatar_cancel => 'İptal';
 
   @override
+  String get profile_delete_account => 'Hesabı sil';
+
+  @override
+  String get profile_delete_account_title => 'Hesap silinsin mi?';
+
+  @override
+  String get profile_delete_account_message =>
+      'Tüm verileriniz kalıcı olarak silinecek ve geri alınamayacak. Devam etmek istediğinizden emin misiniz?';
+
+  @override
+  String get profile_delete_account_confirm => 'Sil';
+
+  @override
+  String get profile_delete_account_cancel => 'İptal';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1363,6 +1379,10 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Apple ile giriş başarısız oldu. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'Hesabınız silinemedi. Lütfen tekrar deneyin.';
 
   @override
   String get error_api_user_not_authenticated =>

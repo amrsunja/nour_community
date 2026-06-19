@@ -76,7 +76,7 @@ class AuthRepo {
 
   Future<SuccessOrError<void>> deleteUser() async {
 		return await Failure.exceptionsCatcher<void>(() async {
-      throw UnimplementedError();
+      await remoteDatasource.deleteUser();
 		});
   }
 }

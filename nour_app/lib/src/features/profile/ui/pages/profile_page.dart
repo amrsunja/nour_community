@@ -10,6 +10,7 @@ import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/url_launcher_service.dart';
 import 'package:nour/src/features/auth/ui/state_management/auth_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/profile/ui/widgets/delete_account_sheet.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_avatar.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_menu_row.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_section.dart';
@@ -44,6 +45,20 @@ class ProfilePage extends HookConsumerWidget {
         await auth.authorization();
         ref.read(navigationServicesProvider).toRoot();
       });
+    }
+
+    Future<void> onDeleteAccount() async {
+      final confirmed = await DeleteAccountSheet.show(context);
+      if (confirmed != true) return;
+
+      final auth = ref.read(authProvider.notifier);
+      final ok = await auth.deleteUser();
+      if (!ok) return;
+
+      // Same re-auth bounce as logout: provisions a fresh anonymous session and
+      // RootRoute routes the (incomplete) profile to onboarding.
+      await auth.authorization();
+      ref.read(navigationServicesProvider).toRoot();
     }
 
     return Scaffold(
@@ -189,6 +204,11 @@ class ProfilePage extends HookConsumerWidget {
                           icon: Icons.logout,
                           label: l10n.profile_logout,
                           onTap: onLogout,
+                        ),
+                        ProfileMenuRow(
+                          icon: Icons.delete_outline,
+                          label: l10n.profile_delete_account,
+                          onTap: onDeleteAccount,
                         ),
                       ]
                     ],

@@ -679,6 +679,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profile_avatar_cancel => 'Отмена';
 
   @override
+  String get profile_delete_account => 'Удалить аккаунт';
+
+  @override
+  String get profile_delete_account_title => 'Удалить аккаунт?';
+
+  @override
+  String get profile_delete_account_message =>
+      'Все ваши данные будут безвозвратно удалены и не подлежат восстановлению. Вы уверены, что хотите продолжить?';
+
+  @override
+  String get profile_delete_account_confirm => 'Удалить';
+
+  @override
+  String get profile_delete_account_cancel => 'Отмена';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1362,6 +1378,10 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Не удалось войти через Apple. Пожалуйста, попробуйте ещё раз.';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'Не удалось удалить ваш аккаунт. Пожалуйста, попробуйте ещё раз.';
 
   @override
   String get error_api_user_not_authenticated =>

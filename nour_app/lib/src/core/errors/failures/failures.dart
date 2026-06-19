@@ -67,6 +67,8 @@ class ServerFailure extends Failure {
         return l.error_api_auth_missing_apple_token;
       case ApiErrorKey.authAppleFailed:
         return l.error_api_auth_apple_failed;
+      case ApiErrorKey.authDeleteFailed:
+        return l.error_api_auth_delete_failed;
       case ApiErrorKey.userNotAuthenticated:
         return l.error_api_user_not_authenticated;
       // Profile

@@ -226,7 +226,30 @@ class AuthPresenter extends Presenter<AuthState> {
     return result;
   }
 
+  /// Permanently deletes the user's account (all owned data is cascade-deleted
+  /// server-side) and clears the local session. Mirrors [logout]: the caller is
+  /// expected to re-run [authorization] and bounce to [RootRoute], which
+  /// provisions a fresh anonymous session and routes to onboarding.
   Future<bool> deleteUser() async {
-    throw UnimplementedError();
+    if (state.isLoading) return false;
+    state = state.copyWith(isLoading: true);
+
+    final response = await repo.deleteUser();
+
+    final result = response.when(
+      (_) {
+        ref.read(analyticsRepoProvider).trackLogout();
+        ref.read(analyticsRepoProvider).identifyUser(userId: null);
+        state = state.copyWith(isAuthenticated: false, isLoading: false);
+        return true;
+      },
+      (error) {
+        state = state.copyWith(isLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
+
+    return result;
   }
 }

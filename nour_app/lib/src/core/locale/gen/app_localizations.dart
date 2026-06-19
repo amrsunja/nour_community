@@ -1370,6 +1370,36 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get profile_avatar_cancel;
 
+  /// No description provided for @profile_delete_account.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get profile_delete_account;
+
+  /// No description provided for @profile_delete_account_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account?'**
+  String get profile_delete_account_title;
+
+  /// No description provided for @profile_delete_account_message.
+  ///
+  /// In en, this message translates to:
+  /// **'All your data will be permanently deleted and cannot be recovered. Are you sure you want to continue?'**
+  String get profile_delete_account_message;
+
+  /// No description provided for @profile_delete_account_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get profile_delete_account_confirm;
+
+  /// No description provided for @profile_delete_account_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get profile_delete_account_cancel;
+
   /// No description provided for @l10nDashboard.
   ///
   /// In en, this message translates to:
@@ -2593,6 +2623,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Apple sign-in failed. Please try again.'**
   String get error_api_auth_apple_failed;
+
+  /// No description provided for @error_api_auth_delete_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete your account. Please try again.'**
+  String get error_api_auth_delete_failed;
 
   /// No description provided for @error_api_user_not_authenticated.
   ///

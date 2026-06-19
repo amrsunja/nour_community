@@ -676,6 +676,22 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profile_avatar_cancel => 'Cancel';
 
   @override
+  String get profile_delete_account => 'Delete account';
+
+  @override
+  String get profile_delete_account_title => 'Delete account?';
+
+  @override
+  String get profile_delete_account_message =>
+      'All your data will be permanently deleted and cannot be recovered. Are you sure you want to continue?';
+
+  @override
+  String get profile_delete_account_confirm => 'Delete';
+
+  @override
+  String get profile_delete_account_cancel => 'Cancel';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1358,6 +1374,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Apple sign-in failed. Please try again.';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'Couldn\'t delete your account. Please try again.';
 
   @override
   String get error_api_user_not_authenticated =>

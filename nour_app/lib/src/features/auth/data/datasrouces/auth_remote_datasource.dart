@@ -48,6 +48,25 @@ class AuthRemoteDatasource {
     return supabaseClient.auth.currentSession != null;
   }
 
+  /// Permanently deletes the current (PERMANENT) account.
+  ///
+  /// Calls the `delete_account` SECURITY DEFINER RPC, which removes the caller's
+  /// auth.users row and cascades to all owned data. The local session is then
+  /// cleared via [signOut] — the JWT is technically still valid until expiry but
+  /// the user it references no longer exists.
+  Future<void> deleteUser() async {
+    try {
+      await supabaseClient.rpc('delete_account');
+      await supabaseClient.auth.signOut();
+    } on AuthException catch (e) {
+      talker.info(e.message);
+      throw ServerException(type: .badRequest, message: e.message);
+    } catch (e) {
+      talker.info(e);
+      throw ServerException(type: .unknown, messageKey: ApiErrorKey.authDeleteFailed);
+    }
+  }
+
 
   /// Starts the connect-email flow from the current ANONYMOUS session.
   ///

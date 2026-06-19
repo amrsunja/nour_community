@@ -678,6 +678,22 @@ class AppLocalizationsUr extends AppLocalizations {
   String get profile_avatar_cancel => 'منسوخ کریں';
 
   @override
+  String get profile_delete_account => 'اکاؤنٹ حذف کریں';
+
+  @override
+  String get profile_delete_account_title => 'اکاؤنٹ حذف کریں؟';
+
+  @override
+  String get profile_delete_account_message =>
+      'آپ کا تمام ڈیٹا مستقل طور پر حذف کر دیا جائے گا اور بحال نہیں کیا جا سکے گا۔ کیا آپ واقعی جاری رکھنا چاہتے ہیں؟';
+
+  @override
+  String get profile_delete_account_confirm => 'حذف کریں';
+
+  @override
+  String get profile_delete_account_cancel => 'منسوخ کریں';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1359,6 +1375,10 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'ایپل سے سائن اِن ناکام ہوگیا۔ براہ کرم دوبارہ کوشش کریں۔';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'آپ کا اکاؤنٹ حذف نہیں ہو سکا۔ براہ کرم دوبارہ کوشش کریں۔';
 
   @override
   String get error_api_user_not_authenticated =>

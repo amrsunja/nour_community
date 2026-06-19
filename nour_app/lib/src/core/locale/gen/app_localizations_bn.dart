@@ -679,6 +679,22 @@ class AppLocalizationsBn extends AppLocalizations {
   String get profile_avatar_cancel => 'বাতিল';
 
   @override
+  String get profile_delete_account => 'অ্যাকাউন্ট মুছুন';
+
+  @override
+  String get profile_delete_account_title => 'অ্যাকাউন্ট মুছবেন?';
+
+  @override
+  String get profile_delete_account_message =>
+      'আপনার সমস্ত তথ্য স্থায়ীভাবে মুছে ফেলা হবে এবং পুনরুদ্ধার করা যাবে না। আপনি কি নিশ্চিতভাবে চালিয়ে যেতে চান?';
+
+  @override
+  String get profile_delete_account_confirm => 'মুছুন';
+
+  @override
+  String get profile_delete_account_cancel => 'বাতিল';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1358,6 +1374,10 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Apple দিয়ে সাইন-ইন ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'আপনার অ্যাকাউন্ট মুছে ফেলা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।';
 
   @override
   String get error_api_user_not_authenticated =>

@@ -682,6 +682,22 @@ class AppLocalizationsDe extends AppLocalizations {
   String get profile_avatar_cancel => 'Abbrechen';
 
   @override
+  String get profile_delete_account => 'Konto löschen';
+
+  @override
+  String get profile_delete_account_title => 'Konto löschen?';
+
+  @override
+  String get profile_delete_account_message =>
+      'Alle deine Daten werden dauerhaft gelöscht und können nicht wiederhergestellt werden. Möchtest du wirklich fortfahren?';
+
+  @override
+  String get profile_delete_account_confirm => 'Löschen';
+
+  @override
+  String get profile_delete_account_cancel => 'Abbrechen';
+
+  @override
   String get l10nDashboard =>
       '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
 
@@ -1366,6 +1382,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_auth_apple_failed =>
       'Apple-Anmeldung fehlgeschlagen. Bitte versuche es erneut.';
+
+  @override
+  String get error_api_auth_delete_failed =>
+      'Dein Konto konnte nicht gelöscht werden. Bitte versuche es erneut.';
 
   @override
   String get error_api_user_not_authenticated =>
