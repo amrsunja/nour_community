@@ -556,7 +556,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get impact_filter_all => 'Tous';
 
   @override
-  String get impact_empty => 'Aucun projet ici pour l\'instant.';
+  String get impact_empty =>
+      'Pour l\'instant, aucun projet n\'est encore disponible, mais nous en ajouterons bientôt. Merci !';
 
   @override
   String get impact_about_project => 'À propos du projet';

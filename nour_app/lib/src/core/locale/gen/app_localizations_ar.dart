@@ -542,7 +542,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get impact_filter_all => 'الكل';
 
   @override
-  String get impact_empty => 'لا توجد مشاريع هنا بعد.';
+  String get impact_empty =>
+      'لا توجد مشاريع متاحة حتى الآن، وسنقوم بإضافتها قريبًا. شكرًا!';
 
   @override
   String get impact_about_project => 'عن المشروع';

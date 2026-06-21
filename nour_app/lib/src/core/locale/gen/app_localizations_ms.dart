@@ -551,7 +551,8 @@ class AppLocalizationsMs extends AppLocalizations {
   String get impact_filter_all => 'Semua';
 
   @override
-  String get impact_empty => 'Tiada projek di sini lagi.';
+  String get impact_empty =>
+      'Tiada projek tersedia buat masa ini, tetapi kami akan menambahnya tidak lama lagi. Terima kasih!';
 
   @override
   String get impact_about_project => 'Perihal projek';

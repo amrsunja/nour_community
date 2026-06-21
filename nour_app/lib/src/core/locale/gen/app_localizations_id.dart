@@ -552,7 +552,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get impact_filter_all => 'Semua';
 
   @override
-  String get impact_empty => 'Belum ada proyek di sini.';
+  String get impact_empty =>
+      'Untuk saat ini belum ada proyek yang tersedia, namun kami akan segera menambahkannya. Terima kasih !';
 
   @override
   String get impact_about_project => 'Tentang proyek';

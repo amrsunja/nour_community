@@ -2,9 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/utils/constants/constants.dart';
 
 import '../state_management/impact_provider.dart';
 import '../widgets/impact_category_tabs.dart';
@@ -120,13 +122,23 @@ class _ImpactEmpty extends StatelessWidget {
     return ListView(
       physics: const AlwaysScrollableScrollPhysics(),
       children: [
-        SizedBox(height: MediaQuery.sizeOf(context).height * 0.3),
+        SizedBox(height: MediaQuery.sizeOf(context).height * 0.2),
+        SizedBox(
+          height: MediaQuery.sizeOf(context).height * 0.15,
+          child: Image.asset(
+            Assets.images.illustration8.path
+          ),
+        ),
+        UISpace.vert(20),
         Center(
-          child: Text(
-            l10n.impact_empty,
-            textAlign: TextAlign.center,
-            style: typo.inter.bodyMedium.copyWith(
-              color: UIColorsToken.textParagraph,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding),
+            child: Text(
+              l10n.impact_empty,
+              textAlign: TextAlign.center,
+              style: typo.inter.bodyMedium.copyWith(
+                color: UIColorsToken.textParagraph,
+              ),
             ),
           ),
         ),

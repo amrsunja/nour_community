@@ -1145,7 +1145,7 @@ abstract class AppLocalizations {
   /// No description provided for @impact_empty.
   ///
   /// In en, this message translates to:
-  /// **'No projects here yet.'**
+  /// **'There aren’t any projects available yet, but we’ll be adding them soon. Thank you!'**
   String get impact_empty;
 
   /// No description provided for @impact_about_project.

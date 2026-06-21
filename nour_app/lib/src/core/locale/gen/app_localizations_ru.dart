@@ -553,7 +553,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get impact_filter_all => 'Все';
 
   @override
-  String get impact_empty => 'Пока здесь нет проектов.';
+  String get impact_empty =>
+      'Пока-что доступных проектов еще нет, мы их скоро добавим. Спасибо!';
 
   @override
   String get impact_about_project => 'О проекте';

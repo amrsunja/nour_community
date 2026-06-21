@@ -553,7 +553,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get impact_filter_all => 'সব';
 
   @override
-  String get impact_empty => 'এখানে এখনো কোনো প্রকল্প নেই।';
+  String get impact_empty =>
+      'এখনো কোনো প্রকল্প উপলব্ধ নেই, তবে আমরা শীঘ্রই সেগুলো যোগ করব। ধন্যবাদ!';
 
   @override
   String get impact_about_project => 'প্রকল্প সম্পর্কে';

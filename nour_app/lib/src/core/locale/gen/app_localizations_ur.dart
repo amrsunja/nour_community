@@ -553,7 +553,8 @@ class AppLocalizationsUr extends AppLocalizations {
   String get impact_filter_all => 'تمام';
 
   @override
-  String get impact_empty => 'یہاں ابھی کوئی پروجیکٹ نہیں۔';
+  String get impact_empty =>
+      'فی الحال کوئی منصوبے دستیاب نہیں ہیں، لیکن ہم انہیں جلد ہی شامل کریں گے۔ شکریہ!';
 
   @override
   String get impact_about_project => 'پروجیکٹ کے بارے میں';

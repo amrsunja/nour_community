@@ -555,7 +555,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get impact_filter_all => 'Tümü';
 
   @override
-  String get impact_empty => 'Burada henüz proje yok.';
+  String get impact_empty =>
+      'Şu anda mevcut proje henüz yok, yakında ekleyeceğiz. Teşekkürler!';
 
   @override
   String get impact_about_project => 'Proje hakkında';

@@ -557,7 +557,8 @@ class AppLocalizationsDe extends AppLocalizations {
   String get impact_filter_all => 'Alle';
 
   @override
-  String get impact_empty => 'Noch keine Projekte hier.';
+  String get impact_empty =>
+      'Er zijn op dit moment nog geen projecten beschikbaar, maar we zullen ze binnenkort toevoegen. Bedankt!';
 
   @override
   String get impact_about_project => 'Über das Projekt';
