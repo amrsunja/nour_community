@@ -40,3 +40,6 @@ migrate_working_dir/
 *.ipr
 *.iws
 .idea/
+
+./nour_app/.env
+./nour_app/node_modules/
