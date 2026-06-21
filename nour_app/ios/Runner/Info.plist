@@ -4,8 +4,37 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>google-signin</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Reversed GOOGLE_IOS_CLIENT_ID. Required by GIDSignIn; its
+				     absence is the native SIGABRT crash on signIn(). -->
+				<string>com.googleusercontent.apps.441426767837-kjjqbpk2h8trclqfvg6elhao54id1amq</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>fr</string>
+		<string>ar</string>
+		<string>de</string>
+		<string>nl</string>
+		<string>tr</string>
+		<string>id</string>
+		<string>ur</string>
+		<string>bn</string>
+		<string>ms</string>
+		<string>ru</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Nour</string>
 	<key>CFBundleExecutable</key>
@@ -24,8 +53,37 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>mailto</string>
+		<string>https</string>
+		<string>tel</string>
+		<string>googlegmail</string>
+		<string>x-dispatch</string>
+		<string>readdle-spark</string>
+		<string>airmail</string>
+		<string>ms-outlook</string>
+		<string>ymail</string>
+		<string>fastmail</string>
+		<string>superhuman</string>
+		<string>protonmail</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Giving us permission to Media Library alows you to select media elements into our app</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Giving us permission to Location will allow you to create a quick way to mark your location when calculating prayer times and finding qibla</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Giving us permission to Location will allow you to create a quick way to mark your location when calculating prayer times and finding qibla</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Give us permission to the camera will allow you to add your avatar</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -49,6 +107,10 @@
 	</dict>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -66,5 +128,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+  <key>NSAppTransportSecurity</key>
+  <dict>
+    <key>NSAllowsLocalNetworking</key>
+  <true/>
+</dict>
 </dict>
 </plist>
