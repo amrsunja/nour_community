@@ -199,18 +199,25 @@ class ProfilePage extends HookConsumerWidget {
                           title: l10n.profile_terms_of_use,
                         ),
                       ),
-                      if (!session.isAnonymous) ...[
+                      // Logout only applies to a permanent (connected) account.
+                      if (!session.isAnonymous)
                         ProfileMenuRow(
                           icon: Icons.logout,
                           label: l10n.profile_logout,
                           onTap: onLogout,
                         ),
-                        ProfileMenuRow(
-                          icon: Icons.delete_outline,
-                          label: l10n.profile_delete_account,
-                          onTap: onDeleteAccount,
-                        ),
-                      ]
+                      // Delete is offered for BOTH anonymous and permanent
+                      // accounts: App Store Guideline 5.1.1(v) requires in-app
+                      // account deletion for any app that creates accounts —
+                      // anonymous sessions included. delete_account() removes
+                      // the caller's auth.users row (cascades all owned data);
+                      // it works for anonymous users since they hold the
+                      // `authenticated` role and a non-null auth.uid().
+                      ProfileMenuRow(
+                        icon: Icons.delete_outline,
+                        label: l10n.profile_delete_account,
+                        onTap: onDeleteAccount,
+                      ),
                     ],
                   ),
 
