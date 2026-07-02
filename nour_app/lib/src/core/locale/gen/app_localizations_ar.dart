@@ -1576,4 +1576,214 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'تعذّر إزالة الإعجاب من هذه الآية.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'تم';
+
+  @override
+  String get common_retry => 'حاول مرة أخرى';
+
+  @override
+  String get impact_donate => 'تبرّع';
+
+  @override
+  String get impact_donate_or_zakat => 'تبرّع أو أدِّ الزكاة';
+
+  @override
+  String get impact_transactions_title => 'المعاملات';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'اطّلع مع الإثبات على كيفية صرف الأموال المجموعة إلى الشريك.';
+
+  @override
+  String get impact_transactions_empty => 'لم تُصرف أي أموال لهذا المشروع بعد.';
+
+  @override
+  String get impact_transactions_distributed => 'المبلغ المصروف';
+
+  @override
+  String get donate_title => 'ادعم هذا المشروع';
+
+  @override
+  String get donate_type_donation => 'تبرّع';
+
+  @override
+  String get donate_type_zakat => 'زكاة';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'المبلغ ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'تحمّل رسوم المعالجة';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'يضيف $fee ليصل المبلغ كاملاً إلى المشروع.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return 'ادفع $amount';
+  }
+
+  @override
+  String get donate_button_empty => 'أدخل المبلغ';
+
+  @override
+  String get donate_processing_title => 'جارٍ المعالجة…';
+
+  @override
+  String get donate_processing_message =>
+      'نؤكّد عملية الدفع الخاصة بك. لن يستغرق ذلك سوى لحظة.';
+
+  @override
+  String get donate_success_title => 'جزاك الله خيرًا!';
+
+  @override
+  String get donate_success_message => 'تم استلام مساهمتك.';
+
+  @override
+  String get donate_failed_title => 'فشل الدفع';
+
+  @override
+  String get donate_failed_message =>
+      'تعذّر إتمام عملية الدفع. لم يتم خصم أي مبلغ.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'الإدارة';
+
+  @override
+  String get admin_panel_subtitle => 'التبرعات والمدفوعات والصرف';
+
+  @override
+  String get admin_analytics_title => 'المعاملات والتبرعات';
+
+  @override
+  String get admin_total_donated => 'إجمالي التبرعات';
+
+  @override
+  String get admin_total_donors => 'المتبرعون';
+
+  @override
+  String get admin_total_paid_out => 'المبلغ المصروف';
+
+  @override
+  String get admin_outstanding => 'المتبقّي';
+
+  @override
+  String get admin_tab_projects => 'المشاريع';
+
+  @override
+  String get admin_tab_payouts => 'عمليات الصرف';
+
+  @override
+  String get admin_tab_received => 'الوارد';
+
+  @override
+  String get admin_record_payout => 'تسجيل عملية صرف';
+
+  @override
+  String get admin_empty_projects => 'لا توجد مشاريع بعد.';
+
+  @override
+  String get admin_empty_payouts => 'لم تُسجّل أي عمليات صرف بعد.';
+
+  @override
+  String get admin_empty_received => 'لم تُستلم أي معاملات بعد.';
+
+  @override
+  String get admin_no_donations_yet => 'لا توجد تبرعات بعد.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count متبرّع';
+  }
+
+  @override
+  String get admin_field_project => 'المشروع';
+
+  @override
+  String get admin_field_type => 'النوع';
+
+  @override
+  String get admin_field_amount => 'المبلغ';
+
+  @override
+  String get admin_field_method => 'الطريقة';
+
+  @override
+  String get admin_field_status => 'الحالة';
+
+  @override
+  String get admin_field_reference => 'المرجع';
+
+  @override
+  String get admin_field_reference_hint => 'مرجع التحويل البنكي / Wise';
+
+  @override
+  String get admin_field_note => 'ملاحظة';
+
+  @override
+  String get admin_field_proof => 'إثبات التحويل';
+
+  @override
+  String get admin_add_proof => 'إضافة صورة الإيصال';
+
+  @override
+  String get admin_save_payout => 'حفظ';
+
+  @override
+  String get payout_confirmed => 'مؤكّد';
+
+  @override
+  String get payout_sent => 'مُرسل';
+
+  @override
+  String get payout_pending => 'قيد الانتظار';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'تعذّر بدء عملية الدفع. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_payment_sheet_failed => 'تعذّر إتمام عملية الدفع.';
+
+  @override
+  String get error_api_payment_cancelled => 'تم إلغاء الدفع.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'تعذّر تحميل سجلّ تبرعاتك.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'تعذّر تحميل معاملات هذا المشروع.';
+
+  @override
+  String get error_api_admin_analytics_load_failed => 'تعذّر تحميل الإحصاءات.';
+
+  @override
+  String get error_api_admin_payouts_load_failed => 'تعذّر تحميل عمليات الصرف.';
+
+  @override
+  String get error_api_admin_payout_create_failed => 'تعذّر تسجيل عملية الصرف.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'تعذّر رفع صورة الإثبات.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'تعذّر تحميل المعاملات.';
 }

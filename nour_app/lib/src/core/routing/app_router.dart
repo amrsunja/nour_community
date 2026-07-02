@@ -130,6 +130,12 @@ class AppRouter extends RootStackRouter {
               page: ProfileStatisticsRoute.page,
             ),
 
+            /// Admin (donations / payouts) — page guards itself on is_admin.
+            AutoRoute(
+              path: RoutePaths.adminDashboard,
+              page: AdminDashboardRoute.page,
+            ),
+
             AutoRoute(
               path: RoutePaths.accountInformation,
               page: AccountInformationRoute.page,

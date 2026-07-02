@@ -1602,4 +1602,219 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'Tidak dapat menghapus suka dari ayat ini.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'Selesai';
+
+  @override
+  String get common_retry => 'Coba lagi';
+
+  @override
+  String get impact_donate => 'Donasi';
+
+  @override
+  String get impact_donate_or_zakat => 'Donasi atau tunaikan Zakat';
+
+  @override
+  String get impact_transactions_title => 'Transaksi';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'Lihat bagaimana dana yang terkumpul disalurkan ke mitra, dengan bukti.';
+
+  @override
+  String get impact_transactions_empty =>
+      'Belum ada penyaluran dana untuk proyek ini.';
+
+  @override
+  String get impact_transactions_distributed => 'Disalurkan';
+
+  @override
+  String get donate_title => 'Dukung proyek ini';
+
+  @override
+  String get donate_type_donation => 'Donasi';
+
+  @override
+  String get donate_type_zakat => 'Zakat';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'Jumlah ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'Tanggung biaya pemrosesan';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'Menambahkan $fee agar proyek menerima jumlah penuh.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return 'Bayar $amount';
+  }
+
+  @override
+  String get donate_button_empty => 'Masukkan jumlah';
+
+  @override
+  String get donate_processing_title => 'Memproses…';
+
+  @override
+  String get donate_processing_message =>
+      'Kami sedang mengonfirmasi pembayaran Anda. Hanya sebentar.';
+
+  @override
+  String get donate_success_title => 'Jazak Allahu khayran!';
+
+  @override
+  String get donate_success_message => 'Kontribusi Anda telah diterima.';
+
+  @override
+  String get donate_failed_title => 'Pembayaran gagal';
+
+  @override
+  String get donate_failed_message =>
+      'Pembayaran Anda tidak dapat diselesaikan. Tidak ada biaya yang dikenakan.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'Administrasi';
+
+  @override
+  String get admin_panel_subtitle => 'Donasi, pembayaran, dan penyaluran';
+
+  @override
+  String get admin_analytics_title => 'Transaksi & donasi';
+
+  @override
+  String get admin_total_donated => 'Total donasi';
+
+  @override
+  String get admin_total_donors => 'Donatur';
+
+  @override
+  String get admin_total_paid_out => 'Disalurkan';
+
+  @override
+  String get admin_outstanding => 'Belum disalurkan';
+
+  @override
+  String get admin_tab_projects => 'Proyek';
+
+  @override
+  String get admin_tab_payouts => 'Penyaluran';
+
+  @override
+  String get admin_tab_received => 'Diterima';
+
+  @override
+  String get admin_record_payout => 'Catat penyaluran';
+
+  @override
+  String get admin_empty_projects => 'Belum ada proyek.';
+
+  @override
+  String get admin_empty_payouts => 'Belum ada penyaluran tercatat.';
+
+  @override
+  String get admin_empty_received => 'Belum ada transaksi diterima.';
+
+  @override
+  String get admin_no_donations_yet => 'Belum ada donasi.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count donatur';
+  }
+
+  @override
+  String get admin_field_project => 'Proyek';
+
+  @override
+  String get admin_field_type => 'Jenis';
+
+  @override
+  String get admin_field_amount => 'Jumlah';
+
+  @override
+  String get admin_field_method => 'Metode';
+
+  @override
+  String get admin_field_status => 'Status';
+
+  @override
+  String get admin_field_reference => 'Referensi';
+
+  @override
+  String get admin_field_reference_hint => 'Referensi transfer bank / Wise';
+
+  @override
+  String get admin_field_note => 'Catatan';
+
+  @override
+  String get admin_field_proof => 'Bukti transfer';
+
+  @override
+  String get admin_add_proof => 'Tambah gambar bukti';
+
+  @override
+  String get admin_save_payout => 'Simpan';
+
+  @override
+  String get payout_confirmed => 'Dikonfirmasi';
+
+  @override
+  String get payout_sent => 'Dikirim';
+
+  @override
+  String get payout_pending => 'Menunggu';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'Tidak dapat memulai pembayaran. Silakan coba lagi.';
+
+  @override
+  String get error_api_payment_sheet_failed =>
+      'Pembayaran tidak dapat diselesaikan.';
+
+  @override
+  String get error_api_payment_cancelled => 'Pembayaran dibatalkan.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'Tidak dapat memuat riwayat donasi Anda.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'Tidak dapat memuat transaksi proyek ini.';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'Tidak dapat memuat statistik.';
+
+  @override
+  String get error_api_admin_payouts_load_failed =>
+      'Tidak dapat memuat penyaluran.';
+
+  @override
+  String get error_api_admin_payout_create_failed =>
+      'Tidak dapat mencatat penyaluran.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'Tidak dapat mengunggah gambar bukti.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'Tidak dapat memuat transaksi.';
 }

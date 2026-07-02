@@ -194,6 +194,28 @@ class ServerFailure extends Failure {
         return l.error_api_quran_tafsir_load_failed;
       case ApiErrorKey.quranUnlikeAyahFailed:
         return l.error_api_quran_unlike_ayah_failed;
+      // Payments
+      case ApiErrorKey.paymentIntentFailed:
+        return l.error_api_payment_intent_failed;
+      case ApiErrorKey.paymentSheetFailed:
+        return l.error_api_payment_sheet_failed;
+      case ApiErrorKey.paymentCancelled:
+        return l.error_api_payment_cancelled;
+      case ApiErrorKey.paymentHistoryLoadFailed:
+        return l.error_api_payment_history_load_failed;
+      case ApiErrorKey.paymentProjectTransactionsLoadFailed:
+        return l.error_api_payment_project_transactions_load_failed;
+      // Admin
+      case ApiErrorKey.adminAnalyticsLoadFailed:
+        return l.error_api_admin_analytics_load_failed;
+      case ApiErrorKey.adminPayoutsLoadFailed:
+        return l.error_api_admin_payouts_load_failed;
+      case ApiErrorKey.adminPayoutCreateFailed:
+        return l.error_api_admin_payout_create_failed;
+      case ApiErrorKey.adminPayoutProofUploadFailed:
+        return l.error_api_admin_payout_proof_upload_failed;
+      case ApiErrorKey.adminTransactionsLoadFailed:
+        return l.error_api_admin_transactions_load_failed;
     }
   }
 }

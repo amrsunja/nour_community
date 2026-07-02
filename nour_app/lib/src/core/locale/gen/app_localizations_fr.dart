@@ -1612,4 +1612,220 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'Impossible de retirer le j’aime de ce verset.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'Terminé';
+
+  @override
+  String get common_retry => 'Réessayer';
+
+  @override
+  String get impact_donate => 'Faire un don';
+
+  @override
+  String get impact_donate_or_zakat => 'Donner ou verser la Zakât';
+
+  @override
+  String get impact_transactions_title => 'Transactions';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'Découvrez comment les fonds collectés ont été versés au partenaire, avec justificatifs.';
+
+  @override
+  String get impact_transactions_empty =>
+      'Aucun décaissement n’a encore été effectué pour ce projet.';
+
+  @override
+  String get impact_transactions_distributed => 'Distribué';
+
+  @override
+  String get donate_title => 'Soutenir ce projet';
+
+  @override
+  String get donate_type_donation => 'Don';
+
+  @override
+  String get donate_type_zakat => 'Zakât';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'Montant ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'Prendre en charge les frais';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'Ajoute $fee pour que le projet reçoive la totalité du montant.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return 'Payer $amount';
+  }
+
+  @override
+  String get donate_button_empty => 'Saisissez un montant';
+
+  @override
+  String get donate_processing_title => 'Traitement…';
+
+  @override
+  String get donate_processing_message =>
+      'Nous confirmons votre paiement. Cela ne prend qu’un instant.';
+
+  @override
+  String get donate_success_title => 'Jazak Allahu khayran !';
+
+  @override
+  String get donate_success_message => 'Votre contribution a bien été reçue.';
+
+  @override
+  String get donate_failed_title => 'Échec du paiement';
+
+  @override
+  String get donate_failed_message =>
+      'Votre paiement n’a pas pu aboutir. Aucun montant n’a été débité.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'Administration';
+
+  @override
+  String get admin_panel_subtitle => 'Dons, paiements et décaissements';
+
+  @override
+  String get admin_analytics_title => 'Transactions et dons';
+
+  @override
+  String get admin_total_donated => 'Total des dons';
+
+  @override
+  String get admin_total_donors => 'Donateurs';
+
+  @override
+  String get admin_total_paid_out => 'Décaissé';
+
+  @override
+  String get admin_outstanding => 'Restant à verser';
+
+  @override
+  String get admin_tab_projects => 'Projets';
+
+  @override
+  String get admin_tab_payouts => 'Décaissements';
+
+  @override
+  String get admin_tab_received => 'Reçus';
+
+  @override
+  String get admin_record_payout => 'Enregistrer un décaissement';
+
+  @override
+  String get admin_empty_projects => 'Aucun projet.';
+
+  @override
+  String get admin_empty_payouts => 'Aucun décaissement enregistré.';
+
+  @override
+  String get admin_empty_received => 'Aucune transaction reçue.';
+
+  @override
+  String get admin_no_donations_yet => 'Aucun don pour l’instant.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count donateurs';
+  }
+
+  @override
+  String get admin_field_project => 'Projet';
+
+  @override
+  String get admin_field_type => 'Type';
+
+  @override
+  String get admin_field_amount => 'Montant';
+
+  @override
+  String get admin_field_method => 'Méthode';
+
+  @override
+  String get admin_field_status => 'Statut';
+
+  @override
+  String get admin_field_reference => 'Référence';
+
+  @override
+  String get admin_field_reference_hint =>
+      'Référence du virement bancaire / Wise';
+
+  @override
+  String get admin_field_note => 'Note';
+
+  @override
+  String get admin_field_proof => 'Justificatif de virement';
+
+  @override
+  String get admin_add_proof => 'Ajouter une image du reçu';
+
+  @override
+  String get admin_save_payout => 'Enregistrer';
+
+  @override
+  String get payout_confirmed => 'Confirmé';
+
+  @override
+  String get payout_sent => 'Envoyé';
+
+  @override
+  String get payout_pending => 'En attente';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'Impossible de démarrer le paiement. Veuillez réessayer.';
+
+  @override
+  String get error_api_payment_sheet_failed =>
+      'Le paiement n’a pas pu aboutir.';
+
+  @override
+  String get error_api_payment_cancelled => 'Paiement annulé.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'Impossible de charger votre historique de dons.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'Impossible de charger les transactions de ce projet.';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'Impossible de charger les statistiques.';
+
+  @override
+  String get error_api_admin_payouts_load_failed =>
+      'Impossible de charger les décaissements.';
+
+  @override
+  String get error_api_admin_payout_create_failed =>
+      'Impossible d’enregistrer le décaissement.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'Impossible d’envoyer l’image du justificatif.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'Impossible de charger les transactions.';
 }

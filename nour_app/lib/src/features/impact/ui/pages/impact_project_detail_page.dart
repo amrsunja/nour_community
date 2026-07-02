@@ -9,6 +9,8 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/share_services.dart';
 import 'package:nour/src/features/impact/ui/widgets/category_badge_widget.dart';
 import 'package:nour/src/features/impact/ui/widgets/donors_avatars_widget.dart';
+import 'package:nour/src/features/payments/ui/widgets/donation_sheet.dart';
+import 'package:nour/src/features/payments/ui/widgets/project_transactions_section.dart';
 
 import '../../data/datasources/impact_remote_datasource.dart';
 import '../../data/models/impact_project_model.dart';
@@ -52,6 +54,19 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
       );
     }
 
+    Future<void> donate() async {
+      if (project == null) return;
+      final ok = await DonationSheet.show(
+        context,
+        projectId: project.id,
+        projectTitle: project.title(langCode),
+        currency: project.currency,
+        eligibleForZakat: project.eligibleForZakat,
+      );
+      // A confirmed payment updates collected_amount + donors_count — refresh.
+      if (ok == true) presenter.refresh();
+    }
+
     return Scaffold(
       appBar: UIAppBar(
         onBack: context.pop,
@@ -68,6 +83,18 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
           ),
         ],
       ),
+      bottomNavigationBar: project == null
+          ? null
+          : SafeArea(
+              minimum: const EdgeInsets.fromLTRB(16, 8, 16, 12),
+              child: UIButton.primary(
+                label: project.eligibleForZakat
+                    ? l10n.impact_donate_or_zakat
+                    : l10n.impact_donate,
+                fullWidth: true,
+                onTap: donate,
+              ),
+            ),
       body: SafeArea(
         top: false,
         child: state.isLoading && project == null
@@ -210,6 +237,13 @@ class _DetailBody extends HookWidget {
                 ),
               ),
           ],
+
+          // Transparency — confirmed disbursement proofs for this project.
+          _buildDivider(),
+          ProjectTransactionsSection(
+            projectId: project.id,
+            currency: project.currency,
+          ),
         ],
       ),
     );

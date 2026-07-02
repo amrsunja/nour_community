@@ -38,6 +38,10 @@ dependencies:
   # Server
   supabase_flutter: ^2.12.0
 
+  # Payments (Stripe PaymentSheet — zakat & donations)
+  flutter_stripe: ^13.0.0
+  stripe_platform_interface: ^13.0.0
+
   # Sound effects (low-latency one-shots)
   sound_effect: ^0.1.3
 

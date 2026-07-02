@@ -89,6 +89,14 @@ enabled = true
 policy = "oneshot"
 inspector_port = 8083
 
+# Payment functions. The Stripe webhook must NOT verify a Supabase JWT — Stripe
+# authenticates via its own signature (STRIPE_WEBHOOK_SECRET), not Supabase auth.
+[functions.create-payment-intent]
+verify_jwt = true
+
+[functions.stripe-webhook]
+verify_jwt = false
+
 [analytics]
 enabled = false
 port = 54327

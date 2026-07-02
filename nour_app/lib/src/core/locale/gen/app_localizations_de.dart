@@ -1614,4 +1614,220 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'Das Like für diesen Vers konnte nicht entfernt werden.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'Fertig';
+
+  @override
+  String get common_retry => 'Erneut versuchen';
+
+  @override
+  String get impact_donate => 'Spenden';
+
+  @override
+  String get impact_donate_or_zakat => 'Spenden oder Zakat geben';
+
+  @override
+  String get impact_transactions_title => 'Transaktionen';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'Sehen Sie mit Nachweis, wie die gesammelten Mittel an den Partner ausgezahlt wurden.';
+
+  @override
+  String get impact_transactions_empty =>
+      'Für dieses Projekt wurden noch keine Auszahlungen vorgenommen.';
+
+  @override
+  String get impact_transactions_distributed => 'Ausgezahlt';
+
+  @override
+  String get donate_title => 'Dieses Projekt unterstützen';
+
+  @override
+  String get donate_type_donation => 'Spende';
+
+  @override
+  String get donate_type_zakat => 'Zakat';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'Betrag ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'Bearbeitungsgebühr übernehmen';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'Fügt $fee hinzu, damit das Projekt den vollen Betrag erhält.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return '$amount zahlen';
+  }
+
+  @override
+  String get donate_button_empty => 'Betrag eingeben';
+
+  @override
+  String get donate_processing_title => 'Wird verarbeitet…';
+
+  @override
+  String get donate_processing_message =>
+      'Wir bestätigen Ihre Zahlung. Das dauert nur einen Moment.';
+
+  @override
+  String get donate_success_title => 'Jazak Allahu khayran!';
+
+  @override
+  String get donate_success_message => 'Ihr Beitrag ist eingegangen.';
+
+  @override
+  String get donate_failed_title => 'Zahlung fehlgeschlagen';
+
+  @override
+  String get donate_failed_message =>
+      'Ihre Zahlung konnte nicht abgeschlossen werden. Es wurde nichts belastet.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'Verwaltung';
+
+  @override
+  String get admin_panel_subtitle => 'Spenden, Zahlungen und Auszahlungen';
+
+  @override
+  String get admin_analytics_title => 'Transaktionen & Spenden';
+
+  @override
+  String get admin_total_donated => 'Gesamtspenden';
+
+  @override
+  String get admin_total_donors => 'Spender';
+
+  @override
+  String get admin_total_paid_out => 'Ausgezahlt';
+
+  @override
+  String get admin_outstanding => 'Ausstehend';
+
+  @override
+  String get admin_tab_projects => 'Projekte';
+
+  @override
+  String get admin_tab_payouts => 'Auszahlungen';
+
+  @override
+  String get admin_tab_received => 'Eingegangen';
+
+  @override
+  String get admin_record_payout => 'Auszahlung erfassen';
+
+  @override
+  String get admin_empty_projects => 'Noch keine Projekte.';
+
+  @override
+  String get admin_empty_payouts => 'Noch keine Auszahlungen erfasst.';
+
+  @override
+  String get admin_empty_received => 'Noch keine Transaktionen erhalten.';
+
+  @override
+  String get admin_no_donations_yet => 'Noch keine Spenden.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count Spender';
+  }
+
+  @override
+  String get admin_field_project => 'Projekt';
+
+  @override
+  String get admin_field_type => 'Typ';
+
+  @override
+  String get admin_field_amount => 'Betrag';
+
+  @override
+  String get admin_field_method => 'Methode';
+
+  @override
+  String get admin_field_status => 'Status';
+
+  @override
+  String get admin_field_reference => 'Referenz';
+
+  @override
+  String get admin_field_reference_hint =>
+      'Referenz der Bank-/Wise-Überweisung';
+
+  @override
+  String get admin_field_note => 'Notiz';
+
+  @override
+  String get admin_field_proof => 'Überweisungsnachweis';
+
+  @override
+  String get admin_add_proof => 'Belegbild hinzufügen';
+
+  @override
+  String get admin_save_payout => 'Speichern';
+
+  @override
+  String get payout_confirmed => 'Bestätigt';
+
+  @override
+  String get payout_sent => 'Gesendet';
+
+  @override
+  String get payout_pending => 'Ausstehend';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'Die Zahlung konnte nicht gestartet werden. Bitte erneut versuchen.';
+
+  @override
+  String get error_api_payment_sheet_failed =>
+      'Die Zahlung konnte nicht abgeschlossen werden.';
+
+  @override
+  String get error_api_payment_cancelled => 'Zahlung abgebrochen.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'Ihr Spendenverlauf konnte nicht geladen werden.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'Die Transaktionen dieses Projekts konnten nicht geladen werden.';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'Die Statistiken konnten nicht geladen werden.';
+
+  @override
+  String get error_api_admin_payouts_load_failed =>
+      'Die Auszahlungen konnten nicht geladen werden.';
+
+  @override
+  String get error_api_admin_payout_create_failed =>
+      'Die Auszahlung konnte nicht erfasst werden.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'Das Nachweisbild konnte nicht hochgeladen werden.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'Die Transaktionen konnten nicht geladen werden.';
 }

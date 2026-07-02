@@ -1596,4 +1596,216 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'اس آیت سے پسند ہٹائی نہیں جا سکی۔';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'مکمل';
+
+  @override
+  String get common_retry => 'دوبارہ کوشش کریں';
+
+  @override
+  String get impact_donate => 'عطیہ دیں';
+
+  @override
+  String get impact_donate_or_zakat => 'عطیہ دیں یا زکوٰۃ ادا کریں';
+
+  @override
+  String get impact_transactions_title => 'لین دین';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'ثبوت کے ساتھ دیکھیں کہ جمع شدہ رقم شراکت دار کو کیسے ادا کی گئی۔';
+
+  @override
+  String get impact_transactions_empty =>
+      'اس منصوبے کے لیے ابھی تک کوئی ادائیگی نہیں کی گئی۔';
+
+  @override
+  String get impact_transactions_distributed => 'تقسیم شدہ';
+
+  @override
+  String get donate_title => 'اس منصوبے کی مدد کریں';
+
+  @override
+  String get donate_type_donation => 'عطیہ';
+
+  @override
+  String get donate_type_zakat => 'زکوٰۃ';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'رقم ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'پروسیسنگ فیس برداشت کریں';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return '$fee کا اضافہ کرتا ہے تاکہ منصوبے کو پوری رقم ملے۔';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return '$amount ادا کریں';
+  }
+
+  @override
+  String get donate_button_empty => 'رقم درج کریں';
+
+  @override
+  String get donate_processing_title => 'کارروائی جاری ہے…';
+
+  @override
+  String get donate_processing_message =>
+      'ہم آپ کی ادائیگی کی تصدیق کر رہے ہیں۔ اس میں صرف ایک لمحہ لگے گا۔';
+
+  @override
+  String get donate_success_title => 'جزاک اللہ خیراً!';
+
+  @override
+  String get donate_success_message => 'آپ کا تعاون موصول ہو گیا۔';
+
+  @override
+  String get donate_failed_title => 'ادائیگی ناکام';
+
+  @override
+  String get donate_failed_message =>
+      'آپ کی ادائیگی مکمل نہ ہو سکی۔ کوئی رقم منہا نہیں کی گئی۔';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'انتظامیہ';
+
+  @override
+  String get admin_panel_subtitle => 'عطیات، ادائیگیاں اور رقوم کی تقسیم';
+
+  @override
+  String get admin_analytics_title => 'لین دین اور عطیات';
+
+  @override
+  String get admin_total_donated => 'کل عطیات';
+
+  @override
+  String get admin_total_donors => 'عطیہ دہندگان';
+
+  @override
+  String get admin_total_paid_out => 'ادا شدہ';
+
+  @override
+  String get admin_outstanding => 'باقی';
+
+  @override
+  String get admin_tab_projects => 'منصوبے';
+
+  @override
+  String get admin_tab_payouts => 'ادائیگیاں';
+
+  @override
+  String get admin_tab_received => 'موصول';
+
+  @override
+  String get admin_record_payout => 'ادائیگی درج کریں';
+
+  @override
+  String get admin_empty_projects => 'ابھی کوئی منصوبہ نہیں۔';
+
+  @override
+  String get admin_empty_payouts => 'ابھی تک کوئی ادائیگی درج نہیں۔';
+
+  @override
+  String get admin_empty_received => 'ابھی تک کوئی لین دین موصول نہیں۔';
+
+  @override
+  String get admin_no_donations_yet => 'ابھی کوئی عطیہ نہیں۔';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count عطیہ دہندگان';
+  }
+
+  @override
+  String get admin_field_project => 'منصوبہ';
+
+  @override
+  String get admin_field_type => 'قسم';
+
+  @override
+  String get admin_field_amount => 'رقم';
+
+  @override
+  String get admin_field_method => 'طریقہ';
+
+  @override
+  String get admin_field_status => 'حالت';
+
+  @override
+  String get admin_field_reference => 'حوالہ';
+
+  @override
+  String get admin_field_reference_hint => 'بینک / Wise منتقلی کا حوالہ';
+
+  @override
+  String get admin_field_note => 'نوٹ';
+
+  @override
+  String get admin_field_proof => 'منتقلی کا ثبوت';
+
+  @override
+  String get admin_add_proof => 'رسید کی تصویر شامل کریں';
+
+  @override
+  String get admin_save_payout => 'محفوظ کریں';
+
+  @override
+  String get payout_confirmed => 'تصدیق شدہ';
+
+  @override
+  String get payout_sent => 'بھیج دیا گیا';
+
+  @override
+  String get payout_pending => 'زیرِ التوا';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'ادائیگی شروع نہ ہو سکی۔ براہِ کرم دوبارہ کوشش کریں۔';
+
+  @override
+  String get error_api_payment_sheet_failed => 'ادائیگی مکمل نہ ہو سکی۔';
+
+  @override
+  String get error_api_payment_cancelled => 'ادائیگی منسوخ کر دی گئی۔';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'آپ کی عطیات کی تاریخ لوڈ نہ ہو سکی۔';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'اس منصوبے کے لین دین لوڈ نہ ہو سکے۔';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'اعداد و شمار لوڈ نہ ہو سکے۔';
+
+  @override
+  String get error_api_admin_payouts_load_failed => 'ادائیگیاں لوڈ نہ ہو سکیں۔';
+
+  @override
+  String get error_api_admin_payout_create_failed => 'ادائیگی درج نہ ہو سکی۔';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'ثبوت کی تصویر اپ لوڈ نہ ہو سکی۔';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'لین دین لوڈ نہ ہو سکے۔';
 }

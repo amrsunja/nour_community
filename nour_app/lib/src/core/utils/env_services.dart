@@ -4,6 +4,10 @@ abstract class EnvServices {
 	static String supabaseUrl = getEnvValue(envKey: 'SUPABASE_URL');
 	static String supabaseKey = getEnvValue(envKey: 'SUPABASE_KEY');
 
+	// Stripe (client SDK / PaymentSheet). Publishable key only — the secret key
+	// lives in Supabase Edge Function secrets, never in the app.
+	static String stripePublishableKey = getEnvValue(envKey: 'STRIPE_PUBLISHABLE_KEY');
+
 	static String prodBaseUrl = getEnvValue(envKey: 'BASE_URL_PROD');
 	static String stgBaseUrl = getEnvValue(envKey: 'BASE_URL_STG');
 
