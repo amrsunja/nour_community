@@ -28,7 +28,7 @@ class QiblaFinderPage extends HookConsumerWidget {
     Widget body;
     if (!state.isReady) {
       body = state.hasLocationError
-          ? _LocationError(onRetry: presenter.init)
+          ? _LocationError(onRetry: presenter.retry)
           : const Center(child: UICircularProgressBar());
     } else {
       body = _Content(state: state, l10n: l10n);

@@ -27,21 +27,31 @@ class NotificationsSettingsWidget extends HookConsumerWidget {
         ref.watch(notificationsProvider.select((s) => s.settings));
     final presenter = ref.read(notificationsProvider.notifier);
 
+    // Prayer & adhkar reminders schedule against the user's location, so
+    // enabling them is gated on location permission.
+    Future<bool> locationGate(bool enable) async {
+      if (!enable) return true; // Disabling never needs location.
+      return presenter.ensureLocationForScheduling();
+    }
+
     final items = <_NotificationItem>[
       _NotificationItem(
         label: l10n.notifications_prayer_times_label,
         value: settings.allPrayers,
         onChange: presenter.setAllPrayers,
+        onBeforeChange: locationGate,
       ),
       _NotificationItem(
         label: l10n.notifications_morning_adhkar_label,
         value: settings.morningAdhkar,
         onChange: presenter.setMorningAdhkar,
+        onBeforeChange: locationGate,
       ),
       _NotificationItem(
         label: l10n.notifications_evening_adhkar_label,
         value: settings.eveningAdhkar,
         onChange: presenter.setEveningAdhkar,
+        onBeforeChange: locationGate,
       ),
       _NotificationItem(
         label: l10n.notifications_daily_ayah_label,
@@ -75,11 +85,13 @@ class _NotificationItem {
     required this.label,
     required this.value,
     required this.onChange,
+    this.onBeforeChange,
   });
 
   final String label;
   final bool value;
   final Future<bool> Function(bool) onChange;
+  final Future<bool> Function(bool)? onBeforeChange;
 }
 
 class _NotificationCard extends StatelessWidget {
@@ -105,6 +117,7 @@ class _NotificationCard extends StatelessWidget {
           ),
           UIToggle(
             checked: item.value,
+            onBeforeChange: item.onBeforeChange,
             onCheck: (v) => item.onChange(v),
           ),
         ],

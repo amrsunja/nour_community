@@ -1594,4 +1594,216 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'এই আয়াত থেকে পছন্দ সরানো যায়নি।';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'সম্পন্ন';
+
+  @override
+  String get common_retry => 'আবার চেষ্টা করুন';
+
+  @override
+  String get impact_donate => 'দান করুন';
+
+  @override
+  String get impact_donate_or_zakat => 'দান করুন বা যাকাত দিন';
+
+  @override
+  String get impact_transactions_title => 'লেনদেন';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'প্রমাণসহ দেখুন কীভাবে সংগৃহীত তহবিল অংশীদারকে বিতরণ করা হয়েছে।';
+
+  @override
+  String get impact_transactions_empty =>
+      'এই প্রকল্পের জন্য এখনও কোনো অর্থ বিতরণ করা হয়নি।';
+
+  @override
+  String get impact_transactions_distributed => 'বিতরণকৃত';
+
+  @override
+  String get donate_title => 'এই প্রকল্পকে সমর্থন করুন';
+
+  @override
+  String get donate_type_donation => 'দান';
+
+  @override
+  String get donate_type_zakat => 'যাকাত';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'পরিমাণ ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'প্রসেসিং ফি বহন করুন';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return '$fee যোগ করে যাতে প্রকল্প সম্পূর্ণ পরিমাণ পায়।';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return '$amount পরিশোধ করুন';
+  }
+
+  @override
+  String get donate_button_empty => 'একটি পরিমাণ লিখুন';
+
+  @override
+  String get donate_processing_title => 'প্রক্রিয়াকরণ হচ্ছে…';
+
+  @override
+  String get donate_processing_message =>
+      'আমরা আপনার পেমেন্ট নিশ্চিত করছি। এতে মাত্র এক মুহূর্ত লাগবে।';
+
+  @override
+  String get donate_success_title => 'জাযাকাল্লাহু খাইরান!';
+
+  @override
+  String get donate_success_message => 'আপনার অবদান গৃহীত হয়েছে।';
+
+  @override
+  String get donate_failed_title => 'পেমেন্ট ব্যর্থ';
+
+  @override
+  String get donate_failed_message =>
+      'আপনার পেমেন্ট সম্পন্ন করা যায়নি। কোনো চার্জ কাটা হয়নি।';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'প্রশাসন';
+
+  @override
+  String get admin_panel_subtitle => 'দান, পেমেন্ট ও বিতরণ';
+
+  @override
+  String get admin_analytics_title => 'লেনদেন ও দান';
+
+  @override
+  String get admin_total_donated => 'মোট দান';
+
+  @override
+  String get admin_total_donors => 'দাতা';
+
+  @override
+  String get admin_total_paid_out => 'বিতরণকৃত';
+
+  @override
+  String get admin_outstanding => 'বকেয়া';
+
+  @override
+  String get admin_tab_projects => 'প্রকল্প';
+
+  @override
+  String get admin_tab_payouts => 'বিতরণ';
+
+  @override
+  String get admin_tab_received => 'গৃহীত';
+
+  @override
+  String get admin_record_payout => 'বিতরণ রেকর্ড করুন';
+
+  @override
+  String get admin_empty_projects => 'এখনও কোনো প্রকল্প নেই।';
+
+  @override
+  String get admin_empty_payouts => 'এখনও কোনো বিতরণ রেকর্ড করা হয়নি।';
+
+  @override
+  String get admin_empty_received => 'এখনও কোনো লেনদেন গৃহীত হয়নি।';
+
+  @override
+  String get admin_no_donations_yet => 'এখনও কোনো দান নেই।';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count জন দাতা';
+  }
+
+  @override
+  String get admin_field_project => 'প্রকল্প';
+
+  @override
+  String get admin_field_type => 'ধরন';
+
+  @override
+  String get admin_field_amount => 'পরিমাণ';
+
+  @override
+  String get admin_field_method => 'পদ্ধতি';
+
+  @override
+  String get admin_field_status => 'অবস্থা';
+
+  @override
+  String get admin_field_reference => 'রেফারেন্স';
+
+  @override
+  String get admin_field_reference_hint => 'ব্যাংক / Wise ট্রান্সফার রেফারেন্স';
+
+  @override
+  String get admin_field_note => 'নোট';
+
+  @override
+  String get admin_field_proof => 'স্থানান্তরের প্রমাণ';
+
+  @override
+  String get admin_add_proof => 'রসিদের ছবি যোগ করুন';
+
+  @override
+  String get admin_save_payout => 'সংরক্ষণ করুন';
+
+  @override
+  String get payout_confirmed => 'নিশ্চিত';
+
+  @override
+  String get payout_sent => 'পাঠানো হয়েছে';
+
+  @override
+  String get payout_pending => 'অপেক্ষমাণ';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'পেমেন্ট শুরু করা যায়নি। অনুগ্রহ করে আবার চেষ্টা করুন।';
+
+  @override
+  String get error_api_payment_sheet_failed => 'পেমেন্ট সম্পন্ন করা যায়নি।';
+
+  @override
+  String get error_api_payment_cancelled => 'পেমেন্ট বাতিল করা হয়েছে।';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'আপনার দানের ইতিহাস লোড করা যায়নি।';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'এই প্রকল্পের লেনদেন লোড করা যায়নি।';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'পরিসংখ্যান লোড করা যায়নি।';
+
+  @override
+  String get error_api_admin_payouts_load_failed => 'বিতরণ লোড করা যায়নি।';
+
+  @override
+  String get error_api_admin_payout_create_failed => 'বিতরণ রেকর্ড করা যায়নি।';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'প্রমাণের ছবি আপলোড করা যায়নি।';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'লেনদেন লোড করা যায়নি।';
 }

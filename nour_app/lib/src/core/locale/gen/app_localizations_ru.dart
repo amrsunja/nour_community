@@ -1603,4 +1603,219 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'Не удалось убрать отметку с этого аята.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'Готово';
+
+  @override
+  String get common_retry => 'Повторить';
+
+  @override
+  String get impact_donate => 'Пожертвовать';
+
+  @override
+  String get impact_donate_or_zakat => 'Пожертвовать или выплатить закят';
+
+  @override
+  String get impact_transactions_title => 'Транзакции';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'Посмотрите с подтверждением, как собранные средства были переданы партнёру.';
+
+  @override
+  String get impact_transactions_empty =>
+      'По этому проекту выплаты ещё не производились.';
+
+  @override
+  String get impact_transactions_distributed => 'Распределено';
+
+  @override
+  String get donate_title => 'Поддержать этот проект';
+
+  @override
+  String get donate_type_donation => 'Пожертвование';
+
+  @override
+  String get donate_type_zakat => 'Закят';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'Сумма ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'Покрыть комиссию за обработку';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'Добавляет $fee, чтобы проект получил полную сумму.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return 'Оплатить $amount';
+  }
+
+  @override
+  String get donate_button_empty => 'Введите сумму';
+
+  @override
+  String get donate_processing_title => 'Обработка…';
+
+  @override
+  String get donate_processing_message =>
+      'Мы подтверждаем ваш платёж. Это займёт всего мгновение.';
+
+  @override
+  String get donate_success_title => 'Джазак Аллаху хайран!';
+
+  @override
+  String get donate_success_message => 'Ваш вклад получен.';
+
+  @override
+  String get donate_failed_title => 'Платёж не удался';
+
+  @override
+  String get donate_failed_message =>
+      'Платёж не удалось завершить. Списание не производилось.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'Администрирование';
+
+  @override
+  String get admin_panel_subtitle => 'Пожертвования, платежи и выплаты';
+
+  @override
+  String get admin_analytics_title => 'Транзакции и пожертвования';
+
+  @override
+  String get admin_total_donated => 'Всего пожертвовано';
+
+  @override
+  String get admin_total_donors => 'Жертвователи';
+
+  @override
+  String get admin_total_paid_out => 'Выплачено';
+
+  @override
+  String get admin_outstanding => 'К выплате';
+
+  @override
+  String get admin_tab_projects => 'Проекты';
+
+  @override
+  String get admin_tab_payouts => 'Выплаты';
+
+  @override
+  String get admin_tab_received => 'Получено';
+
+  @override
+  String get admin_record_payout => 'Записать выплату';
+
+  @override
+  String get admin_empty_projects => 'Пока нет проектов.';
+
+  @override
+  String get admin_empty_payouts => 'Выплаты ещё не записаны.';
+
+  @override
+  String get admin_empty_received => 'Транзакции ещё не получены.';
+
+  @override
+  String get admin_no_donations_yet => 'Пока нет пожертвований.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count жертвователей';
+  }
+
+  @override
+  String get admin_field_project => 'Проект';
+
+  @override
+  String get admin_field_type => 'Тип';
+
+  @override
+  String get admin_field_amount => 'Сумма';
+
+  @override
+  String get admin_field_method => 'Способ';
+
+  @override
+  String get admin_field_status => 'Статус';
+
+  @override
+  String get admin_field_reference => 'Референс';
+
+  @override
+  String get admin_field_reference_hint =>
+      'Референс банковского / Wise перевода';
+
+  @override
+  String get admin_field_note => 'Заметка';
+
+  @override
+  String get admin_field_proof => 'Подтверждение перевода';
+
+  @override
+  String get admin_add_proof => 'Добавить изображение квитанции';
+
+  @override
+  String get admin_save_payout => 'Сохранить';
+
+  @override
+  String get payout_confirmed => 'Подтверждено';
+
+  @override
+  String get payout_sent => 'Отправлено';
+
+  @override
+  String get payout_pending => 'В ожидании';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'Не удалось начать платёж. Пожалуйста, попробуйте снова.';
+
+  @override
+  String get error_api_payment_sheet_failed => 'Платёж не удалось завершить.';
+
+  @override
+  String get error_api_payment_cancelled => 'Платёж отменён.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'Не удалось загрузить историю пожертвований.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'Не удалось загрузить транзакции этого проекта.';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'Не удалось загрузить статистику.';
+
+  @override
+  String get error_api_admin_payouts_load_failed =>
+      'Не удалось загрузить выплаты.';
+
+  @override
+  String get error_api_admin_payout_create_failed =>
+      'Не удалось записать выплату.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'Не удалось загрузить изображение подтверждения.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'Не удалось загрузить транзакции.';
 }

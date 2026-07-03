@@ -14,6 +14,7 @@ class UIToggle extends StatefulWidget {
     this.disabled = false,
     this.changeOpacity = true,
     this.onCheck,
+    this.onBeforeChange,
     this.scale = 0.72,
   });
 
@@ -22,6 +23,11 @@ class UIToggle extends StatefulWidget {
 
   /// Invoked after internal state changes when the user toggles (not when syncing from [checked]).
   final void Function(bool)? onCheck;
+
+  /// Optional async gate evaluated on tap, BEFORE the switch flips. Return
+  /// `false` to veto the change (the switch stays put and [onCheck] is not
+  /// called) — e.g. to require a permission and bounce the user to settings.
+  final Future<bool> Function(bool)? onBeforeChange;
 
   final bool disabled;
 
@@ -56,7 +62,13 @@ class _UIToggleState extends State<UIToggle> {
     }
   }
 
-  void _onChange(bool isChecked) {
+  Future<void> _onChange(bool isChecked) async {
+    final guard = widget.onBeforeChange;
+    if (guard != null) {
+      final allowed = await guard(isChecked);
+      if (!allowed) return; // Vetoed — leave the switch as-is, no callback.
+      if (!mounted) return;
+    }
     AppVibrations.buttonClick();
     setState(() => _checked = isChecked);
     widget.onCheck?.call(_checked);

@@ -95,4 +95,18 @@ enum ApiErrorKey {
   quranTransliterationLoadFailed,
   quranTafsirLoadFailed,
   quranUnlikeAyahFailed,
+
+  // Payments
+  paymentIntentFailed,
+  paymentSheetFailed,
+  paymentCancelled,
+  paymentHistoryLoadFailed,
+  paymentProjectTransactionsLoadFailed,
+
+  // Admin
+  adminAnalyticsLoadFailed,
+  adminPayoutsLoadFailed,
+  adminPayoutCreateFailed,
+  adminPayoutProofUploadFailed,
+  adminTransactionsLoadFailed,
 }
