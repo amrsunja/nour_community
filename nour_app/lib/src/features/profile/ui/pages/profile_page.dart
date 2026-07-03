@@ -116,6 +116,16 @@ class ProfilePage extends HookConsumerWidget {
 
                   const UISpace.vert(28),
 
+                  // ---------- Admin (only when profiles.is_admin = true) ----------
+                  if (profile?.isAdmin == true) ...[
+                    _AdminPanelCard(
+                      title: l10n.admin_panel_title,
+                      subtitle: l10n.admin_panel_subtitle,
+                      onTap: () => nav.toAdminDashboard(),
+                    ),
+                    const UISpace.vert(24),
+                  ],
+
                   // ---------- Journey ----------
                   ProfileSection(
                     title: l10n.profile_journey,
@@ -247,5 +257,68 @@ class ProfilePage extends HookConsumerWidget {
     if (trimmed.isEmpty) return null;
     final slug = trimmed.toLowerCase().replaceAll(RegExp(r'\s+'), '_');
     return '@$slug';
+  }
+}
+
+/// Prominent entry point to the admin donations/payments tools. Rendered only
+/// when the profile has `is_admin = true`.
+class _AdminPanelCard extends StatelessWidget {
+  const _AdminPanelCard({
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final String title;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return UICard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(16),
+      disableBorder: true,
+      child: Row(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: UIColorsToken.textYellow.withValues(alpha: 0.15),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(
+              Icons.admin_panel_settings_outlined,
+              color: UIColorsToken.textYellow,
+            ),
+          ),
+          const UISpace.horz(14),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: theme.typo.inter.title
+                      .copyWith(color: UIColorsToken.white),
+                ),
+                const UISpace.vert(2),
+                Text(
+                  subtitle,
+                  style: theme.typo.inter.bodySmall
+                      .copyWith(color: UIColorsToken.textParagraph),
+                ),
+              ],
+            ),
+          ),
+          Icon(
+            Icons.chevron_right,
+            color: UIColorsToken.textParagraph,
+          ),
+        ],
+      ),
+    );
   }
 }

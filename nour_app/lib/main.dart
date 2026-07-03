@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:just_audio_background/just_audio_background.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:nour/config/app_runner.dart';
@@ -43,6 +44,16 @@ void main() {
         url: EnvServices.supabaseUrl,
         anonKey: EnvServices.supabaseKey
       );
+
+      // Stripe client SDK (PaymentSheet for zakat & donations). Publishable
+      // key only; the secret key lives in Supabase Edge Function secrets.
+      // Guarded so a missing/placeholder key never crashes startup — payments
+      // simply stay disabled until STRIPE_PUBLISHABLE_KEY is provided.
+      final stripeKey = EnvServices.stripePublishableKey;
+      if (stripeKey.startsWith('pk_')) {
+        stripe.Stripe.publishableKey = stripeKey;
+        await stripe.Stripe.instance.applySettings();
+      }
 
       // Background audio (notification controls + lock-screen).
       await JustAudioBackground.init(

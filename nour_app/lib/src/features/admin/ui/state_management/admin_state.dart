@@ -1,0 +1,86 @@
+import 'package:equatable/equatable.dart';
+import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
+import 'package:nour/src/features/payments/data/models/payout_model.dart';
+import 'package:nour/src/features/payments/data/models/transaction_model.dart';
+
+import '../../data/models/project_analytics_model.dart';
+
+/// Which admin tab is showing.
+enum AdminTab { projects, payouts, received }
+
+class AdminState extends Equatable {
+  final bool isLoading;
+  final bool hasError;
+  final bool loaded;
+  final AdminTab tab;
+  final List<ProjectAnalyticsModel> analytics;
+  final Map<int, ImpactProjectModel> projectsById;
+  final List<PayoutModel> payouts;
+  final List<TransactionModel> transactions;
+  final bool isSubmittingPayout;
+
+  const AdminState({
+    this.isLoading = false,
+    this.hasError = false,
+    this.loaded = false,
+    this.tab = AdminTab.projects,
+    this.analytics = const [],
+    this.projectsById = const {},
+    this.payouts = const [],
+    this.transactions = const [],
+    this.isSubmittingPayout = false,
+  });
+
+  // ── Aggregate totals across every (project,type) row ──────────────────────
+  double get totalDonated =>
+      analytics.fold(0, (s, r) => s + r.totalDonated);
+
+  double get totalPaidOut => analytics.fold(0, (s, r) => s + r.paidOut);
+
+  double get totalOutstanding =>
+      analytics.fold(0, (s, r) => s + r.outstanding);
+
+  int get totalDonors => analytics.fold(0, (s, r) => s + r.donorsCount);
+
+  /// Currency to label the totals with — derived from the first known project,
+  /// defaulting to EUR (the app's default currency).
+  String get displayCurrency =>
+      projectsById.values.isNotEmpty
+          ? projectsById.values.first.currency
+          : 'EUR';
+
+  AdminState copyWith({
+    bool? isLoading,
+    bool? hasError,
+    bool? loaded,
+    AdminTab? tab,
+    List<ProjectAnalyticsModel>? analytics,
+    Map<int, ImpactProjectModel>? projectsById,
+    List<PayoutModel>? payouts,
+    List<TransactionModel>? transactions,
+    bool? isSubmittingPayout,
+  }) => AdminState(
+    isLoading: isLoading ?? this.isLoading,
+    hasError: hasError ?? this.hasError,
+    loaded: loaded ?? this.loaded,
+    tab: tab ?? this.tab,
+    analytics: analytics ?? this.analytics,
+    projectsById: projectsById ?? this.projectsById,
+    payouts: payouts ?? this.payouts,
+    transactions: transactions ?? this.transactions,
+    isSubmittingPayout: isSubmittingPayout ?? this.isSubmittingPayout,
+  );
+
+  @override
+  List<Object?> get props => [
+    isLoading,
+    hasError,
+    loaded,
+    tab,
+    analytics,
+    projectsById,
+    payouts,
+    transactions,
+    isSubmittingPayout,
+  ];
+}

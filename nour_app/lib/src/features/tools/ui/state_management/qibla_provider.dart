@@ -21,12 +21,20 @@ class QiblaPresenter extends Presenter<QiblaState> {
   ///
   /// The compass heading is NOT handled here — the widget binds to the sensor
   /// stream directly. This method only needs to run once per screen open.
-  Future<void> init() async {
+  Future<void> init() => _resolve();
+
+  /// Explicit, user-initiated retry (the "Enable location" button). May
+  /// deep-link into system settings when the permission is permanently denied.
+  Future<void> retry() => _resolve(openSettingsIfBlocked: true);
+
+  Future<void> _resolve({bool openSettingsIfBlocked = false}) async {
     if (state.isLoading) return;
     state = state.copyWith(isLoading: true, hasLocationError: false);
 
     try {
-      final position = await GeolocatorTools.currentOrCachedPosition();
+      final position = await GeolocatorTools.currentOrCachedPosition(
+        openSettingsIfBlocked: openSettingsIfBlocked,
+      );
       final qibla = await IslamicTools.getQibla(position: position);
 
       state = state.copyWith(

@@ -2971,6 +2971,390 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t remove the like from this ayah.'**
   String get error_api_quran_unlike_ayah_failed;
+
+  /// No description provided for @l10nPayments.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nPayments;
+
+  /// No description provided for @common_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get common_done;
+
+  /// No description provided for @common_retry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get common_retry;
+
+  /// No description provided for @impact_donate.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate'**
+  String get impact_donate;
+
+  /// No description provided for @impact_donate_or_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate or give Zakat'**
+  String get impact_donate_or_zakat;
+
+  /// No description provided for @impact_transactions_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Transactions'**
+  String get impact_transactions_title;
+
+  /// No description provided for @impact_transactions_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'See how the collected funds were disbursed to the partner, with proof.'**
+  String get impact_transactions_subtitle;
+
+  /// No description provided for @impact_transactions_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No disbursements have been made for this project yet.'**
+  String get impact_transactions_empty;
+
+  /// No description provided for @impact_transactions_distributed.
+  ///
+  /// In en, this message translates to:
+  /// **'Distributed'**
+  String get impact_transactions_distributed;
+
+  /// No description provided for @donate_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Support this project'**
+  String get donate_title;
+
+  /// No description provided for @donate_type_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation'**
+  String get donate_type_donation;
+
+  /// No description provided for @donate_type_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat'**
+  String get donate_type_zakat;
+
+  /// No description provided for @donate_amount_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount ({symbol})'**
+  String donate_amount_label(String symbol);
+
+  /// No description provided for @donate_cover_fees.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover the processing fee'**
+  String get donate_cover_fees;
+
+  /// No description provided for @donate_cover_fees_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Adds {fee} so the project receives the full amount.'**
+  String donate_cover_fees_hint(String fee);
+
+  /// No description provided for @donate_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Pay {amount}'**
+  String donate_button(String amount);
+
+  /// No description provided for @donate_button_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount'**
+  String get donate_button_empty;
+
+  /// No description provided for @donate_processing_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing…'**
+  String get donate_processing_title;
+
+  /// No description provided for @donate_processing_message.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'re confirming your payment. This only takes a moment.'**
+  String get donate_processing_message;
+
+  /// No description provided for @donate_success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jazak Allahu khayran!'**
+  String get donate_success_title;
+
+  /// No description provided for @donate_success_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contribution has been received.'**
+  String get donate_success_message;
+
+  /// No description provided for @donate_failed_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment failed'**
+  String get donate_failed_title;
+
+  /// No description provided for @donate_failed_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment could not be completed. No charge was applied.'**
+  String get donate_failed_message;
+
+  /// No description provided for @l10nAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nAdmin;
+
+  /// No description provided for @admin_panel_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Administration'**
+  String get admin_panel_title;
+
+  /// No description provided for @admin_panel_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations, payments and payouts'**
+  String get admin_panel_subtitle;
+
+  /// No description provided for @admin_analytics_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Transactions & donations'**
+  String get admin_analytics_title;
+
+  /// No description provided for @admin_total_donated.
+  ///
+  /// In en, this message translates to:
+  /// **'Total donated'**
+  String get admin_total_donated;
+
+  /// No description provided for @admin_total_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors'**
+  String get admin_total_donors;
+
+  /// No description provided for @admin_total_paid_out.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid out'**
+  String get admin_total_paid_out;
+
+  /// No description provided for @admin_outstanding.
+  ///
+  /// In en, this message translates to:
+  /// **'Outstanding'**
+  String get admin_outstanding;
+
+  /// No description provided for @admin_tab_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'Projects'**
+  String get admin_tab_projects;
+
+  /// No description provided for @admin_tab_payouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Payouts'**
+  String get admin_tab_payouts;
+
+  /// No description provided for @admin_tab_received.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get admin_tab_received;
+
+  /// No description provided for @admin_record_payout.
+  ///
+  /// In en, this message translates to:
+  /// **'Record payout'**
+  String get admin_record_payout;
+
+  /// No description provided for @admin_empty_projects.
+  ///
+  /// In en, this message translates to:
+  /// **'No projects yet.'**
+  String get admin_empty_projects;
+
+  /// No description provided for @admin_empty_payouts.
+  ///
+  /// In en, this message translates to:
+  /// **'No payouts recorded yet.'**
+  String get admin_empty_payouts;
+
+  /// No description provided for @admin_empty_received.
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions received yet.'**
+  String get admin_empty_received;
+
+  /// No description provided for @admin_no_donations_yet.
+  ///
+  /// In en, this message translates to:
+  /// **'No donations yet.'**
+  String get admin_no_donations_yet;
+
+  /// No description provided for @admin_donors_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} donors'**
+  String admin_donors_count(String count);
+
+  /// No description provided for @admin_field_project.
+  ///
+  /// In en, this message translates to:
+  /// **'Project'**
+  String get admin_field_project;
+
+  /// No description provided for @admin_field_type.
+  ///
+  /// In en, this message translates to:
+  /// **'Type'**
+  String get admin_field_type;
+
+  /// No description provided for @admin_field_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get admin_field_amount;
+
+  /// No description provided for @admin_field_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Method'**
+  String get admin_field_method;
+
+  /// No description provided for @admin_field_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get admin_field_status;
+
+  /// No description provided for @admin_field_reference.
+  ///
+  /// In en, this message translates to:
+  /// **'Reference'**
+  String get admin_field_reference;
+
+  /// No description provided for @admin_field_reference_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Bank / Wise transfer reference'**
+  String get admin_field_reference_hint;
+
+  /// No description provided for @admin_field_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get admin_field_note;
+
+  /// No description provided for @admin_field_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Proof of transfer'**
+  String get admin_field_proof;
+
+  /// No description provided for @admin_add_proof.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a receipt image'**
+  String get admin_add_proof;
+
+  /// No description provided for @admin_save_payout.
+  ///
+  /// In en, this message translates to:
+  /// **'Save payout'**
+  String get admin_save_payout;
+
+  /// No description provided for @payout_confirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed'**
+  String get payout_confirmed;
+
+  /// No description provided for @payout_sent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get payout_sent;
+
+  /// No description provided for @payout_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get payout_pending;
+
+  /// No description provided for @error_api_payment_intent_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t start the payment. Please try again.'**
+  String get error_api_payment_intent_failed;
+
+  /// No description provided for @error_api_payment_sheet_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'The payment could not be completed.'**
+  String get error_api_payment_sheet_failed;
+
+  /// No description provided for @error_api_payment_cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment cancelled.'**
+  String get error_api_payment_cancelled;
+
+  /// No description provided for @error_api_payment_history_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your donation history.'**
+  String get error_api_payment_history_load_failed;
+
+  /// No description provided for @error_api_payment_project_transactions_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load this project\'s transactions.'**
+  String get error_api_payment_project_transactions_load_failed;
+
+  /// No description provided for @error_api_admin_analytics_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the analytics.'**
+  String get error_api_admin_analytics_load_failed;
+
+  /// No description provided for @error_api_admin_payouts_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the payouts.'**
+  String get error_api_admin_payouts_load_failed;
+
+  /// No description provided for @error_api_admin_payout_create_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t record the payout.'**
+  String get error_api_admin_payout_create_failed;
+
+  /// No description provided for @error_api_admin_payout_proof_upload_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t upload the proof image.'**
+  String get error_api_admin_payout_proof_upload_failed;
+
+  /// No description provided for @error_api_admin_transactions_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the transactions.'**
+  String get error_api_admin_transactions_load_failed;
 }
 
 class _AppLocalizationsDelegate

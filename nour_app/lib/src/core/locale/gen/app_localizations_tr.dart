@@ -1594,4 +1594,216 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_quran_unlike_ayah_failed =>
       'Bu ayetin beğenisi kaldırılamadı.';
+
+  @override
+  String get l10nPayments =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get common_done => 'Tamam';
+
+  @override
+  String get common_retry => 'Tekrar dene';
+
+  @override
+  String get impact_donate => 'Bağış yap';
+
+  @override
+  String get impact_donate_or_zakat => 'Bağış yap veya Zekât ver';
+
+  @override
+  String get impact_transactions_title => 'İşlemler';
+
+  @override
+  String get impact_transactions_subtitle =>
+      'Toplanan fonların ortağa nasıl aktarıldığını kanıtıyla görün.';
+
+  @override
+  String get impact_transactions_empty =>
+      'Bu proje için henüz herhangi bir ödeme yapılmadı.';
+
+  @override
+  String get impact_transactions_distributed => 'Dağıtıldı';
+
+  @override
+  String get donate_title => 'Bu projeyi destekleyin';
+
+  @override
+  String get donate_type_donation => 'Bağış';
+
+  @override
+  String get donate_type_zakat => 'Zekât';
+
+  @override
+  String donate_amount_label(String symbol) {
+    return 'Tutar ($symbol)';
+  }
+
+  @override
+  String get donate_cover_fees => 'İşlem ücretini karşıla';
+
+  @override
+  String donate_cover_fees_hint(String fee) {
+    return 'Projenin tam tutarı alması için $fee ekler.';
+  }
+
+  @override
+  String donate_button(String amount) {
+    return '$amount öde';
+  }
+
+  @override
+  String get donate_button_empty => 'Bir tutar girin';
+
+  @override
+  String get donate_processing_title => 'İşleniyor…';
+
+  @override
+  String get donate_processing_message =>
+      'Ödemenizi onaylıyoruz. Bu yalnızca bir an sürer.';
+
+  @override
+  String get donate_success_title => 'Jazak Allahu khayran!';
+
+  @override
+  String get donate_success_message => 'Katkınız alındı.';
+
+  @override
+  String get donate_failed_title => 'Ödeme başarısız';
+
+  @override
+  String get donate_failed_message =>
+      'Ödemeniz tamamlanamadı. Herhangi bir ücret alınmadı.';
+
+  @override
+  String get l10nAdmin =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get admin_panel_title => 'Yönetim';
+
+  @override
+  String get admin_panel_subtitle => 'Bağışlar, ödemeler ve aktarımlar';
+
+  @override
+  String get admin_analytics_title => 'İşlemler ve bağışlar';
+
+  @override
+  String get admin_total_donated => 'Toplam bağış';
+
+  @override
+  String get admin_total_donors => 'Bağışçılar';
+
+  @override
+  String get admin_total_paid_out => 'Aktarılan';
+
+  @override
+  String get admin_outstanding => 'Kalan';
+
+  @override
+  String get admin_tab_projects => 'Projeler';
+
+  @override
+  String get admin_tab_payouts => 'Aktarımlar';
+
+  @override
+  String get admin_tab_received => 'Alınan';
+
+  @override
+  String get admin_record_payout => 'Aktarım kaydet';
+
+  @override
+  String get admin_empty_projects => 'Henüz proje yok.';
+
+  @override
+  String get admin_empty_payouts => 'Henüz aktarım kaydedilmedi.';
+
+  @override
+  String get admin_empty_received => 'Henüz işlem alınmadı.';
+
+  @override
+  String get admin_no_donations_yet => 'Henüz bağış yok.';
+
+  @override
+  String admin_donors_count(String count) {
+    return '$count bağışçı';
+  }
+
+  @override
+  String get admin_field_project => 'Proje';
+
+  @override
+  String get admin_field_type => 'Tür';
+
+  @override
+  String get admin_field_amount => 'Tutar';
+
+  @override
+  String get admin_field_method => 'Yöntem';
+
+  @override
+  String get admin_field_status => 'Durum';
+
+  @override
+  String get admin_field_reference => 'Referans';
+
+  @override
+  String get admin_field_reference_hint => 'Banka / Wise transfer referansı';
+
+  @override
+  String get admin_field_note => 'Not';
+
+  @override
+  String get admin_field_proof => 'Transfer kanıtı';
+
+  @override
+  String get admin_add_proof => 'Makbuz görseli ekle';
+
+  @override
+  String get admin_save_payout => 'Kaydet';
+
+  @override
+  String get payout_confirmed => 'Onaylandı';
+
+  @override
+  String get payout_sent => 'Gönderildi';
+
+  @override
+  String get payout_pending => 'Beklemede';
+
+  @override
+  String get error_api_payment_intent_failed =>
+      'Ödeme başlatılamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_payment_sheet_failed => 'Ödeme tamamlanamadı.';
+
+  @override
+  String get error_api_payment_cancelled => 'Ödeme iptal edildi.';
+
+  @override
+  String get error_api_payment_history_load_failed =>
+      'Bağış geçmişiniz yüklenemedi.';
+
+  @override
+  String get error_api_payment_project_transactions_load_failed =>
+      'Bu projenin işlemleri yüklenemedi.';
+
+  @override
+  String get error_api_admin_analytics_load_failed =>
+      'İstatistikler yüklenemedi.';
+
+  @override
+  String get error_api_admin_payouts_load_failed => 'Aktarımlar yüklenemedi.';
+
+  @override
+  String get error_api_admin_payout_create_failed => 'Aktarım kaydedilemedi.';
+
+  @override
+  String get error_api_admin_payout_proof_upload_failed =>
+      'Kanıt görseli yüklenemedi.';
+
+  @override
+  String get error_api_admin_transactions_load_failed =>
+      'İşlemler yüklenemedi.';
 }
