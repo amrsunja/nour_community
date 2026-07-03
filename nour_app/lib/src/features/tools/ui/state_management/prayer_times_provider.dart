@@ -60,6 +60,12 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
   /// settings. Used on app resume to recover from suspended timers.
   Future<void> refresh() => _recompute();
 
+  /// Explicit, user-initiated retry (the "Enable location" button on the
+  /// location-error state). Unlike passive loads, this may deep-link the user
+  /// into system settings when the permission is permanently denied — the one
+  /// place where yanking them out of the app is expected.
+  Future<void> retry() => _recompute(openSettingsIfBlocked: true);
+
   /// Persists the new calculation method and reschedules every notification
   /// (prayers + adhkar + daily ayah) so they match the new prayer times.
   Future<void> changeMethod(CalculationMethodType method) async {
@@ -82,9 +88,11 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
     );
   }
 
-  Future<void> _recompute() async {
+  Future<void> _recompute({bool openSettingsIfBlocked = false}) async {
     try {
-      final position = await GeolocatorTools.currentOrCachedPosition();
+      final position = await GeolocatorTools.currentOrCachedPosition(
+        openSettingsIfBlocked: openSettingsIfBlocked,
+      );
       final method = state.settings.method;
 
       final times = await IslamicTools.getPrayerTimesForDate(

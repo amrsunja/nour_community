@@ -77,7 +77,7 @@ class PrayerTimesPage extends HookConsumerWidget {
     Widget body;
     if (state.times == null) {
       body = state.hasLocationError
-          ? _LocationError(onRetry: presenter.init)
+          ? _LocationError(onRetry: presenter.retry)
           : const Center(child: UICircularProgressBar());
     } else {
       body = _Content(
@@ -90,6 +90,8 @@ class PrayerTimesPage extends HookConsumerWidget {
           selected: state.settings.method,
           onSelect: presenter.changeMethod,
         ),
+        onBeforeToggle: (enable) async =>
+            !enable || await notifPresenter.ensureLocationForScheduling(),
         onToggleNotify: notifPresenter.setPrayer,
         onToggleAll: notifPresenter.setAllPrayers,
       );
@@ -112,6 +114,7 @@ class _Content extends StatelessWidget {
     required this.l10n,
     required this.notifSettings,
     required this.onChangeMethod,
+    required this.onBeforeToggle,
     required this.onToggleNotify,
     required this.onToggleAll,
   });
@@ -120,6 +123,10 @@ class _Content extends StatelessWidget {
   final AppLocale l10n;
   final NotificationsSettingsModel notifSettings;
   final VoidCallback onChangeMethod;
+
+  /// Location gate: returns false (after bouncing to settings) when enabling a
+  /// reminder without location permission.
+  final Future<bool> Function(bool) onBeforeToggle;
   final Future<bool> Function(PrayerSlot, bool) onToggleNotify;
   final Future<bool> Function(bool) onToggleAll;
 
@@ -147,6 +154,7 @@ class _Content extends StatelessWidget {
             child: _AllNotificationsCard(
               label: l10n.notifications_prayer_times_label,
               enabled: notifSettings.allPrayers,
+              onBeforeChange: onBeforeToggle,
               onChanged: (v) => onToggleAll(v),
             ),
           ),
@@ -164,8 +172,11 @@ class _Content extends StatelessWidget {
                 time: times.forSlot(slot),
                 offsetMinutes: settings.offsetFor(slot),
                 notify: notifSettings.prayerFor(slot),
-                onToggleNotify: () =>
-                    onToggleNotify(slot, !notifSettings.prayerFor(slot)),
+                onToggleNotify: () async {
+                  final enable = !notifSettings.prayerFor(slot);
+                  if (!await onBeforeToggle(enable)) return;
+                  await onToggleNotify(slot, enable);
+                },
                 isNext: state.nextSlot == slot,
                 backgroundImage: state.nextSlot == slot ? PrayerTimesPage._slotImage(slot) : null,
                 countdownTarget: state.nextSlot == slot ? state.nextTime : null,
@@ -195,11 +206,13 @@ class _AllNotificationsCard extends StatelessWidget {
     required this.label,
     required this.enabled,
     required this.onChanged,
+    this.onBeforeChange,
   });
 
   final String label;
   final bool enabled;
   final ValueChanged<bool> onChanged;
+  final Future<bool> Function(bool)? onBeforeChange;
 
   @override
   Widget build(BuildContext context) {
@@ -223,6 +236,7 @@ class _AllNotificationsCard extends StatelessWidget {
           ),
           UIToggle(
             checked: enabled,
+            onBeforeChange: onBeforeChange,
             onCheck: onChanged,
           ),
         ],

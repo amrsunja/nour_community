@@ -29,24 +29,34 @@ class RemindersPage extends HookConsumerWidget {
       return null;
     }, const []);
 
+    // Prayer & adhkar reminders schedule against the user's location, so
+    // enabling them is gated on location permission.
+    Future<bool> locationGate(bool enable) async {
+      if (!enable) return true; // Disabling never needs location.
+      return presenter.ensureLocationForScheduling();
+    }
+
     final items = <_ReminderItem>[
       _ReminderItem(
         icon: UIIconsToken.icons.notif,
         label: l10n.notifications_prayer_times_label,
         value: settings.allPrayers,
         onChange: presenter.setAllPrayers,
+        onBeforeChange: locationGate,
       ),
       _ReminderItem(
         icon: UIIconsToken.icons.dhikr,
         label: l10n.notifications_morning_adhkar_label,
         value: settings.morningAdhkar,
         onChange: presenter.setMorningAdhkar,
+        onBeforeChange: locationGate,
       ),
       _ReminderItem(
         icon: UIIconsToken.icons.dhikr,
         label: l10n.notifications_evening_adhkar_label,
         value: settings.eveningAdhkar,
         onChange: presenter.setEveningAdhkar,
+        onBeforeChange: locationGate,
       ),
       _ReminderItem(
         icon: UIIconsToken.icons.tafsir,
@@ -100,12 +110,14 @@ class _ReminderItem {
     required this.label,
     required this.value,
     required this.onChange,
+    this.onBeforeChange,
   });
 
   final String icon;
   final String label;
   final bool value;
   final Future<bool> Function(bool) onChange;
+  final Future<bool> Function(bool)? onBeforeChange;
 }
 
 class _ReminderCard extends StatelessWidget {
@@ -147,6 +159,7 @@ class _ReminderCard extends StatelessWidget {
           const UISpace.horz(8),
           UIToggle(
             checked: item.value,
+            onBeforeChange: item.onBeforeChange,
             onCheck: (v) => item.onChange(v),
           ),
         ],

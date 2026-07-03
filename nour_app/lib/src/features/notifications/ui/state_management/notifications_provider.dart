@@ -92,6 +92,14 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   // Public toggles
   // ---------------------------------------------------------------------------
 
+  /// Location gate for the prayer & adhkar toggles. Both features schedule
+  /// against the user's coordinates, so enabling them requires location
+  /// permission. Returns `true` when scheduling may proceed; on a missing
+  /// permission it deep-links to app settings and returns `false` so the caller
+  /// keeps the switch off. Disabling never needs this gate.
+  Future<bool> ensureLocationForScheduling() =>
+      GeolocatorTools.ensureLocationPermission();
+
   /// Enable/disable the notification for a single prayer. Reschedules the whole
   /// prayer range so it reflects the new enabled set.
   Future<bool> setPrayer(PrayerSlot slot, bool enable) async {
