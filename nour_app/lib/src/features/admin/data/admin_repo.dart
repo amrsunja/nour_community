@@ -67,6 +67,18 @@ class AdminRepo {
     );
   }
 
+  Future<SuccessOrError<void>> deletePayout({
+    required int payoutId,
+    String? proofPath,
+  }) {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.deletePayout(
+        payoutId: payoutId,
+        proofPath: proofPath,
+      ),
+    );
+  }
+
   Future<SuccessOrError<void>> createPayout(
     RecordPayoutParams params, {
     List<int> transactionItemIds = const [],

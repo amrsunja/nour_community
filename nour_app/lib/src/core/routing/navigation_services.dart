@@ -41,6 +41,8 @@ abstract class NavigationServices {
 		bool replace = false,
 	});
 	void toMyDonations({bool replace = false});
+	void toZakatCheckout();
+	void toZakatReward({bool replace = false});
 
 	void toSurahDetail({required int surahNumber});
 	void toAyahReader({required int surahNumber, int initialAyah, bool recordProgress});
@@ -199,6 +201,18 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toMyDonations({bool replace = false}) {
 		replace ? router.replace(MyDonationsRoute()) : router.push(MyDonationsRoute());
+  }
+
+  @override
+  void toZakatCheckout() {
+		router.push(const ZakatCheckoutRoute());
+  }
+
+  @override
+  void toZakatReward({bool replace = false}) {
+		replace
+			? router.replace(const ZakatRewardRoute())
+			: router.push(const ZakatRewardRoute());
   }
 
   @override

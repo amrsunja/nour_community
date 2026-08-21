@@ -53,6 +53,10 @@ abstract class RoutePaths {
   /// Profile → history + recurring donations.
   static const myDonations = 'my-donations';
 
+  /// Zakat calculator → multi-project zakat payment.
+  static const zakatCheckout = 'zakat-checkout';
+  static const zakatReward = 'zakat-reward';
+
   // Quran
 
   /// `surah/2` — `:surahId` is the surah number.

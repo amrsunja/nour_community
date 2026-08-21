@@ -2103,4 +2103,77 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Tidak dapat memperbarui status pencairan.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Berikan zakat Anda ke proyek Nour yang memenuhi syarat';
+
+  @override
+  String get zakat_alloc_info =>
+      'Hanya proyek yang memenuhi 8 kategori penerima zakat dalam Al-Qur’an (QS 9:60) yang ditampilkan di sini';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Belum ada proyek yang memenuhi syarat zakat saat ini';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Anda belum bisa membayar zakat lewat aplikasi — jangan khawatir, proyek baru akan segera ditambahkan insya Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Zakat terutang';
+
+  @override
+  String get zakat_alloc_allocated => 'Zakat dialokasikan';
+
+  @override
+  String get zakat_alloc_fully => 'Teralokasi penuh';
+
+  @override
+  String get zakat_alloc_remaining => 'Sisa';
+
+  @override
+  String get zakat_alloc_extra => 'Kelebihan (dihitung sebagai sedekah)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Zakat saya';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Dialokasikan ke';
+
+  @override
+  String get zakat_checkout_fees => 'Biaya transaksi';
+
+  @override
+  String get zakat_checkout_total => 'Total';
+
+  @override
+  String get zakat_reward_message =>
+      'Zakat Anda telah diterima.\nSemoga Allah menerimanya dan melipatgandakan pahalanya.';
+
+  @override
+  String get zakat_reward_you_gave => 'Anda memberi';
+
+  @override
+  String get admin_filter_all => 'Semua';
+
+  @override
+  String get admin_delete_payout => 'Hapus pencairan ini';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Hapus pencairan ini?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Akan hilang permanen dari buku besar dan, jika sudah dikonfirmasi, dari bagian transparansi publik proyek. Total akan dihitung ulang.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Hapus pencairan';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Tidak dapat menghapus pencairan.';
 }

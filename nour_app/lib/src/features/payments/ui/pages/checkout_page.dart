@@ -230,12 +230,13 @@ class CheckoutPage extends HookConsumerWidget {
     );
   }
 
-  /// Order mirrors the mock: PayPal, card, then the platform wallet.
+  /// Card first, then the platform wallet (Apple Pay on iOS, Google Pay on
+  /// Android). PayPal is behind [kPayPalEnabled] (currently off).
   static List<PaymentMethodKind> _methods(CheckoutState state) => [
-        if (kPayPalEnabled && state.paypalAvailable) PaymentMethodKind.paypal,
         PaymentMethodKind.card,
         if (Platform.isIOS && state.applePayAvailable) PaymentMethodKind.applePay,
         if (Platform.isAndroid && state.googlePayAvailable) PaymentMethodKind.googlePay,
+        if (kPayPalEnabled && state.paypalAvailable) PaymentMethodKind.paypal,
       ];
 }
 

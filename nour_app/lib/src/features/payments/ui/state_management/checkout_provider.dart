@@ -7,6 +7,7 @@ import 'package:nour/src/core/errors/failures/failures.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
+import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:uuid/uuid.dart';
 
@@ -24,6 +25,7 @@ class CheckoutArgs extends Equatable {
     required this.amount,
     required this.frequency,
     this.isZakat = false,
+    this.items = const [],
   });
 
   final int projectId;
@@ -31,11 +33,16 @@ class CheckoutArgs extends Equatable {
   final DonationFrequency frequency;
 
   /// Hidden in the impact-project flow (always a sadaqa). The zakat calculator
-  /// flow will pass `true` once implemented.
+  /// flow passes `true` (with [items]).
   final bool isZakat;
 
+  /// Multi-project split (zakat calculator): when non-empty these are the
+  /// exact items charged in ONE PaymentIntent; [amount] is their sum and
+  /// [projectId] the first project (used for context/refresh).
+  final List<PaymentItem> items;
+
   @override
-  List<Object?> get props => [projectId, amount, frequency, isZakat];
+  List<Object?> get props => [projectId, amount, frequency, isZakat, items];
 }
 
 /// One presenter per checkout screen; auto-disposed when the page is popped.
@@ -96,6 +103,10 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
     state = state.copyWith(
       applePayAvailable: results[0],
       googlePayAvailable: results[1],
+      // Never leave a hidden method selected.
+      method: !kPayPalEnabled && state.method == PaymentMethodKind.paypal
+          ? PaymentMethodKind.card
+          : null,
     );
   }
 
@@ -191,7 +202,9 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
       final res = await repo.createPaymentIntent(
         type: state.isZakat ? TxType.zakat : TxType.donation,
         currency: currency,
-        items: [PaymentItem(projectId: args.projectId, amount: state.amount)],
+        items: args.items.isNotEmpty
+            ? args.items
+            : [PaymentItem(projectId: args.projectId, amount: state.amount)],
         coverFees: state.coverFees,
         isAnonymous: state.isAnonymous,
         paymentMethod: state.method,

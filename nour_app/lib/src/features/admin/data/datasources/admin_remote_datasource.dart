@@ -189,6 +189,29 @@ class AdminRemoteDatasource {
     }
   }
 
+  /// Deletes a mistakenly recorded payout. `payout_items` rows cascade; the
+  /// proof image is removed best-effort (an orphan file must never block the
+  /// correction). RLS `payouts_admin_all` gates this to admins.
+  Future<void> deletePayout({required int payoutId, String? proofPath}) async {
+    _requireUserId();
+    try {
+      await supabaseClient.from(_payoutsTable).delete().eq('id', payoutId);
+    } catch (e) {
+      talker.error('[admin] deletePayout', e);
+      throw ServerException(
+        type: .badRequest,
+        messageKey: ApiErrorKey.adminPayoutDeleteFailed,
+      );
+    }
+    if (proofPath != null && proofPath.isNotEmpty) {
+      try {
+        await supabaseClient.storage.from(_proofBucket).remove([proofPath]);
+      } catch (e) {
+        talker.warning('[admin] deletePayout proof cleanup: $e');
+      }
+    }
+  }
+
   // ── Received transactions ────────────────────────────────────────────────
 
   /// Every received transaction (admin reads all via RLS), newest first.

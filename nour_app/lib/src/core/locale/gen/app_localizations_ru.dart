@@ -2104,4 +2104,76 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Не удалось обновить статус выплаты.';
+
+  @override
+  String get zakat_alloc_title => 'Отдайте закят подходящим проектам Nour';
+
+  @override
+  String get zakat_alloc_info =>
+      'Здесь показаны только проекты, соответствующие 8 категориям получателей закята (сура 9:60)';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Сейчас нет проектов, подходящих для закята';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Пока нельзя отдать закят через приложение — не волнуйтесь, новые проекты скоро появятся, иншаАллах.';
+
+  @override
+  String get zakat_alloc_owed => 'Закят к оплате';
+
+  @override
+  String get zakat_alloc_allocated => 'Распределённый закят';
+
+  @override
+  String get zakat_alloc_fully => 'Полностью распределено';
+
+  @override
+  String get zakat_alloc_remaining => 'Осталось';
+
+  @override
+  String get zakat_alloc_extra => 'Сверх суммы (засчитывается как садака)';
+
+  @override
+  String get zakat_checkout_title => 'Закят';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Мой закят';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Распределено на';
+
+  @override
+  String get zakat_checkout_fees => 'Комиссия';
+
+  @override
+  String get zakat_checkout_total => 'Итого';
+
+  @override
+  String get zakat_reward_message =>
+      'Ваш закят получен.\nПусть Аллах примет его и умножит награду.';
+
+  @override
+  String get zakat_reward_you_gave => 'Вы отдали';
+
+  @override
+  String get admin_filter_all => 'Все';
+
+  @override
+  String get admin_delete_payout => 'Удалить эту выплату';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Удалить эту выплату?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Она навсегда исчезнет из реестра и, если была подтверждена, из публичного раздела прозрачности проекта. Итоги будут пересчитаны.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Удалить выплату';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Не удалось удалить выплату.';
 }

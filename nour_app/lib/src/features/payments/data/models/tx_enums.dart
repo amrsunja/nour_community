@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 /// Mirrors `public.tx_type`. The payment cause — kept strictly separate from
 /// zakat through to payout (never mixed).
 enum TxType {
@@ -135,8 +137,9 @@ enum SubscriptionStatus {
 }
 
 /// A single line the donor is funding: a project + an amount. The client builds
-/// these; the server re-validates every one before charging.
-class PaymentItem {
+/// these; the server re-validates every one before charging. Equatable so it
+/// can live inside provider-family arguments (CheckoutArgs).
+class PaymentItem extends Equatable {
   const PaymentItem({required this.projectId, required this.amount});
 
   final int projectId;
@@ -146,4 +149,7 @@ class PaymentItem {
     'project_id': projectId,
     'amount': amount,
   };
+
+  @override
+  List<Object?> get props => [projectId, amount];
 }

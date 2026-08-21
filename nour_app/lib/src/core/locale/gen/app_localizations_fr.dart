@@ -2114,4 +2114,77 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Impossible de mettre à jour le statut du versement.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Donnez votre zakat aux projets Nour éligibles';
+
+  @override
+  String get zakat_alloc_info =>
+      'Seuls les projets répondant aux 8 catégories coraniques d’éligibilité à la Zakat (Sourate 9:60) sont affichés ici';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Aucun projet éligible à la zakat pour le moment';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Vous ne pouvez pas encore donner votre zakat via l’application — pas d’inquiétude, de nouveaux projets éligibles arriveront bientôt incha’Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Zakat due';
+
+  @override
+  String get zakat_alloc_allocated => 'Zakat répartie';
+
+  @override
+  String get zakat_alloc_fully => 'Entièrement répartie';
+
+  @override
+  String get zakat_alloc_remaining => 'Restant';
+
+  @override
+  String get zakat_alloc_extra => 'Surplus (compté comme Sadaqa)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Ma zakat';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Répartie entre';
+
+  @override
+  String get zakat_checkout_fees => 'Frais de transaction';
+
+  @override
+  String get zakat_checkout_total => 'Total';
+
+  @override
+  String get zakat_reward_message =>
+      'Votre zakat a bien été reçue.\nQu’Allah l’accepte et en multiplie la récompense.';
+
+  @override
+  String get zakat_reward_you_gave => 'Vous avez donné';
+
+  @override
+  String get admin_filter_all => 'Tout';
+
+  @override
+  String get admin_delete_payout => 'Supprimer ce versement';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Supprimer ce versement ?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Il disparaîtra définitivement du registre et, s’il était confirmé, de la section transparence publique du projet. Les totaux versés et restants seront recalculés.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Supprimer le versement';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Impossible de supprimer le versement.';
 }

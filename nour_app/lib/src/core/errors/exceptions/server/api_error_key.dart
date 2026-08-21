@@ -116,6 +116,7 @@ enum ApiErrorKey {
   adminPayoutsLoadFailed,
   adminPayoutCreateFailed,
   adminPayoutUpdateFailed,
+  adminPayoutDeleteFailed,
   adminPayoutProofUploadFailed,
   adminTransactionsLoadFailed,
 }

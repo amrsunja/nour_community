@@ -2099,4 +2099,75 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Couldn\'t update the payout status.';
+
+  @override
+  String get zakat_alloc_title => 'Give zakat to eligible Nour projects';
+
+  @override
+  String get zakat_alloc_info =>
+      'Only projects that meet the 8 Quranic categories of Zakat eligibility (Surah 9:60) are shown here';
+
+  @override
+  String get zakat_alloc_empty_title => 'No zakat-eligible projects right now';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'You can\'t give zakat through the app just yet — don\'t worry, new eligible projects will be added soon insha\'Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Zakat owed';
+
+  @override
+  String get zakat_alloc_allocated => 'Zakat allocated';
+
+  @override
+  String get zakat_alloc_fully => 'Fully allocated';
+
+  @override
+  String get zakat_alloc_remaining => 'Remaining';
+
+  @override
+  String get zakat_alloc_extra => 'Extra (counts as Sadaqa)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'My zakat';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Allocated to';
+
+  @override
+  String get zakat_checkout_fees => 'Transaction fees';
+
+  @override
+  String get zakat_checkout_total => 'Total';
+
+  @override
+  String get zakat_reward_message =>
+      'Your zakat has been received.\nMay Allah accept it and multiply its reward.';
+
+  @override
+  String get zakat_reward_you_gave => 'You gave';
+
+  @override
+  String get admin_filter_all => 'All';
+
+  @override
+  String get admin_delete_payout => 'Delete this payout';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Delete this payout?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'It disappears permanently from the ledger and, if it was confirmed, from the public transparency section of the project. Paid-out and outstanding totals will be recalculated.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Delete payout';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Couldn\'t delete the payout.';
 }

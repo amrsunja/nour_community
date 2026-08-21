@@ -2105,4 +2105,77 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Tidak dapat mengemas kini status pembayaran.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Berikan zakat anda kepada projek Nour yang layak';
+
+  @override
+  String get zakat_alloc_info =>
+      'Hanya projek yang memenuhi 8 kategori penerima zakat dalam al-Quran (Surah 9:60) dipaparkan di sini';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Tiada projek layak zakat buat masa ini';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Anda belum boleh memberi zakat melalui aplikasi — jangan risau, projek baharu akan ditambah tidak lama lagi insya-Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Zakat terhutang';
+
+  @override
+  String get zakat_alloc_allocated => 'Zakat diperuntukkan';
+
+  @override
+  String get zakat_alloc_fully => 'Diperuntukkan sepenuhnya';
+
+  @override
+  String get zakat_alloc_remaining => 'Baki';
+
+  @override
+  String get zakat_alloc_extra => 'Lebihan (dikira sebagai sedekah)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Zakat saya';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Diperuntukkan kepada';
+
+  @override
+  String get zakat_checkout_fees => 'Yuran transaksi';
+
+  @override
+  String get zakat_checkout_total => 'Jumlah';
+
+  @override
+  String get zakat_reward_message =>
+      'Zakat anda telah diterima.\nSemoga Allah menerimanya dan menggandakan ganjarannya.';
+
+  @override
+  String get zakat_reward_you_gave => 'Anda memberi';
+
+  @override
+  String get admin_filter_all => 'Semua';
+
+  @override
+  String get admin_delete_payout => 'Padam pembayaran ini';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Padam pembayaran ini?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Ia akan hilang secara kekal daripada lejar dan, jika telah disahkan, daripada bahagian ketelusan awam projek. Jumlah akan dikira semula.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Padam pembayaran';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Tidak dapat memadam pembayaran.';
 }

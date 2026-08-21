@@ -182,6 +182,16 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.myDonations,
               page: MyDonationsRoute.page,
             ),
+            AutoRoute(
+              path: RoutePaths.zakatCheckout,
+              page: ZakatCheckoutRoute.page,
+            ),
+            customRoute(
+              path: RoutePaths.zakatReward,
+              page: ZakatRewardRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              durationInMilliseconds: 400,
+            ),
 
             /// Adhkar (full-screen over the bottom navbar)
             AutoRoute(

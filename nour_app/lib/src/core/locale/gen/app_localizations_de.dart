@@ -2118,4 +2118,77 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Der Auszahlungsstatus konnte nicht aktualisiert werden.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Geben Sie Ihre Zakat an berechtigte Nour-Projekte';
+
+  @override
+  String get zakat_alloc_info =>
+      'Hier werden nur Projekte angezeigt, die den 8 koranischen Zakat-Kategorien entsprechen (Sure 9:60)';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Derzeit keine zakat-berechtigten Projekte';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Sie können Ihre Zakat noch nicht über die App geben — keine Sorge, neue berechtigte Projekte kommen bald, insha’Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Fällige Zakat';
+
+  @override
+  String get zakat_alloc_allocated => 'Zugeteilte Zakat';
+
+  @override
+  String get zakat_alloc_fully => 'Vollständig zugeteilt';
+
+  @override
+  String get zakat_alloc_remaining => 'Verbleibend';
+
+  @override
+  String get zakat_alloc_extra => 'Mehrbetrag (zählt als Sadaqa)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Meine Zakat';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Zugeteilt an';
+
+  @override
+  String get zakat_checkout_fees => 'Transaktionsgebühren';
+
+  @override
+  String get zakat_checkout_total => 'Gesamt';
+
+  @override
+  String get zakat_reward_message =>
+      'Ihre Zakat ist eingegangen.\nMöge Allah sie annehmen und den Lohn vervielfachen.';
+
+  @override
+  String get zakat_reward_you_gave => 'Sie haben gegeben';
+
+  @override
+  String get admin_filter_all => 'Alle';
+
+  @override
+  String get admin_delete_payout => 'Diese Auszahlung löschen';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Diese Auszahlung löschen?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Sie verschwindet dauerhaft aus dem Register und, falls bestätigt, aus dem öffentlichen Transparenzbereich des Projekts. Die Summen werden neu berechnet.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Auszahlung löschen';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Die Auszahlung konnte nicht gelöscht werden.';
 }

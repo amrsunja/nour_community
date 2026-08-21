@@ -2092,4 +2092,75 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'পেআউট স্ট্যাটাস আপডেট করা যায়নি।';
+
+  @override
+  String get zakat_alloc_title => 'যোগ্য নূর প্রকল্পে আপনার যাকাত দিন';
+
+  @override
+  String get zakat_alloc_info =>
+      'শুধুমাত্র কুরআনের ৮টি যাকাত খাতে (সূরা ৯:৬০) উপযুক্ত প্রকল্পগুলো এখানে দেখানো হয়';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'এই মুহূর্তে যাকাতযোগ্য কোনো প্রকল্প নেই';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'এখনই অ্যাপের মাধ্যমে যাকাত দেওয়া যাচ্ছে না — চিন্তা করবেন না, শীঘ্রই নতুন প্রকল্প যোগ হবে ইনশাআল্লাহ।';
+
+  @override
+  String get zakat_alloc_owed => 'প্রদেয় যাকাত';
+
+  @override
+  String get zakat_alloc_allocated => 'বরাদ্দকৃত যাকাত';
+
+  @override
+  String get zakat_alloc_fully => 'সম্পূর্ণ বরাদ্দ';
+
+  @override
+  String get zakat_alloc_remaining => 'অবশিষ্ট';
+
+  @override
+  String get zakat_alloc_extra => 'অতিরিক্ত (সদকা হিসেবে গণ্য)';
+
+  @override
+  String get zakat_checkout_title => 'যাকাত';
+
+  @override
+  String get zakat_checkout_my_zakat => 'আমার যাকাত';
+
+  @override
+  String get zakat_checkout_allocated_to => 'বরাদ্দ করা হয়েছে';
+
+  @override
+  String get zakat_checkout_fees => 'লেনদেন ফি';
+
+  @override
+  String get zakat_checkout_total => 'মোট';
+
+  @override
+  String get zakat_reward_message =>
+      'আপনার যাকাত গৃহীত হয়েছে।\nআল্লাহ তা কবুল করুন এবং সওয়াব বহুগুণ বাড়িয়ে দিন।';
+
+  @override
+  String get zakat_reward_you_gave => 'আপনি দিয়েছেন';
+
+  @override
+  String get admin_filter_all => 'সব';
+
+  @override
+  String get admin_delete_payout => 'এই পেআউট মুছুন';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'এই পেআউট মুছবেন?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'এটি স্থায়ীভাবে লেজার থেকে মুছে যাবে এবং নিশ্চিত হয়ে থাকলে প্রকল্পের পাবলিক স্বচ্ছতা বিভাগ থেকেও। মোট হিসাব পুনরায় গণনা হবে।';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'পেআউট মুছুন';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'পেআউট মুছা যায়নি।';
 }

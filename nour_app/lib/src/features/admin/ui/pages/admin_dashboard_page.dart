@@ -118,6 +118,31 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                     ),
                     const UISpace.vert(16),
 
+                    // Zakat vs Sadaqa separation — filters the totals above
+                    // and the lists below.
+                    UITabs<AdminTypeFilter>(
+                      selected: state.typeFilter,
+                      trackColor: UIColorsToken.bgSurface,
+                      padding: const EdgeInsets.all(4),
+                      borderRadius: 10,
+                      items: [
+                        UITabItem(
+                          value: AdminTypeFilter.all,
+                          label: l10n.admin_filter_all,
+                        ),
+                        UITabItem(
+                          value: AdminTypeFilter.donation,
+                          label: l10n.donate_type_donation,
+                        ),
+                        UITabItem(
+                          value: AdminTypeFilter.zakat,
+                          label: l10n.donate_type_zakat,
+                        ),
+                      ],
+                      onChanged: notifier.selectTypeFilter,
+                    ),
+                    const UISpace.vert(14),
+
                     UITabs<AdminTab>(
                       selected: state.tab,
                       items: [
@@ -150,6 +175,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           l10n: l10n,
                           onChangeStatus: (payout, status) => notifier
                               .updatePayoutStatus(payout.id, status),
+                          onDelete: (payout) => notifier.deletePayout(payout.id),
                         ),
                       AdminTab.received => _ReceivedTab(
                           state: state,
@@ -221,7 +247,7 @@ class _ProjectsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     // Group analytics rows by project.
     final byProject = <int, List<ProjectAnalyticsModel>>{};
-    for (final row in state.analytics) {
+    for (final row in state.visibleAnalytics) {
       byProject.putIfAbsent(row.projectId, () => []).add(row);
     }
 
@@ -408,19 +434,21 @@ class _PayoutsTab extends StatelessWidget {
     required this.langCode,
     required this.l10n,
     required this.onChangeStatus,
+    required this.onDelete,
   });
 
   final AdminState state;
   final String langCode;
   final AppLocale l10n;
   final void Function(PayoutModel payout, PayoutStatus status) onChangeStatus;
+  final void Function(PayoutModel payout) onDelete;
 
   @override
   Widget build(BuildContext context) {
-    if (state.payouts.isEmpty) return _Empty(l10n.admin_empty_payouts);
+    if (state.visiblePayouts.isEmpty) return _Empty(l10n.admin_empty_payouts);
     return Column(
       children: [
-        for (final payout in state.payouts)
+        for (final payout in state.visiblePayouts)
           Padding(
             padding: const EdgeInsets.only(bottom: 10),
             child: PayoutTile(
@@ -434,13 +462,19 @@ class _PayoutsTab extends StatelessWidget {
               onTap: state.updatingPayoutId != null
                   ? null
                   : () async {
-                      final status = await _PayoutStatusSheet.show(
+                      final action = await _PayoutStatusSheet.show(
                         context,
                         current: payout.status,
                         l10n: l10n,
                       );
-                      if (status != null && status != payout.status) {
-                        onChangeStatus(payout, status);
+                      if (action == null) return;
+                      if (action.delete) {
+                        if (!context.mounted) return;
+                        final ok = await _confirmDeletePayout(context, l10n);
+                        if (ok == true) onDelete(payout);
+                      } else if (action.status != null &&
+                          action.status != payout.status) {
+                        onChangeStatus(payout, action.status!);
                       }
                     },
             ),
@@ -450,22 +484,35 @@ class _PayoutsTab extends StatelessWidget {
   }
 }
 
-/// Bottom sheet to pick a payout's new status. Explains that only `confirmed`
-/// disbursements are shown publicly on the project page.
+/// What the admin picked in the payout sheet: a new status, or deletion.
+class _PayoutSheetAction {
+  const _PayoutSheetAction.status(PayoutStatus this.status) : delete = false;
+  const _PayoutSheetAction.delete()
+      : status = null,
+        delete = true;
+
+  final PayoutStatus? status;
+  final bool delete;
+}
+
+/// Bottom sheet to pick a payout's new status (or delete a wrong entry).
+/// Explains that only `confirmed` disbursements are shown publicly.
 class _PayoutStatusSheet extends StatelessWidget {
   const _PayoutStatusSheet({required this.current, required this.l10n});
 
   final PayoutStatus current;
   final AppLocale l10n;
 
-  static Future<PayoutStatus?> show(
+  static Future<_PayoutSheetAction?> show(
     BuildContext context, {
     required PayoutStatus current,
     required AppLocale l10n,
   }) {
-    return showModalBottomSheet<PayoutStatus>(
+    return showModalBottomSheet<_PayoutSheetAction>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
+      isScrollControlled: true, // content is taller than the default half-sheet
+      useSafeArea: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
@@ -494,7 +541,7 @@ class _PayoutStatusSheet extends StatelessWidget {
 
     return SafeArea(
       top: false,
-      child: Padding(
+      child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -524,7 +571,8 @@ class _PayoutStatusSheet extends StatelessWidget {
             const UISpace.vert(16),
             for (final s in PayoutStatus.values) ...[
               UITap(
-                onTap: () => Navigator.of(context).pop(s),
+                onTap: () =>
+                    Navigator.of(context).pop(_PayoutSheetAction.status(s)),
                 child: UISelecteableCard(
                   selected: s == current,
                   child: Row(
@@ -560,11 +608,107 @@ class _PayoutStatusSheet extends StatelessWidget {
               ),
               const UISpace.vert(10),
             ],
+            const UISpace.vert(4),
+            // Correction path: a wrongly recorded payout can be removed.
+            UITap(
+              onTap: () =>
+                  Navigator.of(context).pop(const _PayoutSheetAction.delete()),
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: UIColorsToken.red.withValues(alpha: 0.6),
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.delete_outline,
+                        size: 20, color: UIColorsToken.red),
+                    const UISpace.horz(10),
+                    Text(
+                      l10n.admin_delete_payout,
+                      style: typo.inter.title
+                          .copyWith(color: UIColorsToken.red),
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
+
+/// Destructive confirmation before removing a payout from the ledger.
+Future<bool?> _confirmDeletePayout(BuildContext context, AppLocale l10n) {
+  final typo = UITheme.of(context).typo;
+  return showModalBottomSheet<bool>(
+    context: context,
+    backgroundColor: UIColorsToken.bgPrimary,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+    ),
+    builder: (ctx) => SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: UIColorsToken.stroke,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+            const UISpace.vert(20),
+            Text(
+              l10n.admin_delete_payout_confirm_title,
+              style: typo.inter.title.copyWith(color: UIColorsToken.white),
+            ),
+            const UISpace.vert(8),
+            Text(
+              l10n.admin_delete_payout_confirm_message,
+              style: typo.inter.bodyMedium
+                  .copyWith(color: UIColorsToken.textParagraph),
+            ),
+            const UISpace.vert(24),
+            UITap(
+              onTap: () => Navigator.of(ctx).pop(true),
+              child: Container(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: UIColorsToken.red,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Text(
+                  l10n.admin_delete_payout_confirm_yes,
+                  style: typo.inter.buttonLabel
+                      .copyWith(color: UIColorsToken.white),
+                ),
+              ),
+            ),
+            const UISpace.vert(8),
+            UIButton.textual(
+              label: l10n.my_donations_keep,
+              fullWidth: true,
+              onTap: () => Navigator.of(ctx).pop(false),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
 }
 
 /// A single payout row — reused by the admin ledger and (read-only) elsewhere.
@@ -701,10 +845,10 @@ class _ReceivedTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.transactions.isEmpty) return _Empty(l10n.admin_empty_received);
+    if (state.visibleTransactions.isEmpty) return _Empty(l10n.admin_empty_received);
     return Column(
       children: [
-        for (final tx in state.transactions)
+        for (final tx in state.visibleTransactions)
           Padding(
             padding: const EdgeInsets.only(bottom: 8),
             child: _TransactionTile(tx: tx, l10n: l10n),

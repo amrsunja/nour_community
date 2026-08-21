@@ -2093,4 +2093,75 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'ادائیگی کی حالت اپ ڈیٹ نہیں ہو سکی۔';
+
+  @override
+  String get zakat_alloc_title => 'اپنی زکوٰۃ اہل نور منصوبوں کو دیں';
+
+  @override
+  String get zakat_alloc_info =>
+      'یہاں صرف وہ منصوبے دکھائے جاتے ہیں جو زکوٰۃ کے 8 قرآنی مصارف (سورہ 9:60) پر پورے اترتے ہیں';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'فی الحال زکوٰۃ کے اہل کوئی منصوبے نہیں';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'ابھی آپ ایپ کے ذریعے زکوٰۃ نہیں دے سکتے — فکر نہ کریں، جلد نئے اہل منصوبے شامل کیے جائیں گے ان شاء اللہ۔';
+
+  @override
+  String get zakat_alloc_owed => 'واجب الادا زکوٰۃ';
+
+  @override
+  String get zakat_alloc_allocated => 'مختص زکوٰۃ';
+
+  @override
+  String get zakat_alloc_fully => 'مکمل مختص';
+
+  @override
+  String get zakat_alloc_remaining => 'باقی';
+
+  @override
+  String get zakat_alloc_extra => 'اضافی (صدقہ شمار ہوگا)';
+
+  @override
+  String get zakat_checkout_title => 'زکوٰۃ';
+
+  @override
+  String get zakat_checkout_my_zakat => 'میری زکوٰۃ';
+
+  @override
+  String get zakat_checkout_allocated_to => 'مختص کردہ';
+
+  @override
+  String get zakat_checkout_fees => 'لین دین کی فیس';
+
+  @override
+  String get zakat_checkout_total => 'کل';
+
+  @override
+  String get zakat_reward_message =>
+      'آپ کی زکوٰۃ موصول ہو گئی ہے۔\nاللہ اسے قبول فرمائے اور اجر کو کئی گنا بڑھائے۔';
+
+  @override
+  String get zakat_reward_you_gave => 'آپ نے دیا';
+
+  @override
+  String get admin_filter_all => 'سب';
+
+  @override
+  String get admin_delete_payout => 'یہ ادائیگی حذف کریں';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'یہ ادائیگی حذف کریں؟';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'یہ ریکارڈ سے مستقل طور پر حذف ہو جائے گی اور اگر تصدیق شدہ تھی تو منصوبے کے عوامی شفافیت سیکشن سے بھی۔ کل رقوم دوبارہ شمار ہوں گی۔';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'ادائیگی حذف کریں';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'ادائیگی حذف نہیں ہو سکی۔';
 }

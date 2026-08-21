@@ -2096,4 +2096,78 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'De uitbetalingsstatus kon niet worden bijgewerkt.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Geef je zakat aan in aanmerking komende Nour-projecten';
+
+  @override
+  String get zakat_alloc_info =>
+      'Alleen projecten die voldoen aan de 8 koranische zakat-categorieën (Soera 9:60) worden hier getoond';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Momenteel geen zakat-projecten beschikbaar';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Je kunt je zakat nog niet via de app geven — geen zorgen, binnenkort komen er nieuwe projecten bij, insha’Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Verschuldigde zakat';
+
+  @override
+  String get zakat_alloc_allocated => 'Toegewezen zakat';
+
+  @override
+  String get zakat_alloc_fully => 'Volledig toegewezen';
+
+  @override
+  String get zakat_alloc_remaining => 'Resterend';
+
+  @override
+  String get zakat_alloc_extra => 'Extra (telt als sadaqa)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Mijn zakat';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Toegewezen aan';
+
+  @override
+  String get zakat_checkout_fees => 'Transactiekosten';
+
+  @override
+  String get zakat_checkout_total => 'Totaal';
+
+  @override
+  String get zakat_reward_message =>
+      'Je zakat is ontvangen.\nMoge Allah het accepteren en de beloning vermenigvuldigen.';
+
+  @override
+  String get zakat_reward_you_gave => 'Je hebt gegeven';
+
+  @override
+  String get admin_filter_all => 'Alles';
+
+  @override
+  String get admin_delete_payout => 'Deze uitbetaling verwijderen';
+
+  @override
+  String get admin_delete_payout_confirm_title =>
+      'Deze uitbetaling verwijderen?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Hij verdwijnt definitief uit het grootboek en, indien bevestigd, uit de publieke transparantiesectie van het project. De totalen worden herberekend.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Uitbetaling verwijderen';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'De uitbetaling kon niet worden verwijderd.';
 }

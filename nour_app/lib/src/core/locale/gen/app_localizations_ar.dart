@@ -2066,4 +2066,74 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get error_api_admin_payout_update_failed => 'تعذّر تحديث حالة الدفعة.';
+
+  @override
+  String get zakat_alloc_title => 'أدِّ زكاتك إلى مشاريع نور المؤهلة';
+
+  @override
+  String get zakat_alloc_info =>
+      'تُعرض هنا فقط المشاريع المطابقة لأصناف مستحقي الزكاة الثمانية (التوبة 60)';
+
+  @override
+  String get zakat_alloc_empty_title => 'لا توجد مشاريع مؤهلة للزكاة حاليًا';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'لا يمكنك أداء الزكاة عبر التطبيق حاليًا — لا تقلق، ستضاف مشاريع مؤهلة جديدة قريبًا إن شاء الله.';
+
+  @override
+  String get zakat_alloc_owed => 'الزكاة المستحقة';
+
+  @override
+  String get zakat_alloc_allocated => 'الزكاة الموزعة';
+
+  @override
+  String get zakat_alloc_fully => 'موزعة بالكامل';
+
+  @override
+  String get zakat_alloc_remaining => 'المتبقي';
+
+  @override
+  String get zakat_alloc_extra => 'زيادة (تُحسب صدقة)';
+
+  @override
+  String get zakat_checkout_title => 'زكاة';
+
+  @override
+  String get zakat_checkout_my_zakat => 'زكاتي';
+
+  @override
+  String get zakat_checkout_allocated_to => 'موزعة على';
+
+  @override
+  String get zakat_checkout_fees => 'رسوم المعاملة';
+
+  @override
+  String get zakat_checkout_total => 'الإجمالي';
+
+  @override
+  String get zakat_reward_message =>
+      'تم استلام زكاتك.\nتقبّل الله منك وضاعف أجرك.';
+
+  @override
+  String get zakat_reward_you_gave => 'لقد أعطيت';
+
+  @override
+  String get admin_filter_all => 'الكل';
+
+  @override
+  String get admin_delete_payout => 'حذف هذه الدفعة';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'حذف هذه الدفعة؟';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'ستُحذف نهائيًا من السجل، وإن كانت مؤكَّدة فستختفي من قسم الشفافية العام للمشروع. سيُعاد حساب الإجماليات.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'حذف الدفعة';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'تعذّر حذف الدفعة.';
 }

@@ -82,6 +82,12 @@ class AdminPresenter extends Presenter<AdminState> {
     state = state.copyWith(tab: tab);
   }
 
+  /// All / Sadaqa / Zakat — filters totals, ledger and received feed.
+  void selectTypeFilter(AdminTypeFilter filter) {
+    if (filter == state.typeFilter) return;
+    state = state.copyWith(typeFilter: filter);
+  }
+
   List<ImpactProjectModel> get projects =>
       state.projectsById.values.toList();
 
@@ -121,6 +127,39 @@ class AdminPresenter extends Presenter<AdminState> {
     );
 
     final res = await repo.updatePayoutStatus(payoutId: payoutId, status: status);
+    if (!mounted) return;
+    res.when(
+      (_) {
+        state = state.copyWith(clearUpdatingPayout: true);
+        unawaited(load(silent: true)); // refresh analytics totals
+      },
+      (error) {
+        state = state.copyWith(payouts: previous, clearUpdatingPayout: true);
+        appEvents.send(ShowErrorEvent(error));
+      },
+    );
+  }
+
+  /// Deletes a wrongly recorded payout. Optimistic (row disappears at once,
+  /// restored on failure); a deleted CONFIRMED payout also disappears from the
+  /// public project transparency section and the paid_out/outstanding totals
+  /// recompute on the background refresh.
+  Future<void> deletePayout(int payoutId) async {
+    if (state.updatingPayoutId != null) return;
+    final previous = state.payouts;
+    final idx = previous.indexWhere((p) => p.id == payoutId);
+    if (idx < 0) return;
+    final payout = previous[idx];
+
+    state = state.copyWith(
+      updatingPayoutId: payoutId,
+      payouts: [for (final p in previous) if (p.id != payoutId) p],
+    );
+
+    final res = await repo.deletePayout(
+      payoutId: payoutId,
+      proofPath: payout.proofPath,
+    );
     if (!mounted) return;
     res.when(
       (_) {

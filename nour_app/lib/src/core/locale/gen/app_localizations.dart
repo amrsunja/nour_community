@@ -3847,6 +3847,138 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t update the payout status.'**
   String get error_api_admin_payout_update_failed;
+
+  /// No description provided for @zakat_alloc_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Give zakat to eligible Nour projects'**
+  String get zakat_alloc_title;
+
+  /// No description provided for @zakat_alloc_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Only projects that meet the 8 Quranic categories of Zakat eligibility (Surah 9:60) are shown here'**
+  String get zakat_alloc_info;
+
+  /// No description provided for @zakat_alloc_empty_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No zakat-eligible projects right now'**
+  String get zakat_alloc_empty_title;
+
+  /// No description provided for @zakat_alloc_empty_message.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t give zakat through the app just yet — don\'t worry, new eligible projects will be added soon insha\'Allah.'**
+  String get zakat_alloc_empty_message;
+
+  /// No description provided for @zakat_alloc_owed.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat owed'**
+  String get zakat_alloc_owed;
+
+  /// No description provided for @zakat_alloc_allocated.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat allocated'**
+  String get zakat_alloc_allocated;
+
+  /// No description provided for @zakat_alloc_fully.
+  ///
+  /// In en, this message translates to:
+  /// **'Fully allocated'**
+  String get zakat_alloc_fully;
+
+  /// No description provided for @zakat_alloc_remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get zakat_alloc_remaining;
+
+  /// No description provided for @zakat_alloc_extra.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra (counts as Sadaqa)'**
+  String get zakat_alloc_extra;
+
+  /// No description provided for @zakat_checkout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat'**
+  String get zakat_checkout_title;
+
+  /// No description provided for @zakat_checkout_my_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'My zakat'**
+  String get zakat_checkout_my_zakat;
+
+  /// No description provided for @zakat_checkout_allocated_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Allocated to'**
+  String get zakat_checkout_allocated_to;
+
+  /// No description provided for @zakat_checkout_fees.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction fees'**
+  String get zakat_checkout_fees;
+
+  /// No description provided for @zakat_checkout_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get zakat_checkout_total;
+
+  /// No description provided for @zakat_reward_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your zakat has been received.\nMay Allah accept it and multiply its reward.'**
+  String get zakat_reward_message;
+
+  /// No description provided for @zakat_reward_you_gave.
+  ///
+  /// In en, this message translates to:
+  /// **'You gave'**
+  String get zakat_reward_you_gave;
+
+  /// No description provided for @admin_filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get admin_filter_all;
+
+  /// No description provided for @admin_delete_payout.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this payout'**
+  String get admin_delete_payout;
+
+  /// No description provided for @admin_delete_payout_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this payout?'**
+  String get admin_delete_payout_confirm_title;
+
+  /// No description provided for @admin_delete_payout_confirm_message.
+  ///
+  /// In en, this message translates to:
+  /// **'It disappears permanently from the ledger and, if it was confirmed, from the public transparency section of the project. Paid-out and outstanding totals will be recalculated.'**
+  String get admin_delete_payout_confirm_message;
+
+  /// No description provided for @admin_delete_payout_confirm_yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete payout'**
+  String get admin_delete_payout_confirm_yes;
+
+  /// No description provided for @error_api_admin_payout_delete_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete the payout.'**
+  String get error_api_admin_payout_delete_failed;
 }
 
 class _AppLocalizationsDelegate

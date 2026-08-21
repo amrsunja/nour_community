@@ -25,5 +25,5 @@ const String kStripeUrlScheme = 'nour';
 /// Merchant country (ISO 3166-1 alpha-2) for Apple Pay / Google Pay.
 const String kStripeMerchantCountryCode = 'FR';
 /// PayPal via Stripe requires it to be enabled on the (EU) Stripe account.
-/// Flip to false to hide the PayPal row in the checkout picker.
-const bool kPayPalEnabled = true;
+/// Currently disabled by product decision — card + Apple Pay + Google Pay only.
+const bool kPayPalEnabled = false;

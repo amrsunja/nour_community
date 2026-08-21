@@ -2093,4 +2093,74 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_admin_payout_update_failed =>
       'Ödeme durumu güncellenemedi.';
+
+  @override
+  String get zakat_alloc_title => 'Zekâtınızı uygun Nour projelerine verin';
+
+  @override
+  String get zakat_alloc_info =>
+      'Burada yalnızca zekâtın 8 Kur’ânî sınıfına uyan projeler gösterilir (Tevbe 60)';
+
+  @override
+  String get zakat_alloc_empty_title => 'Şu anda zekâta uygun proje yok';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Şimdilik uygulama üzerinden zekât veremezsiniz — merak etmeyin, yakında yeni uygun projeler eklenecek inşallah.';
+
+  @override
+  String get zakat_alloc_owed => 'Ödenecek zekât';
+
+  @override
+  String get zakat_alloc_allocated => 'Dağıtılan zekât';
+
+  @override
+  String get zakat_alloc_fully => 'Tamamı dağıtıldı';
+
+  @override
+  String get zakat_alloc_remaining => 'Kalan';
+
+  @override
+  String get zakat_alloc_extra => 'Fazlası (sadaka sayılır)';
+
+  @override
+  String get zakat_checkout_title => 'Zekât';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Zekâtım';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Şuraya dağıtıldı';
+
+  @override
+  String get zakat_checkout_fees => 'İşlem ücretleri';
+
+  @override
+  String get zakat_checkout_total => 'Toplam';
+
+  @override
+  String get zakat_reward_message =>
+      'Zekâtınız alındı.\nAllah kabul etsin ve sevabını kat kat artırsın.';
+
+  @override
+  String get zakat_reward_you_gave => 'Verdiniz';
+
+  @override
+  String get admin_filter_all => 'Tümü';
+
+  @override
+  String get admin_delete_payout => 'Bu ödemeyi sil';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Bu ödeme silinsin mi?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Kayıttan kalıcı olarak silinir; onaylanmışsa projenin herkese açık şeffaflık bölümünden de kaldırılır. Toplamlar yeniden hesaplanır.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Ödemeyi sil';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'Ödeme silinemedi.';
 }
