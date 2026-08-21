@@ -60,6 +60,9 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
   @override
   void initState() {
     super.initState();
+    // The save button's enabled state depends on the amount text — rebuild as
+    // the admin types (there is no other setState on this path).
+    _amountCtrl.addListener(_onFormChanged);
     _project = widget.presetProject;
     _type = widget.presetType ??
         (widget.presetProject?.eligibleForZakat == true
@@ -67,8 +70,13 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
             : TxType.donation);
   }
 
+  void _onFormChanged() {
+    if (mounted) setState(() {});
+  }
+
   @override
   void dispose() {
+    _amountCtrl.removeListener(_onFormChanged);
     _amountCtrl.dispose();
     _refCtrl.dispose();
     _noteCtrl.dispose();
@@ -77,9 +85,13 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
 
   Future<void> _pickProof() async {
     final picker = ImagePicker();
+    // Downscale before upload — a receipt does not need 12 MP; this cuts the
+    // storage upload from several MB to a few hundred KB.
     final file = await picker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 85,
+      maxWidth: 1600,
+      maxHeight: 1600,
+      imageQuality: 80,
     );
     if (file == null) return;
     final bytes = await file.readAsBytes();
@@ -283,7 +295,11 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
                 fullWidth: true,
                 isBusy: submitting,
                 onTap: (_project != null &&
-                        (_amountCtrl.text.trim().isNotEmpty) &&
+                        (double.tryParse(
+                                  _amountCtrl.text.replaceAll(',', '.'),
+                                ) ??
+                                0) >
+                            0 &&
                         !submitting)
                     ? () => _submit(l10n)
                     : null,

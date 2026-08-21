@@ -6,7 +6,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/enums/currency_type.dart';
+import 'package:nour/src/features/payments/ui/state_management/zakat_cart_provider.dart';
+import 'package:nour/src/features/payments/ui/widgets/zakat_allocation_sheet.dart';
 
 import '../state_management/zakat_calculator_provider.dart';
 import '../state_management/zakat_calculator_state.dart';
@@ -46,6 +49,18 @@ class ZakatCalculatorPage extends HookConsumerWidget {
       return null;
     }, const []);
 
+    /// "Give zakat" → allocation sheet (split across eligible projects) →
+    /// zakat checkout. The cart carries the split through the flow.
+    Future<void> onGiveZakat() async {
+      final cart = await ZakatAllocationSheet.show(
+        context,
+        zakatOwed: state.result.zakatDue,
+      );
+      if (cart == null) return;
+      ref.read(zakatCartProvider.notifier).state = cart;
+      ref.read(navigationServicesProvider).toZakatCheckout();
+    }
+
     void onReset() {
       for (final c in [
         goldCtrl,
@@ -82,7 +97,7 @@ class ZakatCalculatorPage extends HookConsumerWidget {
                   currency: currency,
                   state: state,
                   onReset: onReset,
-                  onGive: () {}, // Implemented later by the app owner.
+                  onGive: onGiveZakat,
                 ),
               ),
               const SizedBox(height: 16),
@@ -350,12 +365,10 @@ class _SummaryCard extends StatelessWidget {
                 contentColor: UIColorsToken.white,
                 onTap: onReset,
               ),
-              /*
               UIButton.primary(
                 label: l10n.zakat_give,
                 onTap: onGive,
               ),
-              */
             ],
           ),
         ],

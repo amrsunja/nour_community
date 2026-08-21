@@ -1817,4 +1817,363 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'Tidak dapat memuat transaksi.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Berapa banyak yang ingin Anda donasikan?';
+
+  @override
+  String get donate_frequency_yearly => 'Tahunan';
+
+  @override
+  String get donate_frequency_monthly => 'Bulanan';
+
+  @override
+  String get donate_frequency_one_time => 'Sekali';
+
+  @override
+  String get donate_how_much => 'Berapa banyak yang ingin Anda berikan?';
+
+  @override
+  String get donate_or => 'Atau';
+
+  @override
+  String get donate_enter_manually => 'Masukkan jumlah secara manual';
+
+  @override
+  String get donate_checkout => 'Checkout';
+
+  @override
+  String get donate_footer_partners =>
+      'Dana disalurkan melalui mitra terverifikasi';
+
+  @override
+  String get donate_footer_transparent => '100% transparan';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / bulan';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / tahun';
+  }
+
+  @override
+  String get impact_donate_now => 'Donasi sekarang';
+
+  @override
+  String get impact_tiers_title => 'Donasi Anda menyediakan';
+
+  @override
+  String get checkout_title => 'Checkout';
+
+  @override
+  String get checkout_my_donation => 'Donasi saya';
+
+  @override
+  String get checkout_options_title => 'Opsi donasi';
+
+  @override
+  String get checkout_anonymous_title => 'Jadikan anonim';
+
+  @override
+  String get checkout_anonymous_hint =>
+      'Nama Anda tidak akan muncul secara publik';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'Tanggung biaya transaksi (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint => '100% donasi Anda sampai ke proyek';
+
+  @override
+  String get checkout_payment_method => 'Metode pembayaran';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Kartu debit/kredit';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Bayar';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Total $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return '$amount akan ditagih setiap bulan. Batalkan kapan saja dari Donasi saya.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return '$amount akan ditagih setiap tahun. Batalkan kapan saja dari Donasi saya.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Mengonfirmasi pembayaran Anda…';
+
+  @override
+  String get checkout_processing_message =>
+      'Biasanya hanya beberapa detik. Jangan tutup aplikasi.';
+
+  @override
+  String get checkout_timeout_title => 'Lebih lama dari perkiraan';
+
+  @override
+  String get checkout_timeout_message =>
+      'Pembayaran Anda masih dikonfirmasi. Tunggu atau periksa statusnya nanti di Donasi saya.';
+
+  @override
+  String get checkout_keep_waiting => 'Terus tunggu';
+
+  @override
+  String get checkout_check_later => 'Periksa nanti';
+
+  @override
+  String get reward_donation_title => 'Jazakallahu Khairan';
+
+  @override
+  String get reward_donation_message =>
+      'Donasi Anda telah diterima.\nSemoga Allah menerimanya dan melipatgandakan pahalanya.';
+
+  @override
+  String get reward_donation_you_donated => 'Anda mendonasikan';
+
+  @override
+  String get reward_donation_you_give => 'Anda memberi';
+
+  @override
+  String get reward_donation_project => 'Proyek';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'Melalui $org';
+  }
+
+  @override
+  String get profile_my_donations => 'Donasi saya';
+
+  @override
+  String get my_donations_tab_history => 'Riwayat';
+
+  @override
+  String get my_donations_tab_recurring => 'Berulang';
+
+  @override
+  String get my_donations_empty_history =>
+      'Belum ada donasi. Kontribusi Anda akan muncul di sini.';
+
+  @override
+  String get my_donations_empty_recurring => 'Tidak ada donasi berulang.';
+
+  @override
+  String get my_donations_status_succeeded => 'Diterima';
+
+  @override
+  String get my_donations_status_failed => 'Gagal';
+
+  @override
+  String get my_donations_status_refunded => 'Dikembalikan';
+
+  @override
+  String get my_donations_status_processing => 'Diproses';
+
+  @override
+  String get my_donations_sub_active => 'Aktif';
+
+  @override
+  String get my_donations_sub_past_due => 'Masalah pembayaran';
+
+  @override
+  String get my_donations_sub_canceled => 'Dibatalkan';
+
+  @override
+  String get my_donations_sub_incomplete => 'Tertunda';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'Berakhir pada $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Tagihan berikutnya: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Hentikan';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Hentikan donasi berulang ini?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'Tetap aktif hingga akhir periode saat ini, lalu tidak ada tagihan lagi.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Hentikan donasi';
+
+  @override
+  String get my_donations_keep => 'Pertahankan';
+
+  @override
+  String get my_donations_anonymous => 'Anonim';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'termasuk biaya $fee';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zakat';
+
+  @override
+  String get my_donations_sadaqa => 'Sedekah';
+
+  @override
+  String get my_donations_recurring_badge => 'Berulang';
+
+  @override
+  String get error_api_payment_amount_too_small => 'Donasi minimum adalah 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'Maksimum per pembayaran adalah 10.000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'Proyek ini tidak lagi menerima donasi.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'Proyek ini tidak memenuhi syarat zakat.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'Tidak dapat mengatur donasi berulang. Silakan coba lagi.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Tidak dapat memuat donasi berulang Anda.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'Tidak dapat menghentikan donasi berulang. Silakan coba lagi.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'Kami belum dapat mengonfirmasi pembayaran. Periksa Donasi saya sebentar lagi.';
+
+  @override
+  String get admin_change_status_title => 'Ubah status pencairan';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Hanya pencairan TERKONFIRMASI yang ditampilkan publik di halaman proyek.';
+
+  @override
+  String get admin_status_pending_hint => 'Tercatat, transfer belum dikirim';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Transfer dikirim, menunggu konfirmasi mitra';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Diterima mitra — terlihat oleh donatur';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Tidak dapat memperbarui status pencairan.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Berikan zakat Anda ke proyek Nour yang memenuhi syarat';
+
+  @override
+  String get zakat_alloc_info =>
+      'Hanya proyek yang memenuhi 8 kategori penerima zakat dalam Al-Qur’an (QS 9:60) yang ditampilkan di sini';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Belum ada proyek yang memenuhi syarat zakat saat ini';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Anda belum bisa membayar zakat lewat aplikasi — jangan khawatir, proyek baru akan segera ditambahkan insya Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Zakat terutang';
+
+  @override
+  String get zakat_alloc_allocated => 'Zakat dialokasikan';
+
+  @override
+  String get zakat_alloc_fully => 'Teralokasi penuh';
+
+  @override
+  String get zakat_alloc_remaining => 'Sisa';
+
+  @override
+  String get zakat_alloc_extra => 'Kelebihan (dihitung sebagai sedekah)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Zakat saya';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Dialokasikan ke';
+
+  @override
+  String get zakat_checkout_fees => 'Biaya transaksi';
+
+  @override
+  String get zakat_checkout_total => 'Total';
+
+  @override
+  String get zakat_reward_message =>
+      'Zakat Anda telah diterima.\nSemoga Allah menerimanya dan melipatgandakan pahalanya.';
+
+  @override
+  String get zakat_reward_you_gave => 'Anda memberi';
+
+  @override
+  String get admin_filter_all => 'Semua';
+
+  @override
+  String get admin_delete_payout => 'Hapus pencairan ini';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Hapus pencairan ini?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Akan hilang permanen dari buku besar dan, jika sudah dikonfirmasi, dari bagian transparansi publik proyek. Total akan dihitung ulang.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Hapus pencairan';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Tidak dapat menghapus pencairan.';
 }

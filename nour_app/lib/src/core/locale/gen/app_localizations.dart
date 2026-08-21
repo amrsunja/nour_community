@@ -3355,6 +3355,630 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t load the transactions.'**
   String get error_api_admin_transactions_load_failed;
+
+  /// No description provided for @l10nPaymentsV2.
+  ///
+  /// In en, this message translates to:
+  /// **'☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠'**
+  String get l10nPaymentsV2;
+
+  /// No description provided for @donate_sheet_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate how much?'**
+  String get donate_sheet_title;
+
+  /// No description provided for @donate_frequency_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly'**
+  String get donate_frequency_yearly;
+
+  /// No description provided for @donate_frequency_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly'**
+  String get donate_frequency_monthly;
+
+  /// No description provided for @donate_frequency_one_time.
+  ///
+  /// In en, this message translates to:
+  /// **'One time'**
+  String get donate_frequency_one_time;
+
+  /// No description provided for @donate_how_much.
+  ///
+  /// In en, this message translates to:
+  /// **'How much would you like to give ?'**
+  String get donate_how_much;
+
+  /// No description provided for @donate_or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get donate_or;
+
+  /// No description provided for @donate_enter_manually.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount manually'**
+  String get donate_enter_manually;
+
+  /// No description provided for @donate_checkout.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get donate_checkout;
+
+  /// No description provided for @donate_footer_partners.
+  ///
+  /// In en, this message translates to:
+  /// **'Funds are distributed via verified partners'**
+  String get donate_footer_partners;
+
+  /// No description provided for @donate_footer_transparent.
+  ///
+  /// In en, this message translates to:
+  /// **'100% transparent'**
+  String get donate_footer_transparent;
+
+  /// No description provided for @donate_per_month.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} / month'**
+  String donate_per_month(String amount);
+
+  /// No description provided for @donate_per_year.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} / year'**
+  String donate_per_year(String amount);
+
+  /// No description provided for @impact_donate_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Donate now'**
+  String get impact_donate_now;
+
+  /// No description provided for @impact_tiers_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your donation provides'**
+  String get impact_tiers_title;
+
+  /// No description provided for @checkout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout_title;
+
+  /// No description provided for @checkout_my_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'My donation'**
+  String get checkout_my_donation;
+
+  /// No description provided for @checkout_options_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation options'**
+  String get checkout_options_title;
+
+  /// No description provided for @checkout_anonymous_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Make this anonymous'**
+  String get checkout_anonymous_title;
+
+  /// No description provided for @checkout_anonymous_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name won\'t appear in public counts'**
+  String get checkout_anonymous_hint;
+
+  /// No description provided for @checkout_cover_fees_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover transaction fees (+{fee})'**
+  String checkout_cover_fees_title(String fee);
+
+  /// No description provided for @checkout_cover_fees_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'100% of your donation reaches projects'**
+  String get checkout_cover_fees_hint;
+
+  /// No description provided for @checkout_payment_method.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment method'**
+  String get checkout_payment_method;
+
+  /// No description provided for @checkout_method_paypal.
+  ///
+  /// In en, this message translates to:
+  /// **'PayPal'**
+  String get checkout_method_paypal;
+
+  /// No description provided for @checkout_method_card.
+  ///
+  /// In en, this message translates to:
+  /// **'Debit/Credit card'**
+  String get checkout_method_card;
+
+  /// No description provided for @checkout_method_apple_pay.
+  ///
+  /// In en, this message translates to:
+  /// **'Apple Pay'**
+  String get checkout_method_apple_pay;
+
+  /// No description provided for @checkout_method_google_pay.
+  ///
+  /// In en, this message translates to:
+  /// **'Google Pay'**
+  String get checkout_method_google_pay;
+
+  /// No description provided for @checkout_pay_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Checkout'**
+  String get checkout_pay_button;
+
+  /// No description provided for @checkout_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total {amount}'**
+  String checkout_total(String amount);
+
+  /// No description provided for @checkout_recurring_note_month.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be charged {amount} every month. Cancel anytime from My donations.'**
+  String checkout_recurring_note_month(String amount);
+
+  /// No description provided for @checkout_recurring_note_year.
+  ///
+  /// In en, this message translates to:
+  /// **'You will be charged {amount} every year. Cancel anytime from My donations.'**
+  String checkout_recurring_note_year(String amount);
+
+  /// No description provided for @checkout_processing_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirming your payment…'**
+  String get checkout_processing_title;
+
+  /// No description provided for @checkout_processing_message.
+  ///
+  /// In en, this message translates to:
+  /// **'This usually takes a few seconds. Please don\'t close the app.'**
+  String get checkout_processing_message;
+
+  /// No description provided for @checkout_timeout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Taking longer than expected'**
+  String get checkout_timeout_title;
+
+  /// No description provided for @checkout_timeout_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your payment is still being confirmed. You can keep waiting or check the status later in My donations.'**
+  String get checkout_timeout_message;
+
+  /// No description provided for @checkout_keep_waiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep waiting'**
+  String get checkout_keep_waiting;
+
+  /// No description provided for @checkout_check_later.
+  ///
+  /// In en, this message translates to:
+  /// **'Check later'**
+  String get checkout_check_later;
+
+  /// No description provided for @reward_donation_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jazak Allahu Khayr'**
+  String get reward_donation_title;
+
+  /// No description provided for @reward_donation_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your donation has been received.\nMay Allah accept it and multiply its reward.'**
+  String get reward_donation_message;
+
+  /// No description provided for @reward_donation_you_donated.
+  ///
+  /// In en, this message translates to:
+  /// **'You donated'**
+  String get reward_donation_you_donated;
+
+  /// No description provided for @reward_donation_you_give.
+  ///
+  /// In en, this message translates to:
+  /// **'You give'**
+  String get reward_donation_you_give;
+
+  /// No description provided for @reward_donation_project.
+  ///
+  /// In en, this message translates to:
+  /// **'Project'**
+  String get reward_donation_project;
+
+  /// No description provided for @reward_donation_via.
+  ///
+  /// In en, this message translates to:
+  /// **'Via {org}'**
+  String reward_donation_via(String org);
+
+  /// No description provided for @profile_my_donations.
+  ///
+  /// In en, this message translates to:
+  /// **'My donations'**
+  String get profile_my_donations;
+
+  /// No description provided for @my_donations_tab_history.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get my_donations_tab_history;
+
+  /// No description provided for @my_donations_tab_recurring.
+  ///
+  /// In en, this message translates to:
+  /// **'Recurring'**
+  String get my_donations_tab_recurring;
+
+  /// No description provided for @my_donations_empty_history.
+  ///
+  /// In en, this message translates to:
+  /// **'No donations yet. Your contributions will appear here.'**
+  String get my_donations_empty_history;
+
+  /// No description provided for @my_donations_empty_recurring.
+  ///
+  /// In en, this message translates to:
+  /// **'No recurring donations.'**
+  String get my_donations_empty_recurring;
+
+  /// No description provided for @my_donations_status_succeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get my_donations_status_succeeded;
+
+  /// No description provided for @my_donations_status_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed'**
+  String get my_donations_status_failed;
+
+  /// No description provided for @my_donations_status_refunded.
+  ///
+  /// In en, this message translates to:
+  /// **'Refunded'**
+  String get my_donations_status_refunded;
+
+  /// No description provided for @my_donations_status_processing.
+  ///
+  /// In en, this message translates to:
+  /// **'Processing'**
+  String get my_donations_status_processing;
+
+  /// No description provided for @my_donations_sub_active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get my_donations_sub_active;
+
+  /// No description provided for @my_donations_sub_past_due.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment issue'**
+  String get my_donations_sub_past_due;
+
+  /// No description provided for @my_donations_sub_canceled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get my_donations_sub_canceled;
+
+  /// No description provided for @my_donations_sub_incomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get my_donations_sub_incomplete;
+
+  /// No description provided for @my_donations_sub_ends_on.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends on {date}'**
+  String my_donations_sub_ends_on(String date);
+
+  /// No description provided for @my_donations_next_charge.
+  ///
+  /// In en, this message translates to:
+  /// **'Next charge: {date}'**
+  String my_donations_next_charge(String date);
+
+  /// No description provided for @my_donations_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get my_donations_cancel;
+
+  /// No description provided for @my_donations_cancel_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop this recurring donation?'**
+  String get my_donations_cancel_confirm_title;
+
+  /// No description provided for @my_donations_cancel_confirm_message.
+  ///
+  /// In en, this message translates to:
+  /// **'It stays active until the end of the current period, then no further charges are made.'**
+  String get my_donations_cancel_confirm_message;
+
+  /// No description provided for @my_donations_cancel_confirm_yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop donation'**
+  String get my_donations_cancel_confirm_yes;
+
+  /// No description provided for @my_donations_keep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep'**
+  String get my_donations_keep;
+
+  /// No description provided for @my_donations_anonymous.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous'**
+  String get my_donations_anonymous;
+
+  /// No description provided for @my_donations_fee_included.
+  ///
+  /// In en, this message translates to:
+  /// **'incl. {fee} fees'**
+  String my_donations_fee_included(String fee);
+
+  /// No description provided for @my_donations_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat'**
+  String get my_donations_zakat;
+
+  /// No description provided for @my_donations_sadaqa.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa'**
+  String get my_donations_sadaqa;
+
+  /// No description provided for @my_donations_recurring_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Recurring'**
+  String get my_donations_recurring_badge;
+
+  /// No description provided for @error_api_payment_amount_too_small.
+  ///
+  /// In en, this message translates to:
+  /// **'The minimum donation is 1€.'**
+  String get error_api_payment_amount_too_small;
+
+  /// No description provided for @error_api_payment_amount_too_large.
+  ///
+  /// In en, this message translates to:
+  /// **'The maximum per payment is 10,000€.'**
+  String get error_api_payment_amount_too_large;
+
+  /// No description provided for @error_api_payment_project_inactive.
+  ///
+  /// In en, this message translates to:
+  /// **'This project is no longer accepting donations.'**
+  String get error_api_payment_project_inactive;
+
+  /// No description provided for @error_api_payment_not_zakat_eligible.
+  ///
+  /// In en, this message translates to:
+  /// **'This project is not eligible for zakat.'**
+  String get error_api_payment_not_zakat_eligible;
+
+  /// No description provided for @error_api_payment_subscription_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t set up the recurring donation. Please try again.'**
+  String get error_api_payment_subscription_failed;
+
+  /// No description provided for @error_api_payment_subscriptions_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load your recurring donations.'**
+  String get error_api_payment_subscriptions_load_failed;
+
+  /// No description provided for @error_api_payment_subscription_cancel_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t stop the recurring donation. Please try again.'**
+  String get error_api_payment_subscription_cancel_failed;
+
+  /// No description provided for @error_api_payment_confirmation_timeout.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t confirm the payment yet. Check My donations in a moment.'**
+  String get error_api_payment_confirmation_timeout;
+
+  /// No description provided for @admin_change_status_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Change payout status'**
+  String get admin_change_status_title;
+
+  /// No description provided for @admin_change_status_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only CONFIRMED disbursements are shown publicly on the project page.'**
+  String get admin_change_status_subtitle;
+
+  /// No description provided for @admin_status_pending_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded, transfer not sent yet'**
+  String get admin_status_pending_hint;
+
+  /// No description provided for @admin_status_sent_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer sent, awaiting partner confirmation'**
+  String get admin_status_sent_hint;
+
+  /// No description provided for @admin_status_confirmed_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Received by the partner — visible to donors'**
+  String get admin_status_confirmed_hint;
+
+  /// No description provided for @error_api_admin_payout_update_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the payout status.'**
+  String get error_api_admin_payout_update_failed;
+
+  /// No description provided for @zakat_alloc_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Give zakat to eligible Nour projects'**
+  String get zakat_alloc_title;
+
+  /// No description provided for @zakat_alloc_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Only projects that meet the 8 Quranic categories of Zakat eligibility (Surah 9:60) are shown here'**
+  String get zakat_alloc_info;
+
+  /// No description provided for @zakat_alloc_empty_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No zakat-eligible projects right now'**
+  String get zakat_alloc_empty_title;
+
+  /// No description provided for @zakat_alloc_empty_message.
+  ///
+  /// In en, this message translates to:
+  /// **'You can\'t give zakat through the app just yet — don\'t worry, new eligible projects will be added soon insha\'Allah.'**
+  String get zakat_alloc_empty_message;
+
+  /// No description provided for @zakat_alloc_owed.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat owed'**
+  String get zakat_alloc_owed;
+
+  /// No description provided for @zakat_alloc_allocated.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat allocated'**
+  String get zakat_alloc_allocated;
+
+  /// No description provided for @zakat_alloc_fully.
+  ///
+  /// In en, this message translates to:
+  /// **'Fully allocated'**
+  String get zakat_alloc_fully;
+
+  /// No description provided for @zakat_alloc_remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get zakat_alloc_remaining;
+
+  /// No description provided for @zakat_alloc_extra.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra (counts as Sadaqa)'**
+  String get zakat_alloc_extra;
+
+  /// No description provided for @zakat_checkout_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Zakat'**
+  String get zakat_checkout_title;
+
+  /// No description provided for @zakat_checkout_my_zakat.
+  ///
+  /// In en, this message translates to:
+  /// **'My zakat'**
+  String get zakat_checkout_my_zakat;
+
+  /// No description provided for @zakat_checkout_allocated_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Allocated to'**
+  String get zakat_checkout_allocated_to;
+
+  /// No description provided for @zakat_checkout_fees.
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction fees'**
+  String get zakat_checkout_fees;
+
+  /// No description provided for @zakat_checkout_total.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get zakat_checkout_total;
+
+  /// No description provided for @zakat_reward_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your zakat has been received.\nMay Allah accept it and multiply its reward.'**
+  String get zakat_reward_message;
+
+  /// No description provided for @zakat_reward_you_gave.
+  ///
+  /// In en, this message translates to:
+  /// **'You gave'**
+  String get zakat_reward_you_gave;
+
+  /// No description provided for @admin_filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get admin_filter_all;
+
+  /// No description provided for @admin_delete_payout.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this payout'**
+  String get admin_delete_payout;
+
+  /// No description provided for @admin_delete_payout_confirm_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this payout?'**
+  String get admin_delete_payout_confirm_title;
+
+  /// No description provided for @admin_delete_payout_confirm_message.
+  ///
+  /// In en, this message translates to:
+  /// **'It disappears permanently from the ledger and, if it was confirmed, from the public transparency section of the project. Paid-out and outstanding totals will be recalculated.'**
+  String get admin_delete_payout_confirm_message;
+
+  /// No description provided for @admin_delete_payout_confirm_yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete payout'**
+  String get admin_delete_payout_confirm_yes;
+
+  /// No description provided for @error_api_admin_payout_delete_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t delete the payout.'**
+  String get error_api_admin_payout_delete_failed;
 }
 
 class _AppLocalizationsDelegate

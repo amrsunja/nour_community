@@ -6,7 +6,8 @@
         <item name="android:windowSplashScreenBackground">@color/splash_color</item>
         <item name="android:windowBackground">@color/splash_color</item>
     </style>
-    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+    <!-- flutter_stripe requires an AppCompat/MaterialComponents-derived theme (PaymentSheet). -->
+    <style name="NormalTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:windowBackground">@color/splash_color</item>
     </style>
 </resources>

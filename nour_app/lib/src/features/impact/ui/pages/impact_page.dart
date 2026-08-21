@@ -103,7 +103,7 @@ class _ProjectsList extends StatelessWidget {
           ? const _ImpactEmpty()
           : ListView.separated(
               physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
+              padding: const EdgeInsets.fromLTRB(16, 4, 16, 74),
               itemCount: itemCount,
               separatorBuilder: (_, __) => const UISpace.vert(20),
               itemBuilder: itemBuilder,

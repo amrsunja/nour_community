@@ -1,12 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
 import 'package:nour/src/features/payments/data/models/payout_model.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 import 'package:nour/src/features/payments/data/models/transaction_model.dart';
 
 import '../../data/models/project_analytics_model.dart';
 
 /// Which admin tab is showing.
 enum AdminTab { projects, payouts, received }
+
+/// Money-type filter — zakat and sadaqa are separated end to end, so the
+/// admin can inspect each pool on its own (totals, ledger and received feed).
+enum AdminTypeFilter { all, donation, zakat }
 
 class AdminState extends Equatable {
   final bool isLoading;
@@ -19,6 +24,12 @@ class AdminState extends Equatable {
   final List<TransactionModel> transactions;
   final bool isSubmittingPayout;
 
+  /// Payout id whose status change is in flight (row spinner).
+  final int? updatingPayoutId;
+
+  /// Active money-type filter (All / Sadaqa / Zakat).
+  final AdminTypeFilter typeFilter;
+
   const AdminState({
     this.isLoading = false,
     this.hasError = false,
@@ -29,18 +40,39 @@ class AdminState extends Equatable {
     this.payouts = const [],
     this.transactions = const [],
     this.isSubmittingPayout = false,
+    this.updatingPayoutId,
+    this.typeFilter = AdminTypeFilter.all,
   });
 
-  // ── Aggregate totals across every (project,type) row ──────────────────────
-  double get totalDonated =>
-      analytics.fold(0, (s, r) => s + r.totalDonated);
+  TxType? get _filterType => switch (typeFilter) {
+    AdminTypeFilter.all => null,
+    AdminTypeFilter.donation => TxType.donation,
+    AdminTypeFilter.zakat => TxType.zakat,
+  };
 
-  double get totalPaidOut => analytics.fold(0, (s, r) => s + r.paidOut);
+  // ── Filtered views (respect the zakat/sadaqa separation) ───────────────────
+  List<ProjectAnalyticsModel> get visibleAnalytics => _filterType == null
+      ? analytics
+      : [for (final r in analytics) if (r.type == _filterType) r];
+
+  List<PayoutModel> get visiblePayouts => _filterType == null
+      ? payouts
+      : [for (final p in payouts) if (p.type == _filterType) p];
+
+  List<TransactionModel> get visibleTransactions => _filterType == null
+      ? transactions
+      : [for (final t in transactions) if (t.type == _filterType) t];
+
+  // ── Aggregate totals across the FILTERED (project,type) rows ──────────────
+  double get totalDonated =>
+      visibleAnalytics.fold(0, (s, r) => s + r.totalDonated);
+
+  double get totalPaidOut => visibleAnalytics.fold(0, (s, r) => s + r.paidOut);
 
   double get totalOutstanding =>
-      analytics.fold(0, (s, r) => s + r.outstanding);
+      visibleAnalytics.fold(0, (s, r) => s + r.outstanding);
 
-  int get totalDonors => analytics.fold(0, (s, r) => s + r.donorsCount);
+  int get totalDonors => visibleAnalytics.fold(0, (s, r) => s + r.donorsCount);
 
   /// Currency to label the totals with — derived from the first known project,
   /// defaulting to EUR (the app's default currency).
@@ -59,6 +91,9 @@ class AdminState extends Equatable {
     List<PayoutModel>? payouts,
     List<TransactionModel>? transactions,
     bool? isSubmittingPayout,
+    int? updatingPayoutId,
+    bool clearUpdatingPayout = false,
+    AdminTypeFilter? typeFilter,
   }) => AdminState(
     isLoading: isLoading ?? this.isLoading,
     hasError: hasError ?? this.hasError,
@@ -69,6 +104,10 @@ class AdminState extends Equatable {
     payouts: payouts ?? this.payouts,
     transactions: transactions ?? this.transactions,
     isSubmittingPayout: isSubmittingPayout ?? this.isSubmittingPayout,
+    updatingPayoutId: clearUpdatingPayout
+        ? null
+        : (updatingPayoutId ?? this.updatingPayoutId),
+    typeFilter: typeFilter ?? this.typeFilter,
   );
 
   @override
@@ -82,5 +121,7 @@ class AdminState extends Equatable {
     payouts,
     transactions,
     isSubmittingPayout,
+    updatingPayoutId,
+    typeFilter,
   ];
 }

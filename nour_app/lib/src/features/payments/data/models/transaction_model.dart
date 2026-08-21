@@ -21,6 +21,15 @@ class TransactionModel extends Equatable {
   final DateTime createdAt;
   final List<TransactionItemModel> items;
 
+  /// Recurring invoices carry a `subscription_id`.
+  bool get isRecurring => subscriptionId != null;
+
+  // ── V2 ──
+  final bool isAnonymous;
+  final PaymentMethodKind? paymentMethod;
+  final int? subscriptionId;
+  final double amountRefunded;
+
   const TransactionModel({
     required this.id,
     required this.userId,
@@ -35,6 +44,10 @@ class TransactionModel extends Equatable {
     required this.failureReason,
     required this.createdAt,
     this.items = const [],
+    this.isAnonymous = false,
+    this.paymentMethod,
+    this.subscriptionId,
+    this.amountRefunded = 0,
   });
 
   static double _toDouble(dynamic v) =>
@@ -64,6 +77,12 @@ class TransactionModel extends Equatable {
             if (it is Map<String, dynamic>)
               TransactionItemModel.fromJson(it),
       ],
+      isAnonymous: json['is_anonymous'] as bool? ?? false,
+      paymentMethod: json['payment_method'] == null
+          ? null
+          : PaymentMethodKind.fromString(json['payment_method'] as String?),
+      subscriptionId: json['subscription_id'] as int?,
+      amountRefunded: _toDouble(json['amount_refunded']),
     );
   }
 
@@ -82,5 +101,9 @@ class TransactionModel extends Equatable {
     failureReason,
     createdAt,
     items,
+    isAnonymous,
+    paymentMethod,
+    subscriptionId,
+    amountRefunded,
   ];
 }

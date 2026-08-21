@@ -22,6 +22,7 @@ class RewardScaffold extends HookConsumerWidget {
     required this.onPrimary,
     required this.onSecondary,
     this.celebrationSound = AppSound.achievement1,
+    this.scrollable = false,
   });
 
   final Widget badge;
@@ -37,6 +38,11 @@ class RewardScaffold extends HookConsumerWidget {
   /// matches the milestone's importance.
   final AppSound celebrationSound;
 
+  /// Opt-in for tall content (e.g. the zakat reward's project carousel): the
+  /// page scrolls and the flexible spacers become fixed gaps. Default keeps
+  /// the original pinned layout used by the other reward pages.
+  final bool scrollable;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final typo = UITheme.of(context).typo;
@@ -47,13 +53,21 @@ class RewardScaffold extends HookConsumerWidget {
       return null;
     }, const []);
 
-    return UIGradientLinedScaffold(
-      body: Padding(
+    // In [scrollable] mode the flexible spacers become fixed gaps so the whole
+    // page can live inside a scroll view (Spacer/IntrinsicHeight don't work
+    // with the animated badge, which contains a LayoutBuilder).
+    final Widget topGap =
+        scrollable ? const SizedBox(height: 36) : const Spacer(flex: 3);
+    final Widget bottomGap =
+        scrollable ? const SizedBox(height: 32) : const Spacer(flex: 4);
+
+    final column = Padding(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: scrollable ? MainAxisSize.min : MainAxisSize.max,
           children: [
-            const Spacer(flex: 3),
+            topGap,
 
             // ---- Hero badge with pulse glow + intro pop ----
             _AnimatedBadge(badge: badge),
@@ -90,7 +104,7 @@ class RewardScaffold extends HookConsumerWidget {
 
             content,
 
-            const Spacer(flex: 4),
+            bottomGap,
 
             UIButton.primary(
               label: primaryLabel,
@@ -112,7 +126,15 @@ class RewardScaffold extends HookConsumerWidget {
                 .fadeIn(duration: const Duration(milliseconds: 450)),
           ],
         ),
-      ),
+      );
+
+    return UIGradientLinedScaffold(
+      body: scrollable
+          ? SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: column,
+            )
+          : column,
     );
   }
 }

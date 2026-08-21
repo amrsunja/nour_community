@@ -205,6 +205,22 @@ class ServerFailure extends Failure {
         return l.error_api_payment_history_load_failed;
       case ApiErrorKey.paymentProjectTransactionsLoadFailed:
         return l.error_api_payment_project_transactions_load_failed;
+      case ApiErrorKey.paymentAmountTooSmall:
+        return l.error_api_payment_amount_too_small;
+      case ApiErrorKey.paymentAmountTooLarge:
+        return l.error_api_payment_amount_too_large;
+      case ApiErrorKey.paymentProjectInactive:
+        return l.error_api_payment_project_inactive;
+      case ApiErrorKey.paymentNotZakatEligible:
+        return l.error_api_payment_not_zakat_eligible;
+      case ApiErrorKey.paymentSubscriptionFailed:
+        return l.error_api_payment_subscription_failed;
+      case ApiErrorKey.paymentSubscriptionsLoadFailed:
+        return l.error_api_payment_subscriptions_load_failed;
+      case ApiErrorKey.paymentSubscriptionCancelFailed:
+        return l.error_api_payment_subscription_cancel_failed;
+      case ApiErrorKey.paymentConfirmationTimeout:
+        return l.error_api_payment_confirmation_timeout;
       // Admin
       case ApiErrorKey.adminAnalyticsLoadFailed:
         return l.error_api_admin_analytics_load_failed;
@@ -212,6 +228,10 @@ class ServerFailure extends Failure {
         return l.error_api_admin_payouts_load_failed;
       case ApiErrorKey.adminPayoutCreateFailed:
         return l.error_api_admin_payout_create_failed;
+      case ApiErrorKey.adminPayoutUpdateFailed:
+        return l.error_api_admin_payout_update_failed;
+      case ApiErrorKey.adminPayoutDeleteFailed:
+        return l.error_api_admin_payout_delete_failed;
       case ApiErrorKey.adminPayoutProofUploadFailed:
         return l.error_api_admin_payout_proof_upload_failed;
       case ApiErrorKey.adminTransactionsLoadFailed:

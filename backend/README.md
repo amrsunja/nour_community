@@ -566,4 +566,3 @@ This means the model will look approximately like this:
   "bonus_ajr": 20, // can be null - If the user responded all questions without error
 }
 ```
-
