@@ -87,6 +87,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
+            <!-- Stripe return URL (PayPal / 3DS redirects) — must match Stripe.urlScheme in main.dart -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="nour" android:host="stripe-redirect" />
+            </intent-filter>
+
         		<!-- Deep links -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -96,6 +104,11 @@
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
+        <!-- Google Pay via Stripe PaymentSheet / PlatformPay -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

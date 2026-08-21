@@ -1786,4 +1786,265 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'تعذّر تحميل المعاملات.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'كم تريد أن تتبرع؟';
+
+  @override
+  String get donate_frequency_yearly => 'سنوي';
+
+  @override
+  String get donate_frequency_monthly => 'شهري';
+
+  @override
+  String get donate_frequency_one_time => 'مرة واحدة';
+
+  @override
+  String get donate_how_much => 'كم تودّ أن تعطي؟';
+
+  @override
+  String get donate_or => 'أو';
+
+  @override
+  String get donate_enter_manually => 'أدخل المبلغ يدويًا';
+
+  @override
+  String get donate_checkout => 'الدفع';
+
+  @override
+  String get donate_footer_partners => 'تُوزَّع الأموال عبر شركاء موثوقين';
+
+  @override
+  String get donate_footer_transparent => 'شفافية 100%';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / شهر';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / سنة';
+  }
+
+  @override
+  String get impact_donate_now => 'تبرّع الآن';
+
+  @override
+  String get impact_tiers_title => 'تبرّعك يوفّر';
+
+  @override
+  String get checkout_title => 'الدفع';
+
+  @override
+  String get checkout_my_donation => 'تبرّعي';
+
+  @override
+  String get checkout_options_title => 'خيارات التبرّع';
+
+  @override
+  String get checkout_anonymous_title => 'اجعله مجهولًا';
+
+  @override
+  String get checkout_anonymous_hint => 'لن يظهر اسمك في القوائم العامة';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'تغطية رسوم المعاملة (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint => 'يصل 100% من تبرّعك إلى المشاريع';
+
+  @override
+  String get checkout_payment_method => 'طريقة الدفع';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'بطاقة بنكية';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'ادفع';
+
+  @override
+  String checkout_total(String amount) {
+    return 'الإجمالي $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'سيتم خصم $amount كل شهر. يمكنك الإلغاء في أي وقت من تبرّعاتي.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'سيتم خصم $amount كل سنة. يمكنك الإلغاء في أي وقت من تبرّعاتي.';
+  }
+
+  @override
+  String get checkout_processing_title => 'جارٍ تأكيد الدفع…';
+
+  @override
+  String get checkout_processing_message =>
+      'يستغرق هذا عادةً بضع ثوانٍ. من فضلك لا تغلق التطبيق.';
+
+  @override
+  String get checkout_timeout_title => 'يستغرق وقتًا أطول من المتوقع';
+
+  @override
+  String get checkout_timeout_message =>
+      'لا يزال دفعك قيد التأكيد. يمكنك الانتظار أو التحقق لاحقًا في تبرّعاتي.';
+
+  @override
+  String get checkout_keep_waiting => 'متابعة الانتظار';
+
+  @override
+  String get checkout_check_later => 'التحقق لاحقًا';
+
+  @override
+  String get reward_donation_title => 'جزاك الله خيرًا';
+
+  @override
+  String get reward_donation_message =>
+      'تم استلام تبرّعك.\nتقبّل الله منك وضاعف أجرك.';
+
+  @override
+  String get reward_donation_you_donated => 'لقد تبرّعت بـ';
+
+  @override
+  String get reward_donation_you_give => 'أنت تعطي';
+
+  @override
+  String get reward_donation_project => 'المشروع';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'عبر $org';
+  }
+
+  @override
+  String get profile_my_donations => 'تبرّعاتي';
+
+  @override
+  String get my_donations_tab_history => 'السجل';
+
+  @override
+  String get my_donations_tab_recurring => 'المتكررة';
+
+  @override
+  String get my_donations_empty_history =>
+      'لا توجد تبرّعات بعد. ستظهر مساهماتك هنا.';
+
+  @override
+  String get my_donations_empty_recurring => 'لا توجد تبرّعات متكررة.';
+
+  @override
+  String get my_donations_status_succeeded => 'مستلم';
+
+  @override
+  String get my_donations_status_failed => 'فشل';
+
+  @override
+  String get my_donations_status_refunded => 'مسترد';
+
+  @override
+  String get my_donations_status_processing => 'قيد المعالجة';
+
+  @override
+  String get my_donations_sub_active => 'نشط';
+
+  @override
+  String get my_donations_sub_past_due => 'مشكلة في الدفع';
+
+  @override
+  String get my_donations_sub_canceled => 'ملغى';
+
+  @override
+  String get my_donations_sub_incomplete => 'قيد الانتظار';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'ينتهي في $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'الخصم التالي: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'إيقاف';
+
+  @override
+  String get my_donations_cancel_confirm_title => 'إيقاف هذا التبرّع المتكرر؟';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'يبقى نشطًا حتى نهاية الفترة الحالية، ثم لن يتم أي خصم آخر.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'إيقاف التبرّع';
+
+  @override
+  String get my_donations_keep => 'إبقاء';
+
+  @override
+  String get my_donations_anonymous => 'مجهول';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'شاملة رسوم $fee';
+  }
+
+  @override
+  String get my_donations_zakat => 'زكاة';
+
+  @override
+  String get my_donations_sadaqa => 'صدقة';
+
+  @override
+  String get my_donations_recurring_badge => 'متكرر';
+
+  @override
+  String get error_api_payment_amount_too_small => 'الحد الأدنى للتبرّع هو 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'الحد الأقصى لكل دفعة هو 10,000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'لم يعد هذا المشروع يقبل التبرّعات.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'هذا المشروع غير مؤهل للزكاة.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'تعذّر إعداد التبرّع المتكرر. حاول مرة أخرى.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'تعذّر تحميل تبرّعاتك المتكررة.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'تعذّر إيقاف التبرّع المتكرر. حاول مرة أخرى.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'لم نتمكن من تأكيد الدفع بعد. تحقق من تبرّعاتي بعد قليل.';
 }

@@ -1809,4 +1809,268 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'Kan de transacties niet laden.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Hoeveel wil je doneren?';
+
+  @override
+  String get donate_frequency_yearly => 'Jaarlijks';
+
+  @override
+  String get donate_frequency_monthly => 'Maandelijks';
+
+  @override
+  String get donate_frequency_one_time => 'Eenmalig';
+
+  @override
+  String get donate_how_much => 'Hoeveel wil je geven?';
+
+  @override
+  String get donate_or => 'Of';
+
+  @override
+  String get donate_enter_manually => 'Voer handmatig een bedrag in';
+
+  @override
+  String get donate_checkout => 'Afrekenen';
+
+  @override
+  String get donate_footer_partners =>
+      'Fondsen worden verdeeld via geverifieerde partners';
+
+  @override
+  String get donate_footer_transparent => '100% transparant';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / maand';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / jaar';
+  }
+
+  @override
+  String get impact_donate_now => 'Doneer nu';
+
+  @override
+  String get impact_tiers_title => 'Jouw donatie zorgt voor';
+
+  @override
+  String get checkout_title => 'Afrekenen';
+
+  @override
+  String get checkout_my_donation => 'Mijn donatie';
+
+  @override
+  String get checkout_options_title => 'Donatie-opties';
+
+  @override
+  String get checkout_anonymous_title => 'Anoniem doneren';
+
+  @override
+  String get checkout_anonymous_hint => 'Je naam verschijnt niet publiekelijk';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'Transactiekosten dekken (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint =>
+      '100% van je donatie gaat naar de projecten';
+
+  @override
+  String get checkout_payment_method => 'Betaalmethode';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Debet-/creditcard';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Betalen';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Totaal $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'Er wordt maandelijks $amount afgeschreven. Altijd opzegbaar via Mijn donaties.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'Er wordt jaarlijks $amount afgeschreven. Altijd opzegbaar via Mijn donaties.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Betaling bevestigen…';
+
+  @override
+  String get checkout_processing_message =>
+      'Dit duurt meestal een paar seconden. Sluit de app niet.';
+
+  @override
+  String get checkout_timeout_title => 'Duurt langer dan verwacht';
+
+  @override
+  String get checkout_timeout_message =>
+      'Je betaling wordt nog bevestigd. Wacht verder of controleer later de status in Mijn donaties.';
+
+  @override
+  String get checkout_keep_waiting => 'Blijven wachten';
+
+  @override
+  String get checkout_check_later => 'Later controleren';
+
+  @override
+  String get reward_donation_title => 'Jazak Allahu Khayr';
+
+  @override
+  String get reward_donation_message =>
+      'Je donatie is ontvangen.\nMoge Allah het accepteren en de beloning vermenigvuldigen.';
+
+  @override
+  String get reward_donation_you_donated => 'Je hebt gedoneerd';
+
+  @override
+  String get reward_donation_you_give => 'Je geeft';
+
+  @override
+  String get reward_donation_project => 'Project';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'Via $org';
+  }
+
+  @override
+  String get profile_my_donations => 'Mijn donaties';
+
+  @override
+  String get my_donations_tab_history => 'Geschiedenis';
+
+  @override
+  String get my_donations_tab_recurring => 'Terugkerend';
+
+  @override
+  String get my_donations_empty_history =>
+      'Nog geen donaties. Je bijdragen verschijnen hier.';
+
+  @override
+  String get my_donations_empty_recurring => 'Geen terugkerende donaties.';
+
+  @override
+  String get my_donations_status_succeeded => 'Ontvangen';
+
+  @override
+  String get my_donations_status_failed => 'Mislukt';
+
+  @override
+  String get my_donations_status_refunded => 'Terugbetaald';
+
+  @override
+  String get my_donations_status_processing => 'In behandeling';
+
+  @override
+  String get my_donations_sub_active => 'Actief';
+
+  @override
+  String get my_donations_sub_past_due => 'Betalingsprobleem';
+
+  @override
+  String get my_donations_sub_canceled => 'Geannuleerd';
+
+  @override
+  String get my_donations_sub_incomplete => 'In afwachting';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'Eindigt op $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Volgende afschrijving: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Stoppen';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Deze terugkerende donatie stoppen?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'Het blijft actief tot het einde van de huidige periode, daarna worden er geen bedragen meer afgeschreven.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Donatie stoppen';
+
+  @override
+  String get my_donations_keep => 'Behouden';
+
+  @override
+  String get my_donations_anonymous => 'Anoniem';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'incl. $fee kosten';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zakat';
+
+  @override
+  String get my_donations_sadaqa => 'Sadaqa';
+
+  @override
+  String get my_donations_recurring_badge => 'Terugkerend';
+
+  @override
+  String get error_api_payment_amount_too_small => 'De minimale donatie is 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'Het maximum per betaling is 10.000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'Dit project accepteert geen donaties meer.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'Dit project komt niet in aanmerking voor zakat.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'De terugkerende donatie kon niet worden ingesteld. Probeer het opnieuw.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Je terugkerende donaties konden niet worden geladen.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'De terugkerende donatie kon niet worden gestopt. Probeer het opnieuw.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'We konden de betaling nog niet bevestigen. Controleer straks Mijn donaties.';
 }

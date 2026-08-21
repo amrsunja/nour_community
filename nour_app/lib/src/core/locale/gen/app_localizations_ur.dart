@@ -1808,4 +1808,267 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'لین دین لوڈ نہ ہو سکے۔';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'آپ کتنا عطیہ کرنا چاہتے ہیں؟';
+
+  @override
+  String get donate_frequency_yearly => 'سالانہ';
+
+  @override
+  String get donate_frequency_monthly => 'ماہانہ';
+
+  @override
+  String get donate_frequency_one_time => 'ایک بار';
+
+  @override
+  String get donate_how_much => 'آپ کتنا دینا چاہیں گے؟';
+
+  @override
+  String get donate_or => 'یا';
+
+  @override
+  String get donate_enter_manually => 'رقم خود درج کریں';
+
+  @override
+  String get donate_checkout => 'چیک آؤٹ';
+
+  @override
+  String get donate_footer_partners =>
+      'فنڈز تصدیق شدہ شراکت داروں کے ذریعے تقسیم کیے جاتے ہیں';
+
+  @override
+  String get donate_footer_transparent => '100% شفاف';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / ماہ';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / سال';
+  }
+
+  @override
+  String get impact_donate_now => 'ابھی عطیہ کریں';
+
+  @override
+  String get impact_tiers_title => 'آپ کا عطیہ فراہم کرتا ہے';
+
+  @override
+  String get checkout_title => 'چیک آؤٹ';
+
+  @override
+  String get checkout_my_donation => 'میرا عطیہ';
+
+  @override
+  String get checkout_options_title => 'عطیہ کے اختیارات';
+
+  @override
+  String get checkout_anonymous_title => 'اسے گمنام بنائیں';
+
+  @override
+  String get checkout_anonymous_hint => 'آپ کا نام عوامی طور پر ظاہر نہیں ہوگا';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'لین دین کی فیس ادا کریں (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint =>
+      'آپ کے عطیے کا 100% منصوبوں تک پہنچتا ہے';
+
+  @override
+  String get checkout_payment_method => 'ادائیگی کا طریقہ';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'ڈیبٹ/کریڈٹ کارڈ';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'ادائیگی کریں';
+
+  @override
+  String checkout_total(String amount) {
+    return 'کل $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'ہر ماہ $amount وصول کیا جائے گا۔ میرے عطیات سے کسی بھی وقت منسوخ کریں۔';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'ہر سال $amount وصول کیا جائے گا۔ میرے عطیات سے کسی بھی وقت منسوخ کریں۔';
+  }
+
+  @override
+  String get checkout_processing_title => 'آپ کی ادائیگی کی تصدیق ہو رہی ہے…';
+
+  @override
+  String get checkout_processing_message =>
+      'اس میں عموماً چند سیکنڈ لگتے ہیں۔ براہ کرم ایپ بند نہ کریں۔';
+
+  @override
+  String get checkout_timeout_title => 'توقع سے زیادہ وقت لگ رہا ہے';
+
+  @override
+  String get checkout_timeout_message =>
+      'آپ کی ادائیگی کی تصدیق ابھی جاری ہے۔ انتظار کریں یا بعد میں میرے عطیات میں دیکھیں۔';
+
+  @override
+  String get checkout_keep_waiting => 'انتظار جاری رکھیں';
+
+  @override
+  String get checkout_check_later => 'بعد میں دیکھیں';
+
+  @override
+  String get reward_donation_title => 'جزاک اللہ خیر';
+
+  @override
+  String get reward_donation_message =>
+      'آپ کا عطیہ موصول ہو گیا ہے۔\nاللہ اسے قبول فرمائے اور اجر کو کئی گنا بڑھائے۔';
+
+  @override
+  String get reward_donation_you_donated => 'آپ نے عطیہ کیا';
+
+  @override
+  String get reward_donation_you_give => 'آپ دیتے ہیں';
+
+  @override
+  String get reward_donation_project => 'منصوبہ';
+
+  @override
+  String reward_donation_via(String org) {
+    return '$org کے ذریعے';
+  }
+
+  @override
+  String get profile_my_donations => 'میرے عطیات';
+
+  @override
+  String get my_donations_tab_history => 'تاریخ';
+
+  @override
+  String get my_donations_tab_recurring => 'بار بار';
+
+  @override
+  String get my_donations_empty_history =>
+      'ابھی کوئی عطیہ نہیں۔ آپ کے تعاون یہاں دکھائی دیں گے۔';
+
+  @override
+  String get my_donations_empty_recurring => 'کوئی بار بار عطیہ نہیں۔';
+
+  @override
+  String get my_donations_status_succeeded => 'موصول';
+
+  @override
+  String get my_donations_status_failed => 'ناکام';
+
+  @override
+  String get my_donations_status_refunded => 'واپس کیا گیا';
+
+  @override
+  String get my_donations_status_processing => 'زیر عمل';
+
+  @override
+  String get my_donations_sub_active => 'فعال';
+
+  @override
+  String get my_donations_sub_past_due => 'ادائیگی کا مسئلہ';
+
+  @override
+  String get my_donations_sub_canceled => 'منسوخ';
+
+  @override
+  String get my_donations_sub_incomplete => 'زیر التوا';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return '$date کو ختم';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'اگلی ادائیگی: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'روکیں';
+
+  @override
+  String get my_donations_cancel_confirm_title => 'یہ بار بار عطیہ روکیں؟';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'یہ موجودہ مدت کے اختتام تک فعال رہے گا، پھر مزید کوئی ادائیگی نہیں ہوگی۔';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'عطیہ روکیں';
+
+  @override
+  String get my_donations_keep => 'برقرار رکھیں';
+
+  @override
+  String get my_donations_anonymous => 'گمنام';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'بشمول $fee فیس';
+  }
+
+  @override
+  String get my_donations_zakat => 'زکوٰۃ';
+
+  @override
+  String get my_donations_sadaqa => 'صدقہ';
+
+  @override
+  String get my_donations_recurring_badge => 'بار بار';
+
+  @override
+  String get error_api_payment_amount_too_small => 'کم از کم عطیہ 1€ ہے۔';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'فی ادائیگی زیادہ سے زیادہ 10,000€ ہے۔';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'یہ منصوبہ اب عطیات قبول نہیں کر رہا۔';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'یہ منصوبہ زکوٰۃ کے لیے اہل نہیں ہے۔';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'بار بار عطیہ ترتیب نہیں دیا جا سکا۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'آپ کے بار بار عطیات لوڈ نہیں ہو سکے۔';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'بار بار عطیہ روکا نہیں جا سکا۔ دوبارہ کوشش کریں۔';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'ہم ابھی ادائیگی کی تصدیق نہیں کر سکے۔ تھوڑی دیر میں میرے عطیات دیکھیں۔';
 }

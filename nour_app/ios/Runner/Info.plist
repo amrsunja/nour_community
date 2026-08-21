@@ -10,6 +10,17 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
+			<string>stripe-redirect</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Stripe return URL (PayPal / 3DS). Must match Stripe.urlScheme in main.dart -->
+				<string>nour</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
 			<string>google-signin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>

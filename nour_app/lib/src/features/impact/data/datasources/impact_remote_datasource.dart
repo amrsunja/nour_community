@@ -23,7 +23,7 @@ class ImpactRemoteDatasource {
   static const _projectColumns =
       '*, partner_organizations(*), project_categories(*)';
   static const _projectDetailColumns =
-      '*, partner_organizations(*), project_categories(*), project_stories(*)';
+      '*, partner_organizations(*), project_categories(*), project_stories(*), impact_project_tiers(*)';
 
   String _requireUserId() {
     final authUser = supabaseClient.auth.currentUser;

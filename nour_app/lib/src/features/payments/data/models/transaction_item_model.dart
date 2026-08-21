@@ -9,11 +9,16 @@ class TransactionItemModel extends Equatable {
   final int impactProjectId;
   final double amount;
 
+  /// Embedded `impact_projects(...)` columns when the query joins them
+  /// (history list); null otherwise.
+  final Json? project;
+
   const TransactionItemModel({
     required this.id,
     required this.transactionId,
     required this.impactProjectId,
     required this.amount,
+    this.project,
   });
 
   static double _toDouble(dynamic v) =>
@@ -24,8 +29,11 @@ class TransactionItemModel extends Equatable {
     transactionId: json['transaction_id'] as int,
     impactProjectId: json['impact_project_id'] as int,
     amount: _toDouble(json['amount']),
+    project: json['impact_projects'] is Map<String, dynamic>
+        ? json['impact_projects'] as Map<String, dynamic>
+        : null,
   );
 
   @override
-  List<Object?> get props => [id, transactionId, impactProjectId, amount];
+  List<Object?> get props => [id, transactionId, impactProjectId, amount, project];
 }

@@ -1811,4 +1811,270 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'Couldn\'t load the transactions.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Donate how much?';
+
+  @override
+  String get donate_frequency_yearly => 'Yearly';
+
+  @override
+  String get donate_frequency_monthly => 'Monthly';
+
+  @override
+  String get donate_frequency_one_time => 'One time';
+
+  @override
+  String get donate_how_much => 'How much would you like to give ?';
+
+  @override
+  String get donate_or => 'Or';
+
+  @override
+  String get donate_enter_manually => 'Enter amount manually';
+
+  @override
+  String get donate_checkout => 'Checkout';
+
+  @override
+  String get donate_footer_partners =>
+      'Funds are distributed via verified partners';
+
+  @override
+  String get donate_footer_transparent => '100% transparent';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / month';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / year';
+  }
+
+  @override
+  String get impact_donate_now => 'Donate now';
+
+  @override
+  String get impact_tiers_title => 'Your donation provides';
+
+  @override
+  String get checkout_title => 'Checkout';
+
+  @override
+  String get checkout_my_donation => 'My donation';
+
+  @override
+  String get checkout_options_title => 'Donation options';
+
+  @override
+  String get checkout_anonymous_title => 'Make this anonymous';
+
+  @override
+  String get checkout_anonymous_hint =>
+      'Your name won\'t appear in public counts';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'Cover transaction fees (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint =>
+      '100% of your donation reaches projects';
+
+  @override
+  String get checkout_payment_method => 'Payment method';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Debit/Credit card';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Checkout';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Total $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'You will be charged $amount every month. Cancel anytime from My donations.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'You will be charged $amount every year. Cancel anytime from My donations.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Confirming your payment…';
+
+  @override
+  String get checkout_processing_message =>
+      'This usually takes a few seconds. Please don\'t close the app.';
+
+  @override
+  String get checkout_timeout_title => 'Taking longer than expected';
+
+  @override
+  String get checkout_timeout_message =>
+      'Your payment is still being confirmed. You can keep waiting or check the status later in My donations.';
+
+  @override
+  String get checkout_keep_waiting => 'Keep waiting';
+
+  @override
+  String get checkout_check_later => 'Check later';
+
+  @override
+  String get reward_donation_title => 'Jazak Allahu Khayr';
+
+  @override
+  String get reward_donation_message =>
+      'Your donation has been received.\nMay Allah accept it and multiply its reward.';
+
+  @override
+  String get reward_donation_you_donated => 'You donated';
+
+  @override
+  String get reward_donation_you_give => 'You give';
+
+  @override
+  String get reward_donation_project => 'Project';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'Via $org';
+  }
+
+  @override
+  String get profile_my_donations => 'My donations';
+
+  @override
+  String get my_donations_tab_history => 'History';
+
+  @override
+  String get my_donations_tab_recurring => 'Recurring';
+
+  @override
+  String get my_donations_empty_history =>
+      'No donations yet. Your contributions will appear here.';
+
+  @override
+  String get my_donations_empty_recurring => 'No recurring donations.';
+
+  @override
+  String get my_donations_status_succeeded => 'Received';
+
+  @override
+  String get my_donations_status_failed => 'Failed';
+
+  @override
+  String get my_donations_status_refunded => 'Refunded';
+
+  @override
+  String get my_donations_status_processing => 'Processing';
+
+  @override
+  String get my_donations_sub_active => 'Active';
+
+  @override
+  String get my_donations_sub_past_due => 'Payment issue';
+
+  @override
+  String get my_donations_sub_canceled => 'Cancelled';
+
+  @override
+  String get my_donations_sub_incomplete => 'Pending';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'Ends on $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Next charge: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Stop';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Stop this recurring donation?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'It stays active until the end of the current period, then no further charges are made.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Stop donation';
+
+  @override
+  String get my_donations_keep => 'Keep';
+
+  @override
+  String get my_donations_anonymous => 'Anonymous';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'incl. $fee fees';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zakat';
+
+  @override
+  String get my_donations_sadaqa => 'Sadaqa';
+
+  @override
+  String get my_donations_recurring_badge => 'Recurring';
+
+  @override
+  String get error_api_payment_amount_too_small =>
+      'The minimum donation is 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'The maximum per payment is 10,000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'This project is no longer accepting donations.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'This project is not eligible for zakat.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'Couldn\'t set up the recurring donation. Please try again.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Couldn\'t load your recurring donations.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'Couldn\'t stop the recurring donation. Please try again.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'We couldn\'t confirm the payment yet. Check My donations in a moment.';
 }

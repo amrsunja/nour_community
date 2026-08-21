@@ -285,7 +285,10 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
                 onTap: (_project != null &&
                         (_amountCtrl.text.trim().isNotEmpty) &&
                         !submitting)
-                    ? () => _submit(l10n)
+                    ? () {
+                      print('sdflksjdflskdjfsldfkj');
+                      _submit(l10n);
+                    }
                     : null,
               ),
             ],

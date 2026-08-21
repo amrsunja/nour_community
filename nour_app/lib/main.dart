@@ -52,6 +52,11 @@ void main() {
       final stripeKey = EnvServices.stripePublishableKey;
       if (stripeKey.startsWith('pk_')) {
         stripe.Stripe.publishableKey = stripeKey;
+        // Apple Pay merchant id (Xcode "Apple Pay" capability + Stripe dashboard).
+        stripe.Stripe.merchantIdentifier = kStripeMerchantIdentifier;
+        // Return URL scheme for redirect-based methods (PayPal, 3DS). Declared
+        // in ios/Runner/Info.plist and AndroidManifest.xml.
+        stripe.Stripe.urlScheme = kStripeUrlScheme;
         await stripe.Stripe.instance.applySettings();
       }
 

@@ -231,13 +231,16 @@ class _ProjectsTab extends StatelessWidget {
     return Column(
       children: [
         for (final project in projects)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 10),
-            child: _ProjectCard(
-              project: project,
-              rows: byProject[project.id] ?? const [],
-              langCode: langCode,
-              l10n: l10n,
+          SizedBox(
+          width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: _ProjectCard(
+                project: project,
+                rows: byProject[project.id] ?? const [],
+                langCode: langCode,
+                l10n: l10n,
+              ),
             ),
           ),
       ],
@@ -266,6 +269,7 @@ class _ProjectCard extends StatelessWidget {
     return UICard(
       padding: const EdgeInsets.all(16),
       disableBorder: true,
+      color: UIColorsToken.bgSurface,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -448,6 +452,7 @@ class PayoutTile extends StatelessWidget {
     return UICard(
       padding: const EdgeInsets.all(14),
       disableBorder: true,
+      color: UIColorsToken.bgSurface,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -579,6 +584,8 @@ class _TransactionTile extends StatelessWidget {
     return UICard(
       padding: const EdgeInsets.all(14),
       disableBorder: true,
+      borderRadius: 10,
+      color: UIColorsToken.bgSurface,
       child: Row(
         children: [
           Expanded(

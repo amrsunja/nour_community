@@ -1,5 +1,6 @@
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/routing/route_paths.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 
 import 'app_router.dart';
 
@@ -25,6 +26,21 @@ abstract class NavigationServices {
 	void toDhikr({required int selectedId});
 
 	void toImpactProjectDetail({required int projectId});
+
+	// Payments
+	void toCheckout({
+		required int projectId,
+		required double amount,
+		required DonationFrequency frequency,
+		bool isZakat = false,
+	});
+	void toDonationReward({
+		required int projectId,
+		required double amount,
+		required DonationFrequency frequency,
+		bool replace = false,
+	});
+	void toMyDonations({bool replace = false});
 
 	void toSurahDetail({required int surahNumber});
 	void toAyahReader({required int surahNumber, int initialAyah, bool recordProgress});
@@ -148,6 +164,41 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toImpactProjectDetail({required int projectId}) {
 		router.push(ImpactProjectDetailRoute(projectId: projectId));
+  }
+
+  @override
+  void toCheckout({
+		required int projectId,
+		required double amount,
+		required DonationFrequency frequency,
+		bool isZakat = false,
+	}) {
+		router.push(CheckoutRoute(
+			projectId: projectId,
+			amount: amount,
+			frequency: frequency.name,
+			isZakat: isZakat,
+		));
+  }
+
+  @override
+  void toDonationReward({
+		required int projectId,
+		required double amount,
+		required DonationFrequency frequency,
+		bool replace = false,
+	}) {
+		final route = DonationRewardRoute(
+			projectId: projectId,
+			amount: amount,
+			frequency: frequency.name,
+		);
+		replace ? router.replace(route) : router.push(route);
+  }
+
+  @override
+  void toMyDonations({bool replace = false}) {
+		replace ? router.replace(MyDonationsRoute()) : router.push(MyDonationsRoute());
   }
 
   @override

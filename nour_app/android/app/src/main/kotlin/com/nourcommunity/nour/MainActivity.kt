@@ -1,5 +1,6 @@
 package com.nourcommunity.nour
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// flutter_stripe requires a FragmentActivity (PaymentSheet / Google Pay).
+class MainActivity : FlutterFragmentActivity()

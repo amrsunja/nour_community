@@ -1818,4 +1818,269 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'Tidak dapat memuatkan transaksi.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Berapa banyak yang anda ingin dermakan?';
+
+  @override
+  String get donate_frequency_yearly => 'Tahunan';
+
+  @override
+  String get donate_frequency_monthly => 'Bulanan';
+
+  @override
+  String get donate_frequency_one_time => 'Sekali';
+
+  @override
+  String get donate_how_much => 'Berapa banyak yang anda ingin berikan?';
+
+  @override
+  String get donate_or => 'Atau';
+
+  @override
+  String get donate_enter_manually => 'Masukkan jumlah secara manual';
+
+  @override
+  String get donate_checkout => 'Checkout';
+
+  @override
+  String get donate_footer_partners =>
+      'Dana diagihkan melalui rakan kongsi yang disahkan';
+
+  @override
+  String get donate_footer_transparent => '100% telus';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / bulan';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / tahun';
+  }
+
+  @override
+  String get impact_donate_now => 'Derma sekarang';
+
+  @override
+  String get impact_tiers_title => 'Derma anda menyediakan';
+
+  @override
+  String get checkout_title => 'Checkout';
+
+  @override
+  String get checkout_my_donation => 'Derma saya';
+
+  @override
+  String get checkout_options_title => 'Pilihan derma';
+
+  @override
+  String get checkout_anonymous_title => 'Jadikan tanpa nama';
+
+  @override
+  String get checkout_anonymous_hint =>
+      'Nama anda tidak akan dipaparkan secara umum';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'Tanggung yuran transaksi (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint => '100% derma anda sampai kepada projek';
+
+  @override
+  String get checkout_payment_method => 'Kaedah pembayaran';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Kad debit/kredit';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Bayar';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Jumlah $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return '$amount akan dicaj setiap bulan. Batalkan pada bila-bila masa dari Derma saya.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return '$amount akan dicaj setiap tahun. Batalkan pada bila-bila masa dari Derma saya.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Mengesahkan pembayaran anda…';
+
+  @override
+  String get checkout_processing_message =>
+      'Ini biasanya mengambil masa beberapa saat. Jangan tutup aplikasi.';
+
+  @override
+  String get checkout_timeout_title =>
+      'Mengambil masa lebih lama daripada dijangka';
+
+  @override
+  String get checkout_timeout_message =>
+      'Pembayaran anda masih disahkan. Anda boleh terus menunggu atau semak status kemudian di Derma saya.';
+
+  @override
+  String get checkout_keep_waiting => 'Terus menunggu';
+
+  @override
+  String get checkout_check_later => 'Semak kemudian';
+
+  @override
+  String get reward_donation_title => 'Jazakallahu Khairan';
+
+  @override
+  String get reward_donation_message =>
+      'Derma anda telah diterima.\nSemoga Allah menerimanya dan menggandakan ganjarannya.';
+
+  @override
+  String get reward_donation_you_donated => 'Anda mendermakan';
+
+  @override
+  String get reward_donation_you_give => 'Anda memberi';
+
+  @override
+  String get reward_donation_project => 'Projek';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'Melalui $org';
+  }
+
+  @override
+  String get profile_my_donations => 'Derma saya';
+
+  @override
+  String get my_donations_tab_history => 'Sejarah';
+
+  @override
+  String get my_donations_tab_recurring => 'Berulang';
+
+  @override
+  String get my_donations_empty_history =>
+      'Belum ada derma. Sumbangan anda akan dipaparkan di sini.';
+
+  @override
+  String get my_donations_empty_recurring => 'Tiada derma berulang.';
+
+  @override
+  String get my_donations_status_succeeded => 'Diterima';
+
+  @override
+  String get my_donations_status_failed => 'Gagal';
+
+  @override
+  String get my_donations_status_refunded => 'Dikembalikan';
+
+  @override
+  String get my_donations_status_processing => 'Diproses';
+
+  @override
+  String get my_donations_sub_active => 'Aktif';
+
+  @override
+  String get my_donations_sub_past_due => 'Masalah pembayaran';
+
+  @override
+  String get my_donations_sub_canceled => 'Dibatalkan';
+
+  @override
+  String get my_donations_sub_incomplete => 'Belum selesai';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'Tamat pada $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Caj seterusnya: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Hentikan';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Hentikan derma berulang ini?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'Ia kekal aktif sehingga akhir tempoh semasa, kemudian tiada caj lagi.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Hentikan derma';
+
+  @override
+  String get my_donations_keep => 'Kekalkan';
+
+  @override
+  String get my_donations_anonymous => 'Tanpa nama';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'termasuk yuran $fee';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zakat';
+
+  @override
+  String get my_donations_sadaqa => 'Sedekah';
+
+  @override
+  String get my_donations_recurring_badge => 'Berulang';
+
+  @override
+  String get error_api_payment_amount_too_small => 'Derma minimum ialah 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'Maksimum setiap pembayaran ialah 10,000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'Projek ini tidak lagi menerima derma.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'Projek ini tidak layak untuk zakat.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'Tidak dapat menyediakan derma berulang. Sila cuba lagi.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Tidak dapat memuatkan derma berulang anda.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'Tidak dapat menghentikan derma berulang. Sila cuba lagi.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'Kami belum dapat mengesahkan pembayaran. Semak Derma saya sebentar lagi.';
 }

@@ -40,6 +40,19 @@ abstract class RoutePaths {
   /// `project/12` — `:id` is the impact project id.
   static String impactProjectDetail({int? id}) => 'project/${id ?? ':id'}';
 
+  // Payments (donation flow)
+
+  /// `checkout/12?amount=&frequency=&zakat=` — `:projectId` is the project id.
+  static String checkout({int? projectId}) =>
+      'checkout/${projectId ?? ':projectId'}';
+
+  /// `donation-reward/12?amount=&frequency=` — shown after a confirmed payment.
+  static String donationReward({int? projectId}) =>
+      'donation-reward/${projectId ?? ':projectId'}';
+
+  /// Profile → history + recurring donations.
+  static const myDonations = 'my-donations';
+
   // Quran
 
   /// `surah/2` — `:surahId` is the surah number.

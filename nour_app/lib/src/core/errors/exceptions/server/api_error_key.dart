@@ -102,6 +102,14 @@ enum ApiErrorKey {
   paymentCancelled,
   paymentHistoryLoadFailed,
   paymentProjectTransactionsLoadFailed,
+  paymentAmountTooSmall,
+  paymentAmountTooLarge,
+  paymentProjectInactive,
+  paymentNotZakatEligible,
+  paymentSubscriptionFailed,
+  paymentSubscriptionsLoadFailed,
+  paymentSubscriptionCancelFailed,
+  paymentConfirmationTimeout,
 
   // Admin
   adminAnalyticsLoadFailed,
