@@ -1,6 +1,9 @@
 package com.nourcommunity.nour
 
-import io.flutter.embedding.android.FlutterFragmentActivity
+import com.ryanheise.audioservice.AudioServiceFragmentActivity
 
-// flutter_stripe requires a FragmentActivity (PaymentSheet / Google Pay).
-class MainActivity : FlutterFragmentActivity()
+// flutter_stripe requires a FlutterFragmentActivity; just_audio_background
+// (audio_service) requires its engine-sharing activity. AudioServiceFragmentActivity
+// is audio_service's FlutterFragmentActivity variant — it satisfies both, so it
+// replaces the manifest's former com.ryanheise.audioservice.AudioServiceActivity.
+class MainActivity : AudioServiceFragmentActivity()
