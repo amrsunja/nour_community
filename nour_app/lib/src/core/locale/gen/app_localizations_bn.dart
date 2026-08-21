@@ -2069,4 +2069,27 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'আমরা এখনও পেমেন্ট নিশ্চিত করতে পারিনি। কিছুক্ষণ পরে আমার দান দেখুন।';
+
+  @override
+  String get admin_change_status_title => 'পেআউট স্ট্যাটাস পরিবর্তন করুন';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'শুধুমাত্র নিশ্চিত পেআউট প্রকল্প পৃষ্ঠায় প্রকাশ্যে দেখানো হয়।';
+
+  @override
+  String get admin_status_pending_hint =>
+      'রেকর্ড করা হয়েছে, ট্রান্সফার এখনও পাঠানো হয়নি';
+
+  @override
+  String get admin_status_sent_hint =>
+      'ট্রান্সফার পাঠানো হয়েছে, অংশীদারের নিশ্চিতকরণের অপেক্ষায়';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'অংশীদার পেয়েছে — দাতাদের কাছে দৃশ্যমান';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'পেআউট স্ট্যাটাস আপডেট করা যায়নি।';
 }

@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "تعذّر إعداد التبرّع المتكرر. حاول مرة أخرى.",
 	"error_api_payment_subscriptions_load_failed": "تعذّر تحميل تبرّعاتك المتكررة.",
 	"error_api_payment_subscription_cancel_failed": "تعذّر إيقاف التبرّع المتكرر. حاول مرة أخرى.",
-	"error_api_payment_confirmation_timeout": "لم نتمكن من تأكيد الدفع بعد. تحقق من تبرّعاتي بعد قليل."
+	"error_api_payment_confirmation_timeout": "لم نتمكن من تأكيد الدفع بعد. تحقق من تبرّعاتي بعد قليل.",
+	"admin_change_status_title": "تغيير حالة الدفعة",
+	"admin_change_status_subtitle": "تظهر للمستخدمين فقط الدفعات المؤكَّدة في صفحة المشروع.",
+	"admin_status_pending_hint": "مسجّلة، لم يُرسل التحويل بعد",
+	"admin_status_sent_hint": "أُرسل التحويل، بانتظار تأكيد الشريك",
+	"admin_status_confirmed_hint": "استلمها الشريك — مرئية للمتبرعين",
+	"error_api_admin_payout_update_failed": "تعذّر تحديث حالة الدفعة."
 }

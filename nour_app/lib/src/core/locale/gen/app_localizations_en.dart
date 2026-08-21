@@ -2077,4 +2077,26 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'We couldn\'t confirm the payment yet. Check My donations in a moment.';
+
+  @override
+  String get admin_change_status_title => 'Change payout status';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Only CONFIRMED disbursements are shown publicly on the project page.';
+
+  @override
+  String get admin_status_pending_hint => 'Recorded, transfer not sent yet';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Transfer sent, awaiting partner confirmation';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Received by the partner — visible to donors';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Couldn\'t update the payout status.';
 }

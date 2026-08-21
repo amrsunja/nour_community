@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "Tidak dapat menyediakan derma berulang. Sila cuba lagi.",
 	"error_api_payment_subscriptions_load_failed": "Tidak dapat memuatkan derma berulang anda.",
 	"error_api_payment_subscription_cancel_failed": "Tidak dapat menghentikan derma berulang. Sila cuba lagi.",
-	"error_api_payment_confirmation_timeout": "Kami belum dapat mengesahkan pembayaran. Semak Derma saya sebentar lagi."
+	"error_api_payment_confirmation_timeout": "Kami belum dapat mengesahkan pembayaran. Semak Derma saya sebentar lagi.",
+	"admin_change_status_title": "Tukar status pembayaran",
+	"admin_change_status_subtitle": "Hanya pembayaran DISAHKAN dipaparkan secara umum di halaman projek.",
+	"admin_status_pending_hint": "Direkod, pemindahan belum dihantar",
+	"admin_status_sent_hint": "Pemindahan dihantar, menunggu pengesahan rakan kongsi",
+	"admin_status_confirmed_hint": "Diterima rakan kongsi — kelihatan kepada penderma",
+	"error_api_admin_payout_update_failed": "Tidak dapat mengemas kini status pembayaran."
 }

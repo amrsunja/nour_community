@@ -2081,4 +2081,26 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Kami belum dapat mengonfirmasi pembayaran. Periksa Donasi saya sebentar lagi.';
+
+  @override
+  String get admin_change_status_title => 'Ubah status pencairan';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Hanya pencairan TERKONFIRMASI yang ditampilkan publik di halaman proyek.';
+
+  @override
+  String get admin_status_pending_hint => 'Tercatat, transfer belum dikirim';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Transfer dikirim, menunggu konfirmasi mitra';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Diterima mitra — terlihat oleh donatur';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Tidak dapat memperbarui status pencairan.';
 }

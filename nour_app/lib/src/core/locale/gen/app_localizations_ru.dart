@@ -2082,4 +2082,26 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Платёж пока не подтверждён. Проверьте «Мои пожертвования» чуть позже.';
+
+  @override
+  String get admin_change_status_title => 'Изменить статус выплаты';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Публично на странице проекта видны только ПОДТВЕРЖДЁННЫЕ выплаты.';
+
+  @override
+  String get admin_status_pending_hint => 'Записано, перевод ещё не отправлен';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Перевод отправлен, ожидается подтверждение партнёра';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Получено партнёром — видно донорам';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Не удалось обновить статус выплаты.';
 }

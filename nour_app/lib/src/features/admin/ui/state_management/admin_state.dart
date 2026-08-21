@@ -19,6 +19,9 @@ class AdminState extends Equatable {
   final List<TransactionModel> transactions;
   final bool isSubmittingPayout;
 
+  /// Payout id whose status change is in flight (row spinner).
+  final int? updatingPayoutId;
+
   const AdminState({
     this.isLoading = false,
     this.hasError = false,
@@ -29,6 +32,7 @@ class AdminState extends Equatable {
     this.payouts = const [],
     this.transactions = const [],
     this.isSubmittingPayout = false,
+    this.updatingPayoutId,
   });
 
   // ── Aggregate totals across every (project,type) row ──────────────────────
@@ -59,6 +63,8 @@ class AdminState extends Equatable {
     List<PayoutModel>? payouts,
     List<TransactionModel>? transactions,
     bool? isSubmittingPayout,
+    int? updatingPayoutId,
+    bool clearUpdatingPayout = false,
   }) => AdminState(
     isLoading: isLoading ?? this.isLoading,
     hasError: hasError ?? this.hasError,
@@ -69,6 +75,9 @@ class AdminState extends Equatable {
     payouts: payouts ?? this.payouts,
     transactions: transactions ?? this.transactions,
     isSubmittingPayout: isSubmittingPayout ?? this.isSubmittingPayout,
+    updatingPayoutId: clearUpdatingPayout
+        ? null
+        : (updatingPayoutId ?? this.updatingPayoutId),
   );
 
   @override
@@ -82,5 +91,6 @@ class AdminState extends Equatable {
     payouts,
     transactions,
     isSubmittingPayout,
+    updatingPayoutId,
   ];
 }

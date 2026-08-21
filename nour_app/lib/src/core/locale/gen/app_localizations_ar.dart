@@ -2047,4 +2047,23 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'لم نتمكن من تأكيد الدفع بعد. تحقق من تبرّعاتي بعد قليل.';
+
+  @override
+  String get admin_change_status_title => 'تغيير حالة الدفعة';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'تظهر للمستخدمين فقط الدفعات المؤكَّدة في صفحة المشروع.';
+
+  @override
+  String get admin_status_pending_hint => 'مسجّلة، لم يُرسل التحويل بعد';
+
+  @override
+  String get admin_status_sent_hint => 'أُرسل التحويل، بانتظار تأكيد الشريك';
+
+  @override
+  String get admin_status_confirmed_hint => 'استلمها الشريك — مرئية للمتبرعين';
+
+  @override
+  String get error_api_admin_payout_update_failed => 'تعذّر تحديث حالة الدفعة.';
 }

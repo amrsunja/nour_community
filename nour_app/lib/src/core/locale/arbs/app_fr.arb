@@ -713,5 +713,11 @@
 	"error_api_payment_subscription_failed": "Impossible de créer le don récurrent. Veuillez réessayer.",
 	"error_api_payment_subscriptions_load_failed": "Impossible de charger vos dons récurrents.",
 	"error_api_payment_subscription_cancel_failed": "Impossible d’arrêter le don récurrent. Veuillez réessayer.",
-	"error_api_payment_confirmation_timeout": "Le paiement n’a pas encore pu être confirmé. Vérifiez Mes dons dans un instant."
+	"error_api_payment_confirmation_timeout": "Le paiement n’a pas encore pu être confirmé. Vérifiez Mes dons dans un instant.",
+	"admin_change_status_title": "Changer le statut du versement",
+	"admin_change_status_subtitle": "Seuls les versements CONFIRMÉS sont visibles publiquement sur la page du projet.",
+	"admin_status_pending_hint": "Enregistré, virement pas encore envoyé",
+	"admin_status_sent_hint": "Virement envoyé, en attente de confirmation du partenaire",
+	"admin_status_confirmed_hint": "Reçu par le partenaire — visible par les donateurs",
+	"error_api_admin_payout_update_failed": "Impossible de mettre à jour le statut du versement."
 }

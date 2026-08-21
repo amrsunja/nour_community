@@ -2095,4 +2095,27 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Die Zahlung konnte noch nicht bestätigt werden. Prüfen Sie gleich Meine Spenden.';
+
+  @override
+  String get admin_change_status_title => 'Auszahlungsstatus ändern';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Nur BESTÄTIGTE Auszahlungen werden öffentlich auf der Projektseite angezeigt.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Erfasst, Überweisung noch nicht gesendet';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Überweisung gesendet, Partnerbestätigung ausstehend';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Vom Partner erhalten — für Spender sichtbar';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Der Auszahlungsstatus konnte nicht aktualisiert werden.';
 }

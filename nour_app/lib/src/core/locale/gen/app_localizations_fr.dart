@@ -2091,4 +2091,27 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Le paiement n’a pas encore pu être confirmé. Vérifiez Mes dons dans un instant.';
+
+  @override
+  String get admin_change_status_title => 'Changer le statut du versement';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Seuls les versements CONFIRMÉS sont visibles publiquement sur la page du projet.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Enregistré, virement pas encore envoyé';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Virement envoyé, en attente de confirmation du partenaire';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Reçu par le partenaire — visible par les donateurs';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Impossible de mettre à jour le statut du versement.';
 }

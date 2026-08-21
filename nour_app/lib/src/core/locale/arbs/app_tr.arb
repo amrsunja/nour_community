@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "Düzenli bağış oluşturulamadı. Lütfen tekrar deneyin.",
 	"error_api_payment_subscriptions_load_failed": "Düzenli bağışlarınız yüklenemedi.",
 	"error_api_payment_subscription_cancel_failed": "Düzenli bağış durdurulamadı. Lütfen tekrar deneyin.",
-	"error_api_payment_confirmation_timeout": "Ödemeyi henüz onaylayamadık. Birazdan Bağışlarım bölümünü kontrol edin."
+	"error_api_payment_confirmation_timeout": "Ödemeyi henüz onaylayamadık. Birazdan Bağışlarım bölümünü kontrol edin.",
+	"admin_change_status_title": "Ödeme durumunu değiştir",
+	"admin_change_status_subtitle": "Yalnızca ONAYLANMIŞ ödemeler proje sayfasında herkese açık gösterilir.",
+	"admin_status_pending_hint": "Kaydedildi, havale henüz gönderilmedi",
+	"admin_status_sent_hint": "Havale gönderildi, ortak onayı bekleniyor",
+	"admin_status_confirmed_hint": "Ortak tarafından alındı — bağışçılara görünür",
+	"error_api_admin_payout_update_failed": "Ödeme durumu güncellenemedi."
 }

@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "De terugkerende donatie kon niet worden ingesteld. Probeer het opnieuw.",
 	"error_api_payment_subscriptions_load_failed": "Je terugkerende donaties konden niet worden geladen.",
 	"error_api_payment_subscription_cancel_failed": "De terugkerende donatie kon niet worden gestopt. Probeer het opnieuw.",
-	"error_api_payment_confirmation_timeout": "We konden de betaling nog niet bevestigen. Controleer straks Mijn donaties."
+	"error_api_payment_confirmation_timeout": "We konden de betaling nog niet bevestigen. Controleer straks Mijn donaties.",
+	"admin_change_status_title": "Uitbetalingsstatus wijzigen",
+	"admin_change_status_subtitle": "Alleen BEVESTIGDE uitbetalingen zijn publiek zichtbaar op de projectpagina.",
+	"admin_status_pending_hint": "Geregistreerd, overboeking nog niet verzonden",
+	"admin_status_sent_hint": "Overboeking verzonden, wacht op bevestiging van de partner",
+	"admin_status_confirmed_hint": "Ontvangen door de partner — zichtbaar voor donateurs",
+	"error_api_admin_payout_update_failed": "De uitbetalingsstatus kon niet worden bijgewerkt."
 }

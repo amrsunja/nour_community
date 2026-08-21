@@ -6,6 +6,7 @@ import 'package:nour/src/core/network/supabase_client.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
 import 'package:nour/src/features/payments/data/models/payout_model.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 import 'package:nour/src/features/payments/data/models/transaction_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -159,6 +160,31 @@ class AdminRemoteDatasource {
       throw ServerException(
         type: .badRequest,
         messageKey: ApiErrorKey.adminPayoutCreateFailed,
+      );
+    }
+  }
+
+  /// Advances (or reverts) a payout's lifecycle status. `executed_at` is
+  /// stamped when the transfer actually leaves (pending -> sent/confirmed) and
+  /// cleared when reverted to pending. RLS `payouts_admin_all` gates this to
+  /// admins.
+  Future<void> updatePayoutStatus({
+    required int payoutId,
+    required PayoutStatus status,
+  }) async {
+    _requireUserId();
+    try {
+      await supabaseClient.from(_payoutsTable).update({
+        'status': status.value,
+        'executed_at': status == PayoutStatus.pending
+            ? null
+            : DateTime.now().toUtc().toIso8601String(),
+      }).eq('id', payoutId);
+    } catch (e) {
+      talker.error('[admin] updatePayoutStatus', e);
+      throw ServerException(
+        type: .badRequest,
+        messageKey: ApiErrorKey.adminPayoutUpdateFailed,
       );
     }
   }

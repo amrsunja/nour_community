@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "Die regelmäßige Spende konnte nicht eingerichtet werden. Bitte erneut versuchen.",
 	"error_api_payment_subscriptions_load_failed": "Ihre regelmäßigen Spenden konnten nicht geladen werden.",
 	"error_api_payment_subscription_cancel_failed": "Die regelmäßige Spende konnte nicht beendet werden. Bitte erneut versuchen.",
-	"error_api_payment_confirmation_timeout": "Die Zahlung konnte noch nicht bestätigt werden. Prüfen Sie gleich Meine Spenden."
+	"error_api_payment_confirmation_timeout": "Die Zahlung konnte noch nicht bestätigt werden. Prüfen Sie gleich Meine Spenden.",
+	"admin_change_status_title": "Auszahlungsstatus ändern",
+	"admin_change_status_subtitle": "Nur BESTÄTIGTE Auszahlungen werden öffentlich auf der Projektseite angezeigt.",
+	"admin_status_pending_hint": "Erfasst, Überweisung noch nicht gesendet",
+	"admin_status_sent_hint": "Überweisung gesendet, Partnerbestätigung ausstehend",
+	"admin_status_confirmed_hint": "Vom Partner erhalten — für Spender sichtbar",
+	"error_api_admin_payout_update_failed": "Der Auszahlungsstatus konnte nicht aktualisiert werden."
 }

@@ -771,5 +771,11 @@
 	"error_api_payment_subscription_failed": "Couldn't set up the recurring donation. Please try again.",
 	"error_api_payment_subscriptions_load_failed": "Couldn't load your recurring donations.",
 	"error_api_payment_subscription_cancel_failed": "Couldn't stop the recurring donation. Please try again.",
-	"error_api_payment_confirmation_timeout": "We couldn't confirm the payment yet. Check My donations in a moment."
+	"error_api_payment_confirmation_timeout": "We couldn't confirm the payment yet. Check My donations in a moment.",
+	"admin_change_status_title": "Change payout status",
+	"admin_change_status_subtitle": "Only CONFIRMED disbursements are shown publicly on the project page.",
+	"admin_status_pending_hint": "Recorded, transfer not sent yet",
+	"admin_status_sent_hint": "Transfer sent, awaiting partner confirmation",
+	"admin_status_confirmed_hint": "Received by the partner — visible to donors",
+	"error_api_admin_payout_update_failed": "Couldn't update the payout status."
 }

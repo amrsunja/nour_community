@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "بار بار عطیہ ترتیب نہیں دیا جا سکا۔ دوبارہ کوشش کریں۔",
 	"error_api_payment_subscriptions_load_failed": "آپ کے بار بار عطیات لوڈ نہیں ہو سکے۔",
 	"error_api_payment_subscription_cancel_failed": "بار بار عطیہ روکا نہیں جا سکا۔ دوبارہ کوشش کریں۔",
-	"error_api_payment_confirmation_timeout": "ہم ابھی ادائیگی کی تصدیق نہیں کر سکے۔ تھوڑی دیر میں میرے عطیات دیکھیں۔"
+	"error_api_payment_confirmation_timeout": "ہم ابھی ادائیگی کی تصدیق نہیں کر سکے۔ تھوڑی دیر میں میرے عطیات دیکھیں۔",
+	"admin_change_status_title": "ادائیگی کی حالت تبدیل کریں",
+	"admin_change_status_subtitle": "صرف تصدیق شدہ ادائیگیاں پروجیکٹ صفحے پر عوامی طور پر دکھائی جاتی ہیں۔",
+	"admin_status_pending_hint": "درج شدہ، منتقلی ابھی نہیں بھیجی گئی",
+	"admin_status_sent_hint": "منتقلی بھیج دی گئی، شراکت دار کی تصدیق کا انتظار ہے",
+	"admin_status_confirmed_hint": "شراکت دار کو موصول — عطیہ دہندگان کو نظر آتا ہے",
+	"error_api_admin_payout_update_failed": "ادائیگی کی حالت اپ ڈیٹ نہیں ہو سکی۔"
 }

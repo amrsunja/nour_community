@@ -708,5 +708,11 @@
 	"error_api_payment_subscription_failed": "Не удалось настроить регулярное пожертвование. Попробуйте ещё раз.",
 	"error_api_payment_subscriptions_load_failed": "Не удалось загрузить регулярные пожертвования.",
 	"error_api_payment_subscription_cancel_failed": "Не удалось остановить регулярное пожертвование. Попробуйте ещё раз.",
-	"error_api_payment_confirmation_timeout": "Платёж пока не подтверждён. Проверьте «Мои пожертвования» чуть позже."
+	"error_api_payment_confirmation_timeout": "Платёж пока не подтверждён. Проверьте «Мои пожертвования» чуть позже.",
+	"admin_change_status_title": "Изменить статус выплаты",
+	"admin_change_status_subtitle": "Публично на странице проекта видны только ПОДТВЕРЖДЁННЫЕ выплаты.",
+	"admin_status_pending_hint": "Записано, перевод ещё не отправлен",
+	"admin_status_sent_hint": "Перевод отправлен, ожидается подтверждение партнёра",
+	"admin_status_confirmed_hint": "Получено партнёром — видно донорам",
+	"error_api_admin_payout_update_failed": "Не удалось обновить статус выплаты."
 }

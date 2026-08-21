@@ -228,6 +228,8 @@ class ServerFailure extends Failure {
         return l.error_api_admin_payouts_load_failed;
       case ApiErrorKey.adminPayoutCreateFailed:
         return l.error_api_admin_payout_create_failed;
+      case ApiErrorKey.adminPayoutUpdateFailed:
+        return l.error_api_admin_payout_update_failed;
       case ApiErrorKey.adminPayoutProofUploadFailed:
         return l.error_api_admin_payout_proof_upload_failed;
       case ApiErrorKey.adminTransactionsLoadFailed:

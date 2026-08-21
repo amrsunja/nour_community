@@ -2070,4 +2070,27 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Ödemeyi henüz onaylayamadık. Birazdan Bağışlarım bölümünü kontrol edin.';
+
+  @override
+  String get admin_change_status_title => 'Ödeme durumunu değiştir';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Yalnızca ONAYLANMIŞ ödemeler proje sayfasında herkese açık gösterilir.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Kaydedildi, havale henüz gönderilmedi';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Havale gönderildi, ortak onayı bekleniyor';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Ortak tarafından alındı — bağışçılara görünür';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Ödeme durumu güncellenemedi.';
 }

@@ -2083,4 +2083,26 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'Kami belum dapat mengesahkan pembayaran. Semak Derma saya sebentar lagi.';
+
+  @override
+  String get admin_change_status_title => 'Tukar status pembayaran';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Hanya pembayaran DISAHKAN dipaparkan secara umum di halaman projek.';
+
+  @override
+  String get admin_status_pending_hint => 'Direkod, pemindahan belum dihantar';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Pemindahan dihantar, menunggu pengesahan rakan kongsi';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Diterima rakan kongsi — kelihatan kepada penderma';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Tidak dapat mengemas kini status pembayaran.';
 }

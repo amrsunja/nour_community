@@ -2071,4 +2071,26 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'ہم ابھی ادائیگی کی تصدیق نہیں کر سکے۔ تھوڑی دیر میں میرے عطیات دیکھیں۔';
+
+  @override
+  String get admin_change_status_title => 'ادائیگی کی حالت تبدیل کریں';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'صرف تصدیق شدہ ادائیگیاں پروجیکٹ صفحے پر عوامی طور پر دکھائی جاتی ہیں۔';
+
+  @override
+  String get admin_status_pending_hint => 'درج شدہ، منتقلی ابھی نہیں بھیجی گئی';
+
+  @override
+  String get admin_status_sent_hint =>
+      'منتقلی بھیج دی گئی، شراکت دار کی تصدیق کا انتظار ہے';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'شراکت دار کو موصول — عطیہ دہندگان کو نظر آتا ہے';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'ادائیگی کی حالت اپ ڈیٹ نہیں ہو سکی۔';
 }

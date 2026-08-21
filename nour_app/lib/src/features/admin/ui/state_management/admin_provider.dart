@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:typed_data';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -5,6 +6,8 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
+import 'package:nour/src/features/payments/data/models/payout_model.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 
 import '../../data/admin_repo.dart';
 import '../../data/models/record_payout_params.dart';
@@ -33,10 +36,14 @@ class AdminPresenter extends Presenter<AdminState> {
   Future<void> load({bool silent = false}) async {
     state = state.copyWith(isLoading: !silent, hasError: false);
 
-    final analyticsRes = await repo.fetchAnalytics();
-    final projectsRes = await repo.fetchAllProjects();
-    final payoutsRes = await repo.fetchPayouts();
-    final txRes = await repo.fetchTransactions();
+    // All four reads are independent — run them in parallel (one round-trip
+    // of latency instead of four).
+    final (analyticsRes, projectsRes, payoutsRes, txRes) = await (
+      repo.fetchAnalytics(),
+      repo.fetchAllProjects(),
+      repo.fetchPayouts(),
+      repo.fetchTransactions(),
+    ).wait;
 
     projectsRes.when(
       (projects) => state = state.copyWith(
@@ -77,6 +84,55 @@ class AdminPresenter extends Presenter<AdminState> {
 
   List<ImpactProjectModel> get projects =>
       state.projectsById.values.toList();
+
+  /// Changes a payout's status (pending / sent / confirmed). Optimistic: the
+  /// ledger row updates immediately, reverts on failure; analytics (paid_out /
+  /// outstanding count only confirmed payouts) refresh in the background.
+  Future<void> updatePayoutStatus(int payoutId, PayoutStatus status) async {
+    if (state.updatingPayoutId != null) return;
+    final previous = state.payouts;
+    final idx = previous.indexWhere((p) => p.id == payoutId);
+    if (idx < 0 || previous[idx].status == status) return;
+
+    state = state.copyWith(
+      updatingPayoutId: payoutId,
+      payouts: [
+        for (final p in previous)
+          if (p.id == payoutId)
+            PayoutModel(
+              id: p.id,
+              organizationId: p.organizationId,
+              impactProjectId: p.impactProjectId,
+              type: p.type,
+              amount: p.amount,
+              currency: p.currency,
+              method: p.method,
+              status: status,
+              reference: p.reference,
+              proofPath: p.proofPath,
+              note: p.note,
+              executedAt:
+                  status == PayoutStatus.pending ? null : DateTime.now(),
+              createdAt: p.createdAt,
+            )
+          else
+            p,
+      ],
+    );
+
+    final res = await repo.updatePayoutStatus(payoutId: payoutId, status: status);
+    if (!mounted) return;
+    res.when(
+      (_) {
+        state = state.copyWith(clearUpdatingPayout: true);
+        unawaited(load(silent: true)); // refresh analytics totals
+      },
+      (error) {
+        state = state.copyWith(payouts: previous, clearUpdatingPayout: true);
+        appEvents.send(ShowErrorEvent(error));
+      },
+    );
+  }
 
   /// Uploads the optional proof image then records the payout. Returns true on
   /// success (the caller can pop / show confirmation).
@@ -132,7 +188,9 @@ class AdminPresenter extends Presenter<AdminState> {
     });
 
     state = state.copyWith(isSubmittingPayout: false);
-    if (ok) await load(silent: true); // refresh analytics + ledger
+    // Refresh analytics + ledger in the background — the caller (sheet) pops
+    // immediately on success instead of waiting for four more requests.
+    if (ok) unawaited(load(silent: true));
     return ok;
   }
 }

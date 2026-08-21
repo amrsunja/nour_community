@@ -2073,4 +2073,27 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get error_api_payment_confirmation_timeout =>
       'We konden de betaling nog niet bevestigen. Controleer straks Mijn donaties.';
+
+  @override
+  String get admin_change_status_title => 'Uitbetalingsstatus wijzigen';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Alleen BEVESTIGDE uitbetalingen zijn publiek zichtbaar op de projectpagina.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Geregistreerd, overboeking nog niet verzonden';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Overboeking verzonden, wacht op bevestiging van de partner';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Ontvangen door de partner — zichtbaar voor donateurs';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'De uitbetalingsstatus kon niet worden bijgewerkt.';
 }

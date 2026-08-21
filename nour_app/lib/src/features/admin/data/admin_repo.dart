@@ -5,6 +5,7 @@ import 'package:nour/src/core/errors/failures/failures.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
 import 'package:nour/src/features/payments/data/models/payout_model.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 import 'package:nour/src/features/payments/data/models/transaction_model.dart';
 
 import 'datasources/admin_remote_datasource.dart';
@@ -52,6 +53,18 @@ class AdminRepo {
 
   Future<String?> signedProofUrl(String path) {
     return remoteDatasource.signedProofUrl(path);
+  }
+
+  Future<SuccessOrError<void>> updatePayoutStatus({
+    required int payoutId,
+    required PayoutStatus status,
+  }) {
+    return Failure.exceptionsCatcher(
+      () => remoteDatasource.updatePayoutStatus(
+        payoutId: payoutId,
+        status: status,
+      ),
+    );
   }
 
   Future<SuccessOrError<void>> createPayout(

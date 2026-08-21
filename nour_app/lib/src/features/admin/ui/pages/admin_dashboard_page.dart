@@ -148,6 +148,8 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           state: state,
                           langCode: langCode,
                           l10n: l10n,
+                          onChangeStatus: (payout, status) => notifier
+                              .updatePayoutStatus(payout.id, status),
                         ),
                       AdminTab.received => _ReceivedTab(
                           state: state,
@@ -405,11 +407,13 @@ class _PayoutsTab extends StatelessWidget {
     required this.state,
     required this.langCode,
     required this.l10n,
+    required this.onChangeStatus,
   });
 
   final AdminState state;
   final String langCode;
   final AppLocale l10n;
+  final void Function(PayoutModel payout, PayoutStatus status) onChangeStatus;
 
   @override
   Widget build(BuildContext context) {
@@ -424,9 +428,141 @@ class _PayoutsTab extends StatelessWidget {
               projectTitle:
                   state.projectsById[payout.impactProjectId]?.title(langCode),
               l10n: l10n,
+              isUpdating: state.updatingPayoutId == payout.id,
+              // Tap a row to advance/revert its lifecycle. Only `confirmed`
+              // payouts appear in the public project "Transactions" block.
+              onTap: state.updatingPayoutId != null
+                  ? null
+                  : () async {
+                      final status = await _PayoutStatusSheet.show(
+                        context,
+                        current: payout.status,
+                        l10n: l10n,
+                      );
+                      if (status != null && status != payout.status) {
+                        onChangeStatus(payout, status);
+                      }
+                    },
             ),
           ),
       ],
+    );
+  }
+}
+
+/// Bottom sheet to pick a payout's new status. Explains that only `confirmed`
+/// disbursements are shown publicly on the project page.
+class _PayoutStatusSheet extends StatelessWidget {
+  const _PayoutStatusSheet({required this.current, required this.l10n});
+
+  final PayoutStatus current;
+  final AppLocale l10n;
+
+  static Future<PayoutStatus?> show(
+    BuildContext context, {
+    required PayoutStatus current,
+    required AppLocale l10n,
+  }) {
+    return showModalBottomSheet<PayoutStatus>(
+      context: context,
+      backgroundColor: UIColorsToken.bgPrimary,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (_) => _PayoutStatusSheet(current: current, l10n: l10n),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final typo = UITheme.of(context).typo;
+
+    (String, String) describe(PayoutStatus s) => switch (s) {
+          PayoutStatus.pending => (
+              l10n.payout_pending,
+              l10n.admin_status_pending_hint,
+            ),
+          PayoutStatus.sent => (
+              l10n.payout_sent,
+              l10n.admin_status_sent_hint,
+            ),
+          PayoutStatus.confirmed => (
+              l10n.payout_confirmed,
+              l10n.admin_status_confirmed_hint,
+            ),
+        };
+
+    return SafeArea(
+      top: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: UIColorsToken.stroke,
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+            ),
+            const UISpace.vert(20),
+            Text(
+              l10n.admin_change_status_title,
+              style: typo.inter.title.copyWith(color: UIColorsToken.white),
+            ),
+            const UISpace.vert(4),
+            Text(
+              l10n.admin_change_status_subtitle,
+              style: typo.inter.bodySmall
+                  .copyWith(color: UIColorsToken.textParagraph),
+            ),
+            const UISpace.vert(16),
+            for (final s in PayoutStatus.values) ...[
+              UITap(
+                onTap: () => Navigator.of(context).pop(s),
+                child: UISelecteableCard(
+                  selected: s == current,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              describe(s).$1,
+                              style: typo.inter.title.copyWith(
+                                color: s == current
+                                    ? UIColorsToken.textYellow
+                                    : UIColorsToken.white,
+                              ),
+                            ),
+                            const UISpace.vert(2),
+                            Text(
+                              describe(s).$2,
+                              style: typo.inter.bodySmall.copyWith(
+                                color: UIColorsToken.textParagraph,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      if (s == current)
+                        const Icon(Icons.check,
+                            size: 18, color: UIColorsToken.textYellow),
+                    ],
+                  ),
+                ),
+              ),
+              const UISpace.vert(10),
+            ],
+          ],
+        ),
+      ),
     );
   }
 }
@@ -438,11 +574,19 @@ class PayoutTile extends StatelessWidget {
     required this.payout,
     required this.l10n,
     this.projectTitle,
+    this.onTap,
+    this.isUpdating = false,
   });
 
   final PayoutModel payout;
   final String? projectTitle;
   final AppLocale l10n;
+
+  /// When set the tile is tappable (admin ledger → change status).
+  final VoidCallback? onTap;
+
+  /// Shows a small spinner instead of the status chip while an update runs.
+  final bool isUpdating;
 
   @override
   Widget build(BuildContext context) {
@@ -453,6 +597,7 @@ class PayoutTile extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       disableBorder: true,
       color: UIColorsToken.bgSurface,
+      onTap: onTap,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -474,7 +619,10 @@ class PayoutTile extends StatelessWidget {
                         fontWeight: FontWeight.w700,
                       ),
                     ),
-                    _StatusChip(status: payout.status, l10n: l10n),
+                    isUpdating
+                        ? const UICircularProgressBar(
+                            size: 18, color: UIColorsToken.textYellow)
+                        : _StatusChip(status: payout.status, l10n: l10n),
                   ],
                 ),
                 const UISpace.vert(4),

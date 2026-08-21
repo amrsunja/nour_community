@@ -79,14 +79,6 @@ class DonationRewardPage extends ConsumerWidget {
             decoration: BoxDecoration(
               color: UIColorsToken.black80,
               borderRadius: BorderRadius.circular(14),
-              gradient: LinearGradient(
-                colors: [
-                  UIColorsToken.black80,
-                  UIColorsToken.yellow.withValues(alpha: 0.18),
-                  UIColorsToken.black80,
-                ],
-                stops: const [0.0, 0.5, 1.0],
-              ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,9 +99,9 @@ class DonationRewardPage extends ConsumerWidget {
               ],
             ),
           )
-              .animate(delay: const Duration(milliseconds: 550))
-              .fadeIn(duration: const Duration(milliseconds: 450))
-              .moveY(begin: 16, end: 0, curve: Curves.easeOutCubic),
+          .animate(delay: const Duration(milliseconds: 550))
+          .fadeIn(duration: const Duration(milliseconds: 450))
+          .moveY(begin: 16, end: 0, curve: Curves.easeOutCubic),
 
           const UISpace.vert(12),
 
@@ -132,6 +124,8 @@ class DonationRewardPage extends ConsumerWidget {
                   const UISpace.vert(4),
                   Text(
                     project.title(langCode),
+                    maxLines: 1,
+                    overflow: .ellipsis,
                     style: typo.inter.title.copyWith(
                       color: UIColorsToken.white,
                       fontWeight: FontWeight.w600,

@@ -3811,6 +3811,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'We couldn\'t confirm the payment yet. Check My donations in a moment.'**
   String get error_api_payment_confirmation_timeout;
+
+  /// No description provided for @admin_change_status_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Change payout status'**
+  String get admin_change_status_title;
+
+  /// No description provided for @admin_change_status_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Only CONFIRMED disbursements are shown publicly on the project page.'**
+  String get admin_change_status_subtitle;
+
+  /// No description provided for @admin_status_pending_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded, transfer not sent yet'**
+  String get admin_status_pending_hint;
+
+  /// No description provided for @admin_status_sent_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Transfer sent, awaiting partner confirmation'**
+  String get admin_status_sent_hint;
+
+  /// No description provided for @admin_status_confirmed_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Received by the partner — visible to donors'**
+  String get admin_status_confirmed_hint;
+
+  /// No description provided for @error_api_admin_payout_update_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t update the payout status.'**
+  String get error_api_admin_payout_update_failed;
 }
 
 class _AppLocalizationsDelegate
