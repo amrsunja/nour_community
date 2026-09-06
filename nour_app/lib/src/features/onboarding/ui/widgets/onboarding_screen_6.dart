@@ -77,7 +77,7 @@ class OnboardingScreen6 extends ConsumerWidget {
                     label: l10n.onboarding_maybe_later,
                     fullWidth: true,
                     contentColor: UIColorsToken.white,
-                    onTap: () => onboarding.changePage(6),
+                    onTap: () => onboarding.changePage(7),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -94,7 +94,7 @@ class OnboardingScreen6 extends ConsumerWidget {
                         await notificationsServices.initialize();
                       }
 
-                      onboarding.changePage(6);
+                      onboarding.changePage(7);
                     },
                   ),
                 ),

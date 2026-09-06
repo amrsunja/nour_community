@@ -18,6 +18,7 @@ import 'package:nour/src/features/mosques/data/mosque_repo.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/notifications/ui/state_management/push_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
 
 import '../../data/auth_repo.dart';
 import 'auth_state.dart';
@@ -167,6 +168,7 @@ class AuthPresenter extends Presenter<AuthState> {
   }
 
   void _identify() {
+    unawaited(ref.read(appConfigProvider.notifier).load());
     final isAnon = repo.isAnonymousSession();
     ref.read(analyticsRepoProvider).identifyUser(
           userId: supabaseClient.auth.currentUser?.id,
@@ -187,6 +189,7 @@ class AuthPresenter extends Presenter<AuthState> {
     final ok = await ref.read(profileProvider.notifier).initProfile();
     if (!ok) return false;
     unawaited(ref.read(pushProvider.notifier).syncToken());
+    unawaited(ref.read(appConfigProvider.notifier).load());
 
     final profile = ref.read(profileProvider).profile!;
     final draftStore = ref.read(mosqueOnboardingLocalDataProvider);

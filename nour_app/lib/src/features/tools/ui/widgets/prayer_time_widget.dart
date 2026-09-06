@@ -23,6 +23,8 @@ class PrayerTimeWidget extends HookWidget {
     this.isNext = false,
     this.backgroundImage,
     this.countdownTarget,
+    this.hideNotify = false,
+    this.trailing,
   });
 
   final String title;
@@ -33,6 +35,12 @@ class PrayerTimeWidget extends HookWidget {
   final bool isNext;
   final AssetGenImage? backgroundImage;
   final DateTime? countdownTarget;
+
+  /// Mosque profile: no per-slot reminder toggle.
+  final bool hideNotify;
+
+  /// Replaces the bell (e.g. an edit pencil in the admin editor).
+  final Widget? trailing;
 
   static String _two(int v) => v.toString().padLeft(2, '0');
 
@@ -91,17 +99,20 @@ class PrayerTimeWidget extends HookWidget {
                       ],
                     ),
                   ),
-                  UITap(
-                    onTap: onToggleNotify,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 8, top: 4),
-                      child: UIIcon(
-                        notify
-                            ? UIIconsToken.icons.notif
-                            : UIIconsToken.icons.notNotif,
+                  if (trailing != null)
+                    trailing!
+                  else if (!hideNotify)
+                    UITap(
+                      onTap: onToggleNotify,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8, top: 4),
+                        child: UIIcon(
+                          notify
+                              ? UIIconsToken.icons.notif
+                              : UIIconsToken.icons.notNotif,
+                        ),
                       ),
                     ),
-                  ),
                 ],
               ),
               if (isNext && countdownTarget != null) ...[

@@ -48,6 +48,21 @@ class PushRemoteDatasource {
     }
   }
 
+  /// The caller's last pushes (`notifications_log`, RLS self-read).
+  Future<List<Map<String, dynamic>>> myNotifications({int limit = 50}) async {
+    try {
+      final rows = await supabaseClient
+          .from('notifications_log')
+          .select('id, kind, title, body, data, sent_at, opened_at')
+          .order('sent_at', ascending: false)
+          .limit(limit);
+      return (rows as List).cast<Map<String, dynamic>>();
+    } catch (e) {
+      talker.error(e);
+      return const [];
+    }
+  }
+
   Future<void> setPushPrefs(Map<String, dynamic> prefs) async {
     try {
       await supabaseClient.rpc('fn_set_push_prefs', params: {'p_prefs': prefs});

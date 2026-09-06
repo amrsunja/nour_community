@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:nour/src/features/admin/ui/widgets/admin_mosques_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -158,6 +159,10 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           value: AdminTab.received,
                           label: l10n.admin_tab_received,
                         ),
+                        UITabItem(
+                          value: AdminTab.mosques,
+                          label: l10n.admin_tab_mosques,
+                        ),
                       ],
                       onChanged: notifier.selectTab,
                     ),
@@ -182,6 +187,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           langCode: langCode,
                           l10n: l10n,
                         ),
+                      AdminTab.mosques => const AdminMosquesTab(),
                     },
                   ],
                 ),

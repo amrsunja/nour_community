@@ -34,7 +34,7 @@ class OnboardingScreen7 extends HookConsumerWidget {
     Future<void> onContinue() async {
       await audioPresenter.stop();
       final ok = await settingsPresenter.selectFavoriteReciter(selected.value);
-      if (ok) onboarding.changePage(7);
+      if (ok) onboarding.changePage(8);
     }
 
     return Padding(

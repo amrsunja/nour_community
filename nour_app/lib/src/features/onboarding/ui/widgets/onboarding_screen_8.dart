@@ -45,7 +45,7 @@ class OnboardingScreen8 extends HookConsumerWidget {
     Future<void> onContinue() async {
       final ok = await settingsPresenter.changeAppLanguage(selected.value);
       if (!ok) return;
-      onboarding.changePage(8);
+      onboarding.changePage(9);
     }
 
     Future<void> onTapLang(Locale locale) async {

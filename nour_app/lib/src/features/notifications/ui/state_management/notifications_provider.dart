@@ -9,6 +9,7 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provider.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/tools/data/prayer_settings_repo.dart';
@@ -262,11 +263,20 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
       if (position == null) return;
 
       final resolvedMethod = method ?? await _method();
-      final week = await IslamicTools.getUpcomingPrayerTimes(
+      final computedWeek = await IslamicTools.getUpcomingPrayerTimes(
         days: NotificationIds.prayersDaysAhead,
         position: position,
         method: resolvedMethod,
       );
+      // Mosques module (§9): the principal mosque's published schedule
+      // overrides the computed times for the days it covers.
+      final myMosques = ref.read(myMosquesProvider);
+      final today = DateTime.now();
+      final week = [
+        for (int i = 0; i < computedWeek.length; i++)
+          myMosques.effectiveDayFor(today.add(Duration(days: i)))?.toDailyPrayerTimes(fallback: computedWeek[i]) ??
+              computedWeek[i],
+      ];
       final titles = _prayerTitles();
 
       for (int day = 0; day < week.length; day++) {

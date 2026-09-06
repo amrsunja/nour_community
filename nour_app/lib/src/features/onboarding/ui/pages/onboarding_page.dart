@@ -18,6 +18,7 @@ import '../widgets/onboarding_screen_6.dart';
 import '../widgets/onboarding_screen_7.dart';
 import '../widgets/onboarding_screen_8.dart';
 import '../widgets/onboarding_screen_9.dart';
+import '../widgets/onboarding_screen_mosque.dart';
 
 @RoutePage()
 class OnboardingPage extends HookConsumerWidget {
@@ -30,7 +31,8 @@ class OnboardingPage extends HookConsumerWidget {
     final provider = ref.read(onboardingProvider.notifier);
     final profile = ref.watch(profileProvider).profile;
 
-    int currentPage = profile?.lastOnboardingScreen ?? 0;
+    // Clamp: users mid-onboarding before the mosque step was added.
+    int currentPage = (profile?.lastOnboardingScreen ?? 0).clamp(0, 9);
     final pageController = usePageController(initialPage: currentPage);
 
     useEffect(() {
@@ -48,7 +50,7 @@ class OnboardingPage extends HookConsumerWidget {
 
 
     final showBars = currentPage > 0;
-    final canSkip = currentPage < 8;
+    final canSkip = currentPage < 9;
 
     return UIGradientLinedScaffold(
       resizeToAvoidBottomInset: false,
@@ -79,7 +81,7 @@ class OnboardingPage extends HookConsumerWidget {
                       onTap: () async {
                         if (!showBars) return ;
                     
-                        provider.changePage(8);
+                        provider.changePage(9);
                       },
                       child: Text(
                         l10n.onboarding_skip,
@@ -101,6 +103,7 @@ class OnboardingPage extends HookConsumerWidget {
                 OnboardingScreen3(),
                 OnboardingScreen4(),
                 OnboardingScreen5(),
+                OnboardingScreenMosque(),
                 OnboardingScreen6(),
                 OnboardingScreen7(),
                 OnboardingScreen8(),
@@ -112,7 +115,7 @@ class OnboardingPage extends HookConsumerWidget {
             opacity: showBars ? 1 : 0,
             duration: Durations.medium2,
             child: UISliderProgressBar(
-              totalCount: 9,
+              totalCount: 10,
               currentIndex: currentPage
             ),
           )

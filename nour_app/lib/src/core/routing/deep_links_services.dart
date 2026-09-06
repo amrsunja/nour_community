@@ -59,8 +59,10 @@ class DeepLinksServices {
       talker.warning('bad deep link: $link');
       return;
     }
+    // nour://mosque/12 → host = 'mosque'; https://nour-community.com/mosque/12 → path only.
+    final isWeb = uri.scheme == 'http' || uri.scheme == 'https';
     final segments = [
-      if (uri.host.isNotEmpty) uri.host,
+      if (!isWeb && uri.host.isNotEmpty) uri.host,
       ...uri.pathSegments.where((s) => s.isNotEmpty),
     ];
     if (segments.isEmpty) return;

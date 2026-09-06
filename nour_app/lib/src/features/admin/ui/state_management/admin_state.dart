@@ -7,7 +7,7 @@ import 'package:nour/src/features/payments/data/models/transaction_model.dart';
 import '../../data/models/project_analytics_model.dart';
 
 /// Which admin tab is showing.
-enum AdminTab { projects, payouts, received }
+enum AdminTab { projects, payouts, received, mosques }
 
 /// Money-type filter — zakat and sadaqa are separated end to end, so the
 /// admin can inspect each pool on its own (totals, ledger and received feed).
