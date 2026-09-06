@@ -1806,4 +1806,361 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'İşlemler yüklenemedi.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Ne kadar bağışlamak istersiniz?';
+
+  @override
+  String get donate_frequency_yearly => 'Yıllık';
+
+  @override
+  String get donate_frequency_monthly => 'Aylık';
+
+  @override
+  String get donate_frequency_one_time => 'Tek seferlik';
+
+  @override
+  String get donate_how_much => 'Ne kadar vermek istersiniz?';
+
+  @override
+  String get donate_or => 'Veya';
+
+  @override
+  String get donate_enter_manually => 'Tutarı elle girin';
+
+  @override
+  String get donate_checkout => 'Ödemeye geç';
+
+  @override
+  String get donate_footer_partners =>
+      'Fonlar doğrulanmış ortaklar aracılığıyla dağıtılır';
+
+  @override
+  String get donate_footer_transparent => '%100 şeffaf';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / ay';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / yıl';
+  }
+
+  @override
+  String get impact_donate_now => 'Şimdi bağış yap';
+
+  @override
+  String get impact_tiers_title => 'Bağışınız şunları sağlar';
+
+  @override
+  String get checkout_title => 'Ödeme';
+
+  @override
+  String get checkout_my_donation => 'Bağışım';
+
+  @override
+  String get checkout_options_title => 'Bağış seçenekleri';
+
+  @override
+  String get checkout_anonymous_title => 'Anonim yap';
+
+  @override
+  String get checkout_anonymous_hint =>
+      'Adınız herkese açık listelerde görünmez';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'İşlem ücretlerini karşıla (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint => 'Bağışınızın %100’ü projelere ulaşır';
+
+  @override
+  String get checkout_payment_method => 'Ödeme yöntemi';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Banka/Kredi kartı';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Öde';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Toplam $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'Her ay $amount tahsil edilecektir. Bağışlarım bölümünden istediğiniz zaman iptal edebilirsiniz.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'Her yıl $amount tahsil edilecektir. Bağışlarım bölümünden istediğiniz zaman iptal edebilirsiniz.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Ödemeniz onaylanıyor…';
+
+  @override
+  String get checkout_processing_message =>
+      'Bu genellikle birkaç saniye sürer. Lütfen uygulamayı kapatmayın.';
+
+  @override
+  String get checkout_timeout_title => 'Beklenenden uzun sürüyor';
+
+  @override
+  String get checkout_timeout_message =>
+      'Ödemeniz hâlâ onaylanıyor. Beklemeye devam edebilir veya daha sonra Bağışlarım bölümünden kontrol edebilirsiniz.';
+
+  @override
+  String get checkout_keep_waiting => 'Beklemeye devam et';
+
+  @override
+  String get checkout_check_later => 'Sonra kontrol et';
+
+  @override
+  String get reward_donation_title => 'Allah razı olsun';
+
+  @override
+  String get reward_donation_message =>
+      'Bağışınız alındı.\nAllah kabul etsin ve sevabını kat kat artırsın.';
+
+  @override
+  String get reward_donation_you_donated => 'Bağışladınız';
+
+  @override
+  String get reward_donation_you_give => 'Veriyorsunuz';
+
+  @override
+  String get reward_donation_project => 'Proje';
+
+  @override
+  String reward_donation_via(String org) {
+    return '$org aracılığıyla';
+  }
+
+  @override
+  String get profile_my_donations => 'Bağışlarım';
+
+  @override
+  String get my_donations_tab_history => 'Geçmiş';
+
+  @override
+  String get my_donations_tab_recurring => 'Düzenli';
+
+  @override
+  String get my_donations_empty_history =>
+      'Henüz bağış yok. Katkılarınız burada görünecek.';
+
+  @override
+  String get my_donations_empty_recurring => 'Düzenli bağış yok.';
+
+  @override
+  String get my_donations_status_succeeded => 'Alındı';
+
+  @override
+  String get my_donations_status_failed => 'Başarısız';
+
+  @override
+  String get my_donations_status_refunded => 'İade edildi';
+
+  @override
+  String get my_donations_status_processing => 'İşleniyor';
+
+  @override
+  String get my_donations_sub_active => 'Aktif';
+
+  @override
+  String get my_donations_sub_past_due => 'Ödeme sorunu';
+
+  @override
+  String get my_donations_sub_canceled => 'İptal edildi';
+
+  @override
+  String get my_donations_sub_incomplete => 'Beklemede';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return '$date tarihinde biter';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Sonraki tahsilat: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Durdur';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Bu düzenli bağış durdurulsun mu?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'Mevcut dönemin sonuna kadar aktif kalır, ardından başka tahsilat yapılmaz.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Bağışı durdur';
+
+  @override
+  String get my_donations_keep => 'Devam et';
+
+  @override
+  String get my_donations_anonymous => 'Anonim';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return '$fee ücret dahil';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zekât';
+
+  @override
+  String get my_donations_sadaqa => 'Sadaka';
+
+  @override
+  String get my_donations_recurring_badge => 'Düzenli';
+
+  @override
+  String get error_api_payment_amount_too_small => 'Minimum bağış 1€’dur.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'Ödeme başına maksimum 10.000€’dur.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'Bu proje artık bağış kabul etmiyor.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'Bu proje zekât için uygun değil.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'Düzenli bağış oluşturulamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Düzenli bağışlarınız yüklenemedi.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'Düzenli bağış durdurulamadı. Lütfen tekrar deneyin.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'Ödemeyi henüz onaylayamadık. Birazdan Bağışlarım bölümünü kontrol edin.';
+
+  @override
+  String get admin_change_status_title => 'Ödeme durumunu değiştir';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Yalnızca ONAYLANMIŞ ödemeler proje sayfasında herkese açık gösterilir.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Kaydedildi, havale henüz gönderilmedi';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Havale gönderildi, ortak onayı bekleniyor';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Ortak tarafından alındı — bağışçılara görünür';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Ödeme durumu güncellenemedi.';
+
+  @override
+  String get zakat_alloc_title => 'Zekâtınızı uygun Nour projelerine verin';
+
+  @override
+  String get zakat_alloc_info =>
+      'Burada yalnızca zekâtın 8 Kur’ânî sınıfına uyan projeler gösterilir (Tevbe 60)';
+
+  @override
+  String get zakat_alloc_empty_title => 'Şu anda zekâta uygun proje yok';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Şimdilik uygulama üzerinden zekât veremezsiniz — merak etmeyin, yakında yeni uygun projeler eklenecek inşallah.';
+
+  @override
+  String get zakat_alloc_owed => 'Ödenecek zekât';
+
+  @override
+  String get zakat_alloc_allocated => 'Dağıtılan zekât';
+
+  @override
+  String get zakat_alloc_fully => 'Tamamı dağıtıldı';
+
+  @override
+  String get zakat_alloc_remaining => 'Kalan';
+
+  @override
+  String get zakat_alloc_extra => 'Fazlası (sadaka sayılır)';
+
+  @override
+  String get zakat_checkout_title => 'Zekât';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Zekâtım';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Şuraya dağıtıldı';
+
+  @override
+  String get zakat_checkout_fees => 'İşlem ücretleri';
+
+  @override
+  String get zakat_checkout_total => 'Toplam';
+
+  @override
+  String get zakat_reward_message =>
+      'Zekâtınız alındı.\nAllah kabul etsin ve sevabını kat kat artırsın.';
+
+  @override
+  String get zakat_reward_you_gave => 'Verdiniz';
+
+  @override
+  String get admin_filter_all => 'Tümü';
+
+  @override
+  String get admin_delete_payout => 'Bu ödemeyi sil';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Bu ödeme silinsin mi?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Kayıttan kalıcı olarak silinir; onaylanmışsa projenin herkese açık şeffaflık bölümünden de kaldırılır. Toplamlar yeniden hesaplanır.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Ödemeyi sil';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'Ödeme silinemedi.';
 }

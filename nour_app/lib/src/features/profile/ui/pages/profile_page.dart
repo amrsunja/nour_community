@@ -140,6 +140,11 @@ class ProfilePage extends HookConsumerWidget {
                         label: l10n.profile_favourites,
                         onTap: () => nav.toFavorites(),
                       ),
+                      ProfileMenuRow(
+                        icon: Icons.volunteer_activism_outlined,
+                        label: l10n.profile_my_donations,
+                        onTap: () => nav.toMyDonations(),
+                      ),
                     ],
                   ),
                   const UISpace.vert(24),

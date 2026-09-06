@@ -3,6 +3,7 @@ import 'package:nour/src/core/utils/extensions/localized_string_extensions.dart'
 import 'package:nour/src/core/utils/typedefs.dart';
 
 import 'partner_organization_model.dart';
+import 'impact_project_tier_model.dart';
 import 'project_category_model.dart';
 import 'project_story_model.dart';
 
@@ -55,9 +56,18 @@ class ImpactProjectModel extends Equatable {
   final bool eligibleForZakat;
   final int position;
 
+  /// Gallery for the detail carousel (cover first). Empty → [coverImageUrl].
+  final List<String> images;
+
+  /// Quick amounts for the "Donate how much?" sheet.
+  final List<int> presetAmounts;
+
   final PartnerOrganizationModel? organization;
   final ProjectCategoryModel? category;
   final List<ProjectStoryModel> stories;
+
+  /// "Your donation provides" — only populated by the detail query.
+  final List<ImpactProjectTierModel> tiers;
 
   const ImpactProjectModel({
     required this.id,
@@ -103,9 +113,12 @@ class ImpactProjectModel extends Equatable {
     required this.donorsCount,
     required this.eligibleForZakat,
     required this.position,
+    this.images = const [],
+    this.presetAmounts = const [10, 50, 100, 150],
     this.organization,
     this.category,
     this.stories = const [],
+    this.tiers = const [],
   });
 
   static double _toDouble(dynamic v) =>
@@ -171,6 +184,23 @@ class ImpactProjectModel extends Equatable {
           for (final s in stories)
             if (s is Map<String, dynamic>) ProjectStoryModel.fromJson(s),
       ]..sort((a, b) => b.createdAt.compareTo(a.createdAt)),
+      images: [
+        if (json['images'] is List)
+          for (final i in json['images'] as List)
+            if (i is String && i.isNotEmpty) i,
+      ],
+      presetAmounts: json['preset_amounts'] is List &&
+              (json['preset_amounts'] as List).isNotEmpty
+          ? [
+              for (final a in json['preset_amounts'] as List)
+                if (a is num) a.toInt(),
+            ]
+          : const [10, 50, 100, 150],
+      tiers: [
+        if (json['impact_project_tiers'] is List)
+          for (final t in json['impact_project_tiers'] as List)
+            if (t is Map<String, dynamic>) ImpactProjectTierModel.fromJson(t),
+      ]..sort((a, b) => a.position.compareTo(b.position)),
     );
   }
 
@@ -215,6 +245,11 @@ class ImpactProjectModel extends Equatable {
     'ru' => descriptionRu.orLoc(descriptionEn),
     _ => descriptionEn,
   };
+
+  /// Carousel images: the gallery, or the cover as a single slide.
+  List<String> get galleryImages => images.isNotEmpty
+      ? images
+      : [if (coverImageUrl != null && coverImageUrl!.isNotEmpty) coverImageUrl!];
 
   /// Funding progress in `[0, 1]`.
   double get progress => requiredAmount <= 0
@@ -266,8 +301,11 @@ class ImpactProjectModel extends Equatable {
     donorsCount,
     eligibleForZakat,
     position,
+    images,
+    presetAmounts,
     organization,
     category,
     stories,
+    tiers,
   ];
 }

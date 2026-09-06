@@ -1806,4 +1806,361 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'লেনদেন লোড করা যায়নি।';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'আপনি কত দান করতে চান?';
+
+  @override
+  String get donate_frequency_yearly => 'বার্ষিক';
+
+  @override
+  String get donate_frequency_monthly => 'মাসিক';
+
+  @override
+  String get donate_frequency_one_time => 'একবার';
+
+  @override
+  String get donate_how_much => 'আপনি কত দিতে চান?';
+
+  @override
+  String get donate_or => 'অথবা';
+
+  @override
+  String get donate_enter_manually => 'ম্যানুয়ালি পরিমাণ লিখুন';
+
+  @override
+  String get donate_checkout => 'চেকআউট';
+
+  @override
+  String get donate_footer_partners =>
+      'তহবিল যাচাইকৃত অংশীদারদের মাধ্যমে বিতরণ করা হয়';
+
+  @override
+  String get donate_footer_transparent => '১০০% স্বচ্ছ';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / মাস';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / বছর';
+  }
+
+  @override
+  String get impact_donate_now => 'এখনই দান করুন';
+
+  @override
+  String get impact_tiers_title => 'আপনার দান প্রদান করে';
+
+  @override
+  String get checkout_title => 'চেকআউট';
+
+  @override
+  String get checkout_my_donation => 'আমার দান';
+
+  @override
+  String get checkout_options_title => 'দানের বিকল্প';
+
+  @override
+  String get checkout_anonymous_title => 'এটি বেনামী করুন';
+
+  @override
+  String get checkout_anonymous_hint => 'আপনার নাম প্রকাশ্যে দেখানো হবে না';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'লেনদেন ফি বহন করুন (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint => 'আপনার দানের ১০০% প্রকল্পে পৌঁছায়';
+
+  @override
+  String get checkout_payment_method => 'পেমেন্ট পদ্ধতি';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'ডেবিট/ক্রেডিট কার্ড';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'পেমেন্ট করুন';
+
+  @override
+  String checkout_total(String amount) {
+    return 'মোট $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return 'প্রতি মাসে $amount চার্জ করা হবে। আমার দান থেকে যেকোনো সময় বাতিল করুন।';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return 'প্রতি বছর $amount চার্জ করা হবে। আমার দান থেকে যেকোনো সময় বাতিল করুন।';
+  }
+
+  @override
+  String get checkout_processing_title => 'আপনার পেমেন্ট নিশ্চিত করা হচ্ছে…';
+
+  @override
+  String get checkout_processing_message =>
+      'সাধারণত কয়েক সেকেন্ড লাগে। অনুগ্রহ করে অ্যাপ বন্ধ করবেন না।';
+
+  @override
+  String get checkout_timeout_title => 'প্রত্যাশার চেয়ে বেশি সময় লাগছে';
+
+  @override
+  String get checkout_timeout_message =>
+      'আপনার পেমেন্ট এখনও নিশ্চিত হচ্ছে। অপেক্ষা করুন বা পরে আমার দান-এ দেখুন।';
+
+  @override
+  String get checkout_keep_waiting => 'অপেক্ষা চালিয়ে যান';
+
+  @override
+  String get checkout_check_later => 'পরে দেখুন';
+
+  @override
+  String get reward_donation_title => 'জাযাকাল্লাহু খাইর';
+
+  @override
+  String get reward_donation_message =>
+      'আপনার দান গৃহীত হয়েছে।\nআল্লাহ তা কবুল করুন এবং সওয়াব বহুগুণ বাড়িয়ে দিন।';
+
+  @override
+  String get reward_donation_you_donated => 'আপনি দান করেছেন';
+
+  @override
+  String get reward_donation_you_give => 'আপনি দিচ্ছেন';
+
+  @override
+  String get reward_donation_project => 'প্রকল্প';
+
+  @override
+  String reward_donation_via(String org) {
+    return '$org এর মাধ্যমে';
+  }
+
+  @override
+  String get profile_my_donations => 'আমার দান';
+
+  @override
+  String get my_donations_tab_history => 'ইতিহাস';
+
+  @override
+  String get my_donations_tab_recurring => 'পুনরাবৃত্ত';
+
+  @override
+  String get my_donations_empty_history =>
+      'এখনও কোনো দান নেই। আপনার অবদান এখানে দেখা যাবে।';
+
+  @override
+  String get my_donations_empty_recurring => 'কোনো পুনরাবৃত্ত দান নেই।';
+
+  @override
+  String get my_donations_status_succeeded => 'গৃহীত';
+
+  @override
+  String get my_donations_status_failed => 'ব্যর্থ';
+
+  @override
+  String get my_donations_status_refunded => 'ফেরত দেওয়া হয়েছে';
+
+  @override
+  String get my_donations_status_processing => 'প্রক্রিয়াধীন';
+
+  @override
+  String get my_donations_sub_active => 'সক্রিয়';
+
+  @override
+  String get my_donations_sub_past_due => 'পেমেন্ট সমস্যা';
+
+  @override
+  String get my_donations_sub_canceled => 'বাতিল';
+
+  @override
+  String get my_donations_sub_incomplete => 'অপেক্ষমাণ';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return '$date তারিখে শেষ';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'পরবর্তী চার্জ: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'বন্ধ করুন';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'এই পুনরাবৃত্ত দান বন্ধ করবেন?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'বর্তমান সময়কাল শেষ না হওয়া পর্যন্ত সক্রিয় থাকবে, তারপর আর চার্জ হবে না।';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'দান বন্ধ করুন';
+
+  @override
+  String get my_donations_keep => 'রাখুন';
+
+  @override
+  String get my_donations_anonymous => 'বেনামী';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return '$fee ফি সহ';
+  }
+
+  @override
+  String get my_donations_zakat => 'যাকাত';
+
+  @override
+  String get my_donations_sadaqa => 'সদকা';
+
+  @override
+  String get my_donations_recurring_badge => 'পুনরাবৃত্ত';
+
+  @override
+  String get error_api_payment_amount_too_small => 'সর্বনিম্ন দান ১€।';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'প্রতি পেমেন্টে সর্বোচ্চ ১০,০০০€।';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'এই প্রকল্প আর দান গ্রহণ করছে না।';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'এই প্রকল্প যাকাতের জন্য যোগ্য নয়।';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'পুনরাবৃত্ত দান সেট আপ করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'আপনার পুনরাবৃত্ত দান লোড করা যায়নি।';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'পুনরাবৃত্ত দান বন্ধ করা যায়নি। আবার চেষ্টা করুন।';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'আমরা এখনও পেমেন্ট নিশ্চিত করতে পারিনি। কিছুক্ষণ পরে আমার দান দেখুন।';
+
+  @override
+  String get admin_change_status_title => 'পেআউট স্ট্যাটাস পরিবর্তন করুন';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'শুধুমাত্র নিশ্চিত পেআউট প্রকল্প পৃষ্ঠায় প্রকাশ্যে দেখানো হয়।';
+
+  @override
+  String get admin_status_pending_hint =>
+      'রেকর্ড করা হয়েছে, ট্রান্সফার এখনও পাঠানো হয়নি';
+
+  @override
+  String get admin_status_sent_hint =>
+      'ট্রান্সফার পাঠানো হয়েছে, অংশীদারের নিশ্চিতকরণের অপেক্ষায়';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'অংশীদার পেয়েছে — দাতাদের কাছে দৃশ্যমান';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'পেআউট স্ট্যাটাস আপডেট করা যায়নি।';
+
+  @override
+  String get zakat_alloc_title => 'যোগ্য নূর প্রকল্পে আপনার যাকাত দিন';
+
+  @override
+  String get zakat_alloc_info =>
+      'শুধুমাত্র কুরআনের ৮টি যাকাত খাতে (সূরা ৯:৬০) উপযুক্ত প্রকল্পগুলো এখানে দেখানো হয়';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'এই মুহূর্তে যাকাতযোগ্য কোনো প্রকল্প নেই';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'এখনই অ্যাপের মাধ্যমে যাকাত দেওয়া যাচ্ছে না — চিন্তা করবেন না, শীঘ্রই নতুন প্রকল্প যোগ হবে ইনশাআল্লাহ।';
+
+  @override
+  String get zakat_alloc_owed => 'প্রদেয় যাকাত';
+
+  @override
+  String get zakat_alloc_allocated => 'বরাদ্দকৃত যাকাত';
+
+  @override
+  String get zakat_alloc_fully => 'সম্পূর্ণ বরাদ্দ';
+
+  @override
+  String get zakat_alloc_remaining => 'অবশিষ্ট';
+
+  @override
+  String get zakat_alloc_extra => 'অতিরিক্ত (সদকা হিসেবে গণ্য)';
+
+  @override
+  String get zakat_checkout_title => 'যাকাত';
+
+  @override
+  String get zakat_checkout_my_zakat => 'আমার যাকাত';
+
+  @override
+  String get zakat_checkout_allocated_to => 'বরাদ্দ করা হয়েছে';
+
+  @override
+  String get zakat_checkout_fees => 'লেনদেন ফি';
+
+  @override
+  String get zakat_checkout_total => 'মোট';
+
+  @override
+  String get zakat_reward_message =>
+      'আপনার যাকাত গৃহীত হয়েছে।\nআল্লাহ তা কবুল করুন এবং সওয়াব বহুগুণ বাড়িয়ে দিন।';
+
+  @override
+  String get zakat_reward_you_gave => 'আপনি দিয়েছেন';
+
+  @override
+  String get admin_filter_all => 'সব';
+
+  @override
+  String get admin_delete_payout => 'এই পেআউট মুছুন';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'এই পেআউট মুছবেন?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'এটি স্থায়ীভাবে লেজার থেকে মুছে যাবে এবং নিশ্চিত হয়ে থাকলে প্রকল্পের পাবলিক স্বচ্ছতা বিভাগ থেকেও। মোট হিসাব পুনরায় গণনা হবে।';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'পেআউট মুছুন';
+
+  @override
+  String get error_api_admin_payout_delete_failed => 'পেআউট মুছা যায়নি।';
 }

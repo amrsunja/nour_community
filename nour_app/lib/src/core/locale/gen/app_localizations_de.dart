@@ -1830,4 +1830,365 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_admin_transactions_load_failed =>
       'Die Transaktionen konnten nicht geladen werden.';
+
+  @override
+  String get l10nPaymentsV2 =>
+      '☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠';
+
+  @override
+  String get donate_sheet_title => 'Wie viel möchten Sie spenden?';
+
+  @override
+  String get donate_frequency_yearly => 'Jährlich';
+
+  @override
+  String get donate_frequency_monthly => 'Monatlich';
+
+  @override
+  String get donate_frequency_one_time => 'Einmalig';
+
+  @override
+  String get donate_how_much => 'Wie viel möchten Sie geben?';
+
+  @override
+  String get donate_or => 'Oder';
+
+  @override
+  String get donate_enter_manually => 'Betrag manuell eingeben';
+
+  @override
+  String get donate_checkout => 'Zur Kasse';
+
+  @override
+  String get donate_footer_partners =>
+      'Die Mittel werden über geprüfte Partner verteilt';
+
+  @override
+  String get donate_footer_transparent => '100% transparent';
+
+  @override
+  String donate_per_month(String amount) {
+    return '$amount / Monat';
+  }
+
+  @override
+  String donate_per_year(String amount) {
+    return '$amount / Jahr';
+  }
+
+  @override
+  String get impact_donate_now => 'Jetzt spenden';
+
+  @override
+  String get impact_tiers_title => 'Ihre Spende ermöglicht';
+
+  @override
+  String get checkout_title => 'Kasse';
+
+  @override
+  String get checkout_my_donation => 'Meine Spende';
+
+  @override
+  String get checkout_options_title => 'Spendenoptionen';
+
+  @override
+  String get checkout_anonymous_title => 'Anonym spenden';
+
+  @override
+  String get checkout_anonymous_hint => 'Ihr Name erscheint nicht öffentlich';
+
+  @override
+  String checkout_cover_fees_title(String fee) {
+    return 'Transaktionsgebühren übernehmen (+$fee)';
+  }
+
+  @override
+  String get checkout_cover_fees_hint =>
+      '100% Ihrer Spende kommt den Projekten zugute';
+
+  @override
+  String get checkout_payment_method => 'Zahlungsmethode';
+
+  @override
+  String get checkout_method_paypal => 'PayPal';
+
+  @override
+  String get checkout_method_card => 'Debit-/Kreditkarte';
+
+  @override
+  String get checkout_method_apple_pay => 'Apple Pay';
+
+  @override
+  String get checkout_method_google_pay => 'Google Pay';
+
+  @override
+  String get checkout_pay_button => 'Bezahlen';
+
+  @override
+  String checkout_total(String amount) {
+    return 'Gesamt $amount';
+  }
+
+  @override
+  String checkout_recurring_note_month(String amount) {
+    return '$amount wird monatlich abgebucht. Jederzeit unter Meine Spenden kündbar.';
+  }
+
+  @override
+  String checkout_recurring_note_year(String amount) {
+    return '$amount wird jährlich abgebucht. Jederzeit unter Meine Spenden kündbar.';
+  }
+
+  @override
+  String get checkout_processing_title => 'Zahlung wird bestätigt…';
+
+  @override
+  String get checkout_processing_message =>
+      'Das dauert meist nur wenige Sekunden. Bitte App nicht schließen.';
+
+  @override
+  String get checkout_timeout_title => 'Dauert länger als erwartet';
+
+  @override
+  String get checkout_timeout_message =>
+      'Ihre Zahlung wird noch bestätigt. Warten Sie weiter oder prüfen Sie den Status später unter Meine Spenden.';
+
+  @override
+  String get checkout_keep_waiting => 'Weiter warten';
+
+  @override
+  String get checkout_check_later => 'Später prüfen';
+
+  @override
+  String get reward_donation_title => 'Jazak Allahu Khayr';
+
+  @override
+  String get reward_donation_message =>
+      'Ihre Spende ist eingegangen.\nMöge Allah sie annehmen und den Lohn vervielfachen.';
+
+  @override
+  String get reward_donation_you_donated => 'Sie haben gespendet';
+
+  @override
+  String get reward_donation_you_give => 'Sie geben';
+
+  @override
+  String get reward_donation_project => 'Projekt';
+
+  @override
+  String reward_donation_via(String org) {
+    return 'Über $org';
+  }
+
+  @override
+  String get profile_my_donations => 'Meine Spenden';
+
+  @override
+  String get my_donations_tab_history => 'Verlauf';
+
+  @override
+  String get my_donations_tab_recurring => 'Regelmäßig';
+
+  @override
+  String get my_donations_empty_history =>
+      'Noch keine Spenden. Ihre Beiträge erscheinen hier.';
+
+  @override
+  String get my_donations_empty_recurring => 'Keine regelmäßigen Spenden.';
+
+  @override
+  String get my_donations_status_succeeded => 'Erhalten';
+
+  @override
+  String get my_donations_status_failed => 'Fehlgeschlagen';
+
+  @override
+  String get my_donations_status_refunded => 'Erstattet';
+
+  @override
+  String get my_donations_status_processing => 'In Bearbeitung';
+
+  @override
+  String get my_donations_sub_active => 'Aktiv';
+
+  @override
+  String get my_donations_sub_past_due => 'Zahlungsproblem';
+
+  @override
+  String get my_donations_sub_canceled => 'Gekündigt';
+
+  @override
+  String get my_donations_sub_incomplete => 'Ausstehend';
+
+  @override
+  String my_donations_sub_ends_on(String date) {
+    return 'Endet am $date';
+  }
+
+  @override
+  String my_donations_next_charge(String date) {
+    return 'Nächste Abbuchung: $date';
+  }
+
+  @override
+  String get my_donations_cancel => 'Beenden';
+
+  @override
+  String get my_donations_cancel_confirm_title =>
+      'Diese regelmäßige Spende beenden?';
+
+  @override
+  String get my_donations_cancel_confirm_message =>
+      'Sie bleibt bis zum Ende des aktuellen Zeitraums aktiv, danach erfolgen keine Abbuchungen mehr.';
+
+  @override
+  String get my_donations_cancel_confirm_yes => 'Spende beenden';
+
+  @override
+  String get my_donations_keep => 'Behalten';
+
+  @override
+  String get my_donations_anonymous => 'Anonym';
+
+  @override
+  String my_donations_fee_included(String fee) {
+    return 'inkl. $fee Gebühren';
+  }
+
+  @override
+  String get my_donations_zakat => 'Zakat';
+
+  @override
+  String get my_donations_sadaqa => 'Sadaqa';
+
+  @override
+  String get my_donations_recurring_badge => 'Regelmäßig';
+
+  @override
+  String get error_api_payment_amount_too_small =>
+      'Die Mindestspende beträgt 1€.';
+
+  @override
+  String get error_api_payment_amount_too_large =>
+      'Das Maximum pro Zahlung beträgt 10.000€.';
+
+  @override
+  String get error_api_payment_project_inactive =>
+      'Dieses Projekt nimmt keine Spenden mehr an.';
+
+  @override
+  String get error_api_payment_not_zakat_eligible =>
+      'Dieses Projekt ist nicht zakat-berechtigt.';
+
+  @override
+  String get error_api_payment_subscription_failed =>
+      'Die regelmäßige Spende konnte nicht eingerichtet werden. Bitte erneut versuchen.';
+
+  @override
+  String get error_api_payment_subscriptions_load_failed =>
+      'Ihre regelmäßigen Spenden konnten nicht geladen werden.';
+
+  @override
+  String get error_api_payment_subscription_cancel_failed =>
+      'Die regelmäßige Spende konnte nicht beendet werden. Bitte erneut versuchen.';
+
+  @override
+  String get error_api_payment_confirmation_timeout =>
+      'Die Zahlung konnte noch nicht bestätigt werden. Prüfen Sie gleich Meine Spenden.';
+
+  @override
+  String get admin_change_status_title => 'Auszahlungsstatus ändern';
+
+  @override
+  String get admin_change_status_subtitle =>
+      'Nur BESTÄTIGTE Auszahlungen werden öffentlich auf der Projektseite angezeigt.';
+
+  @override
+  String get admin_status_pending_hint =>
+      'Erfasst, Überweisung noch nicht gesendet';
+
+  @override
+  String get admin_status_sent_hint =>
+      'Überweisung gesendet, Partnerbestätigung ausstehend';
+
+  @override
+  String get admin_status_confirmed_hint =>
+      'Vom Partner erhalten — für Spender sichtbar';
+
+  @override
+  String get error_api_admin_payout_update_failed =>
+      'Der Auszahlungsstatus konnte nicht aktualisiert werden.';
+
+  @override
+  String get zakat_alloc_title =>
+      'Geben Sie Ihre Zakat an berechtigte Nour-Projekte';
+
+  @override
+  String get zakat_alloc_info =>
+      'Hier werden nur Projekte angezeigt, die den 8 koranischen Zakat-Kategorien entsprechen (Sure 9:60)';
+
+  @override
+  String get zakat_alloc_empty_title =>
+      'Derzeit keine zakat-berechtigten Projekte';
+
+  @override
+  String get zakat_alloc_empty_message =>
+      'Sie können Ihre Zakat noch nicht über die App geben — keine Sorge, neue berechtigte Projekte kommen bald, insha’Allah.';
+
+  @override
+  String get zakat_alloc_owed => 'Fällige Zakat';
+
+  @override
+  String get zakat_alloc_allocated => 'Zugeteilte Zakat';
+
+  @override
+  String get zakat_alloc_fully => 'Vollständig zugeteilt';
+
+  @override
+  String get zakat_alloc_remaining => 'Verbleibend';
+
+  @override
+  String get zakat_alloc_extra => 'Mehrbetrag (zählt als Sadaqa)';
+
+  @override
+  String get zakat_checkout_title => 'Zakat';
+
+  @override
+  String get zakat_checkout_my_zakat => 'Meine Zakat';
+
+  @override
+  String get zakat_checkout_allocated_to => 'Zugeteilt an';
+
+  @override
+  String get zakat_checkout_fees => 'Transaktionsgebühren';
+
+  @override
+  String get zakat_checkout_total => 'Gesamt';
+
+  @override
+  String get zakat_reward_message =>
+      'Ihre Zakat ist eingegangen.\nMöge Allah sie annehmen und den Lohn vervielfachen.';
+
+  @override
+  String get zakat_reward_you_gave => 'Sie haben gegeben';
+
+  @override
+  String get admin_filter_all => 'Alle';
+
+  @override
+  String get admin_delete_payout => 'Diese Auszahlung löschen';
+
+  @override
+  String get admin_delete_payout_confirm_title => 'Diese Auszahlung löschen?';
+
+  @override
+  String get admin_delete_payout_confirm_message =>
+      'Sie verschwindet dauerhaft aus dem Register und, falls bestätigt, aus dem öffentlichen Transparenzbereich des Projekts. Die Summen werden neu berechnet.';
+
+  @override
+  String get admin_delete_payout_confirm_yes => 'Auszahlung löschen';
+
+  @override
+  String get error_api_admin_payout_delete_failed =>
+      'Die Auszahlung konnte nicht gelöscht werden.';
 }

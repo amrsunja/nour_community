@@ -16,6 +16,16 @@ class ImpactFormat {
     return '$n${symbol(currency)}';
   }
 
+  /// `0.4, 'EUR'` → `0.40€`; `12.5` → `12.50€`; `100` → `100€`.
+  /// Used where cents matter (fees, totals).
+  static String moneyPrecise(double amount, String currency) {
+    final isWhole = amount == amount.roundToDouble();
+    final n = isWhole
+        ? NumberFormat.decimalPattern().format(amount.round())
+        : NumberFormat('#,##0.00').format(amount);
+    return '$n${symbol(currency)}';
+  }
+
   /// `12000` → `12k+`, `850` → `850`.
   static String compactCount(int n) {
     if (n >= 1000000) return '${(n / 1000000).floor()}M+';

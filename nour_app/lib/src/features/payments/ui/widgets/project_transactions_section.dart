@@ -62,7 +62,7 @@ class ProjectTransactionsSection extends ConsumerWidget {
                 UICard(
                   disableBorder: true,
                   padding: const EdgeInsets.all(14),
-                  color: UIColorsToken.bgSecondaryGreen,
+                  color: UIColorsToken.bgSurface,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -121,6 +121,7 @@ class _PublicPayoutTile extends StatelessWidget {
 
     return UICard(
       disableBorder: true,
+      color: UIColorsToken.bgPrimary,
       padding: const EdgeInsets.all(14),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -6,22 +6,27 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/share_services.dart';
 import 'package:nour/src/features/impact/ui/widgets/category_badge_widget.dart';
 import 'package:nour/src/features/impact/ui/widgets/donors_avatars_widget.dart';
-import 'package:nour/src/features/payments/ui/widgets/donation_sheet.dart';
+import 'package:nour/src/features/impact/ui/widgets/project_cover_carousel.dart';
+import 'package:nour/src/features/impact/ui/widgets/project_tiers_section.dart';
+import 'package:nour/src/features/payments/ui/widgets/donation_amount_sheet.dart';
 import 'package:nour/src/features/payments/ui/widgets/project_transactions_section.dart';
 
 import '../../data/datasources/impact_remote_datasource.dart';
 import '../../data/models/impact_project_model.dart';
+import '../../data/models/impact_project_tier_model.dart';
 import '../../data/models/partner_organization_model.dart';
 import '../state_management/impact_project_detail_provider.dart';
 import '../widgets/impact_money.dart';
 import '../widgets/project_story_card_widget.dart';
 
-/// Impact project detail. Cover, funding progress, about section, partner
-/// organization and the field-stories timeline. The donation CTA / "Your
-/// donation provides" block is intentionally left out (handled separately).
+/// Impact project detail. Cover carousel, funding progress, about section,
+/// "Your donation provides" tiers, partner organization, field-stories timeline
+/// and the transparency section. The "Donate now" CTA (and a tier tap) opens the
+/// amount sheet → Checkout page → Donation reward page.
 @RoutePage()
 class ImpactProjectDetailPage extends HookConsumerWidget {
   const ImpactProjectDetailPage({
@@ -54,17 +59,26 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
       );
     }
 
-    Future<void> donate() async {
+    final nav = ref.read(navigationServicesProvider);
+
+    /// Step 1 (amount sheet) → step 2 (checkout). The impact-project flow is
+    /// always a sadaqa (`isZakat = false`); the zakat calculator will reuse the
+    /// checkout with `isZakat = true`.
+    Future<void> donate({double? initialAmount}) async {
       if (project == null) return;
-      final ok = await DonationSheet.show(
+      final selection = await DonationAmountSheet.show(
         context,
-        projectId: project.id,
-        projectTitle: project.title(langCode),
         currency: project.currency,
-        eligibleForZakat: project.eligibleForZakat,
+        presetAmounts: project.presetAmounts,
+        initialAmount: initialAmount,
       );
-      // A confirmed payment updates collected_amount + donors_count — refresh.
-      if (ok == true) presenter.refresh();
+      if (selection == null) return;
+      nav.toCheckout(
+        projectId: project.id,
+        amount: selection.amount,
+        frequency: selection.frequency,
+        isZakat: false,
+      );
     }
 
     return Scaffold(
@@ -88,11 +102,9 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
           : SafeArea(
               minimum: const EdgeInsets.fromLTRB(16, 8, 16, 12),
               child: UIButton.primary(
-                label: project.eligibleForZakat
-                    ? l10n.impact_donate_or_zakat
-                    : l10n.impact_donate,
+                label: l10n.impact_donate_now,
                 fullWidth: true,
-                onTap: donate,
+                onTap: () => donate(),
               ),
             ),
       body: SafeArea(
@@ -101,7 +113,12 @@ class ImpactProjectDetailPage extends HookConsumerWidget {
             ? const Center(child: UICircularProgressBar())
             : project == null
             ? _DetailError(onRetry: presenter.init)
-            : _DetailBody(project: project, langCode: langCode, l10n: l10n),
+            : _DetailBody(
+                project: project,
+                langCode: langCode,
+                l10n: l10n,
+                onTierTap: (tier) => donate(initialAmount: tier.amount),
+              ),
       ),
     );
   }
@@ -112,18 +129,18 @@ class _DetailBody extends HookWidget {
     required this.project,
     required this.langCode,
     required this.l10n,
+    required this.onTierTap,
   });
 
   final ImpactProjectModel project;
   final String langCode;
   final AppLocale l10n;
+  final ValueChanged<ImpactProjectTierModel> onTierTap;
 
   @override
   Widget build(BuildContext context) {
     final typo = UITheme.of(context).typo;
     final expanded = useState(false);
-    final coverUrl =
-        ImpactRemoteDatasource.publicStoryImageUrl(project.coverImageUrl);
     final description = project.description(langCode);
     final subtitle = project.subtitle(langCode);
     final isUrgent = project.category?.titleEn == 'Urgent';
@@ -134,19 +151,8 @@ class _DetailBody extends HookWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Cover.
-          if (coverUrl != null)
-            ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: CachedNetworkImage(
-                imageUrl: coverUrl,
-                height: 210,
-                width: double.infinity,
-                fit: BoxFit.cover,
-                placeholder: (_, _) => Container(height: 210, color: UIColorsToken.bgSurface),
-                errorWidget: (_, _, _) => Container(height: 210, color: UIColorsToken.bgSurface),
-              ),
-            ),
+          // Cover gallery (carousel + dots).
+          ProjectCoverCarousel(images: project.galleryImages),
           const UISpace.vert(16),
 
           if (categoryTitle != null && categoryTitle.isNotEmpty) ...[
@@ -206,6 +212,18 @@ class _DetailBody extends HookWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+            ),
+          ],
+
+          // "Your donation provides" — tiers (tap → amount sheet pre-filled).
+          if (project.tiers.isNotEmpty) ...[
+            _buildDivider(),
+            ProjectTiersSection(
+              title: l10n.impact_tiers_title,
+              tiers: project.tiers,
+              currency: project.currency,
+              langCode: langCode,
+              onTierTap: onTierTap,
             ),
           ],
 
@@ -294,7 +312,8 @@ class _ProgressCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: Row(
                 children: [
-                  DonorsAvatarsWidget(),
+                  DonorsAvatarsWidget(projectId: project.id),
+                  const UISpace.horz(6),
                   Text(
                     l10n.impact_donors(ImpactFormat.compactCount(project.donorsCount)),
                     style: typo.inter.bodySmall.copyWith(
@@ -388,33 +407,6 @@ class _PartnerCard extends StatelessWidget {
     height: 44,
     fit: BoxFit.contain,
   );
-}
-
-class _Badge extends StatelessWidget {
-  const _Badge({required this.label, required this.urgent});
-
-  final String label;
-  final bool urgent;
-
-  @override
-  Widget build(BuildContext context) {
-    final typo = UITheme.of(context).typo;
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
-      decoration: BoxDecoration(
-        color: urgent ? UIColorsToken.red : null,
-        gradient: urgent ? null : UIColorsToken.bgPriYellow,
-        borderRadius: BorderRadius.circular(100),
-      ),
-      child: Text(
-        label,
-        style: typo.inter.bodySmall.copyWith(
-          color: urgent ? UIColorsToken.white : UIColorsToken.black,
-          fontWeight: FontWeight.w600,
-        ),
-      ),
-    );
-  }
 }
 
 class _SectionTitle extends StatelessWidget {
