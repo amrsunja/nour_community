@@ -96,6 +96,7 @@ dependencies:
   firebase_core: ^4.10.0
   firebase_analytics: ^12.4.2
   firebase_crashlytics: ^5.2.3
+  firebase_messaging: ^16.1.0
 
   # Utils
   flutter_inappwebview: ^6.1.5
@@ -113,6 +114,9 @@ dependencies:
   package_info_plus: ^9.0.0
   animated_text_kit: ^4.3.0
   geolocator: ^14.0.2
+  # Mosque search map (OpenStreetMap tiles, no API key)
+  flutter_map: ^8.1.1
+  latlong2: ^0.9.1
   geocoding: ^3.0.0
   shared_preferences: ^2.5.5
   share_plus: ^12.0.0

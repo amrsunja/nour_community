@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/errors/failures/failures.dart';
@@ -14,6 +16,7 @@ import 'package:nour/src/features/mosque_onboarding/data/datasources/mosque_onbo
 import 'package:nour/src/features/mosque_onboarding/data/models/mosque_onboarding_draft.dart';
 import 'package:nour/src/features/mosques/data/mosque_repo.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
+import 'package:nour/src/features/notifications/ui/state_management/push_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../../data/auth_repo.dart';
@@ -121,6 +124,7 @@ class AuthPresenter extends Presenter<AuthState> {
         await _loadMyMosqueIfNeeded();
         state = state.copyWith(isAuthenticated: true);
         _identify();
+        unawaited(ref.read(pushProvider.notifier).syncToken());
       },
       (error) {
         appEvents.send(ShowErrorEvent(error));
@@ -148,6 +152,7 @@ class AuthPresenter extends Presenter<AuthState> {
     await ref.read(mosqueOnboardingLocalDataProvider).clear();
     state = state.copyWith(isLoading: false, isAuthenticated: true);
     _identify();
+    unawaited(ref.read(pushProvider.notifier).syncToken());
     ref.read(navigationServicesProvider).toOnboarding();
     return true;
   }
@@ -181,6 +186,7 @@ class AuthPresenter extends Presenter<AuthState> {
   Future<bool> _afterLogin() async {
     final ok = await ref.read(profileProvider.notifier).initProfile();
     if (!ok) return false;
+    unawaited(ref.read(pushProvider.notifier).syncToken());
 
     final profile = ref.read(profileProvider).profile!;
     final draftStore = ref.read(mosqueOnboardingLocalDataProvider);
@@ -325,6 +331,7 @@ class AuthPresenter extends Presenter<AuthState> {
     if (state.isLoading) return false;
     state = state.copyWith(isLoading: true);
 
+    await ref.read(pushProvider.notifier).revoke();
     final response = await repo.logout();
 
     final result = response.when(
@@ -353,6 +360,7 @@ class AuthPresenter extends Presenter<AuthState> {
     if (state.isLoading) return false;
     state = state.copyWith(isLoading: true);
 
+    await ref.read(pushProvider.notifier).revoke();
     final response = await repo.deleteUser();
 
     final result = response.when(

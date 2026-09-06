@@ -107,3 +107,6 @@ verify_jwt = true
 enabled = false
 port = 54327
 backend = "postgres"
+
+[functions.send-push]
+verify_jwt = false

@@ -871,5 +871,19 @@
 	"error_api_mosque_post_limit_reached": "You reached the limit of active posts of this type. Archive one first.",
 	"error_api_mosque_broadcast_quota_exceeded": "You already sent the maximum notifications this week.",
 	"error_api_mosque_not_approved": "Your mosque is not approved yet.",
-	"error_api_push_register_failed": "Couldn't register this device for notifications."
+	"error_api_push_register_failed": "Couldn't register this device for notifications.",
+	"push_settings_title": "Push notifications",
+	"push_settings_description": "Choose which notifications Nour may send to this device. Prayer and adhkar reminders are managed in Reminders.",
+	"push_kind_mosque_post": "Mosque news",
+	"push_kind_mosque_post_hint": "Announcements from the mosques you follow",
+	"push_kind_mosque_event": "Events",
+	"push_kind_mosque_event_hint": "Conferences, janazas, volunteering",
+	"push_kind_mosque_campaign": "Fundraising campaigns",
+	"push_kind_mosque_campaign_hint": "New campaigns and deadlines",
+	"push_kind_mosque_broadcast": "Messages from the mosque",
+	"push_kind_mosque_broadcast_hint": "Direct messages sent by the mosque (max 2 per week)",
+	"push_kind_mosque_status": "Mosque account",
+	"push_kind_mosque_status_hint": "Review status and important account updates",
+	"push_kind_system": "Nour updates",
+	"push_kind_system_hint": "Occasional news about the app"
 }

@@ -4,7 +4,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/widgets/splash_widget.dart';
 
+import 'package:nour/src/core/routing/deep_links_services.dart';
+
 import 'auth/ui/state_management/auth_provider.dart';
+import 'notifications/ui/state_management/push_provider.dart';
 
 @RoutePage()
 class RootPage extends HookConsumerWidget {
@@ -17,6 +20,14 @@ class RootPage extends HookConsumerWidget {
       await Future.delayed(Duration(seconds: 3));
 
       await ref.read(authProvider.notifier).authorization();
+
+      // Push: FCM init + replay of the notification that launched the app.
+      final push = ref.read(pushProvider.notifier);
+      await push.initialize();
+      WidgetsBinding.instance.addPostFrameCallback((_) async {
+        await push.consumeInitialMessage();
+        await ref.read(deepLinksServicesProvider).flushPending();
+      });
     });
 
     return FutureBuilder(

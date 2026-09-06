@@ -813,5 +813,19 @@
 	"error_api_mosque_post_limit_reached": "Vous avez atteint la limite de publications actives de ce type. Archivez-en une d'abord.",
 	"error_api_mosque_broadcast_quota_exceeded": "Vous avez déjà envoyé le maximum de notifications cette semaine.",
 	"error_api_mosque_not_approved": "Votre mosquée n'est pas encore approuvée.",
-	"error_api_push_register_failed": "Impossible d'enregistrer cet appareil pour les notifications."
+	"error_api_push_register_failed": "Impossible d'enregistrer cet appareil pour les notifications.",
+	"push_settings_title": "Notifications push",
+	"push_settings_description": "Choisissez les notifications que Nour peut envoyer sur cet appareil. Les rappels de prière et d'adhkar se gèrent dans Rappels.",
+	"push_kind_mosque_post": "Actualités de la mosquée",
+	"push_kind_mosque_post_hint": "Annonces des mosquées que vous suivez",
+	"push_kind_mosque_event": "Événements",
+	"push_kind_mosque_event_hint": "Conférences, janazas, bénévolat",
+	"push_kind_mosque_campaign": "Campagnes de collecte",
+	"push_kind_mosque_campaign_hint": "Nouvelles campagnes et échéances",
+	"push_kind_mosque_broadcast": "Messages de la mosquée",
+	"push_kind_mosque_broadcast_hint": "Messages directs de la mosquée (max 2 par semaine)",
+	"push_kind_mosque_status": "Compte mosquée",
+	"push_kind_mosque_status_hint": "Statut de vérification et mises à jour importantes",
+	"push_kind_system": "Nouveautés Nour",
+	"push_kind_system_hint": "Nouvelles occasionnelles sur l'application"
 }

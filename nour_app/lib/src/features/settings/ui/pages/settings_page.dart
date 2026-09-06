@@ -39,6 +39,15 @@ class SettingsPage extends HookConsumerWidget {
           nav.toLanguageSettings();
         },
       ),
+      _SettingsItem(
+        icon: UIIconsToken.icons.notif,
+        label: l10n.push_settings_title,
+        onTap: () {
+          analytics.trackButtonClick('push_settings',
+              screen: AnalyticsScreens.settings);
+          nav.toPushSettings();
+        },
+      ),
     ];
 
     return Scaffold(
