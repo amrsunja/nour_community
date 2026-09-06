@@ -116,3 +116,21 @@ verify_jwt = true
 
 [functions.review-mosque]
 verify_jwt = true
+
+[functions.mosque-stripe-onboarding]
+verify_jwt = true
+
+[functions.create-mosque-payment-intent]
+verify_jwt = true
+
+[functions.create-mosque-subscription]
+verify_jwt = true
+
+[functions.cancel-mosque-subscription]
+verify_jwt = true
+
+[functions.stripe-connect-webhook]
+verify_jwt = false
+
+[functions.generate-mosque-receipt]
+verify_jwt = true
