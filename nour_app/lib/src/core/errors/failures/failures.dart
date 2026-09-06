@@ -236,6 +236,34 @@ class ServerFailure extends Failure {
         return l.error_api_admin_payout_proof_upload_failed;
       case ApiErrorKey.adminTransactionsLoadFailed:
         return l.error_api_admin_transactions_load_failed;
+
+      // Mosques
+      case ApiErrorKey.mosqueLoadFailed:
+        return l.error_api_mosque_load_failed;
+      case ApiErrorKey.mosqueSaveFailed:
+        return l.error_api_mosque_save_failed;
+      case ApiErrorKey.mosqueSearchFailed:
+        return l.error_api_mosque_search_failed;
+      case ApiErrorKey.mosqueRegisterFailed:
+        return l.error_api_mosque_register_failed;
+      case ApiErrorKey.mosqueRegisterIsWorshipper:
+        return l.error_api_mosque_register_is_worshipper;
+      case ApiErrorKey.mosqueRegisterAnonymous:
+        return l.error_api_mosque_register_anonymous;
+      case ApiErrorKey.mosqueRegisterInvalidSiren:
+        return l.error_api_mosque_register_invalid_siren;
+      case ApiErrorKey.mosqueRegisterInvalidRna:
+        return l.error_api_mosque_register_invalid_rna;
+      case ApiErrorKey.mosqueRegisterDuplicate:
+        return l.error_api_mosque_register_duplicate;
+      case ApiErrorKey.mosquePostLimitReached:
+        return l.error_api_mosque_post_limit_reached;
+      case ApiErrorKey.mosqueBroadcastQuotaExceeded:
+        return l.error_api_mosque_broadcast_quota_exceeded;
+      case ApiErrorKey.mosqueNotApproved:
+        return l.error_api_mosque_not_approved;
+      case ApiErrorKey.pushRegisterFailed:
+        return l.error_api_push_register_failed;
     }
   }
 }

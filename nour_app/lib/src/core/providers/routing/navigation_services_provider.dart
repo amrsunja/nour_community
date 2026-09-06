@@ -5,5 +5,6 @@ import '../../routing/navigation_services.dart';
 
 
 final navigationServicesProvider = Provider((ref) => NavigationServicesImpl(
-	router: AppRouter(ref)
+	router: AppRouter(ref),
+	ref: ref,
 ));

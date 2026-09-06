@@ -119,4 +119,19 @@ enum ApiErrorKey {
   adminPayoutDeleteFailed,
   adminPayoutProofUploadFailed,
   adminTransactionsLoadFailed,
+
+  // Mosques
+  mosqueLoadFailed,
+  mosqueSaveFailed,
+  mosqueSearchFailed,
+  mosqueRegisterFailed,
+  mosqueRegisterIsWorshipper,
+  mosqueRegisterAnonymous,
+  mosqueRegisterInvalidSiren,
+  mosqueRegisterInvalidRna,
+  mosqueRegisterDuplicate,
+  mosquePostLimitReached,
+  mosqueBroadcastQuotaExceeded,
+  mosqueNotApproved,
+  pushRegisterFailed,
 }

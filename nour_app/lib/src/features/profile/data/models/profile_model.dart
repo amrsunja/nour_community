@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:nour/src/core/utils/enums/account_type.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
@@ -17,6 +18,11 @@ class ProfileModel extends Equatable {
   final DateTime? lastStreakDate;
   final int earnedAjrCount;
   final bool isAdmin;
+  /// Worshipper (default) or mosque manager — drives the whole routing (§3).
+  final AccountType accountType;
+  final String? countryCode;
+  /// Per-kind push toggles; a missing key means enabled.
+  final Map<String, dynamic> pushPrefs;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -33,9 +39,16 @@ class ProfileModel extends Equatable {
     required this.lastStreakDate,
     required this.earnedAjrCount,
     required this.isAdmin,
+    this.accountType = AccountType.user,
+    this.countryCode,
+    this.pushPrefs = const {},
     required this.createdAt,
     required this.updatedAt,
   });
+
+  bool get isMosqueAccount => accountType == AccountType.mosque;
+
+  bool pushEnabled(String kind) => pushPrefs[kind] != false;
 
   factory ProfileModel.fromJson(Json json) => ProfileModel(
     id: json['id'],
@@ -49,7 +62,10 @@ class ProfileModel extends Equatable {
     currentStreak: json['current_streak'],
     lastStreakDate: DateTime.tryParse(json['last_streak_date'] ?? ''),
     earnedAjrCount: json['earned_ajr_count'],
-    isAdmin: json['is_admin'],
+    isAdmin: json['is_admin'] ?? false,
+    accountType: AccountType.fromString(json['account_type'] as String?),
+    countryCode: json['country_code'] as String?,
+    pushPrefs: (json['push_prefs'] as Map?)?.cast<String, dynamic>() ?? const {},
     createdAt: DateTime.tryParse(json['created_at'] ?? ''),
     updatedAt: DateTime.tryParse(json['updated_at'] ?? ''),
   );
@@ -68,6 +84,9 @@ class ProfileModel extends Equatable {
     lastStreakDate,
     earnedAjrCount,
     isAdmin,
+    accountType,
+    countryCode,
+    pushPrefs,
     createdAt,
     updatedAt,
   ];

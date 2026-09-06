@@ -1,4 +1,6 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/routing/app_router.gr.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/core/routing/route_paths.dart';
 import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 
@@ -9,6 +11,27 @@ abstract class NavigationServices {
 
 	void toSignIn();
 	void toRoot();
+	void toWelcome();
+	void toProfileType();
+	void toMosqueOnboarding();
+	void toMosqueReview();
+	void toMosqueAdmin();
+	/// Mosque account: admin shell when approved, review page otherwise.
+	void toMosqueAdminOrReview();
+	void toPushSettings();
+
+	// Mosques (worshipper side)
+	void toMosqueSearch();
+	void toMosqueProfile({required int mosqueId, String? tab, int? postId});
+	void toMosqueBecomeMember({required int mosqueId});
+	void toMosqueCampaign({required int mosqueId, required int campaignId});
+	void toMosqueCheckout({
+		required int mosqueId,
+		required double amount,
+		required String frequency,
+		int? campaignId,
+		int? membershipId,
+	});
 	void toHome({bool openSignIn = false});
 	void navigateToHome();
 	void toSettings();
@@ -72,9 +95,11 @@ abstract class NavigationServices {
 
 class NavigationServicesImpl implements NavigationServices {
 	final AppRouter router;
+	final Ref ref;
 
 	NavigationServicesImpl({
-		required this.router
+		required this.router,
+		required this.ref,
 	});
 
   @override
@@ -93,6 +118,79 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toOnboarding() {
 		router.replaceAll([OnboardingRoute()]);
+  }
+
+  @override
+  void toWelcome() {
+		router.replaceAll([const WelcomeRoute()]);
+  }
+
+  @override
+  void toProfileType() {
+		router.push(const ProfileTypeRoute());
+  }
+
+  @override
+  void toMosqueOnboarding() {
+		router.replaceAll([const MosqueOnboardingRoute()]);
+  }
+
+  @override
+  void toMosqueReview() {
+		router.replaceAll([const MosqueReviewRoute()]);
+  }
+
+  @override
+  void toMosqueAdmin() {
+		router.replaceAll([const MosqueAdminShellRoute()]);
+  }
+
+  @override
+  void toMosqueAdminOrReview() {
+		final approved = ref.read(myMosqueProvider).isApproved;
+		router.replaceAll([approved ? const MosqueAdminShellRoute() : const MosqueReviewRoute()]);
+  }
+
+  @override
+  void toPushSettings() {
+		router.push(const PushSettingsRoute());
+  }
+
+  @override
+  void toMosqueSearch() {
+		router.push(const MosqueSearchRoute());
+  }
+
+  @override
+  void toMosqueProfile({required int mosqueId, String? tab, int? postId}) {
+		router.push(MosqueProfileRoute(mosqueId: mosqueId, tab: tab, postId: postId));
+  }
+
+  @override
+  void toMosqueBecomeMember({required int mosqueId}) {
+		router.push(MosqueBecomeMemberRoute(mosqueId: mosqueId));
+  }
+
+  @override
+  void toMosqueCampaign({required int mosqueId, required int campaignId}) {
+		router.push(MosqueCampaignRoute(mosqueId: mosqueId, campaignId: campaignId));
+  }
+
+  @override
+  void toMosqueCheckout({
+		required int mosqueId,
+		required double amount,
+		required String frequency,
+		int? campaignId,
+		int? membershipId,
+	}) {
+		router.push(MosqueCheckoutRoute(
+			mosqueId: mosqueId,
+			amount: amount,
+			frequency: frequency,
+			campaignId: campaignId,
+			membershipId: membershipId,
+		));
   }
 
   @override

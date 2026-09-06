@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'app_router.gr.dart';
 import 'guards/auth_guard.dart';
+import 'guards/mosque_admin_guard.dart';
 import 'route_paths.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen|Page,Route')
@@ -29,6 +30,7 @@ class AppRouter extends RootStackRouter {
 	);
 
   late final authGuard = AuthGuard(ref);
+  late final mosqueAdminGuard = MosqueAdminGuard(ref);
 
 	final generalSubPages = [
 	];
@@ -54,6 +56,48 @@ class AppRouter extends RootStackRouter {
           path: RoutePaths.onboarding,
           page: OnboardingRoute.page,
         ),
+
+        /// Pre-session screens (no account yet)
+        AutoRoute(
+          path: RoutePaths.welcome,
+          page: WelcomeRoute.page,
+        ),
+        AutoRoute(
+          path: RoutePaths.profileType,
+          page: ProfileTypeRoute.page,
+        ),
+        AutoRoute(
+          path: RoutePaths.mosqueOnboarding,
+          page: MosqueOnboardingRoute.page,
+        ),
+
+        /// Mosque accounts
+        AutoRoute(
+          path: RoutePaths.mosqueReview,
+          page: MosqueReviewRoute.page,
+        ),
+        AutoRoute(
+          path: RoutePaths.mosqueAdmin,
+          page: MosqueAdminShellRoute.page,
+          guards: [mosqueAdminGuard],
+          children: [
+            AutoRoute(path: RoutePaths.mosqueAdminDashboard, page: MosqueAdminDashboardRoute.page, initial: true),
+            AutoRoute(path: RoutePaths.mosqueAdminCommunity, page: MosqueAdminCommunityRoute.page),
+            AutoRoute(path: RoutePaths.mosqueAdminMosque, page: MosqueAdminMosqueRoute.page),
+          ],
+        ),
+        /// Mosque admin full-screen pages (pushed over the shell)
+        AutoRoute(path: RoutePaths.mosqueAdminPost, page: MosqueAdminCreatePostRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminPostForm(), page: MosqueAdminPostFormRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminEditProfile, page: MosqueAdminEditProfileRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminNotifications, page: MosqueAdminNotificationsRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminProfile, page: ProfileRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminSettings, page: SettingsRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminPushSettings, page: PushSettingsRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminReminders, page: RemindersRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminLanguage, page: LanguageRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminAccount, page: AccountInformationRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminWebView, page: WebViewRoute.page, guards: [mosqueAdminGuard]),
 
         /// Home (protected)
         AutoRoute(
@@ -103,6 +147,33 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               path: RoutePaths.settings,
               page: SettingsRoute.page,
+            ),
+
+            AutoRoute(
+              path: RoutePaths.pushSettings,
+              page: PushSettingsRoute.page,
+            ),
+
+            /// Mosques (worshipper side, full-screen over the bottom navbar)
+            AutoRoute(
+              path: RoutePaths.mosqueSearch,
+              page: MosqueSearchRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.mosqueProfile(),
+              page: MosqueProfileRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.mosqueMember(),
+              page: MosqueBecomeMemberRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.mosqueCampaign(),
+              page: MosqueCampaignRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.mosqueCheckout(),
+              page: MosqueCheckoutRoute.page,
             ),
 
             AutoRoute(

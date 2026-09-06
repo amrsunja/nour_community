@@ -8,14 +8,21 @@ import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
+import 'package:nour/src/features/mosque_onboarding/data/datasources/mosque_onboarding_local_datasource.dart';
+import 'package:nour/src/features/mosque_onboarding/data/models/mosque_onboarding_draft.dart';
+import 'package:nour/src/features/mosques/data/mosque_repo.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../../data/auth_repo.dart';
 import 'auth_state.dart';
 
 /// Outcome of [AuthPresenter.connectEmail].
-enum EmailConnectResult { linked, otpSent, failed }
+/// [routed] = signed in and [AuthPresenter] already navigated (mosque account
+/// or mosque registration) — the caller must not pop.
+enum EmailConnectResult { linked, otpSent, failed, routed }
 
 final authProvider = StateNotifierProvider<AuthPresenter, AuthState>((ref) {
   return AuthPresenter(
@@ -76,43 +83,155 @@ class AuthPresenter extends Presenter<AuthState> {
     );
   }
 
+  /// Mosque-manager onboarding draft waiting for an account (§3.1). Set by
+  /// the mosque onboarding "account" step right before sign-in / sign-up so
+  /// [_afterLogin] can register the mosque once the session exists.
+  MosqueOnboardingDraft? _pendingMosqueDraft;
+
+  void setPendingMosqueDraft(MosqueOnboardingDraft? draft) {
+    _pendingMosqueDraft = draft;
+  }
+
+  /// App bootstrap.
+  ///
+  /// * A session exists → load the profile (+ the managed mosque for mosque
+  ///   accounts) and mark authenticated; [AuthGuard] routes by account type.
+  /// * No session → stay unauthenticated. [AuthGuard] shows the Welcome /
+  ///   profile-type screens; the anonymous session is only created when the
+  ///   user picks "worshipper" ([startAsWorshipper]). Mosque accounts are
+  ///   never anonymous.
   Future<void> authorization() async {
     final response = await repo.isAuthenticated();
 
     await response.when(
-      (s) async {
-        if (!s) {
-          final r1 = await signInAnonymously();
-
-          if (!r1) return ;
+      (hasSession) async {
+        if (!hasSession) {
+          state = state.copyWith(isAuthenticated: false);
+          return;
         }
 
         final r2 = await ref.read(profileProvider.notifier).initProfile();
 
         if (!r2) {
           await repo.logout();
-          await authorization();
-
-          return ;
+          state = state.copyWith(isAuthenticated: false);
+          return;
         }
 
+        await _loadMyMosqueIfNeeded();
         state = state.copyWith(isAuthenticated: true);
-
-        // Attach a non-PII identity to the analytics session.
-        final isAnon = repo.isAnonymousSession();
-        ref.read(analyticsRepoProvider).identifyUser(
-              userId: supabaseClient.auth.currentUser?.id,
-              isAnonymous: isAnon,
-            );
-        ref.read(analyticsRepoProvider).trackLogin(
-              method: isAnon ? 'anonymous' : 'email',
-            );
+        _identify();
       },
       (error) {
         appEvents.send(ShowErrorEvent(error));
         state = state.copyWith(isAuthenticated: false);
       }
     );
+  }
+
+  /// "I am a worshipper" → anonymous session (today's behaviour) → onboarding.
+  Future<bool> startAsWorshipper() async {
+    if (state.isLoading) return false;
+    state = state.copyWith(isLoading: true);
+
+    final ok = await signInAnonymously();
+    if (!ok) {
+      state = state.copyWith(isLoading: false);
+      return false;
+    }
+    final r2 = await ref.read(profileProvider.notifier).initProfile();
+    if (!r2) {
+      await repo.logout();
+      state = state.copyWith(isLoading: false, isAuthenticated: false);
+      return false;
+    }
+    await ref.read(mosqueOnboardingLocalDataProvider).clear();
+    state = state.copyWith(isLoading: false, isAuthenticated: true);
+    _identify();
+    ref.read(navigationServicesProvider).toOnboarding();
+    return true;
+  }
+
+  Future<void> _loadMyMosqueIfNeeded() async {
+    final profile = ref.read(profileProvider).profile;
+    if (profile?.isMosqueAccount ?? false) {
+      await ref.read(myMosqueProvider.notifier).load(silent: true);
+    } else {
+      ref.read(myMosqueProvider.notifier).clear();
+    }
+  }
+
+  void _identify() {
+    final isAnon = repo.isAnonymousSession();
+    ref.read(analyticsRepoProvider).identifyUser(
+          userId: supabaseClient.auth.currentUser?.id,
+          isAnonymous: isAnon,
+        );
+    ref.read(analyticsRepoProvider).trackLogin(
+          method: isAnon ? 'anonymous' : 'email',
+        );
+  }
+
+  /// Post-login routing (§3.1). Called after every successful sign-in / link.
+  ///
+  /// Returns `true` when the caller may continue its own flow (worshipper
+  /// account: the sign-in page simply closes). Returns `false` when this
+  /// method already navigated away (mosque account, or a mosque just
+  /// registered) — the caller must not pop.
+  Future<bool> _afterLogin() async {
+    final ok = await ref.read(profileProvider.notifier).initProfile();
+    if (!ok) return false;
+
+    final profile = ref.read(profileProvider).profile!;
+    final draftStore = ref.read(mosqueOnboardingLocalDataProvider);
+    final nav = ref.read(navigationServicesProvider);
+    final draft = _pendingMosqueDraft;
+
+    if (profile.isMosqueAccount) {
+      // Existing mosque account (from either onboarding flow).
+      _pendingMosqueDraft = null;
+      await draftStore.clear();
+      await ref.read(myMosqueProvider.notifier).load(silent: true);
+      state = state.copyWith(isAuthenticated: true);
+      nav.toMosqueAdminOrReview();
+      return false;
+    }
+
+    if (draft != null && !profile.onboardingCompleted) {
+      // Brand-new account created by the mosque onboarding → register it.
+      final res = await ref.read(mosqueRepoProvider).registerMosque(draft);
+      final registered = res.when((_) => true, (error) {
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      });
+      if (!registered) {
+        // Keep the draft; the user stays on the account step and can retry.
+        state = state.copyWith(isAuthenticated: false);
+        return false;
+      }
+      _pendingMosqueDraft = null;
+      await draftStore.clear();
+      await ref.read(profileProvider.notifier).initProfile();
+      await ref.read(myMosqueProvider.notifier).load(silent: true);
+      state = state.copyWith(isAuthenticated: true);
+      nav.toMosqueReview();
+      return false;
+    }
+
+    // Existing worshipper (or anonymous session just made permanent).
+    if (draft != null) {
+      // Came from the mosque onboarding but logged into a worshipper
+      // account: discard the draft and continue as a worshipper.
+      _pendingMosqueDraft = null;
+      await draftStore.clear();
+      ref.read(myMosqueProvider.notifier).clear();
+      state = state.copyWith(isAuthenticated: true);
+      profile.onboardingCompleted ? nav.toHome() : nav.toOnboarding();
+      return false;
+    }
+
+    state = state.copyWith(isAuthenticated: true);
+    return true;
   }
 
   /// Starts the connect-email flow from the current anonymous session.
@@ -135,11 +254,10 @@ class AuthPresenter extends Presenter<AuthState> {
           return EmailConnectResult.otpSent;
         }
         // Instant link: refresh profile bound to the now-permanent account.
-        final ok = await ref.read(profileProvider.notifier).initProfile();
-        if (!ok) return EmailConnectResult.failed;
-        state = state.copyWith(isAuthenticated: true);
+        final stay = await _afterLogin();
+        if (!stay && !state.isAuthenticated) return EmailConnectResult.failed;
         appEvents.send(ShowSuccessMessageEvent(locale.auth_link_success));
-        return EmailConnectResult.linked;
+        return stay ? EmailConnectResult.linked : EmailConnectResult.routed;
       },
       (error) async {
         appEvents.send(ShowErrorEvent(error));
@@ -174,12 +292,12 @@ class AuthPresenter extends Presenter<AuthState> {
 
     final result = await response.when(
       (_) async {
-        // Refresh the profile bound to the (now permanent) account.
-        final ok = await ref.read(profileProvider.notifier).initProfile();
-        if (!ok) return false;
-        state = state.copyWith(isAuthenticated: true);
+        // Refresh the profile bound to the (now permanent) account and route
+        // by account type (§3.1). `true` = caller may close its page.
+        final stay = await _afterLogin();
+        if (!stay && !state.isAuthenticated) return false;
         appEvents.send(ShowSuccessMessageEvent(locale.auth_link_success));
-        return true;
+        return stay;
       },
       (error) async {
         // Swallow user-initiated cancellations — they are not errors.
@@ -213,6 +331,7 @@ class AuthPresenter extends Presenter<AuthState> {
       (_) {
         ref.read(analyticsRepoProvider).trackLogout();
         ref.read(analyticsRepoProvider).identifyUser(userId: null);
+        ref.read(myMosqueProvider.notifier).clear();
         state = state.copyWith(isAuthenticated: false, isLoading: false);
         return true;
       },
@@ -240,6 +359,7 @@ class AuthPresenter extends Presenter<AuthState> {
       (_) {
         ref.read(analyticsRepoProvider).trackLogout();
         ref.read(analyticsRepoProvider).identifyUser(userId: null);
+        ref.read(myMosqueProvider.notifier).clear();
         state = state.copyWith(isAuthenticated: false, isLoading: false);
         return true;
       },
