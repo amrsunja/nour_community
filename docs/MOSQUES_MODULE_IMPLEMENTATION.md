@@ -1,6 +1,6 @@
 # Mosques Module — Implementation Specification (V2)
 
-**Status:** implementation spec for Claude Code · **Date:** 2026-09-06
+**Status:** implemented on `feat/mosques-module` — see §15.
 **Stack:** Supabase (Postgres 15 + PostGIS + Edge Functions/Deno + Storage + Realtime + pg_cron) · Flutter (`hooks_riverpod`, `auto_route`, `flutter_stripe` 13, `firebase_*`) · Stripe Connect (direct charges) · Firebase Cloud Messaging.
 **Inputs:** `docs/devis_module_mosquees_v2_fr.md` (Poste 1 + Bloc A + Bloc B), `docs/Nour Specs V2 Final.docx` §7, Figma *Nour community* → page **Screens V2** → sections `Onboarding user` (995:2992), `Onboarding mosquée` (1212:9539), `Mosque search` (1333:17229), `Mosque profile - user POV` (1098:5923), `Mosque profile - admin POV` (1154:4245).
 **Repo:** `backend/supabase` (migrations + functions) · `nour_app` (Flutter, `lib/src/features/*`).
@@ -1407,3 +1407,77 @@ Read before writing each migration and before each release.
 ---
 
 *End of specification.*
+
+
+---
+
+## 15. Implementation status (branch `feat/mosques-module`)
+
+All four phases are implemented on `feat/mosques-module` (5 commits after the spec: P0, P1, P2, P3-backend, P3-flutter). Nothing has been run through `flutter analyze` / `build_runner` in the cloud — see §15.4 for the local checklist.
+
+### 15.1 What landed
+
+| Phase | Backend | Flutter |
+|---|---|---|
+| P0 accounts | `20260906000000_mosques_enums.sql`, `20260906000100_mosques_accounts.sql` (`profiles.account_type`, `app_config`, `mosques`, `mosque_admins`, `fn_register_mosque`, `fn_my_mosque`, admin review RPCs), `review-mosque` fn | Welcome / profile-type pages, sessionless mosque onboarding (draft in SharedPreferences), `_afterLogin` routing by account type, `MosqueReviewPage` realtime gate, `AuthGuard` + `MosqueAdminGuard` |
+| P1 push | `20260906000200_push_infra.sql` (`device_tokens`, `notifications_log`, quota), `_shared/push.ts` (FCM v1), `send-push`, `notify-mosque-followers` | `firebase_messaging`, `PushNotificationsServices`, `push_provider`, `PushSettingsPage`, deep links (`nour://`, `https://nour-community.com`) |
+| P2 core | `20260906000300_mosques_core.sql` (prayer times/overrides, followers, user_mosques, posts + interactions, members, campaigns skeleton, search RPC, dashboard stats, storage buckets, housekeeping cron) | Search (map+list), profile (Prayers / Info / News tabs), follow, My mosques (principal/secondary), membership form, admin shell (Dashboard / Community / Mosque), prayer editor, posts CRUD + broadcast, Nour-admin moderation tab, prayer-times override in the app's prayer engine |
+| P3 donations | `20260906000400_mosques_donations.sql` (`mosque_stripe_accounts`, `mosque_donation_settings`, `mosque_campaign_updates`, `mosque_receipts`, additive columns on `transactions` / `donation_subscriptions`, `fn_apply_tx_to_mosque`, stats/donors RPCs), fns `mosque-stripe-onboarding`, `create-mosque-payment-intent`, `create-mosque-subscription`, `cancel-mosque-subscription`, `stripe-connect-webhook`, `generate-mosque-receipt` | Donation tab (Sadaqa card + campaigns), campaign page (realtime progress), `MosqueCheckoutPage` (direct charge — `Stripe.stripeAccountId` switched for the confirmation only), admin Donation tab (Stripe status card, analytics, Sadaqa settings, campaigns create/edit/extend/close/update+push, donors list + CSV + receipts, receipts list), "My donations → Mosques" tab |
+
+### 15.2 Deviations from the spec
+
+- **Checkout widgets extracted**: `_OptionTile/_MethodTile/_StatusOverlay/…` moved verbatim from `checkout_page.dart` to `payments/ui/widgets/checkout_widgets.dart` (public names) so the mosque checkout reuses them. `checkout_page.dart` behaviour is unchanged.
+- **`StripePaymentService.confirm` gained `stripeAccountId`**: sets `Stripe.stripeAccountId` + `applySettings()` before confirming and resets it to the platform account in `finally`. Impact checkout passes nothing → identical to before.
+- **Legacy lists filtered**: `getHistory()` adds `.isFilter('mosque_id', null)` and `getMySubscriptions()` adds `.not('impact_project_id','is',null)`; `DonationSubscriptionModel.impactProjectId` parses `?? 0`. Mosque rows are listed through `fn_my_mosque_donations` / a dedicated query instead, so the existing Impact screens never see them.
+- **Membership fee**: yearly only (`create-mosque-subscription` rejects `interval != 'year'` when `membershipId` is set). Amounts come from `mosque_donation_settings.membership_fee_amounts` (default 60/120/240, second one recommended); the member form still uses the fixed preset — wire `membershipFeeAmounts` in `mosque_become_member_page.dart` if you want it configurable per mosque.
+- **Tax receipts**: `mosques.can_issue_tax_receipts` is set once at Stripe onboarding start (`canIssueTaxReceipts` toggle) — it is a protected column, so changing it later is a Nour-admin action (service role / SQL).
+- **Campaign "ending soon" reminder push**: candidates exposed by `fn_mosque_campaigns_to_remind()`; the push itself is not scheduled (needs pg_net or an external cron calling `send-push`). See §10.2.
+- **Receipts PDF**: generated by `generate-mosque-receipt` with `pdf-lib` into the private `mosque-receipts` bucket; the app opens a 1 h signed URL. Email sending (Resend) is only wired for the review decision, not for receipts.
+- **Donor receipts route**: `MosqueAdminReceiptsPage(mine: true)` is reused on the worshipper stack at `mosque-receipts` (no guard) — same page, own rows via RLS.
+
+### 15.3 Backend deployment
+
+```bash
+cd backend
+supabase db push                       # 5 new migrations, all idempotent / additive
+supabase functions deploy send-push notify-mosque-followers review-mosque \
+  mosque-stripe-onboarding create-mosque-payment-intent create-mosque-subscription \
+  cancel-mosque-subscription stripe-connect-webhook generate-mosque-receipt
+supabase secrets set \
+  INTERNAL_FUNCTIONS_KEY=<random 32+ chars> \
+  FCM_SERVICE_ACCOUNT_JSON='<firebase service-account json, single line>' \
+  STRIPE_CONNECT_WEBHOOK_SECRET=whsec_... \
+  STRIPE_CONNECT_RETURN_URL=https://nour-community.com/stripe/return \
+  STRIPE_CONNECT_REFRESH_URL=https://nour-community.com/stripe/refresh \
+  RESEND_API_KEY=re_... NOTIFICATIONS_FROM_EMAIL="Nour <no-reply@nour-community.com>"   # optional
+```
+
+- Stripe Dashboard → Developers → Webhooks → **"Listen to events on Connected accounts"** → endpoint `https://<project>.supabase.co/functions/v1/stripe-connect-webhook`, events: `account.updated`, `payment_intent.succeeded`, `payment_intent.payment_failed`, `payment_intent.canceled`, `invoice.paid`, `invoice.payment_failed`, `customer.subscription.updated`, `customer.subscription.deleted`. Copy the signing secret into `STRIPE_CONNECT_WEBHOOK_SECRET`. The existing platform webhook stays untouched.
+- Stripe Connect settings: enable **Express** accounts, branding (name/logo/colour) — the hosted onboarding shows it.
+- `app_config`: `mosque_donations_enabled` ships **false** — flip it to `true` (SQL) once Stripe Connect is live. `mosques_enabled` is `true`.
+- Firebase: add the APNs key (.p8) in Firebase Cloud Messaging settings; create a service account with "Firebase Cloud Messaging API" role → JSON → `FCM_SERVICE_ACCOUNT_JSON`. Xcode: Push Notifications + Background Modes (remote notifications) capabilities are in the entitlements/plist already.
+- pg_cron: `fn_mosques_housekeeping()` is scheduled every 10 min by the P2 migration (requires the `pg_cron` extension, already used by the project).
+
+### 15.4 Flutter — local checklist
+
+```bash
+cd nour_app
+flutter pub get                       # firebase_messaging, flutter_map, latlong2 added
+dart run build_runner build --delete-conflicting-outputs   # app_router.gr.dart (11 new routes), assets
+flutter gen-l10n                      # ~450 new keys (en/fr)
+flutter analyze
+```
+
+- `android/app/google-services.json` and `ios/Runner/GoogleService-Info.plist` must include the FCM sender (already the case if Firebase is set up for analytics).
+- Deep links: Android intent filters for `nour://` + `https://nour-community.com/mosque/*` are in the manifest; iOS needs the `applinks:nour-community.com` associated domain + an `apple-app-site-association` on the website for universal links (custom scheme works without it).
+- Things worth a look during analyze: nullable `MosqueModel?` narrowing inside closures in the new pages (`campaign.value!`), `firstOrNull` (Dart 3 `collection`), and `Stripe.stripeAccountId` (flutter_stripe ≥ 9 — present in 13.x).
+
+### 15.5 Suggested manual test path
+
+1. Fresh install → Welcome → "I am a mosque manager" → 8 onboarding steps → sign-up (email OTP) → "Your mosque is being reviewed".
+2. Nour admin → Admin dashboard → Mosques tab → Approve → the mosque device flips to the admin shell in realtime.
+3. Admin → Mosque tab → Donation → "Set up payments" → Stripe test onboarding → back → status "Active", `donations_enabled = true`.
+4. Admin → Sadaqa settings (amounts/frequencies), New campaign (+ notify followers).
+5. Worshipper (second device) → search → follow → Donation tab → 10 € one-time (card `4242…`) → thank-you; then 5 €/month → "My donations → Mosques" → cancel.
+6. Admin → Donors → issue receipt (only if tax receipts enabled) → PDF opens; Donors CSV export.
+7. Prayer times page shows the mosque chip once the mosque is set as principal and has published times.
