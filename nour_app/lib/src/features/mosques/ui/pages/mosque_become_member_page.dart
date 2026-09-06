@@ -33,8 +33,9 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
     final snackbar = ref.read(snackbarProvider);
     final appEvents = ref.read(appEventProvider);
     final profile = ref.watch(profileProvider).profile;
-    final feeEnabled = ref.watch(appConfigProvider.select((c) => c.mosqueMembershipFeeEnabled && c.mosqueDonationsEnabled));
     final mosque = ref.watch(mosqueProfileProvider(mosqueId).select((s) => s.mosque));
+    // Fee needs the feature flags AND a Stripe-connected mosque (direct charge).
+    final feeEnabled = ref.watch(appConfigProvider.select((c) => c.mosqueMembershipFeeEnabled && c.mosqueDonationsEnabled)) && (mosque?.donationsEnabled ?? false);
 
     final formKey = useMemoized(GlobalKey<FormState>.new);
     final nameParts = (profile?.name ?? '').trim().split(RegExp(r'\s+'));

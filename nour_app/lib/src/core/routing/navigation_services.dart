@@ -25,13 +25,20 @@ abstract class NavigationServices {
 	void toMosqueProfile({required int mosqueId, String? tab, int? postId});
 	void toMosqueBecomeMember({required int mosqueId});
 	void toMosqueCampaign({required int mosqueId, required int campaignId});
-	void toMosqueCheckout({
+	Future<bool?> toMosqueCheckout({
 		required int mosqueId,
 		required double amount,
 		required String frequency,
 		int? campaignId,
 		int? membershipId,
 	});
+	void toMosqueAdminSadaqaSettings();
+	void toMosqueAdminStripe();
+	void toMosqueAdminCampaignForm({int? campaignId});
+	void toMosqueAdminCampaign(int campaignId);
+	void toMosqueAdminDonors();
+	void toMosqueAdminReceipts();
+	void toMyMosqueReceipts();
 	void toHome({bool openSignIn = false});
 	void navigateToHome();
 	void toSettings();
@@ -177,14 +184,14 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toMosqueCheckout({
+  Future<bool?> toMosqueCheckout({
 		required int mosqueId,
 		required double amount,
 		required String frequency,
 		int? campaignId,
 		int? membershipId,
 	}) {
-		router.push(MosqueCheckoutRoute(
+		return router.push<bool?>(MosqueCheckoutRoute(
 			mosqueId: mosqueId,
 			amount: amount,
 			frequency: frequency,
@@ -192,6 +199,21 @@ class NavigationServicesImpl implements NavigationServices {
 			membershipId: membershipId,
 		));
   }
+
+  @override
+  void toMosqueAdminSadaqaSettings() => router.push(const MosqueAdminSadaqaSettingsRoute());
+  @override
+  void toMosqueAdminStripe() => router.push(const MosqueAdminStripeRoute());
+  @override
+  void toMosqueAdminCampaignForm({int? campaignId}) => router.push(MosqueAdminCampaignFormRoute(campaignId: campaignId));
+  @override
+  void toMosqueAdminCampaign(int campaignId) => router.push(MosqueAdminCampaignRoute(campaignId: campaignId));
+  @override
+  void toMosqueAdminDonors() => router.push(const MosqueAdminDonorsRoute());
+  @override
+  void toMosqueAdminReceipts() => router.push(const MosqueAdminReceiptsRoute());
+  @override
+  void toMyMosqueReceipts() => router.push(const MosqueAdminReceiptsRoute(mine: true));
 
   @override
   void navigateToHome() {

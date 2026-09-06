@@ -281,6 +281,9 @@ class PaymentRemoteDatasource {
               'title_nl, title_tr, title_id, title_ur, title_bn, title_ms, title_ru, '
               'cover_image_url)')
           .eq('user_id', userId)
+          // Mosque subscriptions (P3) have no impact project; they are listed
+          // through `fn_my_mosque_donations` instead.
+          .not('impact_project_id', 'is', null)
           .order('created_at', ascending: false);
       return (response as List)
           .map((e) => DonationSubscriptionModel.fromJson(e))
@@ -322,6 +325,8 @@ class PaymentRemoteDatasource {
               'title_ar, title_de, title_nl, title_tr, title_id, title_ur, '
               'title_bn, title_ms, title_ru, cover_image_url))')
           .eq('user_id', userId)
+          // Mosque gifts (P3) are listed separately (`fn_my_mosque_donations`).
+          .isFilter('mosque_id', null)
           .neq('status', 'pending')
           .order('created_at', ascending: false);
 

@@ -264,6 +264,20 @@ class ServerFailure extends Failure {
         return l.error_api_mosque_not_approved;
       case ApiErrorKey.pushRegisterFailed:
         return l.error_api_push_register_failed;
+      case ApiErrorKey.mosqueCampaignLimitReached:
+        return l.error_api_mosque_campaign_limit_reached;
+      case ApiErrorKey.mosqueCampaignClosed:
+        return l.error_api_mosque_campaign_closed;
+      case ApiErrorKey.mosqueDonationsDisabled:
+        return l.error_api_mosque_donations_disabled;
+      case ApiErrorKey.mosqueReceiptsNotAllowed:
+        return l.error_api_mosque_receipts_not_allowed;
+      case ApiErrorKey.mosqueReceiptNoDonations:
+        return l.error_api_mosque_receipt_no_donations;
+      case ApiErrorKey.mosqueReceiptFailed:
+        return l.error_api_mosque_receipt_failed;
+      case ApiErrorKey.mosqueStripeFailed:
+        return l.error_api_mosque_stripe_failed;
     }
   }
 }

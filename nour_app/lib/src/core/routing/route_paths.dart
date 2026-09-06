@@ -25,6 +25,13 @@ abstract class RoutePaths {
   static const mosqueAdminLanguage = 'mosque-admin/language';
   static const mosqueAdminAccount = 'mosque-admin/account';
   static const mosqueAdminWebView = 'mosque-admin/web-view';
+  // P3 — donations
+  static const mosqueAdminSadaqaSettings = 'mosque-admin/donations/settings';
+  static const mosqueAdminStripe = 'mosque-admin/donations/stripe';
+  static const mosqueAdminCampaignForm = 'mosque-admin/donations/campaign-form';
+  static String mosqueAdminCampaign({int? campaignId}) => 'mosque-admin/donations/campaign/${campaignId ?? ':campaignId'}';
+  static const mosqueAdminDonors = 'mosque-admin/donations/donors';
+  static const mosqueAdminReceipts = 'mosque-admin/donations/receipts';
 
   // Mosques — worshipper side
   static const mosqueSearch = 'mosques/search';
@@ -34,6 +41,7 @@ abstract class RoutePaths {
   static String mosqueCampaign({int? id, int? campaignId}) =>
       'mosque/${id ?? ':id'}/campaign/${campaignId ?? ':campaignId'}';
   static String mosqueCheckout({int? id}) => 'mosque/${id ?? ':id'}/checkout';
+  static const myMosqueReceipts = 'mosque-receipts';
   static const pushSettings = 'push-settings';
   //static const signUp= 'sign-up';
   static const onboarding = 'onboarding';

@@ -14,8 +14,9 @@ import '../../data/models/donation_subscription_model.dart';
 import '../../data/models/transaction_model.dart';
 import '../../data/models/tx_enums.dart';
 import '../state_management/my_donations_provider.dart';
+import '../widgets/mosque_donations_list.dart';
 
-enum _Tab { history, recurring }
+enum _Tab { history, recurring, mosques }
 
 /// Profile → "My donations": one-time history (with status) and the recurring
 /// donations the user can stop.
@@ -62,6 +63,7 @@ class MyDonationsPage extends HookConsumerWidget {
                 items: [
                   UITabItem(value: _Tab.history, label: l10n.my_donations_tab_history),
                   UITabItem(value: _Tab.recurring, label: l10n.my_donations_tab_recurring),
+                  UITabItem(value: _Tab.mosques, label: l10n.my_donations_tab_mosques),
                 ],
                 onChanged: (t) => tab.value = t,
               ),
@@ -87,6 +89,17 @@ class MyDonationsPage extends HookConsumerWidget {
                             cancellingId: state.cancellingId,
                             onCancel: confirmCancel,
                             onTapProject: (id) => nav.toImpactProjectDetail(projectId: id),
+                          ),
+                        _Tab.mosques => MosqueDonationsList(
+                            donations: state.mosqueDonations,
+                            subscriptions: state.mosqueSubscriptions,
+                            cancellingId: state.cancellingId,
+                            onCancel: (id) async {
+                              final ok = await _confirmStop(context, l10n);
+                              if (ok == true) await presenter.cancelMosqueSubscription(id);
+                            },
+                            onTapMosque: (id) => nav.toMosqueProfile(mosqueId: id),
+                            onReceipts: () => nav.toMyMosqueReceipts(),
                           ),
                       },
                     ),

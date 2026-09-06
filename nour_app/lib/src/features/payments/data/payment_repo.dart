@@ -117,6 +117,7 @@ class PaymentRepo {
     required String label,
     String? customerId,
     String? customerEphemeralKeySecret,
+    String? stripeAccountId,
   }) {
     return stripeService.confirm(
       method: method,
@@ -126,6 +127,7 @@ class PaymentRepo {
       label: label,
       customerId: customerId,
       customerEphemeralKeySecret: customerEphemeralKeySecret,
+      stripeAccountId: stripeAccountId,
     );
   }
 

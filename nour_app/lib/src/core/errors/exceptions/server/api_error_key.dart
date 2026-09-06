@@ -134,4 +134,11 @@ enum ApiErrorKey {
   mosqueBroadcastQuotaExceeded,
   mosqueNotApproved,
   pushRegisterFailed,
+  mosqueCampaignLimitReached,
+  mosqueCampaignClosed,
+  mosqueDonationsDisabled,
+  mosqueReceiptsNotAllowed,
+  mosqueReceiptNoDonations,
+  mosqueReceiptFailed,
+  mosqueStripeFailed,
 }

@@ -98,6 +98,12 @@ class AppRouter extends RootStackRouter {
         AutoRoute(path: RoutePaths.mosqueAdminLanguage, page: LanguageRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminAccount, page: AccountInformationRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminWebView, page: WebViewRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminSadaqaSettings, page: MosqueAdminSadaqaSettingsRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminStripe, page: MosqueAdminStripeRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminCampaignForm, page: MosqueAdminCampaignFormRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminCampaign(), page: MosqueAdminCampaignRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminDonors, page: MosqueAdminDonorsRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueAdminReceipts, page: MosqueAdminReceiptsRoute.page, guards: [mosqueAdminGuard]),
 
         /// Home (protected)
         AutoRoute(
@@ -174,6 +180,10 @@ class AppRouter extends RootStackRouter {
             AutoRoute(
               path: RoutePaths.mosqueCheckout(),
               page: MosqueCheckoutRoute.page,
+            ),
+            AutoRoute(
+              path: RoutePaths.myMosqueReceipts,
+              page: MosqueAdminReceiptsRoute.page,
             ),
 
             AutoRoute(
