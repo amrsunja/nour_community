@@ -83,12 +83,16 @@ class AuthRemoteDatasource {
   ///   anonymous session is discarded).
   Future<bool> startEmailAuth({required String email}) async {
     try {
+      final hasSession = supabaseClient.auth.currentSession != null;
       final exists = await _emailExists(email);
 
-      if (exists) {
+      if (exists || !hasSession) {
+        // Existing account — or NO local session to attach the email to
+        // (anonymous bootstrap failed / signed out): passwordless OTP.
+        // shouldCreateUser covers the sessionless-new-email case.
         await supabaseClient.auth.signInWithOtp(
           email: email,
-          shouldCreateUser: false,
+          shouldCreateUser: !exists,
         );
         return true; // OTP sent — caller must verify.
       }
@@ -259,10 +263,25 @@ class AuthRemoteDatasource {
     String? nonce,
     required String? email,
   }) async {
-    final canLink = isAnonymous() &&
+    // Linking requires an ACTUAL anonymous session. isAnonymous() alone is not
+    // enough: it returns true when there is no session at all (anonymous
+    // bootstrap failed / signed out), and in that state the email_exists RPC
+    // runs as `anon` -> 42501 permission denied, which used to abort the whole
+    // Google/Apple login.
+    var canLink = supabaseClient.auth.currentSession != null &&
+        isAnonymous() &&
         email != null &&
-        email.isNotEmpty &&
-        !(await _emailExists(email));
+        email.isNotEmpty;
+
+    if (canLink) {
+      try {
+        canLink = !(await _emailExists(email));
+      } on ServerException {
+        // The availability check is an optimization — never block login on it.
+        // Optimistically try the link; the AuthException fallback below
+        // handles the case where the account actually exists.
+      }
+    }
 
     if (canLink) {
       try {
@@ -274,9 +293,12 @@ class AuthRemoteDatasource {
         );
         return;
       } on AuthException catch (e) {
-        // The provider identity is already linked to another user even though
-        // _emailExists missed it -> fall through to a normal id-token sign in.
-        if (e.code != 'identity_already_exists') rethrow;
+        // The identity/email is already owned by another user even though
+        // _emailExists missed it (or was unavailable) -> fall through to a
+        // normal id-token sign in.
+        if (e.code != 'identity_already_exists' && e.code != 'email_exists') {
+          rethrow;
+        }
       }
     }
 
