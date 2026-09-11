@@ -114,7 +114,7 @@ class MosqueSearchCard extends StatelessWidget {
                     if (subtitle.isNotEmpty)
                       Row(
                         children: [
-                          const Icon(Icons.location_on_outlined, size: 12, color: UIColorsToken.textParagraph),
+                          Icon(Icons.location_on_outlined, size: 12, color: UIColorsToken.textParagraph),
                           const SizedBox(width: 3),
                           Expanded(
                             child: Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis,

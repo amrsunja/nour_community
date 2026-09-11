@@ -6,8 +6,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
-import 'package:nour/src/features/onboarding/ui/widgets/onboarding_screen_1.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../widgets/onboarding_screen_2.dart';
@@ -29,14 +30,24 @@ class OnboardingPage extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final provider = ref.read(onboardingProvider.notifier);
+    final nav = ref.read(navigationServicesProvider);
     final profile = ref.watch(profileProvider).profile;
 
-    // Clamp: users mid-onboarding before the mosque step was added.
-    int currentPage = (profile?.lastOnboardingScreen ?? 0).clamp(0, 9);
+    // Persisted step. Anything below [OnboardingStep.first] means the profile
+    // type was never chosen (fresh account, or a profile written by an older
+    // app version) → send the user back to the profile-type screen.
+    final step = profile?.lastOnboardingScreen ?? 0;
+    final needsProfileType = step < OnboardingStep.first;
+    final currentPage = OnboardingStep.pageIndex(step);
     final pageController = usePageController(initialPage: currentPage);
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (needsProfileType) {
+          nav.toProfileType(resetStack: true);
+          return;
+        }
+        if (!pageController.hasClients) return;
         pageController.animateToPage(
           currentPage,
           duration: Durations.medium2,
@@ -47,31 +58,32 @@ class OnboardingPage extends HookConsumerWidget {
       return null;
     }, [profile?.lastOnboardingScreen]);
 
+    final isFirst = step <= OnboardingStep.first;
+    final canSkip = step < OnboardingStep.last;
 
-
-    final showBars = currentPage > 0;
-    final canSkip = currentPage < 9;
+    void onBack() {
+      // First step → back to the profile-type screen (session is kept; picking
+      // "worshipper" again simply resumes here).
+      if (isFirst) {
+        nav.toProfileType(resetStack: true);
+        return;
+      }
+      provider.goToPreviousPage();
+    }
 
     return UIGradientLinedScaffold(
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
-          AnimatedOpacity(
-            opacity: showBars  ? 1 : 0,
-            duration: Durations.medium2,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding, vertical: 4),
-              child: Row(
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding, vertical: 4),
+            child: Row(
                 mainAxisAlignment: .spaceBetween,
                 children: [
                   UIIcon(
                     UIIconsToken.icons.chevronLeft,
                     color: UIColorsToken.yellow,
-                    onTap: () {
-                      if (!showBars) return ;
-
-                      provider.goToPreviousPage();
-                    },
+                    onTap: onBack,
                   ),
 
                   AnimatedOpacity(
@@ -79,9 +91,9 @@ class OnboardingPage extends HookConsumerWidget {
                     duration: Durations.medium2,
                     child: UITap(
                       onTap: () async {
-                        if (!showBars) return ;
-                    
-                        provider.changePage(9);
+                        if (!canSkip) return ;
+
+                        provider.changePage(OnboardingStep.last);
                       },
                       child: Text(
                         l10n.onboarding_skip,
@@ -91,14 +103,12 @@ class OnboardingPage extends HookConsumerWidget {
                   )
                 ],
               ),
-            ).animate(effects: [FadeEffect()]),
-          ),
+          ).animate(effects: [FadeEffect()]),
           Expanded(
             child: PageView(
               controller: pageController,
               physics: NeverScrollableScrollPhysics(),
               children: [
-                OnboardingScreen1(),
                 OnboardingScreen2(),
                 OnboardingScreen3(),
                 OnboardingScreen4(),
@@ -111,14 +121,10 @@ class OnboardingPage extends HookConsumerWidget {
               ],
             ),
           ),
-          AnimatedOpacity(
-            opacity: showBars ? 1 : 0,
-            duration: Durations.medium2,
-            child: UISliderProgressBar(
-              totalCount: 10,
-              currentIndex: currentPage
-            ),
-          )
+          UISliderProgressBar(
+            totalCount: OnboardingStep.pageCount,
+            currentIndex: currentPage
+          ),
         ],
       ),
     ).animate(effects: [FadeEffect(duration: Duration(milliseconds: 600))]);

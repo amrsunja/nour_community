@@ -101,129 +101,132 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
       (CommunityFilter.volunteers, l10n.mosque_admin_filter_volunteers),
     ];
 
-    return UIGradientLinedScaffold(
-      appBar: UIAppBar(
-        title: l10n.mosque_admin_tab_community,
-        leadingIcons: [
-          UITap(onTap: exportCsv, child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.download_outlined, color: UIColorsToken.textYellow))),
-        ],
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 4, kPageHorzPadding, 0),
-            child: UIInputField(
-              hintText: l10n.mosque_admin_search_community,
-              onChanged: presenter.setQuery,
-              textInputAction: TextInputAction.search,
+    return Scaffold(
+        appBar: UIAppBar(
+          title: l10n.mosque_admin_tab_community,
+          leadingIcons: [
+            UITap(onTap: exportCsv, child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.download_outlined, color: UIColorsToken.textYellow))),
+          ],
+        ),
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 4, kPageHorzPadding, 0),
+              child: UIInputField(
+                hintText: l10n.mosque_admin_search_community,
+                onChanged: presenter.setQuery,
+                textInputAction: TextInputAction.search,
+              ),
             ),
-          ),
-          const SizedBox(height: 12),
-          SizedBox(
-            height: 40,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding),
-              children: [
-                for (final f in filters)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: UITap(
-                      onTap: () => presenter.setFilter(f.$1),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        padding: const EdgeInsets.symmetric(horizontal: 18),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          gradient: state.filter == f.$1 ? UIColorsToken.bgPriYellow : null,
-                          color: state.filter == f.$1 ? null : Colors.transparent,
+            const SizedBox(height: 12),
+            SizedBox(
+              height: 40,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding),
+                children: [
+                  for (final f in filters)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: UITap(
+                        onTap: () => presenter.setFilter(f.$1),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            gradient: state.filter == f.$1 ? UIColorsToken.bgPriYellow : null,
+                            color: state.filter == f.$1 ? null : Colors.transparent,
+                          ),
+                          child: Text(f.$2,
+                              style: theme.typo.inter.bodyMedium.copyWith(color: state.filter == f.$1 ? UIColorsToken.black : UIColorsToken.white)),
                         ),
-                        child: Text(f.$2,
-                            style: theme.typo.inter.bodyMedium.copyWith(color: state.filter == f.$1 ? UIColorsToken.black : UIColorsToken.white)),
                       ),
                     ),
-                  ),
-              ],
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 8),
-          Expanded(
-            child: state.isLoading && state.items.isEmpty
-                ? const Center(child: UICircularProgressBar())
-                : state.items.isEmpty
-                    ? Center(child: Text(l10n.mosque_admin_community_empty, style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)))
-                    : ListView.separated(
-                        padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 4, kPageHorzPadding, 120),
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.items.length + (state.hasMore ? 1 : 0),
-                        separatorBuilder: (_, __) => const SizedBox(height: 8),
-                        itemBuilder: (_, i) {
-                          if (i >= state.items.length) {
-                            return UIButton.textual(label: l10n.common_load_more, fullWidth: true, onTap: () => presenter.load(more: true));
-                          }
-                          final m = state.items[i];
-                          return UICard(
-                            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                            onTap: () => onMenu(m),
-                            child: Row(
-                              children: [
-                                ClipOval(
-                                  child: SizedBox(
-                                    width: 44,
-                                    height: 44,
-                                    child: m.avatarUrl != null
-                                        ? CachedNetworkImage(imageUrl: m.avatarUrl!, fit: BoxFit.cover)
-                                        : Container(
-                                            color: _color(m.userId),
-                                            alignment: Alignment.center,
-                                            child: Text(m.initials, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                                          ),
+            const SizedBox(height: 8),
+            Expanded(
+              child: state.isLoading && state.items.isEmpty
+                  ? const Center(child: UICircularProgressBar())
+                  : state.items.isEmpty
+                      ? Center(child: Text(l10n.mosque_admin_community_empty, style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)))
+                      : ListView.separated(
+                          padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 4, kPageHorzPadding, 120),
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.items.length + (state.hasMore ? 1 : 0),
+                          separatorBuilder: (_, __) => const SizedBox(height: 8),
+                          itemBuilder: (_, i) {
+                            if (i >= state.items.length) {
+                              return UIButton.textual(label: l10n.common_load_more, fullWidth: true, onTap: () => presenter.load(more: true));
+                            }
+                            final m = state.items[i];
+                            return UICard(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                              onTap: () => onMenu(m),
+                              child: Row(
+                                children: [
+                                  ClipOval(
+                                    child: SizedBox(
+                                      width: 44,
+                                      height: 44,
+                                      child: m.avatarUrl != null
+                                          ? CachedNetworkImage(imageUrl: m.avatarUrl!, fit: BoxFit.cover)
+                                          : Container(
+                                              color: _color(m.userId),
+                                              alignment: Alignment.center,
+                                              child: Text(m.initials, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                                            ),
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Flexible(
-                                            child: Text(m.name ?? '—', maxLines: 1, overflow: TextOverflow.ellipsis,
-                                                style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                                          ),
-                                          const SizedBox(width: 8),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                            decoration: BoxDecoration(
-                                              color: m.isMember ? UIColorsToken.textYellowDarker : Colors.transparent,
-                                              border: Border.all(color: m.isMember ? UIColorsToken.textYellowDarker : UIColorsToken.stroke),
-                                              borderRadius: BorderRadius.circular(6),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Flexible(
+                                              child: Text(m.name ?? '—', maxLines: 1, overflow: TextOverflow.ellipsis,
+                                                  style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
                                             ),
-                                            child: Text(
-                                              m.isMember ? l10n.mosque_member_badge : l10n.mosque_follower_badge,
-                                              style: theme.typo.inter.smallCaption.copyWith(color: m.isMember ? UIColorsToken.textYellow : UIColorsToken.textParagraph),
+                                            const SizedBox(width: 8),
+                                            Container(
+                                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                              decoration: BoxDecoration(
+                                                color: m.isMember ? UIColorsToken.textYellowDarker : Colors.transparent,
+                                                border: Border.all(color: m.isMember ? UIColorsToken.textYellowDarker : UIColorsToken.stroke),
+                                                borderRadius: BorderRadius.circular(6),
+                                              ),
+                                              child: Text(
+                                                m.isMember ? l10n.mosque_member_badge : l10n.mosque_follower_badge,
+                                                style: theme.typo.inter.smallCaption.copyWith(color: m.isMember ? UIColorsToken.textYellow : UIColorsToken.textParagraph),
+                                              ),
                                             ),
-                                          ),
-                                          if (m.volunteer) ...[
-                                            const SizedBox(width: 6),
-                                            const Icon(Icons.volunteer_activism_outlined, size: 14, color: UIColorsToken.textYellow),
+                                            if (m.volunteer) ...[
+                                              const SizedBox(width: 6),
+                                              const Icon(Icons.volunteer_activism_outlined, size: 14, color: UIColorsToken.textYellow),
+                                            ],
                                           ],
-                                        ],
-                                      ),
-                                      Text(l10n.mosque_since_year(m.since.year),
-                                          style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                                    ],
+                                        ),
+                                        Text(l10n.mosque_since_year(m.since.year),
+                                            style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                const Icon(Icons.more_vert, color: UIColorsToken.textParagraph, size: 18),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-          ),
-        ],
+                                  Icon(Icons.more_vert, color: UIColorsToken.textParagraph, size: 18),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -28,6 +28,11 @@ class MosqueOnboardingLanguageScreen extends ConsumerWidget {
       (L10n.de, l10n.onboarding_screen_8_lang_de),
       (L10n.nl, l10n.onboarding_screen_8_lang_nl),
       (L10n.tr, l10n.onboarding_screen_8_lang_tr),
+      (L10n.id, l10n.onboarding_screen_8_lang_id),
+      (L10n.ur, l10n.onboarding_screen_8_lang_ur),
+      (L10n.bn, l10n.onboarding_screen_8_lang_bn),
+      (L10n.ms, l10n.onboarding_screen_8_lang_ms),
+      (L10n.ru, l10n.onboarding_screen_8_lang_ru),
     ];
 
     return MosqueOnboardingStepScaffold(

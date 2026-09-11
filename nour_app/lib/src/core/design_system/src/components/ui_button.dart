@@ -61,6 +61,7 @@ class UIButton extends StatelessWidget {
     bool isBusy = false,
     UIButtonIconAxis? iconAxis,
     VoidCallback? onTap,
+    Color? contentColor,
   }) {
     return UIButton._(
       key: key,
@@ -72,6 +73,7 @@ class UIButton extends StatelessWidget {
       fullWidth: fullWidth,
       isBusy: isBusy,
       iconAxis: iconAxis,
+      contentColor: contentColor,
     );
   }
 
@@ -134,7 +136,7 @@ class UIButton extends StatelessWidget {
       case _UIButtonVariant.primary:
         return UIColorsToken.bgPriYellow;
       case _UIButtonVariant.secondary:
-        return null;
+        return UIColorsToken.bgSecondYellow;
       case _UIButtonVariant.textual:
         return null;
     }
@@ -152,14 +154,27 @@ class UIButton extends StatelessWidget {
         return UIColorsToken.textYellow;
     }
   }
+  
+  BoxBorder? get _border {
+    if (variant == _UIButtonVariant.secondary && label == null && assetIcon != null) {
+      return Border.all(color: UIColorsToken.white, width: 1);
+    }
+
+    switch (variant) {
+      case _UIButtonVariant.primary:
+        return null;
+      case _UIButtonVariant.secondary:
+        return Border.all(color: UIColorsToken.yellow.withValues(alpha: 0.2), width: 1);
+      case _UIButtonVariant.textual:
+        return null;
+    }
+  }
 
   BoxDecoration get _decoration {
     return BoxDecoration(
       gradient: _backgroundColor,
       borderRadius: BorderRadius.circular(_radius),
-      border: variant == _UIButtonVariant.secondary && label == null && assetIcon != null
-          ? Border.all(color: UIColorsToken.white, width: 1)
-          : null,
+      border: _border,
     );
   }
 
@@ -235,7 +250,7 @@ class UIButton extends StatelessWidget {
       // icon-row variant so the button doesn't visibly jump when toggled.
       return Center(
         child: UICircularProgressBar(
-          color: UIColorsToken.black,
+          color: variant == _UIButtonVariant.textual ? UIColorsToken.white : UIColorsToken.black,
           size: _spinnerSize + 3,
         ),
       );

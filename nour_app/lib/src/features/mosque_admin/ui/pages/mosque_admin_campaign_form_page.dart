@@ -69,8 +69,8 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
     }
 
     Future<void> pickEnd() async {
-      final d = await showDatePicker(
-        context: context,
+      final d = await UIPickers.date(
+        context,
         initialDate: draft.value.endsAt.isAfter(DateTime.now()) ? draft.value.endsAt : DateTime.now().add(const Duration(days: 7)),
         firstDate: DateTime.now().add(const Duration(days: 1)),
         lastDate: DateTime.now().add(const Duration(days: 365)),

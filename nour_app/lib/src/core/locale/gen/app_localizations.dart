@@ -3979,6 +3979,2716 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Couldn\'t delete the payout.'**
   String get error_api_admin_payout_delete_failed;
+
+  /// No description provided for @common_required_field.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get common_required_field;
+
+  /// No description provided for @common_optional.
+  ///
+  /// In en, this message translates to:
+  /// **'optional'**
+  String get common_optional;
+
+  /// No description provided for @common_refresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get common_refresh;
+
+  /// No description provided for @mosque_onboarding_resume.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue my mosque registration'**
+  String get mosque_onboarding_resume;
+
+  /// No description provided for @mosque_onboarding_start_over.
+  ///
+  /// In en, this message translates to:
+  /// **'Start over'**
+  String get mosque_onboarding_start_over;
+
+  /// No description provided for @profile_type_title.
+  ///
+  /// In en, this message translates to:
+  /// **'How will you use Nour?'**
+  String get profile_type_title;
+
+  /// No description provided for @profile_type_mosque_title.
+  ///
+  /// In en, this message translates to:
+  /// **'I am a mosque manager'**
+  String get profile_type_mosque_title;
+
+  /// No description provided for @profile_type_mosque_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish to your community, run fundraising campaigns.'**
+  String get profile_type_mosque_subtitle;
+
+  /// No description provided for @profile_type_user_title.
+  ///
+  /// In en, this message translates to:
+  /// **'I am a worshipper'**
+  String get profile_type_user_title;
+
+  /// No description provided for @profile_type_user_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow mosques, track prayer times, and stay connected.'**
+  String get profile_type_user_subtitle;
+
+  /// No description provided for @mosque_post_type_announcement.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcement'**
+  String get mosque_post_type_announcement;
+
+  /// No description provided for @mosque_post_type_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Event'**
+  String get mosque_post_type_event;
+
+  /// No description provided for @mosque_post_type_event_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Date, time, place'**
+  String get mosque_post_type_event_hint;
+
+  /// No description provided for @mosque_post_type_volunteering.
+  ///
+  /// In en, this message translates to:
+  /// **'Volunteering'**
+  String get mosque_post_type_volunteering;
+
+  /// No description provided for @mosque_post_type_volunteering_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Recruit helpers'**
+  String get mosque_post_type_volunteering_hint;
+
+  /// No description provided for @mosque_post_type_highlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Highlight'**
+  String get mosque_post_type_highlight;
+
+  /// No description provided for @mosque_post_type_highlight_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Share moments'**
+  String get mosque_post_type_highlight_hint;
+
+  /// No description provided for @mosque_post_type_janaza.
+  ///
+  /// In en, this message translates to:
+  /// **'Janaza'**
+  String get mosque_post_type_janaza;
+
+  /// No description provided for @mosque_post_type_janaza_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Date, prayer time'**
+  String get mosque_post_type_janaza_hint;
+
+  /// No description provided for @mosque_onboarding_feature_1_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Made for mosque announcements.'**
+  String get mosque_onboarding_feature_1_title;
+
+  /// No description provided for @mosque_onboarding_feature_1_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Events, fundraisers, volunteer calls, janazas, reminders, highlights.'**
+  String get mosque_onboarding_feature_1_description;
+
+  /// No description provided for @mosque_onboarding_feature_2_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Raise funds the trusted way.'**
+  String get mosque_onboarding_feature_2_title;
+
+  /// No description provided for @mosque_onboarding_feature_2_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Ongoing Sadaqah and time-bound campaigns.'**
+  String get mosque_onboarding_feature_2_description;
+
+  /// No description provided for @mosque_onboarding_feature_3_title.
+  ///
+  /// In en, this message translates to:
+  /// **'A calendar that reflects your imam.'**
+  String get mosque_onboarding_feature_3_title;
+
+  /// No description provided for @mosque_onboarding_feature_3_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Publish your own prayer schedule and iqama times.'**
+  String get mosque_onboarding_feature_3_description;
+
+  /// No description provided for @mosque_onboarding_country_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your country'**
+  String get mosque_onboarding_country_title;
+
+  /// No description provided for @mosque_onboarding_country_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country'**
+  String get mosque_onboarding_country_search;
+
+  /// No description provided for @mosque_legal_status_1901.
+  ///
+  /// In en, this message translates to:
+  /// **'Association (law 1901)'**
+  String get mosque_legal_status_1901;
+
+  /// No description provided for @mosque_legal_status_1905.
+  ///
+  /// In en, this message translates to:
+  /// **'Religious association (law 1905)'**
+  String get mosque_legal_status_1905;
+
+  /// No description provided for @mosque_legal_status_other.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get mosque_legal_status_other;
+
+  /// No description provided for @mosque_register_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s register your mosque'**
+  String get mosque_register_title;
+
+  /// No description provided for @mosque_register_legal_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal name'**
+  String get mosque_register_legal_name;
+
+  /// No description provided for @mosque_register_legal_name_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your legal name'**
+  String get mosque_register_legal_name_hint;
+
+  /// No description provided for @mosque_register_legal_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal status'**
+  String get mosque_register_legal_status;
+
+  /// No description provided for @mosque_register_legal_status_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a legal status'**
+  String get mosque_register_legal_status_hint;
+
+  /// No description provided for @mosque_register_rna.
+  ///
+  /// In en, this message translates to:
+  /// **'RNA'**
+  String get mosque_register_rna;
+
+  /// No description provided for @mosque_register_rna_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'RNA must look like W751123456'**
+  String get mosque_register_rna_invalid;
+
+  /// No description provided for @mosque_register_siren.
+  ///
+  /// In en, this message translates to:
+  /// **'SIREN number'**
+  String get mosque_register_siren;
+
+  /// No description provided for @mosque_register_siren_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'SIREN must have 9 digits'**
+  String get mosque_register_siren_invalid;
+
+  /// No description provided for @mosque_register_cta.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get mosque_register_cta;
+
+  /// No description provided for @mosque_account_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Let\'s create your account'**
+  String get mosque_account_title;
+
+  /// No description provided for @mosque_account_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'To manage your mosque on Nour'**
+  String get mosque_account_subtitle;
+
+  /// No description provided for @mosque_account_existing_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Use the same email or provider to sign in.'**
+  String get mosque_account_existing_hint;
+
+  /// No description provided for @mosque_account_cta.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign up'**
+  String get mosque_account_cta;
+
+  /// No description provided for @mosque_review_pending_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque is being reviewed'**
+  String get mosque_review_pending_title;
+
+  /// No description provided for @mosque_review_pending_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Our team is checking your registration. You\'ll be notified as soon as it is approved — usually within a few days.'**
+  String get mosque_review_pending_message;
+
+  /// No description provided for @mosque_review_rejected_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration refused'**
+  String get mosque_review_rejected_title;
+
+  /// No description provided for @mosque_review_rejected_message.
+  ///
+  /// In en, this message translates to:
+  /// **'We couldn\'t approve your mosque. See the note below or contact support.'**
+  String get mosque_review_rejected_message;
+
+  /// No description provided for @mosque_review_suspended_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque suspended'**
+  String get mosque_review_suspended_title;
+
+  /// No description provided for @mosque_review_suspended_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque profile has been suspended. Contact support for more information.'**
+  String get mosque_review_suspended_message;
+
+  /// No description provided for @mosque_review_contact_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact support'**
+  String get mosque_review_contact_support;
+
+  /// No description provided for @mosque_admin_tab_dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashboard'**
+  String get mosque_admin_tab_dashboard;
+
+  /// No description provided for @mosque_admin_tab_community.
+  ///
+  /// In en, this message translates to:
+  /// **'Community'**
+  String get mosque_admin_tab_community;
+
+  /// No description provided for @mosque_admin_tab_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque'**
+  String get mosque_admin_tab_mosque;
+
+  /// No description provided for @mosque_admin_tab_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get mosque_admin_tab_post;
+
+  /// No description provided for @mosque_admin_total_raised_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Total raised this year'**
+  String get mosque_admin_total_raised_year;
+
+  /// No description provided for @mosque_admin_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors'**
+  String get mosque_admin_donors;
+
+  /// No description provided for @mosque_admin_recurring.
+  ///
+  /// In en, this message translates to:
+  /// **'Recurring'**
+  String get mosque_admin_recurring;
+
+  /// No description provided for @mosque_admin_avg_gift.
+  ///
+  /// In en, this message translates to:
+  /// **'Avg gift'**
+  String get mosque_admin_avg_gift;
+
+  /// No description provided for @error_api_mosque_load_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t load the mosque.'**
+  String get error_api_mosque_load_failed;
+
+  /// No description provided for @error_api_mosque_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t save the changes.'**
+  String get error_api_mosque_save_failed;
+
+  /// No description provided for @error_api_mosque_search_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t search mosques.'**
+  String get error_api_mosque_search_failed;
+
+  /// No description provided for @error_api_mosque_register_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t register the mosque. Please try again.'**
+  String get error_api_mosque_register_failed;
+
+  /// No description provided for @error_api_mosque_register_is_worshipper.
+  ///
+  /// In en, this message translates to:
+  /// **'This account is already a worshipper account. Use another email to register a mosque.'**
+  String get error_api_mosque_register_is_worshipper;
+
+  /// No description provided for @error_api_mosque_register_anonymous.
+  ///
+  /// In en, this message translates to:
+  /// **'Please sign in with an email, Google or Apple account.'**
+  String get error_api_mosque_register_anonymous;
+
+  /// No description provided for @error_api_mosque_register_invalid_siren.
+  ///
+  /// In en, this message translates to:
+  /// **'The SIREN number is invalid.'**
+  String get error_api_mosque_register_invalid_siren;
+
+  /// No description provided for @error_api_mosque_register_invalid_rna.
+  ///
+  /// In en, this message translates to:
+  /// **'The RNA number is invalid.'**
+  String get error_api_mosque_register_invalid_rna;
+
+  /// No description provided for @error_api_mosque_register_duplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'This mosque is already registered. Contact support if you manage it.'**
+  String get error_api_mosque_register_duplicate;
+
+  /// No description provided for @error_api_mosque_post_limit_reached.
+  ///
+  /// In en, this message translates to:
+  /// **'You reached the limit of active posts of this type. Archive one first.'**
+  String get error_api_mosque_post_limit_reached;
+
+  /// No description provided for @error_api_mosque_broadcast_quota_exceeded.
+  ///
+  /// In en, this message translates to:
+  /// **'You already sent the maximum notifications this week.'**
+  String get error_api_mosque_broadcast_quota_exceeded;
+
+  /// No description provided for @error_api_mosque_not_approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque is not approved yet.'**
+  String get error_api_mosque_not_approved;
+
+  /// No description provided for @error_api_push_register_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t register this device for notifications.'**
+  String get error_api_push_register_failed;
+
+  /// No description provided for @push_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Push notifications'**
+  String get push_settings_title;
+
+  /// No description provided for @push_settings_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose which notifications Nour may send to this device. Prayer and adhkar reminders are managed in Reminders.'**
+  String get push_settings_description;
+
+  /// No description provided for @push_kind_mosque_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque news'**
+  String get push_kind_mosque_post;
+
+  /// No description provided for @push_kind_mosque_post_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Announcements from the mosques you follow'**
+  String get push_kind_mosque_post_hint;
+
+  /// No description provided for @push_kind_mosque_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Events'**
+  String get push_kind_mosque_event;
+
+  /// No description provided for @push_kind_mosque_event_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Conferences, janazas, volunteering'**
+  String get push_kind_mosque_event_hint;
+
+  /// No description provided for @push_kind_mosque_campaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Fundraising campaigns'**
+  String get push_kind_mosque_campaign;
+
+  /// No description provided for @push_kind_mosque_campaign_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'New campaigns and deadlines'**
+  String get push_kind_mosque_campaign_hint;
+
+  /// No description provided for @push_kind_mosque_broadcast.
+  ///
+  /// In en, this message translates to:
+  /// **'Messages from the mosque'**
+  String get push_kind_mosque_broadcast;
+
+  /// No description provided for @push_kind_mosque_broadcast_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Direct messages sent by the mosque (max 2 per week)'**
+  String get push_kind_mosque_broadcast_hint;
+
+  /// No description provided for @push_kind_mosque_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque account'**
+  String get push_kind_mosque_status;
+
+  /// No description provided for @push_kind_mosque_status_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Review status and important account updates'**
+  String get push_kind_mosque_status_hint;
+
+  /// No description provided for @push_kind_system.
+  ///
+  /// In en, this message translates to:
+  /// **'Nour updates'**
+  String get push_kind_system;
+
+  /// No description provided for @push_kind_system_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Occasional news about the app'**
+  String get push_kind_system_hint;
+
+  /// No description provided for @common_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get common_cancel;
+
+  /// No description provided for @common_delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get common_delete;
+
+  /// No description provided for @common_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get common_edit;
+
+  /// No description provided for @common_load_more.
+  ///
+  /// In en, this message translates to:
+  /// **'Load more'**
+  String get common_load_more;
+
+  /// No description provided for @common_yes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get common_yes;
+
+  /// No description provided for @common_no.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get common_no;
+
+  /// No description provided for @admin_tab_mosques.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosques'**
+  String get admin_tab_mosques;
+
+  /// No description provided for @admin_mosque_approve.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get admin_mosque_approve;
+
+  /// No description provided for @admin_mosque_reject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get admin_mosque_reject;
+
+  /// No description provided for @admin_mosque_suspend.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspend'**
+  String get admin_mosque_suspend;
+
+  /// No description provided for @admin_mosque_reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque updated — the owner has been notified.'**
+  String get admin_mosque_reviewed;
+
+  /// No description provided for @admin_mosque_duplicate_siren.
+  ///
+  /// In en, this message translates to:
+  /// **'⚠ Another mosque uses this SIREN'**
+  String get admin_mosque_duplicate_siren;
+
+  /// No description provided for @admin_mosque_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No mosque in this state.'**
+  String get admin_mosque_empty;
+
+  /// No description provided for @admin_mosque_filter_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending'**
+  String get admin_mosque_filter_pending;
+
+  /// No description provided for @admin_mosque_filter_approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get admin_mosque_filter_approved;
+
+  /// No description provided for @admin_mosque_filter_rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get admin_mosque_filter_rejected;
+
+  /// No description provided for @admin_mosque_filter_suspended.
+  ///
+  /// In en, this message translates to:
+  /// **'Suspended'**
+  String get admin_mosque_filter_suspended;
+
+  /// No description provided for @admin_mosque_note_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Note for the mosque'**
+  String get admin_mosque_note_title;
+
+  /// No description provided for @admin_mosque_note_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (shown to the mosque manager)'**
+  String get admin_mosque_note_hint;
+
+  /// No description provided for @home_my_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'My mosque'**
+  String get home_my_mosque;
+
+  /// No description provided for @home_no_mosque_title.
+  ///
+  /// In en, this message translates to:
+  /// **'No mosque selected yet'**
+  String get home_no_mosque_title;
+
+  /// No description provided for @home_no_mosque_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your mosque to see its prayer times, news and campaigns right here.'**
+  String get home_no_mosque_subtitle;
+
+  /// No description provided for @home_find_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Find a mosque'**
+  String get home_find_mosque;
+
+  /// No description provided for @profile_my_mosques.
+  ///
+  /// In en, this message translates to:
+  /// **'My mosques'**
+  String get profile_my_mosques;
+
+  /// No description provided for @prayer_times_add_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your mosque'**
+  String get prayer_times_add_mosque;
+
+  /// No description provided for @prayer_times_from_mosque_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Times published by your mosque. Change your mosque to switch back to computed times.'**
+  String get prayer_times_from_mosque_hint;
+
+  /// No description provided for @onboarding_mosque_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a mosque'**
+  String get onboarding_mosque_title;
+
+  /// No description provided for @onboarding_mosque_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Find and follow your local mosque to get its prayer times and news.'**
+  String get onboarding_mosque_subtitle;
+
+  /// No description provided for @mosque_search_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search a mosque'**
+  String get mosque_search_hint;
+
+  /// No description provided for @mosque_search_near_you.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosques near you'**
+  String get mosque_search_near_you;
+
+  /// No description provided for @mosque_search_near_you_short.
+  ///
+  /// In en, this message translates to:
+  /// **'Near you'**
+  String get mosque_search_near_you_short;
+
+  /// No description provided for @mosque_search_results.
+  ///
+  /// In en, this message translates to:
+  /// **'Results'**
+  String get mosque_search_results;
+
+  /// No description provided for @mosque_search_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No mosque found. Try another name or city.'**
+  String get mosque_search_empty;
+
+  /// No description provided for @mosque_search_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Search language'**
+  String get mosque_search_language;
+
+  /// No description provided for @mosque_add_to_my_mosques.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to my mosques'**
+  String get mosque_add_to_my_mosques;
+
+  /// No description provided for @my_mosques_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque(s)'**
+  String get my_mosques_title;
+
+  /// No description provided for @my_mosques_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag and drop the mosques to reorder them and set the main mosque.'**
+  String get my_mosques_subtitle;
+
+  /// No description provided for @my_mosques_principal.
+  ///
+  /// In en, this message translates to:
+  /// **'Principal mosque'**
+  String get my_mosques_principal;
+
+  /// No description provided for @my_mosques_secondary.
+  ///
+  /// In en, this message translates to:
+  /// **'Secondary mosque'**
+  String get my_mosques_secondary;
+
+  /// No description provided for @my_mosques_no_principal.
+  ///
+  /// In en, this message translates to:
+  /// **'No principal mosque yet'**
+  String get my_mosques_no_principal;
+
+  /// No description provided for @my_mosques_no_secondary.
+  ///
+  /// In en, this message translates to:
+  /// **'No secondary mosque yet'**
+  String get my_mosques_no_secondary;
+
+  /// No description provided for @my_mosques_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosques are saved.'**
+  String get my_mosques_saved;
+
+  /// No description provided for @my_mosques_added.
+  ///
+  /// In en, this message translates to:
+  /// **'In my mosques'**
+  String get my_mosques_added;
+
+  /// No description provided for @my_mosques_is_principal.
+  ///
+  /// In en, this message translates to:
+  /// **'Your principal mosque'**
+  String get my_mosques_is_principal;
+
+  /// No description provided for @my_mosques_is_secondary.
+  ///
+  /// In en, this message translates to:
+  /// **'Your secondary mosque'**
+  String get my_mosques_is_secondary;
+
+  /// No description provided for @mosque_cover_placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover image'**
+  String get mosque_cover_placeholder;
+
+  /// No description provided for @mosque_status_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get mosque_status_open;
+
+  /// No description provided for @mosque_status_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get mosque_status_closed;
+
+  /// No description provided for @mosque_followers.
+  ///
+  /// In en, this message translates to:
+  /// **'followers'**
+  String get mosque_followers;
+
+  /// No description provided for @mosque_members.
+  ///
+  /// In en, this message translates to:
+  /// **'members'**
+  String get mosque_members;
+
+  /// No description provided for @mosque_followers_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get mosque_followers_title;
+
+  /// No description provided for @mosque_members_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get mosque_members_title;
+
+  /// No description provided for @mosque_follow.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow'**
+  String get mosque_follow;
+
+  /// No description provided for @mosque_following.
+  ///
+  /// In en, this message translates to:
+  /// **'Following'**
+  String get mosque_following;
+
+  /// No description provided for @mosque_become_member.
+  ///
+  /// In en, this message translates to:
+  /// **'Become a member'**
+  String get mosque_become_member;
+
+  /// No description provided for @mosque_member_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Member'**
+  String get mosque_member_badge;
+
+  /// No description provided for @mosque_follower_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Follower'**
+  String get mosque_follower_badge;
+
+  /// No description provided for @mosque_action_itinerary.
+  ///
+  /// In en, this message translates to:
+  /// **'Itinerary'**
+  String get mosque_action_itinerary;
+
+  /// No description provided for @mosque_action_call.
+  ///
+  /// In en, this message translates to:
+  /// **'Call'**
+  String get mosque_action_call;
+
+  /// No description provided for @mosque_action_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get mosque_action_email;
+
+  /// No description provided for @mosque_address_copied.
+  ///
+  /// In en, this message translates to:
+  /// **'Address copied'**
+  String get mosque_address_copied;
+
+  /// No description provided for @mosque_tab_prayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayers'**
+  String get mosque_tab_prayers;
+
+  /// No description provided for @mosque_tab_information.
+  ///
+  /// In en, this message translates to:
+  /// **'Information'**
+  String get mosque_tab_information;
+
+  /// No description provided for @mosque_tab_news.
+  ///
+  /// In en, this message translates to:
+  /// **'News'**
+  String get mosque_tab_news;
+
+  /// No description provided for @mosque_tab_donation.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation'**
+  String get mosque_tab_donation;
+
+  /// No description provided for @mosque_today_prayer_times.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s prayer times'**
+  String get mosque_today_prayer_times;
+
+  /// No description provided for @mosque_prayer_times_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times are not available right now.'**
+  String get mosque_prayer_times_unavailable;
+
+  /// No description provided for @mosque_prayer_times_computed_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Computed times — the mosque hasn\'t published today\'s schedule yet.'**
+  String get mosque_prayer_times_computed_hint;
+
+  /// No description provided for @mosque_prayer_times_not_published.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times not published yet'**
+  String get mosque_prayer_times_not_published;
+
+  /// No description provided for @mosque_capacity.
+  ///
+  /// In en, this message translates to:
+  /// **'Capacity'**
+  String get mosque_capacity;
+
+  /// No description provided for @mosque_capacity_men.
+  ///
+  /// In en, this message translates to:
+  /// **'Men'**
+  String get mosque_capacity_men;
+
+  /// No description provided for @mosque_capacity_women.
+  ///
+  /// In en, this message translates to:
+  /// **'Women'**
+  String get mosque_capacity_women;
+
+  /// No description provided for @mosque_capacity_men_women.
+  ///
+  /// In en, this message translates to:
+  /// **'Men + Women'**
+  String get mosque_capacity_men_women;
+
+  /// No description provided for @mosque_founded.
+  ///
+  /// In en, this message translates to:
+  /// **'Founded'**
+  String get mosque_founded;
+
+  /// No description provided for @mosque_years_old.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} years old'**
+  String mosque_years_old(int n);
+
+  /// No description provided for @mosque_services.
+  ///
+  /// In en, this message translates to:
+  /// **'Services'**
+  String get mosque_services;
+
+  /// No description provided for @mosque_services_edit_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Select the services your mosque offers. They\'ll appear on your public profile.'**
+  String get mosque_services_edit_hint;
+
+  /// No description provided for @mosque_no_services.
+  ///
+  /// In en, this message translates to:
+  /// **'No service listed yet.'**
+  String get mosque_no_services;
+
+  /// No description provided for @mosque_service_parking.
+  ///
+  /// In en, this message translates to:
+  /// **'Parking'**
+  String get mosque_service_parking;
+
+  /// No description provided for @mosque_service_disabled_access.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled access'**
+  String get mosque_service_disabled_access;
+
+  /// No description provided for @mosque_service_ablution_room.
+  ///
+  /// In en, this message translates to:
+  /// **'Ablution room'**
+  String get mosque_service_ablution_room;
+
+  /// No description provided for @mosque_service_women_space.
+  ///
+  /// In en, this message translates to:
+  /// **'Women\'s space'**
+  String get mosque_service_women_space;
+
+  /// No description provided for @mosque_service_adult_classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Adult classes'**
+  String get mosque_service_adult_classes;
+
+  /// No description provided for @mosque_service_children_classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Children classes'**
+  String get mosque_service_children_classes;
+
+  /// No description provided for @mosque_service_quran_classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Qur\'an classes'**
+  String get mosque_service_quran_classes;
+
+  /// No description provided for @mosque_service_arabic_classes.
+  ///
+  /// In en, this message translates to:
+  /// **'Arabic classes'**
+  String get mosque_service_arabic_classes;
+
+  /// No description provided for @mosque_service_eid_prayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Salat Al Eid'**
+  String get mosque_service_eid_prayer;
+
+  /// No description provided for @mosque_service_janaza.
+  ///
+  /// In en, this message translates to:
+  /// **'Salat Al Janaza'**
+  String get mosque_service_janaza;
+
+  /// No description provided for @mosque_service_iftar_ramadan.
+  ///
+  /// In en, this message translates to:
+  /// **'Iftar Ramadan'**
+  String get mosque_service_iftar_ramadan;
+
+  /// No description provided for @mosque_service_library.
+  ///
+  /// In en, this message translates to:
+  /// **'Library'**
+  String get mosque_service_library;
+
+  /// No description provided for @mosque_service_new_muslims.
+  ///
+  /// In en, this message translates to:
+  /// **'New Muslims support'**
+  String get mosque_service_new_muslims;
+
+  /// No description provided for @mosque_khutbah_languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Khutbah language(s)'**
+  String get mosque_khutbah_languages;
+
+  /// No description provided for @mosque_imams.
+  ///
+  /// In en, this message translates to:
+  /// **'Imams'**
+  String get mosque_imams;
+
+  /// No description provided for @mosque_since_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {y}'**
+  String mosque_since_year(int y);
+
+  /// No description provided for @mosque_add_imam.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an Imam'**
+  String get mosque_add_imam;
+
+  /// No description provided for @mosque_edit_imam.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Imam'**
+  String get mosque_edit_imam;
+
+  /// No description provided for @mosque_add_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo'**
+  String get mosque_add_photo;
+
+  /// No description provided for @mosque_imam_full_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get mosque_imam_full_name;
+
+  /// No description provided for @mosque_imam_role.
+  ///
+  /// In en, this message translates to:
+  /// **'Role'**
+  String get mosque_imam_role;
+
+  /// No description provided for @mosque_imam_since.
+  ///
+  /// In en, this message translates to:
+  /// **'At the mosque since'**
+  String get mosque_imam_since;
+
+  /// No description provided for @mosque_imam_bio.
+  ///
+  /// In en, this message translates to:
+  /// **'Short bio'**
+  String get mosque_imam_bio;
+
+  /// No description provided for @mosque_imam_bio_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'A few words about the Imam'**
+  String get mosque_imam_bio_hint;
+
+  /// No description provided for @mosque_news_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No news yet. Follow the mosque to be notified of its announcements.'**
+  String get mosque_news_empty;
+
+  /// No description provided for @mosque_post_urgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get mosque_post_urgent;
+
+  /// No description provided for @mosque_post_share.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get mosque_post_share;
+
+  /// No description provided for @mosque_post_apply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get mosque_post_apply;
+
+  /// No description provided for @mosque_post_applied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get mosque_post_applied;
+
+  /// No description provided for @mosque_post_attend_cta.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'ll attend'**
+  String get mosque_post_attend_cta;
+
+  /// No description provided for @mosque_post_attending_cta_done.
+  ///
+  /// In en, this message translates to:
+  /// **'Attending ✓'**
+  String get mosque_post_attending_cta_done;
+
+  /// No description provided for @mosque_post_attending.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} attending'**
+  String mosque_post_attending(int n);
+
+  /// No description provided for @mosque_post_volunteers.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} volunteer(s)'**
+  String mosque_post_volunteers(int n);
+
+  /// No description provided for @mosque_post_duas.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} duas'**
+  String mosque_post_duas(int n);
+
+  /// No description provided for @mosque_post_say_dua.
+  ///
+  /// In en, this message translates to:
+  /// **'Say a dua'**
+  String get mosque_post_say_dua;
+
+  /// No description provided for @mosque_post_dua_said.
+  ///
+  /// In en, this message translates to:
+  /// **'Dua said ✓'**
+  String get mosque_post_dua_said;
+
+  /// No description provided for @mosque_post_after_prayer.
+  ///
+  /// In en, this message translates to:
+  /// **'After {slot} prayer - {time}'**
+  String mosque_post_after_prayer(String slot, String time);
+
+  /// No description provided for @mosque_post_notified_all.
+  ///
+  /// In en, this message translates to:
+  /// **'Notified all'**
+  String get mosque_post_notified_all;
+
+  /// No description provided for @mosque_dua_recite.
+  ///
+  /// In en, this message translates to:
+  /// **'Recite this dua'**
+  String get mosque_dua_recite;
+
+  /// No description provided for @mosque_dua_translation.
+  ///
+  /// In en, this message translates to:
+  /// **'O Allah, forgive him, have mercy on him, grant him well-being and pardon him.'**
+  String get mosque_dua_translation;
+
+  /// No description provided for @mosque_dua_done.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m done'**
+  String get mosque_dua_done;
+
+  /// No description provided for @mosque_donations_coming_soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations to this mosque will be available soon.'**
+  String get mosque_donations_coming_soon;
+
+  /// No description provided for @mosque_donation_enter_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount manually'**
+  String get mosque_donation_enter_amount;
+
+  /// No description provided for @mosque_member_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Join our membership'**
+  String get mosque_member_title;
+
+  /// No description provided for @mosque_member_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Registering as a member helps us stay connected with you and organize our community life.'**
+  String get mosque_member_subtitle;
+
+  /// No description provided for @mosque_member_first_name.
+  ///
+  /// In en, this message translates to:
+  /// **'First name'**
+  String get mosque_member_first_name;
+
+  /// No description provided for @mosque_member_last_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Last name'**
+  String get mosque_member_last_name;
+
+  /// No description provided for @mosque_member_birth_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date of birth'**
+  String get mosque_member_birth_date;
+
+  /// No description provided for @mosque_member_profession.
+  ///
+  /// In en, this message translates to:
+  /// **'Profession'**
+  String get mosque_member_profession;
+
+  /// No description provided for @mosque_member_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get mosque_member_phone;
+
+  /// No description provided for @mosque_member_volunteer_question.
+  ///
+  /// In en, this message translates to:
+  /// **'Available for volunteer projects?'**
+  String get mosque_member_volunteer_question;
+
+  /// No description provided for @mosque_member_consent.
+  ///
+  /// In en, this message translates to:
+  /// **'I consent to the mosque using my information to contact me about volunteer and community support projects.'**
+  String get mosque_member_consent;
+
+  /// No description provided for @mosque_member_fee_optional.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional contribution'**
+  String get mosque_member_fee_optional;
+
+  /// No description provided for @mosque_member_fee_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Support the mosque'**
+  String get mosque_member_fee_title;
+
+  /// No description provided for @mosque_member_fee_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'A recommended contribution of €120/year helps sustain the mosque. This is entirely optional, your membership is free.'**
+  String get mosque_member_fee_hint;
+
+  /// No description provided for @mosque_member_fee_choose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your contribution'**
+  String get mosque_member_fee_choose;
+
+  /// No description provided for @mosque_member_register.
+  ///
+  /// In en, this message translates to:
+  /// **'Register as member'**
+  String get mosque_member_register;
+
+  /// No description provided for @mosque_member_fill_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fill all required fields and accept the consent.'**
+  String get mosque_member_fill_required;
+
+  /// No description provided for @mosque_member_welcome.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome to the community!'**
+  String get mosque_member_welcome;
+
+  /// No description provided for @mosque_time_just_now.
+  ///
+  /// In en, this message translates to:
+  /// **'Just now'**
+  String get mosque_time_just_now;
+
+  /// No description provided for @mosque_time_min_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} min ago'**
+  String mosque_time_min_ago(int n);
+
+  /// No description provided for @mosque_time_hours_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} h ago'**
+  String mosque_time_hours_ago(int n);
+
+  /// No description provided for @mosque_time_yesterday.
+  ///
+  /// In en, this message translates to:
+  /// **'Yesterday'**
+  String get mosque_time_yesterday;
+
+  /// No description provided for @mosque_time_days_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} days ago'**
+  String mosque_time_days_ago(int n);
+
+  /// No description provided for @mosque_time_weeks_ago.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} week(s) ago'**
+  String mosque_time_weeks_ago(int n);
+
+  /// No description provided for @mosque_admin_panel_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque dashboard'**
+  String get mosque_admin_panel_title;
+
+  /// No description provided for @mosque_admin_panel_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage your mosque, posts and community'**
+  String get mosque_admin_panel_subtitle;
+
+  /// No description provided for @mosque_admin_attention.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} things need your attention'**
+  String mosque_admin_attention(int n);
+
+  /// No description provided for @mosque_admin_pending_events.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} pending event(s)'**
+  String mosque_admin_pending_events(int n);
+
+  /// No description provided for @mosque_admin_campaigns_ending.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} fundraising ending soon'**
+  String mosque_admin_campaigns_ending(int n);
+
+  /// No description provided for @mosque_admin_last_7_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 7 days'**
+  String get mosque_admin_last_7_days;
+
+  /// No description provided for @mosque_admin_last_30_days.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get mosque_admin_last_30_days;
+
+  /// No description provided for @mosque_admin_growth.
+  ///
+  /// In en, this message translates to:
+  /// **'Growth'**
+  String get mosque_admin_growth;
+
+  /// No description provided for @mosque_admin_today.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get mosque_admin_today;
+
+  /// No description provided for @mosque_admin_open_rate.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification open rate (30 days, estimate): {rate}%'**
+  String mosque_admin_open_rate(String rate);
+
+  /// No description provided for @mosque_admin_fundraising.
+  ///
+  /// In en, this message translates to:
+  /// **'Fundraising'**
+  String get mosque_admin_fundraising;
+
+  /// No description provided for @mosque_campaign_days_left_short.
+  ///
+  /// In en, this message translates to:
+  /// **'{n}d left'**
+  String mosque_campaign_days_left_short(int n);
+
+  /// No description provided for @mosque_admin_recent_posts.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent posts'**
+  String get mosque_admin_recent_posts;
+
+  /// No description provided for @mosque_admin_no_posts.
+  ///
+  /// In en, this message translates to:
+  /// **'No post yet. Share news, events or a janaza with your community.'**
+  String get mosque_admin_no_posts;
+
+  /// No description provided for @mosque_admin_create_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a post'**
+  String get mosque_admin_create_post;
+
+  /// No description provided for @mosque_admin_view_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'View public profile'**
+  String get mosque_admin_view_mosque;
+
+  /// No description provided for @mosque_admin_search_community.
+  ///
+  /// In en, this message translates to:
+  /// **'Search name, email, phone'**
+  String get mosque_admin_search_community;
+
+  /// No description provided for @mosque_admin_filter_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get mosque_admin_filter_all;
+
+  /// No description provided for @mosque_admin_filter_followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get mosque_admin_filter_followers;
+
+  /// No description provided for @mosque_admin_filter_members.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get mosque_admin_filter_members;
+
+  /// No description provided for @mosque_admin_filter_volunteers.
+  ///
+  /// In en, this message translates to:
+  /// **'Volunteers'**
+  String get mosque_admin_filter_volunteers;
+
+  /// No description provided for @mosque_admin_community_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nobody here yet.'**
+  String get mosque_admin_community_empty;
+
+  /// No description provided for @mosque_admin_remove_member.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove member'**
+  String get mosque_admin_remove_member;
+
+  /// No description provided for @mosque_admin_prayer_times.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times'**
+  String get mosque_admin_prayer_times;
+
+  /// No description provided for @mosque_prayers_not_set_title.
+  ///
+  /// In en, this message translates to:
+  /// **'The day\'s prayers have not yet been set.'**
+  String get mosque_prayers_not_set_title;
+
+  /// No description provided for @mosque_prayers_not_set_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter them manually or copy from another day'**
+  String get mosque_prayers_not_set_hint;
+
+  /// No description provided for @mosque_prayers_copy_from_day.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy from another day'**
+  String get mosque_prayers_copy_from_day;
+
+  /// No description provided for @mosque_prayers_copied_from.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer times successfully copied from {date}'**
+  String mosque_prayers_copied_from(String date);
+
+  /// No description provided for @mosque_copy_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy prayer times'**
+  String get mosque_copy_title;
+
+  /// No description provided for @mosque_copy_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reuse another day\'s times instead of typing them again.'**
+  String get mosque_copy_subtitle;
+
+  /// No description provided for @mosque_copy_from.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy from'**
+  String get mosque_copy_from;
+
+  /// No description provided for @mosque_copy_times.
+  ///
+  /// In en, this message translates to:
+  /// **'Times to copy'**
+  String get mosque_copy_times;
+
+  /// No description provided for @mosque_copy_apply_to.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply to'**
+  String get mosque_copy_apply_to;
+
+  /// No description provided for @mosque_copy_this_day.
+  ///
+  /// In en, this message translates to:
+  /// **'This day only'**
+  String get mosque_copy_this_day;
+
+  /// No description provided for @mosque_copy_date_range.
+  ///
+  /// In en, this message translates to:
+  /// **'A date range'**
+  String get mosque_copy_date_range;
+
+  /// No description provided for @mosque_copy_from_date.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get mosque_copy_from_date;
+
+  /// No description provided for @mosque_copy_to_date.
+  ///
+  /// In en, this message translates to:
+  /// **'To'**
+  String get mosque_copy_to_date;
+
+  /// No description provided for @mosque_copy_overwrite_warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Days that already have times will be overwritten.'**
+  String get mosque_copy_overwrite_warning;
+
+  /// No description provided for @mosque_overrides_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Prayer\'s overrides'**
+  String get mosque_overrides_title;
+
+  /// No description provided for @mosque_overrides_shift_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Shift a prayer today'**
+  String get mosque_overrides_shift_title;
+
+  /// No description provided for @mosque_overrides_shift_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Change one prayer\'s time for today only, without touching the permanent schedule.'**
+  String get mosque_overrides_shift_hint;
+
+  /// No description provided for @mosque_overrides_create.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an override'**
+  String get mosque_overrides_create;
+
+  /// No description provided for @mosque_overrides_applied.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied overrides'**
+  String get mosque_overrides_applied;
+
+  /// No description provided for @mosque_override_created.
+  ///
+  /// In en, this message translates to:
+  /// **'Override applied — followers see the new time.'**
+  String get mosque_override_created;
+
+  /// No description provided for @mosque_override_new_time.
+  ///
+  /// In en, this message translates to:
+  /// **'New time'**
+  String get mosque_override_new_time;
+
+  /// No description provided for @mosque_override_reason_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason (optional)'**
+  String get mosque_override_reason_hint;
+
+  /// No description provided for @mosque_post_notify_followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify followers'**
+  String get mosque_post_notify_followers;
+
+  /// No description provided for @mosque_post_send_push.
+  ///
+  /// In en, this message translates to:
+  /// **'Send push to {n} followers'**
+  String mosque_post_send_push(int n);
+
+  /// No description provided for @mosque_post_quota_left.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} of {limit} notifications left this week'**
+  String mosque_post_quota_left(int left, int limit);
+
+  /// No description provided for @mosque_post_notified.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification sent to {n} followers'**
+  String mosque_post_notified(int n);
+
+  /// No description provided for @mosque_post_archive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get mosque_post_archive;
+
+  /// No description provided for @mosque_post_published.
+  ///
+  /// In en, this message translates to:
+  /// **'Post published'**
+  String get mosque_post_published;
+
+  /// No description provided for @mosque_post_title_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get mosque_post_title_hint;
+
+  /// No description provided for @mosque_post_title_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get mosque_post_title_label;
+
+  /// No description provided for @mosque_post_body_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Start writing'**
+  String get mosque_post_body_hint;
+
+  /// No description provided for @mosque_post_add_to_post.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to your post'**
+  String get mosque_post_add_to_post;
+
+  /// No description provided for @mosque_post_choose_category.
+  ///
+  /// In en, this message translates to:
+  /// **'Or choose a category'**
+  String get mosque_post_choose_category;
+
+  /// No description provided for @mosque_post_audience_public.
+  ///
+  /// In en, this message translates to:
+  /// **'Public'**
+  String get mosque_post_audience_public;
+
+  /// No description provided for @mosque_post_audience_followers.
+  ///
+  /// In en, this message translates to:
+  /// **'Followers'**
+  String get mosque_post_audience_followers;
+
+  /// No description provided for @mosque_post_form_event.
+  ///
+  /// In en, this message translates to:
+  /// **'Post an event'**
+  String get mosque_post_form_event;
+
+  /// No description provided for @mosque_post_form_volunteering.
+  ///
+  /// In en, this message translates to:
+  /// **'Recruit volunteers'**
+  String get mosque_post_form_volunteering;
+
+  /// No description provided for @mosque_post_form_highlight.
+  ///
+  /// In en, this message translates to:
+  /// **'Share a highlight'**
+  String get mosque_post_form_highlight;
+
+  /// No description provided for @mosque_post_form_janaza.
+  ///
+  /// In en, this message translates to:
+  /// **'Announce a janaza'**
+  String get mosque_post_form_janaza;
+
+  /// No description provided for @mosque_post_cover_photo.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover photo'**
+  String get mosque_post_cover_photo;
+
+  /// No description provided for @mosque_post_add_cover.
+  ///
+  /// In en, this message translates to:
+  /// **'Add cover photo'**
+  String get mosque_post_add_cover;
+
+  /// No description provided for @mosque_post_cover_required.
+  ///
+  /// In en, this message translates to:
+  /// **'A photo is required for a highlight.'**
+  String get mosque_post_cover_required;
+
+  /// No description provided for @mosque_post_event_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Event name'**
+  String get mosque_post_event_name;
+
+  /// No description provided for @mosque_post_janaza_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of the deceased'**
+  String get mosque_post_janaza_name;
+
+  /// No description provided for @mosque_post_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get mosque_post_description;
+
+  /// No description provided for @mosque_post_description_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'What is this event about..'**
+  String get mosque_post_description_hint;
+
+  /// No description provided for @mosque_post_date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get mosque_post_date;
+
+  /// No description provided for @mosque_post_time.
+  ///
+  /// In en, this message translates to:
+  /// **'Time'**
+  String get mosque_post_time;
+
+  /// No description provided for @mosque_post_date_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a date.'**
+  String get mosque_post_date_required;
+
+  /// No description provided for @mosque_post_after_prayer_label.
+  ///
+  /// In en, this message translates to:
+  /// **'After which prayer?'**
+  String get mosque_post_after_prayer_label;
+
+  /// No description provided for @mosque_post_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get mosque_post_location;
+
+  /// No description provided for @mosque_post_location_default.
+  ///
+  /// In en, this message translates to:
+  /// **'At the mosque'**
+  String get mosque_post_location_default;
+
+  /// No description provided for @mosque_post_volunteers_needed.
+  ///
+  /// In en, this message translates to:
+  /// **'Volunteers needed'**
+  String get mosque_post_volunteers_needed;
+
+  /// No description provided for @mosque_post_language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get mosque_post_language;
+
+  /// No description provided for @mosque_post_mark_urgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as urgent'**
+  String get mosque_post_mark_urgent;
+
+  /// No description provided for @mosque_post_mark_urgent_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Post appears at top with urgent badge'**
+  String get mosque_post_mark_urgent_hint;
+
+  /// No description provided for @mosque_admin_edit_profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit mosque profile'**
+  String get mosque_admin_edit_profile;
+
+  /// No description provided for @mosque_admin_profile_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile saved'**
+  String get mosque_admin_profile_saved;
+
+  /// No description provided for @mosque_admin_cover_images.
+  ///
+  /// In en, this message translates to:
+  /// **'Cover images'**
+  String get mosque_admin_cover_images;
+
+  /// No description provided for @mosque_admin_tap_to_change_logo.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the logo to change it'**
+  String get mosque_admin_tap_to_change_logo;
+
+  /// No description provided for @mosque_admin_field_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque name'**
+  String get mosque_admin_field_name;
+
+  /// No description provided for @mosque_admin_field_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get mosque_admin_field_description;
+
+  /// No description provided for @mosque_admin_field_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get mosque_admin_field_address;
+
+  /// No description provided for @mosque_admin_field_postal.
+  ///
+  /// In en, this message translates to:
+  /// **'Postal code'**
+  String get mosque_admin_field_postal;
+
+  /// No description provided for @mosque_admin_field_city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get mosque_admin_field_city;
+
+  /// No description provided for @mosque_admin_field_phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get mosque_admin_field_phone;
+
+  /// No description provided for @mosque_admin_field_website.
+  ///
+  /// In en, this message translates to:
+  /// **'Website'**
+  String get mosque_admin_field_website;
+
+  /// No description provided for @mosque_admin_opening_status.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening status'**
+  String get mosque_admin_opening_status;
+
+  /// No description provided for @mosque_admin_opening_auto.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic'**
+  String get mosque_admin_opening_auto;
+
+  /// No description provided for @mosque_admin_no_notifications.
+  ///
+  /// In en, this message translates to:
+  /// **'No notification yet.'**
+  String get mosque_admin_no_notifications;
+
+  /// No description provided for @error_api_mosque_campaign_limit_reached.
+  ///
+  /// In en, this message translates to:
+  /// **'You already have 3 active campaigns. Close one first.'**
+  String get error_api_mosque_campaign_limit_reached;
+
+  /// No description provided for @error_api_mosque_campaign_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'This campaign is closed.'**
+  String get error_api_mosque_campaign_closed;
+
+  /// No description provided for @error_api_mosque_donations_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'This mosque can\'t receive donations yet.'**
+  String get error_api_mosque_donations_disabled;
+
+  /// No description provided for @error_api_mosque_receipts_not_allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This mosque doesn\'t issue tax receipts.'**
+  String get error_api_mosque_receipts_not_allowed;
+
+  /// No description provided for @error_api_mosque_receipt_no_donations.
+  ///
+  /// In en, this message translates to:
+  /// **'No eligible donation found for this receipt.'**
+  String get error_api_mosque_receipt_no_donations;
+
+  /// No description provided for @error_api_mosque_receipt_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t generate the receipt.'**
+  String get error_api_mosque_receipt_failed;
+
+  /// No description provided for @error_api_mosque_stripe_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach Stripe. Please try again.'**
+  String get error_api_mosque_stripe_failed;
+
+  /// No description provided for @my_donations_tab_mosques.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosques'**
+  String get my_donations_tab_mosques;
+
+  /// No description provided for @my_donations_empty_mosques.
+  ///
+  /// In en, this message translates to:
+  /// **'You haven\'t supported a mosque yet. Find one near you and give.'**
+  String get my_donations_empty_mosques;
+
+  /// No description provided for @mosque_donation_other_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get mosque_donation_other_amount;
+
+  /// No description provided for @mosque_donation_custom_amount_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter an amount'**
+  String get mosque_donation_custom_amount_hint;
+
+  /// No description provided for @mosque_donation_give.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {amount}'**
+  String mosque_donation_give(String amount);
+
+  /// No description provided for @mosque_donation_give_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {amount} / month'**
+  String mosque_donation_give_monthly(String amount);
+
+  /// No description provided for @mosque_donation_give_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {amount} / year'**
+  String mosque_donation_give_yearly(String amount);
+
+  /// No description provided for @mosque_donation_secure_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Secure payment. 100% goes to the mosque — Nour takes no fee.'**
+  String get mosque_donation_secure_note;
+
+  /// No description provided for @mosque_donation_tax_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipt'**
+  String get mosque_donation_tax_badge;
+
+  /// No description provided for @mosque_donation_active_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'You give {amount} every month. Jazakallah khair.'**
+  String mosque_donation_active_monthly(String amount);
+
+  /// No description provided for @mosque_donation_active_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'You give {amount} every year. Jazakallah khair.'**
+  String mosque_donation_active_yearly(String amount);
+
+  /// No description provided for @mosque_donation_cancel_recurring_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop your recurring gift?'**
+  String get mosque_donation_cancel_recurring_title;
+
+  /// No description provided for @mosque_donation_cancel_recurring_message.
+  ///
+  /// In en, this message translates to:
+  /// **'You will keep the current period; no further charge will be made.'**
+  String get mosque_donation_cancel_recurring_message;
+
+  /// No description provided for @mosque_donation_recurring_cancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Your recurring gift has been stopped.'**
+  String get mosque_donation_recurring_cancelled;
+
+  /// No description provided for @mosque_donor_anonymous.
+  ///
+  /// In en, this message translates to:
+  /// **'Anonymous'**
+  String get mosque_donor_anonymous;
+
+  /// No description provided for @mosque_campaigns_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaigns'**
+  String get mosque_campaigns_title;
+
+  /// No description provided for @mosque_campaigns_past_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Past campaigns'**
+  String get mosque_campaigns_past_title;
+
+  /// No description provided for @mosque_campaign_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign'**
+  String get mosque_campaign_title;
+
+  /// No description provided for @mosque_campaign_of_goal.
+  ///
+  /// In en, this message translates to:
+  /// **'of {goal}'**
+  String mosque_campaign_of_goal(String goal);
+
+  /// No description provided for @mosque_campaign_donors_count.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =0{No donor yet} =1{1 donor} other{{count} donors}}'**
+  String mosque_campaign_donors_count(int count);
+
+  /// No description provided for @mosque_campaign_days_left.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, =0{Ends today} =1{1 day left} other{{days} days left}}'**
+  String mosque_campaign_days_left(int days);
+
+  /// No description provided for @mosque_campaign_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get mosque_campaign_closed;
+
+  /// No description provided for @mosque_campaign_active.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get mosque_campaign_active;
+
+  /// No description provided for @mosque_campaign_ending_soon.
+  ///
+  /// In en, this message translates to:
+  /// **'Ending soon'**
+  String get mosque_campaign_ending_soon;
+
+  /// No description provided for @mosque_campaign_remaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Remaining'**
+  String get mosque_campaign_remaining;
+
+  /// No description provided for @mosque_campaign_contribute.
+  ///
+  /// In en, this message translates to:
+  /// **'Contribute'**
+  String get mosque_campaign_contribute;
+
+  /// No description provided for @mosque_campaign_recent_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent donors'**
+  String get mosque_campaign_recent_donors;
+
+  /// No description provided for @mosque_campaign_updates.
+  ///
+  /// In en, this message translates to:
+  /// **'Updates'**
+  String get mosque_campaign_updates;
+
+  /// No description provided for @mosque_campaign_updates_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No update posted yet.'**
+  String get mosque_campaign_updates_empty;
+
+  /// No description provided for @mosque_campaign_funded_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Alhamdulillah, the goal has been reached. Thank you to everyone who contributed.'**
+  String get mosque_campaign_funded_note;
+
+  /// No description provided for @mosque_campaign_ended_note.
+  ///
+  /// In en, this message translates to:
+  /// **'This campaign has ended. You can still support the mosque from its Donation tab.'**
+  String get mosque_campaign_ended_note;
+
+  /// No description provided for @mosque_checkout_sadaqa.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa to the mosque'**
+  String get mosque_checkout_sadaqa;
+
+  /// No description provided for @mosque_checkout_campaign_gift.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign contribution'**
+  String get mosque_checkout_campaign_gift;
+
+  /// No description provided for @mosque_checkout_membership_fee.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly membership contribution'**
+  String get mosque_checkout_membership_fee;
+
+  /// No description provided for @mosque_checkout_direct_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid directly to {mosque} via Stripe. Nour takes no fee.'**
+  String mosque_checkout_direct_note(String mosque);
+
+  /// No description provided for @mosque_checkout_success_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Jazakallah khair'**
+  String get mosque_checkout_success_title;
+
+  /// No description provided for @mosque_checkout_success_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your gift of {amount} to {mosque} has been received.'**
+  String mosque_checkout_success_message(String amount, String mosque);
+
+  /// No description provided for @mosque_checkout_success_membership.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contribution of {amount} to {mosque} is confirmed. Welcome to the community.'**
+  String mosque_checkout_success_membership(String amount, String mosque);
+
+  /// No description provided for @mosque_receipts_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No receipt yet.'**
+  String get mosque_receipts_empty;
+
+  /// No description provided for @mosque_receipt_single.
+  ///
+  /// In en, this message translates to:
+  /// **'Single gift'**
+  String get mosque_receipt_single;
+
+  /// No description provided for @mosque_receipt_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly summary {year}'**
+  String mosque_receipt_yearly(int year);
+
+  /// No description provided for @mosque_admin_manage.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage'**
+  String get mosque_admin_manage;
+
+  /// No description provided for @mosque_admin_preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get mosque_admin_preview;
+
+  /// No description provided for @mosque_admin_stat_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa & memberships'**
+  String get mosque_admin_stat_support;
+
+  /// No description provided for @mosque_admin_stat_support_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Ongoing support'**
+  String get mosque_admin_stat_support_hint;
+
+  /// No description provided for @mosque_admin_stat_campaigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaigns'**
+  String get mosque_admin_stat_campaigns;
+
+  /// No description provided for @mosque_donation_card_support.
+  ///
+  /// In en, this message translates to:
+  /// **'Support'**
+  String get mosque_donation_card_support;
+
+  /// No description provided for @mosque_donation_card_growth.
+  ///
+  /// In en, this message translates to:
+  /// **'{growth} vs {year}'**
+  String mosque_donation_card_growth(String growth, String year);
+
+  /// No description provided for @mosque_admin_sadaqa_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa card'**
+  String get mosque_admin_sadaqa_title;
+
+  /// No description provided for @mosque_admin_sadaqa_month_summary.
+  ///
+  /// In en, this message translates to:
+  /// **'{gifts} gifts this month ({amount}) · {monthly} monthly donors'**
+  String mosque_admin_sadaqa_month_summary(
+    int gifts,
+    String amount,
+    int monthly,
+  );
+
+  /// No description provided for @mosque_admin_sadaqa_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa settings'**
+  String get mosque_admin_sadaqa_settings_title;
+
+  /// No description provided for @mosque_admin_sadaqa_card_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Card title'**
+  String get mosque_admin_sadaqa_card_title;
+
+  /// No description provided for @mosque_admin_sadaqa_card_title_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Support the mosque'**
+  String get mosque_admin_sadaqa_card_title_hint;
+
+  /// No description provided for @mosque_admin_sadaqa_description_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell donors what their support funds…'**
+  String get mosque_admin_sadaqa_description_hint;
+
+  /// No description provided for @mosque_admin_sadaqa_amounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggested amounts'**
+  String get mosque_admin_sadaqa_amounts;
+
+  /// No description provided for @mosque_admin_sadaqa_amounts_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Comma-separated, up to 6 amounts. Donors can always enter another amount.'**
+  String get mosque_admin_sadaqa_amounts_hint;
+
+  /// No description provided for @mosque_admin_sadaqa_frequencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allowed frequencies'**
+  String get mosque_admin_sadaqa_frequencies;
+
+  /// No description provided for @mosque_admin_sadaqa_frequency_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep at least one frequency enabled.'**
+  String get mosque_admin_sadaqa_frequency_required;
+
+  /// No description provided for @mosque_admin_sadaqa_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a title and at least one amount.'**
+  String get mosque_admin_sadaqa_invalid;
+
+  /// No description provided for @mosque_admin_sadaqa_tax_badge.
+  ///
+  /// In en, this message translates to:
+  /// **'Show \"Tax receipt\" badge'**
+  String get mosque_admin_sadaqa_tax_badge;
+
+  /// No description provided for @mosque_admin_sadaqa_tax_badge_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors will see that their gift is tax-deductible.'**
+  String get mosque_admin_sadaqa_tax_badge_hint;
+
+  /// No description provided for @mosque_admin_sadaqa_tax_badge_locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable tax receipts in the Stripe setup first.'**
+  String get mosque_admin_sadaqa_tax_badge_locked;
+
+  /// No description provided for @mosque_admin_membership_fee_amounts.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership contribution amounts (yearly)'**
+  String get mosque_admin_membership_fee_amounts;
+
+  /// No description provided for @mosque_admin_membership_fee_amounts_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown when a worshipper joins as a member. The second amount is recommended.'**
+  String get mosque_admin_membership_fee_amounts_hint;
+
+  /// No description provided for @mosque_admin_stripe_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Payments (Stripe)'**
+  String get mosque_admin_stripe_title;
+
+  /// No description provided for @mosque_admin_stripe_active.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations enabled · payouts go straight to your bank account'**
+  String get mosque_admin_stripe_active;
+
+  /// No description provided for @mosque_admin_stripe_setup_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Receive donations'**
+  String get mosque_admin_stripe_setup_title;
+
+  /// No description provided for @mosque_admin_stripe_setup_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a Stripe account to receive Sadaqa, campaign gifts and membership contributions directly. Takes about 5 minutes.'**
+  String get mosque_admin_stripe_setup_message;
+
+  /// No description provided for @mosque_admin_stripe_pending_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Almost there'**
+  String get mosque_admin_stripe_pending_title;
+
+  /// No description provided for @mosque_admin_stripe_pending_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Stripe still needs some information before donations can be enabled.'**
+  String get mosque_admin_stripe_pending_message;
+
+  /// No description provided for @mosque_admin_stripe_start.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up payments'**
+  String get mosque_admin_stripe_start;
+
+  /// No description provided for @mosque_admin_stripe_continue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue setup'**
+  String get mosque_admin_stripe_continue;
+
+  /// No description provided for @mosque_admin_stripe_update_info.
+  ///
+  /// In en, this message translates to:
+  /// **'Update information'**
+  String get mosque_admin_stripe_update_info;
+
+  /// No description provided for @mosque_admin_stripe_dashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Stripe dashboard'**
+  String get mosque_admin_stripe_dashboard;
+
+  /// No description provided for @mosque_admin_stripe_explainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations are charged directly on your mosque\'s Stripe account — Nour never holds the funds and takes no commission. Stripe\'s standard processing fees apply.'**
+  String get mosque_admin_stripe_explainer;
+
+  /// No description provided for @mosque_admin_stripe_tax_receipts.
+  ///
+  /// In en, this message translates to:
+  /// **'Our association can issue tax receipts'**
+  String get mosque_admin_stripe_tax_receipts;
+
+  /// No description provided for @mosque_admin_stripe_tax_receipts_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enables receipt generation (CERFA-style) for donors.'**
+  String get mosque_admin_stripe_tax_receipts_hint;
+
+  /// No description provided for @mosque_admin_stripe_charges.
+  ///
+  /// In en, this message translates to:
+  /// **'Can receive payments'**
+  String get mosque_admin_stripe_charges;
+
+  /// No description provided for @mosque_admin_stripe_payouts.
+  ///
+  /// In en, this message translates to:
+  /// **'Payouts enabled'**
+  String get mosque_admin_stripe_payouts;
+
+  /// No description provided for @mosque_admin_stripe_details.
+  ///
+  /// In en, this message translates to:
+  /// **'Information submitted'**
+  String get mosque_admin_stripe_details;
+
+  /// No description provided for @mosque_admin_stripe_requirements.
+  ///
+  /// In en, this message translates to:
+  /// **'Still required by Stripe'**
+  String get mosque_admin_stripe_requirements;
+
+  /// No description provided for @mosque_admin_stripe_status_enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Active'**
+  String get mosque_admin_stripe_status_enabled;
+
+  /// No description provided for @mosque_admin_stripe_status_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Pending verification'**
+  String get mosque_admin_stripe_status_pending;
+
+  /// No description provided for @mosque_admin_stripe_status_restricted.
+  ///
+  /// In en, this message translates to:
+  /// **'Action required'**
+  String get mosque_admin_stripe_status_restricted;
+
+  /// No description provided for @mosque_admin_stripe_status_rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected by Stripe'**
+  String get mosque_admin_stripe_status_rejected;
+
+  /// No description provided for @mosque_admin_stripe_status_not_started.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set up'**
+  String get mosque_admin_stripe_status_not_started;
+
+  /// No description provided for @mosque_admin_campaign_new.
+  ///
+  /// In en, this message translates to:
+  /// **'New campaign'**
+  String get mosque_admin_campaign_new;
+
+  /// No description provided for @mosque_admin_campaign_edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit campaign'**
+  String get mosque_admin_campaign_edit;
+
+  /// No description provided for @mosque_admin_campaign_launch.
+  ///
+  /// In en, this message translates to:
+  /// **'Launch'**
+  String get mosque_admin_campaign_launch;
+
+  /// No description provided for @mosque_admin_campaign_title_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign title'**
+  String get mosque_admin_campaign_title_label;
+
+  /// No description provided for @mosque_admin_campaign_title_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'New ablution room'**
+  String get mosque_admin_campaign_title_hint;
+
+  /// No description provided for @mosque_admin_campaign_description_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Explain the project, the budget and the timeline…'**
+  String get mosque_admin_campaign_description_hint;
+
+  /// No description provided for @mosque_admin_campaign_goal.
+  ///
+  /// In en, this message translates to:
+  /// **'Goal (€)'**
+  String get mosque_admin_campaign_goal;
+
+  /// No description provided for @mosque_admin_campaign_ends.
+  ///
+  /// In en, this message translates to:
+  /// **'End date'**
+  String get mosque_admin_campaign_ends;
+
+  /// No description provided for @mosque_admin_campaign_notify.
+  ///
+  /// In en, this message translates to:
+  /// **'Notify followers'**
+  String get mosque_admin_campaign_notify;
+
+  /// No description provided for @mosque_admin_campaign_notify_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sends a push to your followers (counts in the weekly quota).'**
+  String get mosque_admin_campaign_notify_hint;
+
+  /// No description provided for @mosque_admin_campaign_notify_update.
+  ///
+  /// In en, this message translates to:
+  /// **'Also notify followers'**
+  String get mosque_admin_campaign_notify_update;
+
+  /// No description provided for @mosque_admin_campaign_limit_note.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 3 active campaigns at a time. Donors are reminded 48h before the end.'**
+  String get mosque_admin_campaign_limit_note;
+
+  /// No description provided for @mosque_admin_campaign_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a title, a goal and a future end date.'**
+  String get mosque_admin_campaign_invalid;
+
+  /// No description provided for @mosque_admin_campaign_created.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign launched'**
+  String get mosque_admin_campaign_created;
+
+  /// No description provided for @mosque_admin_campaigns_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No campaign yet. Launch one to fund a project with your community.'**
+  String get mosque_admin_campaigns_empty;
+
+  /// No description provided for @mosque_admin_campaign_post_update.
+  ///
+  /// In en, this message translates to:
+  /// **'Post an update'**
+  String get mosque_admin_campaign_post_update;
+
+  /// No description provided for @mosque_admin_campaign_update_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Share progress with your donors…'**
+  String get mosque_admin_campaign_update_hint;
+
+  /// No description provided for @mosque_admin_campaign_update_posted.
+  ///
+  /// In en, this message translates to:
+  /// **'Update posted'**
+  String get mosque_admin_campaign_update_posted;
+
+  /// No description provided for @mosque_admin_campaign_extend.
+  ///
+  /// In en, this message translates to:
+  /// **'Extend'**
+  String get mosque_admin_campaign_extend;
+
+  /// No description provided for @mosque_admin_campaign_extended.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign extended'**
+  String get mosque_admin_campaign_extended;
+
+  /// No description provided for @mosque_admin_campaign_reopen.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen with a new end date'**
+  String get mosque_admin_campaign_reopen;
+
+  /// No description provided for @mosque_admin_campaign_close.
+  ///
+  /// In en, this message translates to:
+  /// **'Close'**
+  String get mosque_admin_campaign_close;
+
+  /// No description provided for @mosque_admin_campaign_close_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Close this campaign?'**
+  String get mosque_admin_campaign_close_title;
+
+  /// No description provided for @mosque_admin_campaign_close_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors won\'t be able to contribute anymore. You can reopen it later.'**
+  String get mosque_admin_campaign_close_message;
+
+  /// No description provided for @mosque_admin_campaign_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign closed'**
+  String get mosque_admin_campaign_closed;
+
+  /// No description provided for @mosque_admin_campaign_closed_note.
+  ///
+  /// In en, this message translates to:
+  /// **'This campaign is closed {date}.'**
+  String mosque_admin_campaign_closed_note(String date);
+
+  /// No description provided for @mosque_admin_donors_list.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors'**
+  String get mosque_admin_donors_list;
+
+  /// No description provided for @mosque_admin_donors_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No donation for this period.'**
+  String get mosque_admin_donors_empty;
+
+  /// No description provided for @mosque_admin_type_sadaqa.
+  ///
+  /// In en, this message translates to:
+  /// **'Sadaqa'**
+  String get mosque_admin_type_sadaqa;
+
+  /// No description provided for @mosque_admin_type_campaign.
+  ///
+  /// In en, this message translates to:
+  /// **'Campaign'**
+  String get mosque_admin_type_campaign;
+
+  /// No description provided for @mosque_admin_type_membership.
+  ///
+  /// In en, this message translates to:
+  /// **'Membership'**
+  String get mosque_admin_type_membership;
+
+  /// No description provided for @mosque_admin_receipts.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts'**
+  String get mosque_admin_receipts;
+
+  /// No description provided for @mosque_admin_receipt_issue.
+  ///
+  /// In en, this message translates to:
+  /// **'Issue receipt'**
+  String get mosque_admin_receipt_issue;
+
+  /// No description provided for @mosque_admin_receipt_view.
+  ///
+  /// In en, this message translates to:
+  /// **'View receipt'**
+  String get mosque_admin_receipt_view;
+
+  /// No description provided for @mosque_admin_receipt_generated.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipt ready'**
+  String get mosque_admin_receipt_generated;
 }
 
 class _AppLocalizationsDelegate

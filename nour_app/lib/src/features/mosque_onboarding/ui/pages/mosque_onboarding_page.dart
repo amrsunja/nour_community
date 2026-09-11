@@ -54,8 +54,9 @@ class MosqueOnboardingPage extends HookConsumerWidget {
 
     Future<void> onBack() async {
       if (isFirst) {
-        // Leaving the flow keeps the draft (resume from Welcome).
-        nav.toWelcome();
+        // Leaving the flow keeps the draft (resume from Welcome) and goes back
+        // to the profile-type choice.
+        nav.toProfileType(resetStack: true);
         return;
       }
       await presenter.previous();

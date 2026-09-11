@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/features/impact/ui/widgets/project_cover_carousel.dart';
@@ -59,11 +60,12 @@ class MosqueHeader extends StatelessWidget {
               Container(
                 height: 238,
                 width: double.infinity,
-                color: UIColorsToken.bgSurface,
+                color: UIColorsToken.bgPrimary,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.image_outlined, color: UIColorsToken.textParagraph, size: 28),
+                    UISpace.vert(50),
+                    UIIcon(Assets.icons.gallery, color: UIColorsToken.textParagraph, size: 28),
                     const SizedBox(height: 6),
                     Text(l10n.mosque_cover_placeholder,
                         style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
@@ -77,8 +79,17 @@ class MosqueHeader extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  if (onBack != null) _RoundIcon(icon: Icons.chevron_left, onTap: onBack!) else const SizedBox(width: 36),
-                  if (onShare != null) _RoundIcon(icon: Icons.ios_share, onTap: onShare!),
+                  if (onBack != null) 
+                    UIIcon(
+                      Assets.icons.chevronLeft,
+                      onTap: onBack!,
+                      color: UIColorsToken.yellow,
+                    ),
+                  if (onShare != null) 
+                    UIIcon(
+                      Assets.icons.share,
+                      onTap: onShare!,
+                    )
                 ],
               ),
             ),
@@ -108,7 +119,7 @@ class MosqueHeader extends StatelessWidget {
                             },
                             child: Row(
                               children: [
-                                const Icon(Icons.location_on_outlined, size: 14, color: UIColorsToken.textParagraph),
+                                Icon(Icons.location_on_outlined, size: 14, color: UIColorsToken.textParagraph),
                                 const SizedBox(width: 4),
                                 Flexible(
                                   child: Text(
@@ -119,7 +130,7 @@ class MosqueHeader extends StatelessWidget {
                                   ),
                                 ),
                                 const SizedBox(width: 4),
-                                const Icon(Icons.copy_rounded, size: 12, color: UIColorsToken.textParagraph),
+                                Icon(Icons.copy_rounded, size: 12, color: UIColorsToken.textParagraph),
                               ],
                             ),
                           ),
@@ -147,7 +158,7 @@ class MosqueHeader extends StatelessWidget {
                 children: [
                   Expanded(
                     child: _ActionTile(
-                      icon: Icons.map_outlined,
+                      imagePath: Assets.images.illustration39.path,
                       label: l10n.mosque_action_itinerary,
                       enabled: mosque.hasLocation || mosque.fullAddress.isNotEmpty,
                       onTap: () => openItinerary(mosque),
@@ -156,7 +167,7 @@ class MosqueHeader extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: _ActionTile(
-                      icon: Icons.phone_outlined,
+                      imagePath: Assets.images.illustration37.path,
                       label: l10n.mosque_action_call,
                       enabled: (mosque.phone ?? '').isNotEmpty,
                       onTap: () => launchUrl(Uri.parse('tel:${mosque.phone}')),
@@ -165,7 +176,7 @@ class MosqueHeader extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: _ActionTile(
-                      icon: Icons.mail_outline,
+                      imagePath: Assets.images.illustration38.path,
                       label: l10n.mosque_action_email,
                       enabled: (mosque.email ?? '').isNotEmpty,
                       onTap: () => launchUrl(Uri.parse('mailto:${mosque.email}')),
@@ -290,28 +301,9 @@ class MosqueLogo extends StatelessWidget {
                 alignment: Alignment.center,
                 child: Text(
                   mosque.initials,
-                  style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontSize: size * 0.34),
+                  style: theme.typo.inter.title.copyWith(color: UIColorsToken.black, fontSize: size * 0.34),
                 ),
               ),
-      ),
-    );
-  }
-}
-
-class _RoundIcon extends StatelessWidget {
-  const _RoundIcon({required this.icon, required this.onTap});
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return UITap(
-      onTap: onTap,
-      child: Container(
-        width: 36,
-        height: 36,
-        decoration: BoxDecoration(color: UIColorsToken.black.withValues(alpha: .45), shape: BoxShape.circle),
-        child: Icon(icon, color: UIColorsToken.white, size: 20),
       ),
     );
   }
@@ -326,8 +318,12 @@ class _StatusPill extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(color: UIColorsToken.bgTertiaryGreen, borderRadius: BorderRadius.circular(20)),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      decoration: BoxDecoration(
+        color: UIColorsToken.yellow.withValues(alpha: 0.1),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: UIColorsToken.yellow.withValues(alpha: 0.2))
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -354,9 +350,9 @@ class _Counter extends StatelessWidget {
     final theme = UITheme.of(context);
     return RichText(
       text: TextSpan(
-        style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
+        style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph),
         children: [
-          TextSpan(text: MosqueFormat.compact(value), style: const TextStyle(color: UIColorsToken.white, fontWeight: FontWeight.w600)),
+          TextSpan(text: MosqueFormat.compact(value), style: const TextStyle(color: UIColorsToken.textYellow, fontWeight: FontWeight.w600)),
           TextSpan(text: ' $label'),
         ],
       ),
@@ -365,8 +361,8 @@ class _Counter extends StatelessWidget {
 }
 
 class _ActionTile extends StatelessWidget {
-  const _ActionTile({required this.icon, required this.label, required this.onTap, this.enabled = true});
-  final IconData icon;
+  const _ActionTile({required this.imagePath, required this.label, required this.onTap, this.enabled = true});
+  final String imagePath;
   final String label;
   final VoidCallback onTap;
   final bool enabled;
@@ -381,7 +377,10 @@ class _ActionTile extends StatelessWidget {
         onTap: enabled ? onTap : null,
         child: Column(
           children: [
-            Icon(icon, color: UIColorsToken.textYellow, size: 22),
+            SizedBox(
+              height: 35,
+              child: Image.asset(imagePath),
+            ),
             const SizedBox(height: 6),
             Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.white)),
           ],

@@ -2176,4 +2176,1536 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_admin_payout_delete_failed =>
       'Tidak dapat menghapus pencairan.';
+
+  @override
+  String get common_required_field => 'Kolom ini wajib diisi';
+
+  @override
+  String get common_optional => 'opsional';
+
+  @override
+  String get common_refresh => 'Segarkan';
+
+  @override
+  String get mosque_onboarding_resume => 'Lanjutkan pendaftaran masjid saya';
+
+  @override
+  String get mosque_onboarding_start_over => 'Mulai dari awal';
+
+  @override
+  String get profile_type_title => 'Bagaimana kamu akan menggunakan Nour?';
+
+  @override
+  String get profile_type_mosque_title => 'Saya pengelola masjid';
+
+  @override
+  String get profile_type_mosque_subtitle =>
+      'Publikasikan ke jamaah, jalankan kampanye penggalangan dana.';
+
+  @override
+  String get profile_type_user_title => 'Saya jamaah';
+
+  @override
+  String get profile_type_user_subtitle =>
+      'Ikuti masjid, pantau waktu shalat, dan tetap terhubung.';
+
+  @override
+  String get mosque_post_type_announcement => 'Pengumuman';
+
+  @override
+  String get mosque_post_type_event => 'Acara';
+
+  @override
+  String get mosque_post_type_event_hint => 'Tanggal, waktu, tempat';
+
+  @override
+  String get mosque_post_type_volunteering => 'Relawan';
+
+  @override
+  String get mosque_post_type_volunteering_hint => 'Rekrut relawan';
+
+  @override
+  String get mosque_post_type_highlight => 'Sorotan';
+
+  @override
+  String get mosque_post_type_highlight_hint => 'Bagikan momen';
+
+  @override
+  String get mosque_post_type_janaza => 'Jenazah';
+
+  @override
+  String get mosque_post_type_janaza_hint => 'Tanggal, waktu shalat';
+
+  @override
+  String get mosque_onboarding_feature_1_title =>
+      'Dibuat untuk pengumuman masjid.';
+
+  @override
+  String get mosque_onboarding_feature_1_description =>
+      'Acara, penggalangan dana, panggilan relawan, shalat jenazah, pengingat, sorotan.';
+
+  @override
+  String get mosque_onboarding_feature_2_title =>
+      'Galang dana dengan cara yang tepercaya.';
+
+  @override
+  String get mosque_onboarding_feature_2_description =>
+      'Sedekah berkelanjutan dan kampanye berbatas waktu.';
+
+  @override
+  String get mosque_onboarding_feature_3_title =>
+      'Jadwal yang mengikuti imam Anda.';
+
+  @override
+  String get mosque_onboarding_feature_3_description =>
+      'Publikasikan jadwal shalat dan waktu iqamah masjid Anda sendiri.';
+
+  @override
+  String get mosque_onboarding_country_title => 'Pilih negara Anda';
+
+  @override
+  String get mosque_onboarding_country_search => 'Cari negara';
+
+  @override
+  String get mosque_legal_status_1901 => 'Asosiasi (UU 1901)';
+
+  @override
+  String get mosque_legal_status_1905 => 'Asosiasi keagamaan (UU 1905)';
+
+  @override
+  String get mosque_legal_status_other => 'Lainnya';
+
+  @override
+  String get mosque_register_title => 'Mari daftarkan masjid Anda';
+
+  @override
+  String get mosque_register_legal_name => 'Nama resmi';
+
+  @override
+  String get mosque_register_legal_name_hint => 'Masukkan nama resmi';
+
+  @override
+  String get mosque_register_legal_status => 'Status hukum';
+
+  @override
+  String get mosque_register_legal_status_hint => 'Pilih status hukum';
+
+  @override
+  String get mosque_register_rna => 'RNA';
+
+  @override
+  String get mosque_register_rna_invalid =>
+      'RNA harus berformat seperti W751123456';
+
+  @override
+  String get mosque_register_siren => 'Nomor SIREN';
+
+  @override
+  String get mosque_register_siren_invalid =>
+      'SIREN harus terdiri dari 9 digit';
+
+  @override
+  String get mosque_register_cta => 'Daftar';
+
+  @override
+  String get mosque_account_title => 'Mari buat akun Anda';
+
+  @override
+  String get mosque_account_subtitle => 'Untuk mengelola masjid Anda di Nour';
+
+  @override
+  String get mosque_account_existing_hint =>
+      'Sudah punya akun? Gunakan email atau penyedia yang sama untuk masuk.';
+
+  @override
+  String get mosque_account_cta => 'Daftar';
+
+  @override
+  String get mosque_review_pending_title => 'Masjid Anda sedang ditinjau';
+
+  @override
+  String get mosque_review_pending_message =>
+      'Tim kami sedang memeriksa pendaftaran Anda. Anda akan diberi tahu segera setelah disetujui — biasanya dalam beberapa hari.';
+
+  @override
+  String get mosque_review_rejected_title => 'Pendaftaran ditolak';
+
+  @override
+  String get mosque_review_rejected_message =>
+      'Kami tidak dapat menyetujui masjid Anda. Lihat catatan di bawah atau hubungi dukungan.';
+
+  @override
+  String get mosque_review_suspended_title => 'Masjid ditangguhkan';
+
+  @override
+  String get mosque_review_suspended_message =>
+      'Profil masjid Anda telah ditangguhkan. Hubungi dukungan untuk informasi lebih lanjut.';
+
+  @override
+  String get mosque_review_contact_support => 'Hubungi dukungan';
+
+  @override
+  String get mosque_admin_tab_dashboard => 'Dasbor';
+
+  @override
+  String get mosque_admin_tab_community => 'Komunitas';
+
+  @override
+  String get mosque_admin_tab_mosque => 'Masjid';
+
+  @override
+  String get mosque_admin_tab_post => 'Posting';
+
+  @override
+  String get mosque_admin_total_raised_year => 'Total terkumpul tahun ini';
+
+  @override
+  String get mosque_admin_donors => 'Donatur';
+
+  @override
+  String get mosque_admin_recurring => 'Berulang';
+
+  @override
+  String get mosque_admin_avg_gift => 'Rata-rata donasi';
+
+  @override
+  String get error_api_mosque_load_failed => 'Tidak dapat memuat masjid.';
+
+  @override
+  String get error_api_mosque_save_failed => 'Tidak dapat menyimpan perubahan.';
+
+  @override
+  String get error_api_mosque_search_failed => 'Tidak dapat mencari masjid.';
+
+  @override
+  String get error_api_mosque_register_failed =>
+      'Tidak dapat mendaftarkan masjid. Silakan coba lagi.';
+
+  @override
+  String get error_api_mosque_register_is_worshipper =>
+      'Akun ini sudah terdaftar sebagai akun jamaah. Gunakan email lain untuk mendaftarkan masjid.';
+
+  @override
+  String get error_api_mosque_register_anonymous =>
+      'Silakan masuk dengan akun email, Google, atau Apple.';
+
+  @override
+  String get error_api_mosque_register_invalid_siren =>
+      'Nomor SIREN tidak valid.';
+
+  @override
+  String get error_api_mosque_register_invalid_rna => 'Nomor RNA tidak valid.';
+
+  @override
+  String get error_api_mosque_register_duplicate =>
+      'Masjid ini sudah terdaftar. Hubungi dukungan jika Anda pengelolanya.';
+
+  @override
+  String get error_api_mosque_post_limit_reached =>
+      'Anda telah mencapai batas postingan aktif untuk jenis ini. Arsipkan salah satu terlebih dahulu.';
+
+  @override
+  String get error_api_mosque_broadcast_quota_exceeded =>
+      'Anda sudah mengirim jumlah notifikasi maksimum minggu ini.';
+
+  @override
+  String get error_api_mosque_not_approved => 'Masjid Anda belum disetujui.';
+
+  @override
+  String get error_api_push_register_failed =>
+      'Tidak dapat mendaftarkan perangkat ini untuk notifikasi.';
+
+  @override
+  String get push_settings_title => 'Notifikasi push';
+
+  @override
+  String get push_settings_description =>
+      'Pilih notifikasi yang boleh dikirim Nour ke perangkat ini. Pengingat shalat dan dzikir diatur di Pengingat.';
+
+  @override
+  String get push_kind_mosque_post => 'Kabar masjid';
+
+  @override
+  String get push_kind_mosque_post_hint =>
+      'Pengumuman dari masjid yang kamu ikuti';
+
+  @override
+  String get push_kind_mosque_event => 'Acara';
+
+  @override
+  String get push_kind_mosque_event_hint =>
+      'Kajian, shalat jenazah, kegiatan relawan';
+
+  @override
+  String get push_kind_mosque_campaign => 'Kampanye penggalangan dana';
+
+  @override
+  String get push_kind_mosque_campaign_hint =>
+      'Kampanye baru dan tenggat waktu';
+
+  @override
+  String get push_kind_mosque_broadcast => 'Pesan dari masjid';
+
+  @override
+  String get push_kind_mosque_broadcast_hint =>
+      'Pesan langsung yang dikirim oleh masjid (maks. 2 per minggu)';
+
+  @override
+  String get push_kind_mosque_status => 'Akun masjid';
+
+  @override
+  String get push_kind_mosque_status_hint =>
+      'Status peninjauan dan pembaruan akun penting';
+
+  @override
+  String get push_kind_system => 'Pembaruan Nour';
+
+  @override
+  String get push_kind_system_hint => 'Kabar sesekali tentang aplikasi';
+
+  @override
+  String get common_cancel => 'Batal';
+
+  @override
+  String get common_delete => 'Hapus';
+
+  @override
+  String get common_edit => 'Edit';
+
+  @override
+  String get common_load_more => 'Muat lebih banyak';
+
+  @override
+  String get common_yes => 'Ya';
+
+  @override
+  String get common_no => 'Tidak';
+
+  @override
+  String get admin_tab_mosques => 'Masjid';
+
+  @override
+  String get admin_mosque_approve => 'Setujui';
+
+  @override
+  String get admin_mosque_reject => 'Tolak';
+
+  @override
+  String get admin_mosque_suspend => 'Tangguhkan';
+
+  @override
+  String get admin_mosque_reviewed =>
+      'Masjid diperbarui — pemilik telah diberi tahu.';
+
+  @override
+  String get admin_mosque_duplicate_siren =>
+      '⚠ Masjid lain menggunakan SIREN ini';
+
+  @override
+  String get admin_mosque_empty => 'Tidak ada masjid dengan status ini.';
+
+  @override
+  String get admin_mosque_filter_pending => 'Menunggu';
+
+  @override
+  String get admin_mosque_filter_approved => 'Disetujui';
+
+  @override
+  String get admin_mosque_filter_rejected => 'Ditolak';
+
+  @override
+  String get admin_mosque_filter_suspended => 'Ditangguhkan';
+
+  @override
+  String get admin_mosque_note_title => 'Catatan untuk masjid';
+
+  @override
+  String get admin_mosque_note_hint =>
+      'Alasan (ditampilkan kepada pengelola masjid)';
+
+  @override
+  String get home_my_mosque => 'Masjidku';
+
+  @override
+  String get home_no_mosque_title => 'Belum ada masjid yang dipilih';
+
+  @override
+  String get home_no_mosque_subtitle =>
+      'Pilih masjidmu untuk melihat waktu shalat, kabar, dan kampanyenya langsung di sini.';
+
+  @override
+  String get home_find_mosque => 'Cari masjid';
+
+  @override
+  String get profile_my_mosques => 'Masjidku';
+
+  @override
+  String get prayer_times_add_mosque => 'Tambahkan masjidmu';
+
+  @override
+  String get prayer_times_from_mosque_hint =>
+      'Waktu yang dipublikasikan oleh masjidmu. Ganti masjid untuk kembali ke waktu hasil perhitungan.';
+
+  @override
+  String get onboarding_mosque_title => 'Pilih masjid';
+
+  @override
+  String get onboarding_mosque_subtitle =>
+      'Temukan dan ikuti masjid di sekitarmu untuk mendapatkan waktu shalat dan kabarnya.';
+
+  @override
+  String get mosque_search_hint => 'Cari masjid';
+
+  @override
+  String get mosque_search_near_you => 'Masjid di sekitarmu';
+
+  @override
+  String get mosque_search_near_you_short => 'Di sekitarmu';
+
+  @override
+  String get mosque_search_results => 'Hasil';
+
+  @override
+  String get mosque_search_empty =>
+      'Masjid tidak ditemukan. Coba nama atau kota lain.';
+
+  @override
+  String get mosque_search_language => 'Bahasa pencarian';
+
+  @override
+  String get mosque_add_to_my_mosques => 'Tambahkan ke masjidku';
+
+  @override
+  String get my_mosques_title => 'Masjidmu';
+
+  @override
+  String get my_mosques_subtitle =>
+      'Seret dan lepas masjid untuk mengubah urutan dan menetapkan masjid utama.';
+
+  @override
+  String get my_mosques_principal => 'Masjid utama';
+
+  @override
+  String get my_mosques_secondary => 'Masjid sekunder';
+
+  @override
+  String get my_mosques_no_principal => 'Belum ada masjid utama';
+
+  @override
+  String get my_mosques_no_secondary => 'Belum ada masjid sekunder';
+
+  @override
+  String get my_mosques_saved => 'Masjidmu telah disimpan.';
+
+  @override
+  String get my_mosques_added => 'Ada di masjidku';
+
+  @override
+  String get my_mosques_is_principal => 'Masjid utamamu';
+
+  @override
+  String get my_mosques_is_secondary => 'Masjid sekundermu';
+
+  @override
+  String get mosque_cover_placeholder => 'Gambar sampul';
+
+  @override
+  String get mosque_status_open => 'Buka';
+
+  @override
+  String get mosque_status_closed => 'Tutup';
+
+  @override
+  String get mosque_followers => 'pengikut';
+
+  @override
+  String get mosque_members => 'anggota';
+
+  @override
+  String get mosque_followers_title => 'Pengikut';
+
+  @override
+  String get mosque_members_title => 'Anggota';
+
+  @override
+  String get mosque_follow => 'Ikuti';
+
+  @override
+  String get mosque_following => 'Mengikuti';
+
+  @override
+  String get mosque_become_member => 'Jadi anggota';
+
+  @override
+  String get mosque_member_badge => 'Anggota';
+
+  @override
+  String get mosque_follower_badge => 'Pengikut';
+
+  @override
+  String get mosque_action_itinerary => 'Rute';
+
+  @override
+  String get mosque_action_call => 'Telepon';
+
+  @override
+  String get mosque_action_email => 'Email';
+
+  @override
+  String get mosque_address_copied => 'Alamat disalin';
+
+  @override
+  String get mosque_tab_prayers => 'Shalat';
+
+  @override
+  String get mosque_tab_information => 'Informasi';
+
+  @override
+  String get mosque_tab_news => 'Kabar';
+
+  @override
+  String get mosque_tab_donation => 'Donasi';
+
+  @override
+  String get mosque_today_prayer_times => 'Waktu shalat hari ini';
+
+  @override
+  String get mosque_prayer_times_unavailable =>
+      'Waktu shalat tidak tersedia saat ini.';
+
+  @override
+  String get mosque_prayer_times_computed_hint =>
+      'Waktu hasil perhitungan — masjid belum mempublikasikan jadwal hari ini.';
+
+  @override
+  String get mosque_prayer_times_not_published =>
+      'Waktu shalat belum dipublikasikan';
+
+  @override
+  String get mosque_capacity => 'Kapasitas';
+
+  @override
+  String get mosque_capacity_men => 'Laki-laki';
+
+  @override
+  String get mosque_capacity_women => 'Perempuan';
+
+  @override
+  String get mosque_capacity_men_women => 'Laki-laki + Perempuan';
+
+  @override
+  String get mosque_founded => 'Didirikan';
+
+  @override
+  String mosque_years_old(int n) {
+    return '$n tahun';
+  }
+
+  @override
+  String get mosque_services => 'Fasilitas';
+
+  @override
+  String get mosque_services_edit_hint =>
+      'Pilih fasilitas yang disediakan masjid Anda. Fasilitas ini akan tampil di profil publik Anda.';
+
+  @override
+  String get mosque_no_services => 'Belum ada fasilitas yang dicantumkan.';
+
+  @override
+  String get mosque_service_parking => 'Parkir';
+
+  @override
+  String get mosque_service_disabled_access => 'Akses disabilitas';
+
+  @override
+  String get mosque_service_ablution_room => 'Tempat wudhu';
+
+  @override
+  String get mosque_service_women_space => 'Ruang perempuan';
+
+  @override
+  String get mosque_service_adult_classes => 'Kelas dewasa';
+
+  @override
+  String get mosque_service_children_classes => 'Kelas anak-anak';
+
+  @override
+  String get mosque_service_quran_classes => 'Kelas Al-Qur\'an';
+
+  @override
+  String get mosque_service_arabic_classes => 'Kelas bahasa Arab';
+
+  @override
+  String get mosque_service_eid_prayer => 'Shalat Ied';
+
+  @override
+  String get mosque_service_janaza => 'Shalat Jenazah';
+
+  @override
+  String get mosque_service_iftar_ramadan => 'Buka puasa Ramadhan';
+
+  @override
+  String get mosque_service_library => 'Perpustakaan';
+
+  @override
+  String get mosque_service_new_muslims => 'Pendampingan mualaf';
+
+  @override
+  String get mosque_khutbah_languages => 'Bahasa khutbah';
+
+  @override
+  String get mosque_imams => 'Imam';
+
+  @override
+  String mosque_since_year(int y) {
+    return 'Sejak $y';
+  }
+
+  @override
+  String get mosque_add_imam => 'Tambah Imam';
+
+  @override
+  String get mosque_edit_imam => 'Edit Imam';
+
+  @override
+  String get mosque_add_photo => 'Tambah foto';
+
+  @override
+  String get mosque_imam_full_name => 'Nama lengkap';
+
+  @override
+  String get mosque_imam_role => 'Peran';
+
+  @override
+  String get mosque_imam_since => 'Di masjid sejak';
+
+  @override
+  String get mosque_imam_bio => 'Bio singkat';
+
+  @override
+  String get mosque_imam_bio_hint => 'Beberapa kata tentang Imam';
+
+  @override
+  String get mosque_news_empty =>
+      'Belum ada kabar. Ikuti masjid ini untuk mendapat notifikasi pengumumannya.';
+
+  @override
+  String get mosque_post_urgent => 'Mendesak';
+
+  @override
+  String get mosque_post_share => 'Bagikan';
+
+  @override
+  String get mosque_post_apply => 'Daftar';
+
+  @override
+  String get mosque_post_applied => 'Terdaftar';
+
+  @override
+  String get mosque_post_attend_cta => 'Saya akan hadir';
+
+  @override
+  String get mosque_post_attending_cta_done => 'Hadir ✓';
+
+  @override
+  String mosque_post_attending(int n) {
+    return '$n akan hadir';
+  }
+
+  @override
+  String mosque_post_volunteers(int n) {
+    return '$n relawan';
+  }
+
+  @override
+  String mosque_post_duas(int n) {
+    return '$n doa';
+  }
+
+  @override
+  String get mosque_post_say_dua => 'Bacakan doa';
+
+  @override
+  String get mosque_post_dua_said => 'Doa dibacakan ✓';
+
+  @override
+  String mosque_post_after_prayer(String slot, String time) {
+    return 'Setelah shalat $slot - $time';
+  }
+
+  @override
+  String get mosque_post_notified_all => 'Semua telah diberi tahu';
+
+  @override
+  String get mosque_dua_recite => 'Bacalah doa ini';
+
+  @override
+  String get mosque_dua_translation =>
+      'Ya Allah, ampunilah dia, rahmatilah dia, selamatkanlah dia, dan maafkanlah dia.';
+
+  @override
+  String get mosque_dua_done => 'Selesai';
+
+  @override
+  String get mosque_donations_coming_soon =>
+      'Donasi untuk masjid ini akan segera tersedia.';
+
+  @override
+  String get mosque_donation_enter_amount => 'Masukkan jumlah secara manual';
+
+  @override
+  String get mosque_member_title => 'Bergabung sebagai anggota';
+
+  @override
+  String get mosque_member_subtitle =>
+      'Mendaftar sebagai anggota membantu kami tetap terhubung denganmu dan mengatur kehidupan jamaah kami.';
+
+  @override
+  String get mosque_member_first_name => 'Nama depan';
+
+  @override
+  String get mosque_member_last_name => 'Nama belakang';
+
+  @override
+  String get mosque_member_birth_date => 'Tanggal lahir';
+
+  @override
+  String get mosque_member_profession => 'Profesi';
+
+  @override
+  String get mosque_member_phone => 'Nomor telepon';
+
+  @override
+  String get mosque_member_volunteer_question =>
+      'Bersedia ikut kegiatan relawan?';
+
+  @override
+  String get mosque_member_consent =>
+      'Saya setuju masjid menggunakan data saya untuk menghubungi saya terkait kegiatan relawan dan dukungan komunitas.';
+
+  @override
+  String get mosque_member_fee_optional => 'Kontribusi opsional';
+
+  @override
+  String get mosque_member_fee_title => 'Dukung masjid';
+
+  @override
+  String get mosque_member_fee_hint =>
+      'Kontribusi yang disarankan sebesar €120/tahun membantu keberlangsungan masjid. Ini sepenuhnya opsional, keanggotaanmu gratis.';
+
+  @override
+  String get mosque_member_fee_choose => 'Pilih kontribusimu';
+
+  @override
+  String get mosque_member_register => 'Daftar sebagai anggota';
+
+  @override
+  String get mosque_member_fill_required =>
+      'Silakan isi semua kolom wajib dan setujui persetujuan.';
+
+  @override
+  String get mosque_member_welcome => 'Selamat datang di komunitas!';
+
+  @override
+  String get mosque_time_just_now => 'Baru saja';
+
+  @override
+  String mosque_time_min_ago(int n) {
+    return '$n mnt yang lalu';
+  }
+
+  @override
+  String mosque_time_hours_ago(int n) {
+    return '$n jam yang lalu';
+  }
+
+  @override
+  String get mosque_time_yesterday => 'Kemarin';
+
+  @override
+  String mosque_time_days_ago(int n) {
+    return '$n hari yang lalu';
+  }
+
+  @override
+  String mosque_time_weeks_ago(int n) {
+    return '$n minggu yang lalu';
+  }
+
+  @override
+  String get mosque_admin_panel_title => 'Dasbor masjid';
+
+  @override
+  String get mosque_admin_panel_subtitle =>
+      'Kelola masjid, postingan, dan komunitas Anda';
+
+  @override
+  String mosque_admin_attention(int n) {
+    return '$n hal membutuhkan perhatian Anda';
+  }
+
+  @override
+  String mosque_admin_pending_events(int n) {
+    return '$n acara menunggu';
+  }
+
+  @override
+  String mosque_admin_campaigns_ending(int n) {
+    return '$n penggalangan dana segera berakhir';
+  }
+
+  @override
+  String get mosque_admin_last_7_days => '7 hari terakhir';
+
+  @override
+  String get mosque_admin_last_30_days => '30 hari terakhir';
+
+  @override
+  String get mosque_admin_growth => 'Pertumbuhan';
+
+  @override
+  String get mosque_admin_today => 'Hari ini';
+
+  @override
+  String mosque_admin_open_rate(String rate) {
+    return 'Tingkat buka notifikasi (30 hari, perkiraan): $rate%';
+  }
+
+  @override
+  String get mosque_admin_fundraising => 'Penggalangan dana';
+
+  @override
+  String mosque_campaign_days_left_short(int n) {
+    return '$n hr lagi';
+  }
+
+  @override
+  String get mosque_admin_recent_posts => 'Postingan terbaru';
+
+  @override
+  String get mosque_admin_no_posts =>
+      'Belum ada postingan. Bagikan kabar, acara, atau pengumuman jenazah kepada jamaah Anda.';
+
+  @override
+  String get mosque_admin_create_post => 'Buat postingan';
+
+  @override
+  String get mosque_admin_view_mosque => 'Lihat profil publik';
+
+  @override
+  String get mosque_admin_search_community => 'Cari nama, email, telepon';
+
+  @override
+  String get mosque_admin_filter_all => 'Semua';
+
+  @override
+  String get mosque_admin_filter_followers => 'Pengikut';
+
+  @override
+  String get mosque_admin_filter_members => 'Anggota';
+
+  @override
+  String get mosque_admin_filter_volunteers => 'Relawan';
+
+  @override
+  String get mosque_admin_community_empty => 'Belum ada siapa pun di sini.';
+
+  @override
+  String get mosque_admin_remove_member => 'Hapus anggota';
+
+  @override
+  String get mosque_admin_prayer_times => 'Waktu shalat';
+
+  @override
+  String get mosque_prayers_not_set_title =>
+      'Waktu shalat hari ini belum diatur.';
+
+  @override
+  String get mosque_prayers_not_set_hint =>
+      'Masukkan secara manual atau salin dari hari lain';
+
+  @override
+  String get mosque_prayers_copy_from_day => 'Salin dari hari lain';
+
+  @override
+  String mosque_prayers_copied_from(String date) {
+    return 'Waktu shalat berhasil disalin dari $date';
+  }
+
+  @override
+  String get mosque_copy_title => 'Salin waktu shalat';
+
+  @override
+  String get mosque_copy_subtitle =>
+      'Gunakan kembali waktu dari hari lain tanpa perlu mengetiknya lagi.';
+
+  @override
+  String get mosque_copy_from => 'Salin dari';
+
+  @override
+  String get mosque_copy_times => 'Waktu yang disalin';
+
+  @override
+  String get mosque_copy_apply_to => 'Terapkan ke';
+
+  @override
+  String get mosque_copy_this_day => 'Hari ini saja';
+
+  @override
+  String get mosque_copy_date_range => 'Rentang tanggal';
+
+  @override
+  String get mosque_copy_from_date => 'Dari';
+
+  @override
+  String get mosque_copy_to_date => 'Sampai';
+
+  @override
+  String get mosque_copy_overwrite_warning =>
+      'Hari yang sudah memiliki waktu akan ditimpa.';
+
+  @override
+  String get mosque_overrides_title => 'Perubahan waktu shalat';
+
+  @override
+  String get mosque_overrides_shift_title => 'Geser waktu shalat hari ini';
+
+  @override
+  String get mosque_overrides_shift_hint =>
+      'Ubah waktu satu shalat hanya untuk hari ini, tanpa menyentuh jadwal tetap.';
+
+  @override
+  String get mosque_overrides_create => 'Buat perubahan';
+
+  @override
+  String get mosque_overrides_applied => 'Perubahan yang diterapkan';
+
+  @override
+  String get mosque_override_created =>
+      'Perubahan diterapkan — pengikut melihat waktu yang baru.';
+
+  @override
+  String get mosque_override_new_time => 'Waktu baru';
+
+  @override
+  String get mosque_override_reason_hint => 'Alasan (opsional)';
+
+  @override
+  String get mosque_post_notify_followers => 'Beri tahu pengikut';
+
+  @override
+  String mosque_post_send_push(int n) {
+    return 'Kirim push ke $n pengikut';
+  }
+
+  @override
+  String mosque_post_quota_left(int left, int limit) {
+    return '$left dari $limit notifikasi tersisa minggu ini';
+  }
+
+  @override
+  String mosque_post_notified(int n) {
+    return 'Notifikasi dikirim ke $n pengikut';
+  }
+
+  @override
+  String get mosque_post_archive => 'Arsipkan';
+
+  @override
+  String get mosque_post_published => 'Postingan dipublikasikan';
+
+  @override
+  String get mosque_post_title_hint => 'Judul';
+
+  @override
+  String get mosque_post_title_label => 'Judul';
+
+  @override
+  String get mosque_post_body_hint => 'Mulai menulis';
+
+  @override
+  String get mosque_post_add_to_post => 'Tambahkan ke postingan Anda';
+
+  @override
+  String get mosque_post_choose_category => 'Atau pilih kategori';
+
+  @override
+  String get mosque_post_audience_public => 'Publik';
+
+  @override
+  String get mosque_post_audience_followers => 'Pengikut';
+
+  @override
+  String get mosque_post_form_event => 'Posting acara';
+
+  @override
+  String get mosque_post_form_volunteering => 'Rekrut relawan';
+
+  @override
+  String get mosque_post_form_highlight => 'Bagikan sorotan';
+
+  @override
+  String get mosque_post_form_janaza => 'Umumkan jenazah';
+
+  @override
+  String get mosque_post_cover_photo => 'Foto sampul';
+
+  @override
+  String get mosque_post_add_cover => 'Tambah foto sampul';
+
+  @override
+  String get mosque_post_cover_required => 'Foto wajib ada untuk sorotan.';
+
+  @override
+  String get mosque_post_event_name => 'Nama acara';
+
+  @override
+  String get mosque_post_janaza_name => 'Nama almarhum/almarhumah';
+
+  @override
+  String get mosque_post_description => 'Deskripsi';
+
+  @override
+  String get mosque_post_description_hint => 'Tentang apa acara ini..';
+
+  @override
+  String get mosque_post_date => 'Tanggal';
+
+  @override
+  String get mosque_post_time => 'Waktu';
+
+  @override
+  String get mosque_post_date_required => 'Silakan pilih tanggal.';
+
+  @override
+  String get mosque_post_after_prayer_label => 'Setelah shalat apa?';
+
+  @override
+  String get mosque_post_location => 'Lokasi';
+
+  @override
+  String get mosque_post_location_default => 'Di masjid';
+
+  @override
+  String get mosque_post_volunteers_needed => 'Relawan dibutuhkan';
+
+  @override
+  String get mosque_post_language => 'Bahasa';
+
+  @override
+  String get mosque_post_mark_urgent => 'Tandai sebagai mendesak';
+
+  @override
+  String get mosque_post_mark_urgent_hint =>
+      'Postingan tampil di atas dengan label mendesak';
+
+  @override
+  String get mosque_admin_edit_profile => 'Edit profil masjid';
+
+  @override
+  String get mosque_admin_profile_saved => 'Profil disimpan';
+
+  @override
+  String get mosque_admin_cover_images => 'Gambar sampul';
+
+  @override
+  String get mosque_admin_tap_to_change_logo => 'Ketuk logo untuk mengubahnya';
+
+  @override
+  String get mosque_admin_field_name => 'Nama masjid';
+
+  @override
+  String get mosque_admin_field_description => 'Deskripsi';
+
+  @override
+  String get mosque_admin_field_address => 'Alamat';
+
+  @override
+  String get mosque_admin_field_postal => 'Kode pos';
+
+  @override
+  String get mosque_admin_field_city => 'Kota';
+
+  @override
+  String get mosque_admin_field_phone => 'Telepon';
+
+  @override
+  String get mosque_admin_field_website => 'Situs web';
+
+  @override
+  String get mosque_admin_opening_status => 'Status buka';
+
+  @override
+  String get mosque_admin_opening_auto => 'Otomatis';
+
+  @override
+  String get mosque_admin_no_notifications => 'Belum ada notifikasi.';
+
+  @override
+  String get error_api_mosque_campaign_limit_reached =>
+      'Anda sudah memiliki 3 kampanye aktif. Tutup salah satu terlebih dahulu.';
+
+  @override
+  String get error_api_mosque_campaign_closed => 'Kampanye ini sudah ditutup.';
+
+  @override
+  String get error_api_mosque_donations_disabled =>
+      'Masjid ini belum dapat menerima donasi.';
+
+  @override
+  String get error_api_mosque_receipts_not_allowed =>
+      'Masjid ini tidak menerbitkan kuitansi pajak.';
+
+  @override
+  String get error_api_mosque_receipt_no_donations =>
+      'Tidak ditemukan donasi yang memenuhi syarat untuk kuitansi ini.';
+
+  @override
+  String get error_api_mosque_receipt_failed => 'Tidak dapat membuat kuitansi.';
+
+  @override
+  String get error_api_mosque_stripe_failed =>
+      'Tidak dapat terhubung ke Stripe. Silakan coba lagi.';
+
+  @override
+  String get my_donations_tab_mosques => 'Masjid';
+
+  @override
+  String get my_donations_empty_mosques =>
+      'Anda belum mendukung masjid mana pun. Temukan masjid di sekitar Anda dan berdonasilah.';
+
+  @override
+  String get mosque_donation_other_amount => 'Lainnya';
+
+  @override
+  String get mosque_donation_custom_amount_hint => 'Masukkan jumlah';
+
+  @override
+  String mosque_donation_give(String amount) {
+    return 'Beri $amount';
+  }
+
+  @override
+  String mosque_donation_give_monthly(String amount) {
+    return 'Beri $amount / bulan';
+  }
+
+  @override
+  String mosque_donation_give_yearly(String amount) {
+    return 'Beri $amount / tahun';
+  }
+
+  @override
+  String get mosque_donation_secure_note =>
+      'Pembayaran aman. 100% disalurkan ke masjid — Nour tidak memungut biaya.';
+
+  @override
+  String get mosque_donation_tax_badge => 'Kuitansi pajak';
+
+  @override
+  String mosque_donation_active_monthly(String amount) {
+    return 'Anda memberi $amount setiap bulan. Jazakallahu khairan.';
+  }
+
+  @override
+  String mosque_donation_active_yearly(String amount) {
+    return 'Anda memberi $amount setiap tahun. Jazakallahu khairan.';
+  }
+
+  @override
+  String get mosque_donation_cancel_recurring_title =>
+      'Hentikan donasi berulang Anda?';
+
+  @override
+  String get mosque_donation_cancel_recurring_message =>
+      'Periode saat ini tetap berjalan; tidak akan ada tagihan lagi setelahnya.';
+
+  @override
+  String get mosque_donation_recurring_cancelled =>
+      'Donasi berulang Anda telah dihentikan.';
+
+  @override
+  String get mosque_donor_anonymous => 'Anonim';
+
+  @override
+  String get mosque_campaigns_title => 'Kampanye';
+
+  @override
+  String get mosque_campaigns_past_title => 'Kampanye sebelumnya';
+
+  @override
+  String get mosque_campaign_title => 'Kampanye';
+
+  @override
+  String mosque_campaign_of_goal(String goal) {
+    return 'dari $goal';
+  }
+
+  @override
+  String mosque_campaign_donors_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count donatur',
+      one: '1 donatur',
+      zero: 'Belum ada donatur',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mosque_campaign_days_left(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days hari lagi',
+      one: '1 hari lagi',
+      zero: 'Berakhir hari ini',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mosque_campaign_closed => 'Ditutup';
+
+  @override
+  String get mosque_campaign_active => 'Aktif';
+
+  @override
+  String get mosque_campaign_ending_soon => 'Segera berakhir';
+
+  @override
+  String get mosque_campaign_remaining => 'Sisa';
+
+  @override
+  String get mosque_campaign_contribute => 'Berkontribusi';
+
+  @override
+  String get mosque_campaign_recent_donors => 'Donatur terbaru';
+
+  @override
+  String get mosque_campaign_updates => 'Pembaruan';
+
+  @override
+  String get mosque_campaign_updates_empty =>
+      'Belum ada pembaruan yang diposting.';
+
+  @override
+  String get mosque_campaign_funded_note =>
+      'Alhamdulillah, target telah tercapai. Terima kasih kepada semua yang telah berkontribusi.';
+
+  @override
+  String get mosque_campaign_ended_note =>
+      'Kampanye ini telah berakhir. Anda masih dapat mendukung masjid melalui tab Donasi.';
+
+  @override
+  String get mosque_checkout_sadaqa => 'Sedekah untuk masjid';
+
+  @override
+  String get mosque_checkout_campaign_gift => 'Kontribusi kampanye';
+
+  @override
+  String get mosque_checkout_membership_fee => 'Kontribusi keanggotaan tahunan';
+
+  @override
+  String mosque_checkout_direct_note(String mosque) {
+    return 'Dibayarkan langsung ke $mosque melalui Stripe. Nour tidak memungut biaya.';
+  }
+
+  @override
+  String get mosque_checkout_success_title => 'Jazakallahu Khairan';
+
+  @override
+  String mosque_checkout_success_message(String amount, String mosque) {
+    return 'Donasi Anda sebesar $amount untuk $mosque telah diterima.';
+  }
+
+  @override
+  String mosque_checkout_success_membership(String amount, String mosque) {
+    return 'Kontribusi Anda sebesar $amount untuk $mosque telah dikonfirmasi. Selamat datang di komunitas.';
+  }
+
+  @override
+  String get mosque_receipts_empty => 'Belum ada kuitansi.';
+
+  @override
+  String get mosque_receipt_single => 'Donasi tunggal';
+
+  @override
+  String mosque_receipt_yearly(int year) {
+    return 'Ringkasan tahunan $year';
+  }
+
+  @override
+  String get mosque_admin_manage => 'Kelola';
+
+  @override
+  String get mosque_admin_preview => 'Pratinjau';
+
+  @override
+  String get mosque_admin_stat_support => 'Sedekah & keanggotaan';
+
+  @override
+  String get mosque_admin_stat_support_hint => 'Dukungan berkelanjutan';
+
+  @override
+  String get mosque_admin_stat_campaigns => 'Kampanye';
+
+  @override
+  String get mosque_donation_card_support => 'Dukungan';
+
+  @override
+  String mosque_donation_card_growth(String growth, String year) {
+    return '$growth dibanding $year';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_title => 'Kartu sedekah';
+
+  @override
+  String mosque_admin_sadaqa_month_summary(
+    int gifts,
+    String amount,
+    int monthly,
+  ) {
+    return '$gifts donasi bulan ini ($amount) · $monthly donatur bulanan';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_settings_title => 'Pengaturan sedekah';
+
+  @override
+  String get mosque_admin_sadaqa_card_title => 'Judul kartu';
+
+  @override
+  String get mosque_admin_sadaqa_card_title_hint => 'Dukung masjid';
+
+  @override
+  String get mosque_admin_sadaqa_description_hint =>
+      'Ceritakan kepada donatur apa yang didanai oleh dukungan mereka…';
+
+  @override
+  String get mosque_admin_sadaqa_amounts => 'Jumlah yang disarankan';
+
+  @override
+  String get mosque_admin_sadaqa_amounts_hint =>
+      'Dipisahkan koma, maksimal 6 jumlah. Donatur selalu dapat memasukkan jumlah lain.';
+
+  @override
+  String get mosque_admin_sadaqa_frequencies => 'Frekuensi yang diizinkan';
+
+  @override
+  String get mosque_admin_sadaqa_frequency_required =>
+      'Aktifkan setidaknya satu frekuensi.';
+
+  @override
+  String get mosque_admin_sadaqa_invalid =>
+      'Tambahkan judul dan setidaknya satu jumlah.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge =>
+      'Tampilkan label \"Kuitansi pajak\"';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_hint =>
+      'Donatur akan melihat bahwa donasi mereka dapat mengurangi pajak.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_locked =>
+      'Aktifkan kuitansi pajak di pengaturan Stripe terlebih dahulu.';
+
+  @override
+  String get mosque_admin_membership_fee_amounts =>
+      'Jumlah kontribusi keanggotaan (tahunan)';
+
+  @override
+  String get mosque_admin_membership_fee_amounts_hint =>
+      'Ditampilkan saat jamaah bergabung sebagai anggota. Jumlah kedua adalah yang disarankan.';
+
+  @override
+  String get mosque_admin_stripe_title => 'Pembayaran (Stripe)';
+
+  @override
+  String get mosque_admin_stripe_active =>
+      'Donasi aktif · pencairan langsung ke rekening bank Anda';
+
+  @override
+  String get mosque_admin_stripe_setup_title => 'Terima donasi';
+
+  @override
+  String get mosque_admin_stripe_setup_message =>
+      'Hubungkan akun Stripe untuk menerima sedekah, kontribusi kampanye, dan kontribusi keanggotaan secara langsung. Butuh sekitar 5 menit.';
+
+  @override
+  String get mosque_admin_stripe_pending_title => 'Hampir selesai';
+
+  @override
+  String get mosque_admin_stripe_pending_message =>
+      'Stripe masih membutuhkan beberapa informasi sebelum donasi dapat diaktifkan.';
+
+  @override
+  String get mosque_admin_stripe_start => 'Atur pembayaran';
+
+  @override
+  String get mosque_admin_stripe_continue => 'Lanjutkan pengaturan';
+
+  @override
+  String get mosque_admin_stripe_update_info => 'Perbarui informasi';
+
+  @override
+  String get mosque_admin_stripe_dashboard => 'Buka dasbor Stripe';
+
+  @override
+  String get mosque_admin_stripe_explainer =>
+      'Donasi ditagihkan langsung ke akun Stripe masjid Anda — Nour tidak pernah menyimpan dana dan tidak mengambil komisi. Biaya pemrosesan standar Stripe tetap berlaku.';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts =>
+      'Asosiasi kami dapat menerbitkan kuitansi pajak';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts_hint =>
+      'Mengaktifkan pembuatan kuitansi (model CERFA) untuk donatur.';
+
+  @override
+  String get mosque_admin_stripe_charges => 'Dapat menerima pembayaran';
+
+  @override
+  String get mosque_admin_stripe_payouts => 'Pencairan aktif';
+
+  @override
+  String get mosque_admin_stripe_details => 'Informasi telah dikirim';
+
+  @override
+  String get mosque_admin_stripe_requirements => 'Masih diminta oleh Stripe';
+
+  @override
+  String get mosque_admin_stripe_status_enabled => 'Aktif';
+
+  @override
+  String get mosque_admin_stripe_status_pending => 'Menunggu verifikasi';
+
+  @override
+  String get mosque_admin_stripe_status_restricted => 'Tindakan diperlukan';
+
+  @override
+  String get mosque_admin_stripe_status_rejected => 'Ditolak oleh Stripe';
+
+  @override
+  String get mosque_admin_stripe_status_not_started => 'Belum diatur';
+
+  @override
+  String get mosque_admin_campaign_new => 'Kampanye baru';
+
+  @override
+  String get mosque_admin_campaign_edit => 'Edit kampanye';
+
+  @override
+  String get mosque_admin_campaign_launch => 'Luncurkan';
+
+  @override
+  String get mosque_admin_campaign_title_label => 'Judul kampanye';
+
+  @override
+  String get mosque_admin_campaign_title_hint => 'Tempat wudhu baru';
+
+  @override
+  String get mosque_admin_campaign_description_hint =>
+      'Jelaskan proyek, anggaran, dan jadwalnya…';
+
+  @override
+  String get mosque_admin_campaign_goal => 'Target (€)';
+
+  @override
+  String get mosque_admin_campaign_ends => 'Tanggal berakhir';
+
+  @override
+  String get mosque_admin_campaign_notify => 'Beri tahu pengikut';
+
+  @override
+  String get mosque_admin_campaign_notify_hint =>
+      'Mengirim push ke pengikut Anda (terhitung dalam kuota mingguan).';
+
+  @override
+  String get mosque_admin_campaign_notify_update => 'Beri tahu pengikut juga';
+
+  @override
+  String get mosque_admin_campaign_limit_note =>
+      'Maksimal 3 kampanye aktif sekaligus. Donatur diingatkan 48 jam sebelum berakhir.';
+
+  @override
+  String get mosque_admin_campaign_invalid =>
+      'Tambahkan judul, target, dan tanggal berakhir di masa mendatang.';
+
+  @override
+  String get mosque_admin_campaign_created => 'Kampanye diluncurkan';
+
+  @override
+  String get mosque_admin_campaigns_empty =>
+      'Belum ada kampanye. Luncurkan satu untuk mendanai proyek bersama jamaah Anda.';
+
+  @override
+  String get mosque_admin_campaign_post_update => 'Posting pembaruan';
+
+  @override
+  String get mosque_admin_campaign_update_hint =>
+      'Bagikan perkembangan kepada donatur Anda…';
+
+  @override
+  String get mosque_admin_campaign_update_posted => 'Pembaruan diposting';
+
+  @override
+  String get mosque_admin_campaign_extend => 'Perpanjang';
+
+  @override
+  String get mosque_admin_campaign_extended => 'Kampanye diperpanjang';
+
+  @override
+  String get mosque_admin_campaign_reopen =>
+      'Buka kembali dengan tanggal berakhir baru';
+
+  @override
+  String get mosque_admin_campaign_close => 'Tutup';
+
+  @override
+  String get mosque_admin_campaign_close_title => 'Tutup kampanye ini?';
+
+  @override
+  String get mosque_admin_campaign_close_message =>
+      'Donatur tidak akan bisa berkontribusi lagi. Anda dapat membukanya kembali nanti.';
+
+  @override
+  String get mosque_admin_campaign_closed => 'Kampanye ditutup';
+
+  @override
+  String mosque_admin_campaign_closed_note(String date) {
+    return 'Kampanye ini ditutup $date.';
+  }
+
+  @override
+  String get mosque_admin_donors_list => 'Donatur';
+
+  @override
+  String get mosque_admin_donors_empty => 'Tidak ada donasi untuk periode ini.';
+
+  @override
+  String get mosque_admin_type_sadaqa => 'Sedekah';
+
+  @override
+  String get mosque_admin_type_campaign => 'Kampanye';
+
+  @override
+  String get mosque_admin_type_membership => 'Keanggotaan';
+
+  @override
+  String get mosque_admin_receipts => 'Kuitansi pajak';
+
+  @override
+  String get mosque_admin_receipt_issue => 'Terbitkan kuitansi';
+
+  @override
+  String get mosque_admin_receipt_view => 'Lihat kuitansi';
+
+  @override
+  String get mosque_admin_receipt_generated => 'Kuitansi siap';
 }

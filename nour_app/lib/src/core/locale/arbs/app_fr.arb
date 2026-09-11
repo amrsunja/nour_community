@@ -1130,6 +1130,14 @@
 	"mosque_admin_stat_support": "Sadaqa & adhésions",
 	"mosque_admin_stat_support_hint": "Soutien continu",
 	"mosque_admin_stat_campaigns": "Campagnes",
+	"mosque_donation_card_support": "Soutien",
+	"mosque_donation_card_growth": "{growth} vs {year}",
+	"@mosque_donation_card_growth": {
+		"placeholders": {
+			"growth": { "type": "String" },
+			"year": { "type": "String" }
+		}
+	},
 	"mosque_admin_sadaqa_title": "Carte Sadaqa",
 	"mosque_admin_sadaqa_month_summary": "{gifts} dons ce mois-ci ({amount}) · {monthly} donateurs mensuels",
 	"@mosque_admin_sadaqa_month_summary": {"placeholders": {"gifts": {"type": "int"}, "amount": {"type": "String"}, "monthly": {"type": "int"}}},

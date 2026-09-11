@@ -73,6 +73,9 @@ class MyMosquesPresenter extends Presenter<MyMosquesState> {
   /// (skips when refreshed < 10 min ago unless [force]).
   Future<void> init({bool force = false}) async {
     if (!force && _lastLoad != null && DateTime.now().difference(_lastLoad!) < const Duration(minutes: 10) && state.loaded) return;
+    // Yield before the first state write so a synchronous caller (e.g. a
+    // widget lifecycle) can never mutate this provider during a build.
+    await Future<void>.delayed(Duration.zero);
     state = state.copyWith(isLoading: true);
     final res = await repo.getUserMosques();
     await res.when(

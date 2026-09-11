@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
@@ -79,13 +80,13 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
     }
 
     final categories = [
-      (MosquePostType.event, l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, Icons.event, const Color(0xff1F6FEB)),
-      (MosquePostType.volunteering, l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, Icons.volunteer_activism_outlined, const Color(0xff1F8A5B)),
-      (MosquePostType.highlight, l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, Icons.photo_outlined, const Color(0xff7C4DFF)),
-      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Icons.nights_stay_outlined, const Color(0xff3A4A6B)),
+      (MosquePostType.event, l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, Assets.icons.calendar, const Color(0xff1F6FEB)),
+      (MosquePostType.volunteering, l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, Assets.icons.hand, const Color(0xff1F8A5B)),
+      (MosquePostType.highlight, l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, Assets.icons.gallery, const Color(0xff7C4DFF)),
+      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Assets.icons.janaza, const Color(0xff3A4A6B)),
     ];
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: l10n.mosque_admin_create_post,
         onBack: () => context.router.maybePop(),
@@ -112,32 +113,53 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
                   const SizedBox(height: 20),
                   TextField(
                     controller: title,
-                    style: theme.typo.inter.display.copyWith(color: UIColorsToken.white),
-                    decoration: InputDecoration(border: InputBorder.none, hintText: l10n.mosque_post_title_hint, hintStyle: theme.typo.inter.display.copyWith(color: UIColorsToken.textParagraph)),
+                    style: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.white),
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: l10n.mosque_post_title_hint,
+                      hintStyle: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.textParagraph)
+                    ),
+                    cursorColor: UIColorsToken.yellow,
                   ),
                   TextField(
                     controller: body,
-                    minLines: 4,
-                    maxLines: 12,
-                    style: theme.typo.inter.body.copyWith(color: UIColorsToken.white),
-                    decoration: InputDecoration(border: InputBorder.none, hintText: l10n.mosque_post_body_hint, hintStyle: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),
+                    minLines: 14,
+                    maxLines: 14,
+                    style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white),
+                    cursorColor: UIColorsToken.yellow,
+                    decoration: InputDecoration(border: InputBorder.none, hintText: l10n.mosque_post_body_hint, hintStyle: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph)),
                   ),
                   if (photo.value != null) ...[
                     const SizedBox(height: 8),
                     ClipRRect(borderRadius: BorderRadius.circular(10), child: AspectRatio(aspectRatio: 4 / 3, child: Image.network(photo.value!, fit: BoxFit.cover))),
                   ],
                   const SizedBox(height: 16),
-                  Text(l10n.mosque_post_add_to_post, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                  Text(l10n.mosque_post_add_to_post, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph)),
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      UITap(onTap: pickPhoto, child: const Padding(padding: EdgeInsets.all(6), child: Icon(Icons.image_outlined, color: UIColorsToken.white))),
-                      const SizedBox(width: 12),
+                      UITap(
+                        onTap: pickPhoto,
+                        child: Padding(
+                          padding: EdgeInsets.all(6),
+                          child: UIIcon(
+                            UIIconsToken.icons.gallery,
+                            onTap: pickPhoto,
+                            color: UIColorsToken.textParagraph,
+                          ),
+
+                        )
+                      ),
+                      const SizedBox(width: 4),
                       UITap(
                         onTap: () => urgent.value = !urgent.value,
                         child: Row(
                           children: [
-                            Icon(urgent.value ? Icons.warning_amber_rounded : Icons.warning_amber_outlined, color: urgent.value ? UIColorsToken.red : UIColorsToken.white),
+                            UIIcon(
+                              UIIconsToken.icons.warning,
+                              color: urgent.value ? UIColorsToken.red : UIColorsToken.textParagraph,
+                              size: 28,
+                            ),
                             const SizedBox(width: 4),
                             Text(l10n.mosque_post_mark_urgent, style: theme.typo.inter.caption.copyWith(color: urgent.value ? UIColorsToken.red : UIColorsToken.textParagraph)),
                           ],
@@ -146,10 +168,10 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Text(l10n.mosque_post_choose_category, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                  Text(l10n.mosque_post_choose_category, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph)),
                   const SizedBox(height: 10),
                   SizedBox(
-                    height: 120,
+                    height: 110,
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       physics: const BouncingScrollPhysics(),
@@ -167,7 +189,7 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(c.$4, color: UIColorsToken.white),
+                                    UIIcon(c.$4, color: UIColorsToken.white),
                                     Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [

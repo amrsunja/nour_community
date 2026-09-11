@@ -74,7 +74,7 @@ class AdminPickerBox extends StatelessWidget {
             Icon(icon, size: 18, color: UIColorsToken.textParagraph),
             const SizedBox(width: 8),
             Expanded(child: Text(text, style: theme.typo.inter.body.copyWith(color: UIColorsToken.white))),
-            const Icon(Icons.expand_more, size: 18, color: UIColorsToken.textParagraph),
+            Icon(Icons.expand_more, size: 18, color: UIColorsToken.textParagraph),
           ],
         ),
       ),
@@ -109,7 +109,7 @@ class AdminCoverBox extends StatelessWidget {
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.image_outlined, color: UIColorsToken.textParagraph),
+                      Icon(Icons.image_outlined, color: UIColorsToken.textParagraph),
                       const SizedBox(height: 6),
                       Text(placeholder, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
                     ],

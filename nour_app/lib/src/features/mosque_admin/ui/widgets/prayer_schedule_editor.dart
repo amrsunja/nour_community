@@ -42,10 +42,9 @@ class PrayerScheduleEditor extends ConsumerWidget {
 
     Future<void> pickTime(PrayerSlot? slot, {bool sunrise = false, bool jumua = false}) async {
       final current = sunrise ? day?.sunrise : jumua ? day?.jumua : day?.scheduled[slot!];
-      final t = await showTimePicker(
-        context: context,
+      final t = await UIPickers.time(
+        context,
         initialTime: current ?? const TimeOfDay(hour: 12, minute: 0),
-        builder: (ctx, child) => MediaQuery(data: MediaQuery.of(ctx).copyWith(alwaysUse24HourFormat: true), child: child!),
       );
       if (t == null) return;
       if (sunrise) {
@@ -321,11 +320,11 @@ class _SlotRow extends StatelessWidget {
               ),
             ),
           ),
-          UITap(onTap: () => onOffset(offset - 5), child: const Padding(padding: EdgeInsets.all(6), child: Icon(Icons.remove, size: 16, color: UIColorsToken.textParagraph))),
+          UITap(onTap: () => onOffset(offset - 5), child: Padding(padding: EdgeInsets.all(6), child: Icon(Icons.remove, size: 16, color: UIColorsToken.textParagraph))),
           Text('+$offset', style: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph)),
-          UITap(onTap: () => onOffset(offset + 5), child: const Padding(padding: EdgeInsets.all(6), child: Icon(Icons.add, size: 16, color: UIColorsToken.textParagraph))),
+          UITap(onTap: () => onOffset(offset + 5), child: Padding(padding: EdgeInsets.all(6), child: Icon(Icons.add, size: 16, color: UIColorsToken.textParagraph))),
           const SizedBox(width: 8),
-          UITap(onTap: onEdit, child: const Padding(padding: EdgeInsets.all(6), child: Icon(Icons.edit_outlined, size: 18, color: UIColorsToken.textParagraph))),
+          UITap(onTap: onEdit, child: Padding(padding: EdgeInsets.all(6), child: Icon(Icons.edit_outlined, size: 18, color: UIColorsToken.textParagraph))),
         ],
       ),
     );
@@ -355,7 +354,7 @@ class _SmallCell extends StatelessWidget {
               ],
             ),
           ),
-          const Icon(Icons.edit_outlined, size: 16, color: UIColorsToken.textParagraph),
+          Icon(Icons.edit_outlined, size: 16, color: UIColorsToken.textParagraph),
         ],
       ),
     );
@@ -405,10 +404,9 @@ class _OverrideSheet {
                       : MosqueFormat.hhmm(time),
                   fullWidth: true,
                   onTap: () async {
-                    final t = await showTimePicker(
-                      context: ctx,
+                    final t = await UIPickers.time(
+                      ctx,
                       initialTime: day?.scheduled[slot] ?? const TimeOfDay(hour: 12, minute: 0),
-                      builder: (c, child) => MediaQuery(data: MediaQuery.of(c).copyWith(alwaysUse24HourFormat: true), child: child!),
                     );
                     if (t != null) setState(() => time = t);
                   },

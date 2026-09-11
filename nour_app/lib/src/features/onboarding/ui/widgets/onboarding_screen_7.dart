@@ -9,6 +9,7 @@ import 'package:nour/src/core/utils/enums/reciter_type.dart';
 import 'package:nour/src/core/utils/islamic_tools/quran_tool.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen7 extends HookConsumerWidget {
   const OnboardingScreen7({super.key});
@@ -34,7 +35,7 @@ class OnboardingScreen7 extends HookConsumerWidget {
     Future<void> onContinue() async {
       await audioPresenter.stop();
       final ok = await settingsPresenter.selectFavoriteReciter(selected.value);
-      if (ok) onboarding.changePage(8);
+      if (ok) onboarding.changePage(OnboardingStep.screen8);
     }
 
     return Padding(

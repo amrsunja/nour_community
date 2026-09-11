@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/features/mosque_onboarding/ui/widgets/countries.dart';
@@ -50,20 +51,20 @@ class MosqueInformationTab extends StatelessWidget {
         MosqueService.newMuslimsSupport => l10n.mosque_service_new_muslims,
       };
 
-  static IconData serviceIcon(MosqueService s) => switch (s) {
-        MosqueService.parking => Icons.local_parking,
-        MosqueService.disabledAccess => Icons.accessible,
-        MosqueService.ablutionRoom => Icons.water_drop_outlined,
-        MosqueService.womenSpace => Icons.woman,
-        MosqueService.adultClasses => Icons.school_outlined,
-        MosqueService.childrenClasses => Icons.child_care,
-        MosqueService.quranClasses => Icons.menu_book_outlined,
-        MosqueService.arabicClasses => Icons.translate,
-        MosqueService.eidPrayer => Icons.celebration_outlined,
-        MosqueService.janaza => Icons.nights_stay_outlined,
-        MosqueService.iftarRamadan => Icons.restaurant_outlined,
-        MosqueService.library => Icons.local_library_outlined,
-        MosqueService.newMuslimsSupport => Icons.volunteer_activism_outlined,
+  static String serviceImagePath(MosqueService s) => switch (s) {
+        MosqueService.parking => Assets.images.illustration40.path,
+        MosqueService.disabledAccess => Assets.images.illustration41.path,
+        MosqueService.ablutionRoom => Assets.images.illustration31.path,
+        MosqueService.womenSpace => Assets.images.illustration45.path,
+        MosqueService.adultClasses => Assets.images.illustration44.path,
+        MosqueService.childrenClasses => Assets.images.illustration46.path,
+        MosqueService.quranClasses => Assets.images.illustration24.path,
+        MosqueService.arabicClasses => Assets.images.illustration3.path,
+        MosqueService.eidPrayer => Assets.images.illustration42.path,
+        MosqueService.janaza => Assets.images.illustration47.path,
+        MosqueService.iftarRamadan => Assets.images.illustration43.path,
+        MosqueService.library => Assets.images.illustration28.path,
+        MosqueService.newMuslimsSupport => Assets.images.illustration42.path,
       };
 
   static String languageName(String code) => switch (code.toLowerCase()) {
@@ -142,7 +143,7 @@ class MosqueInformationTab extends StatelessWidget {
                   icon: Icons.calendar_today_outlined,
                   label: l10n.mosque_founded,
                   value: mosque.foundedYear?.toString() ?? '—',
-                  hint: age == null ? '' : l10n.mosque_years_old(age),
+                  hint: age == null ? ' ' : l10n.mosque_years_old(age),
                   onEdit: editable ? onEditFounded : null,
                 ),
               ),
@@ -155,7 +156,7 @@ class MosqueInformationTab extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 8),
               child: _ServiceRow(
-                icon: serviceIcon(s),
+                image: serviceImagePath(s),
                 label: serviceLabel(l10n, s),
                 selected: mosque.services.contains(s),
                 editable: editable,
@@ -223,7 +224,7 @@ class MosqueInformationTab extends StatelessWidget {
                         ],
                       ),
                     ),
-                    if (editable) const Icon(Icons.edit_outlined, size: 18, color: UIColorsToken.textParagraph),
+                    if (editable) Icon(Icons.edit_outlined, size: 18, color: UIColorsToken.textParagraph),
                   ],
                 ),
               ),
@@ -258,7 +259,7 @@ class _InfoCard extends StatelessWidget {
               Icon(icon, size: 16, color: UIColorsToken.textParagraph),
               const SizedBox(width: 6),
               Expanded(child: Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph))),
-              if (onEdit != null) const Icon(Icons.edit_outlined, size: 14, color: UIColorsToken.textParagraph),
+              if (onEdit != null) Icon(Icons.edit_outlined, size: 14, color: UIColorsToken.textParagraph),
             ],
           ),
           const SizedBox(height: 8),
@@ -271,8 +272,8 @@ class _InfoCard extends StatelessWidget {
 }
 
 class _ServiceRow extends StatelessWidget {
-  const _ServiceRow({required this.icon, required this.label, required this.selected, required this.editable, this.onTap});
-  final IconData icon;
+  const _ServiceRow({required this.image, required this.label, required this.selected, required this.editable, this.onTap});
+  final String image;
   final String label;
   final bool selected;
   final bool editable;
@@ -288,7 +289,11 @@ class _ServiceRow extends StatelessWidget {
         onTap: onTap,
         child: Row(
           children: [
-            Icon(icon, color: UIColorsToken.textYellow, size: 26),
+            SizedBox(
+              width: 60,
+              height: 50,
+              child: Image.asset(image),
+            ),
             const SizedBox(width: 14),
             Expanded(child: Text(label, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
             if (editable)

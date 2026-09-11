@@ -89,7 +89,7 @@ class MyMosquesSheet extends HookConsumerWidget {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.drag_indicator, color: UIColorsToken.textParagraph, size: 18),
+                    Icon(Icons.drag_indicator, color: UIColorsToken.textParagraph, size: 18),
                     const SizedBox(width: 8),
                     MosqueLogo(mosque: m, size: 32, radius: 16),
                     const SizedBox(width: 10),

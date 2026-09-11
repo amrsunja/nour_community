@@ -58,7 +58,7 @@ class MosqueAdminDonationTab extends HookConsumerWidget {
                     const Icon(Icons.check_circle, size: 18, color: UIColorsToken.green),
                     const SizedBox(width: 10),
                     Expanded(child: Text(l10n.mosque_admin_stripe_active, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.white))),
-                    const Icon(Icons.chevron_right, size: 18, color: UIColorsToken.textParagraph),
+                    Icon(Icons.chevron_right, size: 18, color: UIColorsToken.textParagraph),
                   ],
                 ),
               ),
@@ -242,7 +242,7 @@ class _YearPicker extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        UITap(onTap: () => onChanged(year - 1), child: const Icon(Icons.chevron_left, size: 20, color: UIColorsToken.textParagraph)),
+        UITap(onTap: () => onChanged(year - 1), child: Icon(Icons.chevron_left, size: 20, color: UIColorsToken.textParagraph)),
         Text('$year', style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
         UITap(onTap: year < now ? () => onChanged(year + 1) : null, child: Icon(Icons.chevron_right, size: 20, color: year < now ? UIColorsToken.textParagraph : UIColorsToken.black80)),
       ],
@@ -269,7 +269,7 @@ class _LinkRow extends StatelessWidget {
             Icon(icon, size: 20, color: UIColorsToken.textYellow),
             const SizedBox(width: 12),
             Expanded(child: Text(label, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
-            const Icon(Icons.chevron_right, size: 18, color: UIColorsToken.textParagraph),
+            Icon(Icons.chevron_right, size: 18, color: UIColorsToken.textParagraph),
           ],
         ),
       ),

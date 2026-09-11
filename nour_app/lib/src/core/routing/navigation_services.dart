@@ -12,7 +12,9 @@ abstract class NavigationServices {
 	void toSignIn();
 	void toRoot();
 	void toWelcome();
-	void toProfileType();
+	/// [resetStack] rebuilds the stack as Welcome → ProfileType (used when
+	/// coming back from the onboarding / mosque onboarding flows).
+	void toProfileType({bool resetStack = false});
 	void toMosqueOnboarding();
 	void toMosqueReview();
 	void toMosqueAdmin();
@@ -133,7 +135,11 @@ class NavigationServicesImpl implements NavigationServices {
   }
 
   @override
-  void toProfileType() {
+  void toProfileType({bool resetStack = false}) {
+		if (resetStack) {
+			router.replaceAll([const WelcomeRoute(), const ProfileTypeRoute()]);
+			return;
+		}
 		router.push(const ProfileTypeRoute());
   }
 
@@ -211,9 +217,9 @@ class NavigationServicesImpl implements NavigationServices {
   @override
   void toMosqueAdminDonors() => router.push(const MosqueAdminDonorsRoute());
   @override
-  void toMosqueAdminReceipts() => router.push(const MosqueAdminReceiptsRoute());
+  void toMosqueAdminReceipts() => router.push(MosqueAdminReceiptsRoute());
   @override
-  void toMyMosqueReceipts() => router.push(const MosqueAdminReceiptsRoute(mine: true));
+  void toMyMosqueReceipts() => router.push(MosqueAdminReceiptsRoute(mine: true));
 
   @override
   void navigateToHome() {

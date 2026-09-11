@@ -2136,4 +2136,1527 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get error_api_admin_payout_delete_failed => 'تعذّر حذف الدفعة.';
+
+  @override
+  String get common_required_field => 'هذا الحقل مطلوب';
+
+  @override
+  String get common_optional => 'اختياري';
+
+  @override
+  String get common_refresh => 'تحديث';
+
+  @override
+  String get mosque_onboarding_resume => 'متابعة تسجيل مسجدي';
+
+  @override
+  String get mosque_onboarding_start_over => 'البدء من جديد';
+
+  @override
+  String get profile_type_title => 'كيف ستستخدم نور؟';
+
+  @override
+  String get profile_type_mosque_title => 'أنا مسؤول عن مسجد';
+
+  @override
+  String get profile_type_mosque_subtitle =>
+      'انشر لمجتمعك، وأطلق حملات جمع التبرعات.';
+
+  @override
+  String get profile_type_user_title => 'أنا مصلٍّ';
+
+  @override
+  String get profile_type_user_subtitle =>
+      'تابع المساجد، واطّلع على مواقيت الصلاة، وابقَ على تواصل.';
+
+  @override
+  String get mosque_post_type_announcement => 'إعلان';
+
+  @override
+  String get mosque_post_type_event => 'فعالية';
+
+  @override
+  String get mosque_post_type_event_hint => 'التاريخ والوقت والمكان';
+
+  @override
+  String get mosque_post_type_volunteering => 'تطوّع';
+
+  @override
+  String get mosque_post_type_volunteering_hint => 'استقطاب متطوعين';
+
+  @override
+  String get mosque_post_type_highlight => 'لحظة مميزة';
+
+  @override
+  String get mosque_post_type_highlight_hint => 'شارك اللحظات';
+
+  @override
+  String get mosque_post_type_janaza => 'جنازة';
+
+  @override
+  String get mosque_post_type_janaza_hint => 'التاريخ ووقت الصلاة';
+
+  @override
+  String get mosque_onboarding_feature_1_title => 'مصمّم لإعلانات المساجد.';
+
+  @override
+  String get mosque_onboarding_feature_1_description =>
+      'فعاليات، حملات تبرع، نداءات تطوّع، جنائز، تذكيرات، ولحظات مميزة.';
+
+  @override
+  String get mosque_onboarding_feature_2_title =>
+      'اجمع التبرعات بطريقة موثوقة.';
+
+  @override
+  String get mosque_onboarding_feature_2_description =>
+      'صدقة مستمرة وحملات محدودة المدة.';
+
+  @override
+  String get mosque_onboarding_feature_3_title =>
+      'مواقيت تعكس ما يعتمده إمامك.';
+
+  @override
+  String get mosque_onboarding_feature_3_description =>
+      'انشر جدول الصلوات ومواقيت الإقامة الخاصة بمسجدك.';
+
+  @override
+  String get mosque_onboarding_country_title => 'اختر بلدك';
+
+  @override
+  String get mosque_onboarding_country_search => 'البحث عن بلد';
+
+  @override
+  String get mosque_legal_status_1901 => 'جمعية (قانون 1901)';
+
+  @override
+  String get mosque_legal_status_1905 => 'جمعية دينية (قانون 1905)';
+
+  @override
+  String get mosque_legal_status_other => 'أخرى';
+
+  @override
+  String get mosque_register_title => 'لنسجّل مسجدك';
+
+  @override
+  String get mosque_register_legal_name => 'الاسم القانوني';
+
+  @override
+  String get mosque_register_legal_name_hint => 'أدخل الاسم القانوني';
+
+  @override
+  String get mosque_register_legal_status => 'الوضع القانوني';
+
+  @override
+  String get mosque_register_legal_status_hint => 'اختر الوضع القانوني';
+
+  @override
+  String get mosque_register_rna => 'RNA';
+
+  @override
+  String get mosque_register_rna_invalid =>
+      'يجب أن يكون رقم RNA بصيغة مثل W751123456';
+
+  @override
+  String get mosque_register_siren => 'رقم SIREN';
+
+  @override
+  String get mosque_register_siren_invalid =>
+      'يجب أن يتكوّن رقم SIREN من 9 أرقام';
+
+  @override
+  String get mosque_register_cta => 'تسجيل';
+
+  @override
+  String get mosque_account_title => 'لننشئ حسابك';
+
+  @override
+  String get mosque_account_subtitle => 'لإدارة مسجدك على نور';
+
+  @override
+  String get mosque_account_existing_hint =>
+      'لديك حساب بالفعل؟ استخدم البريد الإلكتروني نفسه أو الطريقة نفسها لتسجيل الدخول.';
+
+  @override
+  String get mosque_account_cta => 'إنشاء حساب';
+
+  @override
+  String get mosque_review_pending_title => 'مسجدك قيد المراجعة';
+
+  @override
+  String get mosque_review_pending_message =>
+      'يراجع فريقنا تسجيلك. سيتم إشعارك فور الموافقة عليه — عادةً خلال بضعة أيام.';
+
+  @override
+  String get mosque_review_rejected_title => 'تم رفض التسجيل';
+
+  @override
+  String get mosque_review_rejected_message =>
+      'لم نتمكن من الموافقة على مسجدك. راجع الملاحظة أدناه أو تواصل مع الدعم.';
+
+  @override
+  String get mosque_review_suspended_title => 'المسجد موقوف';
+
+  @override
+  String get mosque_review_suspended_message =>
+      'تم إيقاف ملف مسجدك. تواصل مع الدعم لمزيد من المعلومات.';
+
+  @override
+  String get mosque_review_contact_support => 'تواصل مع الدعم';
+
+  @override
+  String get mosque_admin_tab_dashboard => 'لوحة التحكم';
+
+  @override
+  String get mosque_admin_tab_community => 'المجتمع';
+
+  @override
+  String get mosque_admin_tab_mosque => 'المسجد';
+
+  @override
+  String get mosque_admin_tab_post => 'نشر';
+
+  @override
+  String get mosque_admin_total_raised_year => 'إجمالي ما جُمع هذا العام';
+
+  @override
+  String get mosque_admin_donors => 'المتبرعون';
+
+  @override
+  String get mosque_admin_recurring => 'المتكررة';
+
+  @override
+  String get mosque_admin_avg_gift => 'متوسط التبرّع';
+
+  @override
+  String get error_api_mosque_load_failed => 'تعذّر تحميل المسجد.';
+
+  @override
+  String get error_api_mosque_save_failed => 'تعذّر حفظ التغييرات.';
+
+  @override
+  String get error_api_mosque_search_failed => 'تعذّر البحث عن المساجد.';
+
+  @override
+  String get error_api_mosque_register_failed =>
+      'تعذّر تسجيل المسجد. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get error_api_mosque_register_is_worshipper =>
+      'هذا الحساب مسجّل بالفعل كحساب مصلٍّ. استخدم بريدًا إلكترونيًا آخر لتسجيل مسجد.';
+
+  @override
+  String get error_api_mosque_register_anonymous =>
+      'يرجى تسجيل الدخول بالبريد الإلكتروني أو بحساب Google أو Apple.';
+
+  @override
+  String get error_api_mosque_register_invalid_siren => 'رقم SIREN غير صالح.';
+
+  @override
+  String get error_api_mosque_register_invalid_rna => 'رقم RNA غير صالح.';
+
+  @override
+  String get error_api_mosque_register_duplicate =>
+      'هذا المسجد مسجّل بالفعل. تواصل مع الدعم إن كنت مسؤولًا عنه.';
+
+  @override
+  String get error_api_mosque_post_limit_reached =>
+      'لقد بلغت الحد الأقصى للمنشورات النشطة من هذا النوع. أرشف أحدها أولًا.';
+
+  @override
+  String get error_api_mosque_broadcast_quota_exceeded =>
+      'لقد أرسلت بالفعل الحد الأقصى من الإشعارات لهذا الأسبوع.';
+
+  @override
+  String get error_api_mosque_not_approved => 'لم تتم الموافقة على مسجدك بعد.';
+
+  @override
+  String get error_api_push_register_failed =>
+      'تعذّر تسجيل هذا الجهاز لتلقي الإشعارات.';
+
+  @override
+  String get push_settings_title => 'الإشعارات الفورية';
+
+  @override
+  String get push_settings_description =>
+      'اختر الإشعارات التي يمكن لنور إرسالها إلى هذا الجهاز. تُدار تذكيرات الصلاة والأذكار من قسم التذكيرات.';
+
+  @override
+  String get push_kind_mosque_post => 'أخبار المساجد';
+
+  @override
+  String get push_kind_mosque_post_hint => 'إعلانات من المساجد التي تتابعها';
+
+  @override
+  String get push_kind_mosque_event => 'الفعاليات';
+
+  @override
+  String get push_kind_mosque_event_hint => 'محاضرات، جنائز، تطوّع';
+
+  @override
+  String get push_kind_mosque_campaign => 'حملات جمع التبرعات';
+
+  @override
+  String get push_kind_mosque_campaign_hint =>
+      'الحملات الجديدة والمواعيد النهائية';
+
+  @override
+  String get push_kind_mosque_broadcast => 'رسائل من المسجد';
+
+  @override
+  String get push_kind_mosque_broadcast_hint =>
+      'رسائل مباشرة يرسلها المسجد (بحد أقصى رسالتين في الأسبوع)';
+
+  @override
+  String get push_kind_mosque_status => 'حساب المسجد';
+
+  @override
+  String get push_kind_mosque_status_hint =>
+      'حالة المراجعة والتحديثات المهمة للحساب';
+
+  @override
+  String get push_kind_system => 'تحديثات نور';
+
+  @override
+  String get push_kind_system_hint => 'أخبار من حين لآخر عن التطبيق';
+
+  @override
+  String get common_cancel => 'إلغاء';
+
+  @override
+  String get common_delete => 'حذف';
+
+  @override
+  String get common_edit => 'تعديل';
+
+  @override
+  String get common_load_more => 'تحميل المزيد';
+
+  @override
+  String get common_yes => 'نعم';
+
+  @override
+  String get common_no => 'لا';
+
+  @override
+  String get admin_tab_mosques => 'المساجد';
+
+  @override
+  String get admin_mosque_approve => 'موافقة';
+
+  @override
+  String get admin_mosque_reject => 'رفض';
+
+  @override
+  String get admin_mosque_suspend => 'إيقاف';
+
+  @override
+  String get admin_mosque_reviewed =>
+      'تم تحديث المسجد — وتم إشعار المسؤول عنه.';
+
+  @override
+  String get admin_mosque_duplicate_siren => '⚠ مسجد آخر يستخدم رقم SIREN هذا';
+
+  @override
+  String get admin_mosque_empty => 'لا يوجد مسجد بهذه الحالة.';
+
+  @override
+  String get admin_mosque_filter_pending => 'قيد الانتظار';
+
+  @override
+  String get admin_mosque_filter_approved => 'مقبول';
+
+  @override
+  String get admin_mosque_filter_rejected => 'مرفوض';
+
+  @override
+  String get admin_mosque_filter_suspended => 'موقوف';
+
+  @override
+  String get admin_mosque_note_title => 'ملاحظة للمسجد';
+
+  @override
+  String get admin_mosque_note_hint => 'السبب (يظهر للمسؤول عن المسجد)';
+
+  @override
+  String get home_my_mosque => 'مسجدي';
+
+  @override
+  String get home_no_mosque_title => 'لم يتم اختيار مسجد بعد';
+
+  @override
+  String get home_no_mosque_subtitle =>
+      'اختر مسجدك لترى مواقيت صلاته وأخباره وحملاته هنا مباشرة.';
+
+  @override
+  String get home_find_mosque => 'ابحث عن مسجد';
+
+  @override
+  String get profile_my_mosques => 'مساجدي';
+
+  @override
+  String get prayer_times_add_mosque => 'أضف مسجدك';
+
+  @override
+  String get prayer_times_from_mosque_hint =>
+      'المواقيت منشورة من قبل مسجدك. غيّر مسجدك للعودة إلى المواقيت المحسوبة.';
+
+  @override
+  String get onboarding_mosque_title => 'اختر مسجدًا';
+
+  @override
+  String get onboarding_mosque_subtitle =>
+      'ابحث عن مسجدك القريب وتابعه للحصول على مواقيت صلاته وأخباره.';
+
+  @override
+  String get mosque_search_hint => 'ابحث عن مسجد';
+
+  @override
+  String get mosque_search_near_you => 'مساجد قريبة منك';
+
+  @override
+  String get mosque_search_near_you_short => 'بالقرب منك';
+
+  @override
+  String get mosque_search_results => 'النتائج';
+
+  @override
+  String get mosque_search_empty =>
+      'لم يُعثر على أي مسجد. جرّب اسمًا أو مدينة أخرى.';
+
+  @override
+  String get mosque_search_language => 'لغة البحث';
+
+  @override
+  String get mosque_add_to_my_mosques => 'إضافة إلى مساجدي';
+
+  @override
+  String get my_mosques_title => 'مسجدك (مساجدك)';
+
+  @override
+  String get my_mosques_subtitle =>
+      'اسحب المساجد وأفلتها لإعادة ترتيبها وتحديد المسجد الرئيسي.';
+
+  @override
+  String get my_mosques_principal => 'المسجد الرئيسي';
+
+  @override
+  String get my_mosques_secondary => 'المسجد الثانوي';
+
+  @override
+  String get my_mosques_no_principal => 'لا يوجد مسجد رئيسي بعد';
+
+  @override
+  String get my_mosques_no_secondary => 'لا يوجد مسجد ثانوي بعد';
+
+  @override
+  String get my_mosques_saved => 'تم حفظ مساجدك.';
+
+  @override
+  String get my_mosques_added => 'ضمن مساجدي';
+
+  @override
+  String get my_mosques_is_principal => 'مسجدك الرئيسي';
+
+  @override
+  String get my_mosques_is_secondary => 'مسجدك الثانوي';
+
+  @override
+  String get mosque_cover_placeholder => 'صورة الغلاف';
+
+  @override
+  String get mosque_status_open => 'مفتوح';
+
+  @override
+  String get mosque_status_closed => 'مغلق';
+
+  @override
+  String get mosque_followers => 'متابعون';
+
+  @override
+  String get mosque_members => 'أعضاء';
+
+  @override
+  String get mosque_followers_title => 'المتابعون';
+
+  @override
+  String get mosque_members_title => 'الأعضاء';
+
+  @override
+  String get mosque_follow => 'متابعة';
+
+  @override
+  String get mosque_following => 'تتابعه';
+
+  @override
+  String get mosque_become_member => 'انضم كعضو';
+
+  @override
+  String get mosque_member_badge => 'عضو';
+
+  @override
+  String get mosque_follower_badge => 'متابع';
+
+  @override
+  String get mosque_action_itinerary => 'الاتجاهات';
+
+  @override
+  String get mosque_action_call => 'اتصال';
+
+  @override
+  String get mosque_action_email => 'بريد إلكتروني';
+
+  @override
+  String get mosque_address_copied => 'تم نسخ العنوان';
+
+  @override
+  String get mosque_tab_prayers => 'الصلوات';
+
+  @override
+  String get mosque_tab_information => 'معلومات';
+
+  @override
+  String get mosque_tab_news => 'الأخبار';
+
+  @override
+  String get mosque_tab_donation => 'التبرع';
+
+  @override
+  String get mosque_today_prayer_times => 'مواقيت صلاة اليوم';
+
+  @override
+  String get mosque_prayer_times_unavailable =>
+      'مواقيت الصلاة غير متوفرة حاليًا.';
+
+  @override
+  String get mosque_prayer_times_computed_hint =>
+      'مواقيت محسوبة — لم ينشر المسجد جدول اليوم بعد.';
+
+  @override
+  String get mosque_prayer_times_not_published => 'لم تُنشر مواقيت الصلاة بعد';
+
+  @override
+  String get mosque_capacity => 'السعة';
+
+  @override
+  String get mosque_capacity_men => 'رجال';
+
+  @override
+  String get mosque_capacity_women => 'نساء';
+
+  @override
+  String get mosque_capacity_men_women => 'رجال + نساء';
+
+  @override
+  String get mosque_founded => 'تأسس في';
+
+  @override
+  String mosque_years_old(int n) {
+    return 'منذ $n سنة';
+  }
+
+  @override
+  String get mosque_services => 'الخدمات';
+
+  @override
+  String get mosque_services_edit_hint =>
+      'اختر الخدمات التي يقدمها مسجدك. ستظهر في ملفك العام.';
+
+  @override
+  String get mosque_no_services => 'لم تُدرج أي خدمة بعد.';
+
+  @override
+  String get mosque_service_parking => 'موقف سيارات';
+
+  @override
+  String get mosque_service_disabled_access => 'مدخل لذوي الإعاقة';
+
+  @override
+  String get mosque_service_ablution_room => 'قاعة الوضوء';
+
+  @override
+  String get mosque_service_women_space => 'مصلّى النساء';
+
+  @override
+  String get mosque_service_adult_classes => 'دروس للكبار';
+
+  @override
+  String get mosque_service_children_classes => 'دروس للأطفال';
+
+  @override
+  String get mosque_service_quran_classes => 'دروس القرآن';
+
+  @override
+  String get mosque_service_arabic_classes => 'دروس اللغة العربية';
+
+  @override
+  String get mosque_service_eid_prayer => 'صلاة العيد';
+
+  @override
+  String get mosque_service_janaza => 'صلاة الجنازة';
+
+  @override
+  String get mosque_service_iftar_ramadan => 'إفطار رمضان';
+
+  @override
+  String get mosque_service_library => 'مكتبة';
+
+  @override
+  String get mosque_service_new_muslims => 'دعم المسلمين الجدد';
+
+  @override
+  String get mosque_khutbah_languages => 'لغة (لغات) الخطبة';
+
+  @override
+  String get mosque_imams => 'الأئمة';
+
+  @override
+  String mosque_since_year(int y) {
+    return 'منذ $y';
+  }
+
+  @override
+  String get mosque_add_imam => 'إضافة إمام';
+
+  @override
+  String get mosque_edit_imam => 'تعديل بيانات الإمام';
+
+  @override
+  String get mosque_add_photo => 'إضافة صورة';
+
+  @override
+  String get mosque_imam_full_name => 'الاسم الكامل';
+
+  @override
+  String get mosque_imam_role => 'الدور';
+
+  @override
+  String get mosque_imam_since => 'في المسجد منذ';
+
+  @override
+  String get mosque_imam_bio => 'نبذة قصيرة';
+
+  @override
+  String get mosque_imam_bio_hint => 'بضع كلمات عن الإمام';
+
+  @override
+  String get mosque_news_empty =>
+      'لا توجد أخبار بعد. تابع المسجد ليصلك إشعار بإعلاناته.';
+
+  @override
+  String get mosque_post_urgent => 'عاجل';
+
+  @override
+  String get mosque_post_share => 'مشاركة';
+
+  @override
+  String get mosque_post_apply => 'تقدّم';
+
+  @override
+  String get mosque_post_applied => 'تم التقدّم';
+
+  @override
+  String get mosque_post_attend_cta => 'سأحضر';
+
+  @override
+  String get mosque_post_attending_cta_done => 'سأحضر ✓';
+
+  @override
+  String mosque_post_attending(int n) {
+    return '$n سيحضرون';
+  }
+
+  @override
+  String mosque_post_volunteers(int n) {
+    return '$n متطوع (متطوعين)';
+  }
+
+  @override
+  String mosque_post_duas(int n) {
+    return '$n دعاء';
+  }
+
+  @override
+  String get mosque_post_say_dua => 'ادعُ له';
+
+  @override
+  String get mosque_post_dua_said => 'تم الدعاء ✓';
+
+  @override
+  String mosque_post_after_prayer(String slot, String time) {
+    return 'بعد صلاة $slot - $time';
+  }
+
+  @override
+  String get mosque_post_notified_all => 'تم إشعار الجميع';
+
+  @override
+  String get mosque_dua_recite => 'اقرأ هذا الدعاء';
+
+  @override
+  String get mosque_dua_translation => 'اللهم اغفر له وارحمه وعافه واعف عنه.';
+
+  @override
+  String get mosque_dua_done => 'لقد انتهيت';
+
+  @override
+  String get mosque_donations_coming_soon =>
+      'سيكون التبرع لهذا المسجد متاحًا قريبًا.';
+
+  @override
+  String get mosque_donation_enter_amount => 'أدخل المبلغ يدويًا';
+
+  @override
+  String get mosque_member_title => 'انضم إلى عضويتنا';
+
+  @override
+  String get mosque_member_subtitle =>
+      'يساعدنا تسجيلك كعضو على البقاء على تواصل معك وتنظيم حياة مجتمعنا.';
+
+  @override
+  String get mosque_member_first_name => 'الاسم الأول';
+
+  @override
+  String get mosque_member_last_name => 'اسم العائلة';
+
+  @override
+  String get mosque_member_birth_date => 'تاريخ الميلاد';
+
+  @override
+  String get mosque_member_profession => 'المهنة';
+
+  @override
+  String get mosque_member_phone => 'رقم الهاتف';
+
+  @override
+  String get mosque_member_volunteer_question =>
+      'هل أنت متاح للمشاريع التطوعية؟';
+
+  @override
+  String get mosque_member_consent =>
+      'أوافق على أن يستخدم المسجد معلوماتي للتواصل معي بشأن المشاريع التطوعية ومشاريع دعم المجتمع.';
+
+  @override
+  String get mosque_member_fee_optional => 'مساهمة اختيارية';
+
+  @override
+  String get mosque_member_fee_title => 'ادعم المسجد';
+
+  @override
+  String get mosque_member_fee_hint =>
+      'تساعد المساهمة الموصى بها البالغة 120€ سنويًا على استمرار المسجد. هذا اختياري تمامًا، فعضويتك مجانية.';
+
+  @override
+  String get mosque_member_fee_choose => 'اختر مساهمتك';
+
+  @override
+  String get mosque_member_register => 'التسجيل كعضو';
+
+  @override
+  String get mosque_member_fill_required =>
+      'يرجى ملء جميع الحقول المطلوبة والموافقة على بند الموافقة.';
+
+  @override
+  String get mosque_member_welcome => 'مرحبًا بك في المجتمع!';
+
+  @override
+  String get mosque_time_just_now => 'الآن';
+
+  @override
+  String mosque_time_min_ago(int n) {
+    return 'قبل $n د';
+  }
+
+  @override
+  String mosque_time_hours_ago(int n) {
+    return 'قبل $n س';
+  }
+
+  @override
+  String get mosque_time_yesterday => 'أمس';
+
+  @override
+  String mosque_time_days_ago(int n) {
+    return 'قبل $n يوم';
+  }
+
+  @override
+  String mosque_time_weeks_ago(int n) {
+    return 'قبل $n أسبوع';
+  }
+
+  @override
+  String get mosque_admin_panel_title => 'لوحة تحكم المسجد';
+
+  @override
+  String get mosque_admin_panel_subtitle => 'أدر مسجدك ومنشوراتك ومجتمعك';
+
+  @override
+  String mosque_admin_attention(int n) {
+    return '$n أمور تحتاج إلى انتباهك';
+  }
+
+  @override
+  String mosque_admin_pending_events(int n) {
+    return '$n فعالية قيد الانتظار';
+  }
+
+  @override
+  String mosque_admin_campaigns_ending(int n) {
+    return '$n حملة تبرعات تنتهي قريبًا';
+  }
+
+  @override
+  String get mosque_admin_last_7_days => 'آخر 7 أيام';
+
+  @override
+  String get mosque_admin_last_30_days => 'آخر 30 يومًا';
+
+  @override
+  String get mosque_admin_growth => 'النمو';
+
+  @override
+  String get mosque_admin_today => 'اليوم';
+
+  @override
+  String mosque_admin_open_rate(String rate) {
+    return 'معدل فتح الإشعارات (30 يومًا، تقديري): $rate%';
+  }
+
+  @override
+  String get mosque_admin_fundraising => 'جمع التبرعات';
+
+  @override
+  String mosque_campaign_days_left_short(int n) {
+    return 'متبقٍ $n ي';
+  }
+
+  @override
+  String get mosque_admin_recent_posts => 'أحدث المنشورات';
+
+  @override
+  String get mosque_admin_no_posts =>
+      'لا يوجد منشور بعد. شارك أخبارًا أو فعاليات أو جنازة مع مجتمعك.';
+
+  @override
+  String get mosque_admin_create_post => 'إنشاء منشور';
+
+  @override
+  String get mosque_admin_view_mosque => 'عرض الملف العام';
+
+  @override
+  String get mosque_admin_search_community =>
+      'ابحث بالاسم أو البريد الإلكتروني أو الهاتف';
+
+  @override
+  String get mosque_admin_filter_all => 'الكل';
+
+  @override
+  String get mosque_admin_filter_followers => 'المتابعون';
+
+  @override
+  String get mosque_admin_filter_members => 'الأعضاء';
+
+  @override
+  String get mosque_admin_filter_volunteers => 'المتطوعون';
+
+  @override
+  String get mosque_admin_community_empty => 'لا يوجد أحد هنا بعد.';
+
+  @override
+  String get mosque_admin_remove_member => 'إزالة العضو';
+
+  @override
+  String get mosque_admin_prayer_times => 'مواقيت الصلاة';
+
+  @override
+  String get mosque_prayers_not_set_title => 'لم تُحدَّد صلوات هذا اليوم بعد.';
+
+  @override
+  String get mosque_prayers_not_set_hint =>
+      'أدخلها يدويًا أو انسخها من يوم آخر';
+
+  @override
+  String get mosque_prayers_copy_from_day => 'نسخ من يوم آخر';
+
+  @override
+  String mosque_prayers_copied_from(String date) {
+    return 'تم نسخ مواقيت الصلاة بنجاح من $date';
+  }
+
+  @override
+  String get mosque_copy_title => 'نسخ مواقيت الصلاة';
+
+  @override
+  String get mosque_copy_subtitle =>
+      'أعد استخدام مواقيت يوم آخر بدلًا من كتابتها من جديد.';
+
+  @override
+  String get mosque_copy_from => 'نسخ من';
+
+  @override
+  String get mosque_copy_times => 'المواقيت المراد نسخها';
+
+  @override
+  String get mosque_copy_apply_to => 'تطبيق على';
+
+  @override
+  String get mosque_copy_this_day => 'هذا اليوم فقط';
+
+  @override
+  String get mosque_copy_date_range => 'فترة زمنية';
+
+  @override
+  String get mosque_copy_from_date => 'من';
+
+  @override
+  String get mosque_copy_to_date => 'إلى';
+
+  @override
+  String get mosque_copy_overwrite_warning =>
+      'سيتم استبدال مواقيت الأيام التي لديها مواقيت بالفعل.';
+
+  @override
+  String get mosque_overrides_title => 'تعديلات الصلوات';
+
+  @override
+  String get mosque_overrides_shift_title => 'تغيير موعد صلاة اليوم';
+
+  @override
+  String get mosque_overrides_shift_hint =>
+      'غيّر وقت صلاة واحدة لليوم فقط، دون المساس بالجدول الدائم.';
+
+  @override
+  String get mosque_overrides_create => 'إنشاء تعديل';
+
+  @override
+  String get mosque_overrides_applied => 'التعديلات المطبّقة';
+
+  @override
+  String get mosque_override_created =>
+      'تم تطبيق التعديل — يرى المتابعون الوقت الجديد.';
+
+  @override
+  String get mosque_override_new_time => 'الوقت الجديد';
+
+  @override
+  String get mosque_override_reason_hint => 'السبب (اختياري)';
+
+  @override
+  String get mosque_post_notify_followers => 'إشعار المتابعين';
+
+  @override
+  String mosque_post_send_push(int n) {
+    return 'إرسال إشعار إلى $n متابع';
+  }
+
+  @override
+  String mosque_post_quota_left(int left, int limit) {
+    return 'متبقٍ $left من $limit إشعارات هذا الأسبوع';
+  }
+
+  @override
+  String mosque_post_notified(int n) {
+    return 'تم إرسال الإشعار إلى $n متابع';
+  }
+
+  @override
+  String get mosque_post_archive => 'أرشفة';
+
+  @override
+  String get mosque_post_published => 'تم نشر المنشور';
+
+  @override
+  String get mosque_post_title_hint => 'العنوان';
+
+  @override
+  String get mosque_post_title_label => 'العنوان';
+
+  @override
+  String get mosque_post_body_hint => 'ابدأ الكتابة';
+
+  @override
+  String get mosque_post_add_to_post => 'أضف إلى منشورك';
+
+  @override
+  String get mosque_post_choose_category => 'أو اختر فئة';
+
+  @override
+  String get mosque_post_audience_public => 'عام';
+
+  @override
+  String get mosque_post_audience_followers => 'المتابعون';
+
+  @override
+  String get mosque_post_form_event => 'نشر فعالية';
+
+  @override
+  String get mosque_post_form_volunteering => 'استقطاب متطوعين';
+
+  @override
+  String get mosque_post_form_highlight => 'مشاركة لحظة مميزة';
+
+  @override
+  String get mosque_post_form_janaza => 'الإعلان عن جنازة';
+
+  @override
+  String get mosque_post_cover_photo => 'صورة الغلاف';
+
+  @override
+  String get mosque_post_add_cover => 'إضافة صورة غلاف';
+
+  @override
+  String get mosque_post_cover_required => 'الصورة مطلوبة للحظة المميزة.';
+
+  @override
+  String get mosque_post_event_name => 'اسم الفعالية';
+
+  @override
+  String get mosque_post_janaza_name => 'اسم المتوفى';
+
+  @override
+  String get mosque_post_description => 'الوصف';
+
+  @override
+  String get mosque_post_description_hint => 'ما موضوع هذه الفعالية..';
+
+  @override
+  String get mosque_post_date => 'التاريخ';
+
+  @override
+  String get mosque_post_time => 'الوقت';
+
+  @override
+  String get mosque_post_date_required => 'يرجى اختيار تاريخ.';
+
+  @override
+  String get mosque_post_after_prayer_label => 'بعد أي صلاة؟';
+
+  @override
+  String get mosque_post_location => 'المكان';
+
+  @override
+  String get mosque_post_location_default => 'في المسجد';
+
+  @override
+  String get mosque_post_volunteers_needed => 'عدد المتطوعين المطلوب';
+
+  @override
+  String get mosque_post_language => 'اللغة';
+
+  @override
+  String get mosque_post_mark_urgent => 'وضع علامة عاجل';
+
+  @override
+  String get mosque_post_mark_urgent_hint =>
+      'يظهر المنشور في الأعلى مع شارة عاجل';
+
+  @override
+  String get mosque_admin_edit_profile => 'تعديل ملف المسجد';
+
+  @override
+  String get mosque_admin_profile_saved => 'تم حفظ الملف';
+
+  @override
+  String get mosque_admin_cover_images => 'صور الغلاف';
+
+  @override
+  String get mosque_admin_tap_to_change_logo => 'انقر على الشعار لتغييره';
+
+  @override
+  String get mosque_admin_field_name => 'اسم المسجد';
+
+  @override
+  String get mosque_admin_field_description => 'الوصف';
+
+  @override
+  String get mosque_admin_field_address => 'العنوان';
+
+  @override
+  String get mosque_admin_field_postal => 'الرمز البريدي';
+
+  @override
+  String get mosque_admin_field_city => 'المدينة';
+
+  @override
+  String get mosque_admin_field_phone => 'الهاتف';
+
+  @override
+  String get mosque_admin_field_website => 'الموقع الإلكتروني';
+
+  @override
+  String get mosque_admin_opening_status => 'حالة الفتح';
+
+  @override
+  String get mosque_admin_opening_auto => 'تلقائي';
+
+  @override
+  String get mosque_admin_no_notifications => 'لا توجد إشعارات بعد.';
+
+  @override
+  String get error_api_mosque_campaign_limit_reached =>
+      'لديك بالفعل 3 حملات نشطة. أغلق إحداها أولًا.';
+
+  @override
+  String get error_api_mosque_campaign_closed => 'هذه الحملة مغلقة.';
+
+  @override
+  String get error_api_mosque_donations_disabled =>
+      'لا يمكن لهذا المسجد استقبال التبرعات بعد.';
+
+  @override
+  String get error_api_mosque_receipts_not_allowed =>
+      'هذا المسجد لا يصدر إيصالات ضريبية.';
+
+  @override
+  String get error_api_mosque_receipt_no_donations =>
+      'لم يُعثر على تبرع مؤهل لهذا الإيصال.';
+
+  @override
+  String get error_api_mosque_receipt_failed => 'تعذّر إنشاء الإيصال.';
+
+  @override
+  String get error_api_mosque_stripe_failed =>
+      'تعذّر الوصول إلى Stripe. يرجى المحاولة مرة أخرى.';
+
+  @override
+  String get my_donations_tab_mosques => 'المساجد';
+
+  @override
+  String get my_donations_empty_mosques =>
+      'لم تدعم أي مسجد بعد. ابحث عن مسجد قريب منك وتبرّع.';
+
+  @override
+  String get mosque_donation_other_amount => 'مبلغ آخر';
+
+  @override
+  String get mosque_donation_custom_amount_hint => 'أدخل مبلغًا';
+
+  @override
+  String mosque_donation_give(String amount) {
+    return 'تبرّع بـ $amount';
+  }
+
+  @override
+  String mosque_donation_give_monthly(String amount) {
+    return 'تبرّع بـ $amount / شهر';
+  }
+
+  @override
+  String mosque_donation_give_yearly(String amount) {
+    return 'تبرّع بـ $amount / سنة';
+  }
+
+  @override
+  String get mosque_donation_secure_note =>
+      'دفع آمن. يصل 100% إلى المسجد — نور لا يأخذ أي رسوم.';
+
+  @override
+  String get mosque_donation_tax_badge => 'إيصال ضريبي';
+
+  @override
+  String mosque_donation_active_monthly(String amount) {
+    return 'أنت تتبرّع بـ $amount كل شهر. جزاك الله خيرًا.';
+  }
+
+  @override
+  String mosque_donation_active_yearly(String amount) {
+    return 'أنت تتبرّع بـ $amount كل سنة. جزاك الله خيرًا.';
+  }
+
+  @override
+  String get mosque_donation_cancel_recurring_title => 'إيقاف تبرّعك المتكرر؟';
+
+  @override
+  String get mosque_donation_cancel_recurring_message =>
+      'ستحتفظ بالفترة الحالية، ولن يتم أي خصم آخر.';
+
+  @override
+  String get mosque_donation_recurring_cancelled => 'تم إيقاف تبرّعك المتكرر.';
+
+  @override
+  String get mosque_donor_anonymous => 'مجهول';
+
+  @override
+  String get mosque_campaigns_title => 'الحملات';
+
+  @override
+  String get mosque_campaigns_past_title => 'الحملات السابقة';
+
+  @override
+  String get mosque_campaign_title => 'حملة';
+
+  @override
+  String mosque_campaign_of_goal(String goal) {
+    return 'من $goal';
+  }
+
+  @override
+  String mosque_campaign_donors_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count متبرع',
+      many: '$count متبرعًا',
+      few: '$count متبرعين',
+      two: 'متبرعان',
+      one: 'متبرع واحد',
+      zero: 'لا يوجد متبرعون بعد',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mosque_campaign_days_left(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'متبقٍ $days يوم',
+      many: 'متبقٍ $days يومًا',
+      few: 'متبقٍ $days أيام',
+      two: 'متبقٍ يومان',
+      one: 'متبقٍ يوم واحد',
+      zero: 'تنتهي اليوم',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mosque_campaign_closed => 'مغلقة';
+
+  @override
+  String get mosque_campaign_active => 'نشطة';
+
+  @override
+  String get mosque_campaign_ending_soon => 'تنتهي قريبًا';
+
+  @override
+  String get mosque_campaign_remaining => 'المتبقي';
+
+  @override
+  String get mosque_campaign_contribute => 'ساهم';
+
+  @override
+  String get mosque_campaign_recent_donors => 'آخر المتبرعين';
+
+  @override
+  String get mosque_campaign_updates => 'المستجدات';
+
+  @override
+  String get mosque_campaign_updates_empty => 'لم تُنشر أي مستجدات بعد.';
+
+  @override
+  String get mosque_campaign_funded_note =>
+      'الحمد لله، تم بلوغ الهدف. شكرًا لكل من ساهم.';
+
+  @override
+  String get mosque_campaign_ended_note =>
+      'انتهت هذه الحملة. لا يزال بإمكانك دعم المسجد من تبويب التبرع.';
+
+  @override
+  String get mosque_checkout_sadaqa => 'صدقة للمسجد';
+
+  @override
+  String get mosque_checkout_campaign_gift => 'مساهمة في الحملة';
+
+  @override
+  String get mosque_checkout_membership_fee => 'مساهمة العضوية السنوية';
+
+  @override
+  String mosque_checkout_direct_note(String mosque) {
+    return 'يُدفع مباشرة إلى $mosque عبر Stripe. نور لا يأخذ أي رسوم.';
+  }
+
+  @override
+  String get mosque_checkout_success_title => 'جزاك الله خيرًا';
+
+  @override
+  String mosque_checkout_success_message(String amount, String mosque) {
+    return 'تم استلام تبرّعك بمبلغ $amount إلى $mosque.';
+  }
+
+  @override
+  String mosque_checkout_success_membership(String amount, String mosque) {
+    return 'تم تأكيد مساهمتك بمبلغ $amount إلى $mosque. مرحبًا بك في المجتمع.';
+  }
+
+  @override
+  String get mosque_receipts_empty => 'لا توجد إيصالات بعد.';
+
+  @override
+  String get mosque_receipt_single => 'تبرّع واحد';
+
+  @override
+  String mosque_receipt_yearly(int year) {
+    return 'الملخص السنوي $year';
+  }
+
+  @override
+  String get mosque_admin_manage => 'إدارة';
+
+  @override
+  String get mosque_admin_preview => 'معاينة';
+
+  @override
+  String get mosque_admin_stat_support => 'الصدقة والعضويات';
+
+  @override
+  String get mosque_admin_stat_support_hint => 'الدعم المستمر';
+
+  @override
+  String get mosque_admin_stat_campaigns => 'الحملات';
+
+  @override
+  String get mosque_donation_card_support => 'الدعم';
+
+  @override
+  String mosque_donation_card_growth(String growth, String year) {
+    return '$growth مقارنة بـ $year';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_title => 'بطاقة الصدقة';
+
+  @override
+  String mosque_admin_sadaqa_month_summary(
+    int gifts,
+    String amount,
+    int monthly,
+  ) {
+    return '$gifts تبرعات هذا الشهر ($amount) · $monthly متبرعون شهريون';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_settings_title => 'إعدادات الصدقة';
+
+  @override
+  String get mosque_admin_sadaqa_card_title => 'عنوان البطاقة';
+
+  @override
+  String get mosque_admin_sadaqa_card_title_hint => 'ادعم المسجد';
+
+  @override
+  String get mosque_admin_sadaqa_description_hint =>
+      'أخبر المتبرعين بما يموّله دعمهم…';
+
+  @override
+  String get mosque_admin_sadaqa_amounts => 'المبالغ المقترحة';
+
+  @override
+  String get mosque_admin_sadaqa_amounts_hint =>
+      'مفصولة بفواصل، بحد أقصى 6 مبالغ. يمكن للمتبرعين دائمًا إدخال مبلغ آخر.';
+
+  @override
+  String get mosque_admin_sadaqa_frequencies => 'التكرارات المسموح بها';
+
+  @override
+  String get mosque_admin_sadaqa_frequency_required =>
+      'أبقِ خيار تكرار واحدًا على الأقل مفعّلًا.';
+
+  @override
+  String get mosque_admin_sadaqa_invalid =>
+      'أضف عنوانًا ومبلغًا واحدًا على الأقل.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge => 'إظهار شارة \"إيصال ضريبي\"';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_hint =>
+      'سيرى المتبرعون أن تبرّعهم قابل للخصم الضريبي.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_locked =>
+      'فعّل الإيصالات الضريبية في إعداد Stripe أولًا.';
+
+  @override
+  String get mosque_admin_membership_fee_amounts =>
+      'مبالغ مساهمة العضوية (سنوية)';
+
+  @override
+  String get mosque_admin_membership_fee_amounts_hint =>
+      'تظهر عندما ينضم مصلٍّ كعضو. المبلغ الثاني هو الموصى به.';
+
+  @override
+  String get mosque_admin_stripe_title => 'المدفوعات (Stripe)';
+
+  @override
+  String get mosque_admin_stripe_active =>
+      'التبرعات مفعّلة · تُحوَّل المبالغ مباشرة إلى حسابك البنكي';
+
+  @override
+  String get mosque_admin_stripe_setup_title => 'استقبال التبرعات';
+
+  @override
+  String get mosque_admin_stripe_setup_message =>
+      'اربط حساب Stripe لاستقبال الصدقات ومساهمات الحملات والعضويات مباشرة. يستغرق ذلك نحو 5 دقائق.';
+
+  @override
+  String get mosque_admin_stripe_pending_title => 'أوشكت على الانتهاء';
+
+  @override
+  String get mosque_admin_stripe_pending_message =>
+      'لا يزال Stripe بحاجة إلى بعض المعلومات قبل تفعيل التبرعات.';
+
+  @override
+  String get mosque_admin_stripe_start => 'إعداد المدفوعات';
+
+  @override
+  String get mosque_admin_stripe_continue => 'متابعة الإعداد';
+
+  @override
+  String get mosque_admin_stripe_update_info => 'تحديث المعلومات';
+
+  @override
+  String get mosque_admin_stripe_dashboard => 'فتح لوحة تحكم Stripe';
+
+  @override
+  String get mosque_admin_stripe_explainer =>
+      'تُخصم التبرعات مباشرة على حساب Stripe الخاص بمسجدك — نور لا يحتفظ بالأموال أبدًا ولا يأخذ أي عمولة. تُطبَّق رسوم المعالجة القياسية لدى Stripe.';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts =>
+      'يمكن لجمعيتنا إصدار إيصالات ضريبية';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts_hint =>
+      'يفعّل إنشاء الإيصالات (على نمط CERFA) للمتبرعين.';
+
+  @override
+  String get mosque_admin_stripe_charges => 'يمكنه استقبال المدفوعات';
+
+  @override
+  String get mosque_admin_stripe_payouts => 'التحويلات مفعّلة';
+
+  @override
+  String get mosque_admin_stripe_details => 'تم إرسال المعلومات';
+
+  @override
+  String get mosque_admin_stripe_requirements => 'لا يزال Stripe يطلب';
+
+  @override
+  String get mosque_admin_stripe_status_enabled => 'نشط';
+
+  @override
+  String get mosque_admin_stripe_status_pending => 'قيد التحقق';
+
+  @override
+  String get mosque_admin_stripe_status_restricted => 'إجراء مطلوب';
+
+  @override
+  String get mosque_admin_stripe_status_rejected => 'مرفوض من Stripe';
+
+  @override
+  String get mosque_admin_stripe_status_not_started => 'لم يتم الإعداد';
+
+  @override
+  String get mosque_admin_campaign_new => 'حملة جديدة';
+
+  @override
+  String get mosque_admin_campaign_edit => 'تعديل الحملة';
+
+  @override
+  String get mosque_admin_campaign_launch => 'إطلاق';
+
+  @override
+  String get mosque_admin_campaign_title_label => 'عنوان الحملة';
+
+  @override
+  String get mosque_admin_campaign_title_hint => 'قاعة وضوء جديدة';
+
+  @override
+  String get mosque_admin_campaign_description_hint =>
+      'اشرح المشروع والميزانية والجدول الزمني…';
+
+  @override
+  String get mosque_admin_campaign_goal => 'الهدف (€)';
+
+  @override
+  String get mosque_admin_campaign_ends => 'تاريخ الانتهاء';
+
+  @override
+  String get mosque_admin_campaign_notify => 'إشعار المتابعين';
+
+  @override
+  String get mosque_admin_campaign_notify_hint =>
+      'يرسل إشعارًا إلى متابعيك (يُحتسب ضمن الحصة الأسبوعية).';
+
+  @override
+  String get mosque_admin_campaign_notify_update => 'إشعار المتابعين أيضًا';
+
+  @override
+  String get mosque_admin_campaign_limit_note =>
+      'بحد أقصى 3 حملات نشطة في الوقت نفسه. يُذكَّر المتبرعون قبل 48 ساعة من الانتهاء.';
+
+  @override
+  String get mosque_admin_campaign_invalid =>
+      'أضف عنوانًا وهدفًا وتاريخ انتهاء مستقبليًا.';
+
+  @override
+  String get mosque_admin_campaign_created => 'تم إطلاق الحملة';
+
+  @override
+  String get mosque_admin_campaigns_empty =>
+      'لا توجد حملات بعد. أطلق حملة لتمويل مشروع مع مجتمعك.';
+
+  @override
+  String get mosque_admin_campaign_post_update => 'نشر مستجدات';
+
+  @override
+  String get mosque_admin_campaign_update_hint => 'شارك التقدم مع متبرعيك…';
+
+  @override
+  String get mosque_admin_campaign_update_posted => 'تم نشر المستجدات';
+
+  @override
+  String get mosque_admin_campaign_extend => 'تمديد';
+
+  @override
+  String get mosque_admin_campaign_extended => 'تم تمديد الحملة';
+
+  @override
+  String get mosque_admin_campaign_reopen => 'إعادة الفتح بتاريخ انتهاء جديد';
+
+  @override
+  String get mosque_admin_campaign_close => 'إغلاق';
+
+  @override
+  String get mosque_admin_campaign_close_title => 'إغلاق هذه الحملة؟';
+
+  @override
+  String get mosque_admin_campaign_close_message =>
+      'لن يتمكن المتبرعون من المساهمة بعد الآن. يمكنك إعادة فتحها لاحقًا.';
+
+  @override
+  String get mosque_admin_campaign_closed => 'تم إغلاق الحملة';
+
+  @override
+  String mosque_admin_campaign_closed_note(String date) {
+    return 'أُغلقت هذه الحملة في $date.';
+  }
+
+  @override
+  String get mosque_admin_donors_list => 'المتبرعون';
+
+  @override
+  String get mosque_admin_donors_empty => 'لا توجد تبرعات في هذه الفترة.';
+
+  @override
+  String get mosque_admin_type_sadaqa => 'صدقة';
+
+  @override
+  String get mosque_admin_type_campaign => 'حملة';
+
+  @override
+  String get mosque_admin_type_membership => 'عضوية';
+
+  @override
+  String get mosque_admin_receipts => 'الإيصالات الضريبية';
+
+  @override
+  String get mosque_admin_receipt_issue => 'إصدار إيصال';
+
+  @override
+  String get mosque_admin_receipt_view => 'عرض الإيصال';
+
+  @override
+  String get mosque_admin_receipt_generated => 'الإيصال جاهز';
 }

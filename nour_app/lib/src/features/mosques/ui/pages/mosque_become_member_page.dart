@@ -54,11 +54,12 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
 
     Future<void> pickBirthDate() async {
       final now = DateTime.now();
-      final picked = await showDatePicker(
-        context: context,
+      final picked = await UIPickers.date(
+        context,
         initialDate: birthDate.value ?? DateTime(now.year - 25),
         firstDate: DateTime(1900),
         lastDate: now,
+        initialDatePickerMode: DatePickerMode.year,
       );
       if (picked != null) birthDate.value = picked;
     }

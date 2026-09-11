@@ -1207,6 +1207,14 @@
 	"mosque_admin_stat_support": "Sadaqa & memberships",
 	"mosque_admin_stat_support_hint": "Ongoing support",
 	"mosque_admin_stat_campaigns": "Campaigns",
+	"mosque_donation_card_support": "Support",
+	"mosque_donation_card_growth": "{growth} vs {year}",
+	"@mosque_donation_card_growth": {
+		"placeholders": {
+			"growth": { "type": "String" },
+			"year": { "type": "String" }
+		}
+	},
 	"mosque_admin_sadaqa_title": "Sadaqa card",
 	"mosque_admin_sadaqa_month_summary": "{gifts} gifts this month ({amount}) · {monthly} monthly donors",
 	"@mosque_admin_sadaqa_month_summary": {"placeholders": {"gifts": {"type": "int"}, "amount": {"type": "String"}, "monthly": {"type": "int"}}},

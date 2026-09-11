@@ -7,6 +7,7 @@ import 'package:nour/src/core/notifications/notifications_services.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/notifications/ui/widgets/notifications_settings_widget.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen6 extends ConsumerWidget {
   const OnboardingScreen6({super.key});
@@ -77,7 +78,7 @@ class OnboardingScreen6 extends ConsumerWidget {
                     label: l10n.onboarding_maybe_later,
                     fullWidth: true,
                     contentColor: UIColorsToken.white,
-                    onTap: () => onboarding.changePage(7),
+                    onTap: () => onboarding.changePage(OnboardingStep.screen7),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -94,7 +95,7 @@ class OnboardingScreen6 extends ConsumerWidget {
                         await notificationsServices.initialize();
                       }
 
-                      onboarding.changePage(7);
+                      onboarding.changePage(OnboardingStep.screen7);
                     },
                   ),
                 ),

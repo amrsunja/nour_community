@@ -2191,4 +2191,1544 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_admin_payout_delete_failed =>
       'Die Auszahlung konnte nicht gelöscht werden.';
+
+  @override
+  String get common_required_field => 'Dieses Feld ist erforderlich';
+
+  @override
+  String get common_optional => 'optional';
+
+  @override
+  String get common_refresh => 'Aktualisieren';
+
+  @override
+  String get mosque_onboarding_resume =>
+      'Meine Moschee-Registrierung fortsetzen';
+
+  @override
+  String get mosque_onboarding_start_over => 'Von vorne beginnen';
+
+  @override
+  String get profile_type_title => 'Wie wirst du Nour nutzen?';
+
+  @override
+  String get profile_type_mosque_title => 'Ich verwalte eine Moschee';
+
+  @override
+  String get profile_type_mosque_subtitle =>
+      'Veröffentliche Beiträge für deine Gemeinde und führe Spendenkampagnen durch.';
+
+  @override
+  String get profile_type_user_title => 'Ich bin Gläubiger';
+
+  @override
+  String get profile_type_user_subtitle =>
+      'Folge Moscheen, verfolge Gebetszeiten und bleib in Verbindung.';
+
+  @override
+  String get mosque_post_type_announcement => 'Ankündigung';
+
+  @override
+  String get mosque_post_type_event => 'Veranstaltung';
+
+  @override
+  String get mosque_post_type_event_hint => 'Datum, Uhrzeit, Ort';
+
+  @override
+  String get mosque_post_type_volunteering => 'Ehrenamt';
+
+  @override
+  String get mosque_post_type_volunteering_hint => 'Helfer finden';
+
+  @override
+  String get mosque_post_type_highlight => 'Highlight';
+
+  @override
+  String get mosque_post_type_highlight_hint => 'Momente teilen';
+
+  @override
+  String get mosque_post_type_janaza => 'Janaza';
+
+  @override
+  String get mosque_post_type_janaza_hint => 'Datum, Gebetszeit';
+
+  @override
+  String get mosque_onboarding_feature_1_title =>
+      'Gemacht für Moschee-Ankündigungen.';
+
+  @override
+  String get mosque_onboarding_feature_1_description =>
+      'Veranstaltungen, Spendenaktionen, Aufrufe für Ehrenamtliche, Janazas, Erinnerungen, Highlights.';
+
+  @override
+  String get mosque_onboarding_feature_2_title =>
+      'Spenden sammeln – vertrauensvoll.';
+
+  @override
+  String get mosque_onboarding_feature_2_description =>
+      'Laufende Sadaqa und zeitlich begrenzte Kampagnen.';
+
+  @override
+  String get mosque_onboarding_feature_3_title =>
+      'Ein Kalender, der deinem Imam folgt.';
+
+  @override
+  String get mosque_onboarding_feature_3_description =>
+      'Veröffentliche deinen eigenen Gebetsplan und die Iqama-Zeiten.';
+
+  @override
+  String get mosque_onboarding_country_title => 'Wähle dein Land';
+
+  @override
+  String get mosque_onboarding_country_search => 'Land suchen';
+
+  @override
+  String get mosque_legal_status_1901 => 'Verein (Gesetz von 1901)';
+
+  @override
+  String get mosque_legal_status_1905 => 'Religionsverein (Gesetz von 1905)';
+
+  @override
+  String get mosque_legal_status_other => 'Andere';
+
+  @override
+  String get mosque_register_title => 'Lass uns deine Moschee registrieren';
+
+  @override
+  String get mosque_register_legal_name => 'Offizieller Name';
+
+  @override
+  String get mosque_register_legal_name_hint => 'Gib den offiziellen Namen ein';
+
+  @override
+  String get mosque_register_legal_status => 'Rechtsform';
+
+  @override
+  String get mosque_register_legal_status_hint => 'Wähle eine Rechtsform';
+
+  @override
+  String get mosque_register_rna => 'RNA';
+
+  @override
+  String get mosque_register_rna_invalid =>
+      'Die RNA muss das Format W751123456 haben';
+
+  @override
+  String get mosque_register_siren => 'SIREN-Nummer';
+
+  @override
+  String get mosque_register_siren_invalid => 'Die SIREN muss 9 Ziffern haben';
+
+  @override
+  String get mosque_register_cta => 'Registrieren';
+
+  @override
+  String get mosque_account_title => 'Lass uns dein Konto erstellen';
+
+  @override
+  String get mosque_account_subtitle =>
+      'Um deine Moschee auf Nour zu verwalten';
+
+  @override
+  String get mosque_account_existing_hint =>
+      'Du hast bereits ein Konto? Melde dich mit derselben E-Mail oder demselben Anbieter an.';
+
+  @override
+  String get mosque_account_cta => 'Registrieren';
+
+  @override
+  String get mosque_review_pending_title => 'Deine Moschee wird geprüft';
+
+  @override
+  String get mosque_review_pending_message =>
+      'Unser Team prüft deine Registrierung. Du wirst benachrichtigt, sobald sie genehmigt ist – in der Regel innerhalb weniger Tage.';
+
+  @override
+  String get mosque_review_rejected_title => 'Registrierung abgelehnt';
+
+  @override
+  String get mosque_review_rejected_message =>
+      'Wir konnten deine Moschee nicht genehmigen. Sieh dir den Hinweis unten an oder kontaktiere den Support.';
+
+  @override
+  String get mosque_review_suspended_title => 'Moschee gesperrt';
+
+  @override
+  String get mosque_review_suspended_message =>
+      'Dein Moschee-Profil wurde gesperrt. Kontaktiere den Support für weitere Informationen.';
+
+  @override
+  String get mosque_review_contact_support => 'Support kontaktieren';
+
+  @override
+  String get mosque_admin_tab_dashboard => 'Dashboard';
+
+  @override
+  String get mosque_admin_tab_community => 'Gemeinde';
+
+  @override
+  String get mosque_admin_tab_mosque => 'Moschee';
+
+  @override
+  String get mosque_admin_tab_post => 'Beitrag';
+
+  @override
+  String get mosque_admin_total_raised_year => 'Dieses Jahr gesammelt';
+
+  @override
+  String get mosque_admin_donors => 'Spender';
+
+  @override
+  String get mosque_admin_recurring => 'Regelmäßig';
+
+  @override
+  String get mosque_admin_avg_gift => 'Ø Spende';
+
+  @override
+  String get error_api_mosque_load_failed =>
+      'Die Moschee konnte nicht geladen werden.';
+
+  @override
+  String get error_api_mosque_save_failed =>
+      'Die Änderungen konnten nicht gespeichert werden.';
+
+  @override
+  String get error_api_mosque_search_failed =>
+      'Die Moscheesuche ist fehlgeschlagen.';
+
+  @override
+  String get error_api_mosque_register_failed =>
+      'Die Moschee konnte nicht registriert werden. Bitte versuche es erneut.';
+
+  @override
+  String get error_api_mosque_register_is_worshipper =>
+      'Dieses Konto ist bereits ein Gläubigen-Konto. Verwende eine andere E-Mail, um eine Moschee zu registrieren.';
+
+  @override
+  String get error_api_mosque_register_anonymous =>
+      'Bitte melde dich mit einer E-Mail, einem Google- oder Apple-Konto an.';
+
+  @override
+  String get error_api_mosque_register_invalid_siren =>
+      'Die SIREN-Nummer ist ungültig.';
+
+  @override
+  String get error_api_mosque_register_invalid_rna =>
+      'Die RNA-Nummer ist ungültig.';
+
+  @override
+  String get error_api_mosque_register_duplicate =>
+      'Diese Moschee ist bereits registriert. Kontaktiere den Support, wenn du sie verwaltest.';
+
+  @override
+  String get error_api_mosque_post_limit_reached =>
+      'Du hast das Limit an aktiven Beiträgen dieses Typs erreicht. Archiviere zuerst einen.';
+
+  @override
+  String get error_api_mosque_broadcast_quota_exceeded =>
+      'Du hast diese Woche bereits die maximale Anzahl an Benachrichtigungen gesendet.';
+
+  @override
+  String get error_api_mosque_not_approved =>
+      'Deine Moschee ist noch nicht genehmigt.';
+
+  @override
+  String get error_api_push_register_failed =>
+      'Dieses Gerät konnte nicht für Benachrichtigungen registriert werden.';
+
+  @override
+  String get push_settings_title => 'Push-Benachrichtigungen';
+
+  @override
+  String get push_settings_description =>
+      'Wähle, welche Benachrichtigungen Nour an dieses Gerät senden darf. Gebets- und Adhkar-Erinnerungen werden unter Erinnerungen verwaltet.';
+
+  @override
+  String get push_kind_mosque_post => 'Moschee-News';
+
+  @override
+  String get push_kind_mosque_post_hint =>
+      'Ankündigungen der Moscheen, denen du folgst';
+
+  @override
+  String get push_kind_mosque_event => 'Veranstaltungen';
+
+  @override
+  String get push_kind_mosque_event_hint => 'Vorträge, Janazas, Ehrenamt';
+
+  @override
+  String get push_kind_mosque_campaign => 'Spendenkampagnen';
+
+  @override
+  String get push_kind_mosque_campaign_hint => 'Neue Kampagnen und Fristen';
+
+  @override
+  String get push_kind_mosque_broadcast => 'Nachrichten der Moschee';
+
+  @override
+  String get push_kind_mosque_broadcast_hint =>
+      'Direkte Nachrichten der Moschee (max. 2 pro Woche)';
+
+  @override
+  String get push_kind_mosque_status => 'Moschee-Konto';
+
+  @override
+  String get push_kind_mosque_status_hint =>
+      'Prüfstatus und wichtige Konto-Updates';
+
+  @override
+  String get push_kind_system => 'Nour-Updates';
+
+  @override
+  String get push_kind_system_hint => 'Gelegentliche Neuigkeiten zur App';
+
+  @override
+  String get common_cancel => 'Abbrechen';
+
+  @override
+  String get common_delete => 'Löschen';
+
+  @override
+  String get common_edit => 'Bearbeiten';
+
+  @override
+  String get common_load_more => 'Mehr laden';
+
+  @override
+  String get common_yes => 'Ja';
+
+  @override
+  String get common_no => 'Nein';
+
+  @override
+  String get admin_tab_mosques => 'Moscheen';
+
+  @override
+  String get admin_mosque_approve => 'Genehmigen';
+
+  @override
+  String get admin_mosque_reject => 'Ablehnen';
+
+  @override
+  String get admin_mosque_suspend => 'Sperren';
+
+  @override
+  String get admin_mosque_reviewed =>
+      'Moschee aktualisiert – der Inhaber wurde benachrichtigt.';
+
+  @override
+  String get admin_mosque_duplicate_siren =>
+      '⚠ Eine andere Moschee verwendet diese SIREN';
+
+  @override
+  String get admin_mosque_empty => 'Keine Moschee mit diesem Status.';
+
+  @override
+  String get admin_mosque_filter_pending => 'Ausstehend';
+
+  @override
+  String get admin_mosque_filter_approved => 'Genehmigt';
+
+  @override
+  String get admin_mosque_filter_rejected => 'Abgelehnt';
+
+  @override
+  String get admin_mosque_filter_suspended => 'Gesperrt';
+
+  @override
+  String get admin_mosque_note_title => 'Hinweis für die Moschee';
+
+  @override
+  String get admin_mosque_note_hint =>
+      'Grund (wird dem Moschee-Verwalter angezeigt)';
+
+  @override
+  String get home_my_mosque => 'Meine Moschee';
+
+  @override
+  String get home_no_mosque_title => 'Noch keine Moschee ausgewählt';
+
+  @override
+  String get home_no_mosque_subtitle =>
+      'Wähle deine Moschee, um ihre Gebetszeiten, News und Kampagnen direkt hier zu sehen.';
+
+  @override
+  String get home_find_mosque => 'Moschee finden';
+
+  @override
+  String get profile_my_mosques => 'Meine Moscheen';
+
+  @override
+  String get prayer_times_add_mosque => 'Füge deine Moschee hinzu';
+
+  @override
+  String get prayer_times_from_mosque_hint =>
+      'Von deiner Moschee veröffentlichte Zeiten. Wechsle die Moschee, um zu den berechneten Zeiten zurückzukehren.';
+
+  @override
+  String get onboarding_mosque_title => 'Moschee auswählen';
+
+  @override
+  String get onboarding_mosque_subtitle =>
+      'Finde und folge deiner Moschee vor Ort, um ihre Gebetszeiten und News zu erhalten.';
+
+  @override
+  String get mosque_search_hint => 'Moschee suchen';
+
+  @override
+  String get mosque_search_near_you => 'Moscheen in deiner Nähe';
+
+  @override
+  String get mosque_search_near_you_short => 'In deiner Nähe';
+
+  @override
+  String get mosque_search_results => 'Ergebnisse';
+
+  @override
+  String get mosque_search_empty =>
+      'Keine Moschee gefunden. Versuche einen anderen Namen oder eine andere Stadt.';
+
+  @override
+  String get mosque_search_language => 'Suchsprache';
+
+  @override
+  String get mosque_add_to_my_mosques => 'Zu meinen Moscheen hinzufügen';
+
+  @override
+  String get my_mosques_title => 'Deine Moschee(n)';
+
+  @override
+  String get my_mosques_subtitle =>
+      'Ziehe die Moscheen per Drag & Drop, um sie zu sortieren und die Hauptmoschee festzulegen.';
+
+  @override
+  String get my_mosques_principal => 'Hauptmoschee';
+
+  @override
+  String get my_mosques_secondary => 'Zweitmoschee';
+
+  @override
+  String get my_mosques_no_principal => 'Noch keine Hauptmoschee';
+
+  @override
+  String get my_mosques_no_secondary => 'Noch keine Zweitmoschee';
+
+  @override
+  String get my_mosques_saved => 'Deine Moscheen wurden gespeichert.';
+
+  @override
+  String get my_mosques_added => 'In meinen Moscheen';
+
+  @override
+  String get my_mosques_is_principal => 'Deine Hauptmoschee';
+
+  @override
+  String get my_mosques_is_secondary => 'Deine Zweitmoschee';
+
+  @override
+  String get mosque_cover_placeholder => 'Titelbild';
+
+  @override
+  String get mosque_status_open => 'Geöffnet';
+
+  @override
+  String get mosque_status_closed => 'Geschlossen';
+
+  @override
+  String get mosque_followers => 'Follower';
+
+  @override
+  String get mosque_members => 'Mitglieder';
+
+  @override
+  String get mosque_followers_title => 'Follower';
+
+  @override
+  String get mosque_members_title => 'Mitglieder';
+
+  @override
+  String get mosque_follow => 'Folgen';
+
+  @override
+  String get mosque_following => 'Du folgst';
+
+  @override
+  String get mosque_become_member => 'Mitglied werden';
+
+  @override
+  String get mosque_member_badge => 'Mitglied';
+
+  @override
+  String get mosque_follower_badge => 'Follower';
+
+  @override
+  String get mosque_action_itinerary => 'Route';
+
+  @override
+  String get mosque_action_call => 'Anrufen';
+
+  @override
+  String get mosque_action_email => 'E-Mail';
+
+  @override
+  String get mosque_address_copied => 'Adresse kopiert';
+
+  @override
+  String get mosque_tab_prayers => 'Gebete';
+
+  @override
+  String get mosque_tab_information => 'Infos';
+
+  @override
+  String get mosque_tab_news => 'News';
+
+  @override
+  String get mosque_tab_donation => 'Spenden';
+
+  @override
+  String get mosque_today_prayer_times => 'Heutige Gebetszeiten';
+
+  @override
+  String get mosque_prayer_times_unavailable =>
+      'Gebetszeiten sind gerade nicht verfügbar.';
+
+  @override
+  String get mosque_prayer_times_computed_hint =>
+      'Berechnete Zeiten – die Moschee hat den heutigen Plan noch nicht veröffentlicht.';
+
+  @override
+  String get mosque_prayer_times_not_published =>
+      'Gebetszeiten noch nicht veröffentlicht';
+
+  @override
+  String get mosque_capacity => 'Kapazität';
+
+  @override
+  String get mosque_capacity_men => 'Männer';
+
+  @override
+  String get mosque_capacity_women => 'Frauen';
+
+  @override
+  String get mosque_capacity_men_women => 'Männer + Frauen';
+
+  @override
+  String get mosque_founded => 'Gegründet';
+
+  @override
+  String mosque_years_old(int n) {
+    return '$n Jahre';
+  }
+
+  @override
+  String get mosque_services => 'Angebote';
+
+  @override
+  String get mosque_services_edit_hint =>
+      'Wähle die Angebote deiner Moschee aus. Sie erscheinen auf deinem öffentlichen Profil.';
+
+  @override
+  String get mosque_no_services => 'Noch keine Angebote eingetragen.';
+
+  @override
+  String get mosque_service_parking => 'Parkplatz';
+
+  @override
+  String get mosque_service_disabled_access => 'Barrierefreier Zugang';
+
+  @override
+  String get mosque_service_ablution_room => 'Waschraum';
+
+  @override
+  String get mosque_service_women_space => 'Frauenbereich';
+
+  @override
+  String get mosque_service_adult_classes => 'Kurse für Erwachsene';
+
+  @override
+  String get mosque_service_children_classes => 'Kurse für Kinder';
+
+  @override
+  String get mosque_service_quran_classes => 'Koranunterricht';
+
+  @override
+  String get mosque_service_arabic_classes => 'Arabischunterricht';
+
+  @override
+  String get mosque_service_eid_prayer => 'Salat al-Eid';
+
+  @override
+  String get mosque_service_janaza => 'Salat al-Janaza';
+
+  @override
+  String get mosque_service_iftar_ramadan => 'Iftar im Ramadan';
+
+  @override
+  String get mosque_service_library => 'Bibliothek';
+
+  @override
+  String get mosque_service_new_muslims => 'Begleitung für neue Muslime';
+
+  @override
+  String get mosque_khutbah_languages => 'Sprache(n) der Khutba';
+
+  @override
+  String get mosque_imams => 'Imame';
+
+  @override
+  String mosque_since_year(int y) {
+    return 'Seit $y';
+  }
+
+  @override
+  String get mosque_add_imam => 'Imam hinzufügen';
+
+  @override
+  String get mosque_edit_imam => 'Imam bearbeiten';
+
+  @override
+  String get mosque_add_photo => 'Foto hinzufügen';
+
+  @override
+  String get mosque_imam_full_name => 'Vollständiger Name';
+
+  @override
+  String get mosque_imam_role => 'Funktion';
+
+  @override
+  String get mosque_imam_since => 'In der Moschee seit';
+
+  @override
+  String get mosque_imam_bio => 'Kurzbiografie';
+
+  @override
+  String get mosque_imam_bio_hint => 'Ein paar Worte über den Imam';
+
+  @override
+  String get mosque_news_empty =>
+      'Noch keine News. Folge der Moschee, um über ihre Ankündigungen informiert zu werden.';
+
+  @override
+  String get mosque_post_urgent => 'Dringend';
+
+  @override
+  String get mosque_post_share => 'Teilen';
+
+  @override
+  String get mosque_post_apply => 'Bewerben';
+
+  @override
+  String get mosque_post_applied => 'Beworben';
+
+  @override
+  String get mosque_post_attend_cta => 'Ich nehme teil';
+
+  @override
+  String get mosque_post_attending_cta_done => 'Teilnahme ✓';
+
+  @override
+  String mosque_post_attending(int n) {
+    return '$n Teilnehmer';
+  }
+
+  @override
+  String mosque_post_volunteers(int n) {
+    return '$n Ehrenamtliche';
+  }
+
+  @override
+  String mosque_post_duas(int n) {
+    return '$n Duas';
+  }
+
+  @override
+  String get mosque_post_say_dua => 'Dua sprechen';
+
+  @override
+  String get mosque_post_dua_said => 'Dua gesprochen ✓';
+
+  @override
+  String mosque_post_after_prayer(String slot, String time) {
+    return 'Nach dem $slot-Gebet - $time';
+  }
+
+  @override
+  String get mosque_post_notified_all => 'Alle benachrichtigt';
+
+  @override
+  String get mosque_dua_recite => 'Rezitiere dieses Dua';
+
+  @override
+  String get mosque_dua_translation =>
+      'O Allah, vergib ihm, erbarme dich seiner, schenke ihm Wohlergehen und verzeihe ihm.';
+
+  @override
+  String get mosque_dua_done => 'Ich bin fertig';
+
+  @override
+  String get mosque_donations_coming_soon =>
+      'Spenden an diese Moschee sind bald möglich.';
+
+  @override
+  String get mosque_donation_enter_amount => 'Betrag manuell eingeben';
+
+  @override
+  String get mosque_member_title => 'Werde Mitglied';
+
+  @override
+  String get mosque_member_subtitle =>
+      'Deine Registrierung als Mitglied hilft uns, mit dir in Verbindung zu bleiben und unser Gemeindeleben zu organisieren.';
+
+  @override
+  String get mosque_member_first_name => 'Vorname';
+
+  @override
+  String get mosque_member_last_name => 'Nachname';
+
+  @override
+  String get mosque_member_birth_date => 'Geburtsdatum';
+
+  @override
+  String get mosque_member_profession => 'Beruf';
+
+  @override
+  String get mosque_member_phone => 'Telefonnummer';
+
+  @override
+  String get mosque_member_volunteer_question =>
+      'Verfügbar für ehrenamtliche Projekte?';
+
+  @override
+  String get mosque_member_consent =>
+      'Ich bin damit einverstanden, dass die Moschee meine Daten nutzt, um mich zu ehrenamtlichen Projekten und Gemeindeaktionen zu kontaktieren.';
+
+  @override
+  String get mosque_member_fee_optional => 'Freiwilliger Beitrag';
+
+  @override
+  String get mosque_member_fee_title => 'Die Moschee unterstützen';
+
+  @override
+  String get mosque_member_fee_hint =>
+      'Ein empfohlener Beitrag von 120 €/Jahr hilft, die Moschee zu erhalten. Das ist völlig freiwillig, deine Mitgliedschaft ist kostenlos.';
+
+  @override
+  String get mosque_member_fee_choose => 'Wähle deinen Beitrag';
+
+  @override
+  String get mosque_member_register => 'Als Mitglied registrieren';
+
+  @override
+  String get mosque_member_fill_required =>
+      'Bitte fülle alle Pflichtfelder aus und akzeptiere die Einwilligung.';
+
+  @override
+  String get mosque_member_welcome => 'Willkommen in der Gemeinde!';
+
+  @override
+  String get mosque_time_just_now => 'Gerade eben';
+
+  @override
+  String mosque_time_min_ago(int n) {
+    return 'Vor $n Min.';
+  }
+
+  @override
+  String mosque_time_hours_ago(int n) {
+    return 'Vor $n Std.';
+  }
+
+  @override
+  String get mosque_time_yesterday => 'Gestern';
+
+  @override
+  String mosque_time_days_ago(int n) {
+    return 'Vor $n Tagen';
+  }
+
+  @override
+  String mosque_time_weeks_ago(int n) {
+    return 'Vor $n Woche(n)';
+  }
+
+  @override
+  String get mosque_admin_panel_title => 'Moschee-Dashboard';
+
+  @override
+  String get mosque_admin_panel_subtitle =>
+      'Verwalte deine Moschee, Beiträge und Gemeinde';
+
+  @override
+  String mosque_admin_attention(int n) {
+    return '$n Dinge brauchen deine Aufmerksamkeit';
+  }
+
+  @override
+  String mosque_admin_pending_events(int n) {
+    return '$n ausstehende Veranstaltung(en)';
+  }
+
+  @override
+  String mosque_admin_campaigns_ending(int n) {
+    return '$n Spendenaktion(en) enden bald';
+  }
+
+  @override
+  String get mosque_admin_last_7_days => 'Letzte 7 Tage';
+
+  @override
+  String get mosque_admin_last_30_days => 'Letzte 30 Tage';
+
+  @override
+  String get mosque_admin_growth => 'Wachstum';
+
+  @override
+  String get mosque_admin_today => 'Heute';
+
+  @override
+  String mosque_admin_open_rate(String rate) {
+    return 'Öffnungsrate der Benachrichtigungen (30 Tage, Schätzung): $rate %';
+  }
+
+  @override
+  String get mosque_admin_fundraising => 'Spendenaktionen';
+
+  @override
+  String mosque_campaign_days_left_short(int n) {
+    return 'Noch $n T.';
+  }
+
+  @override
+  String get mosque_admin_recent_posts => 'Neueste Beiträge';
+
+  @override
+  String get mosque_admin_no_posts =>
+      'Noch kein Beitrag. Teile News, Veranstaltungen oder eine Janaza mit deiner Gemeinde.';
+
+  @override
+  String get mosque_admin_create_post => 'Beitrag erstellen';
+
+  @override
+  String get mosque_admin_view_mosque => 'Öffentliches Profil ansehen';
+
+  @override
+  String get mosque_admin_search_community => 'Name, E-Mail, Telefon suchen';
+
+  @override
+  String get mosque_admin_filter_all => 'Alle';
+
+  @override
+  String get mosque_admin_filter_followers => 'Follower';
+
+  @override
+  String get mosque_admin_filter_members => 'Mitglieder';
+
+  @override
+  String get mosque_admin_filter_volunteers => 'Ehrenamtliche';
+
+  @override
+  String get mosque_admin_community_empty => 'Noch niemand hier.';
+
+  @override
+  String get mosque_admin_remove_member => 'Mitglied entfernen';
+
+  @override
+  String get mosque_admin_prayer_times => 'Gebetszeiten';
+
+  @override
+  String get mosque_prayers_not_set_title =>
+      'Die Gebete für diesen Tag wurden noch nicht festgelegt.';
+
+  @override
+  String get mosque_prayers_not_set_hint =>
+      'Gib sie manuell ein oder kopiere sie von einem anderen Tag';
+
+  @override
+  String get mosque_prayers_copy_from_day => 'Von einem anderen Tag kopieren';
+
+  @override
+  String mosque_prayers_copied_from(String date) {
+    return 'Gebetszeiten erfolgreich von $date kopiert';
+  }
+
+  @override
+  String get mosque_copy_title => 'Gebetszeiten kopieren';
+
+  @override
+  String get mosque_copy_subtitle =>
+      'Übernimm die Zeiten eines anderen Tages, statt sie erneut einzutippen.';
+
+  @override
+  String get mosque_copy_from => 'Kopieren von';
+
+  @override
+  String get mosque_copy_times => 'Zu kopierende Zeiten';
+
+  @override
+  String get mosque_copy_apply_to => 'Anwenden auf';
+
+  @override
+  String get mosque_copy_this_day => 'Nur diesen Tag';
+
+  @override
+  String get mosque_copy_date_range => 'Einen Zeitraum';
+
+  @override
+  String get mosque_copy_from_date => 'Von';
+
+  @override
+  String get mosque_copy_to_date => 'Bis';
+
+  @override
+  String get mosque_copy_overwrite_warning =>
+      'Tage, die bereits Zeiten haben, werden überschrieben.';
+
+  @override
+  String get mosque_overrides_title => 'Gebetsänderungen';
+
+  @override
+  String get mosque_overrides_shift_title => 'Ein Gebet heute verschieben';
+
+  @override
+  String get mosque_overrides_shift_hint =>
+      'Ändere die Zeit eines Gebets nur für heute, ohne den festen Plan zu berühren.';
+
+  @override
+  String get mosque_overrides_create => 'Änderung erstellen';
+
+  @override
+  String get mosque_overrides_applied => 'Angewendete Änderungen';
+
+  @override
+  String get mosque_override_created =>
+      'Änderung angewendet – Follower sehen die neue Zeit.';
+
+  @override
+  String get mosque_override_new_time => 'Neue Zeit';
+
+  @override
+  String get mosque_override_reason_hint => 'Grund (optional)';
+
+  @override
+  String get mosque_post_notify_followers => 'Follower benachrichtigen';
+
+  @override
+  String mosque_post_send_push(int n) {
+    return 'Push an $n Follower senden';
+  }
+
+  @override
+  String mosque_post_quota_left(int left, int limit) {
+    return 'Noch $left von $limit Benachrichtigungen diese Woche';
+  }
+
+  @override
+  String mosque_post_notified(int n) {
+    return 'Benachrichtigung an $n Follower gesendet';
+  }
+
+  @override
+  String get mosque_post_archive => 'Archivieren';
+
+  @override
+  String get mosque_post_published => 'Beitrag veröffentlicht';
+
+  @override
+  String get mosque_post_title_hint => 'Titel';
+
+  @override
+  String get mosque_post_title_label => 'Titel';
+
+  @override
+  String get mosque_post_body_hint => 'Schreib los';
+
+  @override
+  String get mosque_post_add_to_post => 'Zum Beitrag hinzufügen';
+
+  @override
+  String get mosque_post_choose_category => 'Oder wähle eine Kategorie';
+
+  @override
+  String get mosque_post_audience_public => 'Öffentlich';
+
+  @override
+  String get mosque_post_audience_followers => 'Follower';
+
+  @override
+  String get mosque_post_form_event => 'Veranstaltung veröffentlichen';
+
+  @override
+  String get mosque_post_form_volunteering => 'Ehrenamtliche suchen';
+
+  @override
+  String get mosque_post_form_highlight => 'Highlight teilen';
+
+  @override
+  String get mosque_post_form_janaza => 'Janaza ankündigen';
+
+  @override
+  String get mosque_post_cover_photo => 'Titelfoto';
+
+  @override
+  String get mosque_post_add_cover => 'Titelfoto hinzufügen';
+
+  @override
+  String get mosque_post_cover_required =>
+      'Für ein Highlight ist ein Foto erforderlich.';
+
+  @override
+  String get mosque_post_event_name => 'Name der Veranstaltung';
+
+  @override
+  String get mosque_post_janaza_name => 'Name des Verstorbenen';
+
+  @override
+  String get mosque_post_description => 'Beschreibung';
+
+  @override
+  String get mosque_post_description_hint =>
+      'Worum geht es bei dieser Veranstaltung..';
+
+  @override
+  String get mosque_post_date => 'Datum';
+
+  @override
+  String get mosque_post_time => 'Uhrzeit';
+
+  @override
+  String get mosque_post_date_required => 'Bitte wähle ein Datum.';
+
+  @override
+  String get mosque_post_after_prayer_label => 'Nach welchem Gebet?';
+
+  @override
+  String get mosque_post_location => 'Ort';
+
+  @override
+  String get mosque_post_location_default => 'In der Moschee';
+
+  @override
+  String get mosque_post_volunteers_needed => 'Benötigte Ehrenamtliche';
+
+  @override
+  String get mosque_post_language => 'Sprache';
+
+  @override
+  String get mosque_post_mark_urgent => 'Als dringend markieren';
+
+  @override
+  String get mosque_post_mark_urgent_hint =>
+      'Der Beitrag erscheint ganz oben mit dem Hinweis „Dringend“';
+
+  @override
+  String get mosque_admin_edit_profile => 'Moschee-Profil bearbeiten';
+
+  @override
+  String get mosque_admin_profile_saved => 'Profil gespeichert';
+
+  @override
+  String get mosque_admin_cover_images => 'Titelbilder';
+
+  @override
+  String get mosque_admin_tap_to_change_logo =>
+      'Tippe auf das Logo, um es zu ändern';
+
+  @override
+  String get mosque_admin_field_name => 'Name der Moschee';
+
+  @override
+  String get mosque_admin_field_description => 'Beschreibung';
+
+  @override
+  String get mosque_admin_field_address => 'Adresse';
+
+  @override
+  String get mosque_admin_field_postal => 'Postleitzahl';
+
+  @override
+  String get mosque_admin_field_city => 'Stadt';
+
+  @override
+  String get mosque_admin_field_phone => 'Telefon';
+
+  @override
+  String get mosque_admin_field_website => 'Website';
+
+  @override
+  String get mosque_admin_opening_status => 'Öffnungsstatus';
+
+  @override
+  String get mosque_admin_opening_auto => 'Automatisch';
+
+  @override
+  String get mosque_admin_no_notifications => 'Noch keine Benachrichtigung.';
+
+  @override
+  String get error_api_mosque_campaign_limit_reached =>
+      'Du hast bereits 3 aktive Kampagnen. Beende zuerst eine.';
+
+  @override
+  String get error_api_mosque_campaign_closed => 'Diese Kampagne ist beendet.';
+
+  @override
+  String get error_api_mosque_donations_disabled =>
+      'Diese Moschee kann noch keine Spenden empfangen.';
+
+  @override
+  String get error_api_mosque_receipts_not_allowed =>
+      'Diese Moschee stellt keine Spendenbescheinigungen aus.';
+
+  @override
+  String get error_api_mosque_receipt_no_donations =>
+      'Keine berechtigte Spende für diese Bescheinigung gefunden.';
+
+  @override
+  String get error_api_mosque_receipt_failed =>
+      'Die Bescheinigung konnte nicht erstellt werden.';
+
+  @override
+  String get error_api_mosque_stripe_failed =>
+      'Stripe konnte nicht erreicht werden. Bitte versuche es erneut.';
+
+  @override
+  String get my_donations_tab_mosques => 'Moscheen';
+
+  @override
+  String get my_donations_empty_mosques =>
+      'Du hast noch keine Moschee unterstützt. Finde eine in deiner Nähe und spende.';
+
+  @override
+  String get mosque_donation_other_amount => 'Anderer';
+
+  @override
+  String get mosque_donation_custom_amount_hint => 'Betrag eingeben';
+
+  @override
+  String mosque_donation_give(String amount) {
+    return '$amount geben';
+  }
+
+  @override
+  String mosque_donation_give_monthly(String amount) {
+    return '$amount / Monat geben';
+  }
+
+  @override
+  String mosque_donation_give_yearly(String amount) {
+    return '$amount / Jahr geben';
+  }
+
+  @override
+  String get mosque_donation_secure_note =>
+      'Sichere Zahlung. 100 % gehen an die Moschee – Nour erhebt keine Gebühr.';
+
+  @override
+  String get mosque_donation_tax_badge => 'Spendenbescheinigung';
+
+  @override
+  String mosque_donation_active_monthly(String amount) {
+    return 'Du gibst jeden Monat $amount. Jazakallah khair.';
+  }
+
+  @override
+  String mosque_donation_active_yearly(String amount) {
+    return 'Du gibst jedes Jahr $amount. Jazakallah khair.';
+  }
+
+  @override
+  String get mosque_donation_cancel_recurring_title =>
+      'Deine regelmäßige Spende beenden?';
+
+  @override
+  String get mosque_donation_cancel_recurring_message =>
+      'Der aktuelle Zeitraum bleibt bestehen; es erfolgt keine weitere Abbuchung.';
+
+  @override
+  String get mosque_donation_recurring_cancelled =>
+      'Deine regelmäßige Spende wurde beendet.';
+
+  @override
+  String get mosque_donor_anonymous => 'Anonym';
+
+  @override
+  String get mosque_campaigns_title => 'Kampagnen';
+
+  @override
+  String get mosque_campaigns_past_title => 'Vergangene Kampagnen';
+
+  @override
+  String get mosque_campaign_title => 'Kampagne';
+
+  @override
+  String mosque_campaign_of_goal(String goal) {
+    return 'von $goal';
+  }
+
+  @override
+  String mosque_campaign_donors_count(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count Spender',
+      one: '1 Spender',
+      zero: 'Noch kein Spender',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String mosque_campaign_days_left(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Noch $days Tage',
+      one: 'Noch 1 Tag',
+      zero: 'Endet heute',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get mosque_campaign_closed => 'Beendet';
+
+  @override
+  String get mosque_campaign_active => 'Aktiv';
+
+  @override
+  String get mosque_campaign_ending_soon => 'Endet bald';
+
+  @override
+  String get mosque_campaign_remaining => 'Verbleibend';
+
+  @override
+  String get mosque_campaign_contribute => 'Beitragen';
+
+  @override
+  String get mosque_campaign_recent_donors => 'Letzte Spender';
+
+  @override
+  String get mosque_campaign_updates => 'Updates';
+
+  @override
+  String get mosque_campaign_updates_empty =>
+      'Noch kein Update veröffentlicht.';
+
+  @override
+  String get mosque_campaign_funded_note =>
+      'Alhamdulillah, das Ziel wurde erreicht. Danke an alle, die beigetragen haben.';
+
+  @override
+  String get mosque_campaign_ended_note =>
+      'Diese Kampagne ist beendet. Du kannst die Moschee weiterhin über ihren Spenden-Tab unterstützen.';
+
+  @override
+  String get mosque_checkout_sadaqa => 'Sadaqa für die Moschee';
+
+  @override
+  String get mosque_checkout_campaign_gift => 'Kampagnenbeitrag';
+
+  @override
+  String get mosque_checkout_membership_fee => 'Jährlicher Mitgliedsbeitrag';
+
+  @override
+  String mosque_checkout_direct_note(String mosque) {
+    return 'Direkt an $mosque über Stripe gezahlt. Nour erhebt keine Gebühr.';
+  }
+
+  @override
+  String get mosque_checkout_success_title => 'Jazakallah khair';
+
+  @override
+  String mosque_checkout_success_message(String amount, String mosque) {
+    return 'Deine Spende von $amount an $mosque ist eingegangen.';
+  }
+
+  @override
+  String mosque_checkout_success_membership(String amount, String mosque) {
+    return 'Dein Beitrag von $amount an $mosque ist bestätigt. Willkommen in der Gemeinde.';
+  }
+
+  @override
+  String get mosque_receipts_empty => 'Noch keine Bescheinigung.';
+
+  @override
+  String get mosque_receipt_single => 'Einzelspende';
+
+  @override
+  String mosque_receipt_yearly(int year) {
+    return 'Jahresübersicht $year';
+  }
+
+  @override
+  String get mosque_admin_manage => 'Verwalten';
+
+  @override
+  String get mosque_admin_preview => 'Vorschau';
+
+  @override
+  String get mosque_admin_stat_support => 'Sadaqa & Mitgliedschaften';
+
+  @override
+  String get mosque_admin_stat_support_hint => 'Laufende Unterstützung';
+
+  @override
+  String get mosque_admin_stat_campaigns => 'Kampagnen';
+
+  @override
+  String get mosque_donation_card_support => 'Unterstützen';
+
+  @override
+  String mosque_donation_card_growth(String growth, String year) {
+    return '$growth vs. $year';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_title => 'Sadaqa-Karte';
+
+  @override
+  String mosque_admin_sadaqa_month_summary(
+    int gifts,
+    String amount,
+    int monthly,
+  ) {
+    return '$gifts Spenden diesen Monat ($amount) · $monthly monatliche Spender';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_settings_title => 'Sadaqa-Einstellungen';
+
+  @override
+  String get mosque_admin_sadaqa_card_title => 'Titel der Karte';
+
+  @override
+  String get mosque_admin_sadaqa_card_title_hint => 'Die Moschee unterstützen';
+
+  @override
+  String get mosque_admin_sadaqa_description_hint =>
+      'Erkläre den Spendern, was ihre Unterstützung finanziert…';
+
+  @override
+  String get mosque_admin_sadaqa_amounts => 'Vorgeschlagene Beträge';
+
+  @override
+  String get mosque_admin_sadaqa_amounts_hint =>
+      'Durch Kommas getrennt, bis zu 6 Beträge. Spender können immer einen anderen Betrag eingeben.';
+
+  @override
+  String get mosque_admin_sadaqa_frequencies => 'Erlaubte Häufigkeiten';
+
+  @override
+  String get mosque_admin_sadaqa_frequency_required =>
+      'Lass mindestens eine Häufigkeit aktiviert.';
+
+  @override
+  String get mosque_admin_sadaqa_invalid =>
+      'Füge einen Titel und mindestens einen Betrag hinzu.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge =>
+      'Hinweis „Spendenbescheinigung“ anzeigen';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_hint =>
+      'Spender sehen, dass ihre Spende steuerlich absetzbar ist.';
+
+  @override
+  String get mosque_admin_sadaqa_tax_badge_locked =>
+      'Aktiviere zuerst Spendenbescheinigungen in der Stripe-Einrichtung.';
+
+  @override
+  String get mosque_admin_membership_fee_amounts =>
+      'Mitgliedsbeiträge (jährlich)';
+
+  @override
+  String get mosque_admin_membership_fee_amounts_hint =>
+      'Wird angezeigt, wenn ein Gläubiger Mitglied wird. Der zweite Betrag wird empfohlen.';
+
+  @override
+  String get mosque_admin_stripe_title => 'Zahlungen (Stripe)';
+
+  @override
+  String get mosque_admin_stripe_active =>
+      'Spenden aktiviert · Auszahlungen gehen direkt auf dein Bankkonto';
+
+  @override
+  String get mosque_admin_stripe_setup_title => 'Spenden empfangen';
+
+  @override
+  String get mosque_admin_stripe_setup_message =>
+      'Verbinde ein Stripe-Konto, um Sadaqa, Kampagnenbeiträge und Mitgliedsbeiträge direkt zu empfangen. Dauert etwa 5 Minuten.';
+
+  @override
+  String get mosque_admin_stripe_pending_title => 'Fast geschafft';
+
+  @override
+  String get mosque_admin_stripe_pending_message =>
+      'Stripe benötigt noch einige Angaben, bevor Spenden aktiviert werden können.';
+
+  @override
+  String get mosque_admin_stripe_start => 'Zahlungen einrichten';
+
+  @override
+  String get mosque_admin_stripe_continue => 'Einrichtung fortsetzen';
+
+  @override
+  String get mosque_admin_stripe_update_info => 'Angaben aktualisieren';
+
+  @override
+  String get mosque_admin_stripe_dashboard => 'Stripe-Dashboard öffnen';
+
+  @override
+  String get mosque_admin_stripe_explainer =>
+      'Spenden werden direkt über das Stripe-Konto deiner Moschee abgewickelt – Nour verwahrt die Gelder nie und nimmt keine Provision. Es gelten die üblichen Stripe-Gebühren.';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts =>
+      'Unser Verein kann Spendenbescheinigungen ausstellen';
+
+  @override
+  String get mosque_admin_stripe_tax_receipts_hint =>
+      'Aktiviert die Erstellung von Bescheinigungen (nach CERFA-Vorbild) für Spender.';
+
+  @override
+  String get mosque_admin_stripe_charges => 'Kann Zahlungen empfangen';
+
+  @override
+  String get mosque_admin_stripe_payouts => 'Auszahlungen aktiviert';
+
+  @override
+  String get mosque_admin_stripe_details => 'Angaben übermittelt';
+
+  @override
+  String get mosque_admin_stripe_requirements => 'Von Stripe noch benötigt';
+
+  @override
+  String get mosque_admin_stripe_status_enabled => 'Aktiv';
+
+  @override
+  String get mosque_admin_stripe_status_pending => 'Prüfung ausstehend';
+
+  @override
+  String get mosque_admin_stripe_status_restricted => 'Aktion erforderlich';
+
+  @override
+  String get mosque_admin_stripe_status_rejected => 'Von Stripe abgelehnt';
+
+  @override
+  String get mosque_admin_stripe_status_not_started => 'Nicht eingerichtet';
+
+  @override
+  String get mosque_admin_campaign_new => 'Neue Kampagne';
+
+  @override
+  String get mosque_admin_campaign_edit => 'Kampagne bearbeiten';
+
+  @override
+  String get mosque_admin_campaign_launch => 'Starten';
+
+  @override
+  String get mosque_admin_campaign_title_label => 'Titel der Kampagne';
+
+  @override
+  String get mosque_admin_campaign_title_hint => 'Neuer Waschraum';
+
+  @override
+  String get mosque_admin_campaign_description_hint =>
+      'Erkläre das Projekt, das Budget und den Zeitplan…';
+
+  @override
+  String get mosque_admin_campaign_goal => 'Ziel (€)';
+
+  @override
+  String get mosque_admin_campaign_ends => 'Enddatum';
+
+  @override
+  String get mosque_admin_campaign_notify => 'Follower benachrichtigen';
+
+  @override
+  String get mosque_admin_campaign_notify_hint =>
+      'Sendet eine Push-Benachrichtigung an deine Follower (zählt zum Wochenkontingent).';
+
+  @override
+  String get mosque_admin_campaign_notify_update =>
+      'Follower ebenfalls benachrichtigen';
+
+  @override
+  String get mosque_admin_campaign_limit_note =>
+      'Bis zu 3 aktive Kampagnen gleichzeitig. Spender werden 48 Std. vor Ende erinnert.';
+
+  @override
+  String get mosque_admin_campaign_invalid =>
+      'Füge einen Titel, ein Ziel und ein zukünftiges Enddatum hinzu.';
+
+  @override
+  String get mosque_admin_campaign_created => 'Kampagne gestartet';
+
+  @override
+  String get mosque_admin_campaigns_empty =>
+      'Noch keine Kampagne. Starte eine, um ein Projekt mit deiner Gemeinde zu finanzieren.';
+
+  @override
+  String get mosque_admin_campaign_post_update => 'Update veröffentlichen';
+
+  @override
+  String get mosque_admin_campaign_update_hint =>
+      'Teile den Fortschritt mit deinen Spendern…';
+
+  @override
+  String get mosque_admin_campaign_update_posted => 'Update veröffentlicht';
+
+  @override
+  String get mosque_admin_campaign_extend => 'Verlängern';
+
+  @override
+  String get mosque_admin_campaign_extended => 'Kampagne verlängert';
+
+  @override
+  String get mosque_admin_campaign_reopen => 'Mit neuem Enddatum wieder öffnen';
+
+  @override
+  String get mosque_admin_campaign_close => 'Beenden';
+
+  @override
+  String get mosque_admin_campaign_close_title => 'Diese Kampagne beenden?';
+
+  @override
+  String get mosque_admin_campaign_close_message =>
+      'Spender können dann nicht mehr beitragen. Du kannst sie später wieder öffnen.';
+
+  @override
+  String get mosque_admin_campaign_closed => 'Kampagne beendet';
+
+  @override
+  String mosque_admin_campaign_closed_note(String date) {
+    return 'Diese Kampagne ist seit $date beendet.';
+  }
+
+  @override
+  String get mosque_admin_donors_list => 'Spender';
+
+  @override
+  String get mosque_admin_donors_empty => 'Keine Spende in diesem Zeitraum.';
+
+  @override
+  String get mosque_admin_type_sadaqa => 'Sadaqa';
+
+  @override
+  String get mosque_admin_type_campaign => 'Kampagne';
+
+  @override
+  String get mosque_admin_type_membership => 'Mitgliedschaft';
+
+  @override
+  String get mosque_admin_receipts => 'Spendenbescheinigungen';
+
+  @override
+  String get mosque_admin_receipt_issue => 'Bescheinigung ausstellen';
+
+  @override
+  String get mosque_admin_receipt_view => 'Bescheinigung ansehen';
+
+  @override
+  String get mosque_admin_receipt_generated => 'Bescheinigung bereit';
 }

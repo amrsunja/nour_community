@@ -54,8 +54,8 @@ class _CopyPrayerTimesSheetState extends ConsumerState<CopyPrayerTimesSheet> {
   }
 
   Future<DateTime?> _pick(DateTime initial, {bool onlyFilled = false}) {
-    return showDatePicker(
-      context: context,
+    return UIPickers.date(
+      context,
       initialDate: initial,
       firstDate: DateTime.now().subtract(const Duration(days: 365)),
       lastDate: DateTime.now().add(const Duration(days: 400)),
@@ -84,7 +84,7 @@ class _CopyPrayerTimesSheetState extends ConsumerState<CopyPrayerTimesSheet> {
                 decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(10)),
                 child: Row(
                   children: [
-                    const Icon(Icons.calendar_today_outlined, size: 16, color: UIColorsToken.textParagraph),
+                    Icon(Icons.calendar_today_outlined, size: 16, color: UIColorsToken.textParagraph),
                     const SizedBox(width: 8),
                     Text(fmt(value), style: theme.typo.inter.body.copyWith(color: UIColorsToken.white)),
                   ],
@@ -165,7 +165,7 @@ class _CopyPrayerTimesSheetState extends ConsumerState<CopyPrayerTimesSheet> {
               const SizedBox(height: 10),
               Row(
                 children: [
-                  const Icon(Icons.info_outline, size: 14, color: UIColorsToken.textParagraph),
+                  Icon(Icons.info_outline, size: 14, color: UIColorsToken.textParagraph),
                   const SizedBox(width: 6),
                   Expanded(child: Text(l10n.mosque_copy_overwrite_warning, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph))),
                 ],

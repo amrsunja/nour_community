@@ -9,13 +9,14 @@ import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provide
 import 'package:nour/src/features/mosques/ui/widgets/mosque_search_card.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 /// Onboarding step "Select a mosque" (Figma Onboarding 32) — sits between
 /// "How much time daily?" and "Choose a voice". Picks the principal mosque.
 class OnboardingScreenMosque extends HookConsumerWidget {
   const OnboardingScreenMosque({super.key});
 
-  static const _nextPage = 6;
+  static const _nextPage = OnboardingStep.screen6;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

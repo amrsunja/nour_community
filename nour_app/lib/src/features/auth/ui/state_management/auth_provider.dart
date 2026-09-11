@@ -17,6 +17,7 @@ import 'package:nour/src/features/mosque_onboarding/data/models/mosque_onboardin
 import 'package:nour/src/features/mosques/data/mosque_repo.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/notifications/ui/state_management/push_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
 
@@ -134,28 +135,102 @@ class AuthPresenter extends Presenter<AuthState> {
     );
   }
 
-  /// "I am a worshipper" → anonymous session (today's behaviour) → onboarding.
+  /// "I am a worshipper".
+  ///
+  /// * No session → anonymous session + profile, then onboarding.
+  /// * Existing session (user came back to the profile-type screen from the
+  ///   onboarding) → nothing to create, just resume where they were.
+  ///
+  /// The persisted onboarding step is bumped to [OnboardingStep.first] so the
+  /// onboarding never lands on the Welcome / profile-type indices again.
   Future<bool> startAsWorshipper() async {
     if (state.isLoading) return false;
     state = state.copyWith(isLoading: true);
 
-    final ok = await signInAnonymously();
-    if (!ok) {
-      state = state.copyWith(isLoading: false);
-      return false;
+    final hadSession = state.isAuthenticated;
+    if (!hadSession) {
+      final ok = await signInAnonymously();
+      if (!ok) {
+        state = state.copyWith(isLoading: false);
+        return false;
+      }
+      final r2 = await ref.read(profileProvider.notifier).initProfile();
+      if (!r2) {
+        await repo.logout();
+        state = state.copyWith(isLoading: false, isAuthenticated: false);
+        return false;
+      }
     }
-    final r2 = await ref.read(profileProvider.notifier).initProfile();
-    if (!r2) {
-      await repo.logout();
-      state = state.copyWith(isLoading: false, isAuthenticated: false);
-      return false;
-    }
+
     await ref.read(mosqueOnboardingLocalDataProvider).clear();
+
+    final profile = ref.read(profileProvider).profile;
+    if (profile?.isMosqueAccount ?? false) {
+      // Should not happen (guarded elsewhere) — never downgrade a mosque account.
+      state = state.copyWith(isLoading: false, isAuthenticated: true);
+      ref.read(navigationServicesProvider).toMosqueAdminOrReview();
+      return true;
+    }
+    if (profile != null &&
+        !profile.onboardingCompleted &&
+        profile.lastOnboardingScreen < OnboardingStep.first) {
+      await ref.read(profileProvider.notifier).updateLastOnboardingScreen(OnboardingStep.first);
+    }
+
     state = state.copyWith(isLoading: false, isAuthenticated: true);
-    _identify();
-    unawaited(ref.read(pushProvider.notifier).syncToken());
-    ref.read(navigationServicesProvider).toOnboarding();
+    if (!hadSession) {
+      _identify();
+      unawaited(ref.read(pushProvider.notifier).syncToken());
+    }
+    final nav = ref.read(navigationServicesProvider);
+    (profile?.onboardingCompleted ?? false) ? nav.toHome() : nav.toOnboarding();
     return true;
+  }
+
+  /// "I am a mosque manager".
+  ///
+  /// Mosque accounts are never anonymous, so any session created by
+  /// [startAsWorshipper] is dropped first: an anonymous session is deleted
+  /// server-side (no orphan `auth.users` row), a permanent worshipper account
+  /// is only signed out. Then the sessionless mosque onboarding starts with an
+  /// empty draft.
+  Future<bool> startAsMosqueManager() async {
+    if (state.isLoading) return false;
+    state = state.copyWith(isLoading: true);
+
+    if (state.isAuthenticated) {
+      final ok = await _endSession(delete: repo.isAnonymousSession());
+      if (!ok) {
+        state = state.copyWith(isLoading: false);
+        return false;
+      }
+    }
+
+    await ref.read(mosqueOnboardingLocalDataProvider).write(MosqueOnboardingDraft.empty);
+    state = state.copyWith(isLoading: false, isAuthenticated: false);
+    ref.read(navigationServicesProvider).toMosqueOnboarding();
+    return true;
+  }
+
+  /// Shared tail of [logout] / [deleteUser] / [startAsMosqueManager].
+  /// Does NOT touch [AuthState.isLoading].
+  Future<bool> _endSession({required bool delete}) async {
+    await ref.read(pushProvider.notifier).revoke();
+    final response = delete ? await repo.deleteUser() : await repo.logout();
+
+    return response.when(
+      (_) {
+        ref.read(analyticsRepoProvider).trackLogout();
+        ref.read(analyticsRepoProvider).identifyUser(userId: null);
+        ref.read(myMosqueProvider.notifier).clear();
+        state = state.copyWith(isAuthenticated: false);
+        return true;
+      },
+      (error) {
+        appEvents.send(ShowErrorEvent(error));
+        return false;
+      },
+    );
   }
 
   Future<void> _loadMyMosqueIfNeeded() async {
@@ -333,26 +408,9 @@ class AuthPresenter extends Presenter<AuthState> {
   Future<bool> logout() async {
     if (state.isLoading) return false;
     state = state.copyWith(isLoading: true);
-
-    await ref.read(pushProvider.notifier).revoke();
-    final response = await repo.logout();
-
-    final result = response.when(
-      (_) {
-        ref.read(analyticsRepoProvider).trackLogout();
-        ref.read(analyticsRepoProvider).identifyUser(userId: null);
-        ref.read(myMosqueProvider.notifier).clear();
-        state = state.copyWith(isAuthenticated: false, isLoading: false);
-        return true;
-      },
-      (error) {
-        state = state.copyWith(isLoading: false);
-        appEvents.send(ShowErrorEvent(error));
-        return false;
-      },
-    );
-
-    return result;
+    final ok = await _endSession(delete: false);
+    state = state.copyWith(isLoading: false);
+    return ok;
   }
 
   /// Permanently deletes the user's account (all owned data is cascade-deleted
@@ -362,25 +420,8 @@ class AuthPresenter extends Presenter<AuthState> {
   Future<bool> deleteUser() async {
     if (state.isLoading) return false;
     state = state.copyWith(isLoading: true);
-
-    await ref.read(pushProvider.notifier).revoke();
-    final response = await repo.deleteUser();
-
-    final result = response.when(
-      (_) {
-        ref.read(analyticsRepoProvider).trackLogout();
-        ref.read(analyticsRepoProvider).identifyUser(userId: null);
-        ref.read(myMosqueProvider.notifier).clear();
-        state = state.copyWith(isAuthenticated: false, isLoading: false);
-        return true;
-      },
-      (error) {
-        state = state.copyWith(isLoading: false);
-        appEvents.send(ShowErrorEvent(error));
-        return false;
-      },
-    );
-
-    return result;
+    final ok = await _endSession(delete: true);
+    state = state.copyWith(isLoading: false);
+    return ok;
   }
 }

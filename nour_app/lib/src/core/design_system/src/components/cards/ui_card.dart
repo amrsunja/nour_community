@@ -53,7 +53,7 @@ class UICard extends StatelessWidget {
             end: end,
             stops: stops,
             colors: colors ?? [
-              Color(0xff2A2E27),
+              Color(0xff1A1A1A),
               Color(0xff1A1A1A)
             ],
           ),

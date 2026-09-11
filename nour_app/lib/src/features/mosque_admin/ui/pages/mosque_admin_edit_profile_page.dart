@@ -100,7 +100,7 @@ class MosqueAdminEditProfilePage extends HookConsumerWidget {
       }
     }
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(title: l10n.mosque_admin_edit_profile, onBack: () => context.router.maybePop()),
       body: Column(
         children: [
@@ -199,7 +199,7 @@ class MosqueAdminEditProfilePage extends HookConsumerWidget {
                     children: [
                       Expanded(child: UIInputField(controller: postal, labelText: l10n.mosque_admin_field_postal, hintText: '68100', keyboardType: TextInputType.number)),
                       const SizedBox(width: 12),
-                      Expanded(flex: 2, child: UIInputField(controller: city, labelText: l10n.mosque_admin_field_city, hintText: 'Mulhouse')),
+                      Expanded(child: UIInputField(controller: city, labelText: l10n.mosque_admin_field_city, hintText: 'Mulhouse')),
                     ],
                   ),
                   const SizedBox(height: 12),

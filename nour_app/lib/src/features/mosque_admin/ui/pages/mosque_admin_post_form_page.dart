@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
@@ -161,13 +162,13 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
           padding: const EdgeInsets.only(bottom: 8),
           child: Row(
             children: [
-              Text(t, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-              if (optional) Text(' · ${l10n.common_optional}', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+              Text(t, style: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph)),
+              if (optional) Text(' · ${l10n.common_optional}', style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
             ],
           ),
         );
 
-    Widget pickerBox(IconData icon, String text, VoidCallback onTap) => UITap(
+    Widget pickerBox(String icon, String text, VoidCallback onTap) => UITap(
           onTap: onTap,
           child: Container(
             height: 52,
@@ -175,7 +176,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
             decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(10)),
             child: Row(
               children: [
-                Icon(icon, size: 18, color: UIColorsToken.textParagraph),
+                UIIcon(icon, size: 18, color: UIColorsToken.textParagraph),
                 const SizedBox(width: 8),
                 Expanded(child: Text(text, style: theme.typo.inter.body.copyWith(color: UIColorsToken.white))),
               ],
@@ -183,12 +184,14 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
           ),
         );
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: pageTitle,
         onBack: () => context.router.maybePop(),
         leadingIcons: [
-          UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty || !loaded.value ? null : submit),
+          SizedBox(
+            height: 40,
+            child: UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty || !loaded.value ? null : submit)),
         ],
       ),
       body: !loaded.value
@@ -215,7 +218,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                         height: cover.value == null ? 150 : 200,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: UIColorsToken.stroke.withValues(alpha: .4)),
+                          border: Border.all(color: UIColorsToken.stroke.withValues(alpha: .1), width: 0.5),
                           image: cover.value == null ? null : DecorationImage(image: NetworkImage(cover.value!), fit: BoxFit.cover),
                         ),
                         child: cover.value != null
@@ -223,7 +226,10 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                             : Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.image_outlined, color: UIColorsToken.textParagraph),
+                                  UIIcon(
+                                    Assets.icons.gallery,
+                                    color: UIColorsToken.textParagraph,
+                                  ),
                                   const SizedBox(height: 6),
                                   Text(l10n.mosque_post_add_cover, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
                                 ],
@@ -235,6 +241,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                   UIInputField(
                     controller: title,
                     labelText: isEvent ? l10n.mosque_post_event_name : isJanaza ? l10n.mosque_post_janaza_name : l10n.mosque_post_title_label,
+                    labelStyle: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph),
                     hintText: isEvent ? 'Friday Khutbah' : '',
                   ),
                   const SizedBox(height: 16),
@@ -262,10 +269,15 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                             children: [
                               label(l10n.mosque_post_date),
                               pickerBox(
-                                Icons.calendar_today_outlined,
+                                Assets.icons.emptyCalendar,
                                 date.value == null ? '—' : DateFormat('MMM d, yyyy', lang).format(date.value!),
                                 () async {
-                                  final d = await showDatePicker(context: context, initialDate: date.value ?? DateTime.now(), firstDate: DateTime.now().subtract(const Duration(days: 1)), lastDate: DateTime.now().add(const Duration(days: 365)));
+                                  final d = await UIPickers.date(
+                                    context,
+                                    initialDate: date.value ?? DateTime.now(),
+                                    firstDate: DateTime.now().subtract(const Duration(days: 1)),
+                                    lastDate: DateTime.now().add(const Duration(days: 365)),
+                                  );
                                   if (d != null) date.value = d;
                                 },
                               ),
@@ -278,10 +290,16 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               label(l10n.mosque_post_time),
-                              pickerBox(Icons.access_time, MosqueFormat.hhmm(time.value), () async {
-                                final t = await showTimePicker(context: context, initialTime: time.value ?? const TimeOfDay(hour: 14, minute: 0));
-                                if (t != null) time.value = t;
-                              }),
+                              pickerBox(
+                                Assets.icons.clock, 
+                                MosqueFormat.hhmm(time.value), () async {
+                                  final t = await UIPickers.time(
+                                    context,
+                                    initialTime: time.value ?? const TimeOfDay(hour: 14, minute: 0),
+                                  );
+                                  if (t != null) time.value = t;
+                                }
+                              ),
                             ],
                           ),
                         ),
@@ -308,20 +326,37 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                   ],
                   if (isEvent || isVolunteering) ...[
                     const SizedBox(height: 16),
-                    UIInputField(controller: location, labelText: l10n.mosque_post_location, hintText: l10n.mosque_post_location_default),
+                    UIInputField(
+                      controller: location,
+                      labelText: l10n.mosque_post_location, 
+                      labelStyle: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph),
+                      hintText: l10n.mosque_post_location_default
+                    ),
                   ],
                   if (isVolunteering) ...[
                     const SizedBox(height: 16),
-                    UIInputField(controller: volunteers, labelText: l10n.mosque_post_volunteers_needed, hintText: '3', keyboardType: TextInputType.number, inputFormatters: [FilteringTextInputFormatter.digitsOnly]),
+                    UIInputField(
+                      controller: volunteers,
+                      labelText: l10n.mosque_post_volunteers_needed,
+                      labelStyle: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph),
+                      hintText: '3', 
+                      keyboardType: TextInputType.number, 
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly]
+                    ),
                   ],
                   if (isEvent) ...[
                     const SizedBox(height: 16),
-                    UIInputField(controller: language, labelText: '${l10n.mosque_post_language} · ${l10n.common_optional}', hintText: 'fr'),
+                    UIInputField(
+                      controller: language,
+                      labelText: '${l10n.mosque_post_language} · ${l10n.common_optional}', 
+                      labelStyle: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph),
+                      hintText: 'fr'
+                    ),
                   ],
                   const SizedBox(height: 24),
                   if (postId == null)
                     _ToggleRow(
-                      icon: Icons.notifications_none,
+                    icon: UIIconsToken.icons.notify,
                       title: l10n.mosque_post_notify_followers,
                       subtitle: quota != null && quota.exhausted
                           ? l10n.error_api_mosque_broadcast_quota_exceeded
@@ -332,7 +367,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                     ),
                   const SizedBox(height: 12),
                   _ToggleRow(
-                    icon: Icons.warning_amber_outlined,
+                    icon: UIIconsToken.icons.warning,
                     iconColor: UIColorsToken.red,
                     title: l10n.mosque_post_mark_urgent,
                     subtitle: l10n.mosque_post_mark_urgent_hint,
@@ -348,7 +383,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
 
 class _ToggleRow extends StatelessWidget {
   const _ToggleRow({required this.icon, this.iconColor, required this.title, required this.subtitle, required this.value, required this.onChanged, this.enabled = true});
-  final IconData icon;
+  final String icon;
   final Color? iconColor;
   final String title;
   final String subtitle;
@@ -361,7 +396,7 @@ class _ToggleRow extends StatelessWidget {
     final theme = UITheme.of(context);
     return Row(
       children: [
-        Icon(icon, color: iconColor ?? UIColorsToken.textYellow, size: 22),
+        UIIcon(icon, color: iconColor ?? UIColorsToken.textYellow, size: 22),
         const SizedBox(width: 12),
         Expanded(
           child: Column(

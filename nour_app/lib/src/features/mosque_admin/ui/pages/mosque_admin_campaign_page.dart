@@ -58,8 +58,8 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
 
     Future<void> extend() async {
       if (campaign == null) return;
-      final d = await showDatePicker(
-        context: context,
+      final d = await UIPickers.date(
+        context,
         initialDate: campaign.endsAt.isAfter(DateTime.now()) ? campaign.endsAt.add(const Duration(days: 7)) : DateTime.now().add(const Duration(days: 7)),
         firstDate: DateTime.now().add(const Duration(days: 1)),
         lastDate: DateTime.now().add(const Duration(days: 365)),
@@ -76,7 +76,7 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
         builder: (ctx) => AlertDialog(
           backgroundColor: UIColorsToken.bgSurface,
           title: Text(l10n.mosque_admin_campaign_close_title, style: const TextStyle(color: UIColorsToken.white)),
-          content: Text(l10n.mosque_admin_campaign_close_message, style: const TextStyle(color: UIColorsToken.textParagraph)),
+          content: Text(l10n.mosque_admin_campaign_close_message, style: TextStyle(color: UIColorsToken.textParagraph)),
           actions: [
             TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l10n.common_cancel)),
             TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: Text(l10n.common_yes, style: const TextStyle(color: UIColorsToken.red))),

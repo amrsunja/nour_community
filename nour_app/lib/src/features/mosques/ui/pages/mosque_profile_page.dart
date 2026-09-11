@@ -150,8 +150,9 @@ class MosqueProfilePage extends HookConsumerWidget {
                     actions: Row(
                       children: [
                         Expanded(
+                        flex: 2,
                           child: state.isFollowing
-                              ? UIButton.secondary(
+                              ? UIButton.textual(
                                   label: l10n.mosque_following,
                                   fullWidth: true,
                                   isBusy: state.followBusy,
@@ -164,14 +165,21 @@ class MosqueProfilePage extends HookConsumerWidget {
                                   onTap: presenter.toggleFollow,
                                 ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 4),
                         Expanded(
-                          flex: 3,
+                        flex: 3,
                           child: state.isMember
-                              ? UIButton.secondary(label: l10n.mosque_member_badge, fullWidth: true)
+                              ? UIButton.secondary(
+                                  label: l10n.mosque_member_badge,
+                                  assetIcon: UIIconsToken.icons.curone,
+                                  contentColor: UIColorsToken.textYellow,
+                                  fullWidth: true,
+                                )
                               : UIButton.secondary(
                                   label: l10n.mosque_become_member,
                                   fullWidth: true,
+                                  assetIcon: UIIconsToken.icons.curone,
+                                  contentColor: UIColorsToken.textYellow,
                                   onTap: () => nav.toMosqueBecomeMember(mosqueId: mosque.id),
                                 ),
                         ),
@@ -186,23 +194,12 @@ class MosqueProfilePage extends HookConsumerWidget {
               ),
             ),
           ),
-          if (state.tab == MosqueTab.prayers)
+          if (state.tab == MosqueTab.prayers && !isMine)
             Positioned(
               left: 16,
               right: 16,
               bottom: 16 + MediaQuery.of(context).padding.bottom,
-              child: isMine
-                  ? Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(12)),
-                      child: Center(
-                        child: Text(
-                          myMosques.principal?.id == mosque.id ? l10n.my_mosques_is_principal : l10n.my_mosques_is_secondary,
-                          style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow),
-                        ),
-                      ),
-                    )
-                  : UIButton.primary(label: l10n.mosque_add_to_my_mosques, fullWidth: true, onTap: onAddToMyMosques),
+              child: UIButton.primary(label: l10n.mosque_add_to_my_mosques, fullWidth: true, onTap: onAddToMyMosques),
             ),
         ],
       ),

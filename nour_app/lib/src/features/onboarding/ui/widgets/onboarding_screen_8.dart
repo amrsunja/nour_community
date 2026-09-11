@@ -6,6 +6,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/settings/ui/state_management/settings_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen8 extends HookConsumerWidget {
   const OnboardingScreen8({super.key});
@@ -45,7 +46,7 @@ class OnboardingScreen8 extends HookConsumerWidget {
     Future<void> onContinue() async {
       final ok = await settingsPresenter.changeAppLanguage(selected.value);
       if (!ok) return;
-      onboarding.changePage(9);
+      onboarding.changePage(OnboardingStep.screen9);
     }
 
     Future<void> onTapLang(Locale locale) async {

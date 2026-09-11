@@ -31,17 +31,32 @@ class MosqueAdminShellPage extends ConsumerWidget {
         return Scaffold(
           backgroundColor: Colors.transparent,
           extendBody: true,
-          body: child,
-          bottomNavigationBar: MosqueAdminNavBar(
-            currentIndex: tabsRouter.activeIndex,
-            onChanged: tabsRouter.setActiveIndex,
-            onPost: () => context.router.push(const MosqueAdminCreatePostRoute()),
-            labels: [
-              l10n.mosque_admin_tab_dashboard,
-              l10n.mosque_admin_tab_community,
-              l10n.mosque_admin_tab_mosque,
+          body: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              SafeArea(top: false, bottom: false, child: child),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Theme(
+                  // for removing splash effect on icon tap
+                  data: ThemeData(
+                    splashColor: Colors.transparent,
+                    highlightColor: Colors.transparent,
+                  ),
+                  child: MosqueAdminNavBar(
+                    currentIndex: tabsRouter.activeIndex,
+                    onChanged: tabsRouter.setActiveIndex,
+                    onPost: () => context.router.push(const MosqueAdminCreatePostRoute()),
+                    labels: [
+                      l10n.mosque_admin_tab_dashboard,
+                      l10n.mosque_admin_tab_community,
+                      l10n.mosque_admin_tab_mosque,
+                    ],
+                    postLabel: l10n.mosque_admin_tab_post,
+                  ),
+                ),
+              ),
             ],
-            postLabel: l10n.mosque_admin_tab_post,
           ),
         );
       },

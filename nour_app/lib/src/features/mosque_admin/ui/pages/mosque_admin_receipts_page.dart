@@ -115,7 +115,7 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
                                     const SizedBox(width: 8),
                                     openingId.value == r.id
                                         ? const UICircularProgressBar(size: 16)
-                                        : const Icon(Icons.open_in_new, size: 16, color: UIColorsToken.textParagraph),
+                                        : Icon(Icons.open_in_new, size: 16, color: UIColorsToken.textParagraph),
                                   ],
                                 ),
                               ),

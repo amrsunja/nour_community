@@ -147,7 +147,7 @@ class MosqueSearchPage extends HookConsumerWidget {
                     decoration: BoxDecoration(color: UIColorsToken.bgPrimary, borderRadius: BorderRadius.circular(23)),
                     child: Row(
                       children: [
-                        const Icon(Icons.search, color: UIColorsToken.textParagraph, size: 20),
+                        Icon(Icons.search, color: UIColorsToken.textParagraph, size: 20),
                         const SizedBox(width: 8),
                         Expanded(
                           child: TextField(

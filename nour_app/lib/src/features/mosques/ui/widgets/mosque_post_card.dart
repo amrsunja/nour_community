@@ -72,7 +72,7 @@ class MosquePostCard extends StatelessWidget {
               if (onMenu != null)
                 UITap(
                   onTap: onMenu,
-                  child: const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 8),
                     child: Icon(Icons.more_vert, size: 18, color: UIColorsToken.textParagraph),
                   ),

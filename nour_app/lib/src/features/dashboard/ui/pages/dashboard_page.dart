@@ -119,9 +119,26 @@ class DashboardPage extends HookConsumerWidget {
     // Re-sync when returning from background: Dart timers don't fire while the
     // app is suspended, so a prayer may have elapsed off-screen.
     final lifecycle = useAppLifecycleState();
+    final wasSuspended = useRef(false);
     useEffect(() {
-      if (lifecycle == AppLifecycleState.resumed) {
-        ref.read(prayerTimesProvider.notifier).refresh();
+      switch (lifecycle) {
+        case AppLifecycleState.paused:
+        case AppLifecycleState.inactive:
+        case AppLifecycleState.hidden:
+        case AppLifecycleState.detached:
+          wasSuspended.value = true;
+        case AppLifecycleState.resumed:
+          // Skip the initial `resumed` seen on the first build: init() above
+          // already recomputes, and this effect body runs synchronously
+          // inside build() — mutating a provider there is illegal.
+          if (wasSuspended.value) {
+            wasSuspended.value = false;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ref.read(prayerTimesProvider.notifier).refresh();
+            });
+          }
+        case null:
+          break;
       }
       return null;
     }, [lifecycle]);

@@ -38,154 +38,101 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
     final stats = state.stats ?? const MosqueDashboardStats();
     final lang = Localizations.localeOf(context).languageCode;
 
-    return UIGradientLinedScaffold(
-      body: RefreshIndicator(
-        color: UIColorsToken.textYellow,
-        onRefresh: presenter.load,
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-          padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 8, kPageHorzPadding, 120),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header
-              Row(
-                children: [
-                  UITap(
-                    onTap: () => context.router.push(ProfileRoute()),
-                    child: mosque == null ? const SizedBox(width: 44) : MosqueLogo(mosque: mosque, size: 44, radius: 22),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(l10n.common_assalamu_alaykum, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-                        Text(mosque?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
-                      ],
-                    ),
-                  ),
-                  UITap(
-                    onTap: () => context.router.push(const MosqueAdminNotificationsRoute()),
-                    child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.notifications_none, color: UIColorsToken.white)),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              if (stats.attentionCount > 0)
-                UITap(
-                  onTap: () => context.tabsRouter.setActiveIndex(2),
-                  child: Container(
-                    padding: const EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: UIColorsToken.red.withValues(alpha: .12),
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: UIColorsToken.red.withValues(alpha: .5)),
-                    ),
-                    child: Row(
-                      children: [
-                        const Icon(Icons.error_outline, color: UIColorsToken.red, size: 20),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(l10n.mosque_admin_attention(stats.attentionCount), style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                              Text(
-                                [
-                                  if (stats.pendingEvents > 0) l10n.mosque_admin_pending_events(stats.pendingEvents),
-                                  if (stats.campaignsEndingSoon > 0) l10n.mosque_admin_campaigns_ending(stats.campaignsEndingSoon),
-                                ].join(' · '),
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Icon(Icons.chevron_right, color: UIColorsToken.red, size: 18),
-                      ],
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 20),
-              _SectionTitle(l10n.mosque_admin_tab_community),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: _StatCard(
-                      icon: Icons.favorite_border,
-                      label: l10n.mosque_followers_title,
-                      value: MosqueFormat.compact(stats.followersTotal),
-                      delta: stats.followers7d,
-                      caption: l10n.mosque_admin_last_7_days,
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: _StatCard(
-                      icon: Icons.workspace_premium_outlined,
-                      label: l10n.mosque_members_title,
-                      value: MosqueFormat.compact(stats.membersTotal),
-                      delta: stats.members7d - stats.membersLeft7d,
-                      caption: l10n.mosque_admin_last_7_days,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              UICard(
-                padding: const EdgeInsets.all(14),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.show_chart, size: 16, color: UIColorsToken.textParagraph),
-                        const SizedBox(width: 6),
-                        Text(l10n.mosque_admin_growth, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                        const SizedBox(width: 8),
-                        _Delta(value: stats.growthPercent, suffix: '%'),
-                        const Spacer(),
-                        Text(l10n.mosque_admin_last_30_days, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    SizedBox(
-                      height: 110,
-                      child: CustomPaint(
-                        size: const Size(double.infinity, 110),
-                        painter: _GrowthPainter(series: stats.growthSeries, base: stats.followersTotal - stats.followers30d),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(DateFormat('MMM d', lang).format(DateTime.now().subtract(const Duration(days: 30))),
-                            style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                        Text(l10n.mosque_admin_today, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                      ],
-                    ),
-                    if (stats.notifOpenRate != null) ...[
-                      const SizedBox(height: 8),
-                      Text(l10n.mosque_admin_open_rate(stats.notifOpenRate!.toStringAsFixed(0)),
-                          style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                    ],
-                  ],
-                ),
-              ),
-              if (stats.campaignsActive > 0) ...[
-                const SizedBox(height: 20),
+    return Scaffold(
+      body: SafeArea(
+        bottom: false,
+        child: RefreshIndicator(
+          color: UIColorsToken.textYellow,
+          onRefresh: presenter.load,
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+            padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 8, kPageHorzPadding, 120),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Header
                 Row(
                   children: [
-                    _SectionTitle(l10n.mosque_admin_fundraising),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                      decoration: BoxDecoration(color: UIColorsToken.bgTertiaryGreen, borderRadius: BorderRadius.circular(6)),
-                      child: Text('${stats.campaignsActive}', style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white)),
+                    UITap(
+                      onTap: () => context.router.push(ProfileRoute()),
+                      child: mosque == null ? const SizedBox(width: 44) : MosqueLogo(mosque: mosque, size: 44, radius: 22),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(l10n.common_assalamu_alaykum, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                          Text(mosque?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
+                        ],
+                      ),
+                    ),
+                    UITap(
+                      onTap: () => context.router.push(const MosqueAdminNotificationsRoute()),
+                      child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.notifications_none, color: UIColorsToken.white)),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                if (stats.attentionCount > 0)
+                  UITap(
+                    onTap: () => context.tabsRouter.setActiveIndex(2),
+                    child: Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: UIColorsToken.red.withValues(alpha: .12),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: UIColorsToken.red.withValues(alpha: .5)),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.error_outline, color: UIColorsToken.red, size: 20),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(l10n.mosque_admin_attention(stats.attentionCount), style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                                Text(
+                                  [
+                                    if (stats.pendingEvents > 0) l10n.mosque_admin_pending_events(stats.pendingEvents),
+                                    if (stats.campaignsEndingSoon > 0) l10n.mosque_admin_campaigns_ending(stats.campaignsEndingSoon),
+                                  ].join(' · '),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const Icon(Icons.chevron_right, color: UIColorsToken.red, size: 18),
+                        ],
+                      ),
+                    ),
+                  ),
+                const SizedBox(height: 20),
+                _SectionTitle(l10n.mosque_admin_tab_community),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.favorite_border,
+                        label: l10n.mosque_followers_title,
+                        value: MosqueFormat.compact(stats.followersTotal),
+                        delta: stats.followers7d,
+                        caption: l10n.mosque_admin_last_7_days,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.workspace_premium_outlined,
+                        label: l10n.mosque_members_title,
+                        value: MosqueFormat.compact(stats.membersTotal),
+                        delta: stats.members7d - stats.membersLeft7d,
+                        caption: l10n.mosque_admin_last_7_days,
+                      ),
                     ),
                   ],
                 ),
@@ -193,54 +140,110 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                 UICard(
                   padding: const EdgeInsets.all(14),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      for (final c in stats.campaigns)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Expanded(child: Text(c.title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
-                                  Text('${(c.progress * 100).round()}%', style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow)),
-                                  const SizedBox(width: 6),
-                                  Text(l10n.mosque_campaign_days_left_short(c.daysLeft),
-                                      style: theme.typo.inter.smallCaption.copyWith(color: c.daysLeft <= 2 ? UIColorsToken.red : UIColorsToken.textParagraph)),
-                                ],
-                              ),
-                              const SizedBox(height: 6),
-                              UIProgressLine(current: c.collectedAmount, total: c.goalAmount, fillColor: UIColorsToken.textYellow),
-                            ],
-                          ),
+                      Row(
+                        children: [
+                          Icon(Icons.show_chart, size: 16, color: UIColorsToken.textParagraph),
+                          const SizedBox(width: 6),
+                          Text(l10n.mosque_admin_growth, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                          const SizedBox(width: 8),
+                          _Delta(value: stats.growthPercent, suffix: '%'),
+                          const Spacer(),
+                          Text(l10n.mosque_admin_last_30_days, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      SizedBox(
+                        height: 110,
+                        child: CustomPaint(
+                          size: const Size(double.infinity, 110),
+                          painter: _GrowthPainter(series: stats.growthSeries, base: stats.followersTotal - stats.followers30d),
                         ),
+                      ),
+                      const SizedBox(height: 6),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(DateFormat('MMM d', lang).format(DateTime.now().subtract(const Duration(days: 30))),
+                              style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                          Text(l10n.mosque_admin_today, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                        ],
+                      ),
+                      if (stats.notifOpenRate != null) ...[
+                        const SizedBox(height: 8),
+                        Text(l10n.mosque_admin_open_rate(stats.notifOpenRate!.toStringAsFixed(0)),
+                            style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                      ],
                     ],
                   ),
                 ),
-              ],
-              const SizedBox(height: 20),
-              _SectionTitle(l10n.mosque_admin_recent_posts),
-              const SizedBox(height: 12),
-              if (state.recentPosts.isEmpty)
-                UICard(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
+                if (stats.campaignsActive > 0) ...[
+                  const SizedBox(height: 20),
+                  Row(
                     children: [
-                      Text(l10n.mosque_admin_no_posts, textAlign: TextAlign.center, style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),
-                      const SizedBox(height: 12),
-                      UIButton.primary(label: l10n.mosque_admin_create_post, fullWidth: true, onTap: () => context.router.push(const MosqueAdminCreatePostRoute())),
+                      _SectionTitle(l10n.mosque_admin_fundraising),
+                      const SizedBox(width: 8),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                        decoration: BoxDecoration(color: UIColorsToken.bgTertiaryGreen, borderRadius: BorderRadius.circular(6)),
+                        child: Text('${stats.campaignsActive}', style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white)),
+                      ),
                     ],
                   ),
-                )
-              else
-                for (final p in state.recentPosts)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 12),
-                    child: MosquePostCard(post: p, l10n: l10n, adminStats: true),
+                  const SizedBox(height: 12),
+                  UICard(
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      children: [
+                        for (final c in stats.campaigns)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 12),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Expanded(child: Text(c.title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
+                                    Text('${(c.progress * 100).round()}%', style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow)),
+                                    const SizedBox(width: 6),
+                                    Text(l10n.mosque_campaign_days_left_short(c.daysLeft),
+                                        style: theme.typo.inter.smallCaption.copyWith(color: c.daysLeft <= 2 ? UIColorsToken.red : UIColorsToken.textParagraph)),
+                                  ],
+                                ),
+                                const SizedBox(height: 6),
+                                UIProgressLine(current: c.collectedAmount, total: c.goalAmount, fillColor: UIColorsToken.textYellow),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
-              const SizedBox(height: 4),
-              UIButton.textual(label: l10n.mosque_admin_view_mosque, fullWidth: true, onTap: () => nav.toMosqueProfile(mosqueId: mosque?.id ?? 0)),
-            ],
+                ],
+                const SizedBox(height: 20),
+                _SectionTitle(l10n.mosque_admin_recent_posts),
+                const SizedBox(height: 12),
+                if (state.recentPosts.isEmpty)
+                  UICard(
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      children: [
+                        Text(l10n.mosque_admin_no_posts, textAlign: TextAlign.center, style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),
+                        const SizedBox(height: 12),
+                        UIButton.primary(label: l10n.mosque_admin_create_post, fullWidth: true, onTap: () => context.router.push(const MosqueAdminCreatePostRoute())),
+                      ],
+                    ),
+                  )
+                else
+                  for (final p in state.recentPosts)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 12),
+                      child: MosquePostCard(post: p, l10n: l10n, adminStats: true),
+                    ),
+                const SizedBox(height: 4),
+                //UIButton.textual(label: l10n.mosque_admin_view_mosque, fullWidth: true, onTap: () => nav.toMosqueProfile(mosqueId: mosque?.id ?? 0)),
+              ],
+            ),
           ),
         ),
       ),

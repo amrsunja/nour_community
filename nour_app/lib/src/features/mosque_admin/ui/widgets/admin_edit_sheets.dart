@@ -102,7 +102,7 @@ class AdminEditSheets {
                           Text(MosqueInformationTab.languageFlag(c), style: const TextStyle(fontSize: 16)),
                           const SizedBox(width: 8),
                           Text(MosqueInformationTab.languageName(c), style: theme.typo.inter.bodyMedium.copyWith(color: sel.contains(c) ? UIColorsToken.textYellow : UIColorsToken.white)),
-                          if (sel.contains(c)) ...[const SizedBox(width: 6), const Icon(Icons.close, size: 14, color: UIColorsToken.textParagraph)],
+                          if (sel.contains(c)) ...[const SizedBox(width: 6), Icon(Icons.close, size: 14, color: UIColorsToken.textParagraph)],
                         ],
                       ),
                     ),

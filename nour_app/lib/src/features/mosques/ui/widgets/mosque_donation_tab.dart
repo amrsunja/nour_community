@@ -147,7 +147,7 @@ class MosqueDonationTab extends HookConsumerWidget {
       builder: (ctx) => AlertDialog(
         backgroundColor: UIColorsToken.bgSurface,
         title: Text(l10n.mosque_donation_cancel_recurring_title, style: const TextStyle(color: UIColorsToken.white)),
-        content: Text(l10n.mosque_donation_cancel_recurring_message, style: const TextStyle(color: UIColorsToken.textParagraph)),
+        content: Text(l10n.mosque_donation_cancel_recurring_message, style: TextStyle(color: UIColorsToken.textParagraph)),
         actions: [
           TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l10n.common_cancel)),
           TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: Text(l10n.common_yes, style: const TextStyle(color: UIColorsToken.red))),

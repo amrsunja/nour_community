@@ -5,6 +5,7 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen2 extends ConsumerWidget {
   const OnboardingScreen2({super.key});
@@ -62,7 +63,7 @@ class OnboardingScreen2 extends ConsumerWidget {
               label: l10n.common_continue,
               fullWidth: true,
               onTap: () {
-                provider.changePage(2);
+                provider.changePage(OnboardingStep.screen3);
               },
             ),
           ),
