@@ -118,6 +118,7 @@ class MosqueHeader extends StatelessWidget {
                               onCopiedAddress?.call();
                             },
                             child: Row(
+                              crossAxisAlignment: .center,
                               children: [
                                 Icon(Icons.location_on_outlined, size: 14, color: UIColorsToken.textParagraph),
                                 const SizedBox(width: 4),
@@ -236,13 +237,20 @@ class MosqueTabsBar extends StatelessWidget {
       (MosqueTab.news, l10n.mosque_tab_news),
       if (showDonation) (MosqueTab.donation, l10n.mosque_tab_donation),
     ];
-    return Row(
-      children: [
-        for (final t in tabs)
-          Expanded(
-            child: UITap(
+    // Horizontally scrollable: 4 tabs + long labels (de/nl/ru/bn) overflow a
+    // 393 px frame, and the donation tab appears/disappears at runtime.
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      physics: const BouncingScrollPhysics(),
+      clipBehavior: Clip.none,
+      child: Row(
+        spacing: 20,
+        children: [
+          for (final t in tabs)
+            UITap(
               onTap: () => onTab(t.$1),
               child: AnimatedContainer(
+              padding: EdgeInsets.symmetric(horizontal: 10),
                 duration: const Duration(milliseconds: 200),
                 height: 34,
                 decoration: BoxDecoration(
@@ -273,8 +281,8 @@ class MosqueTabsBar extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

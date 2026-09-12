@@ -3698,4 +3698,24 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Receipt ready';
+
+  @override
+  String get mosque_settings_title => 'Mosque settings';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Remove mosque logo?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Your mosque will show its initials until you add a new logo.';
+
+  @override
+  String get mosque_settings_legal_section => 'Legal information';
+
+  @override
+  String get mosque_settings_legal_missing => 'Not provided';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Your reminders use the prayer times you publish. Set your mosque\'s schedule to start receiving them.';
 }

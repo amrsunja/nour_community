@@ -1212,5 +1212,11 @@
 	"mosque_admin_receipts": "Reçus fiscaux",
 	"mosque_admin_receipt_issue": "Émettre un reçu",
 	"mosque_admin_receipt_view": "Voir le reçu",
-	"mosque_admin_receipt_generated": "Reçu prêt"
+	"mosque_admin_receipt_generated": "Reçu prêt",
+	"mosque_settings_title": "Paramètres de la mosquée",
+	"mosque_settings_logo_remove_title": "Supprimer le logo de la mosquée ?",
+	"mosque_settings_logo_remove_message": "Votre mosquée affichera ses initiales jusqu'à ce que vous ajoutiez un nouveau logo.",
+	"mosque_settings_legal_section": "Informations légales",
+	"mosque_settings_legal_missing": "Non renseigné",
+	"mosque_reminders_no_times_hint": "Vos rappels utilisent les horaires que vous publiez. Renseignez les horaires de votre mosquée pour commencer à les recevoir."
 }

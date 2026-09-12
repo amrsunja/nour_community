@@ -51,27 +51,27 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header
-                Row(
-                  children: [
-                    UITap(
-                      onTap: () => context.router.push(ProfileRoute()),
-                      child: mosque == null ? const SizedBox(width: 44) : MosqueLogo(mosque: mosque, size: 44, radius: 22),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(l10n.common_assalamu_alaykum, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-                          Text(mosque?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
-                        ],
+                UITap(
+                  onTap: () => context.router.push(const MosqueSettingsRoute()),
+                  child: Row(
+                    children: [
+                      mosque == null ? const SizedBox(width: 44) : MosqueLogo(mosque: mosque, size: 44, radius: 22),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(l10n.common_assalamu_alaykum, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                            Text(mosque?.name ?? '', maxLines: 1, overflow: TextOverflow.ellipsis, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
+                          ],
+                        ),
                       ),
-                    ),
-                    UITap(
-                      onTap: () => context.router.push(const MosqueAdminNotificationsRoute()),
-                      child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.notifications_none, color: UIColorsToken.white)),
-                    ),
-                  ],
+                      UITap(
+                        onTap: () => context.router.push(const MosqueAdminNotificationsRoute()),
+                        child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.notifications_none, color: UIColorsToken.white)),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 16),
                 if (stats.attentionCount > 0)

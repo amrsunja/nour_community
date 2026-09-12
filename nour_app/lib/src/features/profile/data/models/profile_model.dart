@@ -70,6 +70,47 @@ class ProfileModel extends Equatable {
     updatedAt: DateTime.tryParse(json['updated_at'] ?? ''),
   );
 
+  /// Returns a NEW instance so Riverpod `select()` listeners actually fire.
+  /// (Mutating `avatar` in place kept the same object identity and could leave
+  /// the avatar widgets showing stale initials.)
+  ProfileModel copyWith({
+    String? name,
+    String? avatar,
+    bool clearAvatar = false,
+    GenderType? gender,
+    LevelType? level,
+    bool? onboardingCompleted,
+    int? lastOnboardingScreen,
+    int? dailyPracticeTime,
+    int? currentStreak,
+    DateTime? lastStreakDate,
+    int? earnedAjrCount,
+    bool? isAdmin,
+    AccountType? accountType,
+    String? countryCode,
+    Map<String, dynamic>? pushPrefs,
+  }) {
+    return ProfileModel(
+      id: id,
+      name: name ?? this.name,
+      avatar: clearAvatar ? null : (avatar ?? this.avatar),
+      gender: gender ?? this.gender,
+      level: level ?? this.level,
+      onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
+      lastOnboardingScreen: lastOnboardingScreen ?? this.lastOnboardingScreen,
+      dailyPracticeTime: dailyPracticeTime ?? this.dailyPracticeTime,
+      currentStreak: currentStreak ?? this.currentStreak,
+      lastStreakDate: lastStreakDate ?? this.lastStreakDate,
+      earnedAjrCount: earnedAjrCount ?? this.earnedAjrCount,
+      isAdmin: isAdmin ?? this.isAdmin,
+      accountType: accountType ?? this.accountType,
+      countryCode: countryCode ?? this.countryCode,
+      pushPrefs: pushPrefs ?? this.pushPrefs,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
+
   @override
   List<Object?> get props => [
     id,

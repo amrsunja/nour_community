@@ -3693,4 +3693,24 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'রসিদ প্রস্তুত';
+
+  @override
+  String get mosque_settings_title => 'মসজিদের সেটিংস';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'মসজিদের লোগো সরাবেন?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'নতুন লোগো যোগ না করা পর্যন্ত আপনার মসজিদ তার আদ্যক্ষর দেখাবে।';
+
+  @override
+  String get mosque_settings_legal_section => 'আইনি তথ্য';
+
+  @override
+  String get mosque_settings_legal_missing => 'প্রদান করা হয়নি';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'আপনার রিমাইন্ডার আপনার প্রকাশ করা নামাজের সময় ব্যবহার করে। সেগুলো পেতে আপনার মসজিদের সময়সূচি নির্ধারণ করুন।';
 }

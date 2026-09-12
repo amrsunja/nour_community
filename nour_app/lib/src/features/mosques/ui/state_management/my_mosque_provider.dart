@@ -8,6 +8,7 @@ import 'package:nour/src/core/utils/talker/talker.dart';
 
 import '../../data/models/mosque_enums.dart';
 import '../../data/models/mosque_model.dart';
+import '../../data/models/mosque_prayer_day_model.dart';
 import '../../data/mosque_repo.dart';
 import 'my_mosque_state.dart';
 
@@ -39,21 +40,61 @@ class MyMosquePresenter extends Presenter<MyMosqueState> {
     state = state.copyWith(isLoading: true);
     final response = await repo.getMyMosque();
     return response.when(
-      (my) {
+      (my) async {
         if (my == null) {
           state = state.copyWith(isLoading: false, loaded: true, clearMosque: true);
           return false;
         }
         state = state.copyWith(isLoading: false, loaded: true, mosque: my.mosque, role: my.role);
+        await loadPrayerDays();
         return true;
       },
-      (error) {
+      (error) async {
         state = state.copyWith(isLoading: false, loaded: true);
         if (!silent) appEvents.send(ShowErrorEvent(error));
         return false;
       },
     );
   }
+
+  /// Loads the mosque's own schedule for today .. +[days] (overrides merged).
+  ///
+  /// A mosque account has no `user_mosques` row, so `fn_my_mosque_prayer_days`
+  /// (worshipper-side) never returns anything for it — read the range straight
+  /// from `mosque_prayer_times` / `mosque_prayer_overrides` instead. Days the
+  /// admin never filled are simply absent from the map, which is what makes
+  /// "notify only when the mosque published its times" possible.
+  Future<void> loadPrayerDays({int days = 8}) async {
+    final mosque = state.mosque;
+    if (mosque == null) return;
+    final now = DateTime.now();
+    final from = DateTime(now.year, now.month, now.day);
+    final to = from.add(Duration(days: days - 1));
+
+    final rangeRes = await repo.getPrayerRange(mosque.id, from, to, timezone: mosque.timezone);
+    final rows = rangeRes.when((map) => map, (error) {
+      talker.warning('my mosque prayer days: $error');
+      return <DateTime, MosquePrayerDayModel>{};
+    });
+
+    final overridesRes = await repo.getOverrides(mosque.id, from: from);
+    final overrides = overridesRes.when((list) => list, (_) => const <MosquePrayerOverride>[]);
+
+    final merged = <DateTime, MosquePrayerDayModel>{};
+    rows.forEach((day, model) {
+      final key = DateTime(day.year, day.month, day.day);
+      final ov = {
+        for (final o in overrides)
+          if (DateTime(o.day.year, o.day.month, o.day.day) == key) o.slot: o.time,
+      };
+      merged[key] = ov.isEmpty ? model : model.copyWith(overrides: ov);
+    });
+
+    state = state.copyWith(prayerDays: merged);
+  }
+
+  /// Re-reads the schedule after the admin edited it (save / copy / override).
+  Future<void> refreshPrayerDays() => loadPrayerDays();
 
   /// Applies an updated row (after an admin save) without a refetch.
   void setMosque(MosqueModel mosque) {

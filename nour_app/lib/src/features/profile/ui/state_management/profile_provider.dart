@@ -83,8 +83,11 @@ class ProfilePresenter extends Presenter<ProfileState> {
 
     return response.when(
       (url) {
-        state.profile?.avatar = url;
-        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        final profile = state.profile;
+        state = state.copyWith(
+          avatarStatus: AvatarStatus.idle,
+          profile: profile?.copyWith(avatar: url),
+        );
         return true;
       },
       (error) {
@@ -102,8 +105,11 @@ class ProfilePresenter extends Presenter<ProfileState> {
 
     return response.when(
       (_) {
-        state.profile?.avatar = null;
-        state = state.copyWith(avatarStatus: AvatarStatus.idle);
+        final profile = state.profile;
+        state = state.copyWith(
+          avatarStatus: AvatarStatus.idle,
+          profile: profile?.copyWith(clearAvatar: true),
+        );
         return true;
       },
       (error) {

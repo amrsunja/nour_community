@@ -6689,6 +6689,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Receipt ready'**
   String get mosque_admin_receipt_generated;
+
+  /// No description provided for @mosque_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque settings'**
+  String get mosque_settings_title;
+
+  /// No description provided for @mosque_settings_logo_remove_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove mosque logo?'**
+  String get mosque_settings_logo_remove_title;
+
+  /// No description provided for @mosque_settings_logo_remove_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque will show its initials until you add a new logo.'**
+  String get mosque_settings_logo_remove_message;
+
+  /// No description provided for @mosque_settings_legal_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Legal information'**
+  String get mosque_settings_legal_section;
+
+  /// No description provided for @mosque_settings_legal_missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Not provided'**
+  String get mosque_settings_legal_missing;
+
+  /// No description provided for @mosque_reminders_no_times_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your reminders use the prayer times you publish. Set your mosque\'s schedule to start receiving them.'**
+  String get mosque_reminders_no_times_hint;
 }
 
 class _AppLocalizationsDelegate

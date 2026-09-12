@@ -1289,5 +1289,11 @@
 	"mosque_admin_receipts": "Tax receipts",
 	"mosque_admin_receipt_issue": "Issue receipt",
 	"mosque_admin_receipt_view": "View receipt",
-	"mosque_admin_receipt_generated": "Receipt ready"
+	"mosque_admin_receipt_generated": "Receipt ready",
+	"mosque_settings_title": "Mosque settings",
+	"mosque_settings_logo_remove_title": "Remove mosque logo?",
+	"mosque_settings_logo_remove_message": "Your mosque will show its initials until you add a new logo.",
+	"mosque_settings_legal_section": "Legal information",
+	"mosque_settings_legal_missing": "Not provided",
+	"mosque_reminders_no_times_hint": "Your reminders use the prayer times you publish. Set your mosque's schedule to start receiving them."
 }

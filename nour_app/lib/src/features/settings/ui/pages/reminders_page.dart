@@ -5,7 +5,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/notifications/ui/state_management/notifications_provider.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 /// Settings › Reminders. A simple, single-screen list of the app's local
 /// notification toggles (five prayers grouped, morning/evening adhkar, daily
@@ -19,8 +21,18 @@ class RemindersPage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
+    final theme = UITheme.of(context);
     final settings = ref.watch(notificationsProvider.select((s) => s.settings));
     final presenter = ref.read(notificationsProvider.notifier);
+
+    // A mosque account has no computed schedule: its reminders fire from the
+    // times its admin published. Say so when nothing is published yet,
+    // otherwise the toggles look broken.
+    final isMosque = ref.watch(
+        profileProvider.select((s) => s.profile?.isMosqueAccount ?? false));
+    final mosqueHasTimes =
+        ref.watch(myMosqueProvider.select((s) => s.hasPublishedPrayerTimes));
+    final showMosqueHint = isMosque && !mosqueHasTimes;
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -85,6 +97,28 @@ class RemindersPage extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  if (showMosqueHint) ...[
+                    UICard(
+                      padding: const EdgeInsets.all(14),
+                      disableBorder: true,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Icon(Icons.info_outline,
+                              size: 20, color: UIColorsToken.textYellow),
+                          const UISpace.horz(12),
+                          Expanded(
+                            child: Text(
+                              l10n.mosque_reminders_no_times_hint,
+                              style: theme.typo.inter.bodySmall
+                                  .copyWith(color: UIColorsToken.textParagraph),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const UISpace.vert(12),
+                  ],
                   for (var i = 0; i < items.length; i++)
                     Padding(
                       padding: EdgeInsets.only(top: i == 0 ? 0 : 12),

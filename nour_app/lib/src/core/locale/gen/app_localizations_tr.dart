@@ -3694,4 +3694,24 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Makbuz hazır';
+
+  @override
+  String get mosque_settings_title => 'Cami ayarları';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Cami logosu kaldırılsın mı?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Yeni bir logo eklemedikçe caminiz baş harfleriyle görünecek.';
+
+  @override
+  String get mosque_settings_legal_section => 'Yasal bilgiler';
+
+  @override
+  String get mosque_settings_legal_missing => 'Belirtilmemiş';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Hatırlatmalarınız yayımladığınız namaz vakitlerini kullanır. Almaya başlamak için caminizin vakitlerini belirleyin.';
 }

@@ -22,7 +22,7 @@ class MosqueAdminNotificationsPage extends HookConsumerWidget {
     final future = useMemoized(() => ref.read(pushRemoteDataProvider).myNotifications());
     final snap = useFuture(future);
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(title: l10n.push_settings_title, onBack: () => context.router.maybePop()),
       body: snap.connectionState != ConnectionState.done
           ? const Center(child: UICircularProgressBar())

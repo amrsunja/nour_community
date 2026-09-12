@@ -61,7 +61,7 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
 
     final canIssue = !mine && (mosque?.canIssueTaxReceipts ?? false);
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(title: l10n.mosque_admin_receipts, onBack: () => context.router.maybePop()),
       body: loading.value && rows.value.isEmpty
           ? const Center(child: UICircularProgressBar())

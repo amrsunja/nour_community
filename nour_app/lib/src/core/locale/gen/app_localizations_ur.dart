@@ -3692,4 +3692,24 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'رسید تیار ہے';
+
+  @override
+  String get mosque_settings_title => 'مسجد کی ترتیبات';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'مسجد کا لوگو ہٹائیں؟';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'نیا لوگو شامل کرنے تک آپ کی مسجد اپنے ابتدائی حروف دکھائے گی۔';
+
+  @override
+  String get mosque_settings_legal_section => 'قانونی معلومات';
+
+  @override
+  String get mosque_settings_legal_missing => 'فراہم نہیں کیا گیا';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'آپ کی یاد دہانیاں آپ کے شائع کردہ نماز کے اوقات پر مبنی ہیں۔ انہیں وصول کرنے کے لیے اپنی مسجد کا شیڈول مقرر کریں۔';
 }

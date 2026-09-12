@@ -45,12 +45,15 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
     final profile = ref.watch(mosqueProfileProvider(mosqueId));
     final admin = ref.read(mosqueAdminMosqueProvider.notifier);
     final adminState = ref.watch(mosqueAdminMosqueProvider);
-    final prayers = ref.read(mosqueAdminPrayersProvider.notifier);
+    // Keep the (autoDispose) prayers provider alive for the whole page, not
+    // just while the Prayers tab is mounted - otherwise switching to News /
+    // Information disposes the loaded schedule and coming back shows nothing.
+    // Loading itself is owned by [PrayerScheduleEditor].
+    ref.watch(mosqueAdminPrayersProvider.select((s) => s.isLoading));
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         profilePresenter.init(trackView: false);
-        prayers.load();
         admin.loadQuota();
       });
       return null;

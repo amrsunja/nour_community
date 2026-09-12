@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "الإيصالات الضريبية",
 	"mosque_admin_receipt_issue": "إصدار إيصال",
 	"mosque_admin_receipt_view": "عرض الإيصال",
-	"mosque_admin_receipt_generated": "الإيصال جاهز"
+	"mosque_admin_receipt_generated": "الإيصال جاهز",
+	"mosque_settings_title": "إعدادات المسجد",
+	"mosque_settings_logo_remove_title": "إزالة شعار المسجد؟",
+	"mosque_settings_logo_remove_message": "سيظهر مسجدك بالأحرف الأولى حتى تضيف شعارًا جديدًا.",
+	"mosque_settings_legal_section": "المعلومات القانونية",
+	"mosque_settings_legal_missing": "غير متوفر",
+	"mosque_reminders_no_times_hint": "تعتمد تذكيراتك على مواقيت الصلاة التي تنشرها. أدخل جدول مسجدك لتبدأ في استلامها."
 }

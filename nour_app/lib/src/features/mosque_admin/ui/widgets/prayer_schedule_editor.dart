@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
@@ -17,7 +18,7 @@ import 'copy_prayer_times_sheet.dart';
 /// Admin prayer schedule editor (Figma "Mosquée profile - Prayers" ×4):
 /// month header (hijri + gregorian), week strip, per-slot rows with time +
 /// iqama offset, sunrise / jumu'a, copy-from-day, today's overrides.
-class PrayerScheduleEditor extends ConsumerWidget {
+class PrayerScheduleEditor extends HookConsumerWidget {
   const PrayerScheduleEditor({super.key});
 
   @override
@@ -27,6 +28,15 @@ class PrayerScheduleEditor extends ConsumerWidget {
     final snackbar = ref.read(snackbarProvider);
     final presenter = ref.read(mosqueAdminPrayersProvider.notifier);
     final state = ref.watch(mosqueAdminPrayersProvider);
+
+    // Own the initial fetch: the editor is remounted on every tab switch, so
+    // only load when the window is actually empty (state survives the switch).
+    useEffect(() {
+      if (state.days.isEmpty && !state.isLoading) {
+        WidgetsBinding.instance.addPostFrameCallback((_) => presenter.load());
+      }
+      return null;
+    }, const []);
     final lang = Localizations.localeOf(context).languageCode;
 
     final day = state.draft ?? state.selected;

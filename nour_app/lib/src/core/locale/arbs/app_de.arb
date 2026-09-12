@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "Spendenbescheinigungen",
 	"mosque_admin_receipt_issue": "Bescheinigung ausstellen",
 	"mosque_admin_receipt_view": "Bescheinigung ansehen",
-	"mosque_admin_receipt_generated": "Bescheinigung bereit"
+	"mosque_admin_receipt_generated": "Bescheinigung bereit",
+	"mosque_settings_title": "Moschee-Einstellungen",
+	"mosque_settings_logo_remove_title": "Moschee-Logo entfernen?",
+	"mosque_settings_logo_remove_message": "Deine Moschee zeigt ihre Initialen an, bis du ein neues Logo hinzufügst.",
+	"mosque_settings_legal_section": "Rechtliche Angaben",
+	"mosque_settings_legal_missing": "Nicht angegeben",
+	"mosque_reminders_no_times_hint": "Deine Erinnerungen richten sich nach den Gebetszeiten, die du veröffentlichst. Lege den Zeitplan deiner Moschee fest, um sie zu erhalten."
 }

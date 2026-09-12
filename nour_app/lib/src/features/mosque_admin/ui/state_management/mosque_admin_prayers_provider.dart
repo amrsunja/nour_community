@@ -9,6 +9,7 @@ import 'package:nour/src/features/mosques/data/models/mosque_prayer_day_model.da
 import 'package:nour/src/features/mosques/data/mosque_repo.dart';
 import 'package:nour/src/features/mosques/ui/state_management/mosque_profile_provider.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
+import 'package:nour/src/features/notifications/ui/state_management/notifications_provider.dart';
 
 /// Admin prayer-schedule editor (Figma "Mosquée profile - Prayers" admin):
 /// week strip, per-day rows, copy from another day, today's overrides.
@@ -142,11 +143,12 @@ class MosqueAdminPrayersPresenter extends Presenter<MosqueAdminPrayersState> {
     }
     state = state.copyWith(isSaving: true);
     final res = await repo.upsertPrayerDay(d);
-    return res.when((saved) {
+    return await res.when((saved) async {
       state = state.copyWith(isSaving: false, days: {...state.days, saved.day: saved}, clearDraft: true);
       _syncPublicToday(saved);
+      await _rescheduleNotifications();
       return true;
-    }, (error) {
+    }, (error) async {
       state = state.copyWith(isSaving: false);
       appEvents.send(ShowErrorEvent(error));
       return false;
@@ -164,6 +166,7 @@ class MosqueAdminPrayersPresenter extends Presenter<MosqueAdminPrayersState> {
       await load(around: state.selectedDay);
       final t = state.days[_today()];
       if (t != null) _syncPublicToday(t);
+      await _rescheduleNotifications();
       return n;
     }, (error) async {
       state = state.copyWith(isSaving: false);
@@ -176,10 +179,11 @@ class MosqueAdminPrayersPresenter extends Presenter<MosqueAdminPrayersState> {
     final id = _mosqueId;
     if (id == null) return false;
     final res = await repo.upsertOverride(mosqueId: id, day: day, slot: slot, time: MosquePrayerDayModel.toDb(time), reason: reason);
-    return res.when((o) {
+    return await res.when((o) async {
       state = state.copyWith(overrides: [...state.overrides.where((x) => x.id != o.id), o]);
+      await _rescheduleNotifications();
       return true;
-    }, (error) {
+    }, (error) async {
       appEvents.send(ShowErrorEvent(error));
       return false;
     });
@@ -187,13 +191,23 @@ class MosqueAdminPrayersPresenter extends Presenter<MosqueAdminPrayersState> {
 
   Future<bool> removeOverride(MosquePrayerOverride o) async {
     final res = await repo.deleteOverride(o.id);
-    return res.when((_) {
+    return await res.when((_) async {
       state = state.copyWith(overrides: state.overrides.where((x) => x.id != o.id).toList());
+      await _rescheduleNotifications();
       return true;
-    }, (error) {
+    }, (error) async {
       appEvents.send(ShowErrorEvent(error));
       return false;
     });
+  }
+
+  /// The mosque's local reminders fire from its published schedule, so every
+  /// write to it (save / copy / override) must rebuild them — otherwise the
+  /// device keeps notifying at the previous times, or stays silent after the
+  /// very first schedule is published.
+  Future<void> _rescheduleNotifications() async {
+    await ref.read(myMosqueProvider.notifier).refreshPrayerDays();
+    await ref.read(notificationsProvider.notifier).rescheduleAll();
   }
 
   void _syncPublicToday(MosquePrayerDayModel d) {

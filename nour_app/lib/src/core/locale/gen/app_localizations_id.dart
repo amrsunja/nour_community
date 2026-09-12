@@ -3708,4 +3708,24 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Kuitansi siap';
+
+  @override
+  String get mosque_settings_title => 'Pengaturan masjid';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Hapus logo masjid?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Masjid Anda akan menampilkan inisialnya sampai Anda menambahkan logo baru.';
+
+  @override
+  String get mosque_settings_legal_section => 'Informasi hukum';
+
+  @override
+  String get mosque_settings_legal_missing => 'Tidak tersedia';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Pengingat Anda menggunakan jadwal salat yang Anda publikasikan. Atur jadwal masjid Anda untuk mulai menerimanya.';
 }

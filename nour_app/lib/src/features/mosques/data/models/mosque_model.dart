@@ -191,6 +191,8 @@ class MosqueModel extends Equatable {
     List<MosqueImamModel>? imams,
     bool? donationsEnabled,
     bool? canIssueTaxReceipts,
+    /// Explicitly drops the logo (a `null` [logoUrl] means "unchanged").
+    bool clearLogo = false,
   }) {
     return MosqueModel(
       id: id,
@@ -204,7 +206,7 @@ class MosqueModel extends Equatable {
       status: status ?? this.status,
       reviewNote: reviewNote,
       slug: slug,
-      logoUrl: logoUrl ?? this.logoUrl,
+      logoUrl: clearLogo ? null : (logoUrl ?? this.logoUrl),
       coverImages: coverImages ?? this.coverImages,
       description: description ?? this.description,
       addressLine: addressLine ?? this.addressLine,

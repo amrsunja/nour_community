@@ -3708,4 +3708,24 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Kwitantie gereed';
+
+  @override
+  String get mosque_settings_title => 'Moskee-instellingen';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Moskeelogo verwijderen?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Je moskee toont haar initialen totdat je een nieuw logo toevoegt.';
+
+  @override
+  String get mosque_settings_legal_section => 'Juridische gegevens';
+
+  @override
+  String get mosque_settings_legal_missing => 'Niet opgegeven';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Je herinneringen gebruiken de gebedstijden die je publiceert. Stel het rooster van je moskee in om ze te ontvangen.';
 }

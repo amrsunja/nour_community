@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "Налоговые квитанции",
 	"mosque_admin_receipt_issue": "Выдать квитанцию",
 	"mosque_admin_receipt_view": "Открыть квитанцию",
-	"mosque_admin_receipt_generated": "Квитанция готова"
+	"mosque_admin_receipt_generated": "Квитанция готова",
+	"mosque_settings_title": "Настройки мечети",
+	"mosque_settings_logo_remove_title": "Удалить логотип мечети?",
+	"mosque_settings_logo_remove_message": "Пока вы не добавите новый логотип, мечеть будет отображаться с инициалами.",
+	"mosque_settings_legal_section": "Юридические данные",
+	"mosque_settings_legal_missing": "Не указано",
+	"mosque_reminders_no_times_hint": "Напоминания приходят по времени намазов, которое вы публикуете. Задайте расписание мечети, чтобы начать их получать."
 }

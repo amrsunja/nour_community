@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "কর রসিদ",
 	"mosque_admin_receipt_issue": "রসিদ ইস্যু করুন",
 	"mosque_admin_receipt_view": "রসিদ দেখুন",
-	"mosque_admin_receipt_generated": "রসিদ প্রস্তুত"
+	"mosque_admin_receipt_generated": "রসিদ প্রস্তুত",
+	"mosque_settings_title": "মসজিদের সেটিংস",
+	"mosque_settings_logo_remove_title": "মসজিদের লোগো সরাবেন?",
+	"mosque_settings_logo_remove_message": "নতুন লোগো যোগ না করা পর্যন্ত আপনার মসজিদ তার আদ্যক্ষর দেখাবে।",
+	"mosque_settings_legal_section": "আইনি তথ্য",
+	"mosque_settings_legal_missing": "প্রদান করা হয়নি",
+	"mosque_reminders_no_times_hint": "আপনার রিমাইন্ডার আপনার প্রকাশ করা নামাজের সময় ব্যবহার করে। সেগুলো পেতে আপনার মসজিদের সময়সূচি নির্ধারণ করুন।"
 }

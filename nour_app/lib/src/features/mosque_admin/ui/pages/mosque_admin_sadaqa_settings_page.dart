@@ -77,7 +77,7 @@ class MosqueAdminSadaqaSettingsPage extends HookConsumerWidget {
       }
     }
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: l10n.mosque_admin_sadaqa_settings_title,
         onBack: () => context.router.maybePop(),

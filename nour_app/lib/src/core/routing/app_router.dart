@@ -91,7 +91,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(path: RoutePaths.mosqueAdminPostForm(), page: MosqueAdminPostFormRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminEditProfile, page: MosqueAdminEditProfileRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminNotifications, page: MosqueAdminNotificationsRoute.page, guards: [mosqueAdminGuard]),
-        AutoRoute(path: RoutePaths.mosqueAdminProfile, page: ProfileRoute.page, guards: [mosqueAdminGuard]),
+        AutoRoute(path: RoutePaths.mosqueSettings, page: MosqueSettingsRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminSettings, page: SettingsRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminPushSettings, page: PushSettingsRoute.page, guards: [mosqueAdminGuard]),
         AutoRoute(path: RoutePaths.mosqueAdminReminders, page: RemindersRoute.page, guards: [mosqueAdminGuard]),

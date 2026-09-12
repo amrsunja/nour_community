@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
@@ -29,12 +30,12 @@ class MosqueAdminShellPage extends ConsumerWidget {
       builder: (context, child) {
         final tabsRouter = AutoTabsRouter.of(context);
         return Scaffold(
-          backgroundColor: Colors.transparent,
+          backgroundColor: UIColorsToken.bgPrimary,
           extendBody: true,
           body: Stack(
             alignment: Alignment.bottomCenter,
             children: [
-              SafeArea(top: false, bottom: false, child: child),
+              SafeArea(top: true, bottom: false, child: child),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
                 child: Theme(

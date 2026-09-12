@@ -3706,4 +3706,24 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Resit sedia';
+
+  @override
+  String get mosque_settings_title => 'Tetapan masjid';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Buang logo masjid?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Masjid anda akan memaparkan huruf awalannya sehingga anda menambah logo baharu.';
+
+  @override
+  String get mosque_settings_legal_section => 'Maklumat undang-undang';
+
+  @override
+  String get mosque_settings_legal_missing => 'Tiada maklumat';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Peringatan anda menggunakan waktu solat yang anda terbitkan. Tetapkan jadual masjid anda untuk mula menerimanya.';
 }

@@ -18,7 +18,7 @@ abstract class RoutePaths {
   static String mosqueAdminPostForm({String? type}) => 'mosque-admin/post/${type ?? ':type'}';
   static const mosqueAdminEditProfile = 'mosque-admin/edit-profile';
   static const mosqueAdminNotifications = 'mosque-admin/notifications';
-  static const mosqueAdminProfile = 'mosque-admin/profile';
+  static const mosqueSettings = 'mosque-admin/mosque-settings';
   static const mosqueAdminSettings = 'mosque-admin/settings';
   static const mosqueAdminPushSettings = 'mosque-admin/push-settings';
   static const mosqueAdminReminders = 'mosque-admin/reminders';

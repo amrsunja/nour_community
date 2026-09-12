@@ -3659,4 +3659,24 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'الإيصال جاهز';
+
+  @override
+  String get mosque_settings_title => 'إعدادات المسجد';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'إزالة شعار المسجد؟';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'سيظهر مسجدك بالأحرف الأولى حتى تضيف شعارًا جديدًا.';
+
+  @override
+  String get mosque_settings_legal_section => 'المعلومات القانونية';
+
+  @override
+  String get mosque_settings_legal_missing => 'غير متوفر';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'تعتمد تذكيراتك على مواقيت الصلاة التي تنشرها. أدخل جدول مسجدك لتبدأ في استلامها.';
 }

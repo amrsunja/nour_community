@@ -9,7 +9,10 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/mosques/data/models/mosque_prayer_day_model.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provider.dart';
+import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/tools/data/prayer_settings_repo.dart';
@@ -73,6 +76,28 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
     return pos;
   }
 
+  /// A mosque account has no computed schedule of its own: it notifies from the
+  /// times its admin published (`mosque_prayer_times` + today's overrides).
+  /// Days the mosque never filled are simply not scheduled.
+  bool get _isMosqueAccount =>
+      ref.read(profileProvider).profile?.isMosqueAccount ?? false;
+
+  /// The managed mosque's published days (today .. +7), keyed by local date.
+  /// Empty when the account manages no mosque or published nothing yet.
+  Map<DateTime, MosquePrayerDayModel> _mosqueDays() =>
+      ref.read(myMosqueProvider).prayerDays;
+
+  /// Ensures the schedule cache is warm before (re)scheduling.
+  Future<Map<DateTime, MosquePrayerDayModel>> _loadMosqueDays() async {
+    final presenter = ref.read(myMosqueProvider.notifier);
+    if (ref.read(myMosqueProvider).mosque == null) {
+      await presenter.load(silent: true);
+    } else {
+      await presenter.loadPrayerDays();
+    }
+    return _mosqueDays();
+  }
+
   Map<PrayerSlot, String> _prayerTitles() => {
         PrayerSlot.fajr: _l10n.notifications_prayer_fajr,
         PrayerSlot.dhuhr: _l10n.notifications_prayer_dhuhr,
@@ -98,8 +123,11 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   /// permission. Returns `true` when scheduling may proceed; on a missing
   /// permission it deep-links to app settings and returns `false` so the caller
   /// keeps the switch off. Disabling never needs this gate.
-  Future<bool> ensureLocationForScheduling() =>
-      GeolocatorTools.ensureLocationPermission();
+  Future<bool> ensureLocationForScheduling() async {
+    // Mosque accounts schedule from their own published times — no GPS needed.
+    if (_isMosqueAccount) return true;
+    return GeolocatorTools.ensureLocationPermission();
+  }
 
   /// Enable/disable the notification for a single prayer. Reschedules the whole
   /// prayer range so it reflects the new enabled set.
@@ -258,6 +286,38 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
 
       final settings = state.settings;
       if (!settings.anyPrayer) return;
+      final titles = _prayerTitles();
+
+      // ── Mosque account ──────────────────────────────────────────────────
+      // No GPS, no calculation method: the only source of truth is what the
+      // admin published. A day without a schedule fires nothing.
+      if (_isMosqueAccount) {
+        final days = await _loadMosqueDays();
+        if (days.isEmpty) {
+          talker.info('No published mosque prayer times: nothing scheduled.');
+          return;
+        }
+        final today = DateTime.now();
+        for (int day = 0; day < NotificationIds.prayersDaysAhead; day++) {
+          final date = today.add(Duration(days: day));
+          final schedule = days[DateTime(date.year, date.month, date.day)];
+          if (schedule == null || schedule.isEmpty) continue;
+          for (final slot in PrayerSlot.values) {
+            if (!settings.prayerFor(slot)) continue;
+            final time = schedule.effective(slot);
+            if (time == null) continue;
+            final id = NotificationIds.prayersBase + (day * 5) + slot.index;
+            final name = titles[slot]!;
+            await notifications.scheduleAt(
+              id: id,
+              title: name,
+              body: _l10n.notifications_prayer_body(name),
+              when: tz.TZDateTime.from(schedule.instant(time), tz.local),
+            );
+          }
+        }
+        return;
+      }
 
       final position = await _schedulingPosition();
       if (position == null) return;
@@ -277,7 +337,6 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
           myMosques.effectiveDayFor(today.add(Duration(days: i)))?.toDailyPrayerTimes(fallback: computedWeek[i]) ??
               computedWeek[i],
       ];
-      final titles = _prayerTitles();
 
       for (int day = 0; day < week.length; day++) {
         final times = week[day];
@@ -315,6 +374,33 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   }) async {
     try {
       await notifications.initialize();
+
+      // Mosque account: anchor on the mosque's own Fajr / Maghrib and skip the
+      // days it has not published.
+      if (_isMosqueAccount) {
+        final days = await _loadMosqueDays();
+        if (days.isEmpty) return;
+        final today = DateTime.now();
+        for (int day = 0; day < NotificationIds.prayersDaysAhead; day++) {
+          final date = today.add(Duration(days: day));
+          final schedule = days[DateTime(date.year, date.month, date.day)];
+          if (schedule == null || schedule.isEmpty) continue;
+          final slot = anchor == _AdhkarAnchor.afterFajr
+              ? PrayerSlot.fajr
+              : PrayerSlot.maghrib;
+          final time = schedule.effective(slot);
+          if (time == null) continue;
+          await notifications.scheduleAt(
+            id: baseId + day,
+            title: title,
+            body: body,
+            when: tz.TZDateTime.from(schedule.instant(time), tz.local)
+                .add(Duration(minutes: offsetMinutes)),
+          );
+        }
+        return;
+      }
+
       final position = await _schedulingPosition();
       if (position == null) return;
 

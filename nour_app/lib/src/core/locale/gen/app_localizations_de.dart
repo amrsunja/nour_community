@@ -3731,4 +3731,24 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Bescheinigung bereit';
+
+  @override
+  String get mosque_settings_title => 'Moschee-Einstellungen';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Moschee-Logo entfernen?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Deine Moschee zeigt ihre Initialen an, bis du ein neues Logo hinzufügst.';
+
+  @override
+  String get mosque_settings_legal_section => 'Rechtliche Angaben';
+
+  @override
+  String get mosque_settings_legal_missing => 'Nicht angegeben';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Deine Erinnerungen richten sich nach den Gebetszeiten, die du veröffentlichst. Lege den Zeitplan deiner Moschee fest, um sie zu erhalten.';
 }

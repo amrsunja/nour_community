@@ -3733,4 +3733,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Reçu prêt';
+
+  @override
+  String get mosque_settings_title => 'Paramètres de la mosquée';
+
+  @override
+  String get mosque_settings_logo_remove_title =>
+      'Supprimer le logo de la mosquée ?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Votre mosquée affichera ses initiales jusqu\'à ce que vous ajoutiez un nouveau logo.';
+
+  @override
+  String get mosque_settings_legal_section => 'Informations légales';
+
+  @override
+  String get mosque_settings_legal_missing => 'Non renseigné';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Vos rappels utilisent les horaires que vous publiez. Renseignez les horaires de votre mosquée pour commencer à les recevoir.';
 }

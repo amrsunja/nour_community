@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "Belastingkwitanties",
 	"mosque_admin_receipt_issue": "Kwitantie uitgeven",
 	"mosque_admin_receipt_view": "Kwitantie bekijken",
-	"mosque_admin_receipt_generated": "Kwitantie gereed"
+	"mosque_admin_receipt_generated": "Kwitantie gereed",
+	"mosque_settings_title": "Moskee-instellingen",
+	"mosque_settings_logo_remove_title": "Moskeelogo verwijderen?",
+	"mosque_settings_logo_remove_message": "Je moskee toont haar initialen totdat je een nieuw logo toevoegt.",
+	"mosque_settings_legal_section": "Juridische gegevens",
+	"mosque_settings_legal_missing": "Niet opgegeven",
+	"mosque_reminders_no_times_hint": "Je herinneringen gebruiken de gebedstijden die je publiceert. Stel het rooster van je moskee in om ze te ontvangen."
 }

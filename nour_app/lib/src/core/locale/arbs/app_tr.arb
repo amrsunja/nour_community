@@ -1188,5 +1188,11 @@
 	"mosque_admin_receipts": "Bağış makbuzları",
 	"mosque_admin_receipt_issue": "Makbuz düzenle",
 	"mosque_admin_receipt_view": "Makbuzu gör",
-	"mosque_admin_receipt_generated": "Makbuz hazır"
+	"mosque_admin_receipt_generated": "Makbuz hazır",
+	"mosque_settings_title": "Cami ayarları",
+	"mosque_settings_logo_remove_title": "Cami logosu kaldırılsın mı?",
+	"mosque_settings_logo_remove_message": "Yeni bir logo eklemedikçe caminiz baş harfleriyle görünecek.",
+	"mosque_settings_legal_section": "Yasal bilgiler",
+	"mosque_settings_legal_missing": "Belirtilmemiş",
+	"mosque_reminders_no_times_hint": "Hatırlatmalarınız yayımladığınız namaz vakitlerini kullanır. Almaya başlamak için caminizin vakitlerini belirleyin."
 }

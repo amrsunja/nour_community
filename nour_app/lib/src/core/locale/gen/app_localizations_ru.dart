@@ -3713,4 +3713,24 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get mosque_admin_receipt_generated => 'Квитанция готова';
+
+  @override
+  String get mosque_settings_title => 'Настройки мечети';
+
+  @override
+  String get mosque_settings_logo_remove_title => 'Удалить логотип мечети?';
+
+  @override
+  String get mosque_settings_logo_remove_message =>
+      'Пока вы не добавите новый логотип, мечеть будет отображаться с инициалами.';
+
+  @override
+  String get mosque_settings_legal_section => 'Юридические данные';
+
+  @override
+  String get mosque_settings_legal_missing => 'Не указано';
+
+  @override
+  String get mosque_reminders_no_times_hint =>
+      'Напоминания приходят по времени намазов, которое вы публикуете. Задайте расписание мечети, чтобы начать их получать.';
 }

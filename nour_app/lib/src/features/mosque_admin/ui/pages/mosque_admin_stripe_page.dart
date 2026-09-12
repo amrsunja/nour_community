@@ -60,7 +60,7 @@ class MosqueAdminStripePage extends HookConsumerWidget {
       MosqueStripeStatus.notStarted => (l10n.mosque_admin_stripe_status_not_started, UIColorsToken.textParagraph),
     };
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(title: l10n.mosque_admin_stripe_title, onBack: () => context.router.maybePop()),
       body: state.isLoading && !state.loaded
           ? const Center(child: UICircularProgressBar())
