@@ -25,6 +25,16 @@ class MosqueOnboardingCountryScreen extends HookConsumerWidget {
         .toList();
 
     return MosqueOnboardingStepScaffold(
+      bottom: UIButton.primary(
+        label: l10n.common_continue,
+        fullWidth: true,
+        onTap: () async {
+          if (ref.read(mosqueOnboardingProvider).draft.countryCode == null) {
+            await presenter.setCountry(selected);
+          }
+          await presenter.next();
+        },
+      ),
       children: [
         const UISpace.vert(40),
         UIAppearAnimation(
@@ -60,16 +70,6 @@ class MosqueOnboardingCountryScreen extends HookConsumerWidget {
             ),
           ),
       ],
-      bottom: UIButton.primary(
-        label: l10n.common_continue,
-        fullWidth: true,
-        onTap: () async {
-          if (ref.read(mosqueOnboardingProvider).draft.countryCode == null) {
-            await presenter.setCountry(selected);
-          }
-          await presenter.next();
-        },
-      ),
     );
   }
 }
