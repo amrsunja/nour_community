@@ -22,6 +22,7 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_header.dart';
 
 import '../state_management/mosque_admin_mosque_provider.dart';
 import '../widgets/audience_picker.dart';
+import '../widgets/mosque_admin_form_widgets.dart';
 
 /// "Create a post" (Figma 1140:2046): free announcement (title + body +
 /// optional photo, audience Public / Followers) or pick a category → typed
@@ -38,6 +39,7 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
     final appEvents = ref.read(appEventProvider);
     final mosque = ref.watch(myMosqueProvider).mosque;
     final admin = ref.read(mosqueAdminMosqueProvider.notifier);
+    final quota = ref.watch(mosqueAdminMosqueProvider.select((s) => s.quota));
 
     final title = useTextEditingController();
     useListenable(title); // rebuild the Post button enabled state
@@ -45,7 +47,13 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
     final audience = useState(MosquePostAudience.public);
     final photo = useState<String?>(null);
     final urgent = useState(false);
+    final notify = useState(true);
     final busy = useState(false);
+
+    useEffect(() {
+      admin.loadQuota();
+      return null;
+    }, const []);
 
     Future<void> pickPhoto() async {
       final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1600, imageQuality: 82);
@@ -71,8 +79,17 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
       busy.value = false;
       await res.when(
         (p) async {
+          if (notify.value && !(quota?.exhausted ?? false)) {
+            final n = await admin.notifyPost(p);
+            if (n != null) {
+              snackbar.showSuccess(l10n.mosque_post_notified(n));
+            } else {
+              snackbar.showSuccess(l10n.mosque_post_published);
+            }
+          } else {
+            snackbar.showSuccess(l10n.mosque_post_published);
+          }
           ref.read(mosqueProfileProvider(mosque.id).notifier).loadPosts();
-          snackbar.showSuccess(l10n.mosque_post_published);
           if (context.mounted) await context.router.maybePop();
         },
         (error) async => appEvents.send(ShowErrorEvent(error)),
@@ -85,7 +102,7 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
       (MosquePostType.event, l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, Assets.icons.calendar, Color(0xff404F3B)),
       (MosquePostType.volunteering, l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, Assets.icons.hand, UIColorsToken.bgSecondaryGreen),
       (MosquePostType.highlight, l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, Assets.icons.gallery, UIColorsToken.black80),
-      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Assets.icons.janaza, UIColorsToken.bgPrimary),
+      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Assets.icons.janaza, UIColorsToken.black),
     ];
 
     return Scaffold(
@@ -93,7 +110,10 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
         title: l10n.mosque_admin_create_post,
         onBack: () => context.router.maybePop(),
         leadingIcons: [
-          UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty ? null : post),
+          SizedBox(
+            height: 35,
+            child: UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty ? null : post)
+          ),
         ],
       ),
       body: Column(
@@ -152,21 +172,6 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
 
                         )
                       ),
-                      const SizedBox(width: 4),
-                      UITap(
-                        onTap: () => urgent.value = !urgent.value,
-                        child: Row(
-                          children: [
-                            UIIcon(
-                              UIIconsToken.icons.warning,
-                              color: urgent.value ? UIColorsToken.red : UIColorsToken.textParagraph,
-                              size: 28,
-                            ),
-                            const SizedBox(width: 4),
-                            Text(l10n.mosque_post_mark_urgent, style: theme.typo.inter.caption.copyWith(color: urgent.value ? UIColorsToken.red : UIColorsToken.textParagraph)),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -206,6 +211,26 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
                           ),
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 24),
+                  PostToggleRow(
+                    icon: UIIconsToken.icons.notify,
+                    title: l10n.mosque_post_notify_followers,
+                    subtitle: quota != null && quota.exhausted
+                        ? l10n.error_api_mosque_broadcast_quota_exceeded
+                        : l10n.mosque_post_send_push(mosque?.followersCount ?? 0),
+                    value: notify.value && !(quota?.exhausted ?? false),
+                    enabled: !(quota?.exhausted ?? false),
+                    onChanged: (v) => notify.value = v,
+                  ),
+                  const SizedBox(height: 12),
+                  PostToggleRow(
+                    icon: UIIconsToken.icons.warning,
+                    iconColor: UIColorsToken.red,
+                    title: l10n.mosque_post_mark_urgent,
+                    subtitle: l10n.mosque_post_mark_urgent_hint,
+                    value: urgent.value,
+                    onChanged: (v) => urgent.value = v,
                   ),
                 ],
               ),

@@ -185,3 +185,47 @@ class AdminStatTile extends StatelessWidget {
     );
   }
 }
+
+/// Icon + title/subtitle + toggle row used at the bottom of the post forms
+/// ("Notify followers", "Mark as urgent").
+class PostToggleRow extends StatelessWidget {
+  const PostToggleRow({
+    super.key,
+    required this.icon,
+    this.iconColor,
+    required this.title,
+    required this.subtitle,
+    required this.value,
+    required this.onChanged,
+    this.enabled = true,
+  });
+
+  final String icon;
+  final Color? iconColor;
+  final String title;
+  final String subtitle;
+  final bool value;
+  final bool enabled;
+  final ValueChanged<bool> onChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Row(
+      children: [
+        UIIcon(icon, color: iconColor ?? UIColorsToken.textYellow, size: 22),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+              Text(subtitle, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+            ],
+          ),
+        ),
+        UIToggle(checked: value, disabled: !enabled, onCheck: onChanged),
+      ],
+    );
+  }
+}

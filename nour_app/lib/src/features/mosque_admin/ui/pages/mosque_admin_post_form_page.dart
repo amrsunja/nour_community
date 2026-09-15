@@ -25,6 +25,7 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_header.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_prayers_tab.dart';
 
 import '../state_management/mosque_admin_mosque_provider.dart';
+import '../widgets/mosque_admin_form_widgets.dart';
 import '../widgets/audience_picker.dart';
 
 /// Typed post form (Figma 1142:5343 "Post an event" — same layout for
@@ -190,8 +191,9 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
         onBack: () => context.router.maybePop(),
         leadingIcons: [
           SizedBox(
-            height: 40,
-            child: UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty || !loaded.value ? null : submit)),
+            height: 35,
+            child: UIButton.primary(label: l10n.mosque_admin_tab_post, isSmall: true, isBusy: busy.value, onTap: title.text.trim().isEmpty || !loaded.value ? null : submit)
+          ),
         ],
       ),
       body: !loaded.value
@@ -355,7 +357,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                   ],
                   const SizedBox(height: 24),
                   if (postId == null)
-                    _ToggleRow(
+                    PostToggleRow(
                     icon: UIIconsToken.icons.notify,
                       title: l10n.mosque_post_notify_followers,
                       subtitle: quota != null && quota.exhausted
@@ -366,7 +368,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                       onChanged: (v) => notify.value = v,
                     ),
                   const SizedBox(height: 12),
-                  _ToggleRow(
+                  PostToggleRow(
                     icon: UIIconsToken.icons.warning,
                     iconColor: UIColorsToken.red,
                     title: l10n.mosque_post_mark_urgent,
@@ -377,38 +379,6 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                 ],
               ),
             ),
-    );
-  }
-}
-
-class _ToggleRow extends StatelessWidget {
-  const _ToggleRow({required this.icon, this.iconColor, required this.title, required this.subtitle, required this.value, required this.onChanged, this.enabled = true});
-  final String icon;
-  final Color? iconColor;
-  final String title;
-  final String subtitle;
-  final bool value;
-  final bool enabled;
-  final ValueChanged<bool> onChanged;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = UITheme.of(context);
-    return Row(
-      children: [
-        UIIcon(icon, color: iconColor ?? UIColorsToken.textYellow, size: 22),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-              Text(subtitle, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-            ],
-          ),
-        ),
-        UIToggle(checked: value, disabled: !enabled, onCheck: onChanged),
-      ],
     );
   }
 }
