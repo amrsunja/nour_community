@@ -24,6 +24,7 @@ class MosqueHeader extends StatelessWidget {
     required this.isOpen,
     this.showDonationTab = false,
     this.newsBadge = false,
+    this.showTabs = true,
     this.actions,
     this.onBack,
     this.onShare,
@@ -37,6 +38,10 @@ class MosqueHeader extends StatelessWidget {
   final bool isOpen;
   final bool showDonationTab;
   final bool newsBadge;
+
+  /// When false the tabs bar is not rendered by the header — the page owns it
+  /// (pinned between the collapsing header and the scrolling body).
+  final bool showTabs;
 
   /// Row placed under the counters (Follow / Become a member, or Edit).
   final Widget? actions;
@@ -185,14 +190,16 @@ class MosqueHeader extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              MosqueTabsBar(
-                tab: tab,
-                onTab: onTab,
-                l10n: l10n,
-                showDonation: showDonationTab,
-                newsBadge: newsBadge,
-              ),
+              if (showTabs) ...[
+                const SizedBox(height: 16),
+                MosqueTabsBar(
+                  tab: tab,
+                  onTab: onTab,
+                  l10n: l10n,
+                  showDonation: showDonationTab,
+                  newsBadge: newsBadge,
+                ),
+              ],
             ],
           ),
         ),

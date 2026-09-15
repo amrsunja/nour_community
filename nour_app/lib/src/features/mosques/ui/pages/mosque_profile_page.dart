@@ -123,75 +123,100 @@ class MosqueProfilePage extends HookConsumerWidget {
       MosqueTab.donation => MosqueDonationTab(mosque: mosque, l10n: l10n),
     };
 
+    final showDonation = donationsFlag && mosque.donationsEnabled;
+    final newsBadge = state.posts.any((p) => DateTime.now().difference(p.publishedAt).inDays < 2);
+
     return Scaffold(
       backgroundColor: UIColorsToken.bgPrimary,
       body: Stack(
         children: [
-          RefreshIndicator(
-            color: UIColorsToken.textYellow,
-            onRefresh: presenter.refresh,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-              padding: EdgeInsets.only(bottom: state.tab == MosqueTab.prayers && !isMine ? 110 : 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  MosqueHeader(
-                    mosque: mosque,
-                    l10n: l10n,
+          NestedScrollView(
+            physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+              SliverToBoxAdapter(
+                child: MosqueHeader(
+                  mosque: mosque,
+                  l10n: l10n,
+                  tab: state.tab,
+                  onTab: presenter.setTab,
+                  isOpen: isOpen,
+                  showTabs: false,
+                  showDonationTab: showDonation,
+                  newsBadge: newsBadge,
+                  onBack: () => context.router.maybePop(),
+                  onShare: () => share(mosque),
+                  onCopiedAddress: () => snackbar.showInfo(l10n.mosque_address_copied),
+                  actions: Row(
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: state.isFollowing
+                            ? UIButton.textual(
+                                label: l10n.mosque_following,
+                                fullWidth: true,
+                                isBusy: state.followBusy,
+                                onTap: presenter.toggleFollow,
+                              )
+                            : UIButton.primary(
+                                label: l10n.mosque_follow,
+                                fullWidth: true,
+                                isBusy: state.followBusy,
+                                onTap: presenter.toggleFollow,
+                              ),
+                      ),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        flex: 3,
+                        child: state.isMember
+                            ? UIButton.secondary(
+                                label: l10n.mosque_member_badge,
+                                assetIcon: UIIconsToken.icons.curone,
+                                contentColor: UIColorsToken.textYellow,
+                                fullWidth: true,
+                              )
+                            : UIButton.secondary(
+                                label: l10n.mosque_become_member,
+                                fullWidth: true,
+                                assetIcon: UIIconsToken.icons.curone,
+                                contentColor: UIColorsToken.textYellow,
+                                onTap: () => nav.toMosqueBecomeMember(mosqueId: mosque.id),
+                              ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Pinned between the collapsing header and the scrolling body.
+                Container(
+                  color: UIColorsToken.bgPrimary,
+                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+                  child: MosqueTabsBar(
                     tab: state.tab,
                     onTab: presenter.setTab,
-                    isOpen: isOpen,
-                    showDonationTab: donationsFlag && mosque.donationsEnabled,
-                    newsBadge: state.posts.any((p) => DateTime.now().difference(p.publishedAt).inDays < 2),
-                    onBack: () => context.router.maybePop(),
-                    onShare: () => share(mosque),
-                    onCopiedAddress: () => snackbar.showInfo(l10n.mosque_address_copied),
-                    actions: Row(
-                      children: [
-                        Expanded(
-                        flex: 2,
-                          child: state.isFollowing
-                              ? UIButton.textual(
-                                  label: l10n.mosque_following,
-                                  fullWidth: true,
-                                  isBusy: state.followBusy,
-                                  onTap: presenter.toggleFollow,
-                                )
-                              : UIButton.primary(
-                                  label: l10n.mosque_follow,
-                                  fullWidth: true,
-                                  isBusy: state.followBusy,
-                                  onTap: presenter.toggleFollow,
-                                ),
-                        ),
-                        const SizedBox(width: 4),
-                        Expanded(
-                        flex: 3,
-                          child: state.isMember
-                              ? UIButton.secondary(
-                                  label: l10n.mosque_member_badge,
-                                  assetIcon: UIIconsToken.icons.curone,
-                                  contentColor: UIColorsToken.textYellow,
-                                  fullWidth: true,
-                                )
-                              : UIButton.secondary(
-                                  label: l10n.mosque_become_member,
-                                  fullWidth: true,
-                                  assetIcon: UIIconsToken.icons.curone,
-                                  contentColor: UIColorsToken.textYellow,
-                                  onTap: () => nav.toMosqueBecomeMember(mosqueId: mosque.id),
-                                ),
-                        ),
-                      ],
+                    l10n: l10n,
+                    showDonation: showDonation,
+                    newsBadge: newsBadge,
+                  ),
+                ),
+                Expanded(
+                  child: RefreshIndicator(
+                    color: UIColorsToken.textYellow,
+                    onRefresh: presenter.refresh,
+                    child: SingleChildScrollView(
+                      key: PageStorageKey('mosque-tab-${state.tab.name}'),
+                      physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                      padding: EdgeInsets.only(bottom: state.tab == MosqueTab.prayers && !isMine ? 110 : 40),
+                      child: state.isLoading && !state.postsLoaded
+                          ? const Padding(padding: EdgeInsets.all(40), child: Center(child: UICircularProgressBar()))
+                          : body,
                     ),
                   ),
-                  if (state.isLoading && !state.postsLoaded)
-                    const Padding(padding: EdgeInsets.all(40), child: Center(child: UICircularProgressBar()))
-                  else
-                    body,
-                ],
-              ),
+                ),
+              ],
             ),
           ),
           if (state.tab == MosqueTab.prayers && !isMine)

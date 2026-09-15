@@ -183,18 +183,17 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
 
     return Scaffold(
       backgroundColor: UIColorsToken.bgPrimary,
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        padding: const EdgeInsets.only(bottom: 120),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            MosqueHeader(
+      body: NestedScrollView(
+        physics: const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+        headerSliverBuilder: (context, innerBoxIsScrolled) => [
+          SliverToBoxAdapter(
+            child: MosqueHeader(
               mosque: mosque,
               l10n: l10n,
               tab: tab.value,
               onTab: (t) => tab.value = t,
               isOpen: mosque.isOpen,
+              showTabs: false,
               showDonationTab: donationsFlag,
               newsBadge: false,
               onCopiedAddress: () => snackbar.showInfo(l10n.mosque_address_copied),
@@ -205,8 +204,32 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
                 onTap: () => context.router.push(const MosqueAdminEditProfileRoute()),
               ),
             ),
-            if (adminState.isSaving) const LinearProgressIndicator(minHeight: 2, color: UIColorsToken.textYellow, backgroundColor: Colors.transparent),
-            body,
+          ),
+        ],
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (adminState.isSaving)
+              const LinearProgressIndicator(minHeight: 2, color: UIColorsToken.textYellow, backgroundColor: Colors.transparent),
+            // Pinned between the collapsing header and the scrolling body.
+            Container(
+              color: UIColorsToken.bgPrimary,
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+              child: MosqueTabsBar(
+                tab: tab.value,
+                onTab: (t) => tab.value = t,
+                l10n: l10n,
+                showDonation: donationsFlag,
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                key: PageStorageKey('mosque-admin-tab-${tab.value.name}'),
+                physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+                padding: const EdgeInsets.only(bottom: 120),
+                child: body,
+              ),
+            ),
           ],
         ),
       ),
