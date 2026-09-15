@@ -3233,6 +3233,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get mosque_admin_field_phone => 'Telepon';
 
   @override
+  String get mosque_admin_field_email => 'Email kontak';
+
+  @override
+  String get mosque_admin_field_account_email => 'Email akun';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'Email yang Anda gunakan untuk masuk. Tidak dapat diubah di sini.';
+
+  @override
   String get mosque_admin_field_website => 'Situs web';
 
   @override

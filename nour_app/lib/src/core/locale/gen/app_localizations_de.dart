@@ -3255,6 +3255,16 @@ class AppLocalizationsDe extends AppLocalizations {
   String get mosque_admin_field_phone => 'Telefon';
 
   @override
+  String get mosque_admin_field_email => 'Kontakt-E-Mail';
+
+  @override
+  String get mosque_admin_field_account_email => 'Konto-E-Mail';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'Die E-Mail, mit der du dich anmeldest. Sie kann hier nicht geändert werden.';
+
+  @override
   String get mosque_admin_field_website => 'Website';
 
   @override

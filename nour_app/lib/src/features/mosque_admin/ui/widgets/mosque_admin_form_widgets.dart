@@ -468,3 +468,66 @@ class _AmountTile extends StatelessWidget {
     );
   }
 }
+
+/// Locked field: shows a value the admin can read but not edit (account email,
+/// SIREN…), styled like [UIInputField] so it sits inline in the same forms.
+class AdminReadOnlyField extends StatelessWidget {
+  const AdminReadOnlyField({
+    super.key,
+    required this.label,
+    required this.value,
+    this.hint,
+    this.placeholder,
+    this.icon = Icons.lock_outline,
+  });
+
+  final String label;
+  final String? value;
+  final String? hint;
+  final String? placeholder;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    final text = (value?.trim().isNotEmpty ?? false) ? value!.trim() : (placeholder ?? '—');
+    final empty = !(value?.trim().isNotEmpty ?? false);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+        const SizedBox(height: 6),
+        Container(
+          height: 52,
+          padding: const EdgeInsets.symmetric(horizontal: 14),
+          decoration: BoxDecoration(
+            color: UIColorsToken.bgSurface.withValues(alpha: .6),
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: UIColorsToken.white.withValues(alpha: .06)),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  text,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.typo.inter.body.copyWith(
+                    color: empty ? UIColorsToken.textParagraph : UIColorsToken.white.withValues(alpha: .75),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Icon(icon, size: 16, color: UIColorsToken.textParagraph),
+            ],
+          ),
+        ),
+        if (hint != null) ...[
+          const SizedBox(height: 6),
+          Text(hint!, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+        ],
+      ],
+    );
+  }
+}

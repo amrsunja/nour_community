@@ -3219,6 +3219,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get mosque_admin_field_phone => 'Telefon';
 
   @override
+  String get mosque_admin_field_email => 'İletişim e-postası';
+
+  @override
+  String get mosque_admin_field_account_email => 'Hesap e-postası';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'Giriş yaptığın e-posta. Burada değiştirilemez.';
+
+  @override
   String get mosque_admin_field_website => 'Web sitesi';
 
   @override

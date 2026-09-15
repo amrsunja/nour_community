@@ -3217,6 +3217,16 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_admin_field_phone => 'ফোন';
 
   @override
+  String get mosque_admin_field_email => 'যোগাযোগের ইমেইল';
+
+  @override
+  String get mosque_admin_field_account_email => 'অ্যাকাউন্টের ইমেইল';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'যে ইমেইল দিয়ে আপনি সাইন ইন করেন। এটি এখানে পরিবর্তন করা যাবে না।';
+
+  @override
   String get mosque_admin_field_website => 'ওয়েবসাইট';
 
   @override

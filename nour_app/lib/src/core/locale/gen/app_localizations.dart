@@ -5900,6 +5900,24 @@ abstract class AppLocalizations {
   /// **'Phone'**
   String get mosque_admin_field_phone;
 
+  /// No description provided for @mosque_admin_field_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact email'**
+  String get mosque_admin_field_email;
+
+  /// No description provided for @mosque_admin_field_account_email.
+  ///
+  /// In en, this message translates to:
+  /// **'Account email'**
+  String get mosque_admin_field_account_email;
+
+  /// No description provided for @mosque_admin_field_account_email_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'The email you sign in with. It can\'t be changed here.'**
+  String get mosque_admin_field_account_email_hint;
+
   /// No description provided for @mosque_admin_field_website.
   ///
   /// In en, this message translates to:

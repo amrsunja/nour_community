@@ -11,11 +11,13 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/auth/ui/state_management/auth_provider.dart';
 import 'package:nour/src/features/mosques/data/models/mosque_model.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_header.dart';
 
 import '../state_management/mosque_admin_mosque_provider.dart';
+import '../widgets/mosque_admin_form_widgets.dart';
 
 /// "Edit" from the admin header: public identity & contact fields, logo and
 /// cover pictures, address (geocoded to `location`), opening status.
@@ -206,7 +208,13 @@ class MosqueAdminEditProfilePage extends HookConsumerWidget {
                   const SizedBox(height: 12),
                   UIInputField(controller: phone, labelText: l10n.mosque_admin_field_phone, keyboardType: TextInputType.phone),
                   const SizedBox(height: 12),
-                  UIInputField(controller: email, labelText: l10n.auth_email, keyboardType: TextInputType.emailAddress),
+                  AdminReadOnlyField(
+                    label: l10n.mosque_admin_field_account_email,
+                    value: ref.watch(authSessionProvider).email,
+                    hint: l10n.mosque_admin_field_account_email_hint,
+                  ),
+                  const SizedBox(height: 12),
+                  UIInputField(controller: email, labelText: l10n.mosque_admin_field_email, keyboardType: TextInputType.emailAddress),
                   const SizedBox(height: 12),
                   UIInputField(controller: website, labelText: l10n.mosque_admin_field_website, keyboardType: TextInputType.url),
                   const SizedBox(height: 12),

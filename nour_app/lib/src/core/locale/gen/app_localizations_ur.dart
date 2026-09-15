@@ -3218,6 +3218,16 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_admin_field_phone => 'فون';
 
   @override
+  String get mosque_admin_field_email => 'رابطہ ای میل';
+
+  @override
+  String get mosque_admin_field_account_email => 'اکاؤنٹ ای میل';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'وہ ای میل جس سے آپ سائن ان کرتے ہیں۔ اسے یہاں تبدیل نہیں کیا جا سکتا۔';
+
+  @override
   String get mosque_admin_field_website => 'ویب سائٹ';
 
   @override

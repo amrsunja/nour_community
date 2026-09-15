@@ -3184,6 +3184,16 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mosque_admin_field_phone => 'الهاتف';
 
   @override
+  String get mosque_admin_field_email => 'البريد الإلكتروني للتواصل';
+
+  @override
+  String get mosque_admin_field_account_email => 'البريد الإلكتروني للحساب';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'البريد الإلكتروني الذي تسجّل الدخول به. لا يمكن تغييره هنا.';
+
+  @override
   String get mosque_admin_field_website => 'الموقع الإلكتروني';
 
   @override

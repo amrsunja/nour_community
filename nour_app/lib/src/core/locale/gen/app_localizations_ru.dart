@@ -3233,6 +3233,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_admin_field_phone => 'Телефон';
 
   @override
+  String get mosque_admin_field_email => 'Контактный e-mail';
+
+  @override
+  String get mosque_admin_field_account_email => 'E-mail аккаунта';
+
+  @override
+  String get mosque_admin_field_account_email_hint =>
+      'E-mail, с которым вы входите. Здесь его изменить нельзя.';
+
+  @override
   String get mosque_admin_field_website => 'Сайт';
 
   @override
