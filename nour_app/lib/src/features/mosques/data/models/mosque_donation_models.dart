@@ -6,13 +6,16 @@ double _num(dynamic v) => v == null ? 0 : (v is num ? v.toDouble() : double.tryP
 int _int(dynamic v) => v == null ? 0 : (v is num ? v.toInt() : int.tryParse('$v') ?? 0);
 List<int> _ints(dynamic v) => v is List ? v.map(_int).where((e) => e > 0).toList() : const [];
 
-/// Mirrors `public.stripe_account_status`.
+/// Mirrors the Postgres enum `public.stripe_account_status`
+/// ('not_started' | 'onboarding' | 'active' | 'restricted' | 'disabled'),
+/// as stored in `mosque_stripe_accounts.status` and returned by the
+/// `mosque-stripe-onboarding` edge function. The wire values MUST match.
 enum MosqueStripeStatus {
   notStarted('not_started'),
-  pending('pending'),
+  pending('onboarding'),
   restricted('restricted'),
-  enabled('enabled'),
-  rejected('rejected');
+  enabled('active'),
+  rejected('disabled');
 
   const MosqueStripeStatus(this.value);
   final String value;

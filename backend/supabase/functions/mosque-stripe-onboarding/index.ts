@@ -34,10 +34,10 @@ function pickEmail(...candidates: (string | null | undefined)[]): string | undef
 }
 
 function mapStatus(a: { charges_enabled?: boolean; details_submitted?: boolean; requirements?: { disabled_reason?: string | null; currently_due?: string[] } }) {
-  if (a.charges_enabled) return "active";
   if (a.requirements?.disabled_reason) return "restricted";
-  if (a.details_submitted) return "onboarding";
-  return "onboarding";
+  if (a.charges_enabled && a.details_submitted) return "active";
+  if (a.charges_enabled || a.details_submitted) return "onboarding";
+  return "not_started";
 }
 
 Deno.serve(async (req) => {
@@ -124,7 +124,7 @@ Deno.serve(async (req) => {
         currently_due: acct.requirements?.currently_due ?? [],
         disabled_reason: acct.requirements?.disabled_reason ?? null,
       },
-      onboarded_at: acct.charges_enabled ? new Date().toISOString() : null,
+      ...(acct.charges_enabled ? { onboarded_at: new Date().toISOString() } : {}),
     }).eq("mosque_id", mosque.id);
 
     // donations_enabled is a protected column: service role bypasses the guard.
@@ -144,6 +144,7 @@ Deno.serve(async (req) => {
       status,
       chargesEnabled: acct.charges_enabled ?? false,
       payoutsEnabled: acct.payouts_enabled ?? false,
+      detailsSubmitted: acct.details_submitted ?? false,
       currentlyDue: acct.requirements?.currently_due ?? [],
       dashboardUrl,
     });

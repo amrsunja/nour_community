@@ -52,7 +52,13 @@ Deno.serve(async (req) => {
     switch (event.type) {
       case "account.updated": {
         const a = event.data.object as Stripe.Account;
-        const status = a.charges_enabled ? "active" : a.requirements?.disabled_reason ? "restricted" : "onboarding";
+        const status = a.requirements?.disabled_reason
+          ? "restricted"
+          : a.charges_enabled && a.details_submitted
+          ? "active"
+          : a.charges_enabled || a.details_submitted
+          ? "onboarding"
+          : "not_started";
         const { data: row } = await admin
           .from("mosque_stripe_accounts")
           .update({
@@ -61,7 +67,7 @@ Deno.serve(async (req) => {
             payouts_enabled: a.payouts_enabled ?? false,
             details_submitted: a.details_submitted ?? false,
             requirements: { currently_due: a.requirements?.currently_due ?? [], disabled_reason: a.requirements?.disabled_reason ?? null },
-            onboarded_at: a.charges_enabled ? new Date().toISOString() : null,
+            ...(a.charges_enabled ? { onboarded_at: new Date().toISOString() } : {}),
           })
           .eq("stripe_account_id", a.id)
           .select("mosque_id")
