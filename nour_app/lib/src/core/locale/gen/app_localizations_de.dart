@@ -3513,6 +3513,23 @@ class AppLocalizationsDe extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'Sadaqa-Karte';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'Die Moschee unterstützen';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'Diesen Monat';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$gifts Spenden';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'Monatliche Spender';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'Einstellungen verwalten';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,

@@ -3475,6 +3475,23 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'সদকা কার্ড';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'মসজিদকে সহায়তা করুন';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'এই মাসে';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$giftsটি দান';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'মাসিক দাতা';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'সেটিংস পরিচালনা করুন';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,

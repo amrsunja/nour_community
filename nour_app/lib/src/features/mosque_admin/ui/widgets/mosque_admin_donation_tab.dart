@@ -10,7 +10,6 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_donation_widgets.dar
 import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
-import 'mosque_admin_form_widgets.dart';
 
 /// Admin Donation tab (devis B1/B5): Stripe setup CTA, analytics, Sadaqa
 /// settings shortcut, campaigns, donors & receipts.
@@ -66,54 +65,41 @@ class MosqueAdminDonationTab extends HookConsumerWidget {
 
           // ── Analytics ──────────────────────────────────────────────────
           if (stats != null) ...[
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(child: Text(l10n.mosque_admin_total_raised_year, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph))),
-                _YearPicker(year: state.year, onChanged: presenter.setYear),
-              ],
-            ),
-            const SizedBox(height: 4),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Text(MosqueFormat.money(stats.totalYear), style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700)),
-                const SizedBox(width: 10),
-                if (growth != null)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 6),
-                    child: Text(
-                      '${growth >= 0 ? '+' : ''}${growth.toStringAsFixed(0)}%',
-                      style: theme.typo.inter.bodyMedium.copyWith(color: growth >= 0 ? UIColorsToken.green : UIColorsToken.red),
-                    ),
-                  ),
-              ],
-            ),
-            const SizedBox(height: 12),
-            Row(
-              children: [
-                Expanded(child: AdminStatTile(label: l10n.mosque_admin_donors, value: '${stats.donors}')),
-                const SizedBox(width: 8),
-                Expanded(child: AdminStatTile(label: l10n.mosque_admin_recurring, value: '${stats.recurringActive}')),
-                const SizedBox(width: 8),
-                Expanded(child: AdminStatTile(label: l10n.mosque_admin_avg_gift, value: MosqueFormat.money(stats.avgGift))),
-              ],
-            ),
+            const SizedBox(height: 16),
+            Align(alignment: Alignment.centerRight, child: _YearPicker(year: state.year, onChanged: presenter.setYear)),
             const SizedBox(height: 8),
-            Row(
-              children: [
-                Expanded(child: AdminStatTile(label: l10n.mosque_admin_stat_support, value: MosqueFormat.money(stats.supportAmount), hint: l10n.mosque_admin_stat_support_hint)),
-                const SizedBox(width: 8),
-                Expanded(child: AdminStatTile(label: l10n.mosque_admin_stat_campaigns, value: MosqueFormat.money(stats.campaignsAmount))),
+            UIMosqueDonationInformationCard(
+              total: MosqueFormat.money(stats.totalYear),
+              totalLabel: l10n.mosque_admin_total_raised_year,
+              growthLabel: growth == null
+                  ? null
+                  : l10n.mosque_donation_card_growth('${growth >= 0 ? '+' : ''}${growth.toStringAsFixed(0)}%', '${state.year - 1}'),
+              growthIsPositive: (growth ?? 0) >= 0,
+              supportAmount: MosqueFormat.money(stats.supportAmount),
+              supportLabel: l10n.mosque_donation_card_support,
+              campaignsAmount: MosqueFormat.money(stats.campaignsAmount),
+              campaignsLabel: l10n.mosque_admin_stat_campaigns,
+              supportRatio: _supportRatio(stats),
+              stats: [
+                UIMosqueDonationStat(value: MosqueFormat.compact(stats.donors), label: l10n.mosque_admin_donors),
+                UIMosqueDonationStat(value: MosqueFormat.compact(stats.recurringActive), label: l10n.mosque_admin_recurring),
+                UIMosqueDonationStat(value: MosqueFormat.money(stats.avgGift), label: l10n.mosque_admin_avg_gift),
               ],
             ),
           ],
 
           // ── Sadaqa card ────────────────────────────────────────────────
           const SizedBox(height: 24),
-          MosqueSectionHeader(title: l10n.mosque_admin_sadaqa_title, actionLabel: l10n.mosque_admin_manage, onAction: nav.toMosqueAdminSadaqaSettings),
+          MosqueSectionHeader(title: l10n.mosque_admin_sadaqa_section_title),
           const SizedBox(height: 10),
-          _SadaqaPreview(settings: state.settings ?? MosqueDonationSettings(mosqueId: mosque.id), mosque: mosque, stats: stats, l10n: l10n),
+          _SadaqaPreview(
+            settings: state.settings ?? MosqueDonationSettings(mosqueId: mosque.id),
+            mosque: mosque,
+            stats: stats,
+            l10n: l10n,
+            active: state.donationsReady,
+            onManage: nav.toMosqueAdminSadaqaSettings,
+          ),
 
           // ── Campaigns ──────────────────────────────────────────────────
           const SizedBox(height: 24),
@@ -154,6 +140,13 @@ class MosqueAdminDonationTab extends HookConsumerWidget {
   }
 }
 
+/// Support share of the year total, `0..1` (defaults to a 50/50 bar when
+/// nothing has been raised yet).
+double _supportRatio(MosqueDonationStats stats) {
+  final total = stats.supportAmount + stats.campaignsAmount;
+  return total <= 0 ? 0.5 : (stats.supportAmount / total).clamp(0.0, 1.0);
+}
+
 class _SetupCard extends StatelessWidget {
   const _SetupCard({required this.state, required this.l10n, required this.onTap});
   final MosqueAdminDonationState state;
@@ -191,39 +184,143 @@ class _SetupCard extends StatelessWidget {
 }
 
 class _SadaqaPreview extends StatelessWidget {
-  const _SadaqaPreview({required this.settings, required this.mosque, required this.stats, required this.l10n});
+  const _SadaqaPreview({
+    required this.settings,
+    required this.mosque,
+    required this.stats,
+    required this.l10n,
+    required this.active,
+    required this.onManage,
+  });
+
   final MosqueDonationSettings settings;
   final MosqueModel mosque;
   final MosqueDonationStats? stats;
   final AppLocale l10n;
+  final bool active;
+  final VoidCallback onManage;
 
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
+    final description = settings.description;
     return UICard(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Text(
+                  settings.title,
+                  style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600),
+                ),
+              ),
+              if (settings.showTaxBadge && mosque.canIssueTaxReceipts) ...[
+                MosqueTaxBadge(l10n: l10n),
+                const SizedBox(width: 6),
+              ],
+              if (active) _ActiveBadge(label: l10n.mosque_campaign_active),
+            ],
+          ),
+          if (description != null && description.isNotEmpty) ...[
+            const SizedBox(height: 8),
+            Text(
+              description,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph),
+            ),
+          ],
+          if (stats != null) ...[
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _SadaqaStatTile(
+                    label: l10n.mosque_admin_sadaqa_this_month,
+                    value: MosqueFormat.money(stats!.monthAmount),
+                    hint: l10n.mosque_admin_sadaqa_gifts(stats!.monthGifts),
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: _SadaqaStatTile(
+                    label: l10n.mosque_admin_recurring,
+                    value: '${stats!.recurringActive}',
+                    hint: l10n.mosque_admin_sadaqa_monthly_donors,
+                  ),
+                ),
+              ],
+            ),
+          ],
+          const SizedBox(height: 16),
+          UIButton.secondary(
+            label: l10n.mosque_admin_sadaqa_manage_settings,
+            assetIcon: UIIconsToken.icons.tools,
+            fullWidth: true,
+            onTap: onManage,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Green "Active" pill of the Sadaqa card header.
+class _ActiveBadge extends StatelessWidget {
+  const _ActiveBadge({required this.label});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: UIColorsToken.pastelGreen.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(
+        label,
+        style: theme.typo.inter.caption.copyWith(color: UIColorsToken.greenAccent, fontWeight: FontWeight.w500),
+      ),
+    );
+  }
+}
+
+/// `label / value / hint` tile used inside the Sadaqa card.
+class _SadaqaStatTile extends StatelessWidget {
+  const _SadaqaStatTile({required this.label, required this.value, required this.hint});
+  final String label;
+  final String value;
+  final String hint;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Container(
       padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: UIColorsToken.white.withValues(alpha: 0.04),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: UIColorsToken.white.withValues(alpha: 0.06)),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(child: Text(settings.title, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600))),
-              if (settings.showTaxBadge && mosque.canIssueTaxReceipts) MosqueTaxBadge(l10n: l10n),
-            ],
+          Text(label, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
+          const SizedBox(height: 8),
+          Text(
+            value,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700),
           ),
-          if (settings.description != null && settings.description!.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Text(settings.description!, maxLines: 2, overflow: TextOverflow.ellipsis, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
-          ],
-          const SizedBox(height: 10),
-          Wrap(spacing: 6, runSpacing: 6, children: [for (final a in settings.suggestedAmounts) MosqueChip(label: '$a€', selected: false, dense: true)]),
-          if (stats != null) ...[
-            const SizedBox(height: 12),
-            Text(
-              l10n.mosque_admin_sadaqa_month_summary(stats!.monthGifts, MosqueFormat.money(stats!.monthAmount), stats!.monthlyDonors),
-              style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
-            ),
-          ],
+          const SizedBox(height: 2),
+          Text(hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
         ],
       ),
     );

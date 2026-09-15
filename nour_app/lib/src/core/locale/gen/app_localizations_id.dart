@@ -3491,6 +3491,23 @@ class AppLocalizationsId extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'Kartu sedekah';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'Dukung masjid';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'Bulan ini';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$gifts donasi';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'Donatur bulanan';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'Kelola pengaturan';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,

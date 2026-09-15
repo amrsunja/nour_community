@@ -3475,6 +3475,23 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'صدقہ کارڈ';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'مسجد کی مدد کریں';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'اس مہینے';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$gifts عطیات';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'ماہانہ عطیہ دہندگان';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'ترتیبات کا انتظام';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,

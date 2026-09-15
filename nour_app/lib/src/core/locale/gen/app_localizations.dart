@@ -6302,6 +6302,36 @@ abstract class AppLocalizations {
   /// **'Sadaqa card'**
   String get mosque_admin_sadaqa_title;
 
+  /// No description provided for @mosque_admin_sadaqa_section_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Support the mosque'**
+  String get mosque_admin_sadaqa_section_title;
+
+  /// No description provided for @mosque_admin_sadaqa_this_month.
+  ///
+  /// In en, this message translates to:
+  /// **'This month'**
+  String get mosque_admin_sadaqa_this_month;
+
+  /// No description provided for @mosque_admin_sadaqa_gifts.
+  ///
+  /// In en, this message translates to:
+  /// **'{gifts} gifts'**
+  String mosque_admin_sadaqa_gifts(int gifts);
+
+  /// No description provided for @mosque_admin_sadaqa_monthly_donors.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly donors'**
+  String get mosque_admin_sadaqa_monthly_donors;
+
+  /// No description provided for @mosque_admin_sadaqa_manage_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Manage settings'**
+  String get mosque_admin_sadaqa_manage_settings;
+
   /// No description provided for @mosque_admin_sadaqa_month_summary.
   ///
   /// In en, this message translates to:

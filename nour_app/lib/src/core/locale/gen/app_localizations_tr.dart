@@ -3475,6 +3475,23 @@ class AppLocalizationsTr extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'Sadaka kartı';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'Camiye destek ol';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'Bu ay';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$gifts bağış';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'Aylık bağışçılar';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'Ayarları yönet';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,

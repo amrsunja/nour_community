@@ -1225,6 +1225,12 @@
 		}
 	},
 	"mosque_admin_sadaqa_title": "Sadaqa card",
+	"mosque_admin_sadaqa_section_title": "Support the mosque",
+	"mosque_admin_sadaqa_this_month": "This month",
+	"mosque_admin_sadaqa_gifts": "{gifts} gifts",
+	"@mosque_admin_sadaqa_gifts": { "placeholders": { "gifts": { "type": "int" } } },
+	"mosque_admin_sadaqa_monthly_donors": "Monthly donors",
+	"mosque_admin_sadaqa_manage_settings": "Manage settings",
 	"mosque_admin_sadaqa_month_summary": "{gifts} gifts this month ({amount}) · {monthly} monthly donors",
 	"@mosque_admin_sadaqa_month_summary": {"placeholders": {"gifts": {"type": "int"}, "amount": {"type": "String"}, "monthly": {"type": "int"}}},
 	"mosque_admin_sadaqa_settings_title": "Sadaqa settings",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 
 /// One `value / label` pair of the bottom stats row of
@@ -12,7 +13,9 @@ class UIMosqueDonationStat {
 
 /// Donation overview card (Figma "Mosque profile – donation", node 1153:1824).
 ///
-/// Dark-green gradient card with a faint Arabic calligraphy watermark:
+/// Dark-green gradient card with a faint Arabic calligraphy watermark
+/// (`assets/images/bg_card_arabic_image.png`, 5% opacity, stacked
+/// [backgroundRepeat] times vertically):
 ///
 /// * total raised + optional growth badge (`+24% vs 2025`)
 /// * split bar: support share (grey) vs campaigns share (gold)
@@ -32,7 +35,8 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
     required this.campaignsLabel,
     required this.supportRatio,
     required this.stats,
-    this.arabicBgText = 'احصل على',
+    this.growthIsPositive = true,
+    this.backgroundRepeat = 2,
     this.padding = const EdgeInsets.all(16),
     this.width,
     this.shadows,
@@ -45,6 +49,8 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
   final String totalLabel;
   /// e.g. `+24% vs 2025`. Hidden when null.
   final String? growthLabel;
+  /// Drives the badge arrow / color of [growthLabel].
+  final bool growthIsPositive;
 
   final String supportAmount;
   /// e.g. `Support` — the percentage is appended by the card.
@@ -56,7 +62,10 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
 
   /// Bottom row, 2–4 entries; first is start-aligned, last end-aligned.
   final List<UIMosqueDonationStat> stats;
-  final String? arabicBgText;
+
+  /// How many times the calligraphy watermark is stacked vertically.
+  /// `0` hides it.
+  final int backgroundRepeat;
   final EdgeInsets padding;
   final double? width;
   /// `null` = [UICard] default drop shadow; pass `const []` for a flat card.
@@ -86,15 +95,23 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius),
         child: Stack(
           children: [
-            if (arabicBgText != null)
+            if (backgroundRepeat > 0)
               Positioned.fill(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  clipBehavior: Clip.hardEdge,
-                  child: Text(
-                    arabicBgText!,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(color: UIColorsToken.textYellow.withValues(alpha: 0.05)),
+                child: IgnorePointer(
+                  child: Opacity(
+                    opacity: 0.05,
+                    child: Column(
+                      children: [
+                        for (var i = 0; i < backgroundRepeat; i++)
+                          Expanded(
+                            child: Assets.images.bgCardArabicImage.image(
+                              width: double.infinity,
+                              fit: BoxFit.cover,
+                              alignment: Alignment.center,
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -136,7 +153,7 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
                       ),
                       if (growthLabel != null) ...[
                         const SizedBox(width: 12),
-                        _GrowthBadge(label: growthLabel!),
+                        _GrowthBadge(label: growthLabel!, positive: growthIsPositive),
                       ],
                     ],
                   ),
@@ -203,27 +220,27 @@ class UIMosqueDonationInformationCard extends StatelessWidget {
 }
 
 class _GrowthBadge extends StatelessWidget {
-  const _GrowthBadge({required this.label});
+  const _GrowthBadge({required this.label, this.positive = true});
   final String label;
-
-  static const _fg = UIColorsToken.greenAccent;
+  final bool positive;
 
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
+    final fg = positive ? UIColorsToken.greenAccent : UIColorsToken.red;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
-        color: UIColorsToken.pastelGreen.withValues(alpha: 0.22),
+        color: (positive ? UIColorsToken.pastelGreen : UIColorsToken.red).withValues(alpha: 0.22),
         borderRadius: BorderRadius.circular(6),
-        border: Border.all(color: UIColorsToken.greenAccent, width: 0.5)
+        border: Border.all(color: fg, width: 0.5),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.north_east_rounded, size: 12, color: _fg),
+          Icon(positive ? Icons.north_east_rounded : Icons.south_east_rounded, size: 12, color: fg),
           const SizedBox(width: 4),
-          Text(label, style: theme.typo.inter.smallCaption.copyWith(color: _fg, fontWeight: FontWeight.w500)),
+          Text(label, style: theme.typo.inter.smallCaption.copyWith(color: fg, fontWeight: FontWeight.w500)),
         ],
       ),
     );

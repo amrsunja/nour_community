@@ -3494,6 +3494,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_admin_sadaqa_title => 'Карточка садаки';
 
   @override
+  String get mosque_admin_sadaqa_section_title => 'Поддержать мечеть';
+
+  @override
+  String get mosque_admin_sadaqa_this_month => 'В этом месяце';
+
+  @override
+  String mosque_admin_sadaqa_gifts(int gifts) {
+    return '$gifts пожертвований';
+  }
+
+  @override
+  String get mosque_admin_sadaqa_monthly_donors => 'Ежемесячные доноры';
+
+  @override
+  String get mosque_admin_sadaqa_manage_settings => 'Управление настройками';
+
+  @override
   String mosque_admin_sadaqa_month_summary(
     int gifts,
     String amount,
