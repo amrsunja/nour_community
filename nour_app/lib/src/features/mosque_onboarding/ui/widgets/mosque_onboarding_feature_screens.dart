@@ -18,10 +18,10 @@ class MosqueOnboardingAnnouncementsScreen extends ConsumerWidget {
     final presenter = ref.read(mosqueOnboardingProvider.notifier);
 
     final tiles = [
-      _Tile(l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, UIIconsToken.icons.calendar, const Color(0xff1F6FEB)),
-      _Tile(l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, UIIconsToken.icons.hand, const Color(0xff1F8A5B)),
-      _Tile(l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, UIIconsToken.icons.gallery, const Color(0xff7C4DFF)),
-      _Tile(l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, UIIconsToken.icons.janaza, const Color(0xff3A4A6B)),
+      _Tile(l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, UIIconsToken.icons.calendar, Color(0xff404F3B)),
+      _Tile(l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, UIIconsToken.icons.hand, UIColorsToken.bgSecondaryGreen),
+      _Tile(l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, UIIconsToken.icons.gallery, UIColorsToken.black80),
+      _Tile(l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, UIIconsToken.icons.janaza, UIColorsToken.bgPrimary),
     ];
 
     return MosqueOnboardingStepScaffold(
