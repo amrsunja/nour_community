@@ -37,6 +37,7 @@ export 'src/components/ui_avatar.dart';
 export 'src/components/ui_tabs.dart';
 export 'src/components/ui_refresh_indicator.dart';
 export 'src/components/ui_bottom_sheet.dart';
+export 'src/components/ui_top_glow.dart';
 
 //--------------------- FIELDS ---------------------
 export 'src/components/fields/ui_input_field.dart';

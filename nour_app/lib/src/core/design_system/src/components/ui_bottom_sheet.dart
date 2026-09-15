@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 
@@ -85,7 +83,7 @@ class UIBottomSheetSurface extends StatelessWidget {
                   (1 - UIBottomSheet.glowVisibleFraction),
               left: 0,
               right: 0,
-              child: IgnorePointer(child: UIBottomSheetTopGlow()),
+              child: UIBottomSheetTopGlow(),
             ),
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -101,30 +99,18 @@ class UIBottomSheetSurface extends StatelessWidget {
   }
 }
 
-/// The blurred gold circle whose bottom 20% peeks into the sheet.
+/// The blurred gold circle whose bottom sliver peeks into the sheet.
+///
+/// Thin alias over [UITopGlow] — kept so existing call sites keep working.
 class UIBottomSheetTopGlow extends StatelessWidget {
   const UIBottomSheetTopGlow({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ImageFiltered(
-        imageFilter: ImageFilter.blur(
-          sigmaX: UIBottomSheet.glowBlur,
-          sigmaY: UIBottomSheet.glowBlur,
-          tileMode: TileMode.decal,
-        ),
-        child: Container(
-          width: UIBottomSheet.glowDiameter,
-          height: UIBottomSheet.glowDiameter,
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: UIBottomSheet.glowColor,
-          ),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => const UITopGlow(
+        diameter: UIBottomSheet.glowDiameter,
+        blur: UIBottomSheet.glowBlur,
+        color: UIBottomSheet.glowColor,
+      );
 }
 
 /// The white drag line at the top of every sheet.

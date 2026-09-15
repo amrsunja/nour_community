@@ -100,108 +100,115 @@ class MosqueHeader extends StatelessWidget {
             ),
           ],
         ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
+        // Warm halo bleeding down from the cover / info seam, same circle as
+        // the one at the top of every bottom sheet.
+        Stack(
+          children: [
+            const Positioned(top: UITopGlow.offset, left: 0, right: 0, child: UITopGlow()),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MosqueLogo(mosque: mosque, size: 60),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(mosque.name, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
-                        const SizedBox(height: 4),
-                        if (mosque.fullAddress.isNotEmpty)
-                          UITap(
-                            onTap: () async {
-                              await Clipboard.setData(ClipboardData(text: mosque.fullAddress));
-                              onCopiedAddress?.call();
-                            },
-                            child: Row(
-                              crossAxisAlignment: .center,
-                              children: [
-                                Icon(Icons.location_on_outlined, size: 14, color: UIColorsToken.textParagraph),
-                                const SizedBox(width: 4),
-                                Flexible(
-                                  child: Text(
-                                    mosque.fullAddress,
-                                    maxLines: 2,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
-                                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      MosqueLogo(mosque: mosque, size: 60),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(mosque.name, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
+                            const SizedBox(height: 4),
+                            if (mosque.fullAddress.isNotEmpty)
+                              UITap(
+                                onTap: () async {
+                                  await Clipboard.setData(ClipboardData(text: mosque.fullAddress));
+                                  onCopiedAddress?.call();
+                                },
+                                child: Row(
+                                  crossAxisAlignment: .center,
+                                  children: [
+                                    Icon(Icons.location_on_outlined, size: 14, color: UIColorsToken.textParagraph),
+                                    const SizedBox(width: 4),
+                                    Flexible(
+                                      child: Text(
+                                        mosque.fullAddress,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Icon(Icons.copy_rounded, size: 12, color: UIColorsToken.textParagraph),
+                                  ],
                                 ),
-                                const SizedBox(width: 4),
-                                Icon(Icons.copy_rounded, size: 12, color: UIColorsToken.textParagraph),
-                              ],
-                            ),
-                          ),
-                      ],
-                    ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 12),
+                  Wrap(
+                    crossAxisAlignment: WrapCrossAlignment.center,
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: [
+                      _StatusPill(open: isOpen, label: isOpen ? l10n.mosque_status_open : l10n.mosque_status_closed),
+                      Text('·', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                      _Counter(value: mosque.followersCount, label: l10n.mosque_followers),
+                      Text('·', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                      _Counter(value: mosque.membersCount, label: l10n.mosque_members),
+                    ],
+                  ),
+                  if (actions != null) ...[const SizedBox(height: 16), actions!],
+                  const SizedBox(height: 16),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _ActionTile(
+                          imagePath: Assets.images.illustration39.path,
+                          label: l10n.mosque_action_itinerary,
+                          enabled: mosque.hasLocation || mosque.fullAddress.isNotEmpty,
+                          onTap: () => openItinerary(mosque),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _ActionTile(
+                          imagePath: Assets.images.illustration37.path,
+                          label: l10n.mosque_action_call,
+                          enabled: (mosque.phone ?? '').isNotEmpty,
+                          onTap: () => launchUrl(Uri.parse('tel:${mosque.phone}')),
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _ActionTile(
+                          imagePath: Assets.images.illustration38.path,
+                          label: l10n.mosque_action_email,
+                          enabled: (mosque.email ?? '').isNotEmpty,
+                          onTap: () => launchUrl(Uri.parse('mailto:${mosque.email}')),
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (showTabs) ...[
+                    const SizedBox(height: 16),
+                    MosqueTabsBar(
+                      tab: tab,
+                      onTab: onTab,
+                      l10n: l10n,
+                      showDonation: showDonationTab,
+                      newsBadge: newsBadge,
+                    ),
+                  ],
                 ],
               ),
-              const SizedBox(height: 12),
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 8,
-                runSpacing: 6,
-                children: [
-                  _StatusPill(open: isOpen, label: isOpen ? l10n.mosque_status_open : l10n.mosque_status_closed),
-                  Text('·', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-                  _Counter(value: mosque.followersCount, label: l10n.mosque_followers),
-                  Text('·', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-                  _Counter(value: mosque.membersCount, label: l10n.mosque_members),
-                ],
-              ),
-              if (actions != null) ...[const SizedBox(height: 16), actions!],
-              const SizedBox(height: 16),
-              Row(
-                children: [
-                  Expanded(
-                    child: _ActionTile(
-                      imagePath: Assets.images.illustration39.path,
-                      label: l10n.mosque_action_itinerary,
-                      enabled: mosque.hasLocation || mosque.fullAddress.isNotEmpty,
-                      onTap: () => openItinerary(mosque),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: _ActionTile(
-                      imagePath: Assets.images.illustration37.path,
-                      label: l10n.mosque_action_call,
-                      enabled: (mosque.phone ?? '').isNotEmpty,
-                      onTap: () => launchUrl(Uri.parse('tel:${mosque.phone}')),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: _ActionTile(
-                      imagePath: Assets.images.illustration38.path,
-                      label: l10n.mosque_action_email,
-                      enabled: (mosque.email ?? '').isNotEmpty,
-                      onTap: () => launchUrl(Uri.parse('mailto:${mosque.email}')),
-                    ),
-                  ),
-                ],
-              ),
-              if (showTabs) ...[
-                const SizedBox(height: 16),
-                MosqueTabsBar(
-                  tab: tab,
-                  onTab: onTab,
-                  l10n: l10n,
-                  showDonation: showDonationTab,
-                  newsBadge: newsBadge,
-                ),
-              ],
-            ],
-          ),
+            ),
+          ],
         ),
       ],
     );
