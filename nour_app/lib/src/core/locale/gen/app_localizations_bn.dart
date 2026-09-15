@@ -2284,13 +2284,13 @@ class AppLocalizationsBn extends AppLocalizations {
       'RNA অবশ্যই W751123456 এর মতো হতে হবে';
 
   @override
-  String get mosque_register_siren => 'SIREN নম্বর';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN অবশ্যই ৯ অঙ্কের হতে হবে';
 
   @override
-  String get mosque_register_cta => 'নিবন্ধন করুন';
+  String get mosque_register_cta => 'নিশ্চিত করুন';
 
   @override
   String get mosque_account_title => 'চলুন আপনার অ্যাকাউন্ট তৈরি করি';

@@ -2301,13 +2301,13 @@ class AppLocalizationsMs extends AppLocalizations {
       'RNA mesti berbentuk seperti W751123456';
 
   @override
-  String get mosque_register_siren => 'Nombor SIREN';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN mesti mempunyai 9 digit';
 
   @override
-  String get mosque_register_cta => 'Daftar';
+  String get mosque_register_cta => 'Sahkan';
 
   @override
   String get mosque_account_title => 'Mari cipta akaun anda';

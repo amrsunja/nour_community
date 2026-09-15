@@ -67,10 +67,9 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
 
     Future<void> onPostMenu(MosquePostModel p) async {
       final quota = adminState.quota;
-      final action = await showModalBottomSheet<String>(
+      final action = await UIBottomSheet.show<String>(
         context: context,
         backgroundColor: UIColorsToken.bgSurface,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (ctx) => SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,

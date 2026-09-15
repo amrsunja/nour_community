@@ -90,11 +90,10 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
 
     Future<void> postUpdate() async {
       if (campaign == null) return;
-      final res = await showModalBottomSheet<(String, bool)>(
+      final res = await UIBottomSheet.show<(String, bool)>(
         context: context,
         isScrollControlled: true,
         backgroundColor: UIColorsToken.bgPrimary,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (_) => _UpdateSheet(l10n: l10n, quota: ref.read(mosqueAdminMosqueProvider).quota),
       );
       if (res == null) return;

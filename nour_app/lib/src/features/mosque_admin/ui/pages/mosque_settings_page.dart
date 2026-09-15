@@ -143,11 +143,6 @@ class MosqueSettingsPage extends HookConsumerWidget {
                     title: l10n.profile_preferences,
                     children: [
                       ProfileMenuRow(
-                        icon: Icons.history,
-                        label: l10n.profile_reminders,
-                        onTap: () => nav.toRemindersSettings(),
-                      ),
-                      ProfileMenuRow(
                         icon: Icons.notifications_none,
                         label: l10n.push_settings_title,
                         onTap: () => nav.toPushSettings(),

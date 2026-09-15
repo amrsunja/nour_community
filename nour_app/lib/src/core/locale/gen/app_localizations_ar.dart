@@ -2257,14 +2257,14 @@ class AppLocalizationsAr extends AppLocalizations {
       'يجب أن يكون رقم RNA بصيغة مثل W751123456';
 
   @override
-  String get mosque_register_siren => 'رقم SIREN';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid =>
       'يجب أن يتكوّن رقم SIREN من 9 أرقام';
 
   @override
-  String get mosque_register_cta => 'تسجيل';
+  String get mosque_register_cta => 'تأكيد';
 
   @override
   String get mosque_account_title => 'لننشئ حسابك';

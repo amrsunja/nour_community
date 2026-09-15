@@ -2284,13 +2284,13 @@ class AppLocalizationsTr extends AppLocalizations {
       'RNA şu biçimde olmalıdır: W751123456';
 
   @override
-  String get mosque_register_siren => 'SIREN numarası';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN 9 haneli olmalıdır';
 
   @override
-  String get mosque_register_cta => 'Kaydet';
+  String get mosque_register_cta => 'Onayla';
 
   @override
   String get mosque_account_title => 'Hesabınızı oluşturalım';

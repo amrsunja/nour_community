@@ -141,12 +141,9 @@ class MosqueSettingsAvatar extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = AppLocale.of(context);
 
-    return showModalBottomSheet<bool>(
+    return UIBottomSheet.show<bool>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (ctx) => SafeArea(
         top: false,
         child: Padding(
@@ -155,16 +152,6 @@ class MosqueSettingsAvatar extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: UIColorsToken.stroke,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
               const SizedBox(height: 20),
               Text(
                 l10n.mosque_settings_logo_remove_title,

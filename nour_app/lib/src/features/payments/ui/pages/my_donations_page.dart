@@ -112,12 +112,9 @@ class MyDonationsPage extends HookConsumerWidget {
 
   Future<bool?> _confirmStop(BuildContext context, AppLocale l10n) {
     final typo = UITheme.of(context).typo;
-    return showModalBottomSheet<bool>(
+    return UIBottomSheet.show<bool>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (ctx) => SafeArea(
         top: false,
         child: Padding(
@@ -126,16 +123,6 @@ class MyDonationsPage extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: UIColorsToken.stroke,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
               const UISpace.vert(20),
               Text(
                 l10n.my_donations_cancel_confirm_title,

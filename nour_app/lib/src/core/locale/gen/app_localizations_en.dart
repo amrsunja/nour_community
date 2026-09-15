@@ -2291,13 +2291,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mosque_register_rna_invalid => 'RNA must look like W751123456';
 
   @override
-  String get mosque_register_siren => 'SIREN number';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN must have 9 digits';
 
   @override
-  String get mosque_register_cta => 'Register';
+  String get mosque_register_cta => 'Confirm';
 
   @override
   String get mosque_account_title => 'Let\'s create your account';

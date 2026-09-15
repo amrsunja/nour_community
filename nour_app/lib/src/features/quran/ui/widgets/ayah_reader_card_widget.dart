@@ -184,13 +184,10 @@ class AyahReaderCardWidget extends StatelessWidget {
     final hasTafsir = tafsirText != null && tafsirText!.trim().isNotEmpty;
     final bodyText = hasTafsir ? tafsirText! : translation;
 
-    showModalBottomSheet<void>(
+    UIBottomSheet.show<void>(
       context: context,
       backgroundColor: UIColorsToken.bgSurface,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (ctx) => SafeArea(
         child: ConstrainedBox(
           constraints: BoxConstraints(

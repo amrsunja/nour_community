@@ -11,14 +11,11 @@ class DeleteAccountSheet extends StatelessWidget {
   const DeleteAccountSheet({super.key});
 
   static Future<bool?> show(BuildContext context) {
-    return showModalBottomSheet<bool>(
+    return UIBottomSheet.show<bool>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isDismissible: true,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (_) => const DeleteAccountSheet(),
     );
   }
@@ -36,16 +33,6 @@ class DeleteAccountSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: UIColorsToken.stroke,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
             const SizedBox(height: 20),
             Text(
               l10n.profile_delete_account_title,

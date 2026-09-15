@@ -2292,14 +2292,14 @@ class AppLocalizationsNl extends AppLocalizations {
       'RNA moet er zo uitzien: W751123456';
 
   @override
-  String get mosque_register_siren => 'SIREN-nummer';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid =>
       'SIREN moet uit 9 cijfers bestaan';
 
   @override
-  String get mosque_register_cta => 'Registreren';
+  String get mosque_register_cta => 'Bevestigen';
 
   @override
   String get mosque_account_title => 'Laten we je account aanmaken';

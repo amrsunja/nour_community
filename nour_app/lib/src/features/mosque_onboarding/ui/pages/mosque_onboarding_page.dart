@@ -16,7 +16,6 @@ import '../widgets/mosque_onboarding_country_screen.dart';
 import '../widgets/mosque_onboarding_feature_screens.dart';
 import '../widgets/mosque_onboarding_language_screen.dart';
 import '../widgets/mosque_onboarding_register_screen.dart';
-import '../widgets/mosque_onboarding_reminders_screen.dart';
 
 /// Sessionless mosque-manager onboarding (Figma section "Onboarding mosquée").
 /// Steps live in [MosqueOnboardingStep]; progress is persisted locally.
@@ -111,7 +110,6 @@ class MosqueOnboardingPage extends HookConsumerWidget {
                       MosqueOnboardingCalendarScreen(),
                       MosqueOnboardingCountryScreen(),
                       MosqueOnboardingLanguageScreen(),
-                      MosqueOnboardingRemindersScreen(),
                       MosqueOnboardingRegisterScreen(),
                       MosqueOnboardingAccountScreen(),
                     ],

@@ -36,28 +36,47 @@ class MosqueOnboardingRegisterScreen extends HookConsumerWidget {
         };
 
     Future<void> pickStatus() async {
-      final picked = await showModalBottomSheet<MosqueLegalStatus>(
+      final picked = await UIBottomSheet.show<MosqueLegalStatus>(
         context: context,
         backgroundColor: UIColorsToken.bgSurface,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (ctx) => SafeArea(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 16),
-              Text(l10n.mosque_register_legal_status,
-                  style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
-              const SizedBox(height: 8),
-              for (final s in MosqueLegalStatus.values)
-                ListTile(
-                  title: Text(statusLabel(s), style: theme.typo.inter.body.copyWith(color: UIColorsToken.white)),
-                  trailing: legalStatus.value == s
-                      ? const Icon(Icons.check, color: UIColorsToken.textYellow)
-                      : null,
-                  onTap: () => Navigator.of(ctx).pop(s),
+          top: false,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 12),
+                Text(
+                  l10n.mosque_register_legal_status,
+                  textAlign: TextAlign.center,
+                  style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
                 ),
-              const SizedBox(height: 8),
-            ],
+                const SizedBox(height: 20),
+                for (final s in MosqueLegalStatus.values) ...[
+                  UITap(
+                    onTap: () => Navigator.of(ctx).pop(s),
+                    child: UISelecteableCard(
+                      selected: legalStatus.value == s,
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              statusLabel(s),
+                              style: theme.typo.inter.title.copyWith(color: UIColorsToken.white),
+                            ),
+                          ),
+                          if (legalStatus.value == s)
+                            const Icon(Icons.check, size: 20, color: UIColorsToken.textYellow),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                ],
+              ],
+            ),
           ),
         ),
       );
@@ -80,6 +99,11 @@ class MosqueOnboardingRegisterScreen extends HookConsumerWidget {
     final rnaRequired = legalStatus.value != MosqueLegalStatus.other;
 
     return MosqueOnboardingStepScaffold(
+      bottom: UIButton.primary(
+        label: l10n.mosque_register_cta,
+        fullWidth: true,
+        onTap: onRegister,
+      ),
       children: [
         const UISpace.vert(60),
         UIAppearAnimation(
@@ -160,11 +184,6 @@ class MosqueOnboardingRegisterScreen extends HookConsumerWidget {
           ),
         ),
       ],
-      bottom: UIButton.primary(
-        label: l10n.mosque_register_cta,
-        fullWidth: true,
-        onTap: onRegister,
-      ),
     );
   }
 }
@@ -182,7 +201,13 @@ class _SelectField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+        Text(
+          label,
+          style: theme.typo.inter.title.copyWith(
+            color: UIColorsToken.white,
+          ),
+        ),
+
         const SizedBox(height: 8),
         UITap(
           onTap: onTap,

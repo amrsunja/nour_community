@@ -11,7 +11,6 @@ enum MosqueOnboardingStep {
   featureCalendar,      // "A calendar that reflects your imam"
   country,
   language,
-  reminders,
   register,             // legal name / status / RNA / SIREN
   account,              // sign up / sign in
 }

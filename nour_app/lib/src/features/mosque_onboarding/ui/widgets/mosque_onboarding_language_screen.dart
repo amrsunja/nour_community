@@ -36,6 +36,14 @@ class MosqueOnboardingLanguageScreen extends ConsumerWidget {
     ];
 
     return MosqueOnboardingStepScaffold(
+      bottom: UIButton.primary(
+        label: l10n.common_continue,
+        fullWidth: true,
+        onTap: () async {
+          await presenter.setLanguage(current);
+          await presenter.next();
+        },
+      ),
       children: [
         const UISpace.vert(60),
         UIAppearAnimation(
@@ -73,14 +81,6 @@ class MosqueOnboardingLanguageScreen extends ConsumerWidget {
             ),
           ),
       ],
-      bottom: UIButton.primary(
-        label: l10n.common_continue,
-        fullWidth: true,
-        onTap: () async {
-          await presenter.setLanguage(current);
-          await presenter.next();
-        },
-      ),
     );
   }
 }

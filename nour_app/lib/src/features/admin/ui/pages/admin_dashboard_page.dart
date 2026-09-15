@@ -514,14 +514,11 @@ class _PayoutStatusSheet extends StatelessWidget {
     required PayoutStatus current,
     required AppLocale l10n,
   }) {
-    return showModalBottomSheet<_PayoutSheetAction>(
+    return UIBottomSheet.show<_PayoutSheetAction>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true, // content is taller than the default half-sheet
       useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (_) => _PayoutStatusSheet(current: current, l10n: l10n),
     );
   }
@@ -553,16 +550,6 @@ class _PayoutStatusSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: UIColorsToken.stroke,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
             const UISpace.vert(20),
             Text(
               l10n.admin_change_status_title,
@@ -652,12 +639,9 @@ class _PayoutStatusSheet extends StatelessWidget {
 /// Destructive confirmation before removing a payout from the ledger.
 Future<bool?> _confirmDeletePayout(BuildContext context, AppLocale l10n) {
   final typo = UITheme.of(context).typo;
-  return showModalBottomSheet<bool>(
+  return UIBottomSheet.show<bool>(
     context: context,
     backgroundColor: UIColorsToken.bgPrimary,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
     builder: (ctx) => SafeArea(
       top: false,
       child: Padding(
@@ -666,16 +650,6 @@ Future<bool?> _confirmDeletePayout(BuildContext context, AppLocale l10n) {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: UIColorsToken.stroke,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
             const UISpace.vert(20),
             Text(
               l10n.admin_delete_payout_confirm_title,

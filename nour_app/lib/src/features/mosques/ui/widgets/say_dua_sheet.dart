@@ -13,9 +13,8 @@ class SayDuaSheet extends StatelessWidget {
   static const transliteration = 'Allahumma-ghfir lahu warhamhu wa ʿafihi waʿfu ʿanhu';
 
   static Future<bool> show(BuildContext context, {required AppLocale l10n}) async {
-    final res = await showModalBottomSheet<bool>(
+    final res = await UIBottomSheet.show<bool>(
       context: context,
-      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (_) => SayDuaSheet(l10n: l10n),
     );
@@ -25,20 +24,13 @@ class SayDuaSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
-    return Container(
-      decoration: const BoxDecoration(
-        color: UIColorsToken.bgPrimary,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      padding: EdgeInsets.fromLTRB(16, 12, 16, 16 + MediaQuery.of(context).padding.bottom),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 8, 16, 16 + MediaQuery.of(context).padding.bottom),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(
-            child: Container(width: 72, height: 5, decoration: BoxDecoration(color: UIColorsToken.white, borderRadius: BorderRadius.circular(3))),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
           Text(l10n.mosque_post_say_dua, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
           const SizedBox(height: 4),
           Text(l10n.mosque_dua_recite, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),

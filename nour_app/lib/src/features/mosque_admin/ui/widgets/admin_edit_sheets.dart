@@ -19,8 +19,7 @@ class AdminEditSheets {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(child: Container(width: 72, height: 5, decoration: BoxDecoration(color: UIColorsToken.white, borderRadius: BorderRadius.circular(3)))),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             Text(title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
             const SizedBox(height: 20),
             ...children,
@@ -30,11 +29,10 @@ class AdminEditSheets {
     );
   }
 
-  static Future<T?> _open<T>(BuildContext context, Widget Function(BuildContext) builder) => showModalBottomSheet<T>(
+  static Future<T?> _open<T>(BuildContext context, Widget Function(BuildContext) builder) => UIBottomSheet.show<T>(
         context: context,
         isScrollControlled: true,
         backgroundColor: UIColorsToken.bgPrimary,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
         builder: builder,
       );
 

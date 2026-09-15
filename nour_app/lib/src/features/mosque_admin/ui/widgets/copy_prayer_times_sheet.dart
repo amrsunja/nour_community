@@ -24,11 +24,10 @@ class CopyPrayerTimesSheet extends ConsumerStatefulWidget {
   final DateTime initialTarget;
 
   static Future<CopyPrayerTimesResult?> show(BuildContext context, {required Map<DateTime, MosquePrayerDayModel> days, required DateTime initialTarget}) {
-    return showModalBottomSheet<CopyPrayerTimesResult>(
+    return UIBottomSheet.show<CopyPrayerTimesResult>(
       context: context,
       isScrollControlled: true,
       backgroundColor: UIColorsToken.bgPrimary,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (_) => CopyPrayerTimesSheet(days: days, initialTarget: initialTarget),
     );
   }
@@ -101,8 +100,7 @@ class _CopyPrayerTimesSheetState extends ConsumerState<CopyPrayerTimesSheet> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(child: Container(width: 72, height: 5, decoration: BoxDecoration(color: UIColorsToken.white, borderRadius: BorderRadius.circular(3)))),
-            const SizedBox(height: 20),
+            const SizedBox(height: 8),
             Text(l10n.mosque_copy_title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
             const SizedBox(height: 4),
             Text(l10n.mosque_copy_subtitle, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),

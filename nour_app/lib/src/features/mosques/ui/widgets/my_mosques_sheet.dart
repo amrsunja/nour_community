@@ -19,9 +19,8 @@ class MyMosquesSheet extends HookConsumerWidget {
   final MosqueModel? candidate;
 
   static Future<bool> show(BuildContext context, {MosqueModel? candidate}) async {
-    final res = await showModalBottomSheet<bool>(
+    final res = await UIBottomSheet.show<bool>(
       context: context,
-      backgroundColor: Colors.transparent,
       isScrollControlled: true,
       builder: (_) => MyMosquesSheet(candidate: candidate),
     );
@@ -116,20 +115,13 @@ class MyMosquesSheet extends HookConsumerWidget {
           ],
         );
 
-    return Container(
-      decoration: const BoxDecoration(
-        color: UIColorsToken.bgPrimary,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      padding: EdgeInsets.fromLTRB(16, 12, 16, 16 + MediaQuery.of(context).padding.bottom),
+    return Padding(
+      padding: EdgeInsets.fromLTRB(16, 8, 16, 16 + MediaQuery.of(context).padding.bottom),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Center(
-            child: Container(width: 72, height: 5, decoration: BoxDecoration(color: UIColorsToken.white, borderRadius: BorderRadius.circular(3))),
-          ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
           Text(l10n.my_mosques_title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
           const SizedBox(height: 4),
           Text(l10n.my_mosques_subtitle, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),

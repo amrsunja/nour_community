@@ -377,11 +377,10 @@ class _OverrideSheet {
     PrayerSlot slot = PrayerSlot.maghrib;
     TimeOfDay? time;
     final reason = TextEditingController();
-    return showModalBottomSheet<(PrayerSlot, TimeOfDay, String?)>(
+    return UIBottomSheet.show<(PrayerSlot, TimeOfDay, String?)>(
       context: context,
       isScrollControlled: true,
       backgroundColor: UIColorsToken.bgPrimary,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(24))),
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setState) {
           final theme = UITheme.of(ctx);

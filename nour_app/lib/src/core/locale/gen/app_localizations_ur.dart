@@ -2285,13 +2285,13 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_register_rna_invalid => 'RNA اس طرح ہونا چاہیے: W751123456';
 
   @override
-  String get mosque_register_siren => 'SIREN نمبر';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN 9 ہندسوں کا ہونا چاہیے';
 
   @override
-  String get mosque_register_cta => 'رجسٹر کریں';
+  String get mosque_register_cta => 'تصدیق کریں';
 
   @override
   String get mosque_account_title => 'آئیے آپ کا اکاؤنٹ بنائیں';

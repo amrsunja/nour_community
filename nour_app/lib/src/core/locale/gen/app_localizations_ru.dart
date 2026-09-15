@@ -2297,13 +2297,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_register_rna_invalid => 'RNA должен иметь вид W751123456';
 
   @override
-  String get mosque_register_siren => 'Номер SIREN';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'SIREN должен состоять из 9 цифр';
 
   @override
-  String get mosque_register_cta => 'Зарегистрировать';
+  String get mosque_register_cta => 'Подтвердить';
 
   @override
   String get mosque_account_title => 'Создадим ваш аккаунт';

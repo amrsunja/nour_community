@@ -44,10 +44,9 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
     }
 
     Future<void> onMenu(MosqueCommunityMember m) async {
-      final action = await showModalBottomSheet<String>(
+      final action = await UIBottomSheet.show<String>(
         context: context,
         backgroundColor: UIColorsToken.bgSurface,
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (ctx) => SafeArea(
           child: Column(
             mainAxisSize: MainAxisSize.min,

@@ -2298,14 +2298,14 @@ class AppLocalizationsId extends AppLocalizations {
       'RNA harus berformat seperti W751123456';
 
   @override
-  String get mosque_register_siren => 'Nomor SIREN';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid =>
       'SIREN harus terdiri dari 9 digit';
 
   @override
-  String get mosque_register_cta => 'Daftar';
+  String get mosque_register_cta => 'Konfirmasi';
 
   @override
   String get mosque_account_title => 'Mari buat akun Anda';

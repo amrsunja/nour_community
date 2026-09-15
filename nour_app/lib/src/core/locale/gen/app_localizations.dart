@@ -4205,7 +4205,7 @@ abstract class AppLocalizations {
   /// No description provided for @mosque_register_siren.
   ///
   /// In en, this message translates to:
-  /// **'SIREN number'**
+  /// **'SIREN'**
   String get mosque_register_siren;
 
   /// No description provided for @mosque_register_siren_invalid.
@@ -4217,7 +4217,7 @@ abstract class AppLocalizations {
   /// No description provided for @mosque_register_cta.
   ///
   /// In en, this message translates to:
-  /// **'Register'**
+  /// **'Confirm'**
   String get mosque_register_cta;
 
   /// No description provided for @mosque_account_title.

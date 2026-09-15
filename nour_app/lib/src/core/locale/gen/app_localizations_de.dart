@@ -2314,13 +2314,13 @@ class AppLocalizationsDe extends AppLocalizations {
       'Die RNA muss das Format W751123456 haben';
 
   @override
-  String get mosque_register_siren => 'SIREN-Nummer';
+  String get mosque_register_siren => 'SIREN';
 
   @override
   String get mosque_register_siren_invalid => 'Die SIREN muss 9 Ziffern haben';
 
   @override
-  String get mosque_register_cta => 'Registrieren';
+  String get mosque_register_cta => 'Bestätigen';
 
   @override
   String get mosque_account_title => 'Lass uns dein Konto erstellen';
