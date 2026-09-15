@@ -22,6 +22,17 @@ interface Payload {
 const RETURN_URL = Deno.env.get("STRIPE_CONNECT_RETURN_URL") ?? "https://nour-community.com/mosque-admin/stripe/return";
 const REFRESH_URL = Deno.env.get("STRIPE_CONNECT_REFRESH_URL") ?? "https://nour-community.com/mosque-admin/stripe/refresh";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** Returns the first syntactically valid, non-blank email, or undefined. */
+function pickEmail(...candidates: (string | null | undefined)[]): string | undefined {
+  for (const c of candidates) {
+    const v = c?.trim();
+    if (v && EMAIL_RE.test(v)) return v;
+  }
+  return undefined;
+}
+
 function mapStatus(a: { charges_enabled?: boolean; details_submitted?: boolean; requirements?: { disabled_reason?: string | null; currently_due?: string[] } }) {
   if (a.charges_enabled) return "active";
   if (a.requirements?.disabled_reason) return "restricted";
@@ -77,7 +88,7 @@ Deno.serve(async (req) => {
       const account = await stripe.accounts.create({
         type: "express",
         country: (mosque.country_code ?? "FR").toUpperCase(),
-        email: mosque.email ?? me.email ?? undefined,
+        email: pickEmail(mosque.email as string | null, me.email),
         business_type: "non_profit",
         capabilities: { card_payments: { requested: true }, transfers: { requested: true } },
         business_profile: { name: mosque.name, mcc: "8661" }, // 8661 = religious organizations
