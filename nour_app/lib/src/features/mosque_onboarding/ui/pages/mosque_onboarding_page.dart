@@ -86,6 +86,7 @@ class MosqueOnboardingPage extends HookConsumerWidget {
                     onTap: presenter.skipFeatures,
                     child: Text(l10n.onboarding_skip, style: theme.typo.inter.bodyMedium),
                   )
+                /*
                 else
                   UITap(
                     onTap: onStartOver,
@@ -94,6 +95,7 @@ class MosqueOnboardingPage extends HookConsumerWidget {
                       style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph),
                     ),
                   ),
+                  */
               ],
             ),
           ).animate(effects: [FadeEffect()]),
