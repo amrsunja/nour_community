@@ -36,6 +36,9 @@ class MosqueModel extends Equatable {
   final List<MosqueService> services;
   final List<String> khutbahLanguages;
   final String timezone;
+
+  /// Manual opening state set by the mosque admin: `'open'` or `'closed'`.
+  /// Anything else (including null, i.e. never set) reads as open.
   final String? openingStatus;
   final bool donationsEnabled;
   final bool canIssueTaxReceipts;
@@ -100,6 +103,13 @@ class MosqueModel extends Equatable {
   }
 
   bool get hasLocation => lat != null && lng != null;
+
+  /// Open unless the admin explicitly closed the mosque. There is no
+  /// prayer-time-derived schedule: the state is whatever the admin set.
+  bool get isOpen => openingStatus != MosqueModel.closed;
+
+  static const open = 'open';
+  static const closed = 'closed';
 
   String get deepLink => 'nour://mosque/$id';
 

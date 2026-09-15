@@ -20,7 +20,7 @@ class AdminEditSheets {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 8),
-            Text(title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+            Text(title, textAlign: TextAlign.center, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
             const SizedBox(height: 20),
             ...children,
           ],

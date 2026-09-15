@@ -3187,9 +3187,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mosque_admin_opening_status => 'حالة الفتح';
 
   @override
-  String get mosque_admin_opening_auto => 'تلقائي';
-
-  @override
   String get mosque_admin_no_notifications => 'لا توجد إشعارات بعد.';
 
   @override

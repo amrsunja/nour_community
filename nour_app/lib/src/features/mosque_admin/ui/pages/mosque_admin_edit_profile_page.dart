@@ -11,6 +11,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/mosques/data/models/mosque_model.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_header.dart';
 
@@ -44,7 +45,7 @@ class MosqueAdminEditProfilePage extends HookConsumerWidget {
     final youtube = useTextEditingController(text: mosque?.socials['youtube'] ?? '');
     final logo = useState<String?>(mosque?.logoUrl);
     final covers = useState<List<String>>(mosque?.coverImages ?? const []);
-    final opening = useState<String?>(mosque?.openingStatus);
+    final opening = useState<String>(mosque?.openingStatus == MosqueModel.closed ? MosqueModel.closed : MosqueModel.open);
     final uploading = useState(false);
 
     if (mosque == null) return const UIGradientLinedScaffold(body: Center(child: UICircularProgressBar()));
@@ -219,7 +220,7 @@ class MosqueAdminEditProfilePage extends HookConsumerWidget {
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      for (final o in [(null, l10n.mosque_admin_opening_auto), ('open', l10n.mosque_status_open), ('closed', l10n.mosque_status_closed)])
+                      for (final o in [(MosqueModel.open, l10n.mosque_status_open), (MosqueModel.closed, l10n.mosque_status_closed)])
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(right: 8),

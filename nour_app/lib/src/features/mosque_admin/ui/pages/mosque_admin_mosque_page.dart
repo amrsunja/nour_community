@@ -194,7 +194,7 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
               l10n: l10n,
               tab: tab.value,
               onTab: (t) => tab.value = t,
-              isOpen: mosque.openingStatus != 'closed',
+              isOpen: mosque.isOpen,
               showDonationTab: donationsFlag,
               newsBadge: false,
               onCopiedAddress: () => snackbar.showInfo(l10n.mosque_address_copied),

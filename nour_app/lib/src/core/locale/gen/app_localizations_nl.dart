@@ -3234,9 +3234,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get mosque_admin_opening_status => 'Openingsstatus';
 
   @override
-  String get mosque_admin_opening_auto => 'Automatisch';
-
-  @override
   String get mosque_admin_no_notifications => 'Nog geen meldingen.';
 
   @override

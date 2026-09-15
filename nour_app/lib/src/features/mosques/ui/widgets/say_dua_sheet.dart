@@ -31,7 +31,7 @@ class SayDuaSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 12),
-          Text(l10n.mosque_post_say_dua, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+          Text(l10n.mosque_post_say_dua, textAlign: TextAlign.center, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
           const SizedBox(height: 4),
           Text(l10n.mosque_dua_recite, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
           const SizedBox(height: 20),

@@ -122,7 +122,7 @@ class MyMosquesSheet extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 12),
-          Text(l10n.my_mosques_title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+          Text(l10n.my_mosques_title, textAlign: TextAlign.center, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
           const SizedBox(height: 4),
           Text(l10n.my_mosques_subtitle, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
           const SizedBox(height: 20),

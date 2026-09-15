@@ -3220,9 +3220,6 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_admin_opening_status => 'খোলা থাকার অবস্থা';
 
   @override
-  String get mosque_admin_opening_auto => 'স্বয়ংক্রিয়';
-
-  @override
   String get mosque_admin_no_notifications => 'এখনও কোনো নোটিফিকেশন নেই।';
 
   @override

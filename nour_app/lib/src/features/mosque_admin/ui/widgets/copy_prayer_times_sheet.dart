@@ -101,7 +101,7 @@ class _CopyPrayerTimesSheetState extends ConsumerState<CopyPrayerTimesSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 8),
-            Text(l10n.mosque_copy_title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+            Text(l10n.mosque_copy_title, textAlign: TextAlign.center, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
             const SizedBox(height: 4),
             Text(l10n.mosque_copy_subtitle, textAlign: TextAlign.center, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             const SizedBox(height: 20),

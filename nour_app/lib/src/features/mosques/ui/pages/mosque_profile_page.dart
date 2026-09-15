@@ -98,7 +98,7 @@ class MosqueProfilePage extends HookConsumerWidget {
     }
 
     final isMine = myMosques.isMine(mosque.id);
-    final isOpen = _isOpen(state, computed);
+    final isOpen = mosque.isOpen;
 
     Widget body = switch (state.tab) {
       MosqueTab.prayers => MosquePrayersTab(
@@ -206,16 +206,6 @@ class MosqueProfilePage extends HookConsumerWidget {
     );
   }
 
-  /// Open from Fajr − 30 min to Isha + 45 min unless the mosque overrides it.
-  static bool _isOpen(MosqueProfileState state, DailyPrayerTimes? computed) {
-    final manual = state.mosque?.openingStatus;
-    if (manual == 'open') return true;
-    if (manual == 'closed') return false;
-    final times = state.today != null && !state.today!.isEmpty ? state.today!.toDailyPrayerTimes(fallback: computed) : computed;
-    if (times == null) return false;
-    final now = DateTime.now();
-    return now.isAfter(times.fajr.subtract(const Duration(minutes: 30))) && now.isBefore(times.isha.add(const Duration(minutes: 45)));
-  }
 }
 
 class _NewsTab extends StatelessWidget {

@@ -3236,9 +3236,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_admin_opening_status => 'Статус открытия';
 
   @override
-  String get mosque_admin_opening_auto => 'Автоматически';
-
-  @override
   String get mosque_admin_no_notifications => 'Уведомлений пока нет.';
 
   @override

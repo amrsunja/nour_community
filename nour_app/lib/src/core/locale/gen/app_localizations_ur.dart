@@ -3221,9 +3221,6 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_admin_opening_status => 'کھلنے کی حالت';
 
   @override
-  String get mosque_admin_opening_auto => 'خودکار';
-
-  @override
   String get mosque_admin_no_notifications => 'ابھی کوئی اطلاع نہیں۔';
 
   @override

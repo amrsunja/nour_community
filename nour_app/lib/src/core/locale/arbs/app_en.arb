@@ -1140,7 +1140,6 @@
 	"mosque_admin_field_phone": "Phone",
 	"mosque_admin_field_website": "Website",
 	"mosque_admin_opening_status": "Opening status",
-	"mosque_admin_opening_auto": "Automatic",
 	"mosque_admin_no_notifications": "No notification yet.",
 	"error_api_mosque_campaign_limit_reached": "You already have 3 active campaigns. Close one first.",
 	"error_api_mosque_campaign_closed": "This campaign is closed.",

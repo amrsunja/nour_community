@@ -3236,9 +3236,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get mosque_admin_opening_status => 'Status buka';
 
   @override
-  String get mosque_admin_opening_auto => 'Otomatis';
-
-  @override
   String get mosque_admin_no_notifications => 'Belum ada notifikasi.';
 
   @override

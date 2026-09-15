@@ -390,7 +390,7 @@ class _OverrideSheet {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(l10n.mosque_overrides_shift_title, textAlign: TextAlign.center, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+                Text(l10n.mosque_overrides_shift_title, textAlign: TextAlign.center, style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white)),
                 const SizedBox(height: 16),
                 Wrap(
                   spacing: 8,
@@ -407,7 +407,7 @@ class _OverrideSheet {
                   ],
                 ),
                 const SizedBox(height: 16),
-                UIButton.secondary(
+                UIButton.textual(
                   label: time == null
                       ? '${l10n.mosque_override_new_time} (${MosqueFormat.hhmm(day?.scheduled[slot])})'
                       : MosqueFormat.hhmm(time),

@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "الهاتف",
 	"mosque_admin_field_website": "الموقع الإلكتروني",
 	"mosque_admin_opening_status": "حالة الفتح",
-	"mosque_admin_opening_auto": "تلقائي",
 	"mosque_admin_no_notifications": "لا توجد إشعارات بعد.",
 	"error_api_mosque_campaign_limit_reached": "لديك بالفعل 3 حملات نشطة. أغلق إحداها أولًا.",
 	"error_api_mosque_campaign_closed": "هذه الحملة مغلقة.",

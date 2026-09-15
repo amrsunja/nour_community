@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "ফোন",
 	"mosque_admin_field_website": "ওয়েবসাইট",
 	"mosque_admin_opening_status": "খোলা থাকার অবস্থা",
-	"mosque_admin_opening_auto": "স্বয়ংক্রিয়",
 	"mosque_admin_no_notifications": "এখনও কোনো নোটিফিকেশন নেই।",
 	"error_api_mosque_campaign_limit_reached": "আপনার ইতোমধ্যে ৩টি সক্রিয় ক্যাম্পেইন আছে। আগে একটি বন্ধ করুন।",
 	"error_api_mosque_campaign_closed": "এই ক্যাম্পেইন বন্ধ হয়ে গেছে।",

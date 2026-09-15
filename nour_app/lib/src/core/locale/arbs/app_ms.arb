@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "Telefon",
 	"mosque_admin_field_website": "Laman web",
 	"mosque_admin_opening_status": "Status pembukaan",
-	"mosque_admin_opening_auto": "Automatik",
 	"mosque_admin_no_notifications": "Tiada pemberitahuan lagi.",
 	"error_api_mosque_campaign_limit_reached": "Anda sudah mempunyai 3 kempen aktif. Tutup satu dahulu.",
 	"error_api_mosque_campaign_closed": "Kempen ini telah ditutup.",

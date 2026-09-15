@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "Telefoon",
 	"mosque_admin_field_website": "Website",
 	"mosque_admin_opening_status": "Openingsstatus",
-	"mosque_admin_opening_auto": "Automatisch",
 	"mosque_admin_no_notifications": "Nog geen meldingen.",
 	"error_api_mosque_campaign_limit_reached": "Je hebt al 3 actieve campagnes. Sluit er eerst een af.",
 	"error_api_mosque_campaign_closed": "Deze campagne is gesloten.",

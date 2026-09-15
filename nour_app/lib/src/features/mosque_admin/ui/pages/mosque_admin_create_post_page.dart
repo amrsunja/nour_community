@@ -79,11 +79,13 @@ class MosqueAdminCreatePostPage extends HookConsumerWidget {
       );
     }
 
+
+
     final categories = [
-      (MosquePostType.event, l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, Assets.icons.calendar, const Color(0xff1F6FEB)),
-      (MosquePostType.volunteering, l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, Assets.icons.hand, const Color(0xff1F8A5B)),
-      (MosquePostType.highlight, l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, Assets.icons.gallery, const Color(0xff7C4DFF)),
-      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Assets.icons.janaza, const Color(0xff3A4A6B)),
+      (MosquePostType.event, l10n.mosque_post_type_event, l10n.mosque_post_type_event_hint, Assets.icons.calendar, Color(0xff404F3B)),
+      (MosquePostType.volunteering, l10n.mosque_post_type_volunteering, l10n.mosque_post_type_volunteering_hint, Assets.icons.hand, UIColorsToken.bgSecondaryGreen),
+      (MosquePostType.highlight, l10n.mosque_post_type_highlight, l10n.mosque_post_type_highlight_hint, Assets.icons.gallery, UIColorsToken.black80),
+      (MosquePostType.janaza, l10n.mosque_post_type_janaza, l10n.mosque_post_type_janaza_hint, Assets.icons.janaza, UIColorsToken.bgPrimary),
     ];
 
     return Scaffold(

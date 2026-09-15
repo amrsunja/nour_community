@@ -1063,7 +1063,6 @@
 	"mosque_admin_field_phone": "Téléphone",
 	"mosque_admin_field_website": "Site web",
 	"mosque_admin_opening_status": "Statut d'ouverture",
-	"mosque_admin_opening_auto": "Automatique",
 	"mosque_admin_no_notifications": "Aucune notification.",
 	"error_api_mosque_campaign_limit_reached": "Vous avez déjà 3 campagnes actives. Clôturez-en une d'abord.",
 	"error_api_mosque_campaign_closed": "Cette campagne est clôturée.",

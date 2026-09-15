@@ -5906,12 +5906,6 @@ abstract class AppLocalizations {
   /// **'Opening status'**
   String get mosque_admin_opening_status;
 
-  /// No description provided for @mosque_admin_opening_auto.
-  ///
-  /// In en, this message translates to:
-  /// **'Automatic'**
-  String get mosque_admin_opening_auto;
-
   /// No description provided for @mosque_admin_no_notifications.
   ///
   /// In en, this message translates to:

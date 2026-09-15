@@ -143,6 +143,11 @@ class MosqueSettingsPage extends HookConsumerWidget {
                     title: l10n.profile_preferences,
                     children: [
                       ProfileMenuRow(
+                        icon: Icons.language_outlined,
+                        label: l10n.settings_language,
+                        onTap: () => nav.toLanguageSettings(),
+                      ),
+                      ProfileMenuRow(
                         icon: Icons.notifications_none,
                         label: l10n.push_settings_title,
                         onTap: () => nav.toPushSettings(),

@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "Телефон",
 	"mosque_admin_field_website": "Сайт",
 	"mosque_admin_opening_status": "Статус открытия",
-	"mosque_admin_opening_auto": "Автоматически",
 	"mosque_admin_no_notifications": "Уведомлений пока нет.",
 	"error_api_mosque_campaign_limit_reached": "У вас уже 3 активные кампании. Сначала закройте одну из них.",
 	"error_api_mosque_campaign_closed": "Эта кампания закрыта.",

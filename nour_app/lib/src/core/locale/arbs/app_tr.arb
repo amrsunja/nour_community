@@ -1059,7 +1059,6 @@
 	"mosque_admin_field_phone": "Telefon",
 	"mosque_admin_field_website": "Web sitesi",
 	"mosque_admin_opening_status": "Açılış durumu",
-	"mosque_admin_opening_auto": "Otomatik",
 	"mosque_admin_no_notifications": "Henüz bildirim yok.",
 	"error_api_mosque_campaign_limit_reached": "Zaten 3 aktif kampanyanız var. Önce birini kapatın.",
 	"error_api_mosque_campaign_closed": "Bu kampanya kapandı.",
