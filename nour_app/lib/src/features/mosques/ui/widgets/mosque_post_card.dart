@@ -114,13 +114,13 @@ class MosquePostCard extends StatelessWidget {
                     const SizedBox(height: 12),
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
+                      padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
                       decoration: BoxDecoration(color: UIColorsToken.black, borderRadius: BorderRadius.circular(10)),
                       child: Text(
                         'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
                         textAlign: TextAlign.center,
                         textDirection: TextDirection.rtl,
-                        style: theme.typo.inter.display.copyWith(color: UIColorsToken.white),
+                        style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
                       ),
                     ),
                   ],
