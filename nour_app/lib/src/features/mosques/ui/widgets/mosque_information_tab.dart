@@ -124,30 +124,17 @@ class MosqueInformationTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: _InfoCard(
-                  icon: Icons.groups_outlined,
-                  label: l10n.mosque_capacity,
-                  value: mosque.capacityTotal?.toString() ?? '—',
-                  hint: mosque.capacityMen != null || mosque.capacityWomen != null
-                      ? '${l10n.mosque_capacity_men} ${mosque.capacityMen ?? '—'} · ${l10n.mosque_capacity_women} ${mosque.capacityWomen ?? '—'}'
-                      : l10n.mosque_capacity_men_women,
-                  onEdit: editable ? onEditCapacity : null,
-                ),
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: _InfoCard(
-                  icon: Icons.calendar_today_outlined,
-                  label: l10n.mosque_founded,
-                  value: mosque.foundedYear?.toString() ?? '—',
-                  hint: age == null ? ' ' : l10n.mosque_years_old(age),
-                  onEdit: editable ? onEditFounded : null,
-                ),
-              ),
-            ],
+          _CapacityCard(
+            mosque: mosque,
+            l10n: l10n,
+            onEdit: editable ? onEditCapacity : null,
+          ),
+          const SizedBox(height: 12),
+          _FoundedCard(
+            year: mosque.foundedYear,
+            age: age,
+            l10n: l10n,
+            onEdit: editable ? onEditFounded : null,
           ),
           section(l10n.mosque_services, subtitle: editable ? l10n.mosque_services_edit_hint : null),
           if (services.isEmpty)
@@ -237,36 +224,157 @@ class MosqueInformationTab extends StatelessWidget {
   }
 }
 
-class _InfoCard extends StatelessWidget {
-  const _InfoCard({required this.icon, required this.label, required this.value, required this.hint, this.onEdit});
-  final IconData icon;
-  final String label;
-  final String value;
-  final String hint;
+/// Capacity card (Figma): total + "Men's space" / "Women's space" inset
+/// fields, each with its own edit affordance when [onEdit] is set.
+class _CapacityCard extends StatelessWidget {
+  const _CapacityCard({required this.mosque, required this.l10n, this.onEdit});
+
+  final MosqueModel mosque;
+  final AppLocale l10n;
   final VoidCallback? onEdit;
 
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     return UICard(
-      padding: const EdgeInsets.all(14),
-      onTap: onEdit,
+      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _CardLabel(assetIcon: Assets.icons.persons, label: l10n.mosque_capacity),
+          const SizedBox(height: 6),
+          Text(
+            mosque.capacityTotal?.toString() ?? '—',
+            style: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
+          ),
+          const SizedBox(height: 20),
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(icon, size: 16, color: UIColorsToken.textParagraph),
-              const SizedBox(width: 6),
-              Expanded(child: Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph))),
-              if (onEdit != null) Icon(Icons.edit_outlined, size: 14, color: UIColorsToken.textParagraph),
+              Expanded(
+                child: _ValueField(
+                  label: l10n.mosque_capacity_men,
+                  value: mosque.capacityMen?.toString() ?? '—',
+                  valueStyle: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.white),
+                  onEdit: onEdit,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: _ValueField(
+                  label: l10n.mosque_capacity_women,
+                  value: mosque.capacityWomen?.toString() ?? '—',
+                  valueStyle: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.white),
+                  onEdit: onEdit,
+                ),
+              ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(value, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
-          if (hint.isNotEmpty) Text(hint, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
         ],
       ),
+    );
+  }
+}
+
+/// Founded card (Figma): label row + full-width inset year field.
+class _FoundedCard extends StatelessWidget {
+  const _FoundedCard({required this.year, required this.age, required this.l10n, this.onEdit});
+
+  final int? year;
+  final int? age;
+  final AppLocale l10n;
+  final VoidCallback? onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return UICard(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _CardLabel(
+            assetIcon: Assets.icons.emptyCalendar,
+            label: l10n.mosque_founded,
+            trailing: age == null ? null : l10n.mosque_years_old(age!),
+          ),
+          const SizedBox(height: 12),
+          _ValueField(
+            value: year?.toString() ?? '—',
+            valueStyle: theme.typo.inter.largeTitle.copyWith(color: UIColorsToken.white),
+            onEdit: onEdit,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Icon + muted title row shared by the two info cards.
+class _CardLabel extends StatelessWidget {
+  const _CardLabel({required this.assetIcon, required this.label, this.trailing});
+
+  final String assetIcon;
+  final String label;
+  final String? trailing;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Row(
+      children: [
+        UIIcon(assetIcon, size: 18, color: UIColorsToken.textParagraph),
+        const SizedBox(width: 10),
+        Expanded(child: Text(label, style: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph))),
+        if (trailing != null)
+          Text(trailing!, style: theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph)),
+      ],
+    );
+  }
+}
+
+/// Inset "field" pill: optional label above, value + pencil inside a surface a
+/// step lighter than the card.
+class _ValueField extends StatelessWidget {
+  const _ValueField({required this.value, required this.valueStyle, this.label, this.onEdit});
+
+  final String value;
+  final TextStyle valueStyle;
+  final String? label;
+  final VoidCallback? onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label != null) ...[
+          Text(label!, style: theme.typo.inter.headline.copyWith(color: UIColorsToken.white)),
+          const SizedBox(height: 8),
+        ],
+        UITap(
+          onTap: onEdit,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+            decoration: BoxDecoration(
+              color: UIColorsToken.white.withValues(alpha: 0.05),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(value, maxLines: 1, overflow: TextOverflow.ellipsis, style: valueStyle),
+                ),
+                if (onEdit != null) ...[
+                  const SizedBox(width: 8),
+                  Icon(Icons.edit_outlined, size: 18, color: UIColorsToken.textParagraph),
+                ],
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
