@@ -289,10 +289,13 @@ class _ServiceRow extends StatelessWidget {
         onTap: onTap,
         child: Row(
           children: [
-            SizedBox(
-              width: 60,
-              height: 50,
-              child: Image.asset(image),
+            UIGlowingBlock(
+            shadow: UIShadowToken.smallTexts,
+              child: SizedBox(
+                width: 60,
+                height: 50,
+                child: Image.asset(image),
+              ),
             ),
             const SizedBox(width: 14),
             Expanded(child: Text(label, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
