@@ -59,9 +59,9 @@ class UIButton extends StatelessWidget {
     bool isSmall = false,
     bool fullWidth = false,
     bool isBusy = false,
-    UIButtonIconAxis? iconAxis,
+    UIButtonIconAxis? iconAxis = .leading,
     VoidCallback? onTap,
-    Color? contentColor,
+    Color? contentColor = UIColorsToken.textYellow,
   }) {
     return UIButton._(
       key: key,

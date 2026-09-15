@@ -200,6 +200,7 @@ class MosqueAdminMosquePage extends HookConsumerWidget {
               actions: UIButton.secondary(
                 label: l10n.common_edit,
                 fullWidth: true,
+                contentColor: UIColorsToken.textYellow,
                 assetIcon: UIIconsToken.icons.squarePen,
                 onTap: () => context.router.push(const MosqueAdminEditProfileRoute()),
               ),

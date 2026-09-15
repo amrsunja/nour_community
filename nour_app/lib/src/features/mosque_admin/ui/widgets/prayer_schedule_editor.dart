@@ -179,7 +179,12 @@ class PrayerScheduleEditor extends HookConsumerWidget {
                 ],
               )
             else
-              UIButton.secondary(label: l10n.mosque_prayers_copy_from_day, fullWidth: true, onTap: state.days.isEmpty ? null : openCopy),
+              UIButton.secondary(
+                label: l10n.mosque_prayers_copy_from_day, 
+                assetIcon: UIIconsToken.icons.copy,
+                fullWidth: true, 
+                onTap: state.days.isEmpty ? null : openCopy
+              ),
             const SizedBox(height: 24),
             Text(l10n.mosque_overrides_title, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white)),
             const SizedBox(height: 12),
@@ -198,7 +203,12 @@ class PrayerScheduleEditor extends HookConsumerWidget {
                   const SizedBox(height: 4),
                   Text(l10n.mosque_overrides_shift_hint, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
                   const SizedBox(height: 12),
-                  UIButton.secondary(label: l10n.mosque_overrides_create, fullWidth: true, onTap: (day == null || day.isEmpty) ? null : createOverride),
+                  UIButton.secondary(
+                    label: l10n.mosque_overrides_create,
+                    assetIcon: UIIconsToken.icons.plus,
+                    fullWidth: true, 
+                    onTap: (day == null || day.isEmpty) ? null : createOverride
+                  ),
                   if (overridesToday.isNotEmpty) ...[
                     const SizedBox(height: 14),
                     Text(l10n.mosque_overrides_applied, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),

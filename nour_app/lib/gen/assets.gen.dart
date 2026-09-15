@@ -32,6 +32,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/clock.svg
   String get clock => 'assets/icons/clock.svg';
 
+  /// File path: assets/icons/copy.svg
+  String get copy => 'assets/icons/copy.svg';
+
   /// File path: assets/icons/curone.svg
   String get curone => 'assets/icons/curone.svg';
 
@@ -127,6 +130,7 @@ class $AssetsIconsGen {
     check,
     chevronLeft,
     clock,
+    copy,
     curone,
     dhikr,
     earth,
