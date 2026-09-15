@@ -160,7 +160,14 @@ class MosqueInformationTab extends StatelessWidget {
           ),
           if (mosque.khutbahLanguages.isEmpty)
             if (editable)
-              UIButton.secondary(label: l10n.mosque_add_languages, fullWidth: true, onTap: onEditLanguages)
+              UIButton.secondary(
+                label: l10n.mosque_add_languages, 
+                fullWidth: true,
+              assetIcon: UIIconsToken.icons.plus,
+                iconAxis: .leading,
+                contentColor: UIColorsToken.textYellow,
+                onTap: onEditLanguages,
+              )
             else
               Text('—', style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph))
           else
@@ -225,7 +232,14 @@ class MosqueInformationTab extends StatelessWidget {
               ),
             ),
           if (editable)
-            UIButton.secondary(label: l10n.mosque_add_imam, fullWidth: true, onTap: onAddImam),
+            UIButton.secondary(
+              label: l10n.mosque_add_imam, 
+              assetIcon: UIIconsToken.icons.plus,
+              iconAxis: .leading,
+              contentColor: UIColorsToken.textYellow,
+              fullWidth: true, 
+              onTap: onAddImam
+            ),
         ],
       ),
     );

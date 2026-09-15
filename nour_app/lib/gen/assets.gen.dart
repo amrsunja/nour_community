@@ -83,6 +83,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/persons.svg
   String get persons => 'assets/icons/persons.svg';
 
+  /// File path: assets/icons/plus.svg
+  String get plus => 'assets/icons/plus.svg';
+
   /// File path: assets/icons/refresh.svg
   String get refresh => 'assets/icons/refresh.svg';
 
@@ -141,6 +144,7 @@ class $AssetsIconsGen {
     notif,
     notify,
     persons,
+    plus,
     refresh,
     share,
     source,
