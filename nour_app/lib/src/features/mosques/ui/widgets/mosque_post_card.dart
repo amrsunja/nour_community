@@ -35,121 +35,146 @@ class MosquePostCard extends StatelessWidget {
   /// Admin feed: show views / reactions / notified instead of CTAs.
   final bool adminStats;
 
-  static (String, Color) badge(AppLocale l10n, MosquePostModel p) {
-    if (p.isUrgent) return (l10n.mosque_post_urgent, UIColorsToken.red);
-    return switch (p.type) {
-      MosquePostType.announcement => (l10n.mosque_post_type_announcement, UIColorsToken.bgTertiaryGreen),
-      MosquePostType.event => (l10n.mosque_post_type_event, const Color(0xff1F6FEB)),
-      MosquePostType.volunteering => (l10n.mosque_post_type_volunteering, const Color(0xff1F8A5B)),
-      MosquePostType.highlight => (l10n.mosque_post_type_highlight, const Color(0xff7C4DFF)),
-      MosquePostType.janaza => (l10n.mosque_post_type_janaza, const Color(0xff3A4A6B)),
-    };
-  }
+  /// Badge of the post type alone (no urgent flag).
+  static (String, Color) typeBadge(AppLocale l10n, MosquePostType type) => switch (type) {
+        MosquePostType.announcement => (l10n.mosque_post_type_announcement, UIColorsToken.bgTertiaryGreen),
+        MosquePostType.event => (l10n.mosque_post_type_event, const Color(0xff1F6FEB)),
+        MosquePostType.volunteering => (l10n.mosque_post_type_volunteering, const Color(0xff1F8A5B)),
+        MosquePostType.highlight => (l10n.mosque_post_type_highlight, const Color(0xff7C4DFF)),
+        MosquePostType.janaza => (l10n.mosque_post_type_janaza, const Color(0xff3A4A6B)),
+      };
+
+  /// Every badge shown on the card: "Urgent" first when flagged, then the post
+  /// type — an urgent event shows both. A plain announcement shows none.
+  static List<(String, Color)> badges(AppLocale l10n, MosquePostModel p) => [
+        if (p.isUrgent) (l10n.mosque_post_urgent, UIColorsToken.red),
+        if (p.type != MosquePostType.announcement) typeBadge(l10n, p.type),
+      ];
 
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     final lang = Localizations.localeOf(context).languageCode;
-    final (label, color) = badge(l10n, post);
-    final showBadge = post.isUrgent || post.type != MosquePostType.announcement;
+    final badgeList = badges(l10n, post);
 
     return UICard(
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              if (showBadge)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
-                  child: Text(label, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600)),
-                ),
-              const Spacer(),
-              Text(MosqueFormat.timeAgo(post.publishedAt, l10n),
-                  style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-              if (onMenu != null)
-                UITap(
-                  onTap: onMenu,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Icon(Icons.more_vert, size: 18, color: UIColorsToken.textParagraph),
-                  ),
-                ),
-            ],
-          ),
-          if (post.coverUrl != null && post.isHighlight) ...[
-            const SizedBox(height: 12),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: AspectRatio(
-                aspectRatio: 4 / 3,
-                child: CachedNetworkImage(imageUrl: post.coverUrl!, fit: BoxFit.cover),
-              ),
+      padding: EdgeInsets.zero,
+      disableBorder: true,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(14),
+        child: Stack(
+          children: [
+            // Same warm gold halo as the mosque header / bottom sheets, on
+            // every post type.
+            const Positioned(
+              top: UICornerGlow.offset,
+              right: UICornerGlow.offset,
+              child: UICornerGlow(),
             ),
-          ],
-          if (post.isJanaza) ...[
-            const SizedBox(height: 12),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
-              decoration: BoxDecoration(color: UIColorsToken.black, borderRadius: BorderRadius.circular(10)),
-              child: Text(
-                'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
-                textAlign: TextAlign.center,
-                textDirection: TextDirection.rtl,
-                style: theme.typo.inter.display.copyWith(color: UIColorsToken.white),
-              ),
-            ),
-          ],
-          const SizedBox(height: 12),
-          if (post.isEvent && post.eventDate != null)
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 52,
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: UIColorsToken.textYellow),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Column(
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Text(MosqueFormat.monthShort(post.eventDate!, lang),
-                          style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textYellow)),
-                      Text('${post.eventDate!.day}', style: theme.typo.inter.title.copyWith(color: UIColorsToken.textYellow)),
+                      for (final (label, color) in badgeList)
+                        Padding(
+                          padding: const EdgeInsetsDirectional.only(end: 6),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                            decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
+                            child: Text(label, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600)),
+                          ),
+                        ),
+                      const Spacer(),
+                      Text(MosqueFormat.timeAgo(post.publishedAt, l10n),
+                          style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                      if (onMenu != null)
+                        UITap(
+                          onTap: onMenu,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 8),
+                            child: Icon(Icons.more_vert, size: 18, color: UIColorsToken.textParagraph),
+                          ),
+                        ),
                     ],
                   ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(child: _TitleBody(post: post, l10n: l10n, lang: lang)),
-              ],
-            )
-          else
-            _TitleBody(post: post, l10n: l10n, lang: lang),
-          if (!adminStats) ...[
-            const SizedBox(height: 12),
-            _Actions(post: post, l10n: l10n, onAttend: onAttend, onApply: onApply, onSayDua: onSayDua, onShare: onShare, onAddToCalendar: onAddToCalendar),
-          ] else ...[
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                _Stat(Icons.remove_red_eye_outlined, MosqueFormat.compact(post.viewsCount)),
-                const SizedBox(width: 12),
-                if (post.isEvent)
-                  _Stat(Icons.people_outline, l10n.mosque_post_attending(post.attendeesCount))
-                else if (post.isVolunteering)
-                  _Stat(Icons.people_outline, l10n.mosque_post_volunteers(post.applicantsCount))
-                else if (post.isJanaza)
-                  _Stat(Icons.favorite_border, l10n.mosque_post_duas(post.duasCount)),
-                const SizedBox(width: 12),
-                if (post.notifiedAt != null) _Stat(Icons.notifications_none, l10n.mosque_post_notified_all),
-              ],
+                  if (post.coverUrl != null && post.isHighlight) ...[
+                    const SizedBox(height: 12),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: AspectRatio(
+                        aspectRatio: 4 / 3,
+                        child: CachedNetworkImage(imageUrl: post.coverUrl!, fit: BoxFit.cover),
+                      ),
+                    ),
+                  ],
+                  if (post.isJanaza) ...[
+                    const SizedBox(height: 12),
+                    Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 16),
+                      decoration: BoxDecoration(color: UIColorsToken.black, borderRadius: BorderRadius.circular(10)),
+                      child: Text(
+                        'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
+                        textAlign: TextAlign.center,
+                        textDirection: TextDirection.rtl,
+                        style: theme.typo.inter.display.copyWith(color: UIColorsToken.white),
+                      ),
+                    ),
+                  ],
+                  const SizedBox(height: 12),
+                  if (post.isEvent && post.eventDate != null)
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 52,
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: UIColorsToken.textYellow),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(MosqueFormat.monthShort(post.eventDate!, lang),
+                                  style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textYellow)),
+                              Text('${post.eventDate!.day}', style: theme.typo.inter.title.copyWith(color: UIColorsToken.textYellow)),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(child: _TitleBody(post: post, l10n: l10n, lang: lang)),
+                      ],
+                    )
+                  else
+                    _TitleBody(post: post, l10n: l10n, lang: lang),
+                  if (!adminStats) ...[
+                    const SizedBox(height: 12),
+                    _Actions(post: post, l10n: l10n, onAttend: onAttend, onApply: onApply, onSayDua: onSayDua, onShare: onShare, onAddToCalendar: onAddToCalendar),
+                  ] else ...[
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        _Stat(Icons.remove_red_eye_outlined, MosqueFormat.compact(post.viewsCount)),
+                        const SizedBox(width: 12),
+                        if (post.isEvent)
+                          _Stat(Icons.people_outline, l10n.mosque_post_attending(post.attendeesCount))
+                        else if (post.isVolunteering)
+                          _Stat(Icons.people_outline, l10n.mosque_post_volunteers(post.applicantsCount))
+                        else if (post.isJanaza)
+                          _Stat(Icons.favorite_border, l10n.mosque_post_duas(post.duasCount)),
+                        const SizedBox(width: 12),
+                        if (post.notifiedAt != null) _Stat(Icons.notifications_none, l10n.mosque_post_notified_all),
+                      ],
+                    ),
+                  ],
+                ],
+              ),
             ),
           ],
-        ],
+        ),
       ),
     );
   }

@@ -120,7 +120,7 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
         audience: audience.value,
         title: title.text,
         body: body.text,
-        coverUrl: cover.value,
+        coverUrl: isEvent ? null : cover.value,
         isUrgent: urgent.value,
         eventDate: date.value,
         eventTime: time.value,
@@ -212,7 +212,8 @@ class MosqueAdminPostFormPage extends HookConsumerWidget {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  if (!isJanaza) ...[
+                  // Janaza and event posts have no cover photo.
+                  if (!isJanaza && !isEvent) ...[
                     label(l10n.mosque_post_cover_photo, optional: !isHighlight),
                     UITap(
                       onTap: pickCover,

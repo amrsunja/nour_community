@@ -64,3 +64,59 @@ class UITopGlow extends StatelessWidget {
     );
   }
 }
+
+/// The same blurred circle as [UITopGlow], pinned to a corner of its parent so
+/// only a quarter of it bleeds in — the halo on the mosque post cards.
+///
+/// Drop it in a [Stack] that clips (e.g. inside a `ClipRRect`):
+///
+/// ```dart
+/// Stack(
+///   children: [
+///     Positioned(top: UICornerGlow.offset, right: UICornerGlow.offset, child: UICornerGlow(color: accent)),
+///     content,
+///   ],
+/// )
+/// ```
+class UICornerGlow extends StatelessWidget {
+  const UICornerGlow({
+    super.key,
+    this.diameter = defaultDiameter,
+    this.blur = defaultBlur,
+    this.color = UITopGlow.defaultColor,
+  });
+
+  /// Diameter of the glow circle.
+  static const double defaultDiameter = 120;
+
+  /// Layer blur applied to the glow.
+  static const double defaultBlur = 60;
+
+  /// Portion of the circle that reaches inside the parent (35%).
+  static const double defaultVisibleFraction = 0.35;
+
+  /// `top:` / `right:` to use in the enclosing [Stack].
+  static const double offset = -defaultDiameter * (1 - defaultVisibleFraction);
+
+  /// Offset for a custom [diameter] / visible fraction.
+  static double offsetFor(double diameter, {double visibleFraction = defaultVisibleFraction}) =>
+      -diameter * (1 - visibleFraction);
+
+  final double diameter;
+  final double blur;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: ImageFiltered(
+        imageFilter: ImageFilter.blur(sigmaX: blur, sigmaY: blur, tileMode: TileMode.decal),
+        child: Container(
+          width: diameter,
+          height: diameter,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
+        ),
+      ),
+    );
+  }
+}

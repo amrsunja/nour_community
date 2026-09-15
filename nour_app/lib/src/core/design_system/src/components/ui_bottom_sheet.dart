@@ -72,10 +72,11 @@ class UIBottomSheetSurface extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.vertical(top: Radius.circular(borderRadius)),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: backgroundColor ?? UIColorsToken.bgPrimary,
-        ),
+      // Material (not DecoratedBox) so ListTile / InkWell children have an ink
+      // surface to paint their background and splashes on.
+      child: Material(
+        type: MaterialType.canvas,
+        color: backgroundColor ?? UIColorsToken.bgPrimary,
         child: Stack(
           children: [
             const Positioned(
