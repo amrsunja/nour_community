@@ -11,6 +11,7 @@ import '../../data/models/mosque_donation_models.dart';
 import '../../data/models/mosque_model.dart';
 import '../state_management/mosque_donation_provider.dart';
 import 'mosque_donation_widgets.dart';
+import 'mosque_sadaqa_card.dart';
 import 'mosque_format.dart';
 
 /// Donation tab (devis B2/B3) — Sadaqa card + campaigns. Only rendered when
@@ -23,7 +24,6 @@ class MosqueDonationTab extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = UITheme.of(context);
     final nav = ref.read(navigationServicesProvider);
     final snackbar = ref.read(snackbarProvider);
     final presenter = ref.read(mosqueDonationProvider(mosque.id).notifier);
@@ -53,68 +53,28 @@ class MosqueDonationTab extends HookConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Sadaqa card ────────────────────────────────────────────────
-          UICard(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(child: Text(settings.title, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700))),
-                    if (settings.showTaxBadge && mosque.canIssueTaxReceipts) MosqueTaxBadge(l10n: l10n),
-                  ],
-                ),
-                if (settings.description != null && settings.description!.trim().isNotEmpty) ...[
-                  const UISpace.vert(6),
-                  Text(settings.description!, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
-                ],
-                if (sub != null) ...[
-                  const UISpace.vert(14),
-                  _ActiveGiftRow(sub: sub, l10n: l10n, busy: state.cancelBusy, onCancel: () async {
-                    final confirmed = await _confirmCancel(context, l10n);
-                    if (confirmed != true) return;
-                    final ok = await presenter.cancelMySubscription();
-                    if (ok) snackbar.showSuccess(l10n.mosque_donation_recurring_cancelled);
-                  }),
-                ],
-                if (settings.frequencies.length > 1) ...[
-                  const UISpace.vert(14),
-                  Row(
-                    children: [
-                      for (final f in settings.frequencies) ...[
-                        MosqueChip(
-                          label: switch (f) {
-                            DonationFrequency.oneTime => l10n.donate_frequency_one_time,
-                            DonationFrequency.monthly => l10n.donate_frequency_monthly,
-                            DonationFrequency.yearly => l10n.donate_frequency_yearly,
-                          },
-                          selected: state.frequency == f,
-                          dense: true,
-                          onTap: () => presenter.setFrequency(f),
-                        ),
-                        const UISpace.horz(8),
-                      ],
-                    ],
+          MosqueSadaqaCard(
+            l10n: l10n,
+            settings: settings,
+            canIssueTaxReceipts: mosque.canIssueTaxReceipts,
+            frequency: state.frequency,
+            amount: state.amount,
+            onFrequencyChanged: presenter.setFrequency,
+            onAmountChanged: presenter.setAmount,
+            onDonate: donate,
+            banner: sub == null
+                ? null
+                : _ActiveGiftRow(
+                    sub: sub,
+                    l10n: l10n,
+                    busy: state.cancelBusy,
+                    onCancel: () async {
+                      final confirmed = await _confirmCancel(context, l10n);
+                      if (confirmed != true) return;
+                      final ok = await presenter.cancelMySubscription();
+                      if (ok) snackbar.showSuccess(l10n.mosque_donation_recurring_cancelled);
+                    },
                   ),
-                ],
-                const UISpace.vert(14),
-                MosqueAmountPicker(amounts: settings.suggestedAmounts, value: state.amount, onChanged: presenter.setAmount, l10n: l10n),
-                const UISpace.vert(16),
-                UIButton.primary(
-                  label: state.frequency == DonationFrequency.oneTime
-                      ? l10n.mosque_donation_give(MosqueFormat.money(state.amount))
-                      : state.frequency == DonationFrequency.monthly
-                          ? l10n.mosque_donation_give_monthly(MosqueFormat.money(state.amount))
-                          : l10n.mosque_donation_give_yearly(MosqueFormat.money(state.amount)),
-                  fullWidth: true,
-                  onTap: state.amount > 0 ? donate : null,
-                ),
-                const UISpace.vert(8),
-                Center(
-                  child: Text(l10n.mosque_donation_secure_note, textAlign: TextAlign.center, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                ),
-              ],
-            ),
           ),
 
           // ── Campaigns ──────────────────────────────────────────────────

@@ -3288,6 +3288,23 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_donation_tax_badge => 'কর রসিদ';
 
   @override
+  String get mosque_donation_popular => 'জনপ্রিয়';
+
+  @override
+  String get mosque_donation_or => 'অথবা';
+
+  @override
+  String get mosque_donation_manual_amount_hint => 'পরিমাণ নিজে লিখুন';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'মসজিদে দান করুন';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return '$percent% কর ছাড়যোগ্য';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'আপনি প্রতি মাসে $amount দিচ্ছেন। জাযাকাল্লাহু খাইর।';
   }
@@ -3474,7 +3491,10 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'কমা দিয়ে আলাদা করে সর্বোচ্চ ৬টি পরিমাণ। দাতারা সবসময় অন্য পরিমাণ লিখতে পারবেন।';
+      'সর্বোচ্চ ৬টি পরিমাণ। দাতারা সবসময় অন্য পরিমাণ লিখতে পারবেন।';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'পরিমাণ যোগ করুন';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'অনুমোদিত ফ্রিকোয়েন্সি';

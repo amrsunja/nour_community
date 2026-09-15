@@ -3303,6 +3303,24 @@ class AppLocalizationsMs extends AppLocalizations {
   String get mosque_donation_tax_badge => 'Resit cukai';
 
   @override
+  String get mosque_donation_popular => 'Popular';
+
+  @override
+  String get mosque_donation_or => 'Atau';
+
+  @override
+  String get mosque_donation_manual_amount_hint =>
+      'Masukkan jumlah secara manual';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'Derma kepada masjid';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return '$percent% boleh ditolak cukai';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'Anda memberi $amount setiap bulan. Jazakallah khair.';
   }
@@ -3488,7 +3506,10 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'Dipisahkan dengan koma, sehingga 6 jumlah. Penderma sentiasa boleh memasukkan jumlah lain.';
+      'Sehingga 6 jumlah. Penderma sentiasa boleh memasukkan jumlah lain.';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'Tambah jumlah';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'Kekerapan yang dibenarkan';

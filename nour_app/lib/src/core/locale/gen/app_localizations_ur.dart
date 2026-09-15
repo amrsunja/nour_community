@@ -3288,6 +3288,23 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_donation_tax_badge => 'ٹیکس رسید';
 
   @override
+  String get mosque_donation_popular => 'مقبول';
+
+  @override
+  String get mosque_donation_or => 'یا';
+
+  @override
+  String get mosque_donation_manual_amount_hint => 'رقم دستی طور پر درج کریں';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'مسجد کو عطیہ دیں';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return '$percent% ٹیکس میں چھوٹ';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'آپ ہر ماہ $amount دیتے ہیں۔ جزاک اللہ خیر۔';
   }
@@ -3474,7 +3491,10 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'کوما سے الگ، زیادہ سے زیادہ 6 رقوم۔ عطیہ دہندگان ہمیشہ کوئی اور رقم درج کر سکتے ہیں۔';
+      'زیادہ سے زیادہ 6 رقوم۔ عطیہ دہندگان ہمیشہ کوئی اور رقم درج کر سکتے ہیں۔';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'رقم شامل کریں';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'اجازت شدہ تعدد';

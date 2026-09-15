@@ -3296,6 +3296,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get mosque_donation_tax_badge => 'Tax receipt';
 
   @override
+  String get mosque_donation_popular => 'Popular';
+
+  @override
+  String get mosque_donation_or => 'Or';
+
+  @override
+  String get mosque_donation_manual_amount_hint => 'Enter amount manually';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'Give to the mosque';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return 'Tax deductible $percent%';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'You give $amount every month. Jazakallah khair.';
   }
@@ -3481,7 +3498,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'Comma-separated, up to 6 amounts. Donors can always enter another amount.';
+      'Up to 6 amounts. Donors can always enter another amount.';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'Add amount';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'Allowed frequencies';

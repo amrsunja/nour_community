@@ -3302,6 +3302,23 @@ class AppLocalizationsNl extends AppLocalizations {
   String get mosque_donation_tax_badge => 'Belastingkwitantie';
 
   @override
+  String get mosque_donation_popular => 'Populair';
+
+  @override
+  String get mosque_donation_or => 'Of';
+
+  @override
+  String get mosque_donation_manual_amount_hint => 'Voer bedrag handmatig in';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'Doneer aan de moskee';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return '$percent% fiscaal aftrekbaar';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'Je geeft elke maand $amount. Jazakallah khair.';
   }
@@ -3488,7 +3505,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'Door komma\'s gescheiden, maximaal 6 bedragen. Donateurs kunnen altijd een ander bedrag invoeren.';
+      'Maximaal 6 bedragen. Donateurs kunnen altijd een ander bedrag invoeren.';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'Bedrag toevoegen';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'Toegestane frequenties';

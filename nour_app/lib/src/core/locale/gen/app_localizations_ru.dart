@@ -3304,6 +3304,23 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_donation_tax_badge => 'Налоговая квитанция';
 
   @override
+  String get mosque_donation_popular => 'Популярно';
+
+  @override
+  String get mosque_donation_or => 'Или';
+
+  @override
+  String get mosque_donation_manual_amount_hint => 'Ввести сумму вручную';
+
+  @override
+  String get mosque_donation_give_to_mosque => 'Пожертвовать мечети';
+
+  @override
+  String mosque_donation_tax_deductible(String percent) {
+    return 'Налоговый вычет $percent%';
+  }
+
+  @override
   String mosque_donation_active_monthly(String amount) {
     return 'Вы жертвуете $amount каждый месяц. Джазак Аллаху хайр.';
   }
@@ -3493,7 +3510,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get mosque_admin_sadaqa_amounts_hint =>
-      'Через запятую, до 6 сумм. Жертвователи всегда могут ввести другую сумму.';
+      'До 6 сумм. Жертвователи всегда могут ввести другую сумму.';
+
+  @override
+  String get mosque_admin_sadaqa_add_amount => 'Добавить сумму';
 
   @override
   String get mosque_admin_sadaqa_frequencies => 'Доступные периодичности';

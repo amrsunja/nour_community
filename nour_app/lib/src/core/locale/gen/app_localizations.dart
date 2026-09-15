@@ -6014,6 +6014,36 @@ abstract class AppLocalizations {
   /// **'Tax receipt'**
   String get mosque_donation_tax_badge;
 
+  /// No description provided for @mosque_donation_popular.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular'**
+  String get mosque_donation_popular;
+
+  /// No description provided for @mosque_donation_or.
+  ///
+  /// In en, this message translates to:
+  /// **'Or'**
+  String get mosque_donation_or;
+
+  /// No description provided for @mosque_donation_manual_amount_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount manually'**
+  String get mosque_donation_manual_amount_hint;
+
+  /// No description provided for @mosque_donation_give_to_mosque.
+  ///
+  /// In en, this message translates to:
+  /// **'Give to the mosque'**
+  String get mosque_donation_give_to_mosque;
+
+  /// No description provided for @mosque_donation_tax_deductible.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax deductible {percent}%'**
+  String mosque_donation_tax_deductible(String percent);
+
   /// No description provided for @mosque_donation_active_monthly.
   ///
   /// In en, this message translates to:
@@ -6297,8 +6327,14 @@ abstract class AppLocalizations {
   /// No description provided for @mosque_admin_sadaqa_amounts_hint.
   ///
   /// In en, this message translates to:
-  /// **'Comma-separated, up to 6 amounts. Donors can always enter another amount.'**
+  /// **'Up to 6 amounts. Donors can always enter another amount.'**
   String get mosque_admin_sadaqa_amounts_hint;
+
+  /// No description provided for @mosque_admin_sadaqa_add_amount.
+  ///
+  /// In en, this message translates to:
+  /// **'Add amount'**
+  String get mosque_admin_sadaqa_add_amount;
 
   /// No description provided for @mosque_admin_sadaqa_frequencies.
   ///

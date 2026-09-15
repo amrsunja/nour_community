@@ -1,15 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
+import 'package:collection/collection.dart';
 import 'package:nour/src/features/mosques/data/models/mosque_donation_models.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
-import 'package:nour/src/features/mosques/ui/widgets/mosque_donation_widgets.dart';
+import 'package:nour/src/features/mosques/ui/widgets/mosque_sadaqa_card.dart';
 import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
@@ -35,28 +36,35 @@ class MosqueAdminSadaqaSettingsPage extends HookConsumerWidget {
     final draft = useState(initial);
     final title = useTextEditingController(text: initial.title);
     final description = useTextEditingController(text: initial.description ?? '');
-    final amounts = useTextEditingController(text: initial.suggestedAmounts.join(', '));
-    final fees = useTextEditingController(text: initial.membershipFeeAmounts.join(', '));
+    final amounts = useState<List<int>>(List.of(initial.suggestedAmounts));
+    final fees = useState<List<int>>(List.of(initial.membershipFeeAmounts));
     useListenable(title);
-    useListenable(amounts);
+    useListenable(description);
 
     useEffect(() {
       if (!state.loaded) WidgetsBinding.instance.addPostFrameCallback((_) => presenter.init());
       return null;
     }, const []);
 
-    List<int> parseAmounts(String s) => s
-        .split(RegExp(r'[,\s;]+'))
-        .map((e) => int.tryParse(e.trim()))
-        .whereType<int>()
-        .where((e) => e > 0)
-        .toSet()
-        .toList()
-      ..sort();
+    // Settings arrive asynchronously: hydrate the form once, without clobbering
+    // anything the admin has already typed.
+    final hydrated = useRef(false);
+    useEffect(() {
+      final loaded = state.settings;
+      if (!hydrated.value && loaded != null) {
+        hydrated.value = true;
+        draft.value = loaded;
+        title.text = loaded.title;
+        description.text = loaded.description ?? '';
+        amounts.value = List.of(loaded.suggestedAmounts);
+        fees.value = List.of(loaded.membershipFeeAmounts);
+      }
+      return null;
+    }, [state.settings]);
 
     Future<void> save() async {
-      final suggested = parseAmounts(amounts.text);
-      final feeAmounts = parseAmounts(fees.text);
+      final suggested = amounts.value.where((a) => a > 0).toSet().toList()..sort();
+      final feeAmounts = fees.value.where((a) => a > 0).toSet().toList()..sort();
       if (title.text.trim().isEmpty || suggested.isEmpty) {
         snackbar.showError(l10n.mosque_admin_sadaqa_invalid);
         return;
@@ -88,23 +96,22 @@ class MosqueAdminSadaqaSettingsPage extends HookConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            AdminLabel(l10n.mosque_admin_sadaqa_card_title),
+            AdminLabel(l10n.mosque_admin_sadaqa_card_title, muted: true),
             UIInputField(controller: title, hintText: l10n.mosque_admin_sadaqa_card_title_hint),
             const SizedBox(height: 16),
-            AdminLabel(l10n.mosque_post_description, optional: true, l10n: l10n),
+            AdminLabel(l10n.mosque_post_description, optional: true, l10n: l10n, muted: true),
             AdminTextArea(controller: description, hint: l10n.mosque_admin_sadaqa_description_hint, minLines: 2, maxLines: 5),
             const SizedBox(height: 16),
-            AdminLabel(l10n.mosque_admin_sadaqa_amounts),
-            UIInputField(
-              controller: amounts,
-              hintText: '10, 50, 100, 150',
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,\s]'))],
+            AdminLabel(l10n.mosque_admin_sadaqa_amounts, muted: true),
+            AdminAmountsEditor(
+              values: amounts.value,
+              onChanged: (v) => amounts.value = v,
+              addLabel: l10n.mosque_admin_sadaqa_add_amount,
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
             Text(l10n.mosque_admin_sadaqa_amounts_hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             const SizedBox(height: 20),
-            AdminLabel(l10n.mosque_admin_sadaqa_frequencies),
+            AdminLabel(l10n.mosque_admin_sadaqa_frequencies, muted: true),
             AdminToggleRow(title: l10n.donate_frequency_one_time, value: draft.value.allowOneTime, onChanged: (v) => draft.value = draft.value.copyWith(allowOneTime: v)),
             const SizedBox(height: 8),
             AdminToggleRow(title: l10n.donate_frequency_monthly, value: draft.value.allowMonthly, onChanged: (v) => draft.value = draft.value.copyWith(allowMonthly: v)),
@@ -120,32 +127,29 @@ class MosqueAdminSadaqaSettingsPage extends HookConsumerWidget {
             ),
             if (feeFlag) ...[
               const SizedBox(height: 24),
-              AdminLabel(l10n.mosque_admin_membership_fee_amounts),
-              UIInputField(
-                controller: fees,
-                hintText: '60, 120, 240',
-                keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,\s]'))],
+              AdminLabel(l10n.mosque_admin_membership_fee_amounts, muted: true),
+              AdminAmountsEditor(
+                values: fees.value,
+                onChanged: (v) => fees.value = v,
+                addLabel: l10n.mosque_admin_sadaqa_add_amount,
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: 8),
               Text(l10n.mosque_admin_membership_fee_amounts_hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             ],
             const SizedBox(height: 24),
-            AdminLabel(l10n.mosque_admin_preview),
-            UICard(
-              padding: const EdgeInsets.all(14),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Expanded(child: Text(title.text.isEmpty ? initial.title : title.text, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600))),
-                      if (draft.value.showTaxBadge && (mosque?.canIssueTaxReceipts ?? false)) MosqueTaxBadge(l10n: l10n),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Wrap(spacing: 6, runSpacing: 6, children: [for (final a in parseAmounts(amounts.text)) MosqueChip(label: '$a€', selected: false, dense: true)]),
-                ],
+            AdminLabel(l10n.mosque_admin_preview, muted: true),
+            MosqueSadaqaCard(
+              l10n: l10n,
+              interactive: false,
+              canIssueTaxReceipts: mosque?.canIssueTaxReceipts ?? false,
+              frequency: draft.value.frequencies.contains(DonationFrequency.monthly)
+                  ? DonationFrequency.monthly
+                  : (draft.value.frequencies.firstOrNull ?? DonationFrequency.oneTime),
+              amount: 0,
+              settings: draft.value.copyWith(
+                title: title.text.trim().isEmpty ? initial.title : title.text.trim(),
+                description: description.text.trim(),
+                suggestedAmounts: amounts.value.where((a) => a > 0).toSet().toList()..sort(),
               ),
             ),
           ],

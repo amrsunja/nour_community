@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 
 /// Field label with the optional "· optional" suffix (matches the post form).
 class AdminLabel extends StatelessWidget {
-  const AdminLabel(this.text, {super.key, this.optional = false, this.l10n});
+  const AdminLabel(this.text, {super.key, this.optional = false, this.l10n, this.muted = false});
   final String text;
   final bool optional;
   final AppLocale? l10n;
+
+  /// Section heading style used by the sadaqa settings page: headline weight,
+  /// paragraph colour.
+  final bool muted;
 
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.only(bottom: muted ? 12 : 8),
       child: Row(
         children: [
-          Text(text, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+          Text(
+            text,
+            style: muted
+                ? theme.typo.inter.headline.copyWith(color: UIColorsToken.textParagraph)
+                : theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white),
+          ),
           if (optional && l10n != null) Text(' · ${l10n!.common_optional}', style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
         ],
       ),
@@ -226,6 +236,235 @@ class PostToggleRow extends StatelessWidget {
         ),
         UIToggle(checked: value, disabled: !enabled, onCheck: onChanged),
       ],
+    );
+  }
+}
+
+/// Two-column editor for a short list of preset amounts (sadaqa suggested
+/// amounts, membership fees). Each tile is an inline number field prefixed by
+/// the currency symbol with a "×" to remove it; a full-width outlined button
+/// appends a new empty tile and focuses it.
+class AdminAmountsEditor extends StatefulWidget {
+  const AdminAmountsEditor({
+    super.key,
+    required this.values,
+    required this.onChanged,
+    required this.addLabel,
+    this.currencySymbol = '€',
+    this.maxItems = 6,
+  });
+
+  final List<int> values;
+  final ValueChanged<List<int>> onChanged;
+  final String addLabel;
+  final String currencySymbol;
+  final int maxItems;
+
+  @override
+  State<AdminAmountsEditor> createState() => _AdminAmountsEditorState();
+}
+
+class _AdminAmountsEditorState extends State<AdminAmountsEditor> {
+  final List<TextEditingController> _controllers = [];
+  final List<FocusNode> _nodes = [];
+  List<int> _emitted = const [];
+
+  @override
+  void initState() {
+    super.initState();
+    _seed(widget.values);
+  }
+
+  @override
+  void didUpdateWidget(covariant AdminAmountsEditor old) {
+    super.didUpdateWidget(old);
+    // Re-seed only when the list changed outside of this editor (async load,
+    // reset), never on the rebuild caused by our own onChanged.
+    if (!_sameValues(widget.values, _emitted)) _seed(widget.values);
+  }
+
+  static bool _sameValues(List<int> a, List<int> b) {
+    if (identical(a, b)) return true;
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
+
+  void _seed(List<int> values) {
+    for (final c in _controllers) {
+      c.dispose();
+    }
+    for (final n in _nodes) {
+      n.dispose();
+    }
+    _controllers
+      ..clear()
+      ..addAll(values.map((v) => TextEditingController(text: '$v')));
+    _nodes
+      ..clear()
+      ..addAll(values.map((_) => FocusNode()));
+    _emitted = List.of(values);
+  }
+
+  @override
+  void dispose() {
+    for (final c in _controllers) {
+      c.dispose();
+    }
+    for (final n in _nodes) {
+      n.dispose();
+    }
+    super.dispose();
+  }
+
+  void _emit() {
+    _emitted = _controllers
+        .map((c) => int.tryParse(c.text.trim()))
+        .whereType<int>()
+        .where((v) => v > 0)
+        .toList();
+    widget.onChanged(_emitted);
+  }
+
+  void _add() {
+    setState(() {
+      _controllers.add(TextEditingController());
+      _nodes.add(FocusNode());
+    });
+    WidgetsBinding.instance.addPostFrameCallback((_) => _nodes.last.requestFocus());
+    _emit();
+  }
+
+  void _removeAt(int i) {
+    setState(() {
+      _controllers.removeAt(i).dispose();
+      _nodes.removeAt(i).dispose();
+    });
+    _emit();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    const gap = 12.0;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final tileWidth = (constraints.maxWidth - gap) / 2;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (_controllers.isNotEmpty)
+              Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (var i = 0; i < _controllers.length; i++)
+                    SizedBox(
+                      width: tileWidth,
+                      child: _AmountTile(
+                        controller: _controllers[i],
+                        focusNode: _nodes[i],
+                        currencySymbol: widget.currencySymbol,
+                        onChanged: (_) => _emit(),
+                        onRemove: () => _removeAt(i),
+                      ),
+                    ),
+                ],
+              ),
+            if (_controllers.isNotEmpty && _controllers.length < widget.maxItems) const SizedBox(height: gap),
+            if (_controllers.length < widget.maxItems)
+              UITap(
+                onTap: _add,
+                child: Container(
+                  height: 56,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: UIColorsToken.yellow.withValues(alpha: .10),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: UIColorsToken.yellow.withValues(alpha: .35)),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.add, size: 20, color: UIColorsToken.textYellow),
+                      const SizedBox(width: 8),
+                      Text(
+                        widget.addLabel,
+                        style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _AmountTile extends StatelessWidget {
+  const _AmountTile({
+    required this.controller,
+    required this.focusNode,
+    required this.currencySymbol,
+    required this.onChanged,
+    required this.onRemove,
+  });
+
+  final TextEditingController controller;
+  final FocusNode focusNode;
+  final String currencySymbol;
+  final ValueChanged<String> onChanged;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+    return Container(
+      height: 56,
+      padding: const EdgeInsets.only(left: 14, right: 6),
+      decoration: BoxDecoration(
+        color: UIColorsToken.bgSurface,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Row(
+        children: [
+          Text(
+            currencySymbol,
+            style: theme.typo.inter.body.copyWith(color: UIColorsToken.textYellow, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: TextField(
+              controller: controller,
+              focusNode: focusNode,
+              onChanged: onChanged,
+              keyboardType: TextInputType.number,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly, LengthLimitingTextInputFormatter(6)],
+              style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white),
+              cursorColor: UIColorsToken.textYellow,
+              decoration: const InputDecoration(
+                isDense: true,
+                contentPadding: EdgeInsets.zero,
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+              ),
+            ),
+          ),
+          UITap(
+            onTap: onRemove,
+            child: Padding(
+              padding: const EdgeInsets.all(8),
+              child: Icon(Icons.close, size: 18, color: UIColorsToken.white.withValues(alpha: .45)),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
