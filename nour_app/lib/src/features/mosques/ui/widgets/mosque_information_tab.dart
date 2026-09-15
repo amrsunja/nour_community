@@ -152,29 +152,37 @@ class MosqueInformationTab extends StatelessWidget {
             ),
           section(
             l10n.mosque_khutbah_languages,
-            trailing: editable ? UIButton.textual(label: l10n.common_edit, isSmall: true, onTap: onEditLanguages) : null,
+            // Edit only makes sense once there is something to edit; the empty
+            // state gets the "Add languages" button below instead.
+            trailing: editable && mosque.khutbahLanguages.isNotEmpty
+                ? UIButton.textual(label: l10n.common_edit, isSmall: true, onTap: onEditLanguages)
+                : null,
           ),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              if (mosque.khutbahLanguages.isEmpty)
-                Text('—', style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),
-              for (final code in mosque.khutbahLanguages)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(10)),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(languageFlag(code), style: const TextStyle(fontSize: 16)),
-                      const SizedBox(width: 8),
-                      Text(languageName(code), style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                    ],
+          if (mosque.khutbahLanguages.isEmpty)
+            if (editable)
+              UIButton.secondary(label: l10n.mosque_add_languages, fullWidth: true, onTap: onEditLanguages)
+            else
+              Text('—', style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph))
+          else
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final code in mosque.khutbahLanguages)
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(10)),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(languageFlag(code), style: const TextStyle(fontSize: 16)),
+                        const SizedBox(width: 8),
+                        Text(languageName(code), style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                      ],
+                    ),
                   ),
-                ),
-            ],
-          ),
+              ],
+            ),
           section(l10n.mosque_imams),
           if (mosque.imams.isEmpty && !editable)
             Text('—', style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),

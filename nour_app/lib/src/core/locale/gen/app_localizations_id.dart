@@ -2754,6 +2754,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get mosque_khutbah_languages => 'Bahasa khutbah';
 
   @override
+  String get mosque_add_languages => 'Tambah bahasa';
+
+  @override
   String get mosque_imams => 'Imam';
 
   @override

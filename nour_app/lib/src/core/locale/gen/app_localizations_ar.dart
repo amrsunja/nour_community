@@ -2707,6 +2707,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mosque_khutbah_languages => 'لغة (لغات) الخطبة';
 
   @override
+  String get mosque_add_languages => 'إضافة لغات';
+
+  @override
   String get mosque_imams => 'الأئمة';
 
   @override

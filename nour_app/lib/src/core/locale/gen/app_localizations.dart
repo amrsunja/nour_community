@@ -5048,6 +5048,12 @@ abstract class AppLocalizations {
   /// **'Khutbah language(s)'**
   String get mosque_khutbah_languages;
 
+  /// No description provided for @mosque_add_languages.
+  ///
+  /// In en, this message translates to:
+  /// **'Add languages'**
+  String get mosque_add_languages;
+
   /// No description provided for @mosque_imams.
   ///
   /// In en, this message translates to:

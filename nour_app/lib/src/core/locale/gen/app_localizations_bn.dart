@@ -2736,6 +2736,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_khutbah_languages => 'খুতবার ভাষা';
 
   @override
+  String get mosque_add_languages => 'ভাষা যোগ করুন';
+
+  @override
   String get mosque_imams => 'ইমামগণ';
 
   @override

@@ -2738,6 +2738,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get mosque_khutbah_languages => 'Hutbe dili/dilleri';
 
   @override
+  String get mosque_add_languages => 'Dil ekle';
+
+  @override
   String get mosque_imams => 'İmamlar';
 
   @override

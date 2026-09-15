@@ -2772,6 +2772,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mosque_khutbah_languages => 'Langue(s) de la khutba';
 
   @override
+  String get mosque_add_languages => 'Ajouter des langues';
+
+  @override
   String get mosque_imams => 'Imams';
 
   @override

@@ -920,6 +920,7 @@
 	"mosque_service_library": "Bibliothèque",
 	"mosque_service_new_muslims": "Accompagnement des nouveaux musulmans",
 	"mosque_khutbah_languages": "Langue(s) de la khutba",
+	"mosque_add_languages": "Ajouter des langues",
 	"mosque_imams": "Imams",
 	"mosque_since_year": "Depuis {y}",
 	"mosque_add_imam": "Ajouter un imam",

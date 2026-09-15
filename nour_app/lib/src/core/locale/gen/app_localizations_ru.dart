@@ -2753,6 +2753,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_khutbah_languages => 'Язык(и) хутбы';
 
   @override
+  String get mosque_add_languages => 'Добавить языки';
+
+  @override
   String get mosque_imams => 'Имамы';
 
   @override

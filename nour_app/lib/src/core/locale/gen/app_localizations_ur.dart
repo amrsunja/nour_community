@@ -2738,6 +2738,9 @@ class AppLocalizationsUr extends AppLocalizations {
   String get mosque_khutbah_languages => 'خطبے کی زبان (زبانیں)';
 
   @override
+  String get mosque_add_languages => 'زبانیں شامل کریں';
+
+  @override
   String get mosque_imams => 'ائمہ';
 
   @override

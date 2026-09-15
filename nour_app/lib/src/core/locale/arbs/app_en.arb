@@ -979,6 +979,7 @@
 	"mosque_service_library": "Library",
 	"mosque_service_new_muslims": "New Muslims support",
 	"mosque_khutbah_languages": "Khutbah language(s)",
+	"mosque_add_languages": "Add languages",
 	"mosque_imams": "Imams",
 	"mosque_since_year": "Since {y}",
 	"@mosque_since_year": {"placeholders": {"y": {"type": "int"}}},

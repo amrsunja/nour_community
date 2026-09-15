@@ -2750,6 +2750,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get mosque_khutbah_languages => 'Taal/talen van de khutbah';
 
   @override
+  String get mosque_add_languages => 'Talen toevoegen';
+
+  @override
   String get mosque_imams => 'Imams';
 
   @override
