@@ -251,8 +251,14 @@ class _Actions extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     Widget share() => Expanded(
-          child: UIButton.secondary(label: l10n.mosque_post_share, fullWidth: true, isSmall: true, onTap: onShare),
-        );
+      flex: 2,
+      child: UIButton.secondary(
+        label: l10n.mosque_post_share,
+        fullWidth: true,
+        onTap: onShare,
+        assetIcon: UIIconsToken.icons.share,
+      ),
+    );
 
     switch (post.type) {
       case MosquePostType.event:
@@ -263,20 +269,15 @@ class _Actions extends StatelessWidget {
                   style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             ),
             if (onAddToCalendar != null)
-              UITap(
+              UIButton.secondary(
+                assetIcon: UIIconsToken.icons.calendarAdd,
                 onTap: onAddToCalendar,
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 8),
-                  decoration: BoxDecoration(border: Border.all(color: UIColorsToken.textYellow), borderRadius: BorderRadius.circular(8)),
-                  child: const Icon(Icons.event_available_outlined, color: UIColorsToken.textYellow, size: 20),
-                ),
               ),
+            UISpace.horz(8),
             if (post.attending)
-              UIButton.secondary(label: l10n.mosque_post_attending_cta_done, isSmall: true, onTap: onAttend)
+              UIButton.secondary(label: l10n.mosque_post_attending_cta_done, onTap: onAttend)
             else
-              UIButton.primary(label: l10n.mosque_post_attend_cta, isSmall: true, onTap: onAttend),
+              UIButton.primary(label: l10n.mosque_post_attend_cta, onTap: onAttend),
           ],
         );
       case MosquePostType.volunteering:
@@ -285,9 +286,10 @@ class _Actions extends StatelessWidget {
             share(),
             const SizedBox(width: 10),
             Expanded(
+              flex: 3,
               child: post.applied
-                  ? UIButton.secondary(label: l10n.mosque_post_applied, fullWidth: true, isSmall: true)
-                  : UIButton.primary(label: l10n.mosque_post_apply, fullWidth: true, isSmall: true, onTap: onApply),
+                  ? UIButton.secondary(label: l10n.mosque_post_applied, fullWidth: true)
+                  : UIButton.primary(label: l10n.mosque_post_apply, fullWidth: true, onTap: onApply),
             ),
           ],
         );
@@ -299,15 +301,15 @@ class _Actions extends StatelessWidget {
                   style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             ),
             post.duaSaid
-                ? UIButton.secondary(label: l10n.mosque_post_dua_said, isSmall: true)
-                : UIButton.secondary(label: l10n.mosque_post_say_dua, isSmall: true, onTap: onSayDua),
+                ? UIButton.secondary(label: l10n.mosque_post_dua_said)
+                : UIButton.secondary(label: l10n.mosque_post_say_dua, onTap: onSayDua),
           ],
         );
       case MosquePostType.announcement:
       case MosquePostType.highlight:
         return Align(
           alignment: AlignmentDirectional.centerEnd,
-          child: UIButton.secondary(label: l10n.mosque_post_share, isSmall: true, onTap: onShare),
+          child: UIButton.secondary(label: l10n.mosque_post_share, onTap: onShare, assetIcon: UIIconsToken.icons.share),
         );
     }
   }

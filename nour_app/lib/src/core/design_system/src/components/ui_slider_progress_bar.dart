@@ -6,10 +6,14 @@ class UISliderProgressBar extends StatelessWidget {
     super.key,
     required this.totalCount,
     required this.currentIndex,
+    this.color = UIColorsToken.yellow,
   });
 
   final int totalCount;
   final int currentIndex;
+
+  /// Pill color — the active pill is opaque, the others at 40%.
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class UISliderProgressBar extends StatelessWidget {
           width: isCurrent ? 12 : 6,
           height: 6,
           decoration: BoxDecoration(
-            color: UIColorsToken.yellow.withValues(alpha: isCurrent ? 1 : 0.4),
+            color: color.withValues(alpha: isCurrent ? 1 : 0.4),
             borderRadius: .circular(100)
           ),
         );

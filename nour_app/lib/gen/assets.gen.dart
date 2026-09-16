@@ -23,6 +23,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/calendar.svg
   String get calendar => 'assets/icons/calendar.svg';
 
+  /// File path: assets/icons/calendar_add.svg
+  String get calendarAdd => 'assets/icons/calendar_add.svg';
+
   /// File path: assets/icons/check.svg
   String get check => 'assets/icons/check.svg';
 
@@ -142,6 +145,7 @@ class $AssetsIconsGen {
     aa,
     arrowRight,
     calendar,
+    calendarAdd,
     check,
     chevronLeft,
     clock,

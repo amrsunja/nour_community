@@ -120,9 +120,20 @@ class UIButton extends StatelessWidget {
   final Color? contentColor;
   final VoidCallback? onTap;
 
-  EdgeInsets? get _padding => variant == _UIButtonVariant.textual ? null : isSmall
-      ? const EdgeInsets.symmetric(horizontal: 10, vertical: 6)
-      : EdgeInsets.symmetric(horizontal: label == null ? 20 : 16, vertical: label == null ? 16 : 12);
+  EdgeInsets? get _padding {
+    if (variant == _UIButtonVariant.textual) {
+      return null;
+    }
+
+    if (isSmall) {
+      return const EdgeInsets.symmetric(horizontal: 10, vertical: 6);
+    } else if (label == null) {
+      return EdgeInsets.symmetric(horizontal: 10, vertical: 10);
+    } else {
+      return EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+    }
+
+  }
 
   double get _radius => isSmall ? 6 : 12;
 
@@ -156,7 +167,7 @@ class UIButton extends StatelessWidget {
   }
   
   BoxBorder? get _border {
-    if (variant == _UIButtonVariant.secondary && label == null && assetIcon != null) {
+    if (variant != _UIButtonVariant.secondary && label == null && assetIcon != null) {
       return Border.all(color: UIColorsToken.white, width: 1);
     }
 
@@ -178,7 +189,13 @@ class UIButton extends StatelessWidget {
     );
   }
 
-  double get _iconSize => isSmall ? 12 : 14;
+  double get _iconSize {
+    if (label == null) {
+      return isSmall ? 12 : 25;
+    } 
+
+    return isSmall ? 12 : 18;
+  }
 
   double get _spinnerSize => isSmall ? 14 : 20;
 
