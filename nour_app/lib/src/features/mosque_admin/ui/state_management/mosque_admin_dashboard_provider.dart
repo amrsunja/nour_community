@@ -13,6 +13,10 @@ class MosqueAdminDashboardState extends Equatable {
   final MosqueDashboardStats? stats;
   final List<MosquePostModel> recentPosts;
 
+  /// True once the entrance animation has played — it is a *first open* effect,
+  /// not something to replay on every tab switch.
+  final bool introPlayed;
+
   /// Period of the fundraising header — drives the RPC, not a client-side filter.
   final MosqueFundraisingPeriod fundraisingPeriod;
   final bool isFundraisingLoading;
@@ -23,6 +27,7 @@ class MosqueAdminDashboardState extends Equatable {
     this.recentPosts = const [],
     this.fundraisingPeriod = MosqueFundraisingPeriod.year,
     this.isFundraisingLoading = false,
+    this.introPlayed = false,
   });
 
   MosqueAdminDashboardState copyWith({
@@ -31,6 +36,7 @@ class MosqueAdminDashboardState extends Equatable {
     List<MosquePostModel>? recentPosts,
     MosqueFundraisingPeriod? fundraisingPeriod,
     bool? isFundraisingLoading,
+    bool? introPlayed,
   }) =>
       MosqueAdminDashboardState(
         isLoading: isLoading ?? this.isLoading,
@@ -38,10 +44,11 @@ class MosqueAdminDashboardState extends Equatable {
         recentPosts: recentPosts ?? this.recentPosts,
         fundraisingPeriod: fundraisingPeriod ?? this.fundraisingPeriod,
         isFundraisingLoading: isFundraisingLoading ?? this.isFundraisingLoading,
+        introPlayed: introPlayed ?? this.introPlayed,
       );
 
   @override
-  List<Object?> get props => [isLoading, stats, recentPosts, fundraisingPeriod, isFundraisingLoading];
+  List<Object?> get props => [isLoading, stats, recentPosts, fundraisingPeriod, isFundraisingLoading, introPlayed];
 }
 
 final mosqueAdminDashboardProvider =
@@ -78,6 +85,13 @@ class MosqueAdminDashboardPresenter extends Presenter<MosqueAdminDashboardState>
     state = state.copyWith(isLoading: false);
     // Keep the header counters fresh.
     await ref.read(myMosqueProvider.notifier).load(silent: true);
+  }
+
+  /// Called by the page once it has committed to playing the entrance
+  /// animation, so coming back to the tab does not replay it.
+  void markIntroPlayed() {
+    if (state.introPlayed) return;
+    state = state.copyWith(introPlayed: true);
   }
 
   /// Fundraising period picker — refetches the stats only, the rest of the page

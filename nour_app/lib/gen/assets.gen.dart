@@ -50,6 +50,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/gallery.svg
   String get gallery => 'assets/icons/gallery.svg';
 
+  /// File path: assets/icons/geo.svg
+  String get geo => 'assets/icons/geo.svg';
+
   /// File path: assets/icons/hand.svg
   String get hand => 'assets/icons/hand.svg';
 
@@ -145,6 +148,7 @@ class $AssetsIconsGen {
     earth,
     emptyCalendar,
     gallery,
+    geo,
     hand,
     heart,
     heartHandshake,

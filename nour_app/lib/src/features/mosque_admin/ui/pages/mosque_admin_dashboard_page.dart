@@ -36,6 +36,15 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
       return null;
     }, const []);
 
+    // Entrance animation: decided once, on mount, so a rebuild (stats landing,
+    // a period change, a pull-to-refresh) never replays it and coming back to
+    // the tab does not either.
+    final animateIntro = useMemoized(() {
+      final played = ref.read(mosqueAdminDashboardProvider).introPlayed;
+      if (!played) WidgetsBinding.instance.addPostFrameCallback((_) => presenter.markIntroPlayed());
+      return !played;
+    }, const []);
+
     final stats = state.stats ?? const MosqueDashboardStats();
     final lang = Localizations.localeOf(context).languageCode;
 
@@ -73,7 +82,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                       ),
                     ],
                   ),
-                ),
+                ).appear(0, enabled: animateIntro),
                 const SizedBox(height: 16),
                 if (stats.attentionCount > 0)
                   UITap(
@@ -110,9 +119,9 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                         ],
                       ),
                     ),
-                  ),
+                  ).appear(1, enabled: animateIntro),
                 const SizedBox(height: 20),
-                _SectionTitle(l10n.mosque_admin_tab_community),
+                _SectionTitle(l10n.mosque_admin_tab_community).appear(2, enabled: animateIntro),
                 const SizedBox(height: 12),
                 Row(
                   children: [
@@ -136,7 +145,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                       ),
                     ),
                   ],
-                ),
+                ).appear(3, enabled: animateIntro),
                 const SizedBox(height: 12),
                 UICard(
                   padding: const EdgeInsets.all(14),
@@ -180,7 +189,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                       ],
                     ],
                   ),
-                ),
+                ).appear(4, enabled: animateIntro),
                 if (stats.hasFundraising) ...[
                   const SizedBox(height: 20),
                   Row(
@@ -195,7 +204,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                         ),
                       ],
                     ],
-                  ),
+                  ).appear(5, enabled: animateIntro),
                   const SizedBox(height: 12),
                   AdminFundraisingCard(
                     stats: stats,
@@ -204,10 +213,10 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                     l10n: l10n,
                     onPeriodChanged: presenter.setFundraisingPeriod,
                     onCampaignTap: (c) => nav.toMosqueAdminCampaign(c.id),
-                  ),
+                  ).appear(6, enabled: animateIntro),
                 ],
                 const SizedBox(height: 20),
-                _SectionTitle(l10n.mosque_admin_recent_posts),
+                _SectionTitle(l10n.mosque_admin_recent_posts).appear(7, enabled: animateIntro),
                 const SizedBox(height: 12),
                 if (state.recentPosts.isEmpty)
                   UICard(
@@ -219,12 +228,13 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                         UIButton.primary(label: l10n.mosque_admin_create_post, fullWidth: true, onTap: () => context.router.push(const MosqueAdminCreatePostRoute())),
                       ],
                     ),
-                  )
+                  ).appear(8, enabled: animateIntro)
                 else
-                  for (final p in state.recentPosts)
+                  for (var i = 0; i < state.recentPosts.length; i++)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 12),
-                      child: MosquePostCard(post: p, l10n: l10n, adminStats: true),
+                      child: MosquePostCard(post: state.recentPosts[i], l10n: l10n, adminStats: true)
+                          .appear(8 + i, enabled: animateIntro),
                     ),
                 const SizedBox(height: 4),
                 //UIButton.textual(label: l10n.mosque_admin_view_mosque, fullWidth: true, onTap: () => nav.toMosqueProfile(mosqueId: mosque?.id ?? 0)),
@@ -235,6 +245,14 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
       ),
     );
   }
+}
+
+/// Staggered entrance for the dashboard sections. [index] is fixed per section
+/// (not a running counter) so a hidden banner never shifts the rhythm.
+extension _AppearX on Widget {
+  Widget appear(int index, {required bool enabled}) => enabled
+      ? UIAppearAnimation(delay: Duration(milliseconds: 70 * index), child: this)
+      : this;
 }
 
 class _SectionTitle extends StatelessWidget {

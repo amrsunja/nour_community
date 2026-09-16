@@ -17,15 +17,20 @@ import '../state_management/my_mosques_provider.dart';
 import '../widgets/mosque_search_card.dart';
 import '../widgets/my_mosques_sheet.dart';
 
-/// Mosque search — full-screen map (OpenStreetMap via flutter_map) + a
-/// draggable "Mosques near you" sheet (Figma section 1333:17229).
+/// Mosque search — full-screen map (OpenStreetMap via flutter_map) with a fixed
+/// floating app bar and a draggable "Mosques near you" sheet
+/// (Figma section 1333:17229).
 @RoutePage()
 class MosqueSearchPage extends HookConsumerWidget {
   const MosqueSearchPage({super.key});
 
+  /// Fallback center (Paris) while the position is unknown.
+  static const LatLng _fallbackCenter = LatLng(48.8566, 2.3522);
+  static const double _zoomCity = 12;
+  static const double _zoomFocus = 14;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final nav = ref.read(navigationServicesProvider);
     final snackbar = ref.read(snackbarProvider);
@@ -35,6 +40,8 @@ class MosqueSearchPage extends HookConsumerWidget {
     final mapController = useMemoized(MapController.new);
     final sheetController = useMemoized(DraggableScrollableController.new);
     final searchController = useTextEditingController();
+    final didAutoCenter = useRef(false);
+    final isLocating = useState(false);
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -44,17 +51,39 @@ class MosqueSearchPage extends HookConsumerWidget {
       return null;
     }, const []);
 
-    // Recenter when the location arrives.
+    // Recenter once, when the first fix arrives.
     useEffect(() {
-      if (state.lat != null && state.lng != null) {
+      if (!didAutoCenter.value && state.lat != null && state.lng != null) {
+        didAutoCenter.value = true;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           try {
-            mapController.move(LatLng(state.lat!, state.lng!), 13);
+            mapController.move(LatLng(state.lat!, state.lng!), _zoomCity);
           } catch (_) {}
         });
       }
       return null;
     }, [state.lat, state.lng]);
+
+    // Geo button: resolve the position and fly the map to it.
+    Future<void> onLocate() async {
+      if (isLocating.value) return;
+      isLocating.value = true;
+      try {
+        await presenter.locate();
+      } finally {
+        if (context.mounted) isLocating.value = false;
+      }
+      if (!context.mounted) return;
+      final fresh = ref.read(mosqueSearchProvider);
+      if (!fresh.hasLocation) {
+        snackbar.showError(l10n.prayer_times_location_error);
+        return;
+      }
+      didAutoCenter.value = true;
+      try {
+        mapController.move(LatLng(fresh.lat!, fresh.lng!), _zoomFocus);
+      } catch (_) {}
+    }
 
     Future<void> onAdd(MosqueSearchItemModel item) async {
       final candidate = MosqueModel(
@@ -66,27 +95,46 @@ class MosqueSearchPage extends HookConsumerWidget {
         postalCode: item.postalCode,
         timezone: item.timezone,
       );
-      final saved = await MyMosquesSheet.show(context, candidate: candidate);
+      final saved = await MyMosquesSheet.show(context, candidate: candidate, fromSearch: true);
       if (saved) {
         snackbar.showSuccess(l10n.my_mosques_saved);
         await ref.read(prayerTimesProvider.notifier).refresh();
       }
     }
 
-    final center = state.hasLocation ? LatLng(state.lat!, state.lng!) : const LatLng(48.8566, 2.3522);
+    void onPinTap(MosqueSearchItemModel m) {
+      presenter.highlight(m.id);
+      try {
+        mapController.move(LatLng(m.lat!, m.lng!), _zoomFocus);
+      } catch (_) {}
+      sheetController.animateTo(
+        _MosquesSheet.defaultSize,
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOut,
+      );
+    }
+
+    final center = state.hasLocation ? LatLng(state.lat!, state.lng!) : _fallbackCenter;
     final located = state.results.where((m) => m.hasLocation).toList();
 
     return Scaffold(
       backgroundColor: UIColorsToken.bgPrimary,
+      // The map must not jump when the keyboard opens on the search field.
+      resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
           FlutterMap(
             mapController: mapController,
             options: MapOptions(
               initialCenter: center,
-              initialZoom: 12,
-              interactionOptions: const InteractionOptions(flags: InteractiveFlag.all & ~InteractiveFlag.rotate),
-              onTap: (_, __) => presenter.highlight(null),
+              initialZoom: _zoomCity,
+              interactionOptions: const InteractionOptions(
+                flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+              ),
+              onTap: (_, __) {
+                presenter.highlight(null);
+                FocusScope.of(context).unfocus();
+              },
             ),
             children: [
               TileLayer(
@@ -94,135 +142,117 @@ class MosqueSearchPage extends HookConsumerWidget {
                 userAgentPackageName: 'com.nourcommunity.nour',
               ),
               if (state.hasLocation)
-                MarkerLayer(markers: [
-                  Marker(
-                    point: center,
-                    width: 20,
-                    height: 20,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: const Color(0xff1F6FEB),
-                        border: Border.all(color: UIColorsToken.white, width: 3),
-                      ),
+                MarkerLayer(
+                  markers: [
+                    Marker(
+                      point: center,
+                      width: 22,
+                      height: 22,
+                      child: const _UserDot(),
                     ),
-                  ),
-                ]),
+                  ],
+                ),
               MarkerLayer(
                 markers: [
                   for (final m in located)
                     Marker(
                       point: LatLng(m.lat!, m.lng!),
-                      width: 160,
-                      height: 70,
-                      alignment: Alignment.topCenter,
-                      child: _Pin(
+                      width: _MosquePin.width,
+                      height: _MosquePin.height,
+                      // Point sits at the widget center → the circle is anchored
+                      // on the coordinate and the label floats above it.
+                      alignment: Alignment.center,
+                      child: _MosquePin(
                         name: m.name,
                         selected: state.highlightedId == m.id,
-                        onTap: () {
-                          presenter.highlight(m.id);
-                          mapController.move(LatLng(m.lat!, m.lng!), 14);
-                          sheetController.animateTo(0.55, duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
-                        },
+                        onTap: () => onPinTap(m),
                       ),
                     ),
                 ],
               ),
-              const RichAttributionWidget(attributions: [TextSourceAttribution('OpenStreetMap contributors')]),
+              const RichAttributionWidget(
+                attributions: [TextSourceAttribution('OpenStreetMap contributors')],
+              ),
             ],
           ),
-          // Search bar
-          Positioned(
-            top: MediaQuery.of(context).padding.top + 8,
-            left: 12,
-            right: 12,
-            child: Row(
-              children: [
-                _RoundButton(icon: Icons.chevron_left, onTap: () => context.router.maybePop()),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Container(
-                    height: 46,
-                    padding: const EdgeInsets.symmetric(horizontal: 14),
-                    decoration: BoxDecoration(color: UIColorsToken.bgPrimary, borderRadius: BorderRadius.circular(23)),
-                    child: Row(
-                      children: [
-                        Icon(Icons.search, color: UIColorsToken.textParagraph, size: 20),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: TextField(
-                            controller: searchController,
-                            onChanged: presenter.setQuery,
-                            style: theme.typo.inter.body.copyWith(color: UIColorsToken.white),
-                            textInputAction: TextInputAction.search,
-                            decoration: InputDecoration(
-                              isDense: true,
-                              border: InputBorder.none,
-                              hintText: l10n.mosque_search_hint,
-                              hintStyle: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                _RoundButton(icon: Icons.my_location, onTap: presenter.locate),
-              ],
+
+          _MosquesSheet(
+            controller: sheetController,
+            title: state.query.trim().isEmpty ? l10n.mosque_search_near_you : l10n.mosque_search_results,
+            child: _results(
+              context: context,
+              state: state,
+              l10n: l10n,
+              myMosques: myMosques,
+              onOpen: (m) => nav.toMosqueProfile(mosqueId: m.id),
+              onAdd: onAdd,
             ),
           ),
-          DraggableScrollableSheet(
-            controller: sheetController,
-            initialChildSize: 0.42,
-            minChildSize: 0.12,
-            maxChildSize: 0.92,
-            builder: (context, scroll) => Container(
-              decoration: const BoxDecoration(
-                color: UIColorsToken.bgPrimary,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-              ),
-              child: ListView(
-                controller: scroll,
-                padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
-                children: [
-                  Center(
-                    child: Container(width: 72, height: 5, decoration: BoxDecoration(color: UIColorsToken.white, borderRadius: BorderRadius.circular(3))),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    state.query.trim().isEmpty ? l10n.mosque_search_near_you : l10n.mosque_search_results,
-                    textAlign: TextAlign.center,
-                    style: theme.typo.inter.title.copyWith(color: UIColorsToken.white),
-                  ),
-                  const SizedBox(height: 16),
-                  if (state.isLoading && state.results.isEmpty)
-                    const Padding(padding: EdgeInsets.all(24), child: Center(child: UICircularProgressBar()))
-                  else if (state.results.isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(l10n.mosque_search_empty, textAlign: TextAlign.center,
-                          style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph)),
-                    )
-                  else
-                    for (final m in _ordered(state.results, state.highlightedId))
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 12),
-                        child: MosqueSearchCard(
-                          item: m,
-                          l10n: l10n,
-                          isMine: myMosques.isMine(m.id),
-                          highlighted: state.highlightedId == m.id,
-                          onTap: () => nav.toMosqueProfile(mosqueId: m.id),
-                          onAdd: () => onAdd(m),
-                        ),
-                      ),
-                ],
-              ),
+
+          // Fixed floating app bar: back · search · locate.
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: _SearchAppBar(
+              controller: searchController,
+              hint: l10n.mosque_search_hint,
+              onBack: () => context.router.maybePop(),
+              onChanged: presenter.setQuery,
+              onLocate: onLocate,
+              isLocating: isLocating.value,
             ),
           ),
         ],
       ),
+    );
+  }
+
+  static Widget _results({
+    required BuildContext context,
+    required MosqueSearchState state,
+    required AppLocale l10n,
+    required MyMosquesState myMosques,
+    required void Function(MosqueSearchItemModel) onOpen,
+    required void Function(MosqueSearchItemModel) onAdd,
+  }) {
+    final theme = UITheme.of(context);
+
+    if (state.isLoading && state.results.isEmpty) {
+      return const SliverToBoxAdapter(
+        child: Padding(padding: EdgeInsets.all(32), child: Center(child: UICircularProgressBar())),
+      );
+    }
+
+    if (state.results.isEmpty) {
+      return SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Text(
+            l10n.mosque_search_empty,
+            textAlign: TextAlign.center,
+            style: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph),
+          ),
+        ),
+      );
+    }
+
+    final ordered = _ordered(state.results, state.highlightedId);
+
+    return SliverList.separated(
+      itemCount: ordered.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 12),
+      itemBuilder: (context, i) {
+        final m = ordered[i];
+        return MosqueSearchCard(
+          item: m,
+          l10n: l10n,
+          isMine: myMosques.isMine(m.id),
+          highlighted: state.highlightedId == m.id,
+          onTap: () => onOpen(m),
+          onAdd: () => onAdd(m),
+        );
+      },
     );
   }
 
@@ -232,8 +262,159 @@ class MosqueSearchPage extends HookConsumerWidget {
   }
 }
 
-class _Pin extends StatelessWidget {
-  const _Pin({required this.name, required this.selected, required this.onTap});
+/// Floating, non-scrolling app bar over the map.
+class _SearchAppBar extends StatelessWidget {
+  const _SearchAppBar({
+    required this.controller,
+    required this.hint,
+    required this.onBack,
+    required this.onChanged,
+    required this.onLocate,
+    required this.isLocating,
+  });
+
+  static const double height = 46;
+
+  final TextEditingController controller;
+  final String hint;
+  final VoidCallback onBack;
+  final ValueChanged<String> onChanged;
+  final Future<void> Function() onLocate;
+  final bool isLocating;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
+
+    return SafeArea(
+      bottom: false,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 0),
+        child: Row(
+          spacing: 8,
+          children: [
+            _SquareButton(assetIcon: UIIconsToken.icons.chevronLeft, onTap: onBack),
+            Expanded(
+              child: Container(
+                height: height,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                  color: UIColorsToken.bgPrimary,
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: UIColorsToken.white.withValues(alpha: 0.06)),
+                  boxShadow: _shadows,
+                ),
+                child: Row(
+                  spacing: 10,
+                  children: [
+                    Icon(Icons.search_rounded, color: UIColorsToken.textParagraph, size: 22),
+                    Expanded(
+                      child: TextField(
+                        controller: controller,
+                        onChanged: onChanged,
+                        style: theme.typo.inter.body.copyWith(color: UIColorsToken.white),
+                        cursorColor: UIColorsToken.textYellow,
+                        textInputAction: TextInputAction.search,
+                        decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.zero,
+                          border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          hintText: hint,
+                          hintStyle: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            _SquareButton(
+              assetIcon: UIIconsToken.icons.geo,
+              onTap: () => onLocate(),
+              isBusy: isLocating,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static List<BoxShadow> get _shadows => [
+        BoxShadow(
+          color: UIColorsToken.black.withValues(alpha: 0.35),
+          blurRadius: 18,
+          spreadRadius: -2,
+          offset: const Offset(0, 8),
+        ),
+      ];
+}
+
+class _SquareButton extends StatelessWidget {
+  const _SquareButton({required this.assetIcon, required this.onTap, this.isBusy = false});
+
+  final String assetIcon;
+  final VoidCallback onTap;
+  final bool isBusy;
+
+  @override
+  Widget build(BuildContext context) {
+    return UITap(
+      onTap: onTap,
+      child: Container(
+        width: _SearchAppBar.height,
+        height: _SearchAppBar.height,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: UIColorsToken.bgPrimary,
+          borderRadius: .circular(10),
+          border: Border.all(color: UIColorsToken.white.withValues(alpha: 0.06)),
+          boxShadow: _SearchAppBar._shadows,
+        ),
+        child: isBusy
+            ? SizedBox(
+                width: 18,
+                height: 18,
+                child: CircularProgressIndicator(strokeWidth: 2, color: UIColorsToken.textYellow),
+              )
+            : UIIconsToken.toIcon(assetIcon, color: UIColorsToken.textYellow, size: 22),
+      ),
+    );
+  }
+}
+
+/// Blue "you are here" dot.
+class _UserDot extends StatelessWidget {
+  const _UserDot();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: const Color(0xff1F6FEB),
+        border: Border.all(color: UIColorsToken.white, width: 3),
+        boxShadow: [
+          BoxShadow(color: const Color(0xff1F6FEB).withValues(alpha: 0.45), blurRadius: 12, spreadRadius: 2),
+        ],
+      ),
+    );
+  }
+}
+
+/// Map marker: the mosque name sits on top of the rounded circle holding the
+/// `assets/icons/masjid` glyph.
+class _MosquePin extends StatelessWidget {
+  const _MosquePin({required this.name, required this.selected, required this.onTap});
+
+  /// Marker box — tall/wide enough for the label to overflow above the circle
+  /// while keeping the coordinate at the box center.
+  static const double width = 230;
+  static const double height = 130;
+  static const double circle = 45;
+  static const double labelGap = 8;
+
   final String name;
   final bool selected;
   final VoidCallback onTap;
@@ -241,27 +422,63 @@ class _Pin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
+
     return UITap(
       onTap: onTap,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
+          // Label: bottom edge sits `labelGap` above the circle's top edge.
+          Positioned(
+            bottom: height / 2 + circle / 2 + labelGap,
+            left: 0,
+            right: 0,
+            child: Align(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: selected ? UIColorsToken.bgTertiaryGreen : UIColorsToken.bgSecondaryGreen,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(
+                    color: selected ? UIColorsToken.textYellow : UIColorsToken.white.withValues(alpha: 0.06),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: UIColorsToken.black.withValues(alpha: 0.35),
+                      blurRadius: 12,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Text(
+                  name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow),
+                ),
+              ),
+            ),
+          ),
           Container(
-            width: 36,
-            height: 36,
+            width: circle,
+            height: circle,
+            alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: selected ? UIColorsToken.textYellow : UIColorsToken.bgSecondaryGreen,
-              border: Border.all(color: UIColorsToken.textYellow, width: 2),
+              border: Border.all(color: UIColorsToken.yellow, width: 1),
+              boxShadow: [
+                BoxShadow(
+                  color: UIColorsToken.black.withValues(alpha: 0.4),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
-            child: Icon(Icons.mosque, size: 18, color: selected ? UIColorsToken.black : UIColorsToken.textYellow),
-          ),
-          const SizedBox(height: 2),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            decoration: BoxDecoration(color: UIColorsToken.bgSecondaryGreen, borderRadius: BorderRadius.circular(6)),
-            child: Text(name, maxLines: 1, overflow: TextOverflow.ellipsis,
-                style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textYellow)),
+            child: UIIconsToken.toIcon(
+              UIIconsToken.icons.masjid,
+              color: selected ? UIColorsToken.black : UIColorsToken.textYellow,
+            ),
           ),
         ],
       ),
@@ -269,21 +486,102 @@ class _Pin extends StatelessWidget {
   }
 }
 
-class _RoundButton extends StatelessWidget {
-  const _RoundButton({required this.icon, required this.onTap});
-  final IconData icon;
-  final VoidCallback onTap;
+/// "Mosques near you" sheet: rounded top, gold top glow, pinned handle + title,
+/// scrolling result cards.
+class _MosquesSheet extends StatelessWidget {
+  const _MosquesSheet({required this.controller, required this.title, required this.child});
+
+  static const double collapsedSize = 0.16;
+  static const double defaultSize = 0.46;
+  static const double expandedSize = 0.82;
+  static const double radius = 24;
+
+  final DraggableScrollableController controller;
+  final String title;
+
+  /// Sliver holding the result cards.
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return UITap(
-      onTap: onTap,
-      child: Container(
-        width: 46,
-        height: 46,
-        decoration: const BoxDecoration(color: UIColorsToken.bgPrimary, shape: BoxShape.circle),
-        child: Icon(icon, color: UIColorsToken.textYellow, size: 22),
+    return DraggableScrollableSheet(
+      controller: controller,
+      initialChildSize: defaultSize,
+      minChildSize: collapsedSize,
+      maxChildSize: expandedSize,
+      snap: true,
+      snapSizes: const [collapsedSize, defaultSize, expandedSize],
+      builder: (context, scroll) => ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(radius)),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: UIColorsToken.bgPrimary,
+            border: Border(top: BorderSide(color: UIColorsToken.white.withValues(alpha: 0.08))),
+          ),
+          child: CustomScrollView(
+            controller: scroll,
+            slivers: [
+              SliverPersistentHeader(pinned: true, delegate: _SheetHeader(title: title)),
+              SliverPadding(
+                padding: EdgeInsets.fromLTRB(16, 0, 16, 24 + MediaQuery.of(context).padding.bottom),
+                sliver: child,
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
+}
+
+class _SheetHeader extends SliverPersistentHeaderDelegate {
+  const _SheetHeader({required this.title});
+
+  static const double _extent = 90;
+
+  final String title;
+
+  @override
+  double get minExtent => _extent;
+
+  @override
+  double get maxExtent => _extent;
+
+  @override
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+    final theme = UITheme.of(context);
+
+    return SizedBox(
+      height: _extent,
+      child: Stack(
+      alignment: .center,
+        children: [
+          const Positioned.fill(child: ColoredBox(color: UIColorsToken.bgPrimary)),
+          const Positioned(
+            top: UITopGlow.offset,
+            left: 0,
+            right: 0,
+            child: UITopGlow(),
+          ),
+          Column(
+            children: [
+              const UIBottomSheetHandle(),
+              const SizedBox(height: 16),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: theme.typo.inter.titleMedium.copyWith(color: UIColorsToken.white),
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  bool shouldRebuild(_SheetHeader oldDelegate) => oldDelegate.title != title;
 }

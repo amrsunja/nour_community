@@ -12,17 +12,27 @@ import 'mosque_header.dart';
 /// "Your mosque(s)" bottom sheet (Figma 1245:10598): principal + secondary
 /// slots, drag to reorder, remove, Save.
 class MyMosquesSheet extends HookConsumerWidget {
-  const MyMosquesSheet({super.key, this.candidate});
+  const MyMosquesSheet({super.key, this.candidate, this.fromSearch = false});
 
   /// A mosque to add (from "Add to my mosques"): principal if the slot is
   /// free, else secondary.
   final MosqueModel? candidate;
 
-  static Future<bool> show(BuildContext context, {MosqueModel? candidate}) async {
+  /// `true` when the sheet is opened from the mosque search page. Tapping an
+  /// empty slot then saves the current selection and closes the sheet — the
+  /// search map underneath is already the picker, so pushing another one
+  /// would stack a duplicate route and lose the unsaved principal.
+  final bool fromSearch;
+
+  static Future<bool> show(
+    BuildContext context, {
+    MosqueModel? candidate,
+    bool fromSearch = false,
+  }) async {
     final res = await UIBottomSheet.show<bool>(
       context: context,
       isScrollControlled: true,
-      builder: (_) => MyMosquesSheet(candidate: candidate),
+      builder: (_) => MyMosquesSheet(candidate: candidate, fromSearch: fromSearch),
     );
     return res ?? false;
   }
@@ -46,12 +56,26 @@ class MyMosquesSheet extends HookConsumerWidget {
     });
     final items = useState<List<MosqueModel>>(initial);
 
-    Future<void> save() async {
+    Future<bool> save() async {
       final ok = await presenter.save(
         principal: items.value.isNotEmpty ? items.value[0].id : null,
         secondary: items.value.length > 1 ? items.value[1].id : null,
       );
       if (ok && context.mounted) Navigator.of(context).pop(true);
+      return ok;
+    }
+
+    // Empty slot tap: persist the current selection first so the principal is
+    // never dropped, then close. From the search page we stop there — the map
+    // behind the sheet is already the picker; elsewhere we push it.
+    Future<void> pickAnother() async {
+      if (items.value.isEmpty) {
+        Navigator.of(context).pop(false);
+        if (!fromSearch) nav.toMosqueSearch();
+        return;
+      }
+      final ok = await save();
+      if (ok && !fromSearch) nav.toMosqueSearch();
     }
 
     Widget slot(String title, MosqueModel? m, int index) => Column(
@@ -61,10 +85,7 @@ class MyMosquesSheet extends HookConsumerWidget {
             const SizedBox(height: 8),
             if (m == null)
               UITap(
-                onTap: () {
-                  Navigator.of(context).pop(false);
-                  nav.toMosqueSearch();
-                },
+                onTap: pickAnother,
                 child: Container(
                   height: 64,
                   alignment: Alignment.center,
