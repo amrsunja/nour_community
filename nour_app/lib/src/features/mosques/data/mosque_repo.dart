@@ -123,6 +123,11 @@ class MosqueRepo {
   Future<SuccessOrError<List<MosqueCampaignUpdate>>> getCampaignUpdates(int campaignId) =>
       Failure.exceptionsCatcher(() => donation.getCampaignUpdates(campaignId));
   Future<List<MosqueCampaignDonor>> getCampaignRecentDonors(int campaignId) => donation.getCampaignRecentDonors(campaignId);
+  /// Server-side reconciliation with Stripe — used by the checkout while it
+  /// waits, so a missing or slow Connect webhook never strands a paid donor.
+  Future<TxStatus?> confirmMosquePayment(int transactionId) => donation.confirmPayment(transactionId);
+  Future<SubscriptionStatus?> confirmMosqueSubscription(int subscriptionId) => donation.confirmSubscription(subscriptionId);
+
   Future<SuccessOrError<MosqueCreatedPayment>> createMosquePaymentIntent({
     required int mosqueId,
     required double amount,

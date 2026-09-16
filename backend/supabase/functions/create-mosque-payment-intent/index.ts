@@ -143,7 +143,18 @@ Deno.serve(async (req) => {
       },
       onAccount(acct, clientKey ? { idempotencyKey: `mpi:${user.id}:${clientKey}` } : undefined),
     );
-    await admin.from("transactions").update({ stripe_pi_id: pi.id }).eq("id", tx.id);
+    // This link is what the webhook (and confirm-mosque-payment) match on. If
+    // it does not land, the donor would be charged with no way to settle the
+    // row — so cancel the PaymentIntent instead of handing out its secret.
+    const { error: linkErr } = await admin.from("transactions").update({ stripe_pi_id: pi.id }).eq("id", tx.id);
+    if (linkErr) {
+      console.error("[create-mosque-payment-intent] link stripe_pi_id", linkErr);
+      try {
+        await stripe.paymentIntents.cancel(pi.id, undefined, onAccount(acct));
+      } catch (_) { /* best effort */ }
+      await admin.from("transactions").delete().eq("id", tx.id);
+      return json({ error: "db_error" }, 500);
+    }
     return json({ clientSecret: pi.client_secret, transactionId: tx.id, stripeAccountId: acct.stripe_account_id, fee: 0, amountCharged: amountTotal });
   } catch (e) {
     await admin.from("transactions").delete().eq("id", tx.id);

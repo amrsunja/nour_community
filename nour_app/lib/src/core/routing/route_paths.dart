@@ -43,6 +43,9 @@ abstract class RoutePaths {
   static String mosqueCampaign({int? id, int? campaignId}) =>
       'mosque/${id ?? ':id'}/campaign/${campaignId ?? ':campaignId'}';
   static String mosqueCheckout({int? id}) => 'mosque/${id ?? ':id'}/checkout';
+  /// `mosque/12/reward?amount=&frequency=&campaignId=&membershipId=` — shown
+  /// after a confirmed sadaqa / campaign gift / membership fee.
+  static String mosqueReward({int? id}) => 'mosque/${id ?? ':id'}/reward';
   static const myMosqueReceipts = 'mosque-receipts';
   static const pushSettings = 'push-settings';
   //static const signUp= 'sign-up';

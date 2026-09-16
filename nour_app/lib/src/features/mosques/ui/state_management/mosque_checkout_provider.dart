@@ -80,6 +80,8 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
   Timer? _poll;
   Timer? _timeout;
   String? _clientKey;
+  int _tick = 0;
+  bool _reconciling = false;
 
   Future<void> _probeWallets() async {
     final results = await Future.wait([payments.isApplePaySupported(), payments.isGooglePaySupported()]);
@@ -197,12 +199,14 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
   Future<void> onAppResumed() async {
     if (state.phase != CheckoutPhase.processing) return;
     await _pollOnce();
+    await _reconcile();
   }
 
   void keepWaiting() {
     if (state.phase != CheckoutPhase.processing) return;
     state = state.copyWith(timedOut: false);
     _armTimeout();
+    unawaited(_reconcile());
   }
 
   void reset() {
@@ -223,6 +227,10 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
     }
     _poll = Timer.periodic(pollInterval, (_) => _pollOnce());
     _armTimeout();
+    // The Connect webhook is not on the critical path: settle against Stripe
+    // ourselves as soon as the sheet closes, then on every other poll.
+    _tick = 0;
+    unawaited(_reconcile());
   }
 
   void _armTimeout() {
@@ -241,6 +249,29 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
       _applySubStatus(await payments.fetchSubscriptionStatus(subId));
     } else if (txId != null) {
       _applyTxStatus(await payments.fetchTransactionStatus(txId));
+    }
+    // Every other tick (~8 s) ask Stripe directly as well.
+    if (++_tick % 2 == 0) await _reconcile();
+  }
+
+  /// Asks the server for Stripe's own verdict on this payment. The webhook
+  /// remains the ledger's source of truth; this only stops a donor whose money
+  /// already left from staring at "Taking longer than expected".
+  Future<void> _reconcile() async {
+    if (_reconciling || state.phase != CheckoutPhase.processing) return;
+    _reconciling = true;
+    try {
+      final subId = state.subscriptionId;
+      final txId = state.transactionId;
+      if (subId != null) {
+        final status = await repo.confirmMosqueSubscription(subId);
+        if (status != null) _applySubStatus(status);
+      } else if (txId != null) {
+        final status = await repo.confirmMosquePayment(txId);
+        if (status != null) _applyTxStatus(status);
+      }
+    } finally {
+      _reconciling = false;
     }
   }
 

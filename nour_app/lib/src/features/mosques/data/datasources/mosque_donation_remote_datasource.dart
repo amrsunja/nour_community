@@ -27,6 +27,7 @@ class MosqueDonationRemoteDatasource {
   static const _fnIntent = 'create-mosque-payment-intent';
   static const _fnSubscription = 'create-mosque-subscription';
   static const _fnCancel = 'cancel-mosque-subscription';
+  static const _fnConfirm = 'confirm-mosque-payment';
   static const _fnReceipt = 'generate-mosque-receipt';
 
   String _requireUserId() {
@@ -143,6 +144,34 @@ class MosqueDonationRemoteDatasource {
   }
 
   // ── Donor: pay ────────────────────────────────────────────────────────────
+
+  /// Asks the server to settle this donation against Stripe instead of waiting
+  /// for `stripe-connect-webhook`. Returns the authoritative status, or `null`
+  /// when the call itself failed (the caller keeps waiting).
+  Future<TxStatus?> confirmPayment(int transactionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnConfirm, body: {'transactionId': transactionId});
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : TxStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[mosque-donation] confirmPayment $transactionId: $e');
+      return null;
+    }
+  }
+
+  /// Subscription variant of [confirmPayment].
+  Future<SubscriptionStatus?> confirmSubscription(int subscriptionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnConfirm, body: {'subscriptionId': subscriptionId});
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : SubscriptionStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[mosque-donation] confirmSubscription $subscriptionId: $e');
+      return null;
+    }
+  }
 
   Future<MosqueCreatedPayment> createPaymentIntent({
     required int mosqueId,

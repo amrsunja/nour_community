@@ -34,6 +34,13 @@ abstract class NavigationServices {
 		int? campaignId,
 		int? membershipId,
 	});
+	void toMosqueReward({
+		required int mosqueId,
+		required double amount,
+		required String frequency,
+		int? campaignId,
+		int? membershipId,
+	});
 	void toMosqueAdminSadaqaSettings();
 	void toMosqueAdminFundraisingSettings();
 	void toMosqueAdminStripe();
@@ -200,6 +207,23 @@ class NavigationServicesImpl implements NavigationServices {
 		int? membershipId,
 	}) {
 		return router.push<bool?>(MosqueCheckoutRoute(
+			mosqueId: mosqueId,
+			amount: amount,
+			frequency: frequency,
+			campaignId: campaignId,
+			membershipId: membershipId,
+		));
+  }
+
+  @override
+  void toMosqueReward({
+		required int mosqueId,
+		required double amount,
+		required String frequency,
+		int? campaignId,
+		int? membershipId,
+	}) {
+		router.push(MosqueRewardRoute(
 			mosqueId: mosqueId,
 			amount: amount,
 			frequency: frequency,

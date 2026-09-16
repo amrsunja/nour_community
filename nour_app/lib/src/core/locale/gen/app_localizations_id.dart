@@ -3471,6 +3471,27 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get reward_mosque_sadaqa_message =>
+      'Sedekahmu telah diterima.\nSemoga Allah menerimanya dan melipatgandakan pahalanya.';
+
+  @override
+  String get reward_mosque_campaign_message =>
+      'Kontribusimu telah diterima.\nSemoga Allah membalasmu atas apa yang akan dibangun.';
+
+  @override
+  String get reward_mosque_membership_message =>
+      'Iuran keanggotaanmu dikonfirmasi.\nSelamat datang di komunitas.';
+
+  @override
+  String get reward_mosque_you_contributed => 'Iuranmu';
+
+  @override
+  String get reward_mosque_label => 'Masjid';
+
+  @override
+  String get reward_mosque_my_receipts => 'Bukti donasi saya';
+
+  @override
   String get mosque_receipts_empty => 'Belum ada kuitansi.';
 
   @override

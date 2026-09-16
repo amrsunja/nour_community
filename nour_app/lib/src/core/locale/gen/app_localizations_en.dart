@@ -3462,6 +3462,27 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get reward_mosque_sadaqa_message =>
+      'Your sadaqa has been received.\nMay Allah accept it and multiply its reward.';
+
+  @override
+  String get reward_mosque_campaign_message =>
+      'Your contribution has been received.\nMay Allah reward you for what it will build.';
+
+  @override
+  String get reward_mosque_membership_message =>
+      'Your membership contribution is confirmed.\nWelcome to the community.';
+
+  @override
+  String get reward_mosque_you_contributed => 'Your contribution';
+
+  @override
+  String get reward_mosque_label => 'Mosque';
+
+  @override
+  String get reward_mosque_my_receipts => 'My tax receipts';
+
+  @override
   String get mosque_receipts_empty => 'No receipt yet.';
 
   @override

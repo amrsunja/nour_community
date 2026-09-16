@@ -3474,6 +3474,27 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
+  String get reward_mosque_sadaqa_message =>
+      'Ваша садака получена.\nДа примет её Аллах и умножит награду.';
+
+  @override
+  String get reward_mosque_campaign_message =>
+      'Ваш вклад получен.\nДа вознаградит вас Аллах за то, что будет построено.';
+
+  @override
+  String get reward_mosque_membership_message =>
+      'Ваш членский взнос подтверждён.\nДобро пожаловать в общину.';
+
+  @override
+  String get reward_mosque_you_contributed => 'Ваш взнос';
+
+  @override
+  String get reward_mosque_label => 'Мечеть';
+
+  @override
+  String get reward_mosque_my_receipts => 'Мои квитанции';
+
+  @override
   String get mosque_receipts_empty => 'Квитанций пока нет.';
 
   @override

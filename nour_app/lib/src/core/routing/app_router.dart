@@ -183,6 +183,12 @@ class AppRouter extends RootStackRouter {
               path: RoutePaths.mosqueCheckout(),
               page: MosqueCheckoutRoute.page,
             ),
+            customRoute(
+              path: RoutePaths.mosqueReward(),
+              page: MosqueRewardRoute.page,
+              transitionsBuilder: TransitionsBuilders.fadeIn,
+              durationInMilliseconds: 400,
+            ),
             AutoRoute(
               path: RoutePaths.myMosqueReceipts,
               page: MosqueAdminReceiptsRoute.page,

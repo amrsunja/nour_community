@@ -3455,6 +3455,27 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get reward_mosque_sadaqa_message =>
+      'Sadakanız alındı.\nAllah kabul etsin ve ecrini kat kat versin.';
+
+  @override
+  String get reward_mosque_campaign_message =>
+      'Katkınız alındı.\nAllah, bununla yapılacak hayır için sizi mükâfatlandırsın.';
+
+  @override
+  String get reward_mosque_membership_message =>
+      'Aidatınız onaylandı.\nTopluluğa hoş geldiniz.';
+
+  @override
+  String get reward_mosque_you_contributed => 'Katkınız';
+
+  @override
+  String get reward_mosque_label => 'Cami';
+
+  @override
+  String get reward_mosque_my_receipts => 'Bağış makbuzlarım';
+
+  @override
   String get mosque_receipts_empty => 'Henüz makbuz yok.';
 
   @override

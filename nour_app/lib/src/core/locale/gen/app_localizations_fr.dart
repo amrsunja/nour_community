@@ -3493,6 +3493,27 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get reward_mosque_sadaqa_message =>
+      'Votre sadaqa a bien été reçue.\nQu’Allah l’accepte et en multiplie la récompense.';
+
+  @override
+  String get reward_mosque_campaign_message =>
+      'Votre contribution a bien été reçue.\nQu’Allah vous récompense pour ce qu’elle bâtira.';
+
+  @override
+  String get reward_mosque_membership_message =>
+      'Votre cotisation est confirmée.\nBienvenue dans la communauté.';
+
+  @override
+  String get reward_mosque_you_contributed => 'Votre cotisation';
+
+  @override
+  String get reward_mosque_label => 'Mosquée';
+
+  @override
+  String get reward_mosque_my_receipts => 'Mes reçus fiscaux';
+
+  @override
   String get mosque_receipts_empty => 'Aucun reçu pour le moment.';
 
   @override

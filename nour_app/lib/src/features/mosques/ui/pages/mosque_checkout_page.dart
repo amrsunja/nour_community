@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io' show Platform;
 
 import 'package:auto_route/auto_route.dart';
@@ -69,10 +70,25 @@ class MosqueCheckoutPage extends HookConsumerWidget {
       if (current == AppLifecycleState.resumed) presenter.onAppResumed();
     });
 
+    // Success → pop back to the caller (mosque / campaign page, which refreshes
+    // on `true`) and push the reward page over it, so "back" lands there.
     ref.listen<CheckoutState>(mosqueCheckoutProvider(args), (prev, next) {
       if (prev?.phase != CheckoutPhase.success && next.phase == CheckoutPhase.success) {
         succeeded.value = true;
         profilePresenter.refresh();
+        final router = context.router;
+        final paid = next.amount;
+        final freq = next.frequency;
+        unawaited(Future(() async {
+          await router.maybePop(true);
+          nav.toMosqueReward(
+            mosqueId: mosqueId,
+            amount: paid,
+            frequency: freq.name,
+            campaignId: campaignId,
+            membershipId: membershipId,
+          );
+        }));
       }
     });
 
@@ -219,14 +235,12 @@ class MosqueCheckoutPage extends HookConsumerWidget {
                 onRetry: presenter.reset,
               ),
             ),
+          // Handing over to the reward page — keep the form hidden meanwhile.
           if (succeeded.value)
             Positioned.fill(
-              child: _SuccessOverlay(
-                l10n: l10n,
-                amountLabel: ImpactFormat.money(state.amount, currency),
-                mosqueName: mosque?.name ?? '',
-                isMembership: args.isMembership,
-                onDone: () => context.router.maybePop(true),
+              child: ColoredBox(
+                color: UIColorsToken.bgPrimary,
+                child: const Center(child: UICircularProgressBar()),
               ),
             ),
         ],
@@ -239,45 +253,4 @@ class MosqueCheckoutPage extends HookConsumerWidget {
         if (Platform.isIOS && state.applePayAvailable) PaymentMethodKind.applePay,
         if (Platform.isAndroid && state.googlePayAvailable) PaymentMethodKind.googlePay,
       ];
-}
-
-class _SuccessOverlay extends StatelessWidget {
-  const _SuccessOverlay({required this.l10n, required this.amountLabel, required this.mosqueName, required this.isMembership, required this.onDone});
-
-  final AppLocale l10n;
-  final String amountLabel;
-  final String mosqueName;
-  final bool isMembership;
-  final VoidCallback onDone;
-
-  @override
-  Widget build(BuildContext context) {
-    final typo = UITheme.of(context).typo;
-    return Container(
-      color: UIColorsToken.bgPrimary.withValues(alpha: 0.96),
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(28),
-      child: UIAppearAnimation(
-        child: UICard(
-          padding: const EdgeInsets.fromLTRB(22, 26, 22, 22),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Icon(Icons.favorite, color: UIColorsToken.textYellow, size: 48),
-              const UISpace.vert(16),
-              Text(l10n.mosque_checkout_success_title, textAlign: TextAlign.center, style: typo.inter.title.copyWith(color: UIColorsToken.white)),
-              const UISpace.vert(8),
-              Text(
-                isMembership ? l10n.mosque_checkout_success_membership(amountLabel, mosqueName) : l10n.mosque_checkout_success_message(amountLabel, mosqueName),
-                textAlign: TextAlign.center,
-                style: typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph),
-              ),
-              const UISpace.vert(22),
-              UIButton.primary(label: l10n.common_done, fullWidth: true, onTap: onDone),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }

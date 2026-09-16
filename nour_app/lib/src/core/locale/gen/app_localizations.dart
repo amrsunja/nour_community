@@ -6266,6 +6266,42 @@ abstract class AppLocalizations {
   /// **'Your contribution of {amount} to {mosque} is confirmed. Welcome to the community.'**
   String mosque_checkout_success_membership(String amount, String mosque);
 
+  /// No description provided for @reward_mosque_sadaqa_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your sadaqa has been received.\nMay Allah accept it and multiply its reward.'**
+  String get reward_mosque_sadaqa_message;
+
+  /// No description provided for @reward_mosque_campaign_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contribution has been received.\nMay Allah reward you for what it will build.'**
+  String get reward_mosque_campaign_message;
+
+  /// No description provided for @reward_mosque_membership_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your membership contribution is confirmed.\nWelcome to the community.'**
+  String get reward_mosque_membership_message;
+
+  /// No description provided for @reward_mosque_you_contributed.
+  ///
+  /// In en, this message translates to:
+  /// **'Your contribution'**
+  String get reward_mosque_you_contributed;
+
+  /// No description provided for @reward_mosque_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Mosque'**
+  String get reward_mosque_label;
+
+  /// No description provided for @reward_mosque_my_receipts.
+  ///
+  /// In en, this message translates to:
+  /// **'My tax receipts'**
+  String get reward_mosque_my_receipts;
+
   /// No description provided for @mosque_receipts_empty.
   ///
   /// In en, this message translates to:

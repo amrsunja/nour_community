@@ -200,7 +200,17 @@ Deno.serve(async (req) => {
       await admin.from("donation_subscriptions").delete().eq("id", row.id);
       return json({ error: "stripe_error", message: "no payment intent on first invoice" }, 502);
     }
-    await admin.from("donation_subscriptions").update({ stripe_subscription_id: sub.id }).eq("id", row.id);
+    // Same reasoning as create-mosque-payment-intent: without this link neither
+    // invoice.paid nor confirm-mosque-payment can ever settle the subscription.
+    const { error: linkErr } = await admin.from("donation_subscriptions").update({ stripe_subscription_id: sub.id }).eq("id", row.id);
+    if (linkErr) {
+      console.error("[create-mosque-subscription] link stripe_subscription_id", linkErr);
+      try {
+        await stripe.subscriptions.cancel(sub.id, undefined, opts);
+      } catch (_) { /* best effort */ }
+      await admin.from("donation_subscriptions").delete().eq("id", row.id);
+      return json({ error: "db_error" }, 500);
+    }
     if (membershipId) await admin.from("mosque_members").update({ fee_subscription_id: row.id }).eq("id", membershipId);
 
     const ek = await stripe.ephemeralKeys.create({ customer: customerId }, { apiVersion: STRIPE_API_VERSION, ...opts });
