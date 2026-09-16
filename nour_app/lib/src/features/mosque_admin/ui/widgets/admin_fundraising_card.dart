@@ -41,8 +41,9 @@ class AdminFundraisingCard extends StatelessWidget {
     return UICard(
       padding: EdgeInsets.zero,
       disableBorder: true,
+      borderRadius: 10,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(13),
+        borderRadius: BorderRadius.circular(10),
         child: Stack(
           children: [
             // Warm halo bleeding in from the top of the card.

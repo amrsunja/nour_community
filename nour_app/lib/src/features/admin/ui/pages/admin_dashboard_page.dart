@@ -213,6 +213,7 @@ class _StatCard extends StatelessWidget {
     final typo = UITheme.of(context).typo;
     return UICard(
       padding: const EdgeInsets.all(14),
+      borderRadius: 10,
       disableBorder: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

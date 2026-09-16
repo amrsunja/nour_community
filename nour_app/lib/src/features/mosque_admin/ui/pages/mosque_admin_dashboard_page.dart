@@ -140,6 +140,8 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                 const SizedBox(height: 12),
                 UICard(
                   padding: const EdgeInsets.all(14),
+                  borderRadius: 10,
+                  disableBorder: true,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -255,27 +257,45 @@ class _StatCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     return UICard(
-      padding: const EdgeInsets.all(14),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              UIIcon(assetIcon, size: 16, color: UIColorsToken.textParagraph),
-              const SizedBox(width: 6),
-              Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              Text(value, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
-              const SizedBox(width: 8),
-              _Delta(value: delta),
-            ],
-          ),
-          Text(caption, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-        ],
+      borderRadius: 10,
+      disableBorder: true,
+      child: ClipRRect(
+        borderRadius: .circular(10),
+        child: Stack(
+          children: [
+            // Same warm gold halo as the mosque header / bottom sheets, on
+            // every post type.
+            const Positioned(
+              top: UICornerGlow.offset,
+              right: UICornerGlow.offset,
+              child: UICornerGlow(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      UIIcon(assetIcon, size: 16, color: UIColorsToken.textParagraph),
+                      const SizedBox(width: 6),
+                      Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Text(value, style: theme.typo.inter.display.copyWith(color: UIColorsToken.white)),
+                      const SizedBox(width: 8),
+                      _Delta(value: delta),
+                    ],
+                  ),
+                  Text(caption, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
