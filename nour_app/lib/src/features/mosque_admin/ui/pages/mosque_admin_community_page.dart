@@ -27,7 +27,6 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(mosqueAdminCommunityProvider.notifier);
     final state = ref.watch(mosqueAdminCommunityProvider);
-    final lang = Localizations.localeOf(context).languageCode;
 
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) => presenter.load());
@@ -104,7 +103,7 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
         appBar: UIAppBar(
           title: l10n.mosque_admin_tab_community,
           leadingIcons: [
-            UITap(onTap: exportCsv, child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.download_outlined, color: UIColorsToken.textYellow))),
+            UITap(onTap: exportCsv, child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.download_rounded, color: UIColorsToken.textYellow))),
           ],
         ),
       body: SafeArea(
@@ -121,7 +120,7 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 12),
             SizedBox(
-              height: 40,
+              height: 30,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding),
@@ -133,12 +132,11 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
                         onTap: () => presenter.setFilter(f.$1),
                         child: AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
-                          padding: const EdgeInsets.symmetric(horizontal: 18),
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
+                            borderRadius: BorderRadius.circular(8),
                             gradient: state.filter == f.$1 ? UIColorsToken.bgPriYellow : null,
-                            color: state.filter == f.$1 ? null : Colors.transparent,
                           ),
                           child: Text(f.$2,
                               style: theme.typo.inter.bodyMedium.copyWith(color: state.filter == f.$1 ? UIColorsToken.black : UIColorsToken.white)),
@@ -165,60 +163,81 @@ class MosqueAdminCommunityPage extends HookConsumerWidget {
                             }
                             final m = state.items[i];
                             return UICard(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                              borderRadius: 10,
+                              disableBorder: true,
                               onTap: () => onMenu(m),
-                              child: Row(
-                                children: [
-                                  ClipOval(
-                                    child: SizedBox(
-                                      width: 44,
-                                      height: 44,
-                                      child: m.avatarUrl != null
-                                          ? CachedNetworkImage(imageUrl: m.avatarUrl!, fit: BoxFit.cover)
-                                          : Container(
-                                              color: _color(m.userId),
-                                              alignment: Alignment.center,
-                                              child: Text(m.initials, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
-                                            ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(10),
+                                child: Stack(
+                                  children: [
+                                    // Same warm gold halo as the mosque header / bottom sheets, on
+                                    // every post type.
+                                    const Positioned(
+                                      top: UICornerGlow.offset,
+                                      right: UICornerGlow.offset,
+                                      child: UICornerGlow(
+                                        diameter: 100,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Flexible(
-                                              child: Text(m.name ?? '—', maxLines: 1, overflow: TextOverflow.ellipsis,
-                                                  style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                                      child: Row(
+                                        children: [
+                                          ClipOval(
+                                            child: SizedBox(
+                                              width: 44,
+                                              height: 44,
+                                              child: m.avatarUrl != null
+                                                  ? CachedNetworkImage(imageUrl: m.avatarUrl!, fit: BoxFit.cover)
+                                                  : Container(
+                                                      color: _color(m.userId),
+                                                      alignment: Alignment.center,
+                                                      child: Text(m.initials, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                                                    ),
                                             ),
-                                            const SizedBox(width: 8),
-                                            Container(
-                                              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                                              decoration: BoxDecoration(
-                                                color: m.isMember ? UIColorsToken.textYellowDarker : Colors.transparent,
-                                                border: Border.all(color: m.isMember ? UIColorsToken.textYellowDarker : UIColorsToken.stroke),
-                                                borderRadius: BorderRadius.circular(6),
-                                              ),
-                                              child: Text(
-                                                m.isMember ? l10n.mosque_member_badge : l10n.mosque_follower_badge,
-                                                style: theme.typo.inter.smallCaption.copyWith(color: m.isMember ? UIColorsToken.textYellow : UIColorsToken.textParagraph),
-                                              ),
+                                          ),
+                                          const SizedBox(width: 12),
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Flexible(
+                                                      child: Text(m.name ?? '—', maxLines: 1, overflow: TextOverflow.ellipsis,
+                                                          style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                                                    ),
+                                                    const SizedBox(width: 8),
+                                                    Container(
+                                                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                                                      decoration: BoxDecoration(
+                                                        color: m.isMember ? UIColorsToken.textYellowDarker.withValues(alpha: 0.5) : Colors.transparent,
+                                                        border: Border.all(color: m.isMember ? UIColorsToken.textYellowDarker : UIColorsToken.stroke),
+                                                        borderRadius: BorderRadius.circular(6),
+                                                      ),
+                                                      child: Text(
+                                                        m.isMember ? l10n.mosque_member_badge : l10n.mosque_follower_badge,
+                                                        style: theme.typo.inter.smallCaption.copyWith(color: m.isMember ? UIColorsToken.textYellow : UIColorsToken.textParagraph),
+                                                      ),
+                                                    ),
+                                                    if (m.volunteer) ...[
+                                                      const SizedBox(width: 6),
+                                                      UIIcon(UIIconsToken.icons.heartHandshake, size: 18),
+                                                    ],
+                                                  ],
+                                                ),
+                                                UISpace.vert(4),
+                                                Text(l10n.mosque_since_year(m.since.year),
+                                                    style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
+                                              ],
                                             ),
-                                            if (m.volunteer) ...[
-                                              const SizedBox(width: 6),
-                                              const Icon(Icons.volunteer_activism_outlined, size: 14, color: UIColorsToken.textYellow),
-                                            ],
-                                          ],
-                                        ),
-                                        Text(l10n.mosque_since_year(m.since.year),
-                                            style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph)),
-                                      ],
+                                          ),
+                                          Icon(Icons.more_vert, color: UIColorsToken.textParagraph, size: 18),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                  Icon(Icons.more_vert, color: UIColorsToken.textParagraph, size: 18),
-                                ],
+                                  ],
+                                ),
                               ),
                             );
                           },

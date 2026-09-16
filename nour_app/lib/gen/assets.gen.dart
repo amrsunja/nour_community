@@ -56,6 +56,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/heart.svg
   String get heart => 'assets/icons/heart.svg';
 
+  /// File path: assets/icons/heart_handshake.svg
+  String get heartHandshake => 'assets/icons/heart_handshake.svg';
+
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
 
@@ -144,6 +147,7 @@ class $AssetsIconsGen {
     gallery,
     hand,
     heart,
+    heartHandshake,
     home,
     idea,
     impact,

@@ -61,7 +61,7 @@ class MosquePostCard extends StatelessWidget {
       padding: EdgeInsets.zero,
       disableBorder: true,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(12),
         child: Stack(
           children: [
             // Same warm gold halo as the mosque header / bottom sheets, on
