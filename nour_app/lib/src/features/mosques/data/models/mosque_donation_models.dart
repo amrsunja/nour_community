@@ -6,6 +6,13 @@ double _num(dynamic v) => v == null ? 0 : (v is num ? v.toDouble() : double.tryP
 int _int(dynamic v) => v == null ? 0 : (v is num ? v.toInt() : int.tryParse('$v') ?? 0);
 List<int> _ints(dynamic v) => v is List ? v.map(_int).where((e) => e > 0).toList() : const [];
 
+/// Fallback amounts for fundraising (mirrors the `mosque_campaign_settings`
+/// / `mosque_campaigns` column defaults).
+const List<int> kDefaultCampaignAmounts = [10, 50, 100, 150];
+
+/// How many suggested amounts a campaign carries (the DB guard caps at 6 too).
+const int kCampaignMaxAmounts = 6;
+
 /// Mirrors the Postgres enum `public.stripe_account_status`
 /// ('not_started' | 'onboarding' | 'active' | 'restricted' | 'disabled'),
 /// as stored in `mosque_stripe_accounts.status` and returned by the
@@ -152,6 +159,74 @@ class MosqueDonationSettings extends Equatable {
       [mosqueId, title, description, suggestedAmounts, allowOneTime, allowMonthly, allowYearly, showTaxBadge, membershipFeeAmounts];
 }
 
+/// `mosque_campaign_settings` — the mosque-wide fundraising configuration
+/// (devis B3). Campaigns are NOT the Sadaqa card: they carry their own
+/// suggested amounts, their own allowed frequencies and their own tax badge.
+/// A new campaign is seeded from this row and may then override it.
+class MosqueCampaignSettings extends Equatable {
+  final int mosqueId;
+  final List<int> suggestedAmounts;
+  final bool allowOneTime;
+  final bool allowMonthly;
+  final bool allowYearly;
+  final bool showTaxBadge;
+
+  const MosqueCampaignSettings({
+    required this.mosqueId,
+    this.suggestedAmounts = kDefaultCampaignAmounts,
+    this.allowOneTime = true,
+    this.allowMonthly = false,
+    this.allowYearly = false,
+    this.showTaxBadge = false,
+  });
+
+  List<DonationFrequency> get frequencies => [
+        if (allowOneTime) DonationFrequency.oneTime,
+        if (allowMonthly) DonationFrequency.monthly,
+        if (allowYearly) DonationFrequency.yearly,
+      ];
+
+  /// Amounts to show, never empty (the DB guard applies the same fallback).
+  List<int> get amountsOrDefault => suggestedAmounts.isEmpty ? kDefaultCampaignAmounts : suggestedAmounts;
+
+  factory MosqueCampaignSettings.fromJson(Json json) => MosqueCampaignSettings(
+        mosqueId: _int(json['mosque_id']),
+        suggestedAmounts: _ints(json['suggested_amounts']),
+        allowOneTime: json['allow_one_time'] as bool? ?? true,
+        allowMonthly: json['allow_monthly'] as bool? ?? false,
+        allowYearly: json['allow_yearly'] as bool? ?? false,
+        showTaxBadge: json['show_tax_badge'] as bool? ?? false,
+      );
+
+  Json toJson() => {
+        'mosque_id': mosqueId,
+        'suggested_amounts': amountsOrDefault,
+        'allow_one_time': allowOneTime,
+        'allow_monthly': allowMonthly,
+        'allow_yearly': allowYearly,
+        'show_tax_badge': showTaxBadge,
+      };
+
+  MosqueCampaignSettings copyWith({
+    List<int>? suggestedAmounts,
+    bool? allowOneTime,
+    bool? allowMonthly,
+    bool? allowYearly,
+    bool? showTaxBadge,
+  }) =>
+      MosqueCampaignSettings(
+        mosqueId: mosqueId,
+        suggestedAmounts: suggestedAmounts ?? this.suggestedAmounts,
+        allowOneTime: allowOneTime ?? this.allowOneTime,
+        allowMonthly: allowMonthly ?? this.allowMonthly,
+        allowYearly: allowYearly ?? this.allowYearly,
+        showTaxBadge: showTaxBadge ?? this.showTaxBadge,
+      );
+
+  @override
+  List<Object?> get props => [mosqueId, suggestedAmounts, allowOneTime, allowMonthly, allowYearly, showTaxBadge];
+}
+
 /// Mirrors `public.mosque_campaign_status`.
 enum MosqueCampaignStatus {
   draft,
@@ -174,6 +249,10 @@ class MosqueCampaignModel extends Equatable {
   final double collectedAmount;
   final int donorsCount;
   final List<int> suggestedAmounts;
+  final bool allowOneTime;
+  final bool allowMonthly;
+  final bool allowYearly;
+  final bool showTaxBadge;
   final String currency;
   final MosqueCampaignStatus status;
   final DateTime startsAt;
@@ -191,7 +270,11 @@ class MosqueCampaignModel extends Equatable {
     required this.goalAmount,
     this.collectedAmount = 0,
     this.donorsCount = 0,
-    this.suggestedAmounts = const [10, 50, 100, 150],
+    this.suggestedAmounts = kDefaultCampaignAmounts,
+    this.allowOneTime = true,
+    this.allowMonthly = false,
+    this.allowYearly = false,
+    this.showTaxBadge = false,
     this.currency = 'EUR',
     this.status = MosqueCampaignStatus.active,
     required this.startsAt,
@@ -209,6 +292,24 @@ class MosqueCampaignModel extends Equatable {
     return d < 0 ? 0 : d;
   }
 
+  /// Frequencies this campaign accepts — its own, not the Sadaqa card's.
+  List<DonationFrequency> get frequencies => [
+        if (allowOneTime) DonationFrequency.oneTime,
+        if (allowMonthly) DonationFrequency.monthly,
+        if (allowYearly) DonationFrequency.yearly,
+      ];
+
+  bool get acceptsRecurring => allowMonthly || allowYearly;
+
+  /// Amounts to show, never empty.
+  List<int> get amountsOrDefault => suggestedAmounts.isEmpty ? kDefaultCampaignAmounts : suggestedAmounts;
+
+  /// Default selection of the donor amount picker (2nd amount when there is one).
+  double get defaultAmount {
+    final a = amountsOrDefault;
+    return (a.length > 1 ? a[1] : a.first).toDouble();
+  }
+
   bool get isOpen => status == MosqueCampaignStatus.active && endsAt.isAfter(DateTime.now());
   bool get isEndingSoon => isOpen && endsAt.difference(DateTime.now()).inDays < 7;
   bool get isFunded => collectedAmount >= goalAmount;
@@ -223,6 +324,10 @@ class MosqueCampaignModel extends Equatable {
         collectedAmount: _num(json['collected_amount']),
         donorsCount: _int(json['donors_count']),
         suggestedAmounts: _ints(json['suggested_amounts']),
+        allowOneTime: json['allow_one_time'] as bool? ?? true,
+        allowMonthly: json['allow_monthly'] as bool? ?? false,
+        allowYearly: json['allow_yearly'] as bool? ?? false,
+        showTaxBadge: json['show_tax_badge'] as bool? ?? false,
         currency: json['currency'] as String? ?? 'EUR',
         status: MosqueCampaignStatus.fromString(json['status'] as String?),
         startsAt: DateTime.tryParse(json['starts_at']?.toString() ?? '')?.toLocal() ?? DateTime.now(),
@@ -233,7 +338,7 @@ class MosqueCampaignModel extends Equatable {
       );
 
   @override
-  List<Object?> get props => [id, mosqueId, title, description, coverUrl, goalAmount, collectedAmount, donorsCount, suggestedAmounts, currency, status, startsAt, endsAt, closedAt, closedReason, createdAt];
+  List<Object?> get props => [id, mosqueId, title, description, coverUrl, goalAmount, collectedAmount, donorsCount, suggestedAmounts, allowOneTime, allowMonthly, allowYearly, showTaxBadge, currency, status, startsAt, endsAt, closedAt, closedReason, createdAt];
 }
 
 /// Admin form payload for a campaign (create / edit).
@@ -245,6 +350,10 @@ class MosqueCampaignDraft extends Equatable {
   final double goalAmount;
   final DateTime endsAt;
   final List<int> suggestedAmounts;
+  final bool allowOneTime;
+  final bool allowMonthly;
+  final bool allowYearly;
+  final bool showTaxBadge;
 
   const MosqueCampaignDraft({
     this.id,
@@ -253,7 +362,11 @@ class MosqueCampaignDraft extends Equatable {
     this.coverUrl,
     this.goalAmount = 0,
     required this.endsAt,
-    this.suggestedAmounts = const [10, 50, 100, 150],
+    this.suggestedAmounts = kDefaultCampaignAmounts,
+    this.allowOneTime = true,
+    this.allowMonthly = false,
+    this.allowYearly = false,
+    this.showTaxBadge = false,
   });
 
   factory MosqueCampaignDraft.fromModel(MosqueCampaignModel c) => MosqueCampaignDraft(
@@ -264,9 +377,34 @@ class MosqueCampaignDraft extends Equatable {
         goalAmount: c.goalAmount,
         endsAt: c.endsAt,
         suggestedAmounts: c.suggestedAmounts,
+        allowOneTime: c.allowOneTime,
+        allowMonthly: c.allowMonthly,
+        allowYearly: c.allowYearly,
+        showTaxBadge: c.showTaxBadge,
       );
 
-  bool get isValid => title.trim().isNotEmpty && goalAmount > 0 && endsAt.isAfter(DateTime.now());
+  /// A brand-new campaign inherits the mosque's fundraising settings — never
+  /// the Sadaqa card. [settings] is null only while the row is still loading.
+  factory MosqueCampaignDraft.fromSettings(MosqueCampaignSettings? settings, {Duration duration = const Duration(days: 30)}) =>
+      MosqueCampaignDraft(
+        endsAt: DateTime.now().add(duration),
+        suggestedAmounts: settings?.amountsOrDefault ?? kDefaultCampaignAmounts,
+        allowOneTime: settings?.allowOneTime ?? true,
+        allowMonthly: settings?.allowMonthly ?? false,
+        allowYearly: settings?.allowYearly ?? false,
+        showTaxBadge: settings?.showTaxBadge ?? false,
+      );
+
+  List<DonationFrequency> get frequencies => [
+        if (allowOneTime) DonationFrequency.oneTime,
+        if (allowMonthly) DonationFrequency.monthly,
+        if (allowYearly) DonationFrequency.yearly,
+      ];
+
+  bool get hasFrequency => allowOneTime || allowMonthly || allowYearly;
+
+  bool get isValid =>
+      title.trim().isNotEmpty && goalAmount > 0 && endsAt.isAfter(DateTime.now()) && suggestedAmounts.isNotEmpty && hasFrequency;
 
   Json toJson(int mosqueId) => {
         'mosque_id': mosqueId,
@@ -275,7 +413,11 @@ class MosqueCampaignDraft extends Equatable {
         'cover_url': coverUrl,
         'goal_amount': goalAmount,
         'ends_at': endsAt.toUtc().toIso8601String(),
-        'suggested_amounts': suggestedAmounts,
+        'suggested_amounts': (suggestedAmounts.where((a) => a > 0).toSet().toList()..sort()).take(kCampaignMaxAmounts).toList(),
+        'allow_one_time': allowOneTime,
+        'allow_monthly': allowMonthly,
+        'allow_yearly': allowYearly,
+        'show_tax_badge': showTaxBadge,
       };
 
   MosqueCampaignDraft copyWith({
@@ -285,6 +427,10 @@ class MosqueCampaignDraft extends Equatable {
     double? goalAmount,
     DateTime? endsAt,
     List<int>? suggestedAmounts,
+    bool? allowOneTime,
+    bool? allowMonthly,
+    bool? allowYearly,
+    bool? showTaxBadge,
   }) =>
       MosqueCampaignDraft(
         id: id,
@@ -294,10 +440,15 @@ class MosqueCampaignDraft extends Equatable {
         goalAmount: goalAmount ?? this.goalAmount,
         endsAt: endsAt ?? this.endsAt,
         suggestedAmounts: suggestedAmounts ?? this.suggestedAmounts,
+        allowOneTime: allowOneTime ?? this.allowOneTime,
+        allowMonthly: allowMonthly ?? this.allowMonthly,
+        allowYearly: allowYearly ?? this.allowYearly,
+        showTaxBadge: showTaxBadge ?? this.showTaxBadge,
       );
 
   @override
-  List<Object?> get props => [id, title, description, coverUrl, goalAmount, endsAt, suggestedAmounts];
+  List<Object?> get props =>
+      [id, title, description, coverUrl, goalAmount, endsAt, suggestedAmounts, allowOneTime, allowMonthly, allowYearly, showTaxBadge];
 }
 
 /// `mosque_campaign_updates` — progress posts on a campaign.

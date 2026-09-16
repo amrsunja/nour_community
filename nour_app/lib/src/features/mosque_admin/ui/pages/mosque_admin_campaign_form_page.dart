@@ -8,24 +8,24 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/mosques/data/models/mosque_donation_models.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
 import '../state_management/mosque_admin_mosque_provider.dart';
 import '../widgets/mosque_admin_form_widgets.dart';
 
-/// Fallback palette when the mosque has no Sadaqa settings row yet — the
-/// campaign picker otherwise offers exactly the Sadaqa suggested amounts.
-const List<int> kDefaultSuggestedAmounts = [10, 50, 100, 150];
-
-/// How many suggested amounts a campaign can carry (server takes the first 6).
-const int kCampaignMaxAmounts = 6;
-
 /// Create / edit a fundraising campaign (devis B3). Max 3 active campaigns
 /// (enforced server-side too). On creation the admin can push followers.
+///
+/// A campaign carries ITS OWN amounts / frequencies / tax badge: a new one is
+/// seeded from the mosque's fundraising settings (never from the Sadaqa card)
+/// and can then diverge. The frequencies a campaign may offer are still capped
+/// by what the mosque enabled in the fundraising settings.
 @RoutePage()
 class MosqueAdminCampaignFormPage extends HookConsumerWidget {
   const MosqueAdminCampaignFormPage({super.key, @QueryParam('campaignId') this.campaignId});
@@ -37,28 +37,25 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
     final theme = UITheme.of(context);
     final l10n = ref.watch(l10nProvider);
     final lang = Localizations.localeOf(context).languageCode;
+    final nav = ref.read(navigationServicesProvider);
     final snackbar = ref.read(snackbarProvider);
     final presenter = ref.read(mosqueAdminDonationProvider.notifier);
     final state = ref.watch(mosqueAdminDonationProvider);
     final mosqueAdmin = ref.read(mosqueAdminMosqueProvider.notifier);
     final quota = ref.watch(mosqueAdminMosqueProvider.select((s) => s.quota));
+    final canIssueReceipts = ref.watch(myMosqueProvider.select((s) => s.mosque?.canIssueTaxReceipts ?? false));
 
     final existing = campaignId == null ? null : state.campaigns.where((c) => c.id == campaignId).firstOrNull;
     final isEdit = existing != null;
+    final settings = state.campaignSettings;
 
     final draft = useState<MosqueCampaignDraft>(
-      existing != null ? MosqueCampaignDraft.fromModel(existing) : MosqueCampaignDraft(endsAt: DateTime.now().add(const Duration(days: 30))),
+      existing != null ? MosqueCampaignDraft.fromModel(existing) : MosqueCampaignDraft.fromSettings(settings),
     );
     final title = useTextEditingController(text: existing?.title ?? '');
     final description = useTextEditingController(text: existing?.description ?? '');
     final goal = useTextEditingController(text: existing == null ? '' : existing.goalAmount.round().toString());
-    final amounts = useState<List<int>>(List.of(existing?.suggestedAmounts ?? kDefaultSuggestedAmounts));
-    // The palette IS the mosque's Sadaqa suggested amounts; a legacy campaign
-    // amount that is no longer in those settings stays visible (and
-    // deselectable) so it can be cleaned up. Cheap enough to rebuild — both
-    // the settings and the campaign can land after the first build.
-    final sadaqaAmounts = state.settings?.suggestedAmounts ?? kDefaultSuggestedAmounts;
-    final palette = <int>{...sadaqaAmounts, ...amounts.value}.toList()..sort();
+    final amounts = useState<List<int>>(List.of(existing?.amountsOrDefault ?? settings?.amountsOrDefault ?? kDefaultCampaignAmounts));
     final notify = useState(!isEdit);
     final uploading = useState(false);
     useListenable(title);
@@ -72,17 +69,41 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
       return null;
     }, const []);
 
-    // A new campaign starts on the mosque's Sadaqa amounts (they load async).
+    // The fundraising settings land after the first build on a cold start: a
+    // NEW campaign re-seeds from them, an edited one keeps its own values.
     useEffect(() {
-      if (!isEdit) amounts.value = List.of(sadaqaAmounts);
+      if (!isEdit && settings != null) {
+        draft.value = MosqueCampaignDraft.fromSettings(settings).copyWith(
+          title: draft.value.title,
+          description: draft.value.description,
+          coverUrl: draft.value.coverUrl,
+          goalAmount: draft.value.goalAmount,
+          endsAt: draft.value.endsAt,
+        );
+        amounts.value = List.of(settings.amountsOrDefault);
+      }
       return null;
-    }, [state.settings?.suggestedAmounts]);
+    }, [settings]);
 
-    // The campaign may land after the first build (list still loading).
+    // Same for the campaign itself (the list may still be loading).
     useEffect(() {
-      if (existing != null) amounts.value = List.of(existing.suggestedAmounts);
+      if (existing != null) {
+        draft.value = MosqueCampaignDraft.fromModel(existing);
+        title.text = existing.title;
+        description.text = existing.description ?? '';
+        goal.text = existing.goalAmount.round().toString();
+        amounts.value = List.of(existing.amountsOrDefault);
+      }
       return null;
     }, [existing?.id]);
+
+    // A campaign can only START offering what the mosque enabled globally — but
+    // one it already offers stays available, so turning a frequency off
+    // mosque-wide never silently strips a running campaign on an unrelated edit
+    // (its donors may already have a subscription on it).
+    final canOneTime = (settings?.allowOneTime ?? true) || (existing?.allowOneTime ?? false);
+    final canMonthly = (settings?.allowMonthly ?? false) || (existing?.allowMonthly ?? false);
+    final canYearly = (settings?.allowYearly ?? false) || (existing?.allowYearly ?? false);
 
     Future<void> pickCover() async {
       final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1600, imageQuality: 82);
@@ -105,14 +126,22 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
 
     Future<void> submit() async {
       final g = double.tryParse(goal.text.replaceAll(',', '.')) ?? 0;
+      final suggested = (amounts.value.where((a) => a > 0).toSet().toList()..sort()).take(kCampaignMaxAmounts).toList();
       final d = draft.value.copyWith(
         title: title.text,
         description: description.text,
         goalAmount: g,
-        suggestedAmounts: amounts.value.isEmpty
-            ? (sadaqaAmounts.toList()..sort()).take(kCampaignMaxAmounts).toList()
-            : (amounts.value.toList()..sort()).take(kCampaignMaxAmounts).toList(),
+        suggestedAmounts: suggested.isEmpty ? (settings?.amountsOrDefault ?? kDefaultCampaignAmounts) : suggested,
+        // Never send a frequency this campaign may not offer.
+        allowOneTime: draft.value.allowOneTime && canOneTime,
+        allowMonthly: draft.value.allowMonthly && canMonthly,
+        allowYearly: draft.value.allowYearly && canYearly,
+        showTaxBadge: draft.value.showTaxBadge && canIssueReceipts,
       );
+      if (!d.hasFrequency) {
+        snackbar.showError(l10n.mosque_admin_sadaqa_frequency_required);
+        return;
+      }
       if (!d.isValid) {
         snackbar.showError(l10n.mosque_admin_campaign_invalid);
         return;
@@ -187,26 +216,72 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
                 ),
               ],
             ),
+
+            // ── This campaign's amounts (seeded from the fundraising settings) ──
             const SizedBox(height: 16),
-            AdminLabel(l10n.mosque_admin_sadaqa_amounts),
-            UIAmountSelector(
-              amounts: palette,
-              selectedValues: amounts.value.toSet(),
-              onSelected: (v) {
-                final next = List.of(amounts.value);
-                if (next.remove(v)) {
-                  amounts.value = next;
-                  return;
-                }
-                if (next.length >= kCampaignMaxAmounts) {
-                  snackbar.showError(l10n.mosque_admin_campaign_amounts_hint);
-                  return;
-                }
-                amounts.value = next..add(v);
-              },
+            Row(
+              children: [
+                Expanded(child: AdminLabel(l10n.mosque_admin_sadaqa_amounts)),
+                if (settings != null)
+                  UIButton.textual(
+                    label: l10n.mosque_admin_campaign_amounts_reset,
+                    isSmall: true,
+                    onTap: () => amounts.value = List.of(settings.amountsOrDefault),
+                  ),
+              ],
+            ),
+            AdminAmountsEditor(
+              values: amounts.value,
+              onChanged: (v) => amounts.value = v,
+              addLabel: l10n.mosque_admin_sadaqa_add_amount,
+              maxItems: kCampaignMaxAmounts,
             ),
             const SizedBox(height: 8),
             Text(l10n.mosque_admin_campaign_amounts_hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+
+            // ── This campaign's frequencies ─────────────────────────────────
+            const SizedBox(height: 20),
+            AdminLabel(l10n.mosque_admin_fundraising_frequencies),
+            AdminToggleRow(
+              title: l10n.donate_frequency_one_time,
+              subtitle: canOneTime ? l10n.mosque_admin_fundraising_one_time_hint : l10n.mosque_admin_campaign_frequency_locked,
+              value: draft.value.allowOneTime && canOneTime,
+              enabled: canOneTime,
+              onChanged: (v) => draft.value = draft.value.copyWith(allowOneTime: v),
+            ),
+            const SizedBox(height: 8),
+            AdminToggleRow(
+              title: l10n.mosque_admin_fundraising_monthly,
+              subtitle: canMonthly ? l10n.mosque_admin_fundraising_monthly_hint : l10n.mosque_admin_campaign_frequency_locked,
+              value: draft.value.allowMonthly && canMonthly,
+              enabled: canMonthly,
+              onChanged: (v) => draft.value = draft.value.copyWith(allowMonthly: v),
+            ),
+            const SizedBox(height: 8),
+            AdminToggleRow(
+              title: l10n.mosque_admin_fundraising_yearly,
+              subtitle: canYearly ? l10n.mosque_admin_fundraising_yearly_hint : l10n.mosque_admin_campaign_frequency_locked,
+              value: draft.value.allowYearly && canYearly,
+              enabled: canYearly,
+              onChanged: (v) => draft.value = draft.value.copyWith(allowYearly: v),
+            ),
+            const SizedBox(height: 8),
+            UIButton.textual(
+              label: l10n.mosque_admin_fundraising_settings_title,
+              isSmall: true,
+              onTap: nav.toMosqueAdminFundraisingSettings,
+            ),
+
+            // ── Tax badge ───────────────────────────────────────────────────
+            const SizedBox(height: 12),
+            AdminToggleRow(
+              title: l10n.mosque_admin_sadaqa_tax_badge,
+              subtitle: canIssueReceipts ? l10n.mosque_admin_sadaqa_tax_badge_hint : l10n.mosque_admin_sadaqa_tax_badge_locked,
+              value: draft.value.showTaxBadge && canIssueReceipts,
+              enabled: canIssueReceipts,
+              onChanged: (v) => draft.value = draft.value.copyWith(showTaxBadge: v),
+            ),
+
             if (!isEdit) ...[
               const SizedBox(height: 20),
               AdminToggleRow(

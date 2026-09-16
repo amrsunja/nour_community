@@ -3636,7 +3636,57 @@ class AppLocalizationsUr extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'عطیہ دہندگان انہی میں سے منتخب کرتے ہیں — مکمل فہرست صدقہ کی ترتیبات میں طے کریں۔';
+      'عطیہ دہندگان انہی میں سے منتخب کرتے ہیں — یہ اسی مہم کی اپنی فہرست ہے۔';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'فنڈ ریزنگ کی ترتیبات';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'تعدد کے اختیارات';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'ایک بار کا عطیہ';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'ماہانہ تکرار';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'خودکار ماہانہ عطیہ';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'سالانہ تکرار';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'خودکار سالانہ عطیہ';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'ٹیکس کٹوتی';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'زیادہ سے زیادہ 6 رقمیں۔ نئی مہم اسی فہرست سے شروع ہوتی ہے اور بعد میں تبدیل کی جا سکتی ہے۔';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'کم از کم ایک رقم شامل کریں۔';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'یہ ترتیبات نئی مہمات پر لاگو ہوتی ہیں۔ جاری مہمات اپنی موجودہ ترتیبات برقرار رکھتی ہیں جب تک آپ انہیں تبدیل نہ کریں۔';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'پہلے فنڈ ریزنگ کی ترتیبات میں اسے فعال کریں۔';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'ڈیفالٹ پر واپس';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'جلد بند کریں';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'یہ مہم اس تعدد کو قبول نہیں کرتی۔';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

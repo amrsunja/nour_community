@@ -3656,7 +3656,59 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Жертвователи выбирают из этих сумм — полный список задаётся в настройках садаки.';
+      'Жертвователи выбирают из этих сумм — собственный список кампании.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'Настройки сборов';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Варианты периодичности';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Разовое пожертвование';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Ежемесячно';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint =>
+      'Автоматическое ежемесячное пожертвование';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Ежегодно';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint =>
+      'Автоматическое ежегодное пожертвование';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Налоговый вычет';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Не более 6 сумм. Новая кампания начинается с этого списка и может его изменить.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Добавьте хотя бы одну сумму.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Эти настройки применяются к новым кампаниям. Текущие кампании сохраняют свои настройки, пока вы их не измените.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Сначала включите это в настройках сборов.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Сбросить';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Закрыть досрочно';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Эта кампания не принимает такую периодичность.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

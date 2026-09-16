@@ -3605,7 +3605,57 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'يختار المتبرعون من بين هذه المبالغ — يتم ضبط القائمة الكاملة في إعدادات الصدقة.';
+      'يختار المتبرعون من هذه المبالغ — قائمة هذه الحملة الخاصة.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'إعدادات جمع التبرعات';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'خيارات التكرار';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'تبرع لمرة واحدة';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'تكرار شهري';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'تبرع شهري تلقائي';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'تكرار سنوي';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'تبرع سنوي تلقائي';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'الخصم الضريبي';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      '6 مبالغ كحد أقصى. تبدأ الحملة الجديدة بهذه القائمة ويمكن تعديلها بعد ذلك.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'أضف مبلغًا واحدًا على الأقل.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'تنطبق هذه الإعدادات على الحملات الجديدة. تحتفظ الحملات الجارية بإعداداتها حتى تقوم بتعديلها.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'فعّله أولًا في إعدادات جمع التبرعات.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'إعادة التعيين';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'إغلاق مبكر';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'هذه الحملة لا تقبل هذا التكرار.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

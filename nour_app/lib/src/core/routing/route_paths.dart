@@ -27,6 +27,7 @@ abstract class RoutePaths {
   static const mosqueAdminWebView = 'mosque-admin/web-view';
   // P3 — donations
   static const mosqueAdminSadaqaSettings = 'mosque-admin/donations/settings';
+  static const mosqueAdminFundraisingSettings = 'mosque-admin/donations/fundraising-settings';
   static const mosqueAdminStripe = 'mosque-admin/donations/stripe';
   static const mosqueAdminCampaignForm = 'mosque-admin/donations/campaign-form';
   static String mosqueAdminCampaign({int? campaignId}) => 'mosque-admin/donations/campaign/${campaignId ?? ':campaignId'}';

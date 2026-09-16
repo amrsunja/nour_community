@@ -80,9 +80,11 @@ Deno.serve(async (req) => {
   let type: "mosque_sadaqa" | "mosque_campaign" | "mosque_membership" = "mosque_sadaqa";
   let campaignTitle: string | null = null;
   if (campaignId) {
-    const { data: c } = await admin.from("mosque_campaigns").select("id, mosque_id, status, ends_at, title, currency").eq("id", campaignId).maybeSingle();
+    const { data: c } = await admin.from("mosque_campaigns").select("id, mosque_id, status, ends_at, title, currency, allow_one_time").eq("id", campaignId).maybeSingle();
     if (!c || c.mosque_id !== mosque.id) return json({ error: "campaign_not_found" }, 404);
     if (c.status !== "active" || new Date(c.ends_at) < new Date()) return json({ error: "campaign_closed" }, 422);
+    // The campaign owns its allowed frequencies (fundraising settings).
+    if (c.allow_one_time === false) return json({ error: "frequency_not_allowed" }, 422);
     if (c.currency !== currency) return json({ error: "currency_mismatch" }, 422);
     type = "mosque_campaign";
     campaignTitle = c.title;

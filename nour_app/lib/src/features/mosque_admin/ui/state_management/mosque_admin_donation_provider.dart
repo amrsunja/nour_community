@@ -15,6 +15,7 @@ class MosqueAdminDonationState extends Equatable {
   final bool loaded;
   final MosqueStripeAccount stripe;
   final MosqueDonationSettings? settings;
+  final MosqueCampaignSettings? campaignSettings;
   final List<MosqueCampaignModel> campaigns;
   final MosqueDonationStats? stats;
   final int year;
@@ -25,6 +26,7 @@ class MosqueAdminDonationState extends Equatable {
     this.loaded = false,
     this.stripe = const MosqueStripeAccount(),
     this.settings,
+    this.campaignSettings,
     this.campaigns = const [],
     this.stats,
     this.year = 0,
@@ -41,6 +43,7 @@ class MosqueAdminDonationState extends Equatable {
     bool? loaded,
     MosqueStripeAccount? stripe,
     MosqueDonationSettings? settings,
+    MosqueCampaignSettings? campaignSettings,
     List<MosqueCampaignModel>? campaigns,
     MosqueDonationStats? stats,
     int? year,
@@ -51,6 +54,7 @@ class MosqueAdminDonationState extends Equatable {
         loaded: loaded ?? this.loaded,
         stripe: stripe ?? this.stripe,
         settings: settings ?? this.settings,
+        campaignSettings: campaignSettings ?? this.campaignSettings,
         campaigns: campaigns ?? this.campaigns,
         stats: stats ?? this.stats,
         year: year ?? this.year,
@@ -58,7 +62,7 @@ class MosqueAdminDonationState extends Equatable {
       );
 
   @override
-  List<Object?> get props => [isLoading, loaded, stripe, settings, campaigns, stats, year, busy];
+  List<Object?> get props => [isLoading, loaded, stripe, settings, campaignSettings, campaigns, stats, year, busy];
 }
 
 final mosqueAdminDonationProvider = StateNotifierProvider<MosqueAdminDonationPresenter, MosqueAdminDonationState>((ref) {
@@ -99,6 +103,7 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
     }
 
     final settingsRes = await repo.getDonationSettings(id);
+    final campaignSettingsRes = await repo.getCampaignSettings(id);
     final campaignsRes = await repo.getCampaigns(id);
     final statsRes = stripe.hasAccount ? await repo.getDonationStats(id, year: state.year) : null;
     if (!mounted) return;
@@ -108,6 +113,7 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
       loaded: true,
       stripe: stripe,
       settings: settingsRes.when((v) => v, (_) => state.settings ?? MosqueDonationSettings(mosqueId: id)),
+      campaignSettings: campaignSettingsRes.when((v) => v, (_) => state.campaignSettings ?? MosqueCampaignSettings(mosqueId: id)),
       campaigns: campaignsRes.when((v) => v, (_) => state.campaigns),
       stats: statsRes?.when((v) => v, (e) {
         talker.error('[mosque-admin] stats', e);
@@ -146,6 +152,24 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
     if (!mounted) return false;
     return res.when((saved) {
       state = state.copyWith(busy: false, settings: saved);
+      return true;
+    }, (e) {
+      appEvents.send(ShowErrorEvent(e));
+      state = state.copyWith(busy: false);
+      return false;
+    });
+  }
+
+  /// Fundraising settings — the campaigns' own configuration. Saving them does
+  /// NOT touch the campaigns already running: an active campaign keeps the
+  /// amounts / frequencies it was launched with until it is edited.
+  Future<bool> saveCampaignSettings(MosqueCampaignSettings s) async {
+    if (state.busy) return false;
+    state = state.copyWith(busy: true);
+    final res = await repo.saveCampaignSettings(s);
+    if (!mounted) return false;
+    return res.when((saved) {
+      state = state.copyWith(busy: false, campaignSettings: saved);
       return true;
     }, (e) {
       appEvents.send(ShowErrorEvent(e));

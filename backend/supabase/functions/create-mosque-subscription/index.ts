@@ -1,12 +1,13 @@
 // =============================================================================
 // create-mosque-subscription Edge Function (P3 — devis B2/B4)
 // -----------------------------------------------------------------------------
-// Recurring Sadaqa (monthly / yearly) or yearly membership fee, as a Stripe
+// Recurring Sadaqa, recurring campaign gift (monthly / yearly) or yearly
+// membership fee, as a Stripe
 // Subscription ON THE CONNECTED ACCOUNT (direct charges → the Customer and the
 // Product live on the mosque's account, not on Nour's platform account).
 //
 // Payload: { mosqueId, amount, currency, interval: 'month'|'year',
-//            membershipId?, isAnonymous?, paymentMethod?, clientKey? }
+//            campaignId?, membershipId?, isAnonymous?, paymentMethod?, clientKey? }
 // Returns: { clientSecret, subscriptionId, customerId, ephemeralKeySecret,
 //            stripeAccountId, fee: 0, amountCharged }
 // =============================================================================
@@ -22,6 +23,7 @@ interface Payload {
   amount: number;
   currency: string;
   interval: "month" | "year";
+  campaignId?: number;
   membershipId?: number;
   isAnonymous?: boolean;
   paymentMethod?: PaymentMethodKind;
@@ -43,12 +45,13 @@ Deno.serve(async (req) => {
   } catch {
     return json({ error: "bad_request" }, 400);
   }
-  const { mosqueId, amount, currency, interval, membershipId, isAnonymous, clientKey } = payload;
+  const { mosqueId, amount, currency, interval, campaignId, membershipId, isAnonymous, clientKey } = payload;
   const method: PaymentMethodKind = isPaymentMethod(payload.paymentMethod) ? payload.paymentMethod : "card";
   if (!Number.isInteger(mosqueId) || typeof currency !== "string" || !["month", "year"].includes(interval) || !(typeof amount === "number" && amount > 0)) {
     return json({ error: "bad_request" }, 400);
   }
   if (method === "paypal") return json({ error: "method_not_supported" }, 422);
+  if (campaignId && membershipId) return json({ error: "bad_request" }, 400);
   const amountTotal = round2(amount);
   if (amountTotal < MIN_AMOUNT) return json({ error: "amount_too_small" }, 422);
   if (amountTotal > MAX_AMOUNT) return json({ error: "amount_too_large" }, 422);
@@ -61,7 +64,23 @@ Deno.serve(async (req) => {
   const { mosque, acct } = loaded;
   const opts = onAccount(acct);
 
-  let type: "mosque_sadaqa" | "mosque_membership" = "mosque_sadaqa";
+  let type: "mosque_sadaqa" | "mosque_campaign" | "mosque_membership" = "mosque_sadaqa";
+  let campaignTitle: string | null = null;
+  if (campaignId) {
+    const { data: c } = await admin
+      .from("mosque_campaigns")
+      .select("id, mosque_id, status, ends_at, title, currency, allow_monthly, allow_yearly")
+      .eq("id", campaignId)
+      .maybeSingle();
+    if (!c || c.mosque_id !== mosque.id) return json({ error: "campaign_not_found" }, 404);
+    if (c.status !== "active" || new Date(c.ends_at) < new Date()) return json({ error: "campaign_closed" }, 422);
+    // The campaign owns its allowed frequencies (fundraising settings).
+    if (interval === "month" && !c.allow_monthly) return json({ error: "frequency_not_allowed" }, 422);
+    if (interval === "year" && !c.allow_yearly) return json({ error: "frequency_not_allowed" }, 422);
+    if (c.currency !== currency) return json({ error: "currency_mismatch" }, 422);
+    type = "mosque_campaign";
+    campaignTitle = c.title;
+  }
   if (membershipId) {
     const { data: m } = await admin.from("mosque_members").select("id, mosque_id, user_id").eq("id", membershipId).maybeSingle();
     if (!m || m.mosque_id !== mosque.id || m.user_id !== user.id) return json({ error: "membership_not_found" }, 404);
@@ -102,9 +121,22 @@ Deno.serve(async (req) => {
     }
 
     // Product on the connected account.
-    const productName = type === "mosque_membership" ? `${mosque.name} — Adhésion` : `${mosque.name} — Sadaqa`;
-    const products = await stripe.products.search({ query: `metadata['nour_type']:'${type}' AND active:'true'`, limit: 1 }, opts);
-    const productId = products.data[0]?.id ?? (await stripe.products.create({ name: productName, metadata: { nour_type: type, mosque_id: String(mosque.id) } }, opts)).id;
+    // One product per type — and one per campaign, so the donor's statement and
+    // the mosque's Stripe dashboard name the campaign they gave to.
+    const productName = type === "mosque_membership"
+      ? `${mosque.name} — Adhésion`
+      : campaignTitle
+      ? `${mosque.name} — ${campaignTitle}`
+      : `${mosque.name} — Sadaqa`;
+    const productQuery = campaignId
+      ? `metadata['nour_type']:'${type}' AND metadata['campaign_id']:'${campaignId}' AND active:'true'`
+      : `metadata['nour_type']:'${type}' AND active:'true'`;
+    const products = await stripe.products.search({ query: productQuery, limit: 1 }, opts);
+    const productId = products.data[0]?.id ??
+      (await stripe.products.create({
+        name: productName,
+        metadata: { nour_type: type, mosque_id: String(mosque.id), ...(campaignId ? { campaign_id: String(campaignId) } : {}) },
+      }, opts)).id;
 
     const { data: row, error: rowErr } = await admin
       .from("donation_subscriptions")
@@ -112,6 +144,7 @@ Deno.serve(async (req) => {
         user_id: user.id,
         impact_project_id: null,
         mosque_id: mosque.id,
+        mosque_campaign_id: campaignId ?? null,
         membership_id: membershipId ?? null,
         type,
         amount: amountTotal,
@@ -148,6 +181,7 @@ Deno.serve(async (req) => {
             subscription_row_id: String(row.id),
             user_id: user.id,
             mosque_id: String(mosque.id),
+            campaign_id: campaignId ? String(campaignId) : "",
             membership_id: membershipId ? String(membershipId) : "",
             type,
             payment_method: method,

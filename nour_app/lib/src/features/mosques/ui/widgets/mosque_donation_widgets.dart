@@ -4,6 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
+
 import '../../data/models/mosque_donation_models.dart';
 import 'mosque_format.dart';
 
@@ -115,6 +117,37 @@ class _MosqueAmountPickerState extends State<MosqueAmountPicker> {
   }
 }
 
+/// Frequency chips of a campaign (its OWN allowed frequencies, which are not
+/// the Sadaqa card's). Renders nothing when the campaign only takes one-time
+/// gifts — a single chip would be noise.
+class MosqueFrequencyPicker extends StatelessWidget {
+  const MosqueFrequencyPicker({super.key, required this.frequencies, required this.value, required this.onChanged, required this.l10n});
+
+  final List<DonationFrequency> frequencies;
+  final DonationFrequency value;
+  final ValueChanged<DonationFrequency> onChanged;
+  final AppLocale l10n;
+
+  String _label(DonationFrequency f) => switch (f) {
+        DonationFrequency.oneTime => l10n.donate_frequency_one_time,
+        DonationFrequency.monthly => l10n.donate_frequency_monthly,
+        DonationFrequency.yearly => l10n.donate_frequency_yearly,
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    if (frequencies.length < 2) return const SizedBox.shrink();
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final f in frequencies)
+          MosqueChip(label: _label(f), selected: f == value, dense: true, onTap: () => onChanged(f)),
+      ],
+    );
+  }
+}
+
 /// Campaign card (list item) — cover, title, progress, collected / goal,
 /// days left. Used on the worshipper tab and the admin list.
 class MosqueCampaignCard extends StatelessWidget {
@@ -152,6 +185,7 @@ class MosqueCampaignCard extends StatelessWidget {
                   Row(
                     children: [
                       Expanded(child: Text(c.title, maxLines: 2, overflow: TextOverflow.ellipsis, style: typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600))),
+                      if (c.showTaxBadge) ...[MosqueTaxBadge(l10n: l10n), const UISpace.horz(6)],
                       if (trailing != null) trailing! else MosqueCampaignStatusPill(campaign: c, l10n: l10n),
                     ],
                   ),

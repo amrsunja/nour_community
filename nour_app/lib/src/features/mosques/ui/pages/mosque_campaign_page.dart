@@ -13,6 +13,8 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:share_plus/share_plus.dart';
 
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
+
 import '../../data/models/mosque_donation_models.dart';
 import '../../data/mosque_repo.dart';
 import '../state_management/mosque_profile_provider.dart';
@@ -43,6 +45,8 @@ class MosqueCampaignPage extends HookConsumerWidget {
     final updates = useState<List<MosqueCampaignUpdate>>(const []);
     final donors = useState<List<MosqueCampaignDonor>>(const []);
     final amount = useState<double>(50);
+    // A campaign carries its own allowed frequencies (fundraising settings).
+    final frequency = useState<DonationFrequency>(DonationFrequency.oneTime);
     final failed = useState(false);
 
     useEffect(() {
@@ -52,7 +56,8 @@ class MosqueCampaignPage extends HookConsumerWidget {
         final res = await repo.getCampaign(campaignId);
         res.when((c) {
           campaign.value = c;
-          amount.value = (c.suggestedAmounts.length > 1 ? c.suggestedAmounts[1] : (c.suggestedAmounts.firstOrNull ?? 50)).toDouble();
+          amount.value = c.defaultAmount;
+          frequency.value = c.frequencies.firstOrNull ?? DonationFrequency.oneTime;
         }, (e) {
           failed.value = true;
           appEvents.send(ShowErrorEvent(e));
@@ -60,7 +65,10 @@ class MosqueCampaignPage extends HookConsumerWidget {
         (await repo.getCampaignUpdates(campaignId)).when((v) => updates.value = v, (_) {});
         donors.value = await repo.getCampaignRecentDonors(campaignId);
         sub = repo.watchCampaign(campaignId).listen((c) {
-          if (c != null) campaign.value = c;
+          if (c == null) return;
+          campaign.value = c;
+          final freqs = c.frequencies;
+          if (!freqs.contains(frequency.value)) frequency.value = freqs.firstOrNull ?? DonationFrequency.oneTime;
         });
       });
       return () => sub?.cancel();
@@ -70,9 +78,20 @@ class MosqueCampaignPage extends HookConsumerWidget {
 
     Future<void> donate() async {
       if (c == null) return;
-      final ok = await nav.toMosqueCheckout(mosqueId: mosqueId, amount: amount.value, frequency: 'oneTime', campaignId: c.id);
+      final ok = await nav.toMosqueCheckout(
+        mosqueId: mosqueId,
+        amount: amount.value,
+        frequency: frequency.value.name,
+        campaignId: c.id,
+      );
       if (ok == true) donors.value = await repo.getCampaignRecentDonors(campaignId);
     }
+
+    String giveLabel(double v) => switch (frequency.value) {
+          DonationFrequency.oneTime => l10n.mosque_donation_give(MosqueFormat.money(v)),
+          DonationFrequency.monthly => l10n.mosque_donation_give_monthly(MosqueFormat.money(v)),
+          DonationFrequency.yearly => l10n.mosque_donation_give_yearly(MosqueFormat.money(v)),
+        };
 
     return UIGradientLinedScaffold(
       appBar: UIAppBar(
@@ -107,6 +126,7 @@ class MosqueCampaignPage extends HookConsumerWidget {
                     children: [
                       if (mosque != null) ...[MosqueLogo(mosque: mosque, size: 28, radius: 14), const SizedBox(width: 8)],
                       Expanded(child: Text(mosque?.name ?? '', style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph))),
+                      if (c.showTaxBadge) ...[MosqueTaxBadge(l10n: l10n), const SizedBox(width: 6)],
                       MosqueCampaignStatusPill(campaign: c, l10n: l10n),
                     ],
                   ),
@@ -170,10 +190,19 @@ class MosqueCampaignPage extends HookConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(l10n.mosque_campaign_contribute, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700)),
+                          if (c.frequencies.length > 1) ...[
+                            const SizedBox(height: 12),
+                            MosqueFrequencyPicker(
+                              frequencies: c.frequencies,
+                              value: frequency.value,
+                              onChanged: (f) => frequency.value = f,
+                              l10n: l10n,
+                            ),
+                          ],
                           const SizedBox(height: 12),
-                          MosqueAmountPicker(amounts: c.suggestedAmounts, value: amount.value, onChanged: (v) => amount.value = v, l10n: l10n),
+                          MosqueAmountPicker(amounts: c.amountsOrDefault, value: amount.value, onChanged: (v) => amount.value = v, l10n: l10n),
                           const SizedBox(height: 16),
-                          UIButton.primary(label: l10n.mosque_donation_give(MosqueFormat.money(amount.value)), fullWidth: true, onTap: amount.value > 0 ? donate : null),
+                          UIButton.primary(label: giveLabel(amount.value), fullWidth: true, onTap: amount.value > 0 ? donate : null),
                         ],
                       ),
                     ),

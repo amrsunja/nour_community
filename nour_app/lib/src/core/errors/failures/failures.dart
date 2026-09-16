@@ -268,6 +268,8 @@ class ServerFailure extends Failure {
         return l.error_api_mosque_campaign_limit_reached;
       case ApiErrorKey.mosqueCampaignClosed:
         return l.error_api_mosque_campaign_closed;
+      case ApiErrorKey.mosqueFrequencyNotAllowed:
+        return l.error_api_mosque_frequency_not_allowed;
       case ApiErrorKey.mosqueDonationsDisabled:
         return l.error_api_mosque_donations_disabled;
       case ApiErrorKey.mosqueReceiptsNotAllowed:

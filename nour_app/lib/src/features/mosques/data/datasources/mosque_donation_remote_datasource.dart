@@ -16,6 +16,7 @@ final mosqueDonationRemoteDataProvider = Provider((ref) => MosqueDonationRemoteD
 /// mosque's connected account); the client reads through RLS + RPCs.
 class MosqueDonationRemoteDatasource {
   static const _settings = 'mosque_donation_settings';
+  static const _campaignSettings = 'mosque_campaign_settings';
   static const _campaigns = 'mosque_campaigns';
   static const _campaignUpdates = 'mosque_campaign_updates';
   static const _stripeAccounts = 'mosque_stripe_accounts';
@@ -52,6 +53,7 @@ class MosqueDonationRemoteDatasource {
       'amount_too_large' => ApiErrorKey.paymentAmountTooLarge,
       'donations_disabled' || 'stripe_not_ready' || 'mosque_not_chargeable' => ApiErrorKey.mosqueDonationsDisabled,
       'campaign_closed' || 'campaign_not_found' => ApiErrorKey.mosqueCampaignClosed,
+      'frequency_not_allowed' => ApiErrorKey.mosqueFrequencyNotAllowed,
       'mosque_not_approved' || 'forbidden' => ApiErrorKey.mosqueNotApproved,
       'receipts_not_allowed' => ApiErrorKey.mosqueReceiptsNotAllowed,
       'no_donations' => ApiErrorKey.mosqueReceiptNoDonations,
@@ -78,6 +80,17 @@ class MosqueDonationRemoteDatasource {
     try {
       final row = await supabaseClient.from(_settings).select().eq('mosque_id', mosqueId).maybeSingle();
       return row == null ? MosqueDonationSettings(mosqueId: mosqueId) : MosqueDonationSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// Fundraising configuration of the mosque (campaigns — NOT the Sadaqa card).
+  /// A missing row means "never configured": the defaults apply.
+  Future<MosqueCampaignSettings> getCampaignSettings(int mosqueId) async {
+    try {
+      final row = await supabaseClient.from(_campaignSettings).select().eq('mosque_id', mosqueId).maybeSingle();
+      return row == null ? MosqueCampaignSettings(mosqueId: mosqueId) : MosqueCampaignSettings.fromJson(row);
     } catch (e) {
       throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
     }
@@ -171,6 +184,7 @@ class MosqueDonationRemoteDatasource {
     required double amount,
     required String currency,
     required DonationFrequency frequency,
+    int? campaignId,
     int? membershipId,
     required bool isAnonymous,
     required PaymentMethodKind paymentMethod,
@@ -183,6 +197,7 @@ class MosqueDonationRemoteDatasource {
         'amount': amount,
         'currency': currency,
         'interval': frequency.interval ?? 'month',
+        if (campaignId != null) 'campaignId': campaignId,
         if (membershipId != null) 'membershipId': membershipId,
         'isAnonymous': isAnonymous,
         'paymentMethod': paymentMethod.value,
@@ -350,6 +365,15 @@ class MosqueDonationRemoteDatasource {
     try {
       final row = await supabaseClient.from(_settings).upsert(s.toJson(), onConflict: 'mosque_id').select().single();
       return MosqueDonationSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignSettings> saveCampaignSettings(MosqueCampaignSettings s) async {
+    try {
+      final row = await supabaseClient.from(_campaignSettings).upsert(s.toJson(), onConflict: 'mosque_id').select().single();
+      return MosqueCampaignSettings.fromJson(row);
     } catch (e) {
       throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
     }

@@ -135,6 +135,7 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
             amount: state.amount,
             currency: currency,
             frequency: state.frequency,
+            campaignId: args.campaignId,
             membershipId: args.membershipId,
             isAnonymous: state.isAnonymous,
             paymentMethod: state.method,

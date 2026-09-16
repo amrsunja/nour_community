@@ -3653,7 +3653,58 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Donatur memilih dari jumlah ini — daftar lengkapnya diatur di pengaturan Sadaqah.';
+      'Donatur memilih dari daftar ini — milik kampanye ini sendiri.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title =>
+      'Pengaturan penggalangan dana';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Opsi frekuensi';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Donasi sekali';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Berulang bulanan';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'Donasi bulanan otomatis';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Berulang tahunan';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'Donasi tahunan otomatis';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Pengurangan pajak';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Maksimal 6 nominal. Kampanye baru dimulai dari daftar ini dan dapat diubah setelahnya.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Tambahkan setidaknya satu nominal.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Pengaturan ini berlaku untuk kampanye baru. Kampanye yang sedang berjalan tetap memakai pengaturannya sampai Anda mengubahnya.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Aktifkan dulu di pengaturan penggalangan dana.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Setel ulang';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Tutup lebih awal';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Kampanye ini tidak menerima frekuensi tersebut.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

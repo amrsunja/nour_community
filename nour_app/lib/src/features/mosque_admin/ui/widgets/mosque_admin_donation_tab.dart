@@ -12,8 +12,8 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
 import '../state_management/mosque_admin_donation_provider.dart';
 import 'admin_campaign_row.dart';
 
-/// Admin Donation tab (devis B1/B5): Stripe setup CTA, analytics, Sadaqa
-/// settings shortcut, campaigns, donors & receipts.
+/// Admin Donation tab (devis B1/B5): Stripe setup CTA, analytics, Sadaqa card
+/// settings, campaigns + their own fundraising settings, donors & receipts.
 class MosqueAdminDonationTab extends HookConsumerWidget {
   const MosqueAdminDonationTab({super.key, required this.mosque});
 
@@ -134,11 +134,12 @@ class MosqueAdminDonationTab extends HookConsumerWidget {
             const SizedBox(height: 12),
           ],
           const SizedBox(height: 4),
+          // Campaigns have their OWN settings page — the Sadaqa card's is above.
           UIButton.secondary(
-            label: l10n.mosque_admin_sadaqa_manage_settings,
+            label: l10n.mosque_admin_fundraising_settings_title,
             assetIcon: UIIconsToken.icons.settings,
             fullWidth: true,
-            onTap: nav.toMosqueAdminSadaqaSettings,
+            onTap: nav.toMosqueAdminFundraisingSettings,
           ),
 
           // ── Also here ──────────────────────────────────────────────────

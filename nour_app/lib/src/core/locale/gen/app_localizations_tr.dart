@@ -3638,7 +3638,58 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Bağışçılar bunlardan seçer — tüm liste Sadaka ayarlarında belirlenir.';
+      'Bağışçılar bunlardan seçer — bu kampanyanın kendi listesi.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title =>
+      'Bağış kampanyası ayarları';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Sıklık seçenekleri';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Tek seferlik bağış';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Aylık düzenli';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'Otomatik aylık bağış';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Yıllık düzenli';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'Otomatik yıllık bağış';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Vergi indirimi';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'En fazla 6 tutar. Yeni bir kampanya bu listeyle başlar ve sonra değiştirebilir.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'En az bir tutar ekleyin.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Bu ayarlar yeni kampanyalar için geçerlidir. Devam eden kampanyalar, siz düzenleyene kadar mevcut ayarlarını korur.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Önce bağış kampanyası ayarlarından etkinleştirin.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Varsayılana dön';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Erken kapat';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Bu kampanya bu sıklığı kabul etmiyor.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

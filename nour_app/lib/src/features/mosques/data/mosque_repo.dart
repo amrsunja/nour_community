@@ -104,6 +104,8 @@ class MosqueRepo {
   // ── Donations (P3) ────────────────────────────────────────────────────────
   Future<SuccessOrError<MosqueDonationSettings>> getDonationSettings(int mosqueId) =>
       Failure.exceptionsCatcher(() => donation.getSettings(mosqueId));
+  Future<SuccessOrError<MosqueCampaignSettings>> getCampaignSettings(int mosqueId) =>
+      Failure.exceptionsCatcher(() => donation.getCampaignSettings(mosqueId));
   Future<SuccessOrError<List<MosqueCampaignModel>>> getCampaigns(int mosqueId, {bool activeOnly = false}) =>
       Failure.exceptionsCatcher(() => donation.getCampaigns(mosqueId, activeOnly: activeOnly));
   Future<SuccessOrError<MosqueCampaignModel>> getCampaign(int campaignId) => Failure.exceptionsCatcher(() => donation.getCampaign(campaignId));
@@ -136,6 +138,7 @@ class MosqueRepo {
     required double amount,
     required String currency,
     required DonationFrequency frequency,
+    int? campaignId,
     int? membershipId,
     required bool isAnonymous,
     required PaymentMethodKind paymentMethod,
@@ -146,6 +149,7 @@ class MosqueRepo {
             amount: amount,
             currency: currency,
             frequency: frequency,
+            campaignId: campaignId,
             membershipId: membershipId,
             isAnonymous: isAnonymous,
             paymentMethod: paymentMethod,
@@ -168,6 +172,8 @@ class MosqueRepo {
       Failure.exceptionsCatcher(() => donation.startStripeOnboarding(mosqueId, canIssueTaxReceipts: canIssueTaxReceipts));
   Future<SuccessOrError<MosqueStripeAccount>> refreshStripeStatus(int mosqueId) => Failure.exceptionsCatcher(() => donation.refreshStripeStatus(mosqueId));
   Future<SuccessOrError<MosqueDonationSettings>> saveDonationSettings(MosqueDonationSettings s) => Failure.exceptionsCatcher(() => donation.saveSettings(s));
+  Future<SuccessOrError<MosqueCampaignSettings>> saveCampaignSettings(MosqueCampaignSettings s) =>
+      Failure.exceptionsCatcher(() => donation.saveCampaignSettings(s));
   Future<SuccessOrError<MosqueCampaignModel>> createCampaign(int mosqueId, MosqueCampaignDraft d) =>
       Failure.exceptionsCatcher(() => donation.createCampaign(mosqueId, d));
   Future<SuccessOrError<MosqueCampaignModel>> updateCampaign(int mosqueId, MosqueCampaignDraft d) =>

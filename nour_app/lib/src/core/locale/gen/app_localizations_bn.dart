@@ -3636,7 +3636,57 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'দাতারা এগুলো থেকে বেছে নেন — পূর্ণ তালিকা সাদাকা সেটিংসে ঠিক করুন।';
+      'দাতারা এগুলো থেকে বেছে নেন — এটি এই ক্যাম্পেইনের নিজস্ব তালিকা।';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'তহবিল সংগ্রহের সেটিংস';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'ফ্রিকোয়েন্সি অপশন';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'একবারের দান';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'মাসিক পুনরাবৃত্ত';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'স্বয়ংক্রিয় মাসিক দান';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'বার্ষিক পুনরাবৃত্ত';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'স্বয়ংক্রিয় বার্ষিক দান';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'কর ছাড়';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'সর্বোচ্চ ৬টি পরিমাণ। নতুন ক্যাম্পেইন এই তালিকা দিয়ে শুরু হয় এবং পরে পরিবর্তন করা যায়।';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'অন্তত একটি পরিমাণ যোগ করুন।';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'এই সেটিংস নতুন ক্যাম্পেইনে প্রযোজ্য। চলমান ক্যাম্পেইনগুলো সম্পাদনা না করা পর্যন্ত নিজেদের সেটিংস রাখে।';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'প্রথমে তহবিল সংগ্রহের সেটিংসে এটি চালু করুন।';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'ডিফল্টে ফেরান';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'আগেই বন্ধ করুন';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'এই ক্যাম্পেইন এই ফ্রিকোয়েন্সি গ্রহণ করে না।';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

@@ -5,16 +5,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
-import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
-import 'package:nour/src/features/mosques/data/datasources/mosque_admin_remote_datasource.dart' show BroadcastQuota;
 import 'package:nour/src/features/mosques/data/models/mosque_donation_models.dart';
 import 'package:nour/src/features/mosques/data/mosque_repo.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_donation_widgets.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
-import '../state_management/mosque_admin_mosque_provider.dart';
+import '../widgets/admin_campaign_actions.dart';
 import '../widgets/mosque_admin_form_widgets.dart';
 
 /// Admin view of one campaign (devis B3): progress, recent donors, updates,
@@ -31,7 +30,6 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final lang = Localizations.localeOf(context).languageCode;
     final nav = ref.read(navigationServicesProvider);
-    final snackbar = ref.read(snackbarProvider);
     final repo = ref.read(mosqueRepoProvider);
     final presenter = ref.read(mosqueAdminDonationProvider.notifier);
     final state = ref.watch(mosqueAdminDonationProvider);
@@ -57,51 +55,16 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
     }, const []);
 
     Future<void> extend() async {
-      if (campaign == null) return;
-      final d = await UIPickers.date(
-        context,
-        initialDate: campaign.endsAt.isAfter(DateTime.now()) ? campaign.endsAt.add(const Duration(days: 7)) : DateTime.now().add(const Duration(days: 7)),
-        firstDate: DateTime.now().add(const Duration(days: 1)),
-        lastDate: DateTime.now().add(const Duration(days: 365)),
-      );
-      if (d == null) return;
-      final c = await presenter.extendCampaign(campaign.id, DateTime(d.year, d.month, d.day, 23, 59));
-      if (c != null) snackbar.showSuccess(l10n.mosque_admin_campaign_extended);
+      if (campaign != null) await extendCampaignFlow(context, ref, campaign);
     }
 
     Future<void> close() async {
-      if (campaign == null) return;
-      final ok = await showDialog<bool>(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          backgroundColor: UIColorsToken.bgSurface,
-          title: Text(l10n.mosque_admin_campaign_close_title, style: const TextStyle(color: UIColorsToken.white)),
-          content: Text(l10n.mosque_admin_campaign_close_message, style: TextStyle(color: UIColorsToken.textParagraph)),
-          actions: [
-            TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: Text(l10n.common_cancel)),
-            TextButton(onPressed: () => Navigator.of(ctx).pop(true), child: Text(l10n.common_yes, style: const TextStyle(color: UIColorsToken.red))),
-          ],
-        ),
-      );
-      if (ok != true) return;
-      final c = await presenter.closeCampaign(campaign.id);
-      if (c != null) snackbar.showSuccess(l10n.mosque_admin_campaign_closed);
+      if (campaign != null) await closeCampaignFlow(context, ref, campaign);
     }
 
     Future<void> postUpdate() async {
       if (campaign == null) return;
-      final res = await UIBottomSheet.show<(String, bool)>(
-        context: context,
-        isScrollControlled: true,
-        backgroundColor: UIColorsToken.bgPrimary,
-        builder: (_) => _UpdateSheet(l10n: l10n, quota: ref.read(mosqueAdminMosqueProvider).quota),
-      );
-      if (res == null) return;
-      final ok = await presenter.postCampaignUpdate(campaignId: campaign.id, body: res.$1, notify: res.$2);
-      if (ok) {
-        snackbar.showSuccess(l10n.mosque_admin_campaign_update_posted);
-        await loadSide();
-      }
+      if (await postCampaignUpdateFlow(context, ref, campaign)) await loadSide();
     }
 
     return Scaffold(
@@ -128,6 +91,20 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
                       AdminStatTile(label: l10n.mosque_admin_donors, value: '${campaign.donorsCount}'),
                       AdminStatTile(label: l10n.mosque_campaign_remaining, value: MosqueFormat.money(campaign.remaining)),
                       AdminStatTile(label: l10n.mosque_admin_campaign_ends, value: MosqueFormat.longDate(campaign.endsAt, lang)),
+                      AdminStatTile(
+                        label: l10n.mosque_admin_sadaqa_amounts,
+                        value: campaign.amountsOrDefault.map((a) => '${a}€').join(' · '),
+                      ),
+                      AdminStatTile(
+                        label: l10n.mosque_admin_fundraising_frequencies,
+                        value: campaign.frequencies
+                            .map((f) => switch (f) {
+                                  DonationFrequency.oneTime => l10n.donate_frequency_one_time,
+                                  DonationFrequency.monthly => l10n.donate_frequency_monthly,
+                                  DonationFrequency.yearly => l10n.donate_frequency_yearly,
+                                })
+                            .join(' · '),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -198,47 +175,6 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
                 ],
               ),
             ),
-    );
-  }
-}
-
-class _UpdateSheet extends HookWidget {
-  const _UpdateSheet({required this.l10n, required this.quota});
-  final AppLocale l10n;
-  final BroadcastQuota? quota;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = UITheme.of(context);
-    final body = useTextEditingController();
-    final notify = useState(false);
-    useListenable(body);
-    final exhausted = quota?.exhausted == true;
-    return Padding(
-      padding: EdgeInsets.fromLTRB(16, 16, 16, MediaQuery.of(context).viewInsets.bottom + 24),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(l10n.mosque_admin_campaign_post_update, style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700)),
-          const SizedBox(height: 12),
-          AdminTextArea(controller: body, hint: l10n.mosque_admin_campaign_update_hint, minLines: 3, maxLines: 6),
-          const SizedBox(height: 12),
-          AdminToggleRow(
-            title: l10n.mosque_admin_campaign_notify_update,
-            subtitle: exhausted ? l10n.error_api_mosque_broadcast_quota_exceeded : l10n.mosque_admin_campaign_notify_hint,
-            value: notify.value && !exhausted,
-            enabled: !exhausted,
-            onChanged: (v) => notify.value = v,
-          ),
-          const SizedBox(height: 16),
-          UIButton.primary(
-            label: l10n.mosque_admin_tab_post,
-            fullWidth: true,
-            onTap: body.text.trim().isEmpty ? null : () => Navigator.of(context).pop((body.text.trim(), notify.value && !exhausted)),
-          ),
-        ],
-      ),
     );
   }
 }

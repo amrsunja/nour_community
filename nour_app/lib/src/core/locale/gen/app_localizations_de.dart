@@ -3675,7 +3675,61 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Spender wählen aus diesen Beträgen — die vollständige Liste legst du in den Sadaqa-Einstellungen fest.';
+      'Spender wählen aus diesen Beträgen — der eigenen Liste dieser Kampagne.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title =>
+      'Spendenaktions-Einstellungen';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Häufigkeitsoptionen';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Eine einmalige Spende';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Monatlich wiederkehrend';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint =>
+      'Automatische monatliche Spende';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Jährlich wiederkehrend';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint =>
+      'Automatische jährliche Spende';
+
+  @override
+  String get mosque_admin_fundraising_tax_section =>
+      'Steuerliche Absetzbarkeit';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Maximal 6 Beträge. Eine neue Kampagne startet mit dieser Liste und kann sie danach ändern.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Füge mindestens einen Betrag hinzu.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Diese Einstellungen gelten für neue Kampagnen. Laufende Kampagnen behalten ihre Einstellungen, bis du sie bearbeitest.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Aktiviere es zuerst in den Spendenaktions-Einstellungen.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Zurücksetzen';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Vorzeitig schließen';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Diese Kampagne akzeptiert diese Häufigkeit nicht.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

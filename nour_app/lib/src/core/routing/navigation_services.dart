@@ -35,6 +35,7 @@ abstract class NavigationServices {
 		int? membershipId,
 	});
 	void toMosqueAdminSadaqaSettings();
+	void toMosqueAdminFundraisingSettings();
 	void toMosqueAdminStripe();
 	void toMosqueAdminCampaignForm({int? campaignId});
 	void toMosqueAdminCampaign(int campaignId);
@@ -209,6 +210,8 @@ class NavigationServicesImpl implements NavigationServices {
 
   @override
   void toMosqueAdminSadaqaSettings() => router.push(const MosqueAdminSadaqaSettingsRoute());
+  @override
+  void toMosqueAdminFundraisingSettings() => router.push(const MosqueAdminFundraisingSettingsRoute());
   @override
   void toMosqueAdminStripe() => router.push(const MosqueAdminStripeRoute());
   @override

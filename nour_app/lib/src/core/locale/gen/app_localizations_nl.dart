@@ -3651,7 +3651,60 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Donateurs kiezen uit deze bedragen — de volledige lijst stel je in bij Sadaqa-instellingen.';
+      'Donateurs kiezen uit deze bedragen — de eigen lijst van deze campagne.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title =>
+      'Instellingen voor inzamelingen';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Frequentieopties';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Een eenmalige gift';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Maandelijks terugkerend';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint =>
+      'Automatische maandelijkse gift';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Jaarlijks terugkerend';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint =>
+      'Automatische jaarlijkse gift';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Fiscale aftrekbaarheid';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Maximaal 6 bedragen. Een nieuwe campagne begint met deze lijst en kan die daarna aanpassen.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Voeg minstens één bedrag toe.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Deze instellingen gelden voor nieuwe campagnes. Lopende campagnes behouden hun instellingen tot je ze bewerkt.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Schakel dit eerst in bij de instellingen voor inzamelingen.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Standaard herstellen';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Vroegtijdig sluiten';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Deze campagne accepteert die frequentie niet.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

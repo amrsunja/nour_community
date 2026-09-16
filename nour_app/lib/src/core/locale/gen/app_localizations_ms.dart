@@ -3651,7 +3651,57 @@ class AppLocalizationsMs extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Penderma memilih daripada jumlah ini — senarai penuh ditetapkan dalam tetapan Sadaqah.';
+      'Penderma memilih daripada ini — senarai milik kempen ini sendiri.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'Tetapan kutipan dana';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Pilihan kekerapan';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Derma sekali sahaja';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Bulanan berulang';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'Derma bulanan automatik';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Tahunan berulang';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'Derma tahunan automatik';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Potongan cukai';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Maksimum 6 jumlah. Kempen baharu bermula dengan senarai ini dan boleh diubah kemudian.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Tambah sekurang-kurangnya satu jumlah.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Tetapan ini digunakan untuk kempen baharu. Kempen yang sedang berjalan mengekalkan tetapannya sehingga anda mengeditnya.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Aktifkan dahulu dalam tetapan kutipan dana.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Set semula';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Tutup awal';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Kempen ini tidak menerima kekerapan itu.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

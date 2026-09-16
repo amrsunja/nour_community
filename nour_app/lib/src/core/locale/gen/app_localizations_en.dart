@@ -3643,7 +3643,57 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Donors pick from these — set the full list in Sadaqa settings.';
+      'Donors pick from these — this campaign\'s own list.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title => 'Fundraising settings';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Frequency options';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'A single donation';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Monthly recurring';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'Automatic monthly gift';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Yearly recurring';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'Automatic yearly gift';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Tax deductibility';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      'Up to 6 amounts. A new campaign starts from this list and can then change it.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Add at least one amount.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'These settings apply to new campaigns. Campaigns already running keep what they were launched with until you edit them.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Enable it in the fundraising settings first.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Reset to defaults';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Close early';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'This campaign doesn\'t accept that frequency.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

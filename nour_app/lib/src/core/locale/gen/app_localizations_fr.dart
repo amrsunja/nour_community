@@ -3677,7 +3677,58 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get mosque_admin_campaign_amounts_hint =>
-      'Les donateurs choisissent parmi celles-ci — la liste complète se règle dans les paramètres Sadaqa.';
+      'Les donateurs choisissent parmi celles-ci — la liste propre à cette cagnotte.';
+
+  @override
+  String get mosque_admin_fundraising_settings_title =>
+      'Paramètres de collecte';
+
+  @override
+  String get mosque_admin_fundraising_frequencies => 'Options de fréquence';
+
+  @override
+  String get mosque_admin_fundraising_one_time_hint => 'Un don unique';
+
+  @override
+  String get mosque_admin_fundraising_monthly => 'Mensuel récurrent';
+
+  @override
+  String get mosque_admin_fundraising_monthly_hint => 'Don mensuel automatique';
+
+  @override
+  String get mosque_admin_fundraising_yearly => 'Annuel récurrent';
+
+  @override
+  String get mosque_admin_fundraising_yearly_hint => 'Don annuel automatique';
+
+  @override
+  String get mosque_admin_fundraising_tax_section => 'Déductibilité fiscale';
+
+  @override
+  String get mosque_admin_fundraising_amounts_hint =>
+      '6 montants maximum. Une nouvelle cagnotte part de cette liste et peut ensuite la modifier.';
+
+  @override
+  String get mosque_admin_fundraising_amounts_required =>
+      'Ajoutez au moins un montant.';
+
+  @override
+  String get mosque_admin_fundraising_defaults_note =>
+      'Ces réglages s\'appliquent aux nouvelles cagnottes. Les cagnottes en cours conservent leurs réglages jusqu\'à modification.';
+
+  @override
+  String get mosque_admin_campaign_frequency_locked =>
+      'Activez-le d\'abord dans les paramètres de collecte.';
+
+  @override
+  String get mosque_admin_campaign_amounts_reset => 'Réinitialiser';
+
+  @override
+  String get mosque_admin_campaign_close_early => 'Clôturer avant terme';
+
+  @override
+  String get error_api_mosque_frequency_not_allowed =>
+      'Cette cagnotte n\'accepte pas cette fréquence.';
 
   @override
   String mosque_admin_campaign_days_left_short(int days) {

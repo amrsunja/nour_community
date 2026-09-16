@@ -8,6 +8,7 @@ import 'package:nour/src/core/providers/routing/navigation_services_provider.dar
 import 'package:nour/src/core/utils/constants/constants.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
+import '../widgets/admin_campaign_actions.dart';
 import '../widgets/admin_campaign_row.dart';
 
 /// All campaigns of the mosque — active first, then the closed / past ones.
@@ -33,7 +34,13 @@ class MosqueAdminCampaignsPage extends HookConsumerWidget {
     final past = state.pastCampaigns;
 
     return Scaffold(
-      appBar: UIAppBar(title: l10n.mosque_campaigns_title, onBack: () => context.router.maybePop()),
+      appBar: UIAppBar(
+        title: l10n.mosque_campaigns_title,
+        onBack: () => context.router.maybePop(),
+        leadingIcons: [
+          UIButton.textual(label: l10n.mosque_admin_fundraising_settings_title, isSmall: true, onTap: nav.toMosqueAdminFundraisingSettings),
+        ],
+      ),
       body: state.isLoading && !state.loaded
           ? const Center(child: UICircularProgressBar())
           : RefreshIndicator(
@@ -71,7 +78,7 @@ class MosqueAdminCampaignsPage extends HookConsumerWidget {
                       ),
                     ),
                   for (final c in active) ...[
-                    AdminCampaignRow(campaign: c, l10n: l10n, onTap: () => nav.toMosqueAdminCampaign(c.id)),
+                    AdminCampaignManageCard(campaign: c, onOpen: () => nav.toMosqueAdminCampaign(c.id)),
                     const SizedBox(height: 10),
                   ],
                   if (past.isNotEmpty) ...[

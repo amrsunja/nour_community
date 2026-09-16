@@ -6585,8 +6585,98 @@ abstract class AppLocalizations {
   /// No description provided for @mosque_admin_campaign_amounts_hint.
   ///
   /// In en, this message translates to:
-  /// **'Donors pick from these — set the full list in Sadaqa settings.'**
+  /// **'Donors pick from these — this campaign\'s own list.'**
   String get mosque_admin_campaign_amounts_hint;
+
+  /// No description provided for @mosque_admin_fundraising_settings_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Fundraising settings'**
+  String get mosque_admin_fundraising_settings_title;
+
+  /// No description provided for @mosque_admin_fundraising_frequencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Frequency options'**
+  String get mosque_admin_fundraising_frequencies;
+
+  /// No description provided for @mosque_admin_fundraising_one_time_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'A single donation'**
+  String get mosque_admin_fundraising_one_time_hint;
+
+  /// No description provided for @mosque_admin_fundraising_monthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly recurring'**
+  String get mosque_admin_fundraising_monthly;
+
+  /// No description provided for @mosque_admin_fundraising_monthly_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic monthly gift'**
+  String get mosque_admin_fundraising_monthly_hint;
+
+  /// No description provided for @mosque_admin_fundraising_yearly.
+  ///
+  /// In en, this message translates to:
+  /// **'Yearly recurring'**
+  String get mosque_admin_fundraising_yearly;
+
+  /// No description provided for @mosque_admin_fundraising_yearly_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Automatic yearly gift'**
+  String get mosque_admin_fundraising_yearly_hint;
+
+  /// No description provided for @mosque_admin_fundraising_tax_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax deductibility'**
+  String get mosque_admin_fundraising_tax_section;
+
+  /// No description provided for @mosque_admin_fundraising_amounts_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to 6 amounts. A new campaign starts from this list and can then change it.'**
+  String get mosque_admin_fundraising_amounts_hint;
+
+  /// No description provided for @mosque_admin_fundraising_amounts_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one amount.'**
+  String get mosque_admin_fundraising_amounts_required;
+
+  /// No description provided for @mosque_admin_fundraising_defaults_note.
+  ///
+  /// In en, this message translates to:
+  /// **'These settings apply to new campaigns. Campaigns already running keep what they were launched with until you edit them.'**
+  String get mosque_admin_fundraising_defaults_note;
+
+  /// No description provided for @mosque_admin_campaign_frequency_locked.
+  ///
+  /// In en, this message translates to:
+  /// **'Enable it in the fundraising settings first.'**
+  String get mosque_admin_campaign_frequency_locked;
+
+  /// No description provided for @mosque_admin_campaign_amounts_reset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to defaults'**
+  String get mosque_admin_campaign_amounts_reset;
+
+  /// No description provided for @mosque_admin_campaign_close_early.
+  ///
+  /// In en, this message translates to:
+  /// **'Close early'**
+  String get mosque_admin_campaign_close_early;
+
+  /// No description provided for @error_api_mosque_frequency_not_allowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This campaign doesn\'t accept that frequency.'**
+  String get error_api_mosque_frequency_not_allowed;
 
   /// No description provided for @mosque_admin_campaign_days_left_short.
   ///

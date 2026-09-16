@@ -136,6 +136,7 @@ enum ApiErrorKey {
   pushRegisterFailed,
   mosqueCampaignLimitReached,
   mosqueCampaignClosed,
+  mosqueFrequencyNotAllowed,
   mosqueDonationsDisabled,
   mosqueReceiptsNotAllowed,
   mosqueReceiptNoDonations,
