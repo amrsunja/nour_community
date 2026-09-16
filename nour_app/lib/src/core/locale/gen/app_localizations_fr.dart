@@ -3670,6 +3670,27 @@ class AppLocalizationsFr extends AppLocalizations {
   String get mosque_admin_campaign_new => 'Nouvelle campagne';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'Campagnes actives';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'Nouvelle';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'Les donateurs choisissent parmi celles-ci — la liste complète se règle dans les paramètres Sadaqa.';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return '${days}j restants';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'Également ici';
+
+  @override
+  String get mosque_admin_all_campaigns => 'Toutes les campagnes';
+
+  @override
   String get mosque_admin_campaign_edit => 'Modifier la campagne';
 
   @override

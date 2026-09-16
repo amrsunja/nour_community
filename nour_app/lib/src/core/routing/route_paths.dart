@@ -30,6 +30,7 @@ abstract class RoutePaths {
   static const mosqueAdminStripe = 'mosque-admin/donations/stripe';
   static const mosqueAdminCampaignForm = 'mosque-admin/donations/campaign-form';
   static String mosqueAdminCampaign({int? campaignId}) => 'mosque-admin/donations/campaign/${campaignId ?? ':campaignId'}';
+  static const mosqueAdminCampaigns = 'mosque-admin/donations/campaigns';
   static const mosqueAdminDonors = 'mosque-admin/donations/donors';
   static const mosqueAdminReceipts = 'mosque-admin/donations/receipts';
 

@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
@@ -153,11 +151,12 @@ class _MosqueSadaqaCardState extends State<MosqueSadaqaCard> {
                   ],
                   if (s.suggestedAmounts.isNotEmpty) ...[
                     const UISpace.vert(12),
-                    _AmountGrid(
+                    UIAmountSelector(
                       amounts: s.suggestedAmounts,
-                      symbol: widget.symbol,
+                      currencySymbol: widget.symbol,
                       selected: manualActive ? null : widget.amount.round(),
-                      onTap: (v) {
+                      enabled: widget.interactive,
+                      onSelected: (v) {
                         _manual.clear();
                         widget.onAmountChanged?.call(v.toDouble());
                       },
@@ -298,70 +297,6 @@ class _FrequencyRow extends StatelessWidget {
           ],
         ],
       ),
-    );
-  }
-}
-
-/// Preset amounts, four per row.
-class _AmountGrid extends StatelessWidget {
-  const _AmountGrid({required this.amounts, required this.symbol, required this.selected, required this.onTap});
-
-  final List<int> amounts;
-  final String symbol;
-  final int? selected;
-  final ValueChanged<int> onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = UITheme.of(context);
-    const gap = 8.0;
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final cols = math.max(1, math.min(4, amounts.length));
-        final width = (constraints.maxWidth - gap * (cols - 1)) / cols;
-        return Wrap(
-          spacing: gap,
-          runSpacing: gap,
-          children: [
-            for (final a in amounts)
-              SizedBox(
-                width: width,
-                child: UITap(
-                  onTap: () => onTap(a),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 160),
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: selected == a
-                          ? UIColorsToken.yellow.withValues(alpha: .14)
-                          : UIColorsToken.white.withValues(alpha: .04),
-                      border: Border.all(
-                        color: selected == a ? UIColorsToken.yellow.withValues(alpha: .85) : Colors.transparent,
-                        width: 1.5,
-                      ),
-                    ),
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                        child: Text(
-                          '$a$symbol',
-                          style: theme.typo.inter.title.copyWith(
-                            color: selected == a ? UIColorsToken.textYellow : UIColorsToken.white,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-          ],
-        );
-      },
     );
   }
 }

@@ -3649,6 +3649,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_admin_campaign_new => 'Новая кампания';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'Активные кампании';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'Новая';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'Жертвователи выбирают из этих сумм — полный список задаётся в настройках садаки.';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return 'Осталось $days д.';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'Здесь же';
+
+  @override
+  String get mosque_admin_all_campaigns => 'Все кампании';
+
+  @override
   String get mosque_admin_campaign_edit => 'Изменить кампанию';
 
   @override

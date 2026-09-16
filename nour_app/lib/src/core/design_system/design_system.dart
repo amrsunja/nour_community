@@ -30,6 +30,7 @@ export 'src/components/ui_progress_line.dart';
 export 'src/components/ui_circular_progress_bar.dart';
 export 'src/components/ui_space.dart';
 export 'src/components/ui_glowing_block.dart';
+export 'src/components/ui_amount_selector.dart';
 export 'src/components/ui_toggle.dart';
 export 'src/components/ui_navbar.dart';
 export 'src/components/ui_pickers.dart';

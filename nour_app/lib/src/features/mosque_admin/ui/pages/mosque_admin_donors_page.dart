@@ -101,7 +101,7 @@ class MosqueAdminDonorsPage extends HookConsumerWidget {
       ('mosque_membership', l10n.mosque_admin_type_membership),
     ];
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: l10n.mosque_admin_donors_list,
         onBack: () => context.router.maybePop(),

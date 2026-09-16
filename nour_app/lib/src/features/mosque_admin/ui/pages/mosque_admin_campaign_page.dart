@@ -104,7 +104,7 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
       }
     }
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: l10n.mosque_campaign_title,
         onBack: () => context.router.maybePop(),
@@ -122,13 +122,12 @@ class MosqueAdminCampaignPage extends HookConsumerWidget {
                 children: [
                   MosqueCampaignCard(campaign: campaign, l10n: l10n),
                   const SizedBox(height: 12),
-                  Row(
+                  Column(
+                    spacing: 8,
                     children: [
-                      Expanded(child: AdminStatTile(label: l10n.mosque_admin_donors, value: '${campaign.donorsCount}')),
-                      const SizedBox(width: 8),
-                      Expanded(child: AdminStatTile(label: l10n.mosque_campaign_remaining, value: MosqueFormat.money(campaign.remaining))),
-                      const SizedBox(width: 8),
-                      Expanded(child: AdminStatTile(label: l10n.mosque_admin_campaign_ends, value: MosqueFormat.longDate(campaign.endsAt, lang))),
+                      AdminStatTile(label: l10n.mosque_admin_donors, value: '${campaign.donorsCount}'),
+                      AdminStatTile(label: l10n.mosque_campaign_remaining, value: MosqueFormat.money(campaign.remaining)),
+                      AdminStatTile(label: l10n.mosque_admin_campaign_ends, value: MosqueFormat.longDate(campaign.endsAt, lang)),
                     ],
                   ),
                   const SizedBox(height: 16),

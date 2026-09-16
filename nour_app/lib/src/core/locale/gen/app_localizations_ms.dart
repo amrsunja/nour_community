@@ -3644,6 +3644,27 @@ class AppLocalizationsMs extends AppLocalizations {
   String get mosque_admin_campaign_new => 'Kempen baharu';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'Kempen aktif';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'Baharu';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'Penderma memilih daripada jumlah ini — senarai penuh ditetapkan dalam tetapan Sadaqah.';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return '$days hr lagi';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'Juga di sini';
+
+  @override
+  String get mosque_admin_all_campaigns => 'Semua kempen';
+
+  @override
   String get mosque_admin_campaign_edit => 'Sunting kempen';
 
   @override

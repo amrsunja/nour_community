@@ -6570,6 +6570,42 @@ abstract class AppLocalizations {
   /// **'New campaign'**
   String get mosque_admin_campaign_new;
 
+  /// No description provided for @mosque_admin_campaigns_active_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Active campaigns'**
+  String get mosque_admin_campaigns_active_title;
+
+  /// No description provided for @mosque_admin_campaign_new_short.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get mosque_admin_campaign_new_short;
+
+  /// No description provided for @mosque_admin_campaign_amounts_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors pick from these — set the full list in Sadaqa settings.'**
+  String get mosque_admin_campaign_amounts_hint;
+
+  /// No description provided for @mosque_admin_campaign_days_left_short.
+  ///
+  /// In en, this message translates to:
+  /// **'{days}d left'**
+  String mosque_admin_campaign_days_left_short(int days);
+
+  /// No description provided for @mosque_admin_also_here.
+  ///
+  /// In en, this message translates to:
+  /// **'Also here'**
+  String get mosque_admin_also_here;
+
+  /// No description provided for @mosque_admin_all_campaigns.
+  ///
+  /// In en, this message translates to:
+  /// **'All campaigns'**
+  String get mosque_admin_all_campaigns;
+
   /// No description provided for @mosque_admin_campaign_edit.
   ///
   /// In en, this message translates to:

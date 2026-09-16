@@ -3631,6 +3631,27 @@ class AppLocalizationsTr extends AppLocalizations {
   String get mosque_admin_campaign_new => 'Yeni kampanya';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'Aktif kampanyalar';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'Yeni';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'Bağışçılar bunlardan seçer — tüm liste Sadaka ayarlarında belirlenir.';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return '$days gün kaldı';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'Ayrıca burada';
+
+  @override
+  String get mosque_admin_all_campaigns => 'Tüm kampanyalar';
+
+  @override
   String get mosque_admin_campaign_edit => 'Kampanyayı düzenle';
 
   @override

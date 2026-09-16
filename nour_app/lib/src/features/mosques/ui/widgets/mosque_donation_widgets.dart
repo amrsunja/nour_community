@@ -73,21 +73,17 @@ class _MosqueAmountPickerState extends State<MosqueAmountPicker> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final a in widget.amounts)
-              MosqueChip(
-                label: '$a${widget.symbol}',
-                selected: !_customMode && widget.value.round() == a,
-                onTap: () {
-                  setState(() => _customMode = false);
-                  widget.onChanged(a.toDouble());
-                },
-              ),
-            MosqueChip(label: widget.l10n.mosque_donation_other_amount, selected: _customMode, onTap: () => setState(() => _customMode = true)),
-          ],
+        UIAmountSelector(
+          amounts: widget.amounts,
+          currencySymbol: widget.symbol,
+          selected: _customMode ? null : widget.value.round(),
+          otherLabel: widget.l10n.mosque_donation_other_amount,
+          otherSelected: _customMode,
+          onOtherTap: () => setState(() => _customMode = true),
+          onSelected: (a) {
+            setState(() => _customMode = false);
+            widget.onChanged(a.toDouble());
+          },
         ),
         if (_customMode) ...[
           const UISpace.vert(10),

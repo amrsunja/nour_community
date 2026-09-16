@@ -89,7 +89,12 @@ class MosqueAdminSadaqaSettingsPage extends HookConsumerWidget {
       appBar: UIAppBar(
         title: l10n.mosque_admin_sadaqa_settings_title,
         onBack: () => context.router.maybePop(),
-        leadingIcons: [UIButton.primary(label: l10n.common_save, isSmall: true, isBusy: state.busy, onTap: save)],
+        leadingIcons: [
+          SizedBox(
+            height: 35,
+            child: UIButton.primary(label: l10n.common_save, isSmall: true, isBusy: state.busy, onTap: save)
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 8, kPageHorzPadding, 40),

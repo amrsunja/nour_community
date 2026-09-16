@@ -3629,6 +3629,27 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_admin_campaign_new => 'নতুন ক্যাম্পেইন';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'সক্রিয় ক্যাম্পেইন';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'নতুন';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'দাতারা এগুলো থেকে বেছে নেন — পূর্ণ তালিকা সাদাকা সেটিংসে ঠিক করুন।';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return '$days দিন বাকি';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'এখানেও';
+
+  @override
+  String get mosque_admin_all_campaigns => 'সব ক্যাম্পেইন';
+
+  @override
   String get mosque_admin_campaign_edit => 'ক্যাম্পেইন সম্পাদনা';
 
   @override

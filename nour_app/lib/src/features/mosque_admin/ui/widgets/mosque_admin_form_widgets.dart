@@ -178,8 +178,12 @@ class AdminStatTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     return Container(
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(12)),
+      width: .infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 14,
+        vertical: 8
+      ),
+      decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(10)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

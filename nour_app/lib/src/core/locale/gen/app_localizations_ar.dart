@@ -3598,6 +3598,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mosque_admin_campaign_new => 'حملة جديدة';
 
   @override
+  String get mosque_admin_campaigns_active_title => 'الحملات النشطة';
+
+  @override
+  String get mosque_admin_campaign_new_short => 'جديدة';
+
+  @override
+  String get mosque_admin_campaign_amounts_hint =>
+      'يختار المتبرعون من بين هذه المبالغ — يتم ضبط القائمة الكاملة في إعدادات الصدقة.';
+
+  @override
+  String mosque_admin_campaign_days_left_short(int days) {
+    return 'بقي $days يوم';
+  }
+
+  @override
+  String get mosque_admin_also_here => 'أيضًا هنا';
+
+  @override
+  String get mosque_admin_all_campaigns => 'كل الحملات';
+
+  @override
   String get mosque_admin_campaign_edit => 'تعديل الحملة';
 
   @override

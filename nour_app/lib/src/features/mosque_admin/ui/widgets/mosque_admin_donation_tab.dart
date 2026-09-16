@@ -10,6 +10,7 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_donation_widgets.dar
 import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
+import 'admin_campaign_row.dart';
 
 /// Admin Donation tab (devis B1/B5): Stripe setup CTA, analytics, Sadaqa
 /// settings shortcut, campaigns, donors & receipts.
@@ -103,37 +104,77 @@ class MosqueAdminDonationTab extends HookConsumerWidget {
 
           // ── Campaigns ──────────────────────────────────────────────────
           const SizedBox(height: 24),
-          MosqueSectionHeader(
-            title: l10n.mosque_campaigns_title,
-            actionLabel: state.donationsReady && state.canCreateCampaign ? l10n.mosque_admin_campaign_new : null,
-            onAction: () => nav.toMosqueAdminCampaignForm(),
+          Row(
+            children: [
+              Text(
+                l10n.mosque_admin_campaigns_active_title,
+                style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(width: 8),
+              AdminCountBadge(count: state.activeCampaigns.length),
+              const Spacer(),
+              if (state.donationsReady && state.canCreateCampaign)
+                UIButton.primary(
+                  label: l10n.mosque_admin_campaign_new_short,
+                  assetIcon: UIIconsToken.icons.plus,
+                  iconAxis: UIButtonIconAxis.leading,
+                  onTap: () => nav.toMosqueAdminCampaignForm(),
+                ),
+            ],
           ),
-          const SizedBox(height: 10),
-          if (state.campaigns.isEmpty)
+          const SizedBox(height: 12),
+          if (state.activeCampaigns.isEmpty)
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(12)),
               child: Text(l10n.mosque_admin_campaigns_empty, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
             ),
           for (final c in state.activeCampaigns) ...[
-            MosqueCampaignCard(campaign: c, l10n: l10n, onTap: () => nav.toMosqueAdminCampaign(c.id)),
-            const SizedBox(height: 10),
+            AdminCampaignRow(campaign: c, l10n: l10n, onTap: () => nav.toMosqueAdminCampaign(c.id)),
+            const SizedBox(height: 12),
           ],
-          if (state.pastCampaigns.isNotEmpty) ...[
-            const SizedBox(height: 6),
-            Text(l10n.mosque_campaigns_past_title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textParagraph)),
-            const SizedBox(height: 8),
-            for (final c in state.pastCampaigns.take(5)) ...[
-              MosqueCampaignCard(campaign: c, l10n: l10n, onTap: () => nav.toMosqueAdminCampaign(c.id)),
-              const SizedBox(height: 10),
-            ],
-          ],
+          const SizedBox(height: 4),
+          UIButton.secondary(
+            label: l10n.mosque_admin_sadaqa_manage_settings,
+            assetIcon: UIIconsToken.icons.settings,
+            fullWidth: true,
+            onTap: nav.toMosqueAdminSadaqaSettings,
+          ),
 
-          // ── Donors / receipts ──────────────────────────────────────────
-          const SizedBox(height: 14),
-          _LinkRow(icon: Icons.people_outline, label: l10n.mosque_admin_donors_list, onTap: nav.toMosqueAdminDonors),
-          const SizedBox(height: 8),
-          _LinkRow(icon: Icons.receipt_long_outlined, label: l10n.mosque_admin_receipts, onTap: nav.toMosqueAdminReceipts),
+          // ── Also here ──────────────────────────────────────────────────
+          const SizedBox(height: 24),
+          MosqueSectionHeader(title: l10n.mosque_admin_also_here),
+          const SizedBox(height: 12),
+          IntrinsicHeight(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Expanded(
+                  child: AdminShortcutTile(
+                    icon: Icons.emoji_events_outlined,
+                    label: l10n.mosque_admin_all_campaigns,
+                    onTap: nav.toMosqueAdminCampaigns,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: AdminShortcutTile(
+                    icon: Icons.volunteer_activism_outlined,
+                    label: l10n.mosque_admin_donors_list,
+                    onTap: nav.toMosqueAdminDonors,
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: AdminShortcutTile(
+                    icon: Icons.description_outlined,
+                    label: l10n.mosque_admin_receipts,
+                    onTap: nav.toMosqueAdminReceipts,
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -259,7 +300,7 @@ class _SadaqaPreview extends StatelessWidget {
           const SizedBox(height: 16),
           UIButton.secondary(
             label: l10n.mosque_admin_sadaqa_manage_settings,
-            assetIcon: UIIconsToken.icons.tools,
+            assetIcon: UIIconsToken.icons.settings,
             fullWidth: true,
             onTap: onManage,
           ),
@@ -343,33 +384,6 @@ class _YearPicker extends StatelessWidget {
         Text('$year', style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
         UITap(onTap: year < now ? () => onChanged(year + 1) : null, child: Icon(Icons.chevron_right, size: 20, color: year < now ? UIColorsToken.textParagraph : UIColorsToken.black80)),
       ],
-    );
-  }
-}
-
-class _LinkRow extends StatelessWidget {
-  const _LinkRow({required this.icon, required this.label, required this.onTap});
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = UITheme.of(context);
-    return UITap(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-        decoration: BoxDecoration(color: UIColorsToken.bgSurface, borderRadius: BorderRadius.circular(12)),
-        child: Row(
-          children: [
-            Icon(icon, size: 20, color: UIColorsToken.textYellow),
-            const SizedBox(width: 12),
-            Expanded(child: Text(label, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
-            Icon(Icons.chevron_right, size: 18, color: UIColorsToken.textParagraph),
-          ],
-        ),
-      ),
     );
   }
 }

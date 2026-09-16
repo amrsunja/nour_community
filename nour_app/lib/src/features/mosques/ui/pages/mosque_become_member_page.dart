@@ -15,6 +15,7 @@ import 'package:nour/src/features/profile/ui/state_management/profile_provider.d
 import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
 
 import '../../data/mosque_repo.dart';
+import '../state_management/mosque_donation_provider.dart';
 import '../state_management/mosque_profile_provider.dart';
 
 /// "Join our membership" form (Figma 1105:5936) + optional yearly
@@ -51,6 +52,24 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
     final feeAmount = useState<double?>(120);
     final customFee = useTextEditingController();
     final isLoading = useState(false);
+
+    // Membership fee presets are configured by the mosque (Sadaqa settings).
+    final feeAmounts = ref.watch(mosqueDonationProvider(mosqueId).select((s) => s.settings?.membershipFeeAmounts)) ?? const [60, 120, 240];
+
+    useEffect(() {
+      if (!feeEnabled) return null;
+      WidgetsBinding.instance.addPostFrameCallback((_) => ref.read(mosqueDonationProvider(mosqueId).notifier).init());
+      return null;
+    }, [feeEnabled]);
+
+    // Keep the picked amount on one of the presets when they change.
+    useEffect(() {
+      final current = feeAmount.value;
+      if (current != null && feeAmounts.isNotEmpty && !feeAmounts.contains(current.round())) {
+        feeAmount.value = (feeAmounts.length > 1 ? feeAmounts[1] : feeAmounts.first).toDouble();
+      }
+      return null;
+    }, [feeAmounts]);
 
     Future<void> pickBirthDate() async {
       final now = DateTime.now();
@@ -211,29 +230,22 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
                               const SizedBox(height: 14),
                               Text(l10n.mosque_member_fee_choose, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
                               const SizedBox(height: 8),
-                              Row(
-                                children: [
-                                  for (final a in const [60.0, 120.0, 240.0]) ...[
-                                    Expanded(
-                                      child: _Choice(
-                                        label: '${a.toInt()}€',
-                                        selected: feeAmount.value == a,
-                                        onTap: () {
-                                          feeAmount.value = a;
-                                          customFee.clear();
-                                        },
-                                      ),
-                                    ),
-                                    if (a != 240.0) const SizedBox(width: 8),
-                                  ],
-                                ],
+                              UIAmountSelector(
+                                amounts: feeAmounts,
+                                selected: feeAmount.value?.round(),
+                                onSelected: (v) {
+                                  feeAmount.value = v.toDouble();
+                                  customFee.clear();
+                                },
                               ),
                               const SizedBox(height: 10),
                               UIInputField(
                                 controller: customFee,
                                 hintText: l10n.mosque_donation_enter_amount,
                                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                                onChanged: (v) => feeAmount.value = v.trim().isEmpty ? 120 : null,
+                                onChanged: (v) => feeAmount.value = v.trim().isEmpty
+                                    ? (feeAmounts.isEmpty ? 120 : (feeAmounts.length > 1 ? feeAmounts[1] : feeAmounts.first).toDouble())
+                                    : null,
                               ),
                             ],
                           ],

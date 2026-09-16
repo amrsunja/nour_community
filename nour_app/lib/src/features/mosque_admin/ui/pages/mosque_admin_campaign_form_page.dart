@@ -17,6 +17,13 @@ import '../state_management/mosque_admin_donation_provider.dart';
 import '../state_management/mosque_admin_mosque_provider.dart';
 import '../widgets/mosque_admin_form_widgets.dart';
 
+/// Fallback palette when the mosque has no Sadaqa settings row yet — the
+/// campaign picker otherwise offers exactly the Sadaqa suggested amounts.
+const List<int> kDefaultSuggestedAmounts = [10, 50, 100, 150];
+
+/// How many suggested amounts a campaign can carry (server takes the first 6).
+const int kCampaignMaxAmounts = 6;
+
 /// Create / edit a fundraising campaign (devis B3). Max 3 active campaigns
 /// (enforced server-side too). On creation the admin can push followers.
 @RoutePage()
@@ -45,7 +52,13 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
     final title = useTextEditingController(text: existing?.title ?? '');
     final description = useTextEditingController(text: existing?.description ?? '');
     final goal = useTextEditingController(text: existing == null ? '' : existing.goalAmount.round().toString());
-    final amounts = useTextEditingController(text: (existing?.suggestedAmounts ?? const [10, 50, 100, 150]).join(', '));
+    final amounts = useState<List<int>>(List.of(existing?.suggestedAmounts ?? kDefaultSuggestedAmounts));
+    // The palette IS the mosque's Sadaqa suggested amounts; a legacy campaign
+    // amount that is no longer in those settings stays visible (and
+    // deselectable) so it can be cleaned up. Cheap enough to rebuild — both
+    // the settings and the campaign can land after the first build.
+    final sadaqaAmounts = state.settings?.suggestedAmounts ?? kDefaultSuggestedAmounts;
+    final palette = <int>{...sadaqaAmounts, ...amounts.value}.toList()..sort();
     final notify = useState(!isEdit);
     final uploading = useState(false);
     useListenable(title);
@@ -58,6 +71,18 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
       });
       return null;
     }, const []);
+
+    // A new campaign starts on the mosque's Sadaqa amounts (they load async).
+    useEffect(() {
+      if (!isEdit) amounts.value = List.of(sadaqaAmounts);
+      return null;
+    }, [state.settings?.suggestedAmounts]);
+
+    // The campaign may land after the first build (list still loading).
+    useEffect(() {
+      if (existing != null) amounts.value = List.of(existing.suggestedAmounts);
+      return null;
+    }, [existing?.id]);
 
     Future<void> pickCover() async {
       final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1600, imageQuality: 82);
@@ -78,16 +103,15 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
       if (d != null) draft.value = draft.value.copyWith(endsAt: DateTime(d.year, d.month, d.day, 23, 59));
     }
 
-    List<int> parseAmounts(String s) =>
-        s.split(RegExp(r'[,\s;]+')).map((e) => int.tryParse(e.trim())).whereType<int>().where((e) => e > 0).toSet().toList()..sort();
-
     Future<void> submit() async {
       final g = double.tryParse(goal.text.replaceAll(',', '.')) ?? 0;
       final d = draft.value.copyWith(
         title: title.text,
         description: description.text,
         goalAmount: g,
-        suggestedAmounts: parseAmounts(amounts.text).isEmpty ? const [10, 50, 100, 150] : parseAmounts(amounts.text).take(6).toList(),
+        suggestedAmounts: amounts.value.isEmpty
+            ? (sadaqaAmounts.toList()..sort()).take(kCampaignMaxAmounts).toList()
+            : (amounts.value.toList()..sort()).take(kCampaignMaxAmounts).toList(),
       );
       if (!d.isValid) {
         snackbar.showError(l10n.mosque_admin_campaign_invalid);
@@ -104,16 +128,19 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
       if (context.mounted) context.router.maybePop();
     }
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: isEdit ? l10n.mosque_admin_campaign_edit : l10n.mosque_admin_campaign_new,
         onBack: () => context.router.maybePop(),
         leadingIcons: [
-          UIButton.primary(
-            label: isEdit ? l10n.common_save : l10n.mosque_admin_campaign_launch,
-            isSmall: true,
-            isBusy: state.busy || uploading.value,
-            onTap: title.text.trim().isEmpty || goal.text.trim().isEmpty ? null : submit,
+          SizedBox(
+            height: 35,
+            child: UIButton.primary(
+              label: isEdit ? l10n.common_save : l10n.mosque_admin_campaign_launch,
+              isSmall: true,
+              isBusy: state.busy || uploading.value,
+              onTap: title.text.trim().isEmpty || goal.text.trim().isEmpty ? null : submit,
+            ),
           ),
         ],
       ),
@@ -162,12 +189,24 @@ class MosqueAdminCampaignFormPage extends HookConsumerWidget {
             ),
             const SizedBox(height: 16),
             AdminLabel(l10n.mosque_admin_sadaqa_amounts),
-            UIInputField(
-              controller: amounts,
-              hintText: '10, 50, 100, 150',
-              keyboardType: TextInputType.number,
-              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'[0-9,\s]'))],
+            UIAmountSelector(
+              amounts: palette,
+              selectedValues: amounts.value.toSet(),
+              onSelected: (v) {
+                final next = List.of(amounts.value);
+                if (next.remove(v)) {
+                  amounts.value = next;
+                  return;
+                }
+                if (next.length >= kCampaignMaxAmounts) {
+                  snackbar.showError(l10n.mosque_admin_campaign_amounts_hint);
+                  return;
+                }
+                amounts.value = next..add(v);
+              },
             ),
+            const SizedBox(height: 8),
+            Text(l10n.mosque_admin_campaign_amounts_hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             if (!isEdit) ...[
               const SizedBox(height: 20),
               AdminToggleRow(
