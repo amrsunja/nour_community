@@ -2977,6 +2977,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get mosque_admin_fundraising => 'Сбор средств';
 
   @override
+  String get mosque_admin_fundraising_total_raised => 'Всего собрано';
+
+  @override
+  String get mosque_admin_period_this_year => 'В этом году';
+
+  @override
+  String get mosque_admin_period_30d => 'Последние 30 дней';
+
+  @override
+  String get mosque_admin_period_all_time => 'За всё время';
+
+  @override
   String mosque_campaign_days_left_short(int n) {
     return 'Осталось $n дн.';
   }

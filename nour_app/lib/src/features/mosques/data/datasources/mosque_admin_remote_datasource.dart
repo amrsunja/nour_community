@@ -294,9 +294,15 @@ class MosqueAdminRemoteDatasource {
     }
   }
 
-  Future<MosqueDashboardStats> getDashboardStats(int mosqueId) async {
+  Future<MosqueDashboardStats> getDashboardStats(
+    int mosqueId, {
+    MosqueFundraisingPeriod period = MosqueFundraisingPeriod.year,
+  }) async {
     try {
-      final res = await supabaseClient.rpc('fn_mosque_dashboard_stats', params: {'p_mosque_id': mosqueId});
+      final res = await supabaseClient.rpc(
+        'fn_mosque_dashboard_stats',
+        params: {'p_mosque_id': mosqueId, 'p_period': period.dbValue},
+      );
       return MosqueDashboardStats.fromJson((res as Map).cast<String, dynamic>());
     } catch (e) {
       throw _wrap(e, ApiErrorKey.mosqueLoadFailed);

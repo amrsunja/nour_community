@@ -15,6 +15,7 @@ import 'package:nour/src/features/mosques/ui/widgets/mosque_header.dart';
 import 'package:nour/src/features/mosques/ui/widgets/mosque_post_card.dart';
 
 import '../state_management/mosque_admin_dashboard_provider.dart';
+import '../widgets/admin_fundraising_card.dart';
 
 /// Admin Dashboard tab (Figma "Dashboard - Nour mosques").
 @RoutePage()
@@ -68,7 +69,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                       ),
                       UITap(
                         onTap: () => context.router.push(const MosqueAdminNotificationsRoute()),
-                        child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.notifications_none, color: UIColorsToken.white)),
+                        child: Padding(padding: EdgeInsets.all(8), child: UIIcon(UIIconsToken.icons.unmute, color: UIColorsToken.white)),
                       ),
                     ],
                   ),
@@ -117,7 +118,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                   children: [
                     Expanded(
                       child: _StatCard(
-                        icon: Icons.favorite_border,
+                        assetIcon: UIIconsToken.icons.heart,
                         label: l10n.mosque_followers_title,
                         value: MosqueFormat.compact(stats.followersTotal),
                         delta: stats.followers7d,
@@ -127,7 +128,7 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: _StatCard(
-                        icon: Icons.workspace_premium_outlined,
+                        assetIcon: UIIconsToken.icons.curone,
                         label: l10n.mosque_members_title,
                         value: MosqueFormat.compact(stats.membersTotal),
                         delta: stats.members7d - stats.membersLeft7d,
@@ -178,46 +179,29 @@ class MosqueAdminDashboardPage extends HookConsumerWidget {
                     ],
                   ),
                 ),
-                if (stats.campaignsActive > 0) ...[
+                if (stats.hasFundraising) ...[
                   const SizedBox(height: 20),
                   Row(
                     children: [
                       _SectionTitle(l10n.mosque_admin_fundraising),
-                      const SizedBox(width: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(color: UIColorsToken.bgTertiaryGreen, borderRadius: BorderRadius.circular(6)),
-                        child: Text('${stats.campaignsActive}', style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white)),
-                      ),
+                      if (stats.campaignsActive > 0) ...[
+                        const SizedBox(width: 8),
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(color: UIColorsToken.bgTertiaryGreen, borderRadius: BorderRadius.circular(6)),
+                          child: Text('${stats.campaignsActive}', style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white)),
+                        ),
+                      ],
                     ],
                   ),
                   const SizedBox(height: 12),
-                  UICard(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      children: [
-                        for (final c in stats.campaigns)
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 12),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(child: Text(c.title, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white))),
-                                    Text('${(c.progress * 100).round()}%', style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.textYellow)),
-                                    const SizedBox(width: 6),
-                                    Text(l10n.mosque_campaign_days_left_short(c.daysLeft),
-                                        style: theme.typo.inter.smallCaption.copyWith(color: c.daysLeft <= 2 ? UIColorsToken.red : UIColorsToken.textParagraph)),
-                                  ],
-                                ),
-                                const SizedBox(height: 6),
-                                UIProgressLine(current: c.collectedAmount, total: c.goalAmount, fillColor: UIColorsToken.textYellow),
-                              ],
-                            ),
-                          ),
-                      ],
-                    ),
+                  AdminFundraisingCard(
+                    stats: stats,
+                    period: state.fundraisingPeriod,
+                    isLoading: state.isFundraisingLoading,
+                    l10n: l10n,
+                    onPeriodChanged: presenter.setFundraisingPeriod,
+                    onCampaignTap: (c) => nav.toMosqueAdminCampaign(c.id),
                   ),
                 ],
                 const SizedBox(height: 20),
@@ -260,8 +244,8 @@ class _SectionTitle extends StatelessWidget {
 }
 
 class _StatCard extends StatelessWidget {
-  const _StatCard({required this.icon, required this.label, required this.value, required this.delta, required this.caption});
-  final IconData icon;
+  const _StatCard({required this.assetIcon, required this.label, required this.value, required this.delta, required this.caption});
+  final String assetIcon;
   final String label;
   final String value;
   final int delta;
@@ -277,7 +261,7 @@ class _StatCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(icon, size: 16, color: UIColorsToken.textParagraph),
+              UIIcon(assetIcon, size: 16, color: UIColorsToken.textParagraph),
               const SizedBox(width: 6),
               Text(label, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
             ],

@@ -2974,6 +2974,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get mosque_admin_fundraising => 'Inzamelingsacties';
 
   @override
+  String get mosque_admin_fundraising_total_raised => 'Totaal opgehaald';
+
+  @override
+  String get mosque_admin_period_this_year => 'Dit jaar';
+
+  @override
+  String get mosque_admin_period_30d => 'Laatste 30 dagen';
+
+  @override
+  String get mosque_admin_period_all_time => 'Alle tijden';
+
+  @override
   String mosque_campaign_days_left_short(int n) {
     return 'nog ${n}d';
   }

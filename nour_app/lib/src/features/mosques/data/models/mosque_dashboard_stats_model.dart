@@ -1,6 +1,20 @@
 import 'package:equatable/equatable.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 
+/// Period of the dashboard "Fundraising" header (`fn_mosque_dashboard_stats`).
+enum MosqueFundraisingPeriod {
+  year('year'),
+  days30('days30'),
+  all('all');
+
+  const MosqueFundraisingPeriod(this.dbValue);
+
+  final String dbValue;
+
+  static MosqueFundraisingPeriod fromString(String? value) =>
+      MosqueFundraisingPeriod.values.firstWhere((e) => e.dbValue == value, orElse: () => MosqueFundraisingPeriod.year);
+}
+
 class MosqueCampaignSummary extends Equatable {
   final int id;
   final String title;
@@ -52,6 +66,10 @@ class MosqueDashboardStats extends Equatable {
   final int campaignsActive;
   final int campaignsEndingSoon;
   final List<MosqueCampaignSummary> campaigns;
+  final MosqueFundraisingPeriod fundraisingPeriod;
+  final double fundraisingTotal;
+  final int fundraisingDonors;
+  final String fundraisingCurrency;
 
   const MosqueDashboardStats({
     this.followersTotal = 0,
@@ -67,6 +85,10 @@ class MosqueDashboardStats extends Equatable {
     this.campaignsActive = 0,
     this.campaignsEndingSoon = 0,
     this.campaigns = const [],
+    this.fundraisingPeriod = MosqueFundraisingPeriod.year,
+    this.fundraisingTotal = 0,
+    this.fundraisingDonors = 0,
+    this.fundraisingCurrency = 'EUR',
   });
 
   int get attentionCount => (pendingEvents > 0 ? 1 : 0) + (campaignsEndingSoon > 0 ? 1 : 0);
@@ -96,8 +118,15 @@ class MosqueDashboardStats extends Equatable {
         campaigns: ((json['campaigns'] as List?) ?? const [])
             .map((e) => MosqueCampaignSummary.fromJson(e as Map<String, dynamic>))
             .toList(),
+        fundraisingPeriod: MosqueFundraisingPeriod.fromString(json['fundraising_period'] as String?),
+        fundraisingTotal: (json['fundraising_total'] as num?)?.toDouble() ?? 0,
+        fundraisingDonors: (json['fundraising_donors'] as num?)?.toInt() ?? 0,
+        fundraisingCurrency: json['fundraising_currency'] as String? ?? 'EUR',
       );
 
+  /// The card shows as soon as there is something to show.
+  bool get hasFundraising => campaignsActive > 0 || fundraisingTotal > 0;
+
   @override
-  List<Object?> get props => [followersTotal, followers7d, membersTotal, members7d, membersLeft7d, views30d, followers30d, growthSeries, notifOpenRate, pendingEvents, campaignsActive, campaignsEndingSoon, campaigns];
+  List<Object?> get props => [followersTotal, followers7d, membersTotal, members7d, membersLeft7d, views30d, followers30d, growthSeries, notifOpenRate, pendingEvents, campaignsActive, campaignsEndingSoon, campaigns, fundraisingPeriod, fundraisingTotal, fundraisingDonors, fundraisingCurrency];
 }

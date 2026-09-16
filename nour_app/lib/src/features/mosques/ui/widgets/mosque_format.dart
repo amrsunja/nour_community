@@ -17,9 +17,10 @@ class MosqueFormat {
     return NumberFormat.decimalPattern().format(n);
   }
 
-  static String money(double v, {String symbol = '€'}) {
+  static String money(double v, {String symbol = '€', bool prefix = false}) {
     final f = NumberFormat.decimalPattern();
-    return '${f.format(v.round())}$symbol';
+    final n = f.format(v.round());
+    return prefix ? '$symbol$n' : '$n$symbol';
   }
 
   /// "14 min ago", "Yesterday", "3 weeks ago" …

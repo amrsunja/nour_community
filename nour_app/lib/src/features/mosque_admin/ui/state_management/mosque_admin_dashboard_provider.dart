@@ -13,17 +13,35 @@ class MosqueAdminDashboardState extends Equatable {
   final MosqueDashboardStats? stats;
   final List<MosquePostModel> recentPosts;
 
-  const MosqueAdminDashboardState({this.isLoading = false, this.stats, this.recentPosts = const []});
+  /// Period of the fundraising header — drives the RPC, not a client-side filter.
+  final MosqueFundraisingPeriod fundraisingPeriod;
+  final bool isFundraisingLoading;
 
-  MosqueAdminDashboardState copyWith({bool? isLoading, MosqueDashboardStats? stats, List<MosquePostModel>? recentPosts}) =>
+  const MosqueAdminDashboardState({
+    this.isLoading = false,
+    this.stats,
+    this.recentPosts = const [],
+    this.fundraisingPeriod = MosqueFundraisingPeriod.year,
+    this.isFundraisingLoading = false,
+  });
+
+  MosqueAdminDashboardState copyWith({
+    bool? isLoading,
+    MosqueDashboardStats? stats,
+    List<MosquePostModel>? recentPosts,
+    MosqueFundraisingPeriod? fundraisingPeriod,
+    bool? isFundraisingLoading,
+  }) =>
       MosqueAdminDashboardState(
         isLoading: isLoading ?? this.isLoading,
         stats: stats ?? this.stats,
         recentPosts: recentPosts ?? this.recentPosts,
+        fundraisingPeriod: fundraisingPeriod ?? this.fundraisingPeriod,
+        isFundraisingLoading: isFundraisingLoading ?? this.isFundraisingLoading,
       );
 
   @override
-  List<Object?> get props => [isLoading, stats, recentPosts];
+  List<Object?> get props => [isLoading, stats, recentPosts, fundraisingPeriod, isFundraisingLoading];
 }
 
 final mosqueAdminDashboardProvider =
@@ -45,7 +63,10 @@ class MosqueAdminDashboardPresenter extends Presenter<MosqueAdminDashboardState>
     final id = _mosqueId;
     if (id == null) return;
     state = state.copyWith(isLoading: true);
-    final results = await Future.wait([repo.getDashboardStats(id), repo.getPosts(id, limit: 5)]);
+    final results = await Future.wait([
+      repo.getDashboardStats(id, period: state.fundraisingPeriod),
+      repo.getPosts(id, limit: 5),
+    ]);
     (results[0] as dynamic).when(
       (s) => state = state.copyWith(stats: s as MosqueDashboardStats),
       (error) => appEvents.send(ShowErrorEvent(error)),
@@ -57,5 +78,22 @@ class MosqueAdminDashboardPresenter extends Presenter<MosqueAdminDashboardState>
     state = state.copyWith(isLoading: false);
     // Keep the header counters fresh.
     await ref.read(myMosqueProvider.notifier).load(silent: true);
+  }
+
+  /// Fundraising period picker — refetches the stats only, the rest of the page
+  /// keeps what it has so the card is the only thing that flickers.
+  Future<void> setFundraisingPeriod(MosqueFundraisingPeriod period) async {
+    if (period == state.fundraisingPeriod) return;
+    final id = _mosqueId;
+    state = state.copyWith(fundraisingPeriod: period, isFundraisingLoading: id != null);
+    if (id == null) return;
+    final res = await repo.getDashboardStats(id, period: period);
+    res.when(
+      (s) => state = state.copyWith(stats: s, isFundraisingLoading: false),
+      (error) {
+        state = state.copyWith(isFundraisingLoading: false);
+        appEvents.send(ShowErrorEvent(error));
+      },
+    );
   }
 }

@@ -5426,6 +5426,30 @@ abstract class AppLocalizations {
   /// **'Fundraising'**
   String get mosque_admin_fundraising;
 
+  /// No description provided for @mosque_admin_fundraising_total_raised.
+  ///
+  /// In en, this message translates to:
+  /// **'Total raised'**
+  String get mosque_admin_fundraising_total_raised;
+
+  /// No description provided for @mosque_admin_period_this_year.
+  ///
+  /// In en, this message translates to:
+  /// **'This year'**
+  String get mosque_admin_period_this_year;
+
+  /// No description provided for @mosque_admin_period_30d.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 30 days'**
+  String get mosque_admin_period_30d;
+
+  /// No description provided for @mosque_admin_period_all_time.
+  ///
+  /// In en, this message translates to:
+  /// **'All time'**
+  String get mosque_admin_period_all_time;
+
   /// No description provided for @mosque_campaign_days_left_short.
   ///
   /// In en, this message translates to:

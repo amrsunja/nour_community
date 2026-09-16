@@ -2960,6 +2960,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String get mosque_admin_fundraising => 'তহবিল সংগ্রহ';
 
   @override
+  String get mosque_admin_fundraising_total_raised => 'মোট সংগৃহীত';
+
+  @override
+  String get mosque_admin_period_this_year => 'এই বছর';
+
+  @override
+  String get mosque_admin_period_30d => 'গত ৩০ দিন';
+
+  @override
+  String get mosque_admin_period_all_time => 'সর্বকালীন';
+
+  @override
   String mosque_campaign_days_left_short(int n) {
     return '$n দিন বাকি';
   }

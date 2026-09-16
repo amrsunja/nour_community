@@ -99,7 +99,11 @@ class MosqueRepo {
       Failure.exceptionsCatcher(() => admin.getCommunity(mosqueId, filter: filter, query: query, limit: limit, offset: offset));
   Future<SuccessOrError<List<MosqueMemberModel>>> getMembers(int mosqueId) => Failure.exceptionsCatcher(() => admin.getMembers(mosqueId));
   Future<SuccessOrError<void>> removeMember(int memberId) => Failure.exceptionsCatcher(() => admin.removeMember(memberId));
-  Future<SuccessOrError<MosqueDashboardStats>> getDashboardStats(int mosqueId) => Failure.exceptionsCatcher(() => admin.getDashboardStats(mosqueId));
+  Future<SuccessOrError<MosqueDashboardStats>> getDashboardStats(
+    int mosqueId, {
+    MosqueFundraisingPeriod period = MosqueFundraisingPeriod.year,
+  }) =>
+      Failure.exceptionsCatcher(() => admin.getDashboardStats(mosqueId, period: period));
 
   // ── Donations (P3) ────────────────────────────────────────────────────────
   Future<SuccessOrError<MosqueDonationSettings>> getDonationSettings(int mosqueId) =>

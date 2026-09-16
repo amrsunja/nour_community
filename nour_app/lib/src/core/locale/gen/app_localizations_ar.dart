@@ -2929,6 +2929,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get mosque_admin_fundraising => 'جمع التبرعات';
 
   @override
+  String get mosque_admin_fundraising_total_raised => 'إجمالي ما تم جمعه';
+
+  @override
+  String get mosque_admin_period_this_year => 'هذه السنة';
+
+  @override
+  String get mosque_admin_period_30d => 'آخر 30 يومًا';
+
+  @override
+  String get mosque_admin_period_all_time => 'منذ البداية';
+
+  @override
   String mosque_campaign_days_left_short(int n) {
     return 'متبقٍ $n ي';
   }
