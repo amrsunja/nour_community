@@ -93,7 +93,7 @@ class MosqueCampaignPage extends HookConsumerWidget {
           DonationFrequency.yearly => l10n.mosque_donation_give_yearly(MosqueFormat.money(v)),
         };
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(
         title: l10n.mosque_campaign_title,
         onBack: () => context.router.maybePop(),
