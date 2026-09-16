@@ -23,6 +23,7 @@ class UIInputField extends StatefulWidget {
     this.textInputAction = TextInputAction.next,
     this.obscureText = false,
     this.enabled = true,
+    this.bgColor = UIColorsToken.bgSurface,
     this.labelStyle,
     this.inputFormatters,
     this.onSubmitted,
@@ -40,6 +41,7 @@ class UIInputField extends StatefulWidget {
   final TextStyle? labelStyle;
   final bool obscureText;
   final bool enabled;
+  final Color? bgColor;
   final List<TextInputFormatter>? inputFormatters;
   final ValueChanged<String>? onSubmitted;
   final ValueChanged<String>? onChanged;
@@ -111,7 +113,7 @@ class _UIInputFieldState extends State<UIInputField> {
           ),
           decoration: InputDecoration(
             filled: true,
-            fillColor: UIColorsToken.bgSurface,
+            fillColor: widget.bgColor,
             hintText: widget.hintText,
             hintStyle: theme.typo.inter.bodyMedium.copyWith(
               color: UIColorsToken.textParagraph,

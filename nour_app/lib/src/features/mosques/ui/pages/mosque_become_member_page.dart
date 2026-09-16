@@ -120,7 +120,7 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
       );
     }
 
-    return UIGradientLinedScaffold(
+    return Scaffold(
       appBar: UIAppBar(onBack: () => context.router.maybePop()),
       body: Column(
         children: [
@@ -206,7 +206,10 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
                       const SizedBox(height: 20),
                       UICard(
                         padding: const EdgeInsets.all(16),
-                        colors: const [Color(0xff2C3427), Color(0xff1A1A1A)],
+                        disableBorder: true,
+                        colors: const [Color(0xff404F3B), Color(0xff272E22)],
+                        begin: .topLeft,
+                        end: .bottomRight,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -225,14 +228,15 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
                               ],
                             ),
                             const SizedBox(height: 6),
-                            Text(l10n.mosque_member_fee_hint, style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                            Text(l10n.mosque_member_fee_hint, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
                             if (contribute.value) ...[
                               const SizedBox(height: 14),
-                              Text(l10n.mosque_member_fee_choose, style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                              Text(l10n.mosque_member_fee_choose, style: theme.typo.inter.headline.copyWith(color: UIColorsToken.white)),
                               const SizedBox(height: 8),
                               UIAmountSelector(
                                 amounts: feeAmounts,
                                 selected: feeAmount.value?.round(),
+                                bgColor: UIColorsToken.bgPrimary.withValues(alpha: .1),
                                 onSelected: (v) {
                                   feeAmount.value = v.toDouble();
                                   customFee.clear();
@@ -242,7 +246,8 @@ class MosqueBecomeMemberPage extends HookConsumerWidget {
                               UIInputField(
                                 controller: customFee,
                                 hintText: l10n.mosque_donation_enter_amount,
-                                keyboardType: const TextInputType.numberWithOptions(decimal: true),
+                                bgColor: UIColorsToken.bgSurface.withValues(alpha: .1),
+                                keyboardType: const TextInputType.numberWithOptions(decimal: true), 
                                 onChanged: (v) => feeAmount.value = v.trim().isEmpty
                                     ? (feeAmounts.isEmpty ? 120 : (feeAmounts.length > 1 ? feeAmounts[1] : feeAmounts.first).toDouble())
                                     : null,

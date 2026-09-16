@@ -33,6 +33,7 @@ class UIAmountSelector extends StatelessWidget {
     this.otherLabel,
     this.otherSelected = false,
     this.onOtherTap,
+    this.bgColor = UIColorsToken.bgSurface
   });
 
   final List<int> amounts;
@@ -56,6 +57,8 @@ class UIAmountSelector extends StatelessWidget {
   final String? otherLabel;
   final bool otherSelected;
   final VoidCallback? onOtherTap;
+  final Color bgColor;
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,6 +85,7 @@ class UIAmountSelector extends StatelessWidget {
                         selected: selectedValues?.contains(a) ?? (selected == a),
                         height: tileHeight,
                         onTap: enabled ? () => onSelected(a) : null,
+                        bgColor: bgColor,
                       ),
                     ),
                 ],
@@ -94,6 +98,7 @@ class UIAmountSelector extends StatelessWidget {
                 height: tileHeight,
                 center: true,
                 onTap: enabled ? onOtherTap : null,
+                bgColor: bgColor,
               ),
             ],
           ],
@@ -111,6 +116,7 @@ class _AmountTile extends StatelessWidget {
     this.currencySymbol,
     this.center = false,
     this.onTap,
+    required this.bgColor
   });
 
   final String label;
@@ -119,6 +125,7 @@ class _AmountTile extends StatelessWidget {
   final String? currencySymbol;
   final bool center;
   final VoidCallback? onTap;
+  final Color bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -133,8 +140,8 @@ class _AmountTile extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: center ? 12 : 14),
         alignment: center ? Alignment.center : null,
         decoration: BoxDecoration(
-          color: selected ? UIColorsToken.yellow.withValues(alpha: .12) : UIColorsToken.bgSurface,
-          borderRadius: BorderRadius.circular(14),
+          color: selected ? UIColorsToken.yellow.withValues(alpha: .12) : bgColor,
+          borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: selected ? UIColorsToken.yellow.withValues(alpha: .85) : Colors.transparent,
             width: 1.5,

@@ -88,7 +88,7 @@ class MosqueHeader extends StatelessWidget {
                     UIIcon(
                       Assets.icons.chevronLeft,
                       onTap: onBack!,
-                      color: UIColorsToken.yellow,
+                      color: UIColorsToken.textYellow,
                     ),
                   if (onShare != null) 
                     UIIcon(
@@ -302,7 +302,7 @@ class MosqueTabsBar extends StatelessWidget {
 }
 
 class MosqueLogo extends StatelessWidget {
-  const MosqueLogo({super.key, required this.mosque, this.size = 48, this.radius = 12});
+  const MosqueLogo({super.key, required this.mosque, this.size = 48, this.radius = 8});
   final MosqueModel mosque;
   final double size;
   final double radius;

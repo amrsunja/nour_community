@@ -319,7 +319,7 @@ class _MosqueIdentity extends StatelessWidget {
       child: Row(
         spacing: 12,
         children: [
-          MosqueLogo(mosque: mosque, size: 48),
+          MosqueLogo(mosque: mosque, size: 40),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -332,7 +332,7 @@ class _MosqueIdentity extends StatelessWidget {
                 ),
                 Text(
                   isPrincipal ? l10n.my_mosques_principal : l10n.my_mosques_secondary,
-                  style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
+                  style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph),
                 ),
               ],
             ),

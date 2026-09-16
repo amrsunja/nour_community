@@ -37,18 +37,18 @@ class MosquePostCard extends StatelessWidget {
 
   /// Badge of the post type alone (no urgent flag).
   static (String, Color) typeBadge(AppLocale l10n, MosquePostType type) => switch (type) {
-        MosquePostType.announcement => (l10n.mosque_post_type_announcement, UIColorsToken.bgTertiaryGreen),
-        MosquePostType.event => (l10n.mosque_post_type_event, const Color(0xff1F6FEB)),
-        MosquePostType.volunteering => (l10n.mosque_post_type_volunteering, const Color(0xff1F8A5B)),
-        MosquePostType.highlight => (l10n.mosque_post_type_highlight, const Color(0xff7C4DFF)),
-        MosquePostType.janaza => (l10n.mosque_post_type_janaza, const Color(0xff3A4A6B)),
+        MosquePostType.announcement => (l10n.mosque_post_type_announcement, UIColorsToken.bgPrimary),
+        MosquePostType.event => (l10n.mosque_post_type_event, UIColorsToken.bgPrimary),
+        MosquePostType.volunteering => (l10n.mosque_post_type_volunteering, UIColorsToken.bgPrimary),
+        MosquePostType.highlight => (l10n.mosque_post_type_highlight, UIColorsToken.bgPrimary),
+        MosquePostType.janaza => (l10n.mosque_post_type_janaza, UIColorsToken.bgPrimary),
       };
 
   /// Every badge shown on the card: "Urgent" first when flagged, then the post
   /// type — an urgent event shows both. A plain announcement shows none.
   static List<(String, Color)> badges(AppLocale l10n, MosquePostModel p) => [
         if (p.isUrgent) (l10n.mosque_post_urgent, UIColorsToken.red),
-        if (p.type != MosquePostType.announcement) typeBadge(l10n, p.type),
+        typeBadge(l10n, p.type),
       ];
 
   @override
@@ -84,7 +84,7 @@ class MosquePostCard extends StatelessWidget {
                           child: Container(
                             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                             decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(20)),
-                            child: Text(label, style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w600)),
+                            child: Text(label, style: theme.typo.inter.smallCaption.copyWith(color: Colors.white.withValues(alpha: .9), fontWeight: FontWeight.w600)),
                           ),
                         ),
                       const Spacer(),

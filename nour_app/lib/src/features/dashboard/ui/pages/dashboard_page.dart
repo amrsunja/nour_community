@@ -210,7 +210,7 @@ class DashboardPage extends HookConsumerWidget {
                     const UISpace.horz(12),
                     Expanded(
                       child: _QuickActionCard(
-                        asset: Assets.images.illustration19,
+                        asset: Assets.images.illustration13,
                         label: l10n.tools_daily_dua,
                         points: 5,
                         onTap: () {
