@@ -101,6 +101,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/refresh.svg
   String get refresh => 'assets/icons/refresh.svg';
 
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
   /// File path: assets/icons/settings.svg
   String get settings => 'assets/icons/settings.svg';
 
@@ -165,6 +168,7 @@ class $AssetsIconsGen {
     persons,
     plus,
     refresh,
+    search,
     settings,
     share,
     source,

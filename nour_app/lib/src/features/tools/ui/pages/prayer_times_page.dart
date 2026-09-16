@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_strings.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_tool.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
@@ -63,6 +64,7 @@ class PrayerTimesPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(prayerTimesProvider.notifier);
+    final nav = ref.read(navigationServicesProvider);
     final state = ref.watch(prayerTimesProvider);
     final notifPresenter = ref.read(notificationsProvider.notifier);
     final notifSettings =
@@ -111,6 +113,14 @@ class PrayerTimesPage extends HookConsumerWidget {
       appBar: UIAppBar(
         title: l10n.prayer_times_title,
         onBack: context.pop,
+        // Trailing action: jump to the mosque map to follow a mosque's schedule.
+        leadingIcons: [
+          UIIcon(
+            UIIconsToken.icons.search,
+            color: UIColorsToken.yellow,
+            onTap: nav.toMosqueSearch,
+          ),
+        ],
       ),
       body: SafeArea(top: false, bottom: false, child: body),
     );
