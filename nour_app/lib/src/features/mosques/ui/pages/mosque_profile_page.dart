@@ -129,6 +129,7 @@ class MosqueProfilePage extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: UIColorsToken.bgPrimary,
       body: SafeArea(
+      bottom: false,
         child: Stack(
           children: [
             NestedScrollView(

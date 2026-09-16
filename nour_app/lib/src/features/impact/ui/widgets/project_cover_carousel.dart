@@ -36,65 +36,86 @@ class ProjectCoverCarousel extends HookWidget {
     final controller = usePageController();
     final index = useState(0);
 
-    return SizedBox(
-      height: height,
-      width: double.infinity,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          if (urls.length == 1)
-            _Slide(url: urls.first)
-          else
-            PageView.builder(
-              controller: controller,
-              onPageChanged: (i) => index.value = i,
-              itemCount: urls.length,
-              itemBuilder: (_, i) => _Slide(url: urls[i]),
-            ),
-          // Bottom fade so the dots stay readable on bright photos.
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            height: 60,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    UIColorsToken.bgPrimary.withValues(alpha: .8),
-                    Colors.transparent,
-                  ],
-                ),
+    return ClipRRect(
+      borderRadius: .circular(12),
+      child: SizedBox(
+        height: height,
+        width: double.infinity,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            if (urls.length == 1)
+              _Slide(url: urls.first)
+            else
+              PageView.builder(
+                controller: controller,
+                onPageChanged: (i) => index.value = i,
+                itemCount: urls.length,
+                itemBuilder: (_, i) => _Slide(url: urls[i]),
               ),
-            ),
-          ),
-          if (urls.length > 1)
             Positioned(
               left: 0,
               right: 0,
-              bottom: 12,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (var i = 0; i < urls.length; i++)
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 250),
-                      margin: const EdgeInsets.symmetric(horizontal: 3),
-                      width: index.value == i ? 18 : 6,
-                      height: 6,
-                      decoration: BoxDecoration(
-                        color: index.value == i
-                            ? UIColorsToken.white
-                            : UIColorsToken.white.withValues(alpha: 0.45),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
-                ],
+              top: 0,
+              height: 60,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      UIColorsToken.bgPrimary.withValues(alpha: .5),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
               ),
             ),
-        ],
+            // Bottom fade so the dots stay readable on bright photos.
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              height: 60,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.transparent,
+                      UIColorsToken.bgPrimary.withValues(alpha: .5),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (urls.length > 1)
+              Positioned(
+                left: 0,
+                right: 0,
+                bottom: 12,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (var i = 0; i < urls.length; i++)
+                      AnimatedContainer(
+                        duration: const Duration(milliseconds: 250),
+                        margin: const EdgeInsets.symmetric(horizontal: 3),
+                        width: index.value == i ? 18 : 6,
+                        height: 6,
+                        decoration: BoxDecoration(
+                          color: index.value == i
+                              ? UIColorsToken.white
+                              : UIColorsToken.white.withValues(alpha: 0.45),
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+          ],
+        ),
       ),
     );
   }

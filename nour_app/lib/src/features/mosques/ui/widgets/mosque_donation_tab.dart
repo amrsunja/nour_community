@@ -68,7 +68,9 @@ class MosqueDonationTab extends HookConsumerWidget {
             onFrequencyChanged: presenter.setFrequency,
             onAmountChanged: presenter.setAmount,
             onDonate: donate,
-            banner: sub == null
+            banner: null
+            /*
+            sub == null
                 ? null
                 : _ActiveGiftRow(
                     sub: sub,
@@ -81,6 +83,7 @@ class MosqueDonationTab extends HookConsumerWidget {
                       if (ok) snackbar.showSuccess(l10n.mosque_donation_recurring_cancelled);
                     },
                   ),
+                  */
           ),
 
           // ── Campaigns ──────────────────────────────────────────────────
