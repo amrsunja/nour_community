@@ -91,6 +91,9 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
   Timer? _poll;
   Timer? _timeout;
   String? _clientKey;
+  int _tick = 0;
+  bool _reconciling = false;
+  bool _finalizing = false;
 
   // ── Form ────────────────────────────────────────────────────────────────────
 
@@ -276,6 +279,8 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
   /// Reset back to the editable form (after a failure).
   void reset() {
     _stopTracking();
+    _tick = 0;
+    _finalizing = false;
     state = state.copyWith(
       phase: CheckoutPhase.idle,
       timedOut: false,
@@ -318,6 +323,30 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
     } else if (txId != null) {
       _applyTxStatus(await repo.fetchTransactionStatus(txId));
     }
+    // Every other tick (~8 s) ask Stripe directly as well.
+    if (++_tick % 2 == 0) await _reconcile();
+  }
+
+  /// Asks the server for Stripe's own verdict. The webhook remains the ledger's
+  /// source of truth; this stops a donor whose money already left from staring
+  /// at "Taking longer than expected" — and, for a subscription, books the paid
+  /// invoice the webhook may have missed so the gift reaches the project total.
+  Future<void> _reconcile() async {
+    if (_reconciling || state.phase != CheckoutPhase.processing) return;
+    _reconciling = true;
+    try {
+      final subId = state.subscriptionId;
+      final txId = state.transactionId;
+      if (subId != null) {
+        final status = await repo.confirmSubscription(subId);
+        if (status != null) _applySubStatus(status);
+      } else if (txId != null) {
+        final status = await repo.confirmPayment(txId);
+        if (status != null) _applyTxStatus(status);
+      }
+    } finally {
+      _reconciling = false;
+    }
   }
 
   void _applyTxStatus(TxStatus status) {
@@ -342,9 +371,7 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
     if (!mounted || state.phase != CheckoutPhase.processing) return;
     switch (status) {
       case SubscriptionStatus.active:
-        _stopTracking();
-        state = state.copyWith(phase: CheckoutPhase.success);
-        analytics.trackButtonClick('subscription_created', screen: 'checkout');
+        _finalizeSubscription();
       case SubscriptionStatus.canceled:
       case SubscriptionStatus.unpaid:
         _stopTracking();
@@ -355,6 +382,27 @@ class CheckoutPresenter extends Presenter<CheckoutState> {
       case SubscriptionStatus.paused:
         break;
     }
+  }
+
+  /// An active subscription means the first invoice is paid — but the money
+  /// only shows up in the project total once its `transactions` row exists, and
+  /// that row comes from the `invoice.paid` webhook. Give the server one chance
+  /// to book it before the reward screen reads the project, so the amount the
+  /// donor just gave is already in the progress bar.
+  Future<void> _finalizeSubscription() async {
+    if (_finalizing) return;
+    _finalizing = true;
+    _stopTracking();
+    final subId = state.subscriptionId;
+    // Skip when we got here from _reconcile — it just made that very call.
+    if (subId != null && !_reconciling) {
+      await repo
+          .confirmSubscription(subId)
+          .timeout(const Duration(seconds: 6), onTimeout: () => null);
+    }
+    if (!mounted) return;
+    state = state.copyWith(phase: CheckoutPhase.success);
+    analytics.trackButtonClick('subscription_created', screen: 'checkout');
   }
 
   void _stopTracking() {

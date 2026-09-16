@@ -20,6 +20,13 @@
 import Stripe from "npm:stripe@16.12.0";
 import { serviceClient } from "../_shared/supabase.ts";
 import { round2, stripeClient } from "../_shared/stripe.ts";
+import {
+  invoiceSubscriptionId,
+  isWorthRetrying,
+  recordInvoiceTransaction,
+  subscriptionPeriodEnd,
+  UnresolvedInvoiceError,
+} from "../_shared/invoice.ts";
 
 const stripe = stripeClient();
 const whSecret = Deno.env.get("STRIPE_CONNECT_WEBHOOK_SECRET")!;
@@ -39,11 +46,17 @@ Deno.serve(async (req) => {
     return new Response("bad signature", { status: 400 });
   }
 
+  // Invoice events are de-duplicated by the ledger row (transactions
+  // .stripe_invoice_id, UNIQUE), not by the event id — so a "Resend" from the
+  // Stripe dashboard can repair an invoice that was never booked.
+  const isInvoiceEvent = event.type.startsWith("invoice.");
   const { error: evErr } = await admin.from("stripe_events").insert({ id: event.id, type: `connect:${event.type}` });
   if (evErr) {
-    if (evErr.code === "23505") return new Response("duplicate", { status: 200 });
-    console.error("[stripe-connect-webhook] stripe_events insert", evErr);
-    return new Response("db error", { status: 500 });
+    if (evErr.code !== "23505") {
+      console.error("[stripe-connect-webhook] stripe_events insert", evErr);
+      return new Response("db error", { status: 500 });
+    }
+    if (!isInvoiceEvent) return new Response("duplicate", { status: 200 });
   }
 
   const account = event.account ?? null;
@@ -126,14 +139,17 @@ Deno.serve(async (req) => {
         break;
       }
 
-      case "invoice.paid": {
+      // Stripe emits both for a paid invoice; booking is idempotent, so either
+      // one landing is enough for the gift to count.
+      case "invoice.paid":
+      case "invoice.payment_succeeded": {
         await handleInvoicePaid(event.data.object as Stripe.Invoice, event.id, opts);
         break;
       }
 
       case "invoice.payment_failed": {
         const inv = event.data.object as Stripe.Invoice;
-        const subId = subscriptionIdOf(inv);
+        const subId = invoiceSubscriptionId(inv);
         if (!subId) break;
         const { error } = await admin.from("donation_subscriptions").update({ status: "past_due" }).eq("stripe_subscription_id", subId).neq("status", "canceled");
         if (error) throw error;
@@ -147,7 +163,7 @@ Deno.serve(async (req) => {
           .from("donation_subscriptions")
           .update({
             status: mapSubStatus(sub.status),
-            current_period_end: sub.current_period_end ? new Date(sub.current_period_end * 1000).toISOString() : null,
+            current_period_end: subscriptionPeriodEnd(sub),
             cancel_at_period_end: sub.cancel_at_period_end ?? false,
             canceled_at: sub.canceled_at ? new Date(sub.canceled_at * 1000).toISOString() : null,
           })
@@ -180,11 +196,6 @@ async function netReceived(pi: Stripe.PaymentIntent, opts?: Stripe.RequestOption
   }
 }
 
-function subscriptionIdOf(inv: Stripe.Invoice): string | null {
-  const s = inv.subscription;
-  return !s ? null : typeof s === "string" ? s : s.id;
-}
-
 function mapSubStatus(s: Stripe.Subscription.Status) {
   switch (s) {
     case "active":
@@ -204,65 +215,23 @@ function mapSubStatus(s: Stripe.Subscription.Status) {
   }
 }
 
-/** A paid invoice → one succeeded mosque transaction (no transaction_items). */
+/**
+ * A paid invoice → one succeeded mosque transaction, through the shared
+ * idempotent writer in `_shared/invoice.ts` (campaign re-validation, direct
+ * charge net, `stripe_invoice_id` idempotency). An invoice we cannot attach to
+ * a local subscription frees the idempotency slot and answers 5xx so Stripe
+ * retries — a silent 200 used to lose the money row for good.
+ */
 async function handleInvoicePaid(inv: Stripe.Invoice, eventId: string, opts?: Stripe.RequestOptions) {
-  const stripeSubId = subscriptionIdOf(inv);
-  if (!stripeSubId) return;
-  const { data: sub, error: sErr } = await admin
-    .from("donation_subscriptions")
-    .select("id, user_id, mosque_id, mosque_campaign_id, membership_id, type, amount, currency, is_anonymous, payment_method, stripe_account_id")
-    .eq("stripe_subscription_id", stripeSubId)
-    .maybeSingle();
-  if (sErr) throw sErr;
-  if (!sub || !sub.mosque_id) return;
-
-  // A recurring campaign gift keeps charging after the campaign is closed or
-  // has run out: the money still reaches the mosque, but it is booked as Sadaqa
-  // instead of inflating a finished campaign.
-  let campaignId: number | null = sub.mosque_campaign_id ?? null;
-  let type: string = sub.type;
-  if (campaignId) {
-    const { data: c } = await admin.from("mosque_campaigns").select("status, ends_at").eq("id", campaignId).maybeSingle();
-    if (!c || c.status !== "active" || new Date(c.ends_at) < new Date()) {
-      campaignId = null;
-      type = "mosque_sadaqa";
+  try {
+    const outcome = await recordInvoiceTransaction({ admin, stripe, inv, eventId, opts });
+    if (outcome === "recorded") console.log("[stripe-connect-webhook] invoice booked", inv.id);
+  } catch (e) {
+    if (e instanceof UnresolvedInvoiceError) {
+      if (isWorthRetrying(inv)) throw e;
+      console.error("[stripe-connect-webhook] giving up on stale invoice", inv.id, e.message);
+      return;
     }
+    throw e;
   }
-
-  const { data: dup } = await admin.from("transactions").select("id").eq("stripe_invoice_id", inv.id).maybeSingle();
-  if (!dup) {
-    const amountCharged = round2((inv.amount_paid ?? 0) / 100);
-    const piId = typeof inv.payment_intent === "string" ? inv.payment_intent : inv.payment_intent?.id ?? null;
-    let net: number | null = null;
-    if (piId) {
-      try {
-        net = await netReceived(await stripe.paymentIntents.retrieve(piId, undefined, opts), opts);
-      } catch (_) { /* best effort */ }
-    }
-    const { error: txErr } = await admin.from("transactions").insert({
-      user_id: sub.user_id,
-      type,
-      status: "succeeded",
-      currency: sub.currency,
-      amount_total: Number(sub.amount),
-      fee_covered: 0,
-      amount_charged: amountCharged,
-      net_received: net,
-      stripe_pi_id: piId,
-      stripe_invoice_id: inv.id,
-      stripe_event_id: eventId,
-      subscription_id: sub.id,
-      is_anonymous: sub.is_anonymous,
-      payment_method: sub.payment_method,
-      mosque_id: sub.mosque_id,
-      mosque_campaign_id: campaignId,
-      membership_id: sub.membership_id,
-      stripe_account_id: sub.stripe_account_id,
-    });
-    if (txErr) throw txErr;
-  }
-  if (sub.mosque_campaign_id && campaignId === null) {
-    await admin.from("donation_subscriptions").update({ type: "mosque_sadaqa", mosque_campaign_id: null }).eq("id", sub.id);
-  }
-  await admin.from("donation_subscriptions").update({ status: "active" }).eq("id", sub.id).in("status", ["incomplete", "past_due"]);
 }

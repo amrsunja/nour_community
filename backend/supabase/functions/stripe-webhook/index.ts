@@ -27,6 +27,13 @@
 import Stripe from "npm:stripe@16.12.0";
 import { serviceClient } from "../_shared/supabase.ts";
 import { round2, stripeClient } from "../_shared/stripe.ts";
+import {
+  invoiceSubscriptionId,
+  isWorthRetrying,
+  recordInvoiceTransaction,
+  subscriptionPeriodEnd,
+  UnresolvedInvoiceError,
+} from "../_shared/invoice.ts";
 
 const stripe = stripeClient();
 const whSecret = Deno.env.get("STRIPE_WEBHOOK_SECRET")!;
@@ -55,15 +62,19 @@ Deno.serve(async (req) => {
   }
 
   // Hard idempotency — record the event id first; a duplicate delivery is a no-op.
+  // EXCEPT for invoice events: their idempotency key is the ledger row
+  // (transactions.stripe_invoice_id, UNIQUE), so a "Resend" from the Stripe
+  // dashboard can still repair an invoice that was never booked.
+  const isInvoiceEvent = event.type.startsWith("invoice.");
   const { error: evErr } = await admin
     .from("stripe_events")
     .insert({ id: event.id, type: event.type });
   if (evErr) {
-    if (evErr.code === "23505") {
-      return new Response("duplicate", { status: 200 });
+    if (evErr.code !== "23505") {
+      console.error("[stripe-webhook] stripe_events insert", evErr);
+      return new Response("db error", { status: 500 });
     }
-    console.error("[stripe-webhook] stripe_events insert", evErr);
-    return new Response("db error", { status: 500 });
+    if (!isInvoiceEvent) return new Response("duplicate", { status: 200 });
   }
 
   try {
@@ -140,7 +151,11 @@ Deno.serve(async (req) => {
       }
 
       // ── Recurring ─────────────────────────────────────────────────────────
-      case "invoice.paid": {
+      // Both are emitted for a paid invoice; booking is idempotent on
+      // stripe_invoice_id, so handling either (or both) is safe — and one of
+      // them landing is enough for the money to count.
+      case "invoice.paid":
+      case "invoice.payment_succeeded": {
         const inv = event.data.object as Stripe.Invoice;
         await handleInvoicePaid(inv, event.id);
         break;
@@ -148,7 +163,7 @@ Deno.serve(async (req) => {
 
       case "invoice.payment_failed": {
         const inv = event.data.object as Stripe.Invoice;
-        const subId = subscriptionIdOf(inv);
+        const subId = invoiceSubscriptionId(inv);
         if (!subId) break;
         const { error } = await admin
           .from("donation_subscriptions")
@@ -166,9 +181,7 @@ Deno.serve(async (req) => {
           .from("donation_subscriptions")
           .update({
             status: mapSubStatus(sub.status),
-            current_period_end: sub.current_period_end
-              ? new Date(sub.current_period_end * 1000).toISOString()
-              : null,
+            current_period_end: subscriptionPeriodEnd(sub),
             cancel_at_period_end: sub.cancel_at_period_end ?? false,
             canceled_at: sub.canceled_at
               ? new Date(sub.canceled_at * 1000).toISOString()
@@ -219,12 +232,6 @@ function metaMethod(pi: Stripe.PaymentIntent): string | null {
   return typeof m === "string" && m.length > 0 ? m : null;
 }
 
-function subscriptionIdOf(inv: Stripe.Invoice): string | null {
-  const s = inv.subscription;
-  if (!s) return null;
-  return typeof s === "string" ? s : s.id;
-}
-
 function mapSubStatus(
   s: Stripe.Subscription.Status,
 ): "incomplete" | "active" | "past_due" | "canceled" | "unpaid" | "paused" {
@@ -249,97 +256,24 @@ function mapSubStatus(
 
 /**
  * A paid invoice = one succeeded transaction for the subscription's project.
- * Idempotent on stripe_invoice_id. Inserting directly as `succeeded` is
- * supported by fn_apply_tx_to_projects v2 (INSERT-aware).
+ * All of it lives in `_shared/invoice.ts` (version-agnostic readers + the
+ * single idempotent writer), shared with the connect webhook and the reconcile
+ * endpoints. An invoice we cannot map to a local subscription is NOT
+ * acknowledged: we free the idempotency slot and answer 5xx so Stripe retries,
+ * instead of losing the money row for good.
  */
 async function handleInvoicePaid(inv: Stripe.Invoice, eventId: string) {
-  const stripeSubId = subscriptionIdOf(inv);
-  if (!stripeSubId) return; // not a subscription invoice
-
-  const { data: sub, error: sErr } = await admin
-    .from("donation_subscriptions")
-    .select("id, user_id, impact_project_id, type, amount, fee_covered, currency, is_anonymous, payment_method")
-    .eq("stripe_subscription_id", stripeSubId)
-    .maybeSingle();
-  if (sErr) throw sErr;
-  if (!sub) {
-    console.warn("[stripe-webhook] invoice.paid for unknown subscription", stripeSubId);
-    return;
-  }
-
-  // Already recorded? (idempotent)
-  const { data: dup } = await admin
-    .from("transactions")
-    .select("id")
-    .eq("stripe_invoice_id", inv.id)
-    .maybeSingle();
-
-  if (!dup) {
-    const paidMinor = inv.amount_paid ?? 0;
-    const amountCharged = round2(paidMinor / 100);
-    // Body = subscription amount; anything above it is the covered fee.
-    const amountTotal = Number(sub.amount);
-    const feeCovered = round2(Math.max(0, amountCharged - amountTotal));
-    const piId = typeof inv.payment_intent === "string"
-      ? inv.payment_intent
-      : inv.payment_intent?.id ?? null;
-
-    let net: number | null = null;
-    if (piId) {
-      try {
-        const pi = await stripe.paymentIntents.retrieve(piId);
-        net = await netReceived(pi);
-      } catch (_) { /* best effort */ }
+  try {
+    const outcome = await recordInvoiceTransaction({ admin, stripe, inv, eventId });
+    if (outcome === "recorded") {
+      console.log("[stripe-webhook] invoice booked", inv.id);
     }
-
-    const { data: tx, error: txErr } = await admin
-      .from("transactions")
-      .insert({
-        user_id: sub.user_id,
-        type: sub.type,
-        status: "pending", // flipped below so the trigger path is the same as one-time
-        currency: sub.currency,
-        amount_total: amountTotal,
-        fee_covered: feeCovered,
-        amount_charged: amountCharged,
-        net_received: net,
-        stripe_pi_id: piId,
-        stripe_invoice_id: inv.id,
-        stripe_event_id: eventId,
-        subscription_id: sub.id,
-        is_anonymous: sub.is_anonymous,
-        payment_method: sub.payment_method,
-      })
-      .select("id")
-      .single();
-    if (txErr || !tx) throw txErr ?? new Error("tx insert failed");
-
-    const { error: itErr } = await admin.from("transaction_items").insert({
-      transaction_id: tx.id,
-      impact_project_id: sub.impact_project_id,
-      amount: amountTotal,
-    });
-    if (itErr) throw itErr;
-
-    // pending -> succeeded : credits the project + ajr via the trigger.
-    const { error: upErr } = await admin
-      .from("transactions")
-      .update({ status: "succeeded" })
-      .eq("id", tx.id);
-    if (upErr) throw upErr;
+  } catch (e) {
+    if (e instanceof UnresolvedInvoiceError) {
+      if (isWorthRetrying(inv)) throw e; // 5xx → Stripe retries
+      console.error("[stripe-webhook] giving up on stale invoice", inv.id, e.message);
+      return;
+    }
+    throw e;
   }
-
-  // Subscription is (or stays) active after a paid invoice.
-  const periodEnd = inv.lines?.data?.[0]?.period?.end;
-  const { error: subErr } = await admin
-    .from("donation_subscriptions")
-    .update({
-      status: "active",
-      ...(periodEnd
-        ? { current_period_end: new Date(periodEnd * 1000).toISOString() }
-        : {}),
-    })
-    .eq("id", sub.id)
-    .neq("status", "canceled");
-  if (subErr) throw subErr;
 }

@@ -82,6 +82,7 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
   String? _clientKey;
   int _tick = 0;
   bool _reconciling = false;
+  bool _finalizing = false;
 
   Future<void> _probeWallets() async {
     final results = await Future.wait([payments.isApplePaySupported(), payments.isGooglePaySupported()]);
@@ -211,6 +212,8 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
 
   void reset() {
     _stopTracking();
+    _tick = 0;
+    _finalizing = false;
     state = state.copyWith(phase: CheckoutPhase.idle, timedOut: false, clearIds: true);
   }
 
@@ -297,9 +300,7 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
     if (!mounted || state.phase != CheckoutPhase.processing) return;
     switch (status) {
       case SubscriptionStatus.active:
-        _stopTracking();
-        state = state.copyWith(phase: CheckoutPhase.success);
-        analytics.trackButtonClick('mosque_subscription_created', screen: 'mosque_checkout');
+        _finalizeSubscription();
       case SubscriptionStatus.canceled:
       case SubscriptionStatus.unpaid:
         _stopTracking();
@@ -310,6 +311,24 @@ class MosqueCheckoutPresenter extends Presenter<CheckoutState> {
       case SubscriptionStatus.paused:
         break;
     }
+  }
+
+  /// The subscription is active, so the first invoice is paid — but the mosque
+  /// totals and the campaign progress only move once its `transactions` row
+  /// exists (webhook `invoice.paid`). One reconcile call books it if it is
+  /// missing, before the reward page reads the campaign.
+  Future<void> _finalizeSubscription() async {
+    if (_finalizing) return;
+    _finalizing = true;
+    _stopTracking();
+    final subId = state.subscriptionId;
+    // Skip when we got here from _reconcile — it just made that very call.
+    if (subId != null && !_reconciling) {
+      await repo.confirmMosqueSubscription(subId).timeout(const Duration(seconds: 6), onTimeout: () => null);
+    }
+    if (!mounted) return;
+    state = state.copyWith(phase: CheckoutPhase.success);
+    analytics.trackButtonClick('mosque_subscription_created', screen: 'mosque_checkout');
   }
 
   void _stopTracking() {

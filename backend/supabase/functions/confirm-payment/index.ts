@@ -1,28 +1,22 @@
 // =============================================================================
-// confirm-mosque-payment Edge Function
+// confirm-payment Edge Function (platform / impact donations)
 // -----------------------------------------------------------------------------
-// WHY: with Stripe Connect DIRECT charges the app's "processing" screen waits
-// for `stripe-connect-webhook` to flip `transactions.status`. If that endpoint
-// is not registered in Stripe, its secret is wrong, or Stripe is simply slow,
-// the donor is charged but the app spins until the 90 s timeout and shows
-// "Taking longer than expected" — even though the money went through.
+// The platform twin of `confirm-mosque-payment`. The app's "processing" screen
+// waits for `stripe-webhook` to flip `transactions.status` / activate the
+// subscription; if that endpoint is misconfigured, on an older event shape, or
+// simply slow, the donor is charged and the ledger stays empty — which means
+// the gift never reaches `impact_projects.collected_amount`.
 //
-// This function is the donor-triggered reconciliation: it asks Stripe directly
-// for the authoritative status of the donor's OWN transaction / subscription
-// and settles the row. The webhook stays the source of truth for everything
-// else (net_received, refunds, recurring invoices); this only closes the UX gap.
+// This asks Stripe directly for the authoritative state of the donor's OWN
+// payment and settles it:
+//   { transactionId }  → PaymentIntent status → transactions.status
+//   { subscriptionId } → Subscription status  → donation_subscriptions.status
+//                        + books every paid invoice that has no ledger row yet
+//                          (idempotent on transactions.stripe_invoice_id, so
+//                           the project trigger can only fire once)
 //
-// Payload: { transactionId } | { subscriptionId }
-// Returns: { status } — transactions.status or donation_subscriptions.status
-//
-// It also books any paid invoice of the donor's subscription that has no ledger
-// row yet, so a recurring gift still lands in the mosque's totals and in the
-// campaign progress when the `invoice.paid` webhook never arrived.
-//
-// Safe to call repeatedly: every write is guarded on the current status and the
-// invoice write is idempotent on `transactions.stripe_invoice_id`, so the
-// campaign-progress trigger (fn_apply_tx_to_mosque) can only fire once, even if
-// the webhook and this function land at the same moment.
+// Returns: { status }
+// Deploy JWT-verified (default): supabase functions deploy confirm-payment
 // =============================================================================
 
 import type Stripe from "npm:stripe@16.12.0";
@@ -52,19 +46,20 @@ Deno.serve(async (req) => {
     return json({ error: "bad_request" }, 400);
   }
   const { transactionId, subscriptionId } = payload;
-  if (!Number.isInteger(transactionId) && !Number.isInteger(subscriptionId)) return json({ error: "bad_request" }, 400);
+  if (!Number.isInteger(transactionId) && !Number.isInteger(subscriptionId)) {
+    return json({ error: "bad_request" }, 400);
+  }
 
   const admin = serviceClient();
   const stripe = stripeClient();
 
   try {
-    if (Number.isInteger(subscriptionId)) {
-      return await reconcileSubscription(admin, stripe, user.id, subscriptionId!);
-    }
-    return await reconcileTransaction(admin, stripe, user.id, transactionId!);
+    return Number.isInteger(subscriptionId)
+      ? await reconcileSubscription(admin, stripe, user.id, subscriptionId!)
+      : await reconcileTransaction(admin, stripe, user.id, transactionId!);
   } catch (e) {
     const err = e as { message?: string; code?: string; type?: string };
-    console.error("[confirm-mosque-payment]", err?.type, err?.code, err?.message);
+    console.error("[confirm-payment]", err?.type, err?.code, err?.message);
     return json({ error: "stripe_error", message: err?.message ?? null }, 502);
   }
 });
@@ -73,25 +68,24 @@ Deno.serve(async (req) => {
 async function reconcileTransaction(admin: any, stripe: Stripe, userId: string, transactionId: number) {
   const { data: tx } = await admin
     .from("transactions")
-    .select("id, status, stripe_pi_id, stripe_account_id, mosque_id")
+    .select("id, status, stripe_pi_id, mosque_id")
     .eq("id", transactionId)
-    .eq("user_id", userId)            // a donor may only settle his own row
+    .eq("user_id", userId) // a donor may only settle his own row
     .maybeSingle();
   if (!tx) return json({ error: "not_found" }, 404);
-  // Terminal, or not a mosque charge, or the PaymentIntent is not attached yet.
   if (tx.status !== "pending" && tx.status !== "processing") return json({ status: tx.status });
-  if (!tx.mosque_id || !tx.stripe_pi_id) return json({ status: tx.status });
+  // Mosque rows live on a connected account — confirm-mosque-payment owns those.
+  if (tx.mosque_id || !tx.stripe_pi_id) return json({ status: tx.status });
 
-  const opts = tx.stripe_account_id ? { stripeAccount: tx.stripe_account_id } : undefined;
-  const pi = await stripe.paymentIntents.retrieve(tx.stripe_pi_id, undefined, opts);
+  const pi = await stripe.paymentIntents.retrieve(tx.stripe_pi_id);
 
   switch (pi.status) {
     case "succeeded": {
       const { error } = await admin
         .from("transactions")
-        .update({ status: "succeeded", net_received: await netReceived(stripe, pi, opts) })
+        .update({ status: "succeeded", net_received: await netReceived(stripe, pi) })
         .eq("id", tx.id)
-        .neq("status", "succeeded");   // idempotent vs the webhook
+        .neq("status", "succeeded"); // idempotent vs the webhook
       if (error) throw error;
       return json({ status: "succeeded" });
     }
@@ -105,8 +99,8 @@ async function reconcileTransaction(admin: any, stripe: Stripe, userId: string, 
       return json({ status: "failed" });
     }
     case "requires_payment_method": {
-      // Only a *failed* attempt is terminal here — a PI that was never
-      // confirmed sits in the same state and must stay pending.
+      // A PI that was never confirmed sits in this state too — only a *failed*
+      // attempt is terminal.
       if (!pi.last_payment_error) return json({ status: tx.status });
       const { error } = await admin
         .from("transactions")
@@ -117,13 +111,16 @@ async function reconcileTransaction(admin: any, stripe: Stripe, userId: string, 
       return json({ status: "failed" });
     }
     case "processing": {
-      const { error } = await admin.from("transactions").update({ status: "processing" }).eq("id", tx.id).eq("status", "pending");
+      const { error } = await admin
+        .from("transactions")
+        .update({ status: "processing" })
+        .eq("id", tx.id)
+        .eq("status", "pending");
       if (error) throw error;
       return json({ status: "processing" });
     }
     default:
-      // requires_action / requires_confirmation / requires_capture → keep waiting.
-      return json({ status: tx.status });
+      return json({ status: tx.status }); // requires_action / _confirmation → keep waiting
   }
 }
 
@@ -131,16 +128,15 @@ async function reconcileTransaction(admin: any, stripe: Stripe, userId: string, 
 async function reconcileSubscription(admin: any, stripe: Stripe, userId: string, subscriptionId: number) {
   const { data: sub } = await admin
     .from("donation_subscriptions")
-    .select("id, status, stripe_subscription_id, stripe_account_id, mosque_id")
+    .select("id, status, stripe_subscription_id, mosque_id")
     .eq("id", subscriptionId)
     .eq("user_id", userId)
     .maybeSingle();
   if (!sub) return json({ error: "not_found" }, 404);
-  if (!sub.mosque_id || !sub.stripe_subscription_id) return json({ status: sub.status });
+  if (sub.mosque_id || !sub.stripe_subscription_id) return json({ status: sub.status });
   if (sub.status === "canceled") return json({ status: sub.status });
 
-  const opts = sub.stripe_account_id ? { stripeAccount: sub.stripe_account_id } : undefined;
-  const s = await stripe.subscriptions.retrieve(sub.stripe_subscription_id, undefined, opts);
+  const s = await stripe.subscriptions.retrieve(sub.stripe_subscription_id);
   const mapped = mapSubStatus(s.status);
   if (mapped === "incomplete") return json({ status: "incomplete" });
 
@@ -157,20 +153,19 @@ async function reconcileSubscription(admin: any, stripe: Stripe, userId: string,
     if (error) throw error;
   }
 
-  // The webhook stays the normal writer, but it is not the only one any more:
-  // a paid invoice that never produced a ledger row is money the mosque's
-  // totals never saw. Idempotent on transactions.stripe_invoice_id.
-  const booked = await recordPaidInvoicesForSubscription(admin, stripe, sub.stripe_subscription_id, opts);
-  if (booked > 0) console.log("[confirm-mosque-payment] booked", booked, "missing invoice(s) for sub", sub.id);
+  // Book anything the webhook missed — otherwise the donation is paid but
+  // counts nowhere.
+  const booked = await recordPaidInvoicesForSubscription(admin, stripe, sub.stripe_subscription_id);
+  if (booked > 0) console.log("[confirm-payment] booked", booked, "missing invoice(s) for sub", sub.id);
 
   return json({ status: mapped });
 }
 
-async function netReceived(stripe: Stripe, pi: Stripe.PaymentIntent, opts?: Stripe.RequestOptions): Promise<number | null> {
+async function netReceived(stripe: Stripe, pi: Stripe.PaymentIntent): Promise<number | null> {
   try {
     const chargeId = typeof pi.latest_charge === "string" ? pi.latest_charge : pi.latest_charge?.id;
     if (!chargeId) return null;
-    const ch = await stripe.charges.retrieve(chargeId, { expand: ["balance_transaction"] }, opts);
+    const ch = await stripe.charges.retrieve(chargeId, { expand: ["balance_transaction"] });
     const bt = ch.balance_transaction as Stripe.BalanceTransaction | null;
     return bt && typeof bt.net === "number" ? round2(bt.net / 100) : null;
   } catch (_) {

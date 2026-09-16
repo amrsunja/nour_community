@@ -92,6 +92,14 @@ class PaymentRepo {
   Future<SubscriptionStatus> fetchSubscriptionStatus(int subscriptionId) =>
       remoteDatasource.fetchSubscriptionStatus(subscriptionId);
 
+  /// Stripe's own verdict, on demand (see
+  /// [PaymentRemoteDatasource.confirmPayment]). Null = ask again later.
+  Future<TxStatus?> confirmPayment(int transactionId) =>
+      remoteDatasource.confirmPayment(transactionId);
+
+  Future<SubscriptionStatus?> confirmSubscription(int subscriptionId) =>
+      remoteDatasource.confirmSubscription(subscriptionId);
+
   Future<SuccessOrError<List<DonationSubscriptionModel>>> getMySubscriptions() =>
       Failure.exceptionsCatcher(remoteDatasource.getMySubscriptions);
 
