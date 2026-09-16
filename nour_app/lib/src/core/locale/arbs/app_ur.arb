@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "مہم",
 	"mosque_campaign_of_goal": "{goal} میں سے",
 	"mosque_campaign_donors_count": "{count, plural, =0{ابھی کوئی عطیہ دہندہ نہیں} =1{1 عطیہ دہندہ} other{{count} عطیہ دہندگان}}",
+	"mosque_campaign_people_donated": "{count}+ لوگوں نے عطیہ دیا",
 	"mosque_campaign_days_left": "{days, plural, =0{آج ختم ہو رہی ہے} =1{1 دن باقی} other{{days} دن باقی}}",
 	"mosque_campaign_closed": "بند",
 	"mosque_campaign_active": "فعال",

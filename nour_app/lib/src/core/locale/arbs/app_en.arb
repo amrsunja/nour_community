@@ -1189,6 +1189,8 @@
 	"@mosque_campaign_of_goal": {"placeholders": {"goal": {"type": "String"}}},
 	"mosque_campaign_donors_count": "{count, plural, =0{No donor yet} =1{1 donor} other{{count} donors}}",
 	"@mosque_campaign_donors_count": {"placeholders": {"count": {"type": "int"}}},
+	"mosque_campaign_people_donated": "{count}+ people have donated",
+	"@mosque_campaign_people_donated": {"placeholders": {"count": {"type": "String"}}},
 	"mosque_campaign_days_left": "{days, plural, =0{Ends today} =1{1 day left} other{{days} days left}}",
 	"@mosque_campaign_days_left": {"placeholders": {"days": {"type": "int"}}},
 	"mosque_campaign_closed": "Closed",

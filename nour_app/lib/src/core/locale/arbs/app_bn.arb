@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "ক্যাম্পেইন",
 	"mosque_campaign_of_goal": "{goal} এর মধ্যে",
 	"mosque_campaign_donors_count": "{count, plural, =0{এখনও কোনো দাতা নেই} =1{১ জন দাতা} other{{count} জন দাতা}}",
+	"mosque_campaign_people_donated": "{count}+ জন দান করেছেন",
 	"mosque_campaign_days_left": "{days, plural, =0{আজ শেষ} =1{১ দিন বাকি} other{{days} দিন বাকি}}",
 	"mosque_campaign_closed": "বন্ধ",
 	"mosque_campaign_active": "সক্রিয়",

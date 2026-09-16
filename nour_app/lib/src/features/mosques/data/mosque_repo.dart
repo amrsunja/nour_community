@@ -49,8 +49,14 @@ class MosqueRepo {
       Failure.exceptionsCatcher(() => remote.updateProfile(mosque));
 
   // Catalog
-  Future<SuccessOrError<List<MosqueSearchItemModel>>> search({String? query, double? lat, double? lng, int? radiusKm}) =>
-      Failure.exceptionsCatcher(() => catalog.search(query: query, lat: lat, lng: lng, radiusKm: radiusKm));
+  Future<SuccessOrError<List<MosqueSearchItemModel>>> search({
+    String? query,
+    double? lat,
+    double? lng,
+    int? radiusKm,
+    int limit = 30,
+  }) =>
+      Failure.exceptionsCatcher(() => catalog.search(query: query, lat: lat, lng: lng, radiusKm: radiusKm, limit: limit));
   Future<SuccessOrError<MosqueModel>> getMosque(int id) => Failure.exceptionsCatcher(() => catalog.getMosque(id));
   Future<void> trackView(int id) => catalog.trackView(id);
   Future<SuccessOrError<MosquePrayerDayModel?>> getPrayerDay(int mosqueId, DateTime day, {required String timezone}) =>

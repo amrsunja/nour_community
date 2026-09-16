@@ -88,10 +88,20 @@ class MosqueSearchPresenter extends Presenter<MosqueSearchState> {
   Future<void> locate() => init(openSettingsIfBlocked: true);
 
   void setQuery(String q) {
+    final previous = state.query.trim();
     state = state.copyWith(query: q);
     _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 350), _run);
+    // Clearing the field goes straight back to "near you" — no debounce.
+    if (q.trim().isEmpty) {
+      if (previous.isEmpty) return;
+      unawaited(_run());
+      return;
+    }
+    _debounce = Timer(const Duration(milliseconds: 250), _run);
   }
+
+  /// Clears the query and restores the "near you" listing.
+  void clearQuery() => setQuery('');
 
   void highlight(int? id) => state = state.copyWith(highlightedId: id, clearHighlight: id == null);
 
@@ -103,8 +113,11 @@ class MosqueSearchPresenter extends Presenter<MosqueSearchState> {
       query: q.isEmpty ? null : q,
       lat: state.hasLocation ? state.lat : null,
       lng: state.hasLocation ? state.lng : null,
-      // Text search is global; "near you" is radius-bound.
+      // Text search is global (ranked by relevance, distance breaks ties);
+      // "near you" is radius-bound.
       radiusKm: q.isEmpty && state.hasLocation ? 60 : null,
+      // A city / postal-code query legitimately returns many mosques.
+      limit: q.isEmpty ? 30 : 50,
     );
     if (seq != _seq || !mounted) return;
     res.when(

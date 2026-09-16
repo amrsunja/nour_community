@@ -3378,6 +3378,11 @@ class AppLocalizationsUr extends AppLocalizations {
   }
 
   @override
+  String mosque_campaign_people_donated(String count) {
+    return '$count+ لوگوں نے عطیہ دیا';
+  }
+
+  @override
   String mosque_campaign_days_left(int days) {
     String _temp0 = intl.Intl.pluralLogic(
       days,

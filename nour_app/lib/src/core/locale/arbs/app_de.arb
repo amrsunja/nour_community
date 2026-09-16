@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "Kampagne",
 	"mosque_campaign_of_goal": "von {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{Noch kein Spender} =1{1 Spender} other{{count} Spender}}",
+	"mosque_campaign_people_donated": "{count}+ Personen haben gespendet",
 	"mosque_campaign_days_left": "{days, plural, =0{Endet heute} =1{Noch 1 Tag} other{Noch {days} Tage}}",
 	"mosque_campaign_closed": "Beendet",
 	"mosque_campaign_active": "Aktiv",

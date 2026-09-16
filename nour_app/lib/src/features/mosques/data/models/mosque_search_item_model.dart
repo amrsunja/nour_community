@@ -26,6 +26,10 @@ class MosqueSearchItemModel extends Equatable {
   final TimeOfDay? jumua;
   final bool hasTimes;
 
+  /// Server-side relevance of `fn_search_mosques` (0 when the query is empty).
+  /// Results already arrive sorted by it — kept for debugging / future grouping.
+  final double score;
+
   const MosqueSearchItemModel({
     required this.id,
     required this.name,
@@ -45,6 +49,7 @@ class MosqueSearchItemModel extends Equatable {
     this.sunrise,
     this.jumua,
     this.hasTimes = false,
+    this.score = 0,
   });
 
   String get fullAddress => [
@@ -79,8 +84,10 @@ class MosqueSearchItemModel extends Equatable {
         sunrise: MosquePrayerDayModel.parseTime(json['sunrise']?.toString()),
         jumua: MosquePrayerDayModel.parseTime(json['jumua']?.toString()),
         hasTimes: json['has_times'] as bool? ?? false,
+        score: (json['score'] as num?)?.toDouble() ?? 0,
       );
 
   @override
-  List<Object?> get props => [id, name, logoUrl, addressLine, city, lat, lng, distanceKm, followersCount, membersCount, times, hasTimes];
+  List<Object?> get props =>
+      [id, name, logoUrl, addressLine, city, lat, lng, distanceKm, followersCount, membersCount, times, hasTimes, score];
 }

@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "Kempen",
 	"mosque_campaign_of_goal": "daripada {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{Belum ada penderma} =1{1 penderma} other{{count} penderma}}",
+	"mosque_campaign_people_donated": "{count}+ orang telah menderma",
 	"mosque_campaign_days_left": "{days, plural, =0{Tamat hari ini} =1{1 hari lagi} other{{days} hari lagi}}",
 	"mosque_campaign_closed": "Ditutup",
 	"mosque_campaign_active": "Aktif",

@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "Kampanya",
 	"mosque_campaign_of_goal": "/ {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{Henüz bağışçı yok} =1{1 bağışçı} other{{count} bağışçı}}",
+	"mosque_campaign_people_donated": "{count}+ kişi bağış yaptı",
 	"mosque_campaign_days_left": "{days, plural, =0{Bugün bitiyor} =1{1 gün kaldı} other{{days} gün kaldı}}",
 	"mosque_campaign_closed": "Kapandı",
 	"mosque_campaign_active": "Aktif",

@@ -55,7 +55,7 @@ class ProjectCoverCarousel extends HookWidget {
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0,
+            top: 0,
             height: 60,
             child: DecoratedBox(
               decoration: BoxDecoration(
@@ -63,8 +63,8 @@ class ProjectCoverCarousel extends HookWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
+                    UIColorsToken.bgPrimary.withValues(alpha: .8),
                     Colors.transparent,
-                    UIColorsToken.black.withValues(alpha: 0.45),
                   ],
                 ),
               ),

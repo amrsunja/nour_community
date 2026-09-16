@@ -5,11 +5,14 @@ import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
+import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/payments/data/models/tx_enums.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../data/models/mosque_donation_models.dart';
 import '../../data/models/mosque_model.dart';
 import '../state_management/mosque_donation_provider.dart';
+import 'mosque_campaign_public_card.dart';
 import 'mosque_donation_widgets.dart';
 import 'mosque_sadaqa_card.dart';
 import 'mosque_format.dart';
@@ -47,6 +50,9 @@ class MosqueDonationTab extends HookConsumerWidget {
       if (ok == true) presenter.refresh();
     }
 
+    void shareCampaign(MosqueCampaignModel c) =>
+        Share.share('${c.title} — ${mosque.name}\n$website/mosque/${mosque.id}/campaign/${c.id}');
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
       child: Column(
@@ -83,7 +89,13 @@ class MosqueDonationTab extends HookConsumerWidget {
             MosqueSectionHeader(title: l10n.mosque_campaigns_title),
             const UISpace.vert(12),
             for (final c in active) ...[
-              MosqueCampaignCard(campaign: c, l10n: l10n, onTap: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id)),
+              MosqueCampaignPublicCard(
+                campaign: c,
+                l10n: l10n,
+                onTap: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id),
+                onShare: () => shareCampaign(c),
+                onContribute: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id),
+              ),
               const UISpace.vert(12),
             ],
           ],
@@ -92,7 +104,13 @@ class MosqueDonationTab extends HookConsumerWidget {
             MosqueSectionHeader(title: l10n.mosque_campaigns_past_title),
             const UISpace.vert(12),
             for (final c in closed.take(3)) ...[
-              MosqueCampaignCard(campaign: c, l10n: l10n, onTap: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id)),
+              MosqueCampaignPublicCard(
+                campaign: c,
+                l10n: l10n,
+                onTap: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id),
+                onShare: () => shareCampaign(c),
+                onContribute: () => nav.toMosqueCampaign(mosqueId: mosque.id, campaignId: c.id),
+              ),
               const UISpace.vert(12),
             ],
           ],

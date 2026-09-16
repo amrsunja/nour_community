@@ -91,7 +91,7 @@ class MosqueProfilePage extends HookConsumerWidget {
     }
 
     if (mosque == null) {
-      return UIGradientLinedScaffold(
+      return Scaffold(
         appBar: UIAppBar(onBack: () => context.router.maybePop()),
         body: const Center(child: UICircularProgressBar()),
       );

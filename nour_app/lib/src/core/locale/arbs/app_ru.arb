@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "Кампания",
 	"mosque_campaign_of_goal": "из {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{Пока нет жертвователей} one{{count} жертвователь} few{{count} жертвователя} many{{count} жертвователей} other{{count} жертвователя}}",
+	"mosque_campaign_people_donated": "{count}+ человек сделали пожертвование",
 	"mosque_campaign_days_left": "{days, plural, =0{Завершается сегодня} one{Остался {days} день} few{Осталось {days} дня} many{Осталось {days} дней} other{Осталось {days} дня}}",
 	"mosque_campaign_closed": "Закрыта",
 	"mosque_campaign_active": "Активна",

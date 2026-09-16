@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "Campagne",
 	"mosque_campaign_of_goal": "van {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{Nog geen donateurs} =1{1 donateur} other{{count} donateurs}}",
+	"mosque_campaign_people_donated": "{count}+ mensen hebben gedoneerd",
 	"mosque_campaign_days_left": "{days, plural, =0{Eindigt vandaag} =1{Nog 1 dag} other{Nog {days} dagen}}",
 	"mosque_campaign_closed": "Gesloten",
 	"mosque_campaign_active": "Actief",

@@ -1101,6 +1101,7 @@
 	"mosque_campaign_title": "حملة",
 	"mosque_campaign_of_goal": "من {goal}",
 	"mosque_campaign_donors_count": "{count, plural, =0{لا يوجد متبرعون بعد} =1{متبرع واحد} =2{متبرعان} few{{count} متبرعين} many{{count} متبرعًا} other{{count} متبرع}}",
+	"mosque_campaign_people_donated": "تبرع {count}+ شخصًا",
 	"mosque_campaign_days_left": "{days, plural, =0{تنتهي اليوم} =1{متبقٍ يوم واحد} =2{متبقٍ يومان} few{متبقٍ {days} أيام} many{متبقٍ {days} يومًا} other{متبقٍ {days} يوم}}",
 	"mosque_campaign_closed": "مغلقة",
 	"mosque_campaign_active": "نشطة",

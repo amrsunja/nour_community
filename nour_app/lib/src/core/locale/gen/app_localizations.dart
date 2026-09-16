@@ -6152,6 +6152,12 @@ abstract class AppLocalizations {
   /// **'{count, plural, =0{No donor yet} =1{1 donor} other{{count} donors}}'**
   String mosque_campaign_donors_count(int count);
 
+  /// No description provided for @mosque_campaign_people_donated.
+  ///
+  /// In en, this message translates to:
+  /// **'{count}+ people have donated'**
+  String mosque_campaign_people_donated(String count);
+
   /// No description provided for @mosque_campaign_days_left.
   ///
   /// In en, this message translates to:
