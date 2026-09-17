@@ -59,43 +59,57 @@ class MosqueHeader extends StatelessWidget {
       children: [
         Stack(
           children: [
-            if (covers.isNotEmpty)
-              ProjectCoverCarousel(images: covers, height: 238)
-            else
-              Container(
-                height: 238,
-                width: double.infinity,
-                color: UIColorsToken.bgPrimary,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    UISpace.vert(50),
-                    UIIcon(Assets.icons.gallery, color: UIColorsToken.textParagraph, size: 28),
-                    const SizedBox(height: 6),
-                    Text(l10n.mosque_cover_placeholder,
-                        style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
-                  ],
-                ),
+            // Cover reveals with a soft zoom-out; clipped so the scale-up
+            // never bleeds over the status bar / neighbours.
+            ClipRect(
+              child: UIAppearAnimation(
+                duration: const Duration(milliseconds: 900),
+                offsetY: 0,
+                beginScale: 1.06,
+                child: covers.isNotEmpty
+                    ? ProjectCoverCarousel(images: covers, height: 238)
+                    : Container(
+                        height: 238,
+                        width: double.infinity,
+                        color: UIColorsToken.bgPrimary,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            UISpace.vert(50),
+                            UIIcon(Assets.icons.gallery, color: UIColorsToken.textParagraph, size: 28),
+                            const SizedBox(height: 6),
+                            Text(l10n.mosque_cover_placeholder,
+                                style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph)),
+                          ],
+                        ),
+                      ),
               ),
+            ),
             Positioned(
               top: MediaQuery.of(context).padding.top + 8,
               left: 12,
               right: 12,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  if (onBack != null) 
-                    UIIcon(
-                      Assets.icons.chevronLeft,
-                      onTap: onBack!,
-                      color: UIColorsToken.textYellow,
-                    ),
-                  if (onShare != null) 
-                    UIIcon(
-                      Assets.icons.share,
-                      onTap: onShare!,
-                    )
-                ],
+              child: UIAppearAnimation(
+                delay: const Duration(milliseconds: 180),
+                duration: const Duration(milliseconds: 500),
+                offsetY: 0,
+                beginScale: 1,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    if (onBack != null)
+                      UIIcon(
+                        Assets.icons.chevronLeft,
+                        onTap: onBack!,
+                        color: UIColorsToken.textYellow,
+                      ),
+                    if (onShare != null)
+                      UIIcon(
+                        Assets.icons.share,
+                        onTap: onShare!,
+                      ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -107,7 +121,9 @@ class MosqueHeader extends StatelessWidget {
             const Positioned(top: UITopGlow.offset, left: 0, right: 0, child: UITopGlow()),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
-              child: Column(
+              child: UIStaggerColumn(
+                initialDelay: const Duration(milliseconds: 120),
+                step: const Duration(milliseconds: 90),
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(

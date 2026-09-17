@@ -33,7 +33,7 @@ class UIAmountSelector extends StatelessWidget {
     this.otherLabel,
     this.otherSelected = false,
     this.onOtherTap,
-    this.bgColor = UIColorsToken.bgSurface
+    this.bgColor = const Color(0xff171717)
   });
 
   final List<int> amounts;

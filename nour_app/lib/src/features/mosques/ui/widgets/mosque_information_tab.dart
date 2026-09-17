@@ -121,7 +121,9 @@ class MosqueInformationTab extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-      child: Column(
+      child: UIStaggerColumn(
+        step: const Duration(milliseconds: 55),
+        maxSteps: 14,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _CapacityCard(

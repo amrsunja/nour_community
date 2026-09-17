@@ -72,7 +72,8 @@ class MosquePrayersTab extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-      child: Column(
+      child: UIStaggerColumn(
+        step: const Duration(milliseconds: 80),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(

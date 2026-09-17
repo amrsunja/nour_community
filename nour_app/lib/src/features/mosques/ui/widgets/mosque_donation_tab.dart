@@ -55,7 +55,8 @@ class MosqueDonationTab extends HookConsumerWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
-      child: Column(
+      child: UIStaggerColumn(
+        step: const Duration(milliseconds: 80),
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // ── Sadaqa card ────────────────────────────────────────────────

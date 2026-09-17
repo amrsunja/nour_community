@@ -196,12 +196,17 @@ class MosqueProfilePage extends HookConsumerWidget {
                   Container(
                     color: UIColorsToken.bgPrimary,
                     padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
-                    child: MosqueTabsBar(
-                      tab: state.tab,
-                      onTab: presenter.setTab,
-                      l10n: l10n,
-                      showDonation: showDonation,
-                      newsBadge: newsBadge,
+                    child: UIAppearAnimation(
+                      delay: const Duration(milliseconds: 420),
+                      duration: const Duration(milliseconds: 500),
+                      offsetY: 12,
+                      child: MosqueTabsBar(
+                        tab: state.tab,
+                        onTab: presenter.setTab,
+                        l10n: l10n,
+                        showDonation: showDonation,
+                        newsBadge: newsBadge,
+                      ),
                     ),
                   ),
                   Expanded(
@@ -226,7 +231,13 @@ class MosqueProfilePage extends HookConsumerWidget {
                 left: 16,
                 right: 16,
                 bottom: 16 + MediaQuery.of(context).padding.bottom,
-                child: UIButton.primary(label: l10n.mosque_add_to_my_mosques, fullWidth: true, onTap: onAddToMyMosques),
+                child: UIAppearAnimation(
+                  delay: const Duration(milliseconds: 560),
+                  duration: const Duration(milliseconds: 600),
+                  offsetY: 40,
+                  beginScale: 1,
+                  child: UIButton.primary(label: l10n.mosque_add_to_my_mosques, fullWidth: true, onTap: onAddToMyMosques),
+                ),
               ),
           ],
         ),
@@ -279,7 +290,9 @@ class _NewsTab extends StatelessWidget {
         : [...posts.where((p) => p.id == highlightPostId), ...posts.where((p) => p.id != highlightPostId)];
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
-      child: Column(
+      child: UIStaggerColumn(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        step: const Duration(milliseconds: 80),
         children: [
           for (final p in ordered)
             Padding(
