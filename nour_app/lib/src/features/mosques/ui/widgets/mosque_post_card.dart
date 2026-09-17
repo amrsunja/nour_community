@@ -60,6 +60,7 @@ class MosquePostCard extends StatelessWidget {
     return UICard(
       padding: EdgeInsets.zero,
       disableBorder: true,
+      shadows: [],
       child: ClipRRect(
         borderRadius: BorderRadius.circular(12),
         child: Stack(
