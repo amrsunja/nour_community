@@ -7001,6 +7001,378 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your reminders use the prayer times you publish. Set your mosque\'s schedule to start receiving them.'**
   String get mosque_reminders_no_times_hint;
+
+  /// No description provided for @mosque_admin_tax_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts'**
+  String get mosque_admin_tax_title;
+
+  /// No description provided for @mosque_admin_tax_open_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up tax receipts'**
+  String get mosque_admin_tax_open_settings;
+
+  /// No description provided for @mosque_admin_tax_regime_checking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking your country…'**
+  String get mosque_admin_tax_regime_checking;
+
+  /// No description provided for @mosque_admin_tax_regime_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Available in your country'**
+  String get mosque_admin_tax_regime_available;
+
+  /// No description provided for @mosque_admin_tax_regime_unavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Not available yet in your country'**
+  String get mosque_admin_tax_regime_unavailable;
+
+  /// No description provided for @mosque_admin_tax_regime_unavailable_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts exist in your country, but Nour has not validated the official template yet. Your donors can still download a donation attestation.'**
+  String get mosque_admin_tax_regime_unavailable_hint;
+
+  /// No description provided for @mosque_admin_tax_regime_not_receipt_based.
+  ///
+  /// In en, this message translates to:
+  /// **'Your country works differently'**
+  String get mosque_admin_tax_regime_not_receipt_based;
+
+  /// No description provided for @mosque_admin_tax_regime_not_receipt_based_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'In your country the tax relief is claimed by the association, not through a receipt given to the donor. Your donors can download a donation attestation.'**
+  String get mosque_admin_tax_regime_not_receipt_based_hint;
+
+  /// No description provided for @mosque_admin_tax_checklist.
+  ///
+  /// In en, this message translates to:
+  /// **'Before you can issue receipts'**
+  String get mosque_admin_tax_checklist;
+
+  /// No description provided for @mosque_admin_tax_checklist_ok.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything required is in place.'**
+  String get mosque_admin_tax_checklist_ok;
+
+  /// No description provided for @mosque_admin_tax_blocker_not_approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque is still under review.'**
+  String get mosque_admin_tax_blocker_not_approved;
+
+  /// No description provided for @mosque_admin_tax_blocker_legal_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the legal name of the association.'**
+  String get mosque_admin_tax_blocker_legal_name;
+
+  /// No description provided for @mosque_admin_tax_blocker_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the postal address of the association.'**
+  String get mosque_admin_tax_blocker_address;
+
+  /// No description provided for @mosque_admin_tax_blocker_legal_id.
+  ///
+  /// In en, this message translates to:
+  /// **'The legal registration number of the association is missing.'**
+  String get mosque_admin_tax_blocker_legal_id;
+
+  /// No description provided for @mosque_admin_tax_blocker_legal_id_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'This number is verified by the Nour team. Contact support if it is missing or wrong.'**
+  String get mosque_admin_tax_blocker_legal_id_hint;
+
+  /// No description provided for @mosque_admin_tax_blocker_signatory.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the authorised signatory and their signature.'**
+  String get mosque_admin_tax_blocker_signatory;
+
+  /// No description provided for @mosque_admin_tax_blocker_unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Some required information is missing.'**
+  String get mosque_admin_tax_blocker_unknown;
+
+  /// No description provided for @mosque_admin_tax_signatory.
+  ///
+  /// In en, this message translates to:
+  /// **'Authorised signatory'**
+  String get mosque_admin_tax_signatory;
+
+  /// No description provided for @mosque_admin_tax_signatory_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipts must be signed by a person authorised by the association. Their name and signature are printed on every document.'**
+  String get mosque_admin_tax_signatory_hint;
+
+  /// No description provided for @mosque_admin_tax_signatory_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get mosque_admin_tax_signatory_name;
+
+  /// No description provided for @mosque_admin_tax_signatory_role.
+  ///
+  /// In en, this message translates to:
+  /// **'Role (president, treasurer…)'**
+  String get mosque_admin_tax_signatory_role;
+
+  /// No description provided for @mosque_admin_tax_signature.
+  ///
+  /// In en, this message translates to:
+  /// **'Signature'**
+  String get mosque_admin_tax_signature;
+
+  /// No description provided for @mosque_admin_tax_signature_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a picture of the signature'**
+  String get mosque_admin_tax_signature_add;
+
+  /// No description provided for @mosque_admin_tax_signature_saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Signature saved'**
+  String get mosque_admin_tax_signature_saved;
+
+  /// No description provided for @mosque_admin_tax_right_section.
+  ///
+  /// In en, this message translates to:
+  /// **'Right to issue receipts'**
+  String get mosque_admin_tax_right_section;
+
+  /// No description provided for @mosque_admin_tax_right.
+  ///
+  /// In en, this message translates to:
+  /// **'Our association may issue tax receipts'**
+  String get mosque_admin_tax_right;
+
+  /// No description provided for @mosque_admin_tax_right_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Donors will be able to download a receipt for their gifts.'**
+  String get mosque_admin_tax_right_hint;
+
+  /// No description provided for @mosque_admin_tax_right_blocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete the points above first.'**
+  String get mosque_admin_tax_right_blocked;
+
+  /// No description provided for @mosque_admin_tax_liability.
+  ///
+  /// In en, this message translates to:
+  /// **'Nour produces the document on your behalf. Responsibility for issuing it stays with the association.'**
+  String get mosque_admin_tax_liability;
+
+  /// No description provided for @mosque_admin_tax_enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts enabled'**
+  String get mosque_admin_tax_enabled;
+
+  /// No description provided for @mosque_admin_tax_disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts disabled'**
+  String get mosque_admin_tax_disabled;
+
+  /// No description provided for @mosque_admin_tax_declaration_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Declaration'**
+  String get mosque_admin_tax_declaration_title;
+
+  /// No description provided for @mosque_admin_tax_declaration_body.
+  ///
+  /// In en, this message translates to:
+  /// **'I certify on my honour that the association meets the legal conditions to issue tax receipts for donations, that the information provided is accurate, and that I am authorised to sign these documents on its behalf. I understand that responsibility for any irregular receipt lies with the association.'**
+  String get mosque_admin_tax_declaration_body;
+
+  /// No description provided for @mosque_admin_tax_declaration_confirm.
+  ///
+  /// In en, this message translates to:
+  /// **'I certify'**
+  String get mosque_admin_tax_declaration_confirm;
+
+  /// No description provided for @mosque_admin_tax_summary_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Receipts issued in {year}'**
+  String mosque_admin_tax_summary_title(int year);
+
+  /// No description provided for @mosque_admin_tax_summary_body.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} receipts · {donors} donors · {total}'**
+  String mosque_admin_tax_summary_body(int count, int donors, String total);
+
+  /// No description provided for @donor_tax_profile_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your details for the receipt'**
+  String get donor_tax_profile_title;
+
+  /// No description provided for @donor_tax_profile_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'A tax receipt must carry your full name and postal address. Entered once, reused for every mosque.'**
+  String get donor_tax_profile_hint;
+
+  /// No description provided for @donor_tax_profile_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get donor_tax_profile_name;
+
+  /// No description provided for @donor_tax_profile_address.
+  ///
+  /// In en, this message translates to:
+  /// **'Street address'**
+  String get donor_tax_profile_address;
+
+  /// No description provided for @donor_tax_profile_postal.
+  ///
+  /// In en, this message translates to:
+  /// **'Postcode'**
+  String get donor_tax_profile_postal;
+
+  /// No description provided for @donor_tax_profile_city.
+  ///
+  /// In en, this message translates to:
+  /// **'City'**
+  String get donor_tax_profile_city;
+
+  /// No description provided for @mosque_receipts_request_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Get a document'**
+  String get mosque_receipts_request_title;
+
+  /// No description provided for @mosque_receipts_request_tax.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipt available'**
+  String get mosque_receipts_request_tax;
+
+  /// No description provided for @mosque_receipts_request_attestation_only.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation attestation (no tax relief)'**
+  String get mosque_receipts_request_attestation_only;
+
+  /// No description provided for @mosque_receipts_request_wait_year.
+  ///
+  /// In en, this message translates to:
+  /// **'Available from 1 January'**
+  String get mosque_receipts_request_wait_year;
+
+  /// No description provided for @mosque_receipts_request_cta.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get mosque_receipts_request_cta;
+
+  /// No description provided for @mosque_receipts_request_cta_attestation.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get mosque_receipts_request_cta_attestation;
+
+  /// No description provided for @error_api_mosque_tax_regime_unsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Tax receipts are not available yet in this country.'**
+  String get error_api_mosque_tax_regime_unsupported;
+
+  /// No description provided for @error_api_mosque_tax_regime_not_receipt_based.
+  ///
+  /// In en, this message translates to:
+  /// **'This country does not use donor tax receipts.'**
+  String get error_api_mosque_tax_regime_not_receipt_based;
+
+  /// No description provided for @error_api_mosque_tax_legal_id_missing.
+  ///
+  /// In en, this message translates to:
+  /// **'The association\'s registration number is missing.'**
+  String get error_api_mosque_tax_legal_id_missing;
+
+  /// No description provided for @error_api_mosque_tax_legal_id_invalid.
+  ///
+  /// In en, this message translates to:
+  /// **'The association\'s registration number is not valid.'**
+  String get error_api_mosque_tax_legal_id_invalid;
+
+  /// No description provided for @error_api_mosque_tax_legal_data_missing.
+  ///
+  /// In en, this message translates to:
+  /// **'The association\'s legal details are incomplete.'**
+  String get error_api_mosque_tax_legal_data_missing;
+
+  /// No description provided for @error_api_mosque_tax_signatory_missing.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the authorised signatory and their signature first.'**
+  String get error_api_mosque_tax_signatory_missing;
+
+  /// No description provided for @error_api_mosque_tax_issuer_incomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'The mosque\'s details are incomplete for this document.'**
+  String get error_api_mosque_tax_issuer_incomplete;
+
+  /// No description provided for @error_api_mosque_tax_donor_incomplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Your name and postal address are needed for this document.'**
+  String get error_api_mosque_tax_donor_incomplete;
+
+  /// No description provided for @error_api_mosque_tax_year_not_closed.
+  ///
+  /// In en, this message translates to:
+  /// **'This document is only available once the year has ended.'**
+  String get error_api_mosque_tax_year_not_closed;
+
+  /// No description provided for @error_api_mosque_tax_below_threshold.
+  ///
+  /// In en, this message translates to:
+  /// **'The amount is below the minimum required in this country.'**
+  String get error_api_mosque_tax_below_threshold;
+
+  /// No description provided for @error_api_mosque_tax_mixed_currencies.
+  ///
+  /// In en, this message translates to:
+  /// **'Gifts in several currencies cannot go on one document.'**
+  String get error_api_mosque_tax_mixed_currencies;
+
+  /// No description provided for @error_api_mosque_tax_declaration_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not update the tax receipt setting.'**
+  String get error_api_mosque_tax_declaration_failed;
+
+  /// No description provided for @error_api_mosque_tax_profile_save_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not save your details.'**
+  String get error_api_mosque_tax_profile_save_failed;
+
+  /// No description provided for @error_api_mosque_signature_upload_failed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not upload the signature.'**
+  String get error_api_mosque_signature_upload_failed;
 }
 
 class _AppLocalizationsDelegate

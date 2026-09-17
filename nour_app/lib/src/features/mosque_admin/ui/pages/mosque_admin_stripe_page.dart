@@ -4,13 +4,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/mosques/data/models/mosque_donation_models.dart';
-import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
-import '../widgets/mosque_admin_form_widgets.dart';
 
 /// Stripe Connect (Express) onboarding & status — devis B1.
 ///
@@ -27,8 +26,6 @@ class MosqueAdminStripePage extends HookConsumerWidget {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(mosqueAdminDonationProvider.notifier);
     final state = ref.watch(mosqueAdminDonationProvider);
-    final mosque = ref.watch(myMosqueProvider.select((s) => s.mosque));
-    final taxReceipts = useState(mosque?.canIssueTaxReceipts ?? false);
     final launched = useState(false);
 
     useEffect(() {
@@ -45,7 +42,7 @@ class MosqueAdminStripePage extends HookConsumerWidget {
     });
 
     Future<void> start() async {
-      final url = await presenter.startStripeOnboarding(canIssueTaxReceipts: taxReceipts.value);
+      final url = await presenter.startStripeOnboarding();
       if (url == null) return;
       launched.value = true;
       await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
@@ -100,14 +97,17 @@ class MosqueAdminStripePage extends HookConsumerWidget {
                   const SizedBox(height: 16),
                   Text(l10n.mosque_admin_stripe_explainer, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
                   const SizedBox(height: 16),
-                  if (!acct.hasAccount)
-                    AdminToggleRow(
-                      title: l10n.mosque_admin_stripe_tax_receipts,
-                      subtitle: l10n.mosque_admin_stripe_tax_receipts_hint,
-                      value: taxReceipts.value,
-                      onChanged: (v) => taxReceipts.value = v,
-                    ),
-                  const SizedBox(height: 16),
+                  // The tax-receipt right used to live here, visible only
+                  // while `!acct.hasAccount` — which left every onboarded
+                  // mosque unable to enable it. It is a legal attribute, not a
+                  // payments one: it now has its own screen and its own audited
+                  // RPC. See docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+                  UIButton.textual(
+                    label: l10n.mosque_admin_tax_title,
+                    fullWidth: true,
+                    onTap: () => ref.read(navigationServicesProvider).toMosqueAdminTaxSettings(),
+                  ),
+                  const SizedBox(height: 8),
                   if (!acct.chargesEnabled)
                     UIButton.primary(
                       label: acct.hasAccount ? l10n.mosque_admin_stripe_continue : l10n.mosque_admin_stripe_start,

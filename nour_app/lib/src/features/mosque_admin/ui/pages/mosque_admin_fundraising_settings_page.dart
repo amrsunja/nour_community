@@ -186,6 +186,14 @@ class MosqueAdminFundraisingSettingsPage extends HookConsumerWidget {
                     enabled: canIssueReceipts,
                     onChanged: (v) => draft.value = draft.value.copyWith(showTaxBadge: v),
                   ),
+                  if (!canIssueReceipts) ...[
+                    const SizedBox(height: 8),
+                    UIButton.textual(
+                      label: l10n.mosque_admin_tax_open_settings,
+                      fullWidth: true,
+                      onTap: nav.toMosqueAdminTaxSettings,
+                    ),
+                  ],
 
                   const SizedBox(height: 16),
                   Text(

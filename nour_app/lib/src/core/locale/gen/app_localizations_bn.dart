@@ -3869,4 +3869,227 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get mosque_reminders_no_times_hint =>
       'আপনার রিমাইন্ডার আপনার প্রকাশ করা নামাজের সময় ব্যবহার করে। সেগুলো পেতে আপনার মসজিদের সময়সূচি নির্ধারণ করুন।';
+
+  @override
+  String get mosque_admin_tax_title => 'Tax receipts';
+
+  @override
+  String get mosque_admin_tax_open_settings => 'Set up tax receipts';
+
+  @override
+  String get mosque_admin_tax_regime_checking => 'Checking your country…';
+
+  @override
+  String get mosque_admin_tax_regime_available => 'Available in your country';
+
+  @override
+  String get mosque_admin_tax_regime_unavailable =>
+      'Not available yet in your country';
+
+  @override
+  String get mosque_admin_tax_regime_unavailable_hint =>
+      'Tax receipts exist in your country, but Nour has not validated the official template yet. Your donors can still download a donation attestation.';
+
+  @override
+  String get mosque_admin_tax_regime_not_receipt_based =>
+      'Your country works differently';
+
+  @override
+  String get mosque_admin_tax_regime_not_receipt_based_hint =>
+      'In your country the tax relief is claimed by the association, not through a receipt given to the donor. Your donors can download a donation attestation.';
+
+  @override
+  String get mosque_admin_tax_checklist => 'Before you can issue receipts';
+
+  @override
+  String get mosque_admin_tax_checklist_ok =>
+      'Everything required is in place.';
+
+  @override
+  String get mosque_admin_tax_blocker_not_approved =>
+      'Your mosque is still under review.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_name =>
+      'Add the legal name of the association.';
+
+  @override
+  String get mosque_admin_tax_blocker_address =>
+      'Complete the postal address of the association.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_id =>
+      'The legal registration number of the association is missing.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_id_hint =>
+      'This number is verified by the Nour team. Contact support if it is missing or wrong.';
+
+  @override
+  String get mosque_admin_tax_blocker_signatory =>
+      'Add the authorised signatory and their signature.';
+
+  @override
+  String get mosque_admin_tax_blocker_unknown =>
+      'Some required information is missing.';
+
+  @override
+  String get mosque_admin_tax_signatory => 'Authorised signatory';
+
+  @override
+  String get mosque_admin_tax_signatory_hint =>
+      'Receipts must be signed by a person authorised by the association. Their name and signature are printed on every document.';
+
+  @override
+  String get mosque_admin_tax_signatory_name => 'Full name';
+
+  @override
+  String get mosque_admin_tax_signatory_role => 'Role (president, treasurer…)';
+
+  @override
+  String get mosque_admin_tax_signature => 'Signature';
+
+  @override
+  String get mosque_admin_tax_signature_add => 'Add a picture of the signature';
+
+  @override
+  String get mosque_admin_tax_signature_saved => 'Signature saved';
+
+  @override
+  String get mosque_admin_tax_right_section => 'Right to issue receipts';
+
+  @override
+  String get mosque_admin_tax_right => 'Our association may issue tax receipts';
+
+  @override
+  String get mosque_admin_tax_right_hint =>
+      'Donors will be able to download a receipt for their gifts.';
+
+  @override
+  String get mosque_admin_tax_right_blocked =>
+      'Complete the points above first.';
+
+  @override
+  String get mosque_admin_tax_liability =>
+      'Nour produces the document on your behalf. Responsibility for issuing it stays with the association.';
+
+  @override
+  String get mosque_admin_tax_enabled => 'Tax receipts enabled';
+
+  @override
+  String get mosque_admin_tax_disabled => 'Tax receipts disabled';
+
+  @override
+  String get mosque_admin_tax_declaration_title => 'Declaration';
+
+  @override
+  String get mosque_admin_tax_declaration_body =>
+      'I certify on my honour that the association meets the legal conditions to issue tax receipts for donations, that the information provided is accurate, and that I am authorised to sign these documents on its behalf. I understand that responsibility for any irregular receipt lies with the association.';
+
+  @override
+  String get mosque_admin_tax_declaration_confirm => 'I certify';
+
+  @override
+  String mosque_admin_tax_summary_title(int year) {
+    return 'Receipts issued in $year';
+  }
+
+  @override
+  String mosque_admin_tax_summary_body(int count, int donors, String total) {
+    return '$count receipts · $donors donors · $total';
+  }
+
+  @override
+  String get donor_tax_profile_title => 'Your details for the receipt';
+
+  @override
+  String get donor_tax_profile_hint =>
+      'A tax receipt must carry your full name and postal address. Entered once, reused for every mosque.';
+
+  @override
+  String get donor_tax_profile_name => 'Full name';
+
+  @override
+  String get donor_tax_profile_address => 'Street address';
+
+  @override
+  String get donor_tax_profile_postal => 'Postcode';
+
+  @override
+  String get donor_tax_profile_city => 'City';
+
+  @override
+  String get mosque_receipts_request_title => 'Get a document';
+
+  @override
+  String get mosque_receipts_request_tax => 'Tax receipt available';
+
+  @override
+  String get mosque_receipts_request_attestation_only =>
+      'Donation attestation (no tax relief)';
+
+  @override
+  String get mosque_receipts_request_wait_year => 'Available from 1 January';
+
+  @override
+  String get mosque_receipts_request_cta => 'Request';
+
+  @override
+  String get mosque_receipts_request_cta_attestation => 'Download';
+
+  @override
+  String get error_api_mosque_tax_regime_unsupported =>
+      'Tax receipts are not available yet in this country.';
+
+  @override
+  String get error_api_mosque_tax_regime_not_receipt_based =>
+      'This country does not use donor tax receipts.';
+
+  @override
+  String get error_api_mosque_tax_legal_id_missing =>
+      'The association\'s registration number is missing.';
+
+  @override
+  String get error_api_mosque_tax_legal_id_invalid =>
+      'The association\'s registration number is not valid.';
+
+  @override
+  String get error_api_mosque_tax_legal_data_missing =>
+      'The association\'s legal details are incomplete.';
+
+  @override
+  String get error_api_mosque_tax_signatory_missing =>
+      'Add the authorised signatory and their signature first.';
+
+  @override
+  String get error_api_mosque_tax_issuer_incomplete =>
+      'The mosque\'s details are incomplete for this document.';
+
+  @override
+  String get error_api_mosque_tax_donor_incomplete =>
+      'Your name and postal address are needed for this document.';
+
+  @override
+  String get error_api_mosque_tax_year_not_closed =>
+      'This document is only available once the year has ended.';
+
+  @override
+  String get error_api_mosque_tax_below_threshold =>
+      'The amount is below the minimum required in this country.';
+
+  @override
+  String get error_api_mosque_tax_mixed_currencies =>
+      'Gifts in several currencies cannot go on one document.';
+
+  @override
+  String get error_api_mosque_tax_declaration_failed =>
+      'Could not update the tax receipt setting.';
+
+  @override
+  String get error_api_mosque_tax_profile_save_failed =>
+      'Could not save your details.';
+
+  @override
+  String get error_api_mosque_signature_upload_failed =>
+      'Could not upload the signature.';
 }

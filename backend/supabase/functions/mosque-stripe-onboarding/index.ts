@@ -1,12 +1,17 @@
 // =============================================================================
 // mosque-stripe-onboarding Edge Function (P3 — devis B1)
 // -----------------------------------------------------------------------------
-//   { mosqueId, action: 'start' | 'status', canIssueTaxReceipts?: boolean }
+//   { mosqueId, action: 'start' | 'status' }
 // start  → creates (or reuses) a Stripe Connect EXPRESS account for the
 //          mosque and returns an Account Link URL (hosted onboarding).
 // status → refreshes charges/payouts flags from Stripe and updates
 //          mosques.donations_enabled accordingly.
 // Caller must be an admin of the approved mosque.
+//
+// NOTE: this function no longer touches mosques.can_issue_tax_receipts. The
+// right to issue tax receipts is a legal attribute, not a payments one, and it
+// now has a single audited entry point: public.fn_mosque_set_tax_receipts.
+// See docs/TAX_RECEIPTS_MULTI_COUNTRY.md
 // =============================================================================
 
 import { corsHeaders } from "../_shared/cors.ts";
@@ -16,7 +21,6 @@ import { json, stripeClient } from "../_shared/stripe.ts";
 interface Payload {
   mosqueId: number;
   action: "start" | "status";
-  canIssueTaxReceipts?: boolean;
 }
 
 const RETURN_URL = Deno.env.get("STRIPE_CONNECT_RETURN_URL") ?? "https://nour-community.com/mosque-admin/stripe/return";
@@ -66,14 +70,10 @@ Deno.serve(async (req) => {
   const stripe = stripeClient();
   const { data: mosque } = await admin
     .from("mosques")
-    .select("id, name, email, country_code, status, can_issue_tax_receipts")
+    .select("id, name, email, country_code, status")
     .eq("id", payload.mosqueId)
     .single();
   if (!mosque || mosque.status !== "approved") return json({ error: "mosque_not_approved" }, 403);
-
-  if (typeof payload.canIssueTaxReceipts === "boolean") {
-    await admin.from("mosques").update({ can_issue_tax_receipts: payload.canIssueTaxReceipts }).eq("id", mosque.id);
-  }
 
   const { data: existing } = await admin
     .from("mosque_stripe_accounts")

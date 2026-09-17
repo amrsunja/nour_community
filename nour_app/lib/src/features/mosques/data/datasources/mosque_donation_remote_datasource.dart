@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
 import 'package:nour/src/core/network/supabase_client.dart';
@@ -21,6 +23,9 @@ class MosqueDonationRemoteDatasource {
   static const _campaignUpdates = 'mosque_campaign_updates';
   static const _stripeAccounts = 'mosque_stripe_accounts';
   static const _receipts = 'mosque_receipts';
+  static const _donorTaxProfiles = 'donor_tax_profiles';
+  static const _legalBucket = 'mosque-legal';
+  static const _receiptsBucket = 'mosque-receipts';
   static const _subscriptions = 'donation_subscriptions';
 
   static const _fnOnboarding = 'mosque-stripe-onboarding';
@@ -41,10 +46,26 @@ class MosqueDonationRemoteDatasource {
     if (e is ServerException) return e;
     if (e is PostgrestException) {
       if (e.message.contains('campaign_limit_reached')) return ServerException(type: .badRequest, messageKey: ApiErrorKey.mosqueCampaignLimitReached);
+      final tax = _mapTaxError(e.message);
+      if (tax != null) return ServerException(type: .badRequest, messageKey: tax);
       if (e.message.contains('forbidden') || e.code == '42501') return ServerException(type: .forbiden, messageKey: ApiErrorKey.mosqueNotApproved);
       return ServerException(type: .badRequest, message: e.message);
     }
     return ServerException(type: .badRequest, messageKey: fallback);
+  }
+
+  /// `fn_mosque_set_tax_receipts` raises stable, parseable messages
+  /// (`missing_field:city`, `legal_id_invalid:rna`, ...). See
+  /// docs/TAX_RECEIPTS_MULTI_COUNTRY.md §4.
+  ApiErrorKey? _mapTaxError(String message) {
+    if (message.contains('regime_not_receipt_based')) return ApiErrorKey.mosqueTaxRegimeNotReceiptBased;
+    if (message.contains('regime_unsupported')) return ApiErrorKey.mosqueTaxRegimeUnsupported;
+    if (message.contains('legal_id_invalid')) return ApiErrorKey.mosqueTaxLegalIdInvalid;
+    if (message.contains('legal_id_missing')) return ApiErrorKey.mosqueTaxLegalIdMissing;
+    if (message.contains('missing_field:')) return ApiErrorKey.mosqueTaxLegalDataMissing;
+    if (message.contains('signatory_missing')) return ApiErrorKey.mosqueTaxSignatoryMissing;
+    if (message.contains('mosque_not_approved')) return ApiErrorKey.mosqueNotApproved;
+    return null;
   }
 
   ApiErrorKey _mapFunctionError(dynamic data, ApiErrorKey fallback) {
@@ -58,6 +79,14 @@ class MosqueDonationRemoteDatasource {
       'mosque_not_approved' || 'forbidden' => ApiErrorKey.mosqueNotApproved,
       'receipts_not_allowed' => ApiErrorKey.mosqueReceiptsNotAllowed,
       'no_donations' => ApiErrorKey.mosqueReceiptNoDonations,
+      'regime_unsupported' => ApiErrorKey.mosqueTaxRegimeUnsupported,
+      'regime_not_receipt_based' => ApiErrorKey.mosqueTaxRegimeNotReceiptBased,
+      'incomplete_issuer_data' => ApiErrorKey.mosqueTaxIssuerIncomplete,
+      'incomplete_donor_data' => ApiErrorKey.mosqueTaxDonorIncomplete,
+      'year_not_closed' || 'annual_only' => ApiErrorKey.mosqueTaxYearNotClosed,
+      'below_threshold' => ApiErrorKey.mosqueTaxBelowThreshold,
+      'mixed_currencies' => ApiErrorKey.mosqueTaxMixedCurrencies,
+      'donor_anonymous' => ApiErrorKey.mosqueNotApproved,
       'method_not_supported' => ApiErrorKey.paymentIntentFailed,
       _ => fallback,
     };
@@ -308,7 +337,7 @@ class MosqueDonationRemoteDatasource {
   Future<List<MosqueReceipt>> getReceipts({int? mosqueId, int? year}) async {
     final uid = _requireUserId();
     try {
-      var q = supabaseClient.from(_receipts).select();
+      var q = supabaseClient.from(_receipts).select().isFilter('revoked_at', null);
       q = mosqueId != null ? q.eq('mosque_id', mosqueId) : q.eq('user_id', uid);
       if (year != null) q = q.eq('year', year);
       final rows = await q.order('created_at', ascending: false).limit(200);
@@ -321,7 +350,7 @@ class MosqueDonationRemoteDatasource {
   /// Signed URL (1h) of an existing receipt PDF.
   Future<String?> receiptUrl(String storagePath) async {
     try {
-      return await supabaseClient.storage.from('mosque-receipts').createSignedUrl(storagePath, 3600);
+      return await supabaseClient.storage.from(_receiptsBucket).createSignedUrl(storagePath, 3600);
     } catch (e) {
       talker.error('[mosque-donation] receiptUrl', e);
       return null;
@@ -331,7 +360,13 @@ class MosqueDonationRemoteDatasource {
   /// Generates (or returns the existing) receipt. Either one gift
   /// ([transactionId]) or a yearly summary ([mosqueId] + [year], admins may
   /// pass [userId] for a donor).
-  Future<GeneratedReceipt> generateReceipt({int? transactionId, int? mosqueId, int? year, String? userId}) async {
+  Future<GeneratedReceipt> generateReceipt({
+    int? transactionId,
+    int? mosqueId,
+    int? year,
+    String? userId,
+    String kind = MosqueReceipt.kindTax,
+  }) async {
     _requireUserId();
     try {
       final res = await supabaseClient.functions.invoke(_fnReceipt, body: {
@@ -339,13 +374,147 @@ class MosqueDonationRemoteDatasource {
         if (mosqueId != null) 'mosqueId': mosqueId,
         if (year != null) 'year': year,
         if (userId != null) 'userId': userId,
+        'kind': kind,
       });
       final data = res.data;
       final id = (data?['receiptId'] as num?)?.toInt();
       if (id == null) throw ServerException(type: .badRequest, messageKey: _mapFunctionError(data, ApiErrorKey.mosqueReceiptFailed));
-      return GeneratedReceipt(receiptId: id, amount: _toDouble(data?['amount']), number: data?['number'] as String?, url: data?['url'] as String?);
+      return GeneratedReceipt(
+        receiptId: id,
+        amount: _toDouble(data?['amount']),
+        number: data?['number'] as String?,
+        url: data?['url'] as String?,
+        kind: data?['kind'] as String? ?? kind,
+        currency: data?['currency'] as String? ?? 'EUR',
+      );
     } catch (e) {
       throw _fnError(e, ApiErrorKey.mosqueReceiptFailed);
+    }
+  }
+
+  // ── Tax receipts: regime, right, signatory, donor identity ────────────────
+  // docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+
+  /// What the mosque's country allows and what is still missing before the
+  /// right can be granted. Same rules as the RPC that grants it, no side effect.
+  Future<MosqueTaxReadiness> getTaxReadiness(int mosqueId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_tax_readiness', params: {'p_mosque_id': mosqueId});
+      return MosqueTaxReadiness.fromJson((res as Map).cast<String, dynamic>());
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// The ONLY way `mosques.can_issue_tax_receipts` moves: the column is
+  /// protected and this RPC records an attestation row on every change.
+  Future<bool> setTaxReceipts(int mosqueId, bool enabled, {required String declarationVersion}) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_set_tax_receipts', params: {
+        'p_mosque_id': mosqueId,
+        'p_enabled': enabled,
+        'p_declaration_version': declarationVersion,
+      });
+      return res as bool? ?? enabled;
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueTaxDeclarationFailed);
+    }
+  }
+
+  /// Signatory name / role / signature path. Kept out of the profile save so
+  /// an unrelated edit can never blank them.
+  Future<void> saveSignatory(int mosqueId, {String? name, String? role, String? signaturePath}) async {
+    _requireUserId();
+    try {
+      await supabaseClient.from('mosques').update({
+        'signatory_name': name,
+        'signatory_role': role,
+        if (signaturePath != null) 'signature_path': signaturePath,
+      }).eq('id', mosqueId);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  /// Uploads the signature to the PRIVATE `mosque-legal` bucket and returns its
+  /// object path (never a public URL: it is a signature).
+  Future<String> uploadSignature({required int mosqueId, required File file}) async {
+    _requireUserId();
+    try {
+      final ext = file.path.split('.').last.toLowerCase();
+      final path = '$mosqueId/signature/${DateTime.now().millisecondsSinceEpoch}.$ext';
+      await supabaseClient.storage.from(_legalBucket).upload(
+            path,
+            file,
+            fileOptions: FileOptions(upsert: true, contentType: ext == 'png' ? 'image/png' : 'image/jpeg'),
+          );
+      return path;
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSignatureUploadFailed);
+    }
+  }
+
+  Future<String?> signatureUrl(String path) async {
+    try {
+      return await supabaseClient.storage.from(_legalBucket).createSignedUrl(path, 3600);
+    } catch (e) {
+      talker.error('[mosque-donation] signatureUrl', e);
+      return null;
+    }
+  }
+
+  /// Totals a French association needs for form 2070-SD.
+  Future<MosqueTaxYearSummary> getTaxYearSummary(int mosqueId, int year) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_tax_year_summary', params: {
+        'p_mosque_id': mosqueId,
+        'p_year': year,
+      });
+      return MosqueTaxYearSummary.fromJson((res as Map).cast<String, dynamic>());
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  // ── Donor side ────────────────────────────────────────────────────────────
+
+  /// Every (mosque, year) the caller gave to, with what that country allows.
+  Future<List<MosqueDonationYear>> getMyDonationYears() async {
+    _requireUserId();
+    try {
+      final rows = await supabaseClient.rpc('fn_my_mosque_donation_years') as List;
+      return rows.map((e) => MosqueDonationYear.fromJson((e as Map).cast<String, dynamic>())).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.paymentHistoryLoadFailed);
+    }
+  }
+
+  /// The donor's fiscal identity (name + postal address), mandatory on a
+  /// French receipt and collected nowhere else in the app.
+  Future<DonorTaxProfile?> getMyTaxProfile() async {
+    final uid = _requireUserId();
+    try {
+      final row = await supabaseClient.from(_donorTaxProfiles).select().eq('user_id', uid).maybeSingle();
+      return row == null ? null : DonorTaxProfile.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.profileLoadFailed);
+    }
+  }
+
+  Future<DonorTaxProfile> saveMyTaxProfile(DonorTaxProfile profile) async {
+    final uid = _requireUserId();
+    try {
+      final row = await supabaseClient
+          .from(_donorTaxProfiles)
+          .upsert({'user_id': uid, ...profile.toJson()})
+          .select()
+          .single();
+      return DonorTaxProfile.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueTaxProfileSaveFailed);
     }
   }
 
@@ -361,10 +530,10 @@ class MosqueDonationRemoteDatasource {
   }
 
   /// `action: 'start'` → hosted onboarding URL (account created on first call).
-  Future<String> startStripeOnboarding(int mosqueId, {bool canIssueTaxReceipts = false}) async {
+  Future<String> startStripeOnboarding(int mosqueId) async {
     _requireUserId();
     try {
-      final res = await supabaseClient.functions.invoke(_fnOnboarding, body: {'mosqueId': mosqueId, 'action': 'start', 'canIssueTaxReceipts': canIssueTaxReceipts});
+      final res = await supabaseClient.functions.invoke(_fnOnboarding, body: {'mosqueId': mosqueId, 'action': 'start'});
       final url = res.data?['url'] as String?;
       if (url == null) throw ServerException(type: .badRequest, messageKey: _mapFunctionError(res.data, ApiErrorKey.mosqueStripeFailed));
       return url;

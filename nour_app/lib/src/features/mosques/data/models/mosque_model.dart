@@ -41,7 +41,21 @@ class MosqueModel extends Equatable {
   /// Anything else (including null, i.e. never set) reads as open.
   final String? openingStatus;
   final bool donationsEnabled;
+
+  /// Right to issue tax receipts. Protected column: it only moves through
+  /// `fn_mosque_set_tax_receipts` (see docs/TAX_RECEIPTS_MULTI_COUNTRY.md).
   final bool canIssueTaxReceipts;
+
+  /// Per-country legal identifiers — FR `{rna, siren}`, DE `{vereinsregister}`,
+  /// GB `{charity_number}`, US `{ein}`. Protected column.
+  final Map<String, String> legalRegistrations;
+
+  /// Person authorised to sign the receipts (mandatory in FR).
+  final String? signatoryName;
+  final String? signatoryRole;
+
+  /// Object path of the signature image in the private `mosque-legal` bucket.
+  final String? signaturePath;
   final int followersCount;
   final int membersCount;
   final int viewsCount;
@@ -82,6 +96,10 @@ class MosqueModel extends Equatable {
     this.openingStatus,
     this.donationsEnabled = false,
     this.canIssueTaxReceipts = false,
+    this.legalRegistrations = const {},
+    this.signatoryName,
+    this.signatoryRole,
+    this.signaturePath,
     this.followersCount = 0,
     this.membersCount = 0,
     this.viewsCount = 0,
@@ -163,6 +181,12 @@ class MosqueModel extends Equatable {
       openingStatus: json['opening_status'] as String?,
       donationsEnabled: json['donations_enabled'] as bool? ?? false,
       canIssueTaxReceipts: json['can_issue_tax_receipts'] as bool? ?? false,
+      legalRegistrations: (json['legal_registrations'] as Map?)
+              ?.map((k, v) => MapEntry(k.toString(), v?.toString() ?? '')) ??
+          const {},
+      signatoryName: json['signatory_name'] as String?,
+      signatoryRole: json['signatory_role'] as String?,
+      signaturePath: json['signature_path'] as String?,
       followersCount: json['followers_count'] as int? ?? 0,
       membersCount: json['members_count'] as int? ?? 0,
       viewsCount: (json['views_count'] as num?)?.toInt() ?? 0,
@@ -201,6 +225,10 @@ class MosqueModel extends Equatable {
     List<MosqueImamModel>? imams,
     bool? donationsEnabled,
     bool? canIssueTaxReceipts,
+    Map<String, String>? legalRegistrations,
+    String? signatoryName,
+    String? signatoryRole,
+    String? signaturePath,
     /// Explicitly drops the logo (a `null` [logoUrl] means "unchanged").
     bool clearLogo = false,
   }) {
@@ -238,6 +266,10 @@ class MosqueModel extends Equatable {
       openingStatus: openingStatus ?? this.openingStatus,
       donationsEnabled: donationsEnabled ?? this.donationsEnabled,
       canIssueTaxReceipts: canIssueTaxReceipts ?? this.canIssueTaxReceipts,
+      legalRegistrations: legalRegistrations ?? this.legalRegistrations,
+      signatoryName: signatoryName ?? this.signatoryName,
+      signatoryRole: signatoryRole ?? this.signatoryRole,
+      signaturePath: signaturePath ?? this.signaturePath,
       followersCount: followersCount ?? this.followersCount,
       membersCount: membersCount ?? this.membersCount,
       viewsCount: viewsCount,
@@ -267,7 +299,17 @@ class MosqueModel extends Equatable {
         'services': services.map((e) => e.dbValue).toList(),
         'khutbah_languages': khutbahLanguages,
         'opening_status': openingStatus,
-        'can_issue_tax_receipts': canIssueTaxReceipts,
+        // `can_issue_tax_receipts` deliberately absent: it is a protected
+        // column now, and sending it would make every profile save fail.
+        // It moves only through MosqueRepo.setTaxReceipts -> the audited RPC.
+      };
+
+  /// The three columns the tax settings page owns. Kept out of
+  /// [toProfileUpdateJson] so an unrelated profile save can never blank them.
+  Json toSignatoryUpdateJson() => {
+        'signatory_name': signatoryName,
+        'signatory_role': signatoryRole,
+        'signature_path': signaturePath,
       };
 
   @override
@@ -275,6 +317,7 @@ class MosqueModel extends Equatable {
         id, name, legalName, legalStatus, rna, siren, countryCode, defaultLanguage, status, reviewNote, slug,
         logoUrl, coverImages, description, addressLine, city, postalCode, lat, lng, phone, email, website, socials,
         capacityTotal, capacityMen, capacityWomen, foundedYear, services, khutbahLanguages, timezone, openingStatus,
-        donationsEnabled, canIssueTaxReceipts, followersCount, membersCount, viewsCount, imams, createdAt,
+        donationsEnabled, canIssueTaxReceipts, legalRegistrations, signatoryName, signatoryRole, signaturePath,
+        followersCount, membersCount, viewsCount, imams, createdAt,
       ];
 }

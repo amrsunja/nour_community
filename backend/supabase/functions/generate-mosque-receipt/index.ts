@@ -1,26 +1,35 @@
 // =============================================================================
-// generate-mosque-receipt Edge Function (P3 — devis B5)
-// -----------------------------------------------------------------------------
-//   { transactionId }                 → receipt for one gift (donor or mosque admin)
-//   { mosqueId, year, userId? }       → annual recap (admin: any donor; donor: self)
-// Produces a PDF (pdf-lib) in the private bucket mosque-receipts/<mosque>/<user>/
-// and returns a 1-hour signed URL. Refused when mosques.can_issue_tax_receipts
-// is false (legal responsibility stays with the mosque — devis §7).
+// generate-mosque-receipt — multi-country document generation.
+// See docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+//
+//   { transactionId }                      -> document for one gift
+//   { mosqueId, year, userId? }            -> yearly recap
+//   { ..., kind: 'tax_receipt'
+//        | 'donation_attestation' }        -> default: tax_receipt
+//
+// This file owns authorisation, the legal gates, numbering, storage and
+// persistence. It owns NO country-specific wording: that lives in
+// renderers/<cc>.ts, and a country without a renderer produces nothing at all.
 // =============================================================================
 
-import { PDFDocument, StandardFonts, rgb } from "npm:pdf-lib@1.17.1";
 import { corsHeaders } from "../_shared/cors.ts";
 import { serviceClient, userClient } from "../_shared/supabase.ts";
 import { json } from "../_shared/stripe.ts";
+import { pickRenderer } from "./renderers/registry.ts";
+import type { Donor, Gift, Issuer, ReceiptContext, ReceiptKind, RegimeInfo } from "./renderers/types.ts";
 
 interface Payload {
   transactionId?: number;
   mosqueId?: number;
   year?: number;
   userId?: string;
+  kind?: ReceiptKind;
 }
 
-const money = (n: number) => `${n.toFixed(2).replace(".", ",")} €`;
+const BUCKET = "mosque-receipts";
+const SIGNED_URL_TTL = 3600;
+
+const isTaxReceipt = (k: ReceiptKind) => k === "tax_receipt";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
@@ -38,20 +47,30 @@ Deno.serve(async (req) => {
   } catch {
     return json({ error: "bad_request" }, 400);
   }
+
+  const kind: ReceiptKind = payload.kind === "donation_attestation" ? "donation_attestation" : "tax_receipt";
   const admin = serviceClient();
 
-  // Resolve scope.
+  // ── 1. Resolve the scope ──────────────────────────────────────────────────
   let mosqueId: number;
   let donorId: string;
   let year: number;
   let txIds: number[] = [];
+
   if (payload.transactionId) {
-    const { data: tx } = await admin.from("transactions").select("id, user_id, mosque_id, status, created_at").eq("id", payload.transactionId).maybeSingle();
+    const { data: tx } = await admin
+      .from("transactions")
+      .select("id, user_id, mosque_id, status, created_at, is_anonymous")
+      .eq("id", payload.transactionId)
+      .maybeSingle();
     if (!tx || !tx.mosque_id || tx.status !== "succeeded") return json({ error: "not_found" }, 404);
     mosqueId = tx.mosque_id;
     donorId = tx.user_id;
     year = new Date(tx.created_at).getFullYear();
     txIds = [tx.id];
+    // Anonymity protects the donor from the mosque, not from the tax authority:
+    // the donor may always ask for their own document, an admin may not.
+    if (tx.is_anonymous && donorId !== me.id) return json({ error: "donor_anonymous" }, 403);
   } else if (payload.mosqueId && payload.year) {
     mosqueId = payload.mosqueId;
     year = payload.year;
@@ -60,91 +79,284 @@ Deno.serve(async (req) => {
     return json({ error: "bad_request" }, 400);
   }
 
+  // ── 2. Authorisation ──────────────────────────────────────────────────────
   const { data: isAdmin } = await user.rpc("is_mosque_admin", { p_mosque_id: mosqueId });
-  if (donorId !== me.id && isAdmin !== true) return json({ error: "forbidden" }, 403);
+  const callerIsAdmin = isAdmin === true;
+  if (donorId !== me.id && !callerIsAdmin) return json({ error: "forbidden" }, 403);
 
-  const { data: mosque } = await admin.from("mosques").select("id, name, legal_name, address_line, postal_code, city, rna, siren, can_issue_tax_receipts").eq("id", mosqueId).single();
+  // ── 3. Issuer + regime ────────────────────────────────────────────────────
+  const { data: mosque } = await admin
+    .from("mosques")
+    .select(
+      "id, name, legal_name, address_line, postal_code, city, country_code, rna, siren, " +
+        "legal_registrations, signatory_name, signatory_role, signature_path, can_issue_tax_receipts",
+    )
+    .eq("id", mosqueId)
+    .single();
   if (!mosque) return json({ error: "not_found" }, 404);
-  if (!mosque.can_issue_tax_receipts) return json({ error: "receipts_not_allowed" }, 422);
 
-  let q = admin.from("transactions").select("id, amount_total, created_at, type").eq("mosque_id", mosqueId).eq("user_id", donorId).eq("status", "succeeded");
-  q = txIds.length ? q.in("id", txIds) : q.gte("created_at", `${year}-01-01`).lt("created_at", `${year + 1}-01-01`);
-  const { data: txs } = await q.order("created_at");
-  if (!txs || txs.length === 0) return json({ error: "no_donations" }, 404);
-  const total = txs.reduce((s, t) => s + Number(t.amount_total), 0);
+  const country = String(mosque.country_code ?? "FR").toUpperCase();
+  const { data: regimeRow } = await admin
+    .from("tax_regimes")
+    .select("*")
+    .eq("country_code", country)
+    .maybeSingle();
 
-  // Existing receipt for a single tx → reuse.
-  if (txIds.length === 1) {
-    const { data: existing } = await admin.from("mosque_receipts").select("id, storage_path").eq("transaction_id", txIds[0]).maybeSingle();
-    if (existing) {
-      const { data: signed } = await admin.storage.from("mosque-receipts").createSignedUrl(existing.storage_path, 3600);
-      return json({ receiptId: existing.id, url: signed?.signedUrl ?? null, amount: total });
+  // ── 4. Legal gates (fail closed) ──────────────────────────────────────────
+  if (isTaxReceipt(kind)) {
+    if (!mosque.can_issue_tax_receipts) return json({ error: "receipts_not_allowed" }, 422);
+    if (!regimeRow || !regimeRow.supported) {
+      return json({ error: "regime_unsupported", country }, 422);
+    }
+    if (regimeRow.kind !== "receipt") {
+      return json({ error: "regime_not_receipt_based", country, regime: regimeRow.kind }, 422);
+    }
+    if (txIds.length === 0 && year >= new Date().getFullYear()) {
+      return json({ error: "year_not_closed", year }, 422);
+    }
+    if (txIds.length === 1 && regimeRow.annual_only) {
+      return json({ error: "annual_only", country }, 422);
     }
   }
 
-  const { data: donor } = await admin.from("profiles").select("name").eq("id", donorId).maybeSingle();
-  const { data: member } = await admin.from("mosque_members").select("first_name, last_name, email").eq("mosque_id", mosqueId).eq("user_id", donorId).maybeSingle();
-  const { data: authUser } = await admin.auth.admin.getUserById(donorId);
-  const donorName = member ? `${member.first_name} ${member.last_name}` : donor?.name ?? authUser?.user?.email ?? "Donateur";
+  const renderer = pickRenderer(country, kind);
+  if (!renderer) return json({ error: "regime_unsupported", country }, 422);
 
-  // Receipt number: <mosque>-<year>-<seq>
-  const { count } = await admin.from("mosque_receipts").select("id", { count: "exact", head: true }).eq("mosque_id", mosqueId).eq("year", year);
-  const number = `${mosqueId}-${year}-${String((count ?? 0) + 1).padStart(4, "0")}`;
+  // ── 5. Idempotency: an existing live document wins ────────────────────────
+  const existingQuery = admin
+    .from("mosque_receipts")
+    .select("id, number, storage_path, amount")
+    .eq("kind", kind)
+    .is("revoked_at", null);
+  const { data: existing } = txIds.length === 1
+    ? await existingQuery.eq("transaction_id", txIds[0]).maybeSingle()
+    : await existingQuery
+      .eq("mosque_id", mosqueId)
+      .eq("user_id", donorId)
+      .eq("year", year)
+      .is("transaction_id", null)
+      .maybeSingle();
 
-  // PDF
-  const pdf = await PDFDocument.create();
-  const page = pdf.addPage([595, 842]);
-  const font = await pdf.embedFont(StandardFonts.Helvetica);
-  const bold = await pdf.embedFont(StandardFonts.HelveticaBold);
-  let y = 790;
-  const line = (text: string, size = 11, f = font, color = rgb(0.1, 0.1, 0.1)) => {
-    page.drawText(text, { x: 50, y, size, font: f, color });
-    y -= size + 8;
-  };
-  line("REÇU AU TITRE DES DONS", 18, bold);
-  line("à certains organismes d'intérêt général (articles 200, 238 bis et 978 du CGI)", 9);
-  y -= 10;
-  line(`Numéro d'ordre du reçu : ${number}`, 11, bold);
-  y -= 10;
-  line("BÉNÉFICIAIRE", 12, bold);
-  line(mosque.legal_name ?? mosque.name);
-  line([mosque.address_line, [mosque.postal_code, mosque.city].filter(Boolean).join(" ")].filter(Boolean).join(", "));
-  if (mosque.rna) line(`RNA : ${mosque.rna}`);
-  if (mosque.siren) line(`SIREN : ${mosque.siren}`);
-  line("Objet : association cultuelle / d'intérêt général — culte musulman", 10);
-  y -= 10;
-  line("DONATEUR", 12, bold);
-  line(donorName);
-  if (member?.email ?? authUser?.user?.email) line(member?.email ?? authUser?.user?.email ?? "");
-  y -= 10;
-  line(`Le bénéficiaire reconnaît avoir reçu au titre des dons et versements ouvrant droit à réduction d'impôt`, 10);
-  line(`la somme de : ${money(total)}`, 14, bold);
-  line(`Somme en toutes lettres : ${total.toFixed(2)} euros`, 10);
-  line(txIds.length === 1 ? `Date du versement : ${new Date(txs[0].created_at).toLocaleDateString("fr-FR")}` : `Période : année ${year} (${txs.length} versement(s))`, 10);
-  line("Nature du don : numéraire — Mode de versement : carte bancaire / paiement en ligne", 10);
-  line("Le bénéficiaire certifie sur l'honneur que les dons et versements qu'il reçoit ouvrent droit à la réduction d'impôt", 9);
-  line("prévue à l'article 200 du CGI (66 % du montant dans la limite de 20 % du revenu imposable).", 9);
-  y -= 20;
-  if (txIds.length > 1) {
-    line("Détail des versements", 11, bold);
-    for (const t of txs) line(`${new Date(t.created_at).toLocaleDateString("fr-FR")}    ${money(Number(t.amount_total))}    ${t.type}`, 9);
+  // A yearly attestation for the RUNNING year goes stale on the next gift, so
+  // it is reissued rather than reused. A tax receipt is never in that case: it
+  // is only issuable once the year is closed.
+  const stale = existing && !isTaxReceipt(kind) && txIds.length === 0 && year >= new Date().getFullYear();
+
+  if (existing && !stale) {
+    const { data: signed } = await admin.storage
+      .from(BUCKET)
+      .createSignedUrl(existing.storage_path, SIGNED_URL_TTL);
+    return json({
+      receiptId: existing.id,
+      number: existing.number,
+      amount: Number(existing.amount),
+      kind,
+      url: signed?.signedUrl ?? null,
+      reused: true,
+    });
   }
-  y = 80;
-  line(`Fait le ${new Date().toLocaleDateString("fr-FR")} — document généré par Nour pour le compte de ${mosque.name}.`, 8, font, rgb(0.4, 0.4, 0.4));
-  line("La responsabilité de l'émission de ce reçu incombe à l'association bénéficiaire.", 8, font, rgb(0.4, 0.4, 0.4));
 
-  const bytes = await pdf.save();
-  const path = `${mosqueId}/${donorId}/${number}.pdf`;
-  const { error: upErr } = await admin.storage.from("mosque-receipts").upload(path, bytes, { contentType: "application/pdf", upsert: true });
+  if (stale && existing) {
+    // Documents are never deleted, only superseded: the number stays burnt.
+    await admin
+      .from("mosque_receipts")
+      .update({ revoked_at: new Date().toISOString(), revoked_reason: "superseded" })
+      .eq("id", existing.id);
+  }
+
+  // ── 6. Gifts ──────────────────────────────────────────────────────────────
+  let q = admin
+    .from("transactions")
+    .select("id, amount_total, created_at, type, currency")
+    .eq("mosque_id", mosqueId)
+    .eq("user_id", donorId)
+    .eq("status", "succeeded");
+  q = txIds.length
+    ? q.in("id", txIds)
+    : q.gte("created_at", `${year}-01-01`).lt("created_at", `${year + 1}-01-01`);
+  const { data: txs } = await q.order("created_at");
+  if (!txs || txs.length === 0) return json({ error: "no_donations" }, 404);
+
+  const rows = txs as Array<Record<string, unknown>>;
+  const currencies: string[] = [
+    ...new Set(rows.map((t) => String(t.currency ?? "EUR").toUpperCase())),
+  ];
+  if (currencies.length > 1) return json({ error: "mixed_currencies", currencies }, 422);
+  const currency: string = currencies[0] ?? "EUR";
+
+  const gifts: Gift[] = rows.map((t) => ({
+    date: String(t.created_at),
+    amount: Number(t.amount_total),
+    type: String(t.type ?? ""),
+  }));
+  const total = gifts.reduce((s, g) => s + g.amount, 0);
+
+  if (isTaxReceipt(kind) && regimeRow?.min_amount && total < Number(regimeRow.min_amount)) {
+    return json({ error: "below_threshold", min: Number(regimeRow.min_amount), currency }, 422);
+  }
+
+  // ── 7. Donor identity ─────────────────────────────────────────────────────
+  const [{ data: taxProfile }, { data: member }, { data: profile }] = await Promise.all([
+    admin.from("donor_tax_profiles").select("*").eq("user_id", donorId).maybeSingle(),
+    admin
+      .from("mosque_members")
+      .select("first_name, last_name, email")
+      .eq("mosque_id", mosqueId)
+      .eq("user_id", donorId)
+      .maybeSingle(),
+    admin.from("profiles").select("name").eq("id", donorId).maybeSingle(),
+  ]);
+  const { data: authUser } = await admin.auth.admin.getUserById(donorId);
+  const email = member?.email ?? authUser?.user?.email ?? null;
+
+  const donor: Donor = {
+    name: taxProfile?.full_name ??
+      (member ? `${member.first_name} ${member.last_name}` : null) ??
+      profile?.name ??
+      email ??
+      "",
+    email,
+    addressLine: taxProfile?.address_line ?? null,
+    postalCode: taxProfile?.postal_code ?? null,
+    city: taxProfile?.city ?? null,
+    countryCode: taxProfile?.country_code ?? null,
+  };
+
+  // ── 8. Issuer, including the signature image ──────────────────────────────
+  const registrations: Record<string, string> = {
+    ...(mosque.legal_registrations ?? {}),
+  };
+  if (mosque.rna && !registrations.rna) registrations.rna = mosque.rna;
+  if (mosque.siren && !registrations.siren) registrations.siren = mosque.siren;
+
+  let signatureImage: Issuer["signatureImage"] = null;
+  if (mosque.signature_path) {
+    const { data: blob } = await admin.storage.from("mosque-legal").download(mosque.signature_path);
+    if (blob) {
+      signatureImage = {
+        bytes: new Uint8Array(await blob.arrayBuffer()),
+        mime: blob.type || (mosque.signature_path.endsWith(".png") ? "image/png" : "image/jpeg"),
+      };
+    }
+  }
+
+  const issuer: Issuer = {
+    id: mosque.id,
+    name: mosque.name,
+    legalName: mosque.legal_name,
+    addressLine: mosque.address_line,
+    postalCode: mosque.postal_code,
+    city: mosque.city,
+    countryCode: country,
+    registrations,
+    signatoryName: mosque.signatory_name,
+    signatoryRole: mosque.signatory_role,
+    signatureImage,
+  };
+
+  const regime: RegimeInfo = {
+    countryCode: country,
+    kind: String(regimeRow?.kind ?? "none"),
+    templateKey: renderer.templateKey,
+    templateVersion: renderer.templateVersion,
+    legalRef: regimeRow?.legal_ref ?? null,
+    locale: String(regimeRow?.locale ?? "en"),
+    currency,
+    requiresSignature: Boolean(regimeRow?.requires_signature),
+    requiresDonorAddress: Boolean(regimeRow?.requires_donor_address),
+  };
+
+  const ctx: ReceiptContext = {
+    kind,
+    issuer,
+    donor,
+    gifts,
+    total,
+    currency,
+    year,
+    number: "",
+    locale: regime.locale,
+    regime,
+    issuedAt: new Date(),
+    single: txIds.length === 1,
+  };
+
+  // ── 9. Completeness, before anything is written ───────────────────────────
+  const problems = renderer.validate(ctx);
+  if (problems.length) {
+    const donorSide = problems.filter((p) => p.startsWith("donor:"));
+    return json(
+      {
+        error: donorSide.length === problems.length ? "incomplete_donor_data" : "incomplete_issuer_data",
+        fields: problems,
+      },
+      422,
+    );
+  }
+
+  // ── 10. Number, render, store, persist ────────────────────────────────────
+  const { data: number, error: numErr } = await admin.rpc("fn_next_mosque_receipt_number", {
+    p_mosque_id: mosqueId,
+    p_year: year,
+  });
+  if (numErr || !number) return json({ error: "db_error", detail: numErr?.message }, 500);
+  ctx.number = String(number);
+
+  let bytes: Uint8Array;
+  try {
+    bytes = await renderer.render(ctx);
+  } catch (e) {
+    return json({ error: "render_failed", detail: String(e) }, 500);
+  }
+
+  const path = `${mosqueId}/${donorId}/${ctx.number}.pdf`;
+  const { error: upErr } = await admin.storage
+    .from(BUCKET)
+    .upload(path, bytes, { contentType: "application/pdf", upsert: true });
   if (upErr) return json({ error: "storage_error", detail: upErr.message }, 500);
 
   const { data: receipt, error: rErr } = await admin
     .from("mosque_receipts")
-    .insert({ mosque_id: mosqueId, user_id: donorId, transaction_id: txIds.length === 1 ? txIds[0] : null, year, number, amount: total, storage_path: path })
+    .insert({
+      mosque_id: mosqueId,
+      user_id: donorId,
+      transaction_id: txIds.length === 1 ? txIds[0] : null,
+      year,
+      number: ctx.number,
+      amount: total,
+      currency,
+      storage_path: path,
+      kind,
+      country_code: country,
+      template_key: renderer.templateKey,
+      template_version: renderer.templateVersion,
+      issuer_snapshot: {
+        legal_name: issuer.legalName,
+        address_line: issuer.addressLine,
+        postal_code: issuer.postalCode,
+        city: issuer.city,
+        registrations,
+        signatory_name: issuer.signatoryName,
+        signatory_role: issuer.signatoryRole,
+        legal_ref: regime.legalRef,
+      },
+    })
     .select("id")
     .single();
-  if (rErr) return json({ error: "db_error", detail: rErr.message }, 500);
 
-  const { data: signed } = await admin.storage.from("mosque-receipts").createSignedUrl(path, 3600);
-  return json({ receiptId: receipt.id, number, amount: total, url: signed?.signedUrl ?? null });
+  if (rErr) {
+    // Never leave an unreferenced document behind.
+    await admin.storage.from(BUCKET).remove([path]);
+    return json({ error: "db_error", detail: rErr.message }, 500);
+  }
+
+  const { data: signed } = await admin.storage.from(BUCKET).createSignedUrl(path, SIGNED_URL_TTL);
+  return json({
+    receiptId: receipt.id,
+    number: ctx.number,
+    amount: total,
+    currency,
+    kind,
+    url: signed?.signedUrl ?? null,
+  });
 });

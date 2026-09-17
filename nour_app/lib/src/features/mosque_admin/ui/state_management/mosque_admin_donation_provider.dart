@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/utils/state_management/app_events.dart';
@@ -18,6 +20,10 @@ class MosqueAdminDonationState extends Equatable {
   final MosqueCampaignSettings? campaignSettings;
   final List<MosqueCampaignModel> campaigns;
   final MosqueDonationStats? stats;
+
+  /// What the mosque's country allows for tax receipts + what is still missing.
+  /// docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+  final MosqueTaxReadiness? taxReadiness;
   final int year;
   final bool busy;
 
@@ -29,6 +35,7 @@ class MosqueAdminDonationState extends Equatable {
     this.campaignSettings,
     this.campaigns = const [],
     this.stats,
+    this.taxReadiness,
     this.year = 0,
     this.busy = false,
   });
@@ -46,6 +53,7 @@ class MosqueAdminDonationState extends Equatable {
     MosqueCampaignSettings? campaignSettings,
     List<MosqueCampaignModel>? campaigns,
     MosqueDonationStats? stats,
+    MosqueTaxReadiness? taxReadiness,
     int? year,
     bool? busy,
   }) =>
@@ -57,12 +65,14 @@ class MosqueAdminDonationState extends Equatable {
         campaignSettings: campaignSettings ?? this.campaignSettings,
         campaigns: campaigns ?? this.campaigns,
         stats: stats ?? this.stats,
+        taxReadiness: taxReadiness ?? this.taxReadiness,
         year: year ?? this.year,
         busy: busy ?? this.busy,
       );
 
   @override
-  List<Object?> get props => [isLoading, loaded, stripe, settings, campaignSettings, campaigns, stats, year, busy];
+  List<Object?> get props =>
+      [isLoading, loaded, stripe, settings, campaignSettings, campaigns, stats, taxReadiness, year, busy];
 }
 
 final mosqueAdminDonationProvider = StateNotifierProvider<MosqueAdminDonationPresenter, MosqueAdminDonationState>((ref) {
@@ -104,6 +114,7 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
 
     final settingsRes = await repo.getDonationSettings(id);
     final campaignSettingsRes = await repo.getCampaignSettings(id);
+    final readinessRes = await repo.getTaxReadiness(id);
     final campaignsRes = await repo.getCampaigns(id);
     final statsRes = stripe.hasAccount ? await repo.getDonationStats(id, year: state.year) : null;
     if (!mounted) return;
@@ -115,6 +126,10 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
       settings: settingsRes.when((v) => v, (_) => state.settings ?? MosqueDonationSettings(mosqueId: id)),
       campaignSettings: campaignSettingsRes.when((v) => v, (_) => state.campaignSettings ?? MosqueCampaignSettings(mosqueId: id)),
       campaigns: campaignsRes.when((v) => v, (_) => state.campaigns),
+      taxReadiness: readinessRes.when((v) => v, (e) {
+        talker.error('[mosque-admin] tax readiness', e);
+        return state.taxReadiness;
+      }),
       stats: statsRes?.when((v) => v, (e) {
         talker.error('[mosque-admin] stats', e);
         return state.stats;
@@ -132,14 +147,91 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
   }
 
   /// Returns the hosted onboarding URL (Stripe Express).
-  Future<String?> startStripeOnboarding({required bool canIssueTaxReceipts}) async {
+  ///
+  /// It no longer carries the tax-receipt right: that is a legal attribute with
+  /// its own audited entry point ([setTaxReceipts]), not a payments one.
+  Future<String?> startStripeOnboarding() async {
     final id = _mosqueId;
     if (id == null || state.busy) return null;
     state = state.copyWith(busy: true);
-    final res = await repo.startStripeOnboarding(id, canIssueTaxReceipts: canIssueTaxReceipts);
+    final res = await repo.startStripeOnboarding(id);
     if (!mounted) return null;
     state = state.copyWith(busy: false);
     return res.when((url) => url, (e) {
+      appEvents.send(ShowErrorEvent(e));
+      return null;
+    });
+  }
+
+  // ── Tax receipts ──────────────────────────────────────────────────────────
+
+  Future<void> refreshTaxReadiness() async {
+    final id = _mosqueId;
+    if (id == null) return;
+    final res = await repo.getTaxReadiness(id);
+    if (!mounted) return;
+    res.when((v) => state = state.copyWith(taxReadiness: v), (e) => talker.error('[mosque-admin] tax readiness', e));
+  }
+
+  /// Declares (or withdraws) the right to issue tax receipts. Every call is
+  /// recorded server-side with the caller and the version of the legal text
+  /// they accepted; [declarationVersion] is that version.
+  Future<bool> setTaxReceipts(bool enabled, {required String declarationVersion}) async {
+    final id = _mosqueId;
+    if (id == null || state.busy) return false;
+    state = state.copyWith(busy: true);
+    final res = await repo.setTaxReceipts(id, enabled, declarationVersion: declarationVersion);
+    if (!mounted) return false;
+    state = state.copyWith(busy: false);
+    return await res.when((_) async {
+      // The flag lives on the mosque row and gates several screens.
+      await ref.read(myMosqueProvider.notifier).load(silent: true);
+      await refreshTaxReadiness();
+      return true;
+    }, (e) async {
+      appEvents.send(ShowErrorEvent(e));
+      return false;
+    });
+  }
+
+  Future<bool> saveSignatory({String? name, String? role, String? signaturePath}) async {
+    final id = _mosqueId;
+    if (id == null || state.busy) return false;
+    state = state.copyWith(busy: true);
+    final res = await repo.saveSignatory(id, name: name, role: role, signaturePath: signaturePath);
+    if (!mounted) return false;
+    state = state.copyWith(busy: false);
+    return await res.when((_) async {
+      await ref.read(myMosqueProvider.notifier).load(silent: true);
+      await refreshTaxReadiness();
+      return true;
+    }, (e) async {
+      appEvents.send(ShowErrorEvent(e));
+      return false;
+    });
+  }
+
+  /// Uploads the signature image and stores its path in one go.
+  Future<bool> uploadSignature(File file, {String? name, String? role}) async {
+    final id = _mosqueId;
+    if (id == null || state.busy) return false;
+    state = state.copyWith(busy: true);
+    final res = await repo.uploadSignature(mosqueId: id, file: file);
+    if (!mounted) return false;
+    final path = res.when((p) => p, (e) {
+      appEvents.send(ShowErrorEvent(e));
+      return null;
+    });
+    state = state.copyWith(busy: false);
+    if (path == null) return false;
+    return saveSignatory(name: name, role: role, signaturePath: path);
+  }
+
+  Future<MosqueTaxYearSummary?> taxYearSummary(int year) async {
+    final id = _mosqueId;
+    if (id == null) return null;
+    final res = await repo.getTaxYearSummary(id, year);
+    return res.when((v) => v, (e) {
       appEvents.send(ShowErrorEvent(e));
       return null;
     });

@@ -1,11 +1,10 @@
 {
-	"appLanguage": "English",
-
-	"l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"common_continue": "Continue",
-	"common_skip": "Skip",
-	"common_maybe_later": "Maybe later",
-	"common_save": "Save",
+  "appLanguage": "English",
+  "l10nTexts": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TEXTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "common_continue": "Continue",
+  "common_skip": "Skip",
+  "common_maybe_later": "Maybe later",
+  "common_save": "Save",
   "common_assalamu_alaykum": "As-salamu Alaykum",
   "common_monday_tag": "M",
   "common_tuesday_tag": "T",
@@ -14,152 +13,123 @@
   "common_friday_tag": "F",
   "common_saturday_tag": "S",
   "common_sunday_tag": "S",
-
-
-	"l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"nav_home": "Home",
-	"nav_source": "Source",
-	"nav_impact": "Impact",
-	"nav_tools": "Tools",
-	"nav_dhikr": "Dhikr",
-
-
-	"l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "l10nNavBar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NAV BAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "nav_home": "Home",
+  "nav_source": "Source",
+  "nav_impact": "Impact",
+  "nav_tools": "Tools",
+  "nav_dhikr": "Dhikr",
+  "l10nSettings": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SETTINGS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "settings_app": "Settings",
   "settings_general": "General",
   "settings_language": "Language",
   "settings_language_info": "Select your preferred language for the application interface.",
   "settings_favorite_reciter": "Favourite reciter",
   "settings_favorite_reciter_info": "Choose the reciter used for Quran audio playback.",
-
   "settings_theme": "Theme",
   "settings_theme_system": "System",
   "settings_theme_light": "Light",
   "settings_theme_dark": "Dark",
   "settings_theme_info": "Select your preferred theme for the application interface.",
-
   "settings_term_of_use": "Terms of Use",
   "settings_privacy_policy": "Privacy Policy",
   "settings_support": "Contact Support",
   "settings_delete_all_data": "Delete All Data",
   "settings_delete_all_data_warning": "This action is irreversible and will delete all your tracking data from this device.",
-
-
-	"l10nAbout": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ABOUT ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "l10nAbout": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ABOUT ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "about": "About",
   "about_project": "About the Project",
-
-
-	"l10nWarning": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ WARNING ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "l10nWarning": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ WARNING ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "warning_are_you_sure": "Are you sure?",
-
-
-	"l10nOnboarding": "☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠",
-	"onboarding": "Onboarding",
-	"onboarding_skip": "Skip",
-	"onboarding_next": "Next",
-	"onboarding_start": "Get started",
-	"onboarding_lets_get_started": "Let's get started",
-	"onboarding_allow_notifications": "Allow notifications",
-	"onboarding_maybe_later": "Maybe later",
-
-	"onboarding_screen_1_title": "Welcome to Nour",
-	"onboarding_screen_1_description": "Your premium companion for a beautiful spiritual journey",
-
-	"onboarding_screen_2_title": "Everything you need",
-	"onboarding_screen_2_description": "Daily practice, sacred texts, and tools — all in one place.",
-	"onboarding_screen_2_card_streak_reward": "Streak reward",
-	"onboarding_screen_2_card_ajr_counter": "Ajr counter",
-	"onboarding_screen_2_card_daily_dhikr": "Daily Dhikr",
-
-	"onboarding_screen_3_title": "Build a beautiful daily routine",
-	"onboarding_screen_3_description": "Earn ajr through dhikr, find peace in the Qur'an, and grow in your faith.",
-	"onboarding_screen_3_dhikr_translation": "Glory be to Allah",
-
-	"onboarding_screen_4_title": "Where are you on your journey?",
-	"onboarding_screen_4_description": "*",
-
-	"onboarding_screen_5_title": "How much time daily?",
-	"onboarding_screen_5_description": "Choose a goal that fits your life.",
-	"onboarding_screen_5_minutes_per_day": "minutes per day",
-
-	"onboarding_screen_6_title": "Gentle reminders",
-	"onboarding_screen_6_description": "We'll only send what you allow.",
-
-	"onboarding_screen_7_title": "Choose a voice",
-	"onboarding_screen_7_description": "Choose your favourite reciter",
-	"onboarding_screen_7_reciter_artist": "Quran — Al-Fatiha 1:1",
-
-	"onboarding_screen_8_title": "Choose your language",
-	"onboarding_screen_8_description": "*",
-	"onboarding_screen_8_lang_en": "English",
-	"onboarding_screen_8_lang_ar": "العربيه",
-	"onboarding_screen_8_lang_fr": "Français",
-	"onboarding_screen_8_lang_de": "Deutsch",
-	"onboarding_screen_8_lang_nl": "Nederlands",
-	"onboarding_screen_8_lang_tr": "Türkçe",
-	"onboarding_screen_8_lang_id": "Bahasa Indonesia",
-	"onboarding_screen_8_lang_ur": "اردو",
-	"onboarding_screen_8_lang_bn": "বাংলা",
-	"onboarding_screen_8_lang_ms": "Bahasa Melayu",
-	"onboarding_screen_8_lang_ru": "Русский",
-
-	"onboarding_screen_9_title": "Tell us about yourself",
-	"onboarding_screen_9_description": "To save your daily progress",
-	"onboarding_screen_9_name_label": "Your name",
-	"onboarding_screen_9_name_hint": "Enter your name",
-	"onboarding_screen_9_gender_question": "What's your gender?",
-	"onboarding_screen_9_gender_male": "Male",
-	"onboarding_screen_9_gender_female": "Female",
-	"onboarding_screen_9_gender_skip": "Skip",
-
-	"level_begining_title": "Begining",
-	"level_begining_description": "Just starting or learning",
-	"level_growing_title": "Growing",
-	"level_growing_description": "Practicing and learning more",
-	"level_established_title": "Established",
-	"level_established_description": "Committed daily practice",
-	"level_returning_title": "Returning",
-	"level_returning_description": "Coming back to my faith",
-
-
-	"l10nNotifications": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"notifications_prayer_times_label": "Prayer times (5 prayers)",
-	"notifications_morning_adhkar_label": "Morning adkar reminder",
-	"notifications_evening_adhkar_label": "Evening adkar reminder",
-	"notifications_daily_ayah_label": "Daily ayah notification",
-
-	"notifications_prayer_fajr": "Fajr",
-	"notifications_prayer_dhuhr": "Dhuhr",
-	"notifications_prayer_asr": "Asr",
-	"notifications_prayer_maghrib": "Maghrib",
-	"notifications_prayer_isha": "Isha",
-	"notifications_prayer_body": "It is time for {prayer} prayer.",
-	"@notifications_prayer_body": {
-		"placeholders": {
-			"prayer": { "type": "String" }
-		}
-	},
-
-	"notifications_morning_adhkar_title": "Morning Adhkar",
-	"notifications_morning_adhkar_body": "Time for your morning adhkar.",
-	"notifications_evening_adhkar_title": "Evening Adhkar",
-	"notifications_evening_adhkar_body": "Time for your evening adhkar.",
-	"notifications_daily_ayah_title": "Daily Ayah",
-	"notifications_daily_ayah_body": "A new ayah is waiting for you.",
-	"notifications_error_prayers_schedule": "Could not schedule prayer notifications.",
-	"notifications_error_adhkar_schedule": "Could not schedule adhkar notifications.",
-
-
-	"l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"success_all_data_deleted": "All your progress data has been successfully deleted from this device!",
-
-
-	"l10nErrors": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"error_db_failure": "DB Error",
-	"error_unknown": "Something went wrong. Please try again.",
+  "l10nOnboarding": "☠☠☠☠☠☠☠☠☠☠ ONBOARDING ☠☠☠☠☠☠☠☠☠☠",
+  "onboarding": "Onboarding",
+  "onboarding_skip": "Skip",
+  "onboarding_next": "Next",
+  "onboarding_start": "Get started",
+  "onboarding_lets_get_started": "Let's get started",
+  "onboarding_allow_notifications": "Allow notifications",
+  "onboarding_maybe_later": "Maybe later",
+  "onboarding_screen_1_title": "Welcome to Nour",
+  "onboarding_screen_1_description": "Your premium companion for a beautiful spiritual journey",
+  "onboarding_screen_2_title": "Everything you need",
+  "onboarding_screen_2_description": "Daily practice, sacred texts, and tools — all in one place.",
+  "onboarding_screen_2_card_streak_reward": "Streak reward",
+  "onboarding_screen_2_card_ajr_counter": "Ajr counter",
+  "onboarding_screen_2_card_daily_dhikr": "Daily Dhikr",
+  "onboarding_screen_3_title": "Build a beautiful daily routine",
+  "onboarding_screen_3_description": "Earn ajr through dhikr, find peace in the Qur'an, and grow in your faith.",
+  "onboarding_screen_3_dhikr_translation": "Glory be to Allah",
+  "onboarding_screen_4_title": "Where are you on your journey?",
+  "onboarding_screen_4_description": "*",
+  "onboarding_screen_5_title": "How much time daily?",
+  "onboarding_screen_5_description": "Choose a goal that fits your life.",
+  "onboarding_screen_5_minutes_per_day": "minutes per day",
+  "onboarding_screen_6_title": "Gentle reminders",
+  "onboarding_screen_6_description": "We'll only send what you allow.",
+  "onboarding_screen_7_title": "Choose a voice",
+  "onboarding_screen_7_description": "Choose your favourite reciter",
+  "onboarding_screen_7_reciter_artist": "Quran — Al-Fatiha 1:1",
+  "onboarding_screen_8_title": "Choose your language",
+  "onboarding_screen_8_description": "*",
+  "onboarding_screen_8_lang_en": "English",
+  "onboarding_screen_8_lang_ar": "العربيه",
+  "onboarding_screen_8_lang_fr": "Français",
+  "onboarding_screen_8_lang_de": "Deutsch",
+  "onboarding_screen_8_lang_nl": "Nederlands",
+  "onboarding_screen_8_lang_tr": "Türkçe",
+  "onboarding_screen_8_lang_id": "Bahasa Indonesia",
+  "onboarding_screen_8_lang_ur": "اردو",
+  "onboarding_screen_8_lang_bn": "বাংলা",
+  "onboarding_screen_8_lang_ms": "Bahasa Melayu",
+  "onboarding_screen_8_lang_ru": "Русский",
+  "onboarding_screen_9_title": "Tell us about yourself",
+  "onboarding_screen_9_description": "To save your daily progress",
+  "onboarding_screen_9_name_label": "Your name",
+  "onboarding_screen_9_name_hint": "Enter your name",
+  "onboarding_screen_9_gender_question": "What's your gender?",
+  "onboarding_screen_9_gender_male": "Male",
+  "onboarding_screen_9_gender_female": "Female",
+  "onboarding_screen_9_gender_skip": "Skip",
+  "level_begining_title": "Begining",
+  "level_begining_description": "Just starting or learning",
+  "level_growing_title": "Growing",
+  "level_growing_description": "Practicing and learning more",
+  "level_established_title": "Established",
+  "level_established_description": "Committed daily practice",
+  "level_returning_title": "Returning",
+  "level_returning_description": "Coming back to my faith",
+  "l10nNotifications": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ NOTIFICATIONS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "notifications_prayer_times_label": "Prayer times (5 prayers)",
+  "notifications_morning_adhkar_label": "Morning adkar reminder",
+  "notifications_evening_adhkar_label": "Evening adkar reminder",
+  "notifications_daily_ayah_label": "Daily ayah notification",
+  "notifications_prayer_fajr": "Fajr",
+  "notifications_prayer_dhuhr": "Dhuhr",
+  "notifications_prayer_asr": "Asr",
+  "notifications_prayer_maghrib": "Maghrib",
+  "notifications_prayer_isha": "Isha",
+  "notifications_prayer_body": "It is time for {prayer} prayer.",
+  "@notifications_prayer_body": {
+    "placeholders": {
+      "prayer": {
+        "type": "String"
+      }
+    }
+  },
+  "notifications_morning_adhkar_title": "Morning Adhkar",
+  "notifications_morning_adhkar_body": "Time for your morning adhkar.",
+  "notifications_evening_adhkar_title": "Evening Adhkar",
+  "notifications_evening_adhkar_body": "Time for your evening adhkar.",
+  "notifications_daily_ayah_title": "Daily Ayah",
+  "notifications_daily_ayah_body": "A new ayah is waiting for you.",
+  "notifications_error_prayers_schedule": "Could not schedule prayer notifications.",
+  "notifications_error_adhkar_schedule": "Could not schedule adhkar notifications.",
+  "l10nSuccess": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ SUCCESS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "success_all_data_deleted": "All your progress data has been successfully deleted from this device!",
+  "l10nErrors": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "error_db_failure": "DB Error",
+  "error_unknown": "Something went wrong. Please try again.",
   "error_server_failure": "Something went wrong. Please check your internet connection",
-
   "l10nAuth": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ AUTH ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "auth_connect_title": "Let’s connect your account",
   "auth_connect_subtitle": "So you don't lose your data and daily progress",
@@ -177,7 +147,6 @@
   "auth_email_required": "Please enter your email",
   "auth_email_invalid": "Please enter a valid email",
   "auth_link_success": "Your account is connected",
-
   "profile_title": "Profile",
   "profile_guest": "Guest",
   "profile_connect_account": "Connect my account",
@@ -218,32 +187,42 @@
   "impact_donors": "{count} people have donated",
   "@impact_donors": {
     "placeholders": {
-      "count": { "type": "String" }
+      "count": {
+        "type": "String"
+      }
     }
   },
   "impact_time_just_now": "Just now",
   "impact_time_hours_ago": "{hours} hour(s) ago",
   "@impact_time_hours_ago": {
     "placeholders": {
-      "hours": { "type": "int" }
+      "hours": {
+        "type": "int"
+      }
     }
   },
   "impact_time_days_ago": "{days} day(s) ago",
   "@impact_time_days_ago": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
   "impact_time_weeks_ago": "{weeks} week(s) ago",
   "@impact_time_weeks_ago": {
     "placeholders": {
-      "weeks": { "type": "int" }
+      "weeks": {
+        "type": "int"
+      }
     }
   },
   "impact_time_months_ago": "{months} month(s) ago",
   "@impact_time_months_ago": {
     "placeholders": {
-      "months": { "type": "int" }
+      "months": {
+        "type": "int"
+      }
     }
   },
   "profile_reminders": "Reminders",
@@ -276,14 +255,17 @@
   "profile_delete_account_message": "All your data will be permanently deleted and cannot be recovered. Are you sure you want to continue?",
   "profile_delete_account_confirm": "Delete",
   "profile_delete_account_cancel": "Cancel",
-
   "l10nDashboard": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DASHBOARD ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dashboard_daily_dhikr_goal": "Daily Dhikr Goal",
   "dashboard_dhikr_goal_progress": "{current}/{goal}  dhikr per day",
   "@dashboard_dhikr_goal_progress": {
     "placeholders": {
-      "current": { "type": "int" },
-      "goal": { "type": "int" }
+      "current": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
     }
   },
   "dashboard_start_dhikr": "Start dhikr",
@@ -294,18 +276,21 @@
   "dashboard_see_all": "See all",
   "dashboard_impact_projects": "Nour impact",
   "dashboard_see_all_projects": "See all projects",
-
   "l10nRewards": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ REWARDS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "reward_streak_day_title": "Day {day}",
   "@reward_streak_day_title": {
     "placeholders": {
-      "day": { "type": "int" }
+      "day": {
+        "type": "int"
+      }
     }
   },
   "reward_streak_congrats": "Congratulations! Your streak is now at {count} day(s)",
   "@reward_streak_congrats": {
     "placeholders": {
-      "count": { "type": "int" }
+      "count": {
+        "type": "int"
+      }
     }
   },
   "reward_dhikr_title": "MashaAllah",
@@ -314,12 +299,15 @@
   "reward_dhikr_completed": "Dikr completed",
   "reward_alhamdulilah": "Alhamdulilah",
   "reward_go_further": "Go further in my practice",
-
   "quiz_question_progress": "Question {current} of {total}",
   "@quiz_question_progress": {
     "placeholders": {
-      "current": { "type": "int" },
-      "total": { "type": "int" }
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "quiz_validate": "Validate",
@@ -328,7 +316,9 @@
   "quiz_good_answer": "Good answer: {answer}",
   "@quiz_good_answer": {
     "placeholders": {
-      "answer": { "type": "String" }
+      "answer": {
+        "type": "String"
+      }
     }
   },
   "quiz_reward_title": "MashaAllah",
@@ -336,20 +326,28 @@
   "quiz_reward_subtitle": "You answered {correct} of {total} correctly",
   "@quiz_reward_subtitle": {
     "placeholders": {
-      "correct": { "type": "int" },
-      "total": { "type": "int" }
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
     }
   },
   "quiz_reward_perfect_subtitle": "You did a perfect quiz and answered all {total} correctly",
   "@quiz_reward_perfect_subtitle": {
     "placeholders": {
-      "total": { "type": "int" }
+      "total": {
+        "type": "int"
+      }
     }
   },
   "quiz_reward_bonus": "+{ajr} Ajr bonus",
   "@quiz_reward_bonus": {
     "placeholders": {
-      "ajr": { "type": "int" }
+      "ajr": {
+        "type": "int"
+      }
     }
   },
   "quiz_reward_score": "Score",
@@ -357,7 +355,6 @@
   "quiz_already_played_subtitle": "You've already completed today's quiz. A new one awaits tomorrow, inshaAllah.",
   "quiz_empty_title": "No quiz available",
   "quiz_empty_subtitle": "There are no questions for you right now. Please check back later.",
-
   "l10nDhikr": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ DHIKR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "dhikr_choose_title": "Choose Dhikr",
   "dhikr_continue_section": "Continue dhikr",
@@ -372,14 +369,12 @@
   "dhikr_quote_source": "Surah Al-Anfal 8:45",
   "dhikr_browse_all_adhkar": "Browse all adhkar",
   "dhikr_browse_all_adhkar_subtitle": "Morning, evening, situational du’as",
-
   "l10nAdhkar": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADHKAR ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "adhkar_all_title": "All Adhkar",
   "adhkar_search_hint": "Search",
   "adhkar_recommended_now": "Recommended now",
   "adhkar_no_results": "No matching adhkar",
   "adhkar_empty": "No adhkar here yet",
-
   "l10nTools": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ TOOLS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "tools_title": "Tools",
   "tools_daily_ayah": "Daily ayah",
@@ -391,7 +386,6 @@
   "tools_dhikr_counter": "Dhikr counter",
   "tools_zakat_calculator": "Zakat calculator",
   "tools_hijri_calendar": "Hijri calendar",
-
   "l10nQuran": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ QURAN / SOURCE ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
   "source_title": "Source",
   "source_quran": "Quran",
@@ -415,7 +409,6 @@
   "quran_transcription_unavailable": "Transcription isn’t available for this verse yet.",
   "quran_tafsir_title": "Tafsir",
   "quran_tafsir_note": "A detailed tafsir is on the way. Meanwhile, here is the meaning of the verse:",
-
   "hadith_title": "Hadith",
   "hadith_resume": "Resume",
   "hadith_done": "I'm done",
@@ -424,7 +417,6 @@
   "hadith_try_again": "Try again",
   "hadith_empty": "No hadiths available.",
   "hadith_explanation_title": "Explanation",
-
   "dua_title": "Dua",
   "dua_library_title": "Dua Library",
   "dua_done": "I'm done",
@@ -434,12 +426,13 @@
   "dua_error_subtitle": "We couldn’t load the duas right now.",
   "dua_try_again": "Try again",
   "dua_empty": "No duas available.",
-
   "prayer_times_title": "Prayer times",
   "prayer_times_calc_method": "Calculation method - {method}",
   "@prayer_times_calc_method": {
     "placeholders": {
-      "method": { "type": "String" }
+      "method": {
+        "type": "String"
+      }
     }
   },
   "prayer_times_method_sheet_title": "Calculation method",
@@ -447,28 +440,28 @@
   "prayer_times_jumua": "Jumu'a",
   "prayer_times_location_error": "We couldn't determine your location. Enable location access to see accurate prayer times.",
   "prayer_times_retry": "Try again",
-
   "qibla_distance_to_mecca": "{distance} km to Mecca",
   "@qibla_distance_to_mecca": {
     "placeholders": {
-      "distance": { "type": "String" }
+      "distance": {
+        "type": "String"
+      }
     }
   },
   "qibla_aligned": "Facing the Qibla",
   "qibla_sensor_error": "Your device doesn't have a compass sensor.",
   "qibla_locating": "Locating…",
-
   "hijri_today": "Today",
   "hijri_white_day": "White day",
   "hijri_coming_up": "Coming up",
   "hijri_in_days": "In {days} days",
   "@hijri_in_days": {
     "placeholders": {
-      "days": { "type": "int" }
+      "days": {
+        "type": "int"
+      }
     }
   },
-
-
   "calc_methods_comment": "Prayer-time calculation methods (name + description) for CalculationMethodType.",
   "calc_method_muslim_world_league_name": "Muslim World League",
   "calc_method_muslim_world_league_desc": "Muslim World League. Widely used across Europe, the Far East and parts of North America. Fajr 18°, Isha 17°.",
@@ -514,7 +507,6 @@
   "calc_method_russia_desc": "Spiritual Administration of Muslims of Russia. Fajr 16°, Isha 15°.",
   "calc_method_tunisia_name": "Tunisia",
   "calc_method_tunisia_desc": "Tunisian Ministry of Religious Affairs. Fajr and Isha at 18°.",
-
   "zakat_title": "Zakat calculator",
   "zakat_total_assets": "Total assets",
   "zakat_total_debts": "Total debts",
@@ -542,808 +534,1211 @@
   "zakat_field_other": "Other valuables",
   "zakat_nisab_threshold": "Nisab threshold",
   "zakat_api_unavailable": "Live zakat service unavailable — showing offline estimate.",
-
   "l10nStopLineDontTouch": "☠☠☠☠☠☠☠☠☠☠☠☠☠ Don't touch this line ☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"l10nApiErrors": "☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠",
-	"error_api_auth_anonymous_failed": "Anonymous sign-in failed. Please try again.",
-	"error_api_auth_start_failed": "Couldn't start sign-in. Please try again.",
-	"error_api_auth_check_email_failed": "Couldn't verify the email address. Please try again.",
-	"error_api_auth_code_verification_failed": "Code verification failed. Please check the code and try again.",
-	"error_api_auth_sign_in_cancelled": "Sign-in was cancelled.",
-	"error_api_auth_missing_google_token": "Missing Google ID token. Please try again.",
-	"error_api_auth_google_failed": "Google sign-in failed. Please try again.",
-	"error_api_auth_missing_apple_token": "Missing Apple ID token. Please try again.",
-	"error_api_auth_apple_failed": "Apple sign-in failed. Please try again.",
-	"error_api_auth_delete_failed": "Couldn't delete your account. Please try again.",
-	"error_api_user_not_authenticated": "You're not signed in. Please sign in and try again.",
-	"error_api_profile_avatar_upload_failed": "Couldn't upload your photo. Please try again.",
-	"error_api_profile_avatar_delete_failed": "Couldn't delete your photo. Please try again.",
-	"error_api_profile_invalid": "Couldn't load your profile. Please try again.",
-	"error_api_profile_load_failed": "Couldn't load your profile. Please try again.",
-	"error_api_profile_update_practice_time_failed": "Couldn't update your daily practice time.",
-	"error_api_profile_update_level_failed": "Couldn't update your level.",
-	"error_api_profile_update_name_failed": "Couldn't update your name.",
-	"error_api_profile_update_gender_failed": "Couldn't update your gender.",
-	"error_api_profile_update_onboarding_screen_failed": "Couldn't save your progress.",
-	"error_api_profile_complete_onboarding_failed": "Couldn't complete onboarding.",
-	"error_api_reward_streak_load_failed": "Couldn't load your streak.",
-	"error_api_reward_claim_failed": "Couldn't claim your reward.",
-	"error_api_quiz_unexpected_get_response": "Unexpected response while loading the quiz.",
-	"error_api_quiz_load_failed": "Couldn't load the quiz.",
-	"error_api_quiz_unexpected_submit_response": "Unexpected response while submitting the quiz.",
-	"error_api_quiz_submit_failed": "Couldn't submit the quiz.",
-	"error_api_favorites_ayahs_load_failed": "Couldn't load your favourite ayahs.",
-	"error_api_favorites_adhkars_load_failed": "Couldn't load your favourite adhkar.",
-	"error_api_favorites_duas_load_failed": "Couldn't load your favourite duas.",
-	"error_api_favorites_hadiths_load_failed": "Couldn't load your favourite hadiths.",
-	"error_api_favorites_projects_load_failed": "Couldn't load your favourite projects.",
-	"error_api_dua_load_failed": "Couldn't load duas.",
-	"error_api_dua_progress_load_failed": "Couldn't load your dua progress.",
-	"error_api_dua_progress_save_failed": "Couldn't save your dua progress.",
-	"error_api_dua_ajr_award_failed": "Couldn't record your daily dua reward.",
-	"error_api_dua_liked_load_failed": "Couldn't load your liked duas.",
-	"error_api_dua_like_failed": "Couldn't like this dua.",
-	"error_api_dua_unlike_failed": "Couldn't remove the like from this dua.",
-	"error_api_statistics_load_failed": "Couldn't load your statistics.",
-	"error_api_adhkar_categories_load_failed": "Couldn't load adhkar categories.",
-	"error_api_adhkar_subcategories_load_failed": "Couldn't load adhkar subcategories.",
-	"error_api_adhkars_load_failed": "Couldn't load adhkar.",
-	"error_api_dhikrs_load_failed": "Couldn't load dhikr.",
-	"error_api_dhikr_progress_load_failed": "Couldn't load your dhikr progress.",
-	"error_api_dhikr_ajr_load_failed": "Couldn't load your dhikr reward.",
-	"error_api_dhikr_progress_save_failed": "Couldn't save your dhikr progress.",
-	"error_api_hadith_collections_load_failed": "Couldn't load hadith collections.",
-	"error_api_hadiths_load_failed": "Couldn't load hadiths.",
-	"error_api_hadith_progress_load_failed": "Couldn't load your hadith progress.",
-	"error_api_hadith_progress_save_failed": "Couldn't save your hadith progress.",
-	"error_api_hadith_liked_load_failed": "Couldn't load your liked hadiths.",
-	"error_api_hadith_like_failed": "Couldn't like this hadith.",
-	"error_api_hadith_unlike_failed": "Couldn't remove the like from this hadith.",
-	"error_api_impact_categories_load_failed": "Couldn't load project categories.",
-	"error_api_impact_projects_load_failed": "Couldn't load projects.",
-	"error_api_impact_project_load_failed": "Couldn't load the project.",
-	"error_api_impact_add_favorite_failed": "Couldn't add to favourites.",
-	"error_api_impact_remove_favorite_failed": "Couldn't remove from favourites.",
-	"error_api_quran_progress_load_failed": "Couldn't load your Quran progress.",
-	"error_api_quran_progress_save_failed": "Couldn't save your Quran progress.",
-	"error_api_quran_liked_ayahs_load_failed": "Couldn't load your liked ayahs.",
-	"error_api_quran_ayah_ajr_award_failed": "Couldn't record your daily ayah reward.",
-	"error_api_quran_like_ayah_failed": "Couldn't like this ayah.",
-	"error_api_quran_transliteration_load_failed": "Couldn't load the transliteration.",
-	"error_api_quran_tafsir_load_failed": "Couldn't load the tafsir.",
-	"error_api_quran_unlike_ayah_failed": "Couldn't remove the like from this ayah.",
-
-	"l10nPayments": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"common_done": "Done",
-	"common_retry": "Try again",
-
-	"impact_donate": "Donate",
-	"impact_donate_or_zakat": "Donate or give Zakat",
-	"impact_transactions_title": "Transactions",
-	"impact_transactions_subtitle": "See how the collected funds were disbursed to the partner, with proof.",
-	"impact_transactions_empty": "No disbursements have been made for this project yet.",
-	"impact_transactions_distributed": "Distributed",
-
-	"donate_title": "Support this project",
-	"donate_type_donation": "Donation",
-	"donate_type_zakat": "Zakat",
-	"donate_amount_label": "Amount ({symbol})",
-	"@donate_amount_label": { "placeholders": { "symbol": { "type": "String" } } },
-	"donate_cover_fees": "Cover the processing fee",
-	"donate_cover_fees_hint": "Adds {fee} so the project receives the full amount.",
-	"@donate_cover_fees_hint": { "placeholders": { "fee": { "type": "String" } } },
-	"donate_button": "Pay {amount}",
-	"@donate_button": { "placeholders": { "amount": { "type": "String" } } },
-	"donate_button_empty": "Enter an amount",
-	"donate_processing_title": "Processing…",
-	"donate_processing_message": "We're confirming your payment. This only takes a moment.",
-	"donate_success_title": "Jazak Allahu khayran!",
-	"donate_success_message": "Your contribution has been received.",
-	"donate_failed_title": "Payment failed",
-	"donate_failed_message": "Your payment could not be completed. No charge was applied.",
-
-	"l10nAdmin": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"admin_panel_title": "Administration",
-	"admin_panel_subtitle": "Donations, payments and payouts",
-	"admin_analytics_title": "Transactions & donations",
-	"admin_total_donated": "Total donated",
-	"admin_total_donors": "Donors",
-	"admin_total_paid_out": "Paid out",
-	"admin_outstanding": "Outstanding",
-	"admin_tab_projects": "Projects",
-	"admin_tab_payouts": "Payouts",
-	"admin_tab_received": "Received",
-	"admin_record_payout": "Record payout",
-	"admin_empty_projects": "No projects yet.",
-	"admin_empty_payouts": "No payouts recorded yet.",
-	"admin_empty_received": "No transactions received yet.",
-	"admin_no_donations_yet": "No donations yet.",
-	"admin_donors_count": "{count} donors",
-	"@admin_donors_count": { "placeholders": { "count": { "type": "String" } } },
-	"admin_field_project": "Project",
-	"admin_field_type": "Type",
-	"admin_field_amount": "Amount",
-	"admin_field_method": "Method",
-	"admin_field_status": "Status",
-	"admin_field_reference": "Reference",
-	"admin_field_reference_hint": "Bank / Wise transfer reference",
-	"admin_field_note": "Note",
-	"admin_field_proof": "Proof of transfer",
-	"admin_add_proof": "Add a receipt image",
-	"admin_save_payout": "Save payout",
-	"payout_confirmed": "Confirmed",
-	"payout_sent": "Sent",
-	"payout_pending": "Pending",
-
-	"error_api_payment_intent_failed": "Couldn't start the payment. Please try again.",
-	"error_api_payment_sheet_failed": "The payment could not be completed.",
-	"error_api_payment_cancelled": "Payment cancelled.",
-	"error_api_payment_history_load_failed": "Couldn't load your donation history.",
-	"error_api_payment_project_transactions_load_failed": "Couldn't load this project's transactions.",
-	"error_api_admin_analytics_load_failed": "Couldn't load the analytics.",
-	"error_api_admin_payouts_load_failed": "Couldn't load the payouts.",
-	"error_api_admin_payout_create_failed": "Couldn't record the payout.",
-	"error_api_admin_payout_proof_upload_failed": "Couldn't upload the proof image.",
-	"error_api_admin_transactions_load_failed": "Couldn't load the transactions.",
-
-	"l10nPaymentsV2": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
-	"donate_sheet_title": "Donate how much?",
-	"donate_frequency_yearly": "Yearly",
-	"donate_frequency_monthly": "Monthly",
-	"donate_frequency_one_time": "One time",
-	"donate_how_much": "How much would you like to give ?",
-	"donate_or": "Or",
-	"donate_enter_manually": "Enter amount manually",
-	"donate_checkout": "Checkout",
-	"donate_footer_partners": "Funds are distributed via verified partners",
-	"donate_footer_transparent": "100% transparent",
-	"donate_per_month": "{amount} / month",
-	"@donate_per_month": {"placeholders": {"amount": {"type": "String"}}},
-	"donate_per_year": "{amount} / year",
-	"@donate_per_year": {"placeholders": {"amount": {"type": "String"}}},
-	"impact_donate_now": "Donate now",
-	"impact_tiers_title": "Your donation provides",
-	"checkout_title": "Checkout",
-	"checkout_my_donation": "My donation",
-	"checkout_options_title": "Donation options",
-	"checkout_anonymous_title": "Make this anonymous",
-	"checkout_anonymous_hint": "Your name won't appear in public counts",
-	"checkout_cover_fees_title": "Cover transaction fees (+{fee})",
-	"@checkout_cover_fees_title": {"placeholders": {"fee": {"type": "String"}}},
-	"checkout_cover_fees_hint": "100% of your donation reaches projects",
-	"checkout_payment_method": "Payment method",
-	"checkout_method_paypal": "PayPal",
-	"checkout_method_card": "Debit/Credit card",
-	"checkout_method_apple_pay": "Apple Pay",
-	"checkout_method_google_pay": "Google Pay",
-	"checkout_pay_button": "Checkout",
-	"checkout_total": "Total {amount}",
-	"@checkout_total": {"placeholders": {"amount": {"type": "String"}}},
-	"checkout_recurring_note_month": "You will be charged {amount} every month. Cancel anytime from My donations.",
-	"@checkout_recurring_note_month": {"placeholders": {"amount": {"type": "String"}}},
-	"checkout_recurring_note_year": "You will be charged {amount} every year. Cancel anytime from My donations.",
-	"@checkout_recurring_note_year": {"placeholders": {"amount": {"type": "String"}}},
-	"checkout_processing_title": "Confirming your payment…",
-	"checkout_processing_message": "This usually takes a few seconds. Please don't close the app.",
-	"checkout_timeout_title": "Taking longer than expected",
-	"checkout_timeout_message": "Your payment is still being confirmed. You can keep waiting or check the status later in My donations.",
-	"checkout_keep_waiting": "Keep waiting",
-	"checkout_check_later": "Check later",
-	"reward_donation_title": "Jazak Allahu Khayr",
-	"reward_donation_message": "Your donation has been received.\nMay Allah accept it and multiply its reward.",
-	"reward_donation_you_donated": "You donated",
-	"reward_donation_you_give": "You give",
-	"reward_donation_project": "Project",
-	"reward_donation_via": "Via {org}",
-	"@reward_donation_via": {"placeholders": {"org": {"type": "String"}}},
-	"profile_my_donations": "My donations",
-	"my_donations_tab_history": "History",
-	"my_donations_tab_recurring": "Recurring",
-	"my_donations_empty_history": "No donations yet. Your contributions will appear here.",
-	"my_donations_empty_recurring": "No recurring donations.",
-	"my_donations_status_succeeded": "Received",
-	"my_donations_status_failed": "Failed",
-	"my_donations_status_refunded": "Refunded",
-	"my_donations_status_processing": "Processing",
-	"my_donations_sub_active": "Active",
-	"my_donations_sub_past_due": "Payment issue",
-	"my_donations_sub_canceled": "Cancelled",
-	"my_donations_sub_incomplete": "Pending",
-	"my_donations_sub_ends_on": "Ends on {date}",
-	"@my_donations_sub_ends_on": {"placeholders": {"date": {"type": "String"}}},
-	"my_donations_next_charge": "Next charge: {date}",
-	"@my_donations_next_charge": {"placeholders": {"date": {"type": "String"}}},
-	"my_donations_cancel": "Stop",
-	"my_donations_cancel_confirm_title": "Stop this recurring donation?",
-	"my_donations_cancel_confirm_message": "It stays active until the end of the current period, then no further charges are made.",
-	"my_donations_cancel_confirm_yes": "Stop donation",
-	"my_donations_keep": "Keep",
-	"my_donations_anonymous": "Anonymous",
-	"my_donations_fee_included": "incl. {fee} fees",
-	"@my_donations_fee_included": {"placeholders": {"fee": {"type": "String"}}},
-	"my_donations_zakat": "Zakat",
-	"my_donations_sadaqa": "Sadaqa",
-	"my_donations_recurring_badge": "Recurring",
-	"error_api_payment_amount_too_small": "The minimum donation is 1€.",
-	"error_api_payment_amount_too_large": "The maximum per payment is 10,000€.",
-	"error_api_payment_project_inactive": "This project is no longer accepting donations.",
-	"error_api_payment_not_zakat_eligible": "This project is not eligible for zakat.",
-	"error_api_payment_subscription_failed": "Couldn't set up the recurring donation. Please try again.",
-	"error_api_payment_subscriptions_load_failed": "Couldn't load your recurring donations.",
-	"error_api_payment_subscription_cancel_failed": "Couldn't stop the recurring donation. Please try again.",
-	"error_api_payment_confirmation_timeout": "We couldn't confirm the payment yet. Check My donations in a moment.",
-	"admin_change_status_title": "Change payout status",
-	"admin_change_status_subtitle": "Only CONFIRMED disbursements are shown publicly on the project page.",
-	"admin_status_pending_hint": "Recorded, transfer not sent yet",
-	"admin_status_sent_hint": "Transfer sent, awaiting partner confirmation",
-	"admin_status_confirmed_hint": "Received by the partner — visible to donors",
-	"error_api_admin_payout_update_failed": "Couldn't update the payout status.",
-	"zakat_alloc_title": "Give zakat to eligible Nour projects",
-	"zakat_alloc_info": "Only projects that meet the 8 Quranic categories of Zakat eligibility (Surah 9:60) are shown here",
-	"zakat_alloc_empty_title": "No zakat-eligible projects right now",
-	"zakat_alloc_empty_message": "You can't give zakat through the app just yet — don't worry, new eligible projects will be added soon insha'Allah.",
-	"zakat_alloc_owed": "Zakat owed",
-	"zakat_alloc_allocated": "Zakat allocated",
-	"zakat_alloc_fully": "Fully allocated",
-	"zakat_alloc_remaining": "Remaining",
-	"zakat_alloc_extra": "Extra (counts as Sadaqa)",
-	"zakat_checkout_title": "Zakat",
-	"zakat_checkout_my_zakat": "My zakat",
-	"zakat_checkout_allocated_to": "Allocated to",
-	"zakat_checkout_fees": "Transaction fees",
-	"zakat_checkout_total": "Total",
-	"zakat_reward_message": "Your zakat has been received.\nMay Allah accept it and multiply its reward.",
-	"zakat_reward_you_gave": "You gave",
-	"admin_filter_all": "All",
-	"admin_delete_payout": "Delete this payout",
-	"admin_delete_payout_confirm_title": "Delete this payout?",
-	"admin_delete_payout_confirm_message": "It disappears permanently from the ledger and, if it was confirmed, from the public transparency section of the project. Paid-out and outstanding totals will be recalculated.",
-	"admin_delete_payout_confirm_yes": "Delete payout",
-	"error_api_admin_payout_delete_failed": "Couldn't delete the payout.",
-	"common_required_field": "This field is required",
-	"common_optional": "optional",
-	"common_refresh": "Refresh",
-	"mosque_onboarding_resume": "Continue my mosque registration",
-	"mosque_onboarding_start_over": "Start over",
-	"profile_type_title": "How will you use Nour?",
-	"profile_type_mosque_title": "I am a mosque manager",
-	"profile_type_mosque_subtitle": "Publish to your community, run fundraising campaigns.",
-	"profile_type_user_title": "I am a worshipper",
-	"profile_type_user_subtitle": "Follow mosques, track prayer times, and stay connected.",
-	"mosque_post_type_announcement": "Announcement",
-	"mosque_post_type_event": "Event",
-	"mosque_post_type_event_hint": "Date, time, place",
-	"mosque_post_type_volunteering": "Volunteering",
-	"mosque_post_type_volunteering_hint": "Recruit helpers",
-	"mosque_post_type_highlight": "Highlight",
-	"mosque_post_type_highlight_hint": "Share moments",
-	"mosque_post_type_janaza": "Janaza",
-	"mosque_post_type_janaza_hint": "Date, prayer time",
-	"mosque_onboarding_feature_1_title": "Made for mosque announcements.",
-	"mosque_onboarding_feature_1_description": "Events, fundraisers, volunteer calls, janazas, reminders, highlights.",
-	"mosque_onboarding_feature_2_title": "Raise funds the trusted way.",
-	"mosque_onboarding_feature_2_description": "Ongoing Sadaqah and time-bound campaigns.",
-	"mosque_onboarding_feature_3_title": "A calendar that reflects your imam.",
-	"mosque_onboarding_feature_3_description": "Publish your own prayer schedule and iqama times.",
-	"mosque_onboarding_country_title": "Choose your country",
-	"mosque_onboarding_country_search": "Search country",
-	"mosque_legal_status_1901": "Association (law 1901)",
-	"mosque_legal_status_1905": "Religious association (law 1905)",
-	"mosque_legal_status_other": "Other",
-	"mosque_register_title": "Let's register your mosque",
-	"mosque_register_legal_name": "Legal name",
-	"mosque_register_legal_name_hint": "Enter your legal name",
-	"mosque_register_legal_status": "Legal status",
-	"mosque_register_legal_status_hint": "Choose a legal status",
-	"mosque_register_rna": "RNA",
-	"mosque_register_rna_invalid": "RNA must look like W751123456",
-	"mosque_register_siren": "SIREN",
-	"mosque_register_siren_invalid": "SIREN must have 9 digits",
-	"mosque_register_cta": "Confirm",
-	"mosque_account_title": "Let's create your account",
-	"mosque_account_subtitle": "To manage your mosque on Nour",
-	"mosque_account_existing_hint": "Already have an account? Use the same email or provider to sign in.",
-	"mosque_account_cta": "Sign up",
-	"mosque_review_pending_title": "Your mosque is being reviewed",
-	"mosque_review_pending_message": "Our team is checking your registration. You'll be notified as soon as it is approved — usually within a few days.",
-	"mosque_review_rejected_title": "Registration refused",
-	"mosque_review_rejected_message": "We couldn't approve your mosque. See the note below or contact support.",
-	"mosque_review_suspended_title": "Mosque suspended",
-	"mosque_review_suspended_message": "Your mosque profile has been suspended. Contact support for more information.",
-	"mosque_review_contact_support": "Contact support",
-	"mosque_admin_tab_dashboard": "Dashboard",
-	"mosque_admin_tab_community": "Community",
-	"mosque_admin_tab_mosque": "Mosque",
-	"mosque_admin_tab_post": "Post",
-	"mosque_admin_total_raised_year": "Total raised this year",
-	"mosque_admin_donors": "Donors",
-	"mosque_admin_recurring": "Recurring",
-	"mosque_admin_avg_gift": "Avg gift",
-	"error_api_mosque_load_failed": "Couldn't load the mosque.",
-	"error_api_mosque_save_failed": "Couldn't save the changes.",
-	"error_api_mosque_search_failed": "Couldn't search mosques.",
-	"error_api_mosque_register_failed": "Couldn't register the mosque. Please try again.",
-	"error_api_mosque_register_is_worshipper": "This account is already a worshipper account. Use another email to register a mosque.",
-	"error_api_mosque_register_anonymous": "Please sign in with an email, Google or Apple account.",
-	"error_api_mosque_register_invalid_siren": "The SIREN number is invalid.",
-	"error_api_mosque_register_invalid_rna": "The RNA number is invalid.",
-	"error_api_mosque_register_duplicate": "This mosque is already registered. Contact support if you manage it.",
-	"error_api_mosque_post_limit_reached": "You reached the limit of active posts of this type. Archive one first.",
-	"error_api_mosque_broadcast_quota_exceeded": "You already sent the maximum notifications this week.",
-	"error_api_mosque_not_approved": "Your mosque is not approved yet.",
-	"error_api_push_register_failed": "Couldn't register this device for notifications.",
-	"push_settings_title": "Push notifications",
-	"push_settings_description": "Choose which notifications Nour may send to this device. Prayer and adhkar reminders are managed in Reminders.",
-	"push_kind_mosque_post": "Mosque news",
-	"push_kind_mosque_post_hint": "Announcements from the mosques you follow",
-	"push_kind_mosque_event": "Events",
-	"push_kind_mosque_event_hint": "Conferences, janazas, volunteering",
-	"push_kind_mosque_campaign": "Fundraising campaigns",
-	"push_kind_mosque_campaign_hint": "New campaigns and deadlines",
-	"push_kind_mosque_broadcast": "Messages from the mosque",
-	"push_kind_mosque_broadcast_hint": "Direct messages sent by the mosque (max 2 per week)",
-	"push_kind_mosque_status": "Mosque account",
-	"push_kind_mosque_status_hint": "Review status and important account updates",
-	"push_kind_system": "Nour updates",
-	"push_kind_system_hint": "Occasional news about the app",
-	"common_cancel": "Cancel",
-	"common_delete": "Delete",
-	"common_edit": "Edit",
-	"common_load_more": "Load more",
-	"common_yes": "Yes",
-	"common_no": "No",
-	"admin_tab_mosques": "Mosques",
-	"admin_mosque_approve": "Approve",
-	"admin_mosque_reject": "Reject",
-	"admin_mosque_suspend": "Suspend",
-	"admin_mosque_reviewed": "Mosque updated — the owner has been notified.",
-	"admin_mosque_duplicate_siren": "⚠ Another mosque uses this SIREN",
-	"admin_mosque_empty": "No mosque in this state.",
-	"admin_mosque_filter_pending": "Pending",
-	"admin_mosque_filter_approved": "Approved",
-	"admin_mosque_filter_rejected": "Rejected",
-	"admin_mosque_filter_suspended": "Suspended",
-	"admin_mosque_note_title": "Note for the mosque",
-	"admin_mosque_note_hint": "Reason (shown to the mosque manager)",
-	"home_my_mosque": "My mosque",
-	"home_no_mosque_title": "No mosque selected yet",
-	"home_no_mosque_subtitle": "Choose your mosque to see its prayer times, news and campaigns right here.",
-	"home_find_mosque": "Find a mosque",
-	"profile_my_mosques": "My mosques",
-	"prayer_times_add_mosque": "Add your mosque",
-	"prayer_times_from_mosque_hint": "Times published by your mosque. Change your mosque to switch back to computed times.",
-	"onboarding_mosque_title": "Select a mosque",
-	"onboarding_mosque_subtitle": "Find and follow your local mosque to get its prayer times and news.",
-	"mosque_search_hint": "Search a mosque",
-	"mosque_search_near_you": "Mosques near you",
-	"mosque_search_near_you_short": "Near you",
-	"mosque_search_results": "Results",
-	"mosque_search_empty": "No mosque found. Try another name or city.",
-	"mosque_search_language": "Search language",
-	"mosque_add_to_my_mosques": "Add to my mosques",
-	"my_mosques_title": "Your mosque(s)",
-	"my_mosques_subtitle": "Drag and drop the mosques to reorder them and set the main mosque.",
-	"my_mosques_principal": "Principal mosque",
-	"my_mosques_secondary": "Secondary mosque",
-	"my_mosques_no_principal": "No principal mosque yet",
-	"my_mosques_no_secondary": "No secondary mosque yet",
-	"my_mosques_saved": "Your mosques are saved.",
-	"my_mosques_added": "In my mosques",
-	"my_mosques_is_principal": "Your principal mosque",
-	"my_mosques_is_secondary": "Your secondary mosque",
-	"mosque_cover_placeholder": "Cover image",
-	"mosque_status_open": "Open",
-	"mosque_status_closed": "Closed",
-	"mosque_followers": "followers",
-	"mosque_members": "members",
-	"mosque_followers_title": "Followers",
-	"mosque_members_title": "Members",
-	"mosque_follow": "Follow",
-	"mosque_following": "Following",
-	"mosque_become_member": "Become a member",
-	"mosque_member_badge": "Member",
-	"mosque_follower_badge": "Follower",
-	"mosque_action_itinerary": "Itinerary",
-	"mosque_action_call": "Call",
-	"mosque_action_email": "Email",
-	"mosque_address_copied": "Address copied",
-	"mosque_tab_prayers": "Prayers",
-	"mosque_tab_information": "Information",
-	"mosque_tab_news": "News",
-	"mosque_tab_donation": "Donation",
-	"mosque_today_prayer_times": "Today's prayer times",
-	"mosque_prayer_times_unavailable": "Prayer times are not available right now.",
-	"mosque_prayer_times_computed_hint": "Computed times — the mosque hasn't published today's schedule yet.",
-	"mosque_prayer_times_not_published": "Prayer times not published yet",
-	"mosque_capacity": "Capacity",
-	"mosque_capacity_men": "Men",
-	"mosque_capacity_women": "Women",
-	"mosque_capacity_men_women": "Men + Women",
-	"mosque_founded": "Founded",
-	"mosque_years_old": "{n} years old",
-	"@mosque_years_old": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_services": "Services",
-	"mosque_services_edit_hint": "Select the services your mosque offers. They'll appear on your public profile.",
-	"mosque_no_services": "No service listed yet.",
-	"mosque_service_parking": "Parking",
-	"mosque_service_disabled_access": "Disabled access",
-	"mosque_service_ablution_room": "Ablution room",
-	"mosque_service_women_space": "Women's space",
-	"mosque_service_adult_classes": "Adult classes",
-	"mosque_service_children_classes": "Children classes",
-	"mosque_service_quran_classes": "Qur'an classes",
-	"mosque_service_arabic_classes": "Arabic classes",
-	"mosque_service_eid_prayer": "Salat Al Eid",
-	"mosque_service_janaza": "Salat Al Janaza",
-	"mosque_service_iftar_ramadan": "Iftar Ramadan",
-	"mosque_service_library": "Library",
-	"mosque_service_new_muslims": "New Muslims support",
-	"mosque_khutbah_languages": "Khutbah language(s)",
-	"mosque_add_languages": "Add languages",
-	"mosque_imams": "Imams",
-	"mosque_since_year": "Since {y}",
-	"@mosque_since_year": {"placeholders": {"y": {"type": "int"}}},
-	"mosque_add_imam": "Add an Imam",
-	"mosque_edit_imam": "Edit Imam",
-	"mosque_add_photo": "Add a photo",
-	"mosque_imam_full_name": "Full name",
-	"mosque_imam_role": "Role",
-	"mosque_imam_since": "At the mosque since",
-	"mosque_imam_bio": "Short bio",
-	"mosque_imam_bio_hint": "A few words about the Imam",
-	"mosque_news_empty": "No news yet. Follow the mosque to be notified of its announcements.",
-	"mosque_post_urgent": "Urgent",
-	"mosque_post_share": "Share",
-	"mosque_post_apply": "Apply",
-	"mosque_post_applied": "Applied",
-	"mosque_post_attend_cta": "I'll attend",
-	"mosque_post_attending_cta_done": "Attending ✓",
-	"mosque_post_attending": "{n} attending",
-	"@mosque_post_attending": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_post_volunteers": "{n} volunteer(s)",
-	"@mosque_post_volunteers": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_post_duas": "{n} duas",
-	"@mosque_post_duas": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_post_say_dua": "Say a dua",
-	"mosque_post_dua_said": "Dua said ✓",
-	"mosque_post_after_prayer": "After {slot} prayer - {time}",
-	"@mosque_post_after_prayer": {"placeholders": {"slot": {"type": "String"}, "time": {"type": "String"}}},
-	"mosque_post_notified_all": "Notified all",
-	"mosque_dua_recite": "Recite this dua",
-	"mosque_dua_translation": "O Allah, forgive him, have mercy on him, grant him well-being and pardon him.",
-	"mosque_dua_done": "I'm done",
-	"mosque_donations_coming_soon": "Donations to this mosque will be available soon.",
-	"mosque_donation_enter_amount": "Enter amount manually",
-	"mosque_member_title": "Join our membership",
-	"mosque_member_subtitle": "Registering as a member helps us stay connected with you and organize our community life.",
-	"mosque_member_first_name": "First name",
-	"mosque_member_last_name": "Last name",
-	"mosque_member_birth_date": "Date of birth",
-	"mosque_member_profession": "Profession",
-	"mosque_member_phone": "Phone number",
-	"mosque_member_volunteer_question": "Available for volunteer projects?",
-	"mosque_member_consent": "I consent to the mosque using my information to contact me about volunteer and community support projects.",
-	"mosque_member_fee_optional": "Optional contribution",
-	"mosque_member_fee_title": "Support the mosque",
-	"mosque_member_fee_hint": "A recommended contribution of €120/year helps sustain the mosque. This is entirely optional, your membership is free.",
-	"mosque_member_fee_choose": "Choose your contribution",
-	"mosque_member_register": "Register as member",
-	"mosque_member_fill_required": "Please fill all required fields and accept the consent.",
-	"mosque_member_welcome": "Welcome to the community!",
-	"mosque_time_just_now": "Just now",
-	"mosque_time_min_ago": "{n} min ago",
-	"@mosque_time_min_ago": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_time_hours_ago": "{n} h ago",
-	"@mosque_time_hours_ago": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_time_yesterday": "Yesterday",
-	"mosque_time_days_ago": "{n} days ago",
-	"@mosque_time_days_ago": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_time_weeks_ago": "{n} week(s) ago",
-	"@mosque_time_weeks_ago": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_admin_panel_title": "Mosque dashboard",
-	"mosque_admin_panel_subtitle": "Manage your mosque, posts and community",
-	"mosque_admin_attention": "{n} things need your attention",
-	"@mosque_admin_attention": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_admin_pending_events": "{n} pending event(s)",
-	"@mosque_admin_pending_events": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_admin_campaigns_ending": "{n} fundraising ending soon",
-	"@mosque_admin_campaigns_ending": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_admin_last_7_days": "Last 7 days",
-	"mosque_admin_last_30_days": "Last 30 days",
-	"mosque_admin_growth": "Growth",
-	"mosque_admin_today": "Today",
-	"mosque_admin_open_rate": "Notification open rate (30 days, estimate): {rate}%",
-	"@mosque_admin_open_rate": {"placeholders": {"rate": {"type": "String"}}},
-	"mosque_admin_fundraising": "Fundraising",
-	"mosque_admin_fundraising_total_raised": "Total raised",
-	"mosque_admin_period_this_year": "This year",
-	"mosque_admin_period_30d": "Last 30 days",
-	"mosque_admin_period_all_time": "All time",
-	"mosque_campaign_days_left_short": "{n}d left",
-	"@mosque_campaign_days_left_short": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_admin_recent_posts": "Recent posts",
-	"mosque_admin_no_posts": "No post yet. Share news, events or a janaza with your community.",
-	"mosque_admin_create_post": "Create a post",
-	"mosque_admin_view_mosque": "View public profile",
-	"mosque_admin_search_community": "Search name, email, phone",
-	"mosque_admin_filter_all": "All",
-	"mosque_admin_filter_followers": "Followers",
-	"mosque_admin_filter_members": "Members",
-	"mosque_admin_filter_volunteers": "Volunteers",
-	"mosque_admin_community_empty": "Nobody here yet.",
-	"mosque_admin_remove_member": "Remove member",
-	"mosque_admin_prayer_times": "Prayer times",
-	"mosque_prayers_not_set_title": "The day's prayers have not yet been set.",
-	"mosque_prayers_not_set_hint": "Enter them manually or copy from another day",
-	"mosque_prayers_copy_from_day": "Copy from another day",
-	"mosque_prayers_copied_from": "Prayer times successfully copied from {date}",
-	"@mosque_prayers_copied_from": {"placeholders": {"date": {"type": "String"}}},
-	"mosque_copy_title": "Copy prayer times",
-	"mosque_copy_subtitle": "Reuse another day's times instead of typing them again.",
-	"mosque_copy_from": "Copy from",
-	"mosque_copy_times": "Times to copy",
-	"mosque_copy_apply_to": "Apply to",
-	"mosque_copy_this_day": "This day only",
-	"mosque_copy_date_range": "A date range",
-	"mosque_copy_from_date": "From",
-	"mosque_copy_to_date": "To",
-	"mosque_copy_overwrite_warning": "Days that already have times will be overwritten.",
-	"mosque_overrides_title": "Prayer's overrides",
-	"mosque_overrides_shift_title": "Shift a prayer today",
-	"mosque_overrides_shift_hint": "Change one prayer's time for today only, without touching the permanent schedule.",
-	"mosque_overrides_create": "Create an override",
-	"mosque_overrides_applied": "Applied overrides",
-	"mosque_override_created": "Override applied — followers see the new time.",
-	"mosque_override_new_time": "New time",
-	"mosque_override_reason_hint": "Reason (optional)",
-	"mosque_post_notify_followers": "Notify followers",
-	"mosque_post_send_push": "Send push to {n} followers",
-	"@mosque_post_send_push": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_post_quota_left": "{left} of {limit} notifications left this week",
-	"@mosque_post_quota_left": {"placeholders": {"left": {"type": "int"}, "limit": {"type": "int"}}},
-	"mosque_post_notified": "Notification sent to {n} followers",
-	"@mosque_post_notified": {"placeholders": {"n": {"type": "int"}}},
-	"mosque_post_archive": "Archive",
-	"mosque_post_published": "Post published",
-	"mosque_post_title_hint": "Title",
-	"mosque_post_title_label": "Title",
-	"mosque_post_body_hint": "Start writing",
-	"mosque_post_add_to_post": "Add to your post",
-	"mosque_post_choose_category": "Or choose a category",
-	"mosque_post_audience_public": "Public",
-	"mosque_post_audience_followers": "Followers",
-	"mosque_post_form_event": "Post an event",
-	"mosque_post_form_volunteering": "Recruit volunteers",
-	"mosque_post_form_highlight": "Share a highlight",
-	"mosque_post_form_janaza": "Announce a janaza",
-	"mosque_post_cover_photo": "Cover photo",
-	"mosque_post_add_cover": "Add cover photo",
-	"mosque_post_cover_required": "A photo is required for a highlight.",
-	"mosque_post_event_name": "Event name",
-	"mosque_post_janaza_name": "Name of the deceased",
-	"mosque_post_description": "Description",
-	"mosque_post_description_hint": "What is this event about..",
-	"mosque_post_date": "Date",
-	"mosque_post_time": "Time",
-	"mosque_post_date_required": "Please choose a date.",
-	"mosque_post_after_prayer_label": "After which prayer?",
-	"mosque_post_location": "Location",
-	"mosque_post_location_default": "At the mosque",
-	"mosque_post_volunteers_needed": "Volunteers needed",
-	"mosque_post_language": "Language",
-	"mosque_post_mark_urgent": "Mark as urgent",
-	"mosque_post_mark_urgent_hint": "Post appears at top with urgent badge",
-	"mosque_admin_edit_profile": "Edit mosque profile",
-	"mosque_admin_profile_saved": "Profile saved",
-	"mosque_admin_cover_images": "Cover images",
-	"mosque_admin_tap_to_change_logo": "Tap the logo to change it",
-	"mosque_admin_field_name": "Mosque name",
-	"mosque_admin_field_description": "Description",
-	"mosque_admin_field_address": "Address",
-	"mosque_admin_field_postal": "Postal code",
-	"mosque_admin_field_city": "City",
-	"mosque_admin_field_phone": "Phone",
-	"mosque_admin_field_email": "Contact email",
-	"mosque_admin_field_account_email": "Account email",
-	"mosque_admin_field_account_email_hint": "The email you sign in with. It can't be changed here.",
-	"mosque_admin_field_website": "Website",
-	"mosque_admin_opening_status": "Opening status",
-	"mosque_admin_no_notifications": "No notification yet.",
-	"error_api_mosque_campaign_limit_reached": "You already have 3 active campaigns. Close one first.",
-	"error_api_mosque_campaign_closed": "This campaign is closed.",
-	"error_api_mosque_donations_disabled": "This mosque can't receive donations yet.",
-	"error_api_mosque_receipts_not_allowed": "This mosque doesn't issue tax receipts.",
-	"error_api_mosque_receipt_no_donations": "No eligible donation found for this receipt.",
-	"error_api_mosque_receipt_failed": "Couldn't generate the receipt.",
-	"error_api_mosque_stripe_failed": "Couldn't reach Stripe. Please try again.",
-	"my_donations_tab_mosques": "Mosques",
-	"my_donations_empty_mosques": "You haven't supported a mosque yet. Find one near you and give.",
-	"mosque_donation_other_amount": "Other",
-	"mosque_donation_custom_amount_hint": "Enter an amount",
-	"mosque_donation_give": "Give {amount}",
-	"@mosque_donation_give": {"placeholders": {"amount": {"type": "String"}}},
-	"mosque_donation_give_monthly": "Give {amount} / month",
-	"@mosque_donation_give_monthly": {"placeholders": {"amount": {"type": "String"}}},
-	"mosque_donation_give_yearly": "Give {amount} / year",
-	"@mosque_donation_give_yearly": {"placeholders": {"amount": {"type": "String"}}},
-	"mosque_donation_secure_note": "Secure payment. 100% goes to the mosque — Nour takes no fee.",
-	"mosque_donation_tax_badge": "Tax receipt",
-	"mosque_donation_popular": "Popular",
-	"mosque_donation_or": "Or",
-	"mosque_donation_manual_amount_hint": "Enter amount manually",
-	"mosque_donation_give_to_mosque": "Give to the mosque",
-	"mosque_donation_tax_deductible": "Tax deductible {percent}%",
-	"@mosque_donation_tax_deductible": {"placeholders": {"percent": {"type": "String"}}},
-	"mosque_donation_active_monthly": "You give {amount} every month. Jazakallah khair.",
-	"@mosque_donation_active_monthly": {"placeholders": {"amount": {"type": "String"}}},
-	"mosque_donation_active_yearly": "You give {amount} every year. Jazakallah khair.",
-	"@mosque_donation_active_yearly": {"placeholders": {"amount": {"type": "String"}}},
-	"mosque_donation_cancel_recurring_title": "Stop your recurring gift?",
-	"mosque_donation_cancel_recurring_message": "You will keep the current period; no further charge will be made.",
-	"mosque_donation_recurring_cancelled": "Your recurring gift has been stopped.",
-	"mosque_donor_anonymous": "Anonymous",
-	"mosque_campaigns_title": "Campaigns",
-	"mosque_campaigns_past_title": "Past campaigns",
-	"mosque_campaign_title": "Campaign",
-	"mosque_campaign_of_goal": "of {goal}",
-	"@mosque_campaign_of_goal": {"placeholders": {"goal": {"type": "String"}}},
-	"mosque_campaign_donors_count": "{count, plural, =0{No donor yet} =1{1 donor} other{{count} donors}}",
-	"@mosque_campaign_donors_count": {"placeholders": {"count": {"type": "int"}}},
-	"mosque_campaign_people_donated": "{count}+ people have donated",
-	"@mosque_campaign_people_donated": {"placeholders": {"count": {"type": "String"}}},
-	"mosque_campaign_days_left": "{days, plural, =0{Ends today} =1{1 day left} other{{days} days left}}",
-	"@mosque_campaign_days_left": {"placeholders": {"days": {"type": "int"}}},
-	"mosque_campaign_closed": "Closed",
-	"mosque_campaign_active": "Active",
-	"mosque_campaign_ending_soon": "Ending soon",
-	"mosque_campaign_remaining": "Remaining",
-	"mosque_campaign_contribute": "Contribute",
-	"mosque_campaign_recent_donors": "Recent donors",
-	"mosque_campaign_updates": "Updates",
-	"mosque_campaign_updates_empty": "No update posted yet.",
-	"mosque_campaign_funded_note": "Alhamdulillah, the goal has been reached. Thank you to everyone who contributed.",
-	"mosque_campaign_ended_note": "This campaign has ended. You can still support the mosque from its Donation tab.",
-	"mosque_checkout_sadaqa": "Sadaqa to the mosque",
-	"mosque_checkout_campaign_gift": "Campaign contribution",
-	"mosque_checkout_membership_fee": "Yearly membership contribution",
-	"mosque_checkout_direct_note": "Paid directly to {mosque} via Stripe. Nour takes no fee.",
-	"@mosque_checkout_direct_note": {"placeholders": {"mosque": {"type": "String"}}},
-	"mosque_checkout_success_title": "Jazakallah khair",
-	"mosque_checkout_success_message": "Your gift of {amount} to {mosque} has been received.",
-	"@mosque_checkout_success_message": {"placeholders": {"amount": {"type": "String"}, "mosque": {"type": "String"}}},
-	"mosque_checkout_success_membership": "Your contribution of {amount} to {mosque} is confirmed. Welcome to the community.",
-	"@mosque_checkout_success_membership": {"placeholders": {"amount": {"type": "String"}, "mosque": {"type": "String"}}},
-	"reward_mosque_sadaqa_message": "Your sadaqa has been received.\nMay Allah accept it and multiply its reward.",
-	"reward_mosque_campaign_message": "Your contribution has been received.\nMay Allah reward you for what it will build.",
-	"reward_mosque_membership_message": "Your membership contribution is confirmed.\nWelcome to the community.",
-	"reward_mosque_you_contributed": "Your contribution",
-	"reward_mosque_label": "Mosque",
-	"reward_mosque_my_receipts": "My tax receipts",
-	"mosque_receipts_empty": "No receipt yet.",
-	"mosque_receipt_single": "Single gift",
-	"mosque_receipt_yearly": "Yearly summary {year}",
-	"@mosque_receipt_yearly": {"placeholders": {"year": {"type": "int"}}},
-	"mosque_admin_manage": "Manage",
-	"mosque_admin_preview": "Preview",
-	"mosque_admin_stat_support": "Sadaqa & memberships",
-	"mosque_admin_stat_support_hint": "Ongoing support",
-	"mosque_admin_stat_campaigns": "Campaigns",
-	"mosque_donation_card_support": "Support",
-	"mosque_donation_card_growth": "{growth} vs {year}",
-	"@mosque_donation_card_growth": {
-		"placeholders": {
-			"growth": { "type": "String" },
-			"year": { "type": "String" }
-		}
-	},
-	"mosque_admin_sadaqa_title": "Sadaqa card",
-	"mosque_admin_sadaqa_section_title": "Support the mosque",
-	"mosque_admin_sadaqa_this_month": "This month",
-	"mosque_admin_sadaqa_gifts": "{gifts} gifts",
-	"@mosque_admin_sadaqa_gifts": { "placeholders": { "gifts": { "type": "int" } } },
-	"mosque_admin_sadaqa_monthly_donors": "Monthly donors",
-	"mosque_admin_sadaqa_manage_settings": "Manage settings",
-	"mosque_admin_sadaqa_month_summary": "{gifts} gifts this month ({amount}) · {monthly} monthly donors",
-	"@mosque_admin_sadaqa_month_summary": {"placeholders": {"gifts": {"type": "int"}, "amount": {"type": "String"}, "monthly": {"type": "int"}}},
-	"mosque_admin_sadaqa_settings_title": "Sadaqa settings",
-	"mosque_admin_sadaqa_card_title": "Card title",
-	"mosque_admin_sadaqa_card_title_hint": "Support the mosque",
-	"mosque_admin_sadaqa_description_hint": "Tell donors what their support funds…",
-	"mosque_admin_sadaqa_amounts": "Suggested amounts",
-	"mosque_admin_sadaqa_amounts_hint": "Up to 6 amounts. Donors can always enter another amount.",
-	"mosque_admin_sadaqa_add_amount": "Add amount",
-	"mosque_admin_sadaqa_frequencies": "Allowed frequencies",
-	"mosque_admin_sadaqa_frequency_required": "Keep at least one frequency enabled.",
-	"mosque_admin_sadaqa_invalid": "Add a title and at least one amount.",
-	"mosque_admin_sadaqa_tax_badge": "Show \"Tax receipt\" badge",
-	"mosque_admin_sadaqa_tax_badge_hint": "Donors will see that their gift is tax-deductible.",
-	"mosque_admin_sadaqa_tax_badge_locked": "Enable tax receipts in the Stripe setup first.",
-	"mosque_admin_membership_fee_amounts": "Membership contribution amounts (yearly)",
-	"mosque_admin_membership_fee_amounts_hint": "Shown when a worshipper joins as a member. The second amount is recommended.",
-	"mosque_admin_stripe_title": "Payments (Stripe)",
-	"mosque_admin_stripe_active": "Donations enabled · payouts go straight to your bank account",
-	"mosque_admin_stripe_setup_title": "Receive donations",
-	"mosque_admin_stripe_setup_message": "Connect a Stripe account to receive Sadaqa, campaign gifts and membership contributions directly. Takes about 5 minutes.",
-	"mosque_admin_stripe_pending_title": "Almost there",
-	"mosque_admin_stripe_pending_message": "Stripe still needs some information before donations can be enabled.",
-	"mosque_admin_stripe_start": "Set up payments",
-	"mosque_admin_stripe_continue": "Continue setup",
-	"mosque_admin_stripe_update_info": "Update information",
-	"mosque_admin_stripe_dashboard": "Open Stripe dashboard",
-	"mosque_admin_stripe_explainer": "Donations are charged directly on your mosque's Stripe account — Nour never holds the funds and takes no commission. Stripe's standard processing fees apply.",
-	"mosque_admin_stripe_tax_receipts": "Our association can issue tax receipts",
-	"mosque_admin_stripe_tax_receipts_hint": "Enables receipt generation (CERFA-style) for donors.",
-	"mosque_admin_stripe_charges": "Can receive payments",
-	"mosque_admin_stripe_payouts": "Payouts enabled",
-	"mosque_admin_stripe_details": "Information submitted",
-	"mosque_admin_stripe_requirements": "Still required by Stripe",
-	"mosque_admin_stripe_status_enabled": "Active",
-	"mosque_admin_stripe_status_pending": "Pending verification",
-	"mosque_admin_stripe_status_restricted": "Action required",
-	"mosque_admin_stripe_status_rejected": "Rejected by Stripe",
-	"mosque_admin_stripe_status_not_started": "Not set up",
-	"mosque_admin_campaign_new": "New campaign",
-	"mosque_admin_campaigns_active_title": "Active campaigns",
-	"mosque_admin_campaign_new_short": "New",
-	"mosque_admin_campaign_amounts_hint": "Donors pick from these — this campaign's own list.",
-	"mosque_admin_fundraising_settings_title": "Fundraising settings",
-	"mosque_admin_fundraising_frequencies": "Frequency options",
-	"mosque_admin_fundraising_one_time_hint": "A single donation",
-	"mosque_admin_fundraising_monthly": "Monthly recurring",
-	"mosque_admin_fundraising_monthly_hint": "Automatic monthly gift",
-	"mosque_admin_fundraising_yearly": "Yearly recurring",
-	"mosque_admin_fundraising_yearly_hint": "Automatic yearly gift",
-	"mosque_admin_fundraising_tax_section": "Tax deductibility",
-	"mosque_admin_fundraising_amounts_hint": "Up to 6 amounts. A new campaign starts from this list and can then change it.",
-	"mosque_admin_fundraising_amounts_required": "Add at least one amount.",
-	"mosque_admin_fundraising_defaults_note": "These settings apply to new campaigns. Campaigns already running keep what they were launched with until you edit them.",
-	"mosque_admin_campaign_frequency_locked": "Enable it in the fundraising settings first.",
-	"mosque_admin_campaign_amounts_reset": "Reset to defaults",
-	"mosque_admin_campaign_close_early": "Close early",
-	"error_api_mosque_frequency_not_allowed": "This campaign doesn't accept that frequency.",
-	"mosque_admin_campaign_days_left_short": "{days}d left",
-	"@mosque_admin_campaign_days_left_short": { "placeholders": { "days": { "type": "int" } } },
-	"mosque_admin_also_here": "Also here",
-	"mosque_admin_all_campaigns": "All campaigns",
-	"mosque_admin_campaign_edit": "Edit campaign",
-	"mosque_admin_campaign_launch": "Launch",
-	"mosque_admin_campaign_title_label": "Campaign title",
-	"mosque_admin_campaign_title_hint": "New ablution room",
-	"mosque_admin_campaign_description_hint": "Explain the project, the budget and the timeline…",
-	"mosque_admin_campaign_goal": "Goal (€)",
-	"mosque_admin_campaign_ends": "End date",
-	"mosque_admin_campaign_notify": "Notify followers",
-	"mosque_admin_campaign_notify_hint": "Sends a push to your followers (counts in the weekly quota).",
-	"mosque_admin_campaign_notify_update": "Also notify followers",
-	"mosque_admin_campaign_limit_note": "Up to 3 active campaigns at a time. Donors are reminded 48h before the end.",
-	"mosque_admin_campaign_invalid": "Add a title, a goal and a future end date.",
-	"mosque_admin_campaign_created": "Campaign launched",
-	"mosque_admin_campaigns_empty": "No campaign yet. Launch one to fund a project with your community.",
-	"mosque_admin_campaign_post_update": "Post an update",
-	"mosque_admin_campaign_update_hint": "Share progress with your donors…",
-	"mosque_admin_campaign_update_posted": "Update posted",
-	"mosque_admin_campaign_extend": "Extend",
-	"mosque_admin_campaign_extended": "Campaign extended",
-	"mosque_admin_campaign_reopen": "Reopen with a new end date",
-	"mosque_admin_campaign_close": "Close",
-	"mosque_admin_campaign_close_title": "Close this campaign?",
-	"mosque_admin_campaign_close_message": "Donors won't be able to contribute anymore. You can reopen it later.",
-	"mosque_admin_campaign_closed": "Campaign closed",
-	"mosque_admin_campaign_closed_note": "This campaign is closed {date}.",
-	"@mosque_admin_campaign_closed_note": {"placeholders": {"date": {"type": "String"}}},
-	"mosque_admin_donors_list": "Donors",
-	"mosque_admin_donors_empty": "No donation for this period.",
-	"mosque_admin_type_sadaqa": "Sadaqa",
-	"mosque_admin_type_campaign": "Campaign",
-	"mosque_admin_type_membership": "Membership",
-	"mosque_admin_receipts": "Tax receipts",
-	"mosque_admin_receipt_issue": "Issue receipt",
-	"mosque_admin_receipt_view": "View receipt",
-	"mosque_admin_receipt_generated": "Receipt ready",
-	"mosque_settings_title": "Mosque settings",
-	"mosque_settings_logo_remove_title": "Remove mosque logo?",
-	"mosque_settings_logo_remove_message": "Your mosque will show its initials until you add a new logo.",
-	"mosque_settings_legal_section": "Legal information",
-	"mosque_settings_legal_missing": "Not provided",
-	"mosque_reminders_no_times_hint": "Your reminders use the prayer times you publish. Set your mosque's schedule to start receiving them."
+  "l10nApiErrors": "☠☠☠☠☠☠☠☠☠☠☠☠ API ERRORS ☠☠☠☠☠☠☠☠☠☠☠☠",
+  "error_api_auth_anonymous_failed": "Anonymous sign-in failed. Please try again.",
+  "error_api_auth_start_failed": "Couldn't start sign-in. Please try again.",
+  "error_api_auth_check_email_failed": "Couldn't verify the email address. Please try again.",
+  "error_api_auth_code_verification_failed": "Code verification failed. Please check the code and try again.",
+  "error_api_auth_sign_in_cancelled": "Sign-in was cancelled.",
+  "error_api_auth_missing_google_token": "Missing Google ID token. Please try again.",
+  "error_api_auth_google_failed": "Google sign-in failed. Please try again.",
+  "error_api_auth_missing_apple_token": "Missing Apple ID token. Please try again.",
+  "error_api_auth_apple_failed": "Apple sign-in failed. Please try again.",
+  "error_api_auth_delete_failed": "Couldn't delete your account. Please try again.",
+  "error_api_user_not_authenticated": "You're not signed in. Please sign in and try again.",
+  "error_api_profile_avatar_upload_failed": "Couldn't upload your photo. Please try again.",
+  "error_api_profile_avatar_delete_failed": "Couldn't delete your photo. Please try again.",
+  "error_api_profile_invalid": "Couldn't load your profile. Please try again.",
+  "error_api_profile_load_failed": "Couldn't load your profile. Please try again.",
+  "error_api_profile_update_practice_time_failed": "Couldn't update your daily practice time.",
+  "error_api_profile_update_level_failed": "Couldn't update your level.",
+  "error_api_profile_update_name_failed": "Couldn't update your name.",
+  "error_api_profile_update_gender_failed": "Couldn't update your gender.",
+  "error_api_profile_update_onboarding_screen_failed": "Couldn't save your progress.",
+  "error_api_profile_complete_onboarding_failed": "Couldn't complete onboarding.",
+  "error_api_reward_streak_load_failed": "Couldn't load your streak.",
+  "error_api_reward_claim_failed": "Couldn't claim your reward.",
+  "error_api_quiz_unexpected_get_response": "Unexpected response while loading the quiz.",
+  "error_api_quiz_load_failed": "Couldn't load the quiz.",
+  "error_api_quiz_unexpected_submit_response": "Unexpected response while submitting the quiz.",
+  "error_api_quiz_submit_failed": "Couldn't submit the quiz.",
+  "error_api_favorites_ayahs_load_failed": "Couldn't load your favourite ayahs.",
+  "error_api_favorites_adhkars_load_failed": "Couldn't load your favourite adhkar.",
+  "error_api_favorites_duas_load_failed": "Couldn't load your favourite duas.",
+  "error_api_favorites_hadiths_load_failed": "Couldn't load your favourite hadiths.",
+  "error_api_favorites_projects_load_failed": "Couldn't load your favourite projects.",
+  "error_api_dua_load_failed": "Couldn't load duas.",
+  "error_api_dua_progress_load_failed": "Couldn't load your dua progress.",
+  "error_api_dua_progress_save_failed": "Couldn't save your dua progress.",
+  "error_api_dua_ajr_award_failed": "Couldn't record your daily dua reward.",
+  "error_api_dua_liked_load_failed": "Couldn't load your liked duas.",
+  "error_api_dua_like_failed": "Couldn't like this dua.",
+  "error_api_dua_unlike_failed": "Couldn't remove the like from this dua.",
+  "error_api_statistics_load_failed": "Couldn't load your statistics.",
+  "error_api_adhkar_categories_load_failed": "Couldn't load adhkar categories.",
+  "error_api_adhkar_subcategories_load_failed": "Couldn't load adhkar subcategories.",
+  "error_api_adhkars_load_failed": "Couldn't load adhkar.",
+  "error_api_dhikrs_load_failed": "Couldn't load dhikr.",
+  "error_api_dhikr_progress_load_failed": "Couldn't load your dhikr progress.",
+  "error_api_dhikr_ajr_load_failed": "Couldn't load your dhikr reward.",
+  "error_api_dhikr_progress_save_failed": "Couldn't save your dhikr progress.",
+  "error_api_hadith_collections_load_failed": "Couldn't load hadith collections.",
+  "error_api_hadiths_load_failed": "Couldn't load hadiths.",
+  "error_api_hadith_progress_load_failed": "Couldn't load your hadith progress.",
+  "error_api_hadith_progress_save_failed": "Couldn't save your hadith progress.",
+  "error_api_hadith_liked_load_failed": "Couldn't load your liked hadiths.",
+  "error_api_hadith_like_failed": "Couldn't like this hadith.",
+  "error_api_hadith_unlike_failed": "Couldn't remove the like from this hadith.",
+  "error_api_impact_categories_load_failed": "Couldn't load project categories.",
+  "error_api_impact_projects_load_failed": "Couldn't load projects.",
+  "error_api_impact_project_load_failed": "Couldn't load the project.",
+  "error_api_impact_add_favorite_failed": "Couldn't add to favourites.",
+  "error_api_impact_remove_favorite_failed": "Couldn't remove from favourites.",
+  "error_api_quran_progress_load_failed": "Couldn't load your Quran progress.",
+  "error_api_quran_progress_save_failed": "Couldn't save your Quran progress.",
+  "error_api_quran_liked_ayahs_load_failed": "Couldn't load your liked ayahs.",
+  "error_api_quran_ayah_ajr_award_failed": "Couldn't record your daily ayah reward.",
+  "error_api_quran_like_ayah_failed": "Couldn't like this ayah.",
+  "error_api_quran_transliteration_load_failed": "Couldn't load the transliteration.",
+  "error_api_quran_tafsir_load_failed": "Couldn't load the tafsir.",
+  "error_api_quran_unlike_ayah_failed": "Couldn't remove the like from this ayah.",
+  "l10nPayments": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "common_done": "Done",
+  "common_retry": "Try again",
+  "impact_donate": "Donate",
+  "impact_donate_or_zakat": "Donate or give Zakat",
+  "impact_transactions_title": "Transactions",
+  "impact_transactions_subtitle": "See how the collected funds were disbursed to the partner, with proof.",
+  "impact_transactions_empty": "No disbursements have been made for this project yet.",
+  "impact_transactions_distributed": "Distributed",
+  "donate_title": "Support this project",
+  "donate_type_donation": "Donation",
+  "donate_type_zakat": "Zakat",
+  "donate_amount_label": "Amount ({symbol})",
+  "@donate_amount_label": {
+    "placeholders": {
+      "symbol": {
+        "type": "String"
+      }
+    }
+  },
+  "donate_cover_fees": "Cover the processing fee",
+  "donate_cover_fees_hint": "Adds {fee} so the project receives the full amount.",
+  "@donate_cover_fees_hint": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      }
+    }
+  },
+  "donate_button": "Pay {amount}",
+  "@donate_button": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "donate_button_empty": "Enter an amount",
+  "donate_processing_title": "Processing…",
+  "donate_processing_message": "We're confirming your payment. This only takes a moment.",
+  "donate_success_title": "Jazak Allahu khayran!",
+  "donate_success_message": "Your contribution has been received.",
+  "donate_failed_title": "Payment failed",
+  "donate_failed_message": "Your payment could not be completed. No charge was applied.",
+  "l10nAdmin": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ ADMIN ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "admin_panel_title": "Administration",
+  "admin_panel_subtitle": "Donations, payments and payouts",
+  "admin_analytics_title": "Transactions & donations",
+  "admin_total_donated": "Total donated",
+  "admin_total_donors": "Donors",
+  "admin_total_paid_out": "Paid out",
+  "admin_outstanding": "Outstanding",
+  "admin_tab_projects": "Projects",
+  "admin_tab_payouts": "Payouts",
+  "admin_tab_received": "Received",
+  "admin_record_payout": "Record payout",
+  "admin_empty_projects": "No projects yet.",
+  "admin_empty_payouts": "No payouts recorded yet.",
+  "admin_empty_received": "No transactions received yet.",
+  "admin_no_donations_yet": "No donations yet.",
+  "admin_donors_count": "{count} donors",
+  "@admin_donors_count": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "admin_field_project": "Project",
+  "admin_field_type": "Type",
+  "admin_field_amount": "Amount",
+  "admin_field_method": "Method",
+  "admin_field_status": "Status",
+  "admin_field_reference": "Reference",
+  "admin_field_reference_hint": "Bank / Wise transfer reference",
+  "admin_field_note": "Note",
+  "admin_field_proof": "Proof of transfer",
+  "admin_add_proof": "Add a receipt image",
+  "admin_save_payout": "Save payout",
+  "payout_confirmed": "Confirmed",
+  "payout_sent": "Sent",
+  "payout_pending": "Pending",
+  "error_api_payment_intent_failed": "Couldn't start the payment. Please try again.",
+  "error_api_payment_sheet_failed": "The payment could not be completed.",
+  "error_api_payment_cancelled": "Payment cancelled.",
+  "error_api_payment_history_load_failed": "Couldn't load your donation history.",
+  "error_api_payment_project_transactions_load_failed": "Couldn't load this project's transactions.",
+  "error_api_admin_analytics_load_failed": "Couldn't load the analytics.",
+  "error_api_admin_payouts_load_failed": "Couldn't load the payouts.",
+  "error_api_admin_payout_create_failed": "Couldn't record the payout.",
+  "error_api_admin_payout_proof_upload_failed": "Couldn't upload the proof image.",
+  "error_api_admin_transactions_load_failed": "Couldn't load the transactions.",
+  "l10nPaymentsV2": "☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠ PAYMENTS V2 ☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠☠",
+  "donate_sheet_title": "Donate how much?",
+  "donate_frequency_yearly": "Yearly",
+  "donate_frequency_monthly": "Monthly",
+  "donate_frequency_one_time": "One time",
+  "donate_how_much": "How much would you like to give ?",
+  "donate_or": "Or",
+  "donate_enter_manually": "Enter amount manually",
+  "donate_checkout": "Checkout",
+  "donate_footer_partners": "Funds are distributed via verified partners",
+  "donate_footer_transparent": "100% transparent",
+  "donate_per_month": "{amount} / month",
+  "@donate_per_month": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "donate_per_year": "{amount} / year",
+  "@donate_per_year": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "impact_donate_now": "Donate now",
+  "impact_tiers_title": "Your donation provides",
+  "checkout_title": "Checkout",
+  "checkout_my_donation": "My donation",
+  "checkout_options_title": "Donation options",
+  "checkout_anonymous_title": "Make this anonymous",
+  "checkout_anonymous_hint": "Your name won't appear in public counts",
+  "checkout_cover_fees_title": "Cover transaction fees (+{fee})",
+  "@checkout_cover_fees_title": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      }
+    }
+  },
+  "checkout_cover_fees_hint": "100% of your donation reaches projects",
+  "checkout_payment_method": "Payment method",
+  "checkout_method_paypal": "PayPal",
+  "checkout_method_card": "Debit/Credit card",
+  "checkout_method_apple_pay": "Apple Pay",
+  "checkout_method_google_pay": "Google Pay",
+  "checkout_pay_button": "Checkout",
+  "checkout_total": "Total {amount}",
+  "@checkout_total": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "checkout_recurring_note_month": "You will be charged {amount} every month. Cancel anytime from My donations.",
+  "@checkout_recurring_note_month": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "checkout_recurring_note_year": "You will be charged {amount} every year. Cancel anytime from My donations.",
+  "@checkout_recurring_note_year": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "checkout_processing_title": "Confirming your payment…",
+  "checkout_processing_message": "This usually takes a few seconds. Please don't close the app.",
+  "checkout_timeout_title": "Taking longer than expected",
+  "checkout_timeout_message": "Your payment is still being confirmed. You can keep waiting or check the status later in My donations.",
+  "checkout_keep_waiting": "Keep waiting",
+  "checkout_check_later": "Check later",
+  "reward_donation_title": "Jazak Allahu Khayr",
+  "reward_donation_message": "Your donation has been received.\nMay Allah accept it and multiply its reward.",
+  "reward_donation_you_donated": "You donated",
+  "reward_donation_you_give": "You give",
+  "reward_donation_project": "Project",
+  "reward_donation_via": "Via {org}",
+  "@reward_donation_via": {
+    "placeholders": {
+      "org": {
+        "type": "String"
+      }
+    }
+  },
+  "profile_my_donations": "My donations",
+  "my_donations_tab_history": "History",
+  "my_donations_tab_recurring": "Recurring",
+  "my_donations_empty_history": "No donations yet. Your contributions will appear here.",
+  "my_donations_empty_recurring": "No recurring donations.",
+  "my_donations_status_succeeded": "Received",
+  "my_donations_status_failed": "Failed",
+  "my_donations_status_refunded": "Refunded",
+  "my_donations_status_processing": "Processing",
+  "my_donations_sub_active": "Active",
+  "my_donations_sub_past_due": "Payment issue",
+  "my_donations_sub_canceled": "Cancelled",
+  "my_donations_sub_incomplete": "Pending",
+  "my_donations_sub_ends_on": "Ends on {date}",
+  "@my_donations_sub_ends_on": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "my_donations_next_charge": "Next charge: {date}",
+  "@my_donations_next_charge": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "my_donations_cancel": "Stop",
+  "my_donations_cancel_confirm_title": "Stop this recurring donation?",
+  "my_donations_cancel_confirm_message": "It stays active until the end of the current period, then no further charges are made.",
+  "my_donations_cancel_confirm_yes": "Stop donation",
+  "my_donations_keep": "Keep",
+  "my_donations_anonymous": "Anonymous",
+  "my_donations_fee_included": "incl. {fee} fees",
+  "@my_donations_fee_included": {
+    "placeholders": {
+      "fee": {
+        "type": "String"
+      }
+    }
+  },
+  "my_donations_zakat": "Zakat",
+  "my_donations_sadaqa": "Sadaqa",
+  "my_donations_recurring_badge": "Recurring",
+  "error_api_payment_amount_too_small": "The minimum donation is 1€.",
+  "error_api_payment_amount_too_large": "The maximum per payment is 10,000€.",
+  "error_api_payment_project_inactive": "This project is no longer accepting donations.",
+  "error_api_payment_not_zakat_eligible": "This project is not eligible for zakat.",
+  "error_api_payment_subscription_failed": "Couldn't set up the recurring donation. Please try again.",
+  "error_api_payment_subscriptions_load_failed": "Couldn't load your recurring donations.",
+  "error_api_payment_subscription_cancel_failed": "Couldn't stop the recurring donation. Please try again.",
+  "error_api_payment_confirmation_timeout": "We couldn't confirm the payment yet. Check My donations in a moment.",
+  "admin_change_status_title": "Change payout status",
+  "admin_change_status_subtitle": "Only CONFIRMED disbursements are shown publicly on the project page.",
+  "admin_status_pending_hint": "Recorded, transfer not sent yet",
+  "admin_status_sent_hint": "Transfer sent, awaiting partner confirmation",
+  "admin_status_confirmed_hint": "Received by the partner — visible to donors",
+  "error_api_admin_payout_update_failed": "Couldn't update the payout status.",
+  "zakat_alloc_title": "Give zakat to eligible Nour projects",
+  "zakat_alloc_info": "Only projects that meet the 8 Quranic categories of Zakat eligibility (Surah 9:60) are shown here",
+  "zakat_alloc_empty_title": "No zakat-eligible projects right now",
+  "zakat_alloc_empty_message": "You can't give zakat through the app just yet — don't worry, new eligible projects will be added soon insha'Allah.",
+  "zakat_alloc_owed": "Zakat owed",
+  "zakat_alloc_allocated": "Zakat allocated",
+  "zakat_alloc_fully": "Fully allocated",
+  "zakat_alloc_remaining": "Remaining",
+  "zakat_alloc_extra": "Extra (counts as Sadaqa)",
+  "zakat_checkout_title": "Zakat",
+  "zakat_checkout_my_zakat": "My zakat",
+  "zakat_checkout_allocated_to": "Allocated to",
+  "zakat_checkout_fees": "Transaction fees",
+  "zakat_checkout_total": "Total",
+  "zakat_reward_message": "Your zakat has been received.\nMay Allah accept it and multiply its reward.",
+  "zakat_reward_you_gave": "You gave",
+  "admin_filter_all": "All",
+  "admin_delete_payout": "Delete this payout",
+  "admin_delete_payout_confirm_title": "Delete this payout?",
+  "admin_delete_payout_confirm_message": "It disappears permanently from the ledger and, if it was confirmed, from the public transparency section of the project. Paid-out and outstanding totals will be recalculated.",
+  "admin_delete_payout_confirm_yes": "Delete payout",
+  "error_api_admin_payout_delete_failed": "Couldn't delete the payout.",
+  "common_required_field": "This field is required",
+  "common_optional": "optional",
+  "common_refresh": "Refresh",
+  "mosque_onboarding_resume": "Continue my mosque registration",
+  "mosque_onboarding_start_over": "Start over",
+  "profile_type_title": "How will you use Nour?",
+  "profile_type_mosque_title": "I am a mosque manager",
+  "profile_type_mosque_subtitle": "Publish to your community, run fundraising campaigns.",
+  "profile_type_user_title": "I am a worshipper",
+  "profile_type_user_subtitle": "Follow mosques, track prayer times, and stay connected.",
+  "mosque_post_type_announcement": "Announcement",
+  "mosque_post_type_event": "Event",
+  "mosque_post_type_event_hint": "Date, time, place",
+  "mosque_post_type_volunteering": "Volunteering",
+  "mosque_post_type_volunteering_hint": "Recruit helpers",
+  "mosque_post_type_highlight": "Highlight",
+  "mosque_post_type_highlight_hint": "Share moments",
+  "mosque_post_type_janaza": "Janaza",
+  "mosque_post_type_janaza_hint": "Date, prayer time",
+  "mosque_onboarding_feature_1_title": "Made for mosque announcements.",
+  "mosque_onboarding_feature_1_description": "Events, fundraisers, volunteer calls, janazas, reminders, highlights.",
+  "mosque_onboarding_feature_2_title": "Raise funds the trusted way.",
+  "mosque_onboarding_feature_2_description": "Ongoing Sadaqah and time-bound campaigns.",
+  "mosque_onboarding_feature_3_title": "A calendar that reflects your imam.",
+  "mosque_onboarding_feature_3_description": "Publish your own prayer schedule and iqama times.",
+  "mosque_onboarding_country_title": "Choose your country",
+  "mosque_onboarding_country_search": "Search country",
+  "mosque_legal_status_1901": "Association (law 1901)",
+  "mosque_legal_status_1905": "Religious association (law 1905)",
+  "mosque_legal_status_other": "Other",
+  "mosque_register_title": "Let's register your mosque",
+  "mosque_register_legal_name": "Legal name",
+  "mosque_register_legal_name_hint": "Enter your legal name",
+  "mosque_register_legal_status": "Legal status",
+  "mosque_register_legal_status_hint": "Choose a legal status",
+  "mosque_register_rna": "RNA",
+  "mosque_register_rna_invalid": "RNA must look like W751123456",
+  "mosque_register_siren": "SIREN",
+  "mosque_register_siren_invalid": "SIREN must have 9 digits",
+  "mosque_register_cta": "Confirm",
+  "mosque_account_title": "Let's create your account",
+  "mosque_account_subtitle": "To manage your mosque on Nour",
+  "mosque_account_existing_hint": "Already have an account? Use the same email or provider to sign in.",
+  "mosque_account_cta": "Sign up",
+  "mosque_review_pending_title": "Your mosque is being reviewed",
+  "mosque_review_pending_message": "Our team is checking your registration. You'll be notified as soon as it is approved — usually within a few days.",
+  "mosque_review_rejected_title": "Registration refused",
+  "mosque_review_rejected_message": "We couldn't approve your mosque. See the note below or contact support.",
+  "mosque_review_suspended_title": "Mosque suspended",
+  "mosque_review_suspended_message": "Your mosque profile has been suspended. Contact support for more information.",
+  "mosque_review_contact_support": "Contact support",
+  "mosque_admin_tab_dashboard": "Dashboard",
+  "mosque_admin_tab_community": "Community",
+  "mosque_admin_tab_mosque": "Mosque",
+  "mosque_admin_tab_post": "Post",
+  "mosque_admin_total_raised_year": "Total raised this year",
+  "mosque_admin_donors": "Donors",
+  "mosque_admin_recurring": "Recurring",
+  "mosque_admin_avg_gift": "Avg gift",
+  "error_api_mosque_load_failed": "Couldn't load the mosque.",
+  "error_api_mosque_save_failed": "Couldn't save the changes.",
+  "error_api_mosque_search_failed": "Couldn't search mosques.",
+  "error_api_mosque_register_failed": "Couldn't register the mosque. Please try again.",
+  "error_api_mosque_register_is_worshipper": "This account is already a worshipper account. Use another email to register a mosque.",
+  "error_api_mosque_register_anonymous": "Please sign in with an email, Google or Apple account.",
+  "error_api_mosque_register_invalid_siren": "The SIREN number is invalid.",
+  "error_api_mosque_register_invalid_rna": "The RNA number is invalid.",
+  "error_api_mosque_register_duplicate": "This mosque is already registered. Contact support if you manage it.",
+  "error_api_mosque_post_limit_reached": "You reached the limit of active posts of this type. Archive one first.",
+  "error_api_mosque_broadcast_quota_exceeded": "You already sent the maximum notifications this week.",
+  "error_api_mosque_not_approved": "Your mosque is not approved yet.",
+  "error_api_push_register_failed": "Couldn't register this device for notifications.",
+  "push_settings_title": "Push notifications",
+  "push_settings_description": "Choose which notifications Nour may send to this device. Prayer and adhkar reminders are managed in Reminders.",
+  "push_kind_mosque_post": "Mosque news",
+  "push_kind_mosque_post_hint": "Announcements from the mosques you follow",
+  "push_kind_mosque_event": "Events",
+  "push_kind_mosque_event_hint": "Conferences, janazas, volunteering",
+  "push_kind_mosque_campaign": "Fundraising campaigns",
+  "push_kind_mosque_campaign_hint": "New campaigns and deadlines",
+  "push_kind_mosque_broadcast": "Messages from the mosque",
+  "push_kind_mosque_broadcast_hint": "Direct messages sent by the mosque (max 2 per week)",
+  "push_kind_mosque_status": "Mosque account",
+  "push_kind_mosque_status_hint": "Review status and important account updates",
+  "push_kind_system": "Nour updates",
+  "push_kind_system_hint": "Occasional news about the app",
+  "common_cancel": "Cancel",
+  "common_delete": "Delete",
+  "common_edit": "Edit",
+  "common_load_more": "Load more",
+  "common_yes": "Yes",
+  "common_no": "No",
+  "admin_tab_mosques": "Mosques",
+  "admin_mosque_approve": "Approve",
+  "admin_mosque_reject": "Reject",
+  "admin_mosque_suspend": "Suspend",
+  "admin_mosque_reviewed": "Mosque updated — the owner has been notified.",
+  "admin_mosque_duplicate_siren": "⚠ Another mosque uses this SIREN",
+  "admin_mosque_empty": "No mosque in this state.",
+  "admin_mosque_filter_pending": "Pending",
+  "admin_mosque_filter_approved": "Approved",
+  "admin_mosque_filter_rejected": "Rejected",
+  "admin_mosque_filter_suspended": "Suspended",
+  "admin_mosque_note_title": "Note for the mosque",
+  "admin_mosque_note_hint": "Reason (shown to the mosque manager)",
+  "home_my_mosque": "My mosque",
+  "home_no_mosque_title": "No mosque selected yet",
+  "home_no_mosque_subtitle": "Choose your mosque to see its prayer times, news and campaigns right here.",
+  "home_find_mosque": "Find a mosque",
+  "profile_my_mosques": "My mosques",
+  "prayer_times_add_mosque": "Add your mosque",
+  "prayer_times_from_mosque_hint": "Times published by your mosque. Change your mosque to switch back to computed times.",
+  "onboarding_mosque_title": "Select a mosque",
+  "onboarding_mosque_subtitle": "Find and follow your local mosque to get its prayer times and news.",
+  "mosque_search_hint": "Search a mosque",
+  "mosque_search_near_you": "Mosques near you",
+  "mosque_search_near_you_short": "Near you",
+  "mosque_search_results": "Results",
+  "mosque_search_empty": "No mosque found. Try another name or city.",
+  "mosque_search_language": "Search language",
+  "mosque_add_to_my_mosques": "Add to my mosques",
+  "my_mosques_title": "Your mosque(s)",
+  "my_mosques_subtitle": "Drag and drop the mosques to reorder them and set the main mosque.",
+  "my_mosques_principal": "Principal mosque",
+  "my_mosques_secondary": "Secondary mosque",
+  "my_mosques_no_principal": "No principal mosque yet",
+  "my_mosques_no_secondary": "No secondary mosque yet",
+  "my_mosques_saved": "Your mosques are saved.",
+  "my_mosques_added": "In my mosques",
+  "my_mosques_is_principal": "Your principal mosque",
+  "my_mosques_is_secondary": "Your secondary mosque",
+  "mosque_cover_placeholder": "Cover image",
+  "mosque_status_open": "Open",
+  "mosque_status_closed": "Closed",
+  "mosque_followers": "followers",
+  "mosque_members": "members",
+  "mosque_followers_title": "Followers",
+  "mosque_members_title": "Members",
+  "mosque_follow": "Follow",
+  "mosque_following": "Following",
+  "mosque_become_member": "Become a member",
+  "mosque_member_badge": "Member",
+  "mosque_follower_badge": "Follower",
+  "mosque_action_itinerary": "Itinerary",
+  "mosque_action_call": "Call",
+  "mosque_action_email": "Email",
+  "mosque_address_copied": "Address copied",
+  "mosque_tab_prayers": "Prayers",
+  "mosque_tab_information": "Information",
+  "mosque_tab_news": "News",
+  "mosque_tab_donation": "Donation",
+  "mosque_today_prayer_times": "Today's prayer times",
+  "mosque_prayer_times_unavailable": "Prayer times are not available right now.",
+  "mosque_prayer_times_computed_hint": "Computed times — the mosque hasn't published today's schedule yet.",
+  "mosque_prayer_times_not_published": "Prayer times not published yet",
+  "mosque_capacity": "Capacity",
+  "mosque_capacity_men": "Men",
+  "mosque_capacity_women": "Women",
+  "mosque_capacity_men_women": "Men + Women",
+  "mosque_founded": "Founded",
+  "mosque_years_old": "{n} years old",
+  "@mosque_years_old": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_services": "Services",
+  "mosque_services_edit_hint": "Select the services your mosque offers. They'll appear on your public profile.",
+  "mosque_no_services": "No service listed yet.",
+  "mosque_service_parking": "Parking",
+  "mosque_service_disabled_access": "Disabled access",
+  "mosque_service_ablution_room": "Ablution room",
+  "mosque_service_women_space": "Women's space",
+  "mosque_service_adult_classes": "Adult classes",
+  "mosque_service_children_classes": "Children classes",
+  "mosque_service_quran_classes": "Qur'an classes",
+  "mosque_service_arabic_classes": "Arabic classes",
+  "mosque_service_eid_prayer": "Salat Al Eid",
+  "mosque_service_janaza": "Salat Al Janaza",
+  "mosque_service_iftar_ramadan": "Iftar Ramadan",
+  "mosque_service_library": "Library",
+  "mosque_service_new_muslims": "New Muslims support",
+  "mosque_khutbah_languages": "Khutbah language(s)",
+  "mosque_add_languages": "Add languages",
+  "mosque_imams": "Imams",
+  "mosque_since_year": "Since {y}",
+  "@mosque_since_year": {
+    "placeholders": {
+      "y": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_add_imam": "Add an Imam",
+  "mosque_edit_imam": "Edit Imam",
+  "mosque_add_photo": "Add a photo",
+  "mosque_imam_full_name": "Full name",
+  "mosque_imam_role": "Role",
+  "mosque_imam_since": "At the mosque since",
+  "mosque_imam_bio": "Short bio",
+  "mosque_imam_bio_hint": "A few words about the Imam",
+  "mosque_news_empty": "No news yet. Follow the mosque to be notified of its announcements.",
+  "mosque_post_urgent": "Urgent",
+  "mosque_post_share": "Share",
+  "mosque_post_apply": "Apply",
+  "mosque_post_applied": "Applied",
+  "mosque_post_attend_cta": "I'll attend",
+  "mosque_post_attending_cta_done": "Attending ✓",
+  "mosque_post_attending": "{n} attending",
+  "@mosque_post_attending": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_volunteers": "{n} volunteer(s)",
+  "@mosque_post_volunteers": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_duas": "{n} duas",
+  "@mosque_post_duas": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_say_dua": "Say a dua",
+  "mosque_post_dua_said": "Dua said ✓",
+  "mosque_post_after_prayer": "After {slot} prayer - {time}",
+  "@mosque_post_after_prayer": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_post_notified_all": "Notified all",
+  "mosque_dua_recite": "Recite this dua",
+  "mosque_dua_translation": "O Allah, forgive him, have mercy on him, grant him well-being and pardon him.",
+  "mosque_dua_done": "I'm done",
+  "mosque_donations_coming_soon": "Donations to this mosque will be available soon.",
+  "mosque_donation_enter_amount": "Enter amount manually",
+  "mosque_member_title": "Join our membership",
+  "mosque_member_subtitle": "Registering as a member helps us stay connected with you and organize our community life.",
+  "mosque_member_first_name": "First name",
+  "mosque_member_last_name": "Last name",
+  "mosque_member_birth_date": "Date of birth",
+  "mosque_member_profession": "Profession",
+  "mosque_member_phone": "Phone number",
+  "mosque_member_volunteer_question": "Available for volunteer projects?",
+  "mosque_member_consent": "I consent to the mosque using my information to contact me about volunteer and community support projects.",
+  "mosque_member_fee_optional": "Optional contribution",
+  "mosque_member_fee_title": "Support the mosque",
+  "mosque_member_fee_hint": "A recommended contribution of €120/year helps sustain the mosque. This is entirely optional, your membership is free.",
+  "mosque_member_fee_choose": "Choose your contribution",
+  "mosque_member_register": "Register as member",
+  "mosque_member_fill_required": "Please fill all required fields and accept the consent.",
+  "mosque_member_welcome": "Welcome to the community!",
+  "mosque_time_just_now": "Just now",
+  "mosque_time_min_ago": "{n} min ago",
+  "@mosque_time_min_ago": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_time_hours_ago": "{n} h ago",
+  "@mosque_time_hours_ago": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_time_yesterday": "Yesterday",
+  "mosque_time_days_ago": "{n} days ago",
+  "@mosque_time_days_ago": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_time_weeks_ago": "{n} week(s) ago",
+  "@mosque_time_weeks_ago": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_panel_title": "Mosque dashboard",
+  "mosque_admin_panel_subtitle": "Manage your mosque, posts and community",
+  "mosque_admin_attention": "{n} things need your attention",
+  "@mosque_admin_attention": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_pending_events": "{n} pending event(s)",
+  "@mosque_admin_pending_events": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_campaigns_ending": "{n} fundraising ending soon",
+  "@mosque_admin_campaigns_ending": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_last_7_days": "Last 7 days",
+  "mosque_admin_last_30_days": "Last 30 days",
+  "mosque_admin_growth": "Growth",
+  "mosque_admin_today": "Today",
+  "mosque_admin_open_rate": "Notification open rate (30 days, estimate): {rate}%",
+  "@mosque_admin_open_rate": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_admin_fundraising": "Fundraising",
+  "mosque_admin_fundraising_total_raised": "Total raised",
+  "mosque_admin_period_this_year": "This year",
+  "mosque_admin_period_30d": "Last 30 days",
+  "mosque_admin_period_all_time": "All time",
+  "mosque_campaign_days_left_short": "{n}d left",
+  "@mosque_campaign_days_left_short": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_recent_posts": "Recent posts",
+  "mosque_admin_no_posts": "No post yet. Share news, events or a janaza with your community.",
+  "mosque_admin_create_post": "Create a post",
+  "mosque_admin_view_mosque": "View public profile",
+  "mosque_admin_search_community": "Search name, email, phone",
+  "mosque_admin_filter_all": "All",
+  "mosque_admin_filter_followers": "Followers",
+  "mosque_admin_filter_members": "Members",
+  "mosque_admin_filter_volunteers": "Volunteers",
+  "mosque_admin_community_empty": "Nobody here yet.",
+  "mosque_admin_remove_member": "Remove member",
+  "mosque_admin_prayer_times": "Prayer times",
+  "mosque_prayers_not_set_title": "The day's prayers have not yet been set.",
+  "mosque_prayers_not_set_hint": "Enter them manually or copy from another day",
+  "mosque_prayers_copy_from_day": "Copy from another day",
+  "mosque_prayers_copied_from": "Prayer times successfully copied from {date}",
+  "@mosque_prayers_copied_from": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_copy_title": "Copy prayer times",
+  "mosque_copy_subtitle": "Reuse another day's times instead of typing them again.",
+  "mosque_copy_from": "Copy from",
+  "mosque_copy_times": "Times to copy",
+  "mosque_copy_apply_to": "Apply to",
+  "mosque_copy_this_day": "This day only",
+  "mosque_copy_date_range": "A date range",
+  "mosque_copy_from_date": "From",
+  "mosque_copy_to_date": "To",
+  "mosque_copy_overwrite_warning": "Days that already have times will be overwritten.",
+  "mosque_overrides_title": "Prayer's overrides",
+  "mosque_overrides_shift_title": "Shift a prayer today",
+  "mosque_overrides_shift_hint": "Change one prayer's time for today only, without touching the permanent schedule.",
+  "mosque_overrides_create": "Create an override",
+  "mosque_overrides_applied": "Applied overrides",
+  "mosque_override_created": "Override applied — followers see the new time.",
+  "mosque_override_new_time": "New time",
+  "mosque_override_reason_hint": "Reason (optional)",
+  "mosque_post_notify_followers": "Notify followers",
+  "mosque_post_send_push": "Send push to {n} followers",
+  "@mosque_post_send_push": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_quota_left": "{left} of {limit} notifications left this week",
+  "@mosque_post_quota_left": {
+    "placeholders": {
+      "left": {
+        "type": "int"
+      },
+      "limit": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_notified": "Notification sent to {n} followers",
+  "@mosque_post_notified": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_post_archive": "Archive",
+  "mosque_post_published": "Post published",
+  "mosque_post_title_hint": "Title",
+  "mosque_post_title_label": "Title",
+  "mosque_post_body_hint": "Start writing",
+  "mosque_post_add_to_post": "Add to your post",
+  "mosque_post_choose_category": "Or choose a category",
+  "mosque_post_audience_public": "Public",
+  "mosque_post_audience_followers": "Followers",
+  "mosque_post_form_event": "Post an event",
+  "mosque_post_form_volunteering": "Recruit volunteers",
+  "mosque_post_form_highlight": "Share a highlight",
+  "mosque_post_form_janaza": "Announce a janaza",
+  "mosque_post_cover_photo": "Cover photo",
+  "mosque_post_add_cover": "Add cover photo",
+  "mosque_post_cover_required": "A photo is required for a highlight.",
+  "mosque_post_event_name": "Event name",
+  "mosque_post_janaza_name": "Name of the deceased",
+  "mosque_post_description": "Description",
+  "mosque_post_description_hint": "What is this event about..",
+  "mosque_post_date": "Date",
+  "mosque_post_time": "Time",
+  "mosque_post_date_required": "Please choose a date.",
+  "mosque_post_after_prayer_label": "After which prayer?",
+  "mosque_post_location": "Location",
+  "mosque_post_location_default": "At the mosque",
+  "mosque_post_volunteers_needed": "Volunteers needed",
+  "mosque_post_language": "Language",
+  "mosque_post_mark_urgent": "Mark as urgent",
+  "mosque_post_mark_urgent_hint": "Post appears at top with urgent badge",
+  "mosque_admin_edit_profile": "Edit mosque profile",
+  "mosque_admin_profile_saved": "Profile saved",
+  "mosque_admin_cover_images": "Cover images",
+  "mosque_admin_tap_to_change_logo": "Tap the logo to change it",
+  "mosque_admin_field_name": "Mosque name",
+  "mosque_admin_field_description": "Description",
+  "mosque_admin_field_address": "Address",
+  "mosque_admin_field_postal": "Postal code",
+  "mosque_admin_field_city": "City",
+  "mosque_admin_field_phone": "Phone",
+  "mosque_admin_field_email": "Contact email",
+  "mosque_admin_field_account_email": "Account email",
+  "mosque_admin_field_account_email_hint": "The email you sign in with. It can't be changed here.",
+  "mosque_admin_field_website": "Website",
+  "mosque_admin_opening_status": "Opening status",
+  "mosque_admin_no_notifications": "No notification yet.",
+  "error_api_mosque_campaign_limit_reached": "You already have 3 active campaigns. Close one first.",
+  "error_api_mosque_campaign_closed": "This campaign is closed.",
+  "error_api_mosque_donations_disabled": "This mosque can't receive donations yet.",
+  "error_api_mosque_receipts_not_allowed": "This mosque doesn't issue tax receipts.",
+  "error_api_mosque_receipt_no_donations": "No eligible donation found for this receipt.",
+  "error_api_mosque_receipt_failed": "Couldn't generate the receipt.",
+  "error_api_mosque_stripe_failed": "Couldn't reach Stripe. Please try again.",
+  "my_donations_tab_mosques": "Mosques",
+  "my_donations_empty_mosques": "You haven't supported a mosque yet. Find one near you and give.",
+  "mosque_donation_other_amount": "Other",
+  "mosque_donation_custom_amount_hint": "Enter an amount",
+  "mosque_donation_give": "Give {amount}",
+  "@mosque_donation_give": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_give_monthly": "Give {amount} / month",
+  "@mosque_donation_give_monthly": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_give_yearly": "Give {amount} / year",
+  "@mosque_donation_give_yearly": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_secure_note": "Secure payment. 100% goes to the mosque — Nour takes no fee.",
+  "mosque_donation_tax_badge": "Tax receipt",
+  "mosque_donation_popular": "Popular",
+  "mosque_donation_or": "Or",
+  "mosque_donation_manual_amount_hint": "Enter amount manually",
+  "mosque_donation_give_to_mosque": "Give to the mosque",
+  "mosque_donation_tax_deductible": "Tax deductible {percent}%",
+  "@mosque_donation_tax_deductible": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_active_monthly": "You give {amount} every month. Jazakallah khair.",
+  "@mosque_donation_active_monthly": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_active_yearly": "You give {amount} every year. Jazakallah khair.",
+  "@mosque_donation_active_yearly": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_donation_cancel_recurring_title": "Stop your recurring gift?",
+  "mosque_donation_cancel_recurring_message": "You will keep the current period; no further charge will be made.",
+  "mosque_donation_recurring_cancelled": "Your recurring gift has been stopped.",
+  "mosque_donor_anonymous": "Anonymous",
+  "mosque_campaigns_title": "Campaigns",
+  "mosque_campaigns_past_title": "Past campaigns",
+  "mosque_campaign_title": "Campaign",
+  "mosque_campaign_of_goal": "of {goal}",
+  "@mosque_campaign_of_goal": {
+    "placeholders": {
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_campaign_donors_count": "{count, plural, =0{No donor yet} =1{1 donor} other{{count} donors}}",
+  "@mosque_campaign_donors_count": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_campaign_people_donated": "{count}+ people have donated",
+  "@mosque_campaign_people_donated": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_campaign_days_left": "{days, plural, =0{Ends today} =1{1 day left} other{{days} days left}}",
+  "@mosque_campaign_days_left": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_campaign_closed": "Closed",
+  "mosque_campaign_active": "Active",
+  "mosque_campaign_ending_soon": "Ending soon",
+  "mosque_campaign_remaining": "Remaining",
+  "mosque_campaign_contribute": "Contribute",
+  "mosque_campaign_recent_donors": "Recent donors",
+  "mosque_campaign_updates": "Updates",
+  "mosque_campaign_updates_empty": "No update posted yet.",
+  "mosque_campaign_funded_note": "Alhamdulillah, the goal has been reached. Thank you to everyone who contributed.",
+  "mosque_campaign_ended_note": "This campaign has ended. You can still support the mosque from its Donation tab.",
+  "mosque_checkout_sadaqa": "Sadaqa to the mosque",
+  "mosque_checkout_campaign_gift": "Campaign contribution",
+  "mosque_checkout_membership_fee": "Yearly membership contribution",
+  "mosque_checkout_direct_note": "Paid directly to {mosque} via Stripe. Nour takes no fee.",
+  "@mosque_checkout_direct_note": {
+    "placeholders": {
+      "mosque": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_checkout_success_title": "Jazakallah khair",
+  "mosque_checkout_success_message": "Your gift of {amount} to {mosque} has been received.",
+  "@mosque_checkout_success_message": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "mosque": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_checkout_success_membership": "Your contribution of {amount} to {mosque} is confirmed. Welcome to the community.",
+  "@mosque_checkout_success_membership": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "mosque": {
+        "type": "String"
+      }
+    }
+  },
+  "reward_mosque_sadaqa_message": "Your sadaqa has been received.\nMay Allah accept it and multiply its reward.",
+  "reward_mosque_campaign_message": "Your contribution has been received.\nMay Allah reward you for what it will build.",
+  "reward_mosque_membership_message": "Your membership contribution is confirmed.\nWelcome to the community.",
+  "reward_mosque_you_contributed": "Your contribution",
+  "reward_mosque_label": "Mosque",
+  "reward_mosque_my_receipts": "My tax receipts",
+  "mosque_receipts_empty": "No receipt yet.",
+  "mosque_receipt_single": "Single gift",
+  "mosque_receipt_yearly": "Yearly summary {year}",
+  "@mosque_receipt_yearly": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_manage": "Manage",
+  "mosque_admin_preview": "Preview",
+  "mosque_admin_stat_support": "Sadaqa & memberships",
+  "mosque_admin_stat_support_hint": "Ongoing support",
+  "mosque_admin_stat_campaigns": "Campaigns",
+  "mosque_donation_card_support": "Support",
+  "mosque_donation_card_growth": "{growth} vs {year}",
+  "@mosque_donation_card_growth": {
+    "placeholders": {
+      "growth": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_admin_sadaqa_title": "Sadaqa card",
+  "mosque_admin_sadaqa_section_title": "Support the mosque",
+  "mosque_admin_sadaqa_this_month": "This month",
+  "mosque_admin_sadaqa_gifts": "{gifts} gifts",
+  "@mosque_admin_sadaqa_gifts": {
+    "placeholders": {
+      "gifts": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_sadaqa_monthly_donors": "Monthly donors",
+  "mosque_admin_sadaqa_manage_settings": "Manage settings",
+  "mosque_admin_sadaqa_month_summary": "{gifts} gifts this month ({amount}) · {monthly} monthly donors",
+  "@mosque_admin_sadaqa_month_summary": {
+    "placeholders": {
+      "gifts": {
+        "type": "int"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "monthly": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_sadaqa_settings_title": "Sadaqa settings",
+  "mosque_admin_sadaqa_card_title": "Card title",
+  "mosque_admin_sadaqa_card_title_hint": "Support the mosque",
+  "mosque_admin_sadaqa_description_hint": "Tell donors what their support funds…",
+  "mosque_admin_sadaqa_amounts": "Suggested amounts",
+  "mosque_admin_sadaqa_amounts_hint": "Up to 6 amounts. Donors can always enter another amount.",
+  "mosque_admin_sadaqa_add_amount": "Add amount",
+  "mosque_admin_sadaqa_frequencies": "Allowed frequencies",
+  "mosque_admin_sadaqa_frequency_required": "Keep at least one frequency enabled.",
+  "mosque_admin_sadaqa_invalid": "Add a title and at least one amount.",
+  "mosque_admin_sadaqa_tax_badge": "Show \"Tax receipt\" badge",
+  "mosque_admin_sadaqa_tax_badge_hint": "Donors will see that their gift is tax-deductible.",
+  "mosque_admin_sadaqa_tax_badge_locked": "Enable tax receipts in the Stripe setup first.",
+  "mosque_admin_membership_fee_amounts": "Membership contribution amounts (yearly)",
+  "mosque_admin_membership_fee_amounts_hint": "Shown when a worshipper joins as a member. The second amount is recommended.",
+  "mosque_admin_stripe_title": "Payments (Stripe)",
+  "mosque_admin_stripe_active": "Donations enabled · payouts go straight to your bank account",
+  "mosque_admin_stripe_setup_title": "Receive donations",
+  "mosque_admin_stripe_setup_message": "Connect a Stripe account to receive Sadaqa, campaign gifts and membership contributions directly. Takes about 5 minutes.",
+  "mosque_admin_stripe_pending_title": "Almost there",
+  "mosque_admin_stripe_pending_message": "Stripe still needs some information before donations can be enabled.",
+  "mosque_admin_stripe_start": "Set up payments",
+  "mosque_admin_stripe_continue": "Continue setup",
+  "mosque_admin_stripe_update_info": "Update information",
+  "mosque_admin_stripe_dashboard": "Open Stripe dashboard",
+  "mosque_admin_stripe_explainer": "Donations are charged directly on your mosque's Stripe account — Nour never holds the funds and takes no commission. Stripe's standard processing fees apply.",
+  "mosque_admin_stripe_tax_receipts": "Our association can issue tax receipts",
+  "mosque_admin_stripe_tax_receipts_hint": "Enables receipt generation (CERFA-style) for donors.",
+  "mosque_admin_stripe_charges": "Can receive payments",
+  "mosque_admin_stripe_payouts": "Payouts enabled",
+  "mosque_admin_stripe_details": "Information submitted",
+  "mosque_admin_stripe_requirements": "Still required by Stripe",
+  "mosque_admin_stripe_status_enabled": "Active",
+  "mosque_admin_stripe_status_pending": "Pending verification",
+  "mosque_admin_stripe_status_restricted": "Action required",
+  "mosque_admin_stripe_status_rejected": "Rejected by Stripe",
+  "mosque_admin_stripe_status_not_started": "Not set up",
+  "mosque_admin_campaign_new": "New campaign",
+  "mosque_admin_campaigns_active_title": "Active campaigns",
+  "mosque_admin_campaign_new_short": "New",
+  "mosque_admin_campaign_amounts_hint": "Donors pick from these — this campaign's own list.",
+  "mosque_admin_fundraising_settings_title": "Fundraising settings",
+  "mosque_admin_fundraising_frequencies": "Frequency options",
+  "mosque_admin_fundraising_one_time_hint": "A single donation",
+  "mosque_admin_fundraising_monthly": "Monthly recurring",
+  "mosque_admin_fundraising_monthly_hint": "Automatic monthly gift",
+  "mosque_admin_fundraising_yearly": "Yearly recurring",
+  "mosque_admin_fundraising_yearly_hint": "Automatic yearly gift",
+  "mosque_admin_fundraising_tax_section": "Tax deductibility",
+  "mosque_admin_fundraising_amounts_hint": "Up to 6 amounts. A new campaign starts from this list and can then change it.",
+  "mosque_admin_fundraising_amounts_required": "Add at least one amount.",
+  "mosque_admin_fundraising_defaults_note": "These settings apply to new campaigns. Campaigns already running keep what they were launched with until you edit them.",
+  "mosque_admin_campaign_frequency_locked": "Enable it in the fundraising settings first.",
+  "mosque_admin_campaign_amounts_reset": "Reset to defaults",
+  "mosque_admin_campaign_close_early": "Close early",
+  "error_api_mosque_frequency_not_allowed": "This campaign doesn't accept that frequency.",
+  "mosque_admin_campaign_days_left_short": "{days}d left",
+  "@mosque_admin_campaign_days_left_short": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_also_here": "Also here",
+  "mosque_admin_all_campaigns": "All campaigns",
+  "mosque_admin_campaign_edit": "Edit campaign",
+  "mosque_admin_campaign_launch": "Launch",
+  "mosque_admin_campaign_title_label": "Campaign title",
+  "mosque_admin_campaign_title_hint": "New ablution room",
+  "mosque_admin_campaign_description_hint": "Explain the project, the budget and the timeline…",
+  "mosque_admin_campaign_goal": "Goal (€)",
+  "mosque_admin_campaign_ends": "End date",
+  "mosque_admin_campaign_notify": "Notify followers",
+  "mosque_admin_campaign_notify_hint": "Sends a push to your followers (counts in the weekly quota).",
+  "mosque_admin_campaign_notify_update": "Also notify followers",
+  "mosque_admin_campaign_limit_note": "Up to 3 active campaigns at a time. Donors are reminded 48h before the end.",
+  "mosque_admin_campaign_invalid": "Add a title, a goal and a future end date.",
+  "mosque_admin_campaign_created": "Campaign launched",
+  "mosque_admin_campaigns_empty": "No campaign yet. Launch one to fund a project with your community.",
+  "mosque_admin_campaign_post_update": "Post an update",
+  "mosque_admin_campaign_update_hint": "Share progress with your donors…",
+  "mosque_admin_campaign_update_posted": "Update posted",
+  "mosque_admin_campaign_extend": "Extend",
+  "mosque_admin_campaign_extended": "Campaign extended",
+  "mosque_admin_campaign_reopen": "Reopen with a new end date",
+  "mosque_admin_campaign_close": "Close",
+  "mosque_admin_campaign_close_title": "Close this campaign?",
+  "mosque_admin_campaign_close_message": "Donors won't be able to contribute anymore. You can reopen it later.",
+  "mosque_admin_campaign_closed": "Campaign closed",
+  "mosque_admin_campaign_closed_note": "This campaign is closed {date}.",
+  "@mosque_admin_campaign_closed_note": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "mosque_admin_donors_list": "Donors",
+  "mosque_admin_donors_empty": "No donation for this period.",
+  "mosque_admin_type_sadaqa": "Sadaqa",
+  "mosque_admin_type_campaign": "Campaign",
+  "mosque_admin_type_membership": "Membership",
+  "mosque_admin_receipts": "Tax receipts",
+  "mosque_admin_receipt_issue": "Issue receipt",
+  "mosque_admin_receipt_view": "View receipt",
+  "mosque_admin_receipt_generated": "Receipt ready",
+  "mosque_settings_title": "Mosque settings",
+  "mosque_settings_logo_remove_title": "Remove mosque logo?",
+  "mosque_settings_logo_remove_message": "Your mosque will show its initials until you add a new logo.",
+  "mosque_settings_legal_section": "Legal information",
+  "mosque_settings_legal_missing": "Not provided",
+  "mosque_reminders_no_times_hint": "Your reminders use the prayer times you publish. Set your mosque's schedule to start receiving them.",
+  "mosque_admin_tax_title": "Tax receipts",
+  "mosque_admin_tax_open_settings": "Set up tax receipts",
+  "mosque_admin_tax_regime_checking": "Checking your country…",
+  "mosque_admin_tax_regime_available": "Available in your country",
+  "mosque_admin_tax_regime_unavailable": "Not available yet in your country",
+  "mosque_admin_tax_regime_unavailable_hint": "Tax receipts exist in your country, but Nour has not validated the official template yet. Your donors can still download a donation attestation.",
+  "mosque_admin_tax_regime_not_receipt_based": "Your country works differently",
+  "mosque_admin_tax_regime_not_receipt_based_hint": "In your country the tax relief is claimed by the association, not through a receipt given to the donor. Your donors can download a donation attestation.",
+  "mosque_admin_tax_checklist": "Before you can issue receipts",
+  "mosque_admin_tax_checklist_ok": "Everything required is in place.",
+  "mosque_admin_tax_blocker_not_approved": "Your mosque is still under review.",
+  "mosque_admin_tax_blocker_legal_name": "Add the legal name of the association.",
+  "mosque_admin_tax_blocker_address": "Complete the postal address of the association.",
+  "mosque_admin_tax_blocker_legal_id": "The legal registration number of the association is missing.",
+  "mosque_admin_tax_blocker_legal_id_hint": "This number is verified by the Nour team. Contact support if it is missing or wrong.",
+  "mosque_admin_tax_blocker_signatory": "Add the authorised signatory and their signature.",
+  "mosque_admin_tax_blocker_unknown": "Some required information is missing.",
+  "mosque_admin_tax_signatory": "Authorised signatory",
+  "mosque_admin_tax_signatory_hint": "Receipts must be signed by a person authorised by the association. Their name and signature are printed on every document.",
+  "mosque_admin_tax_signatory_name": "Full name",
+  "mosque_admin_tax_signatory_role": "Role (president, treasurer…)",
+  "mosque_admin_tax_signature": "Signature",
+  "mosque_admin_tax_signature_add": "Add a picture of the signature",
+  "mosque_admin_tax_signature_saved": "Signature saved",
+  "mosque_admin_tax_right_section": "Right to issue receipts",
+  "mosque_admin_tax_right": "Our association may issue tax receipts",
+  "mosque_admin_tax_right_hint": "Donors will be able to download a receipt for their gifts.",
+  "mosque_admin_tax_right_blocked": "Complete the points above first.",
+  "mosque_admin_tax_liability": "Nour produces the document on your behalf. Responsibility for issuing it stays with the association.",
+  "mosque_admin_tax_enabled": "Tax receipts enabled",
+  "mosque_admin_tax_disabled": "Tax receipts disabled",
+  "mosque_admin_tax_declaration_title": "Declaration",
+  "mosque_admin_tax_declaration_body": "I certify on my honour that the association meets the legal conditions to issue tax receipts for donations, that the information provided is accurate, and that I am authorised to sign these documents on its behalf. I understand that responsibility for any irregular receipt lies with the association.",
+  "mosque_admin_tax_declaration_confirm": "I certify",
+  "mosque_admin_tax_summary_title": "Receipts issued in {year}",
+  "@mosque_admin_tax_summary_title": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "mosque_admin_tax_summary_body": "{count} receipts · {donors} donors · {total}",
+  "@mosque_admin_tax_summary_body": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "donors": {
+        "type": "int"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "donor_tax_profile_title": "Your details for the receipt",
+  "donor_tax_profile_hint": "A tax receipt must carry your full name and postal address. Entered once, reused for every mosque.",
+  "donor_tax_profile_name": "Full name",
+  "donor_tax_profile_address": "Street address",
+  "donor_tax_profile_postal": "Postcode",
+  "donor_tax_profile_city": "City",
+  "mosque_receipts_request_title": "Get a document",
+  "mosque_receipts_request_tax": "Tax receipt available",
+  "mosque_receipts_request_attestation_only": "Donation attestation (no tax relief)",
+  "mosque_receipts_request_wait_year": "Available from 1 January",
+  "mosque_receipts_request_cta": "Request",
+  "mosque_receipts_request_cta_attestation": "Download",
+  "error_api_mosque_tax_regime_unsupported": "Tax receipts are not available yet in this country.",
+  "error_api_mosque_tax_regime_not_receipt_based": "This country does not use donor tax receipts.",
+  "error_api_mosque_tax_legal_id_missing": "The association's registration number is missing.",
+  "error_api_mosque_tax_legal_id_invalid": "The association's registration number is not valid.",
+  "error_api_mosque_tax_legal_data_missing": "The association's legal details are incomplete.",
+  "error_api_mosque_tax_signatory_missing": "Add the authorised signatory and their signature first.",
+  "error_api_mosque_tax_issuer_incomplete": "The mosque's details are incomplete for this document.",
+  "error_api_mosque_tax_donor_incomplete": "Your name and postal address are needed for this document.",
+  "error_api_mosque_tax_year_not_closed": "This document is only available once the year has ended.",
+  "error_api_mosque_tax_below_threshold": "The amount is below the minimum required in this country.",
+  "error_api_mosque_tax_mixed_currencies": "Gifts in several currencies cannot go on one document.",
+  "error_api_mosque_tax_declaration_failed": "Could not update the tax receipt setting.",
+  "error_api_mosque_tax_profile_save_failed": "Could not save your details.",
+  "error_api_mosque_signature_upload_failed": "Could not upload the signature."
 }

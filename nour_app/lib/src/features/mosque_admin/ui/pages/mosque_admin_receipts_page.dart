@@ -14,6 +14,8 @@ import 'package:nour/src/features/mosques/ui/state_management/my_mosque_provider
 import 'package:nour/src/features/mosques/ui/widgets/mosque_format.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../widgets/donor_tax_profile_sheet.dart';
+
 /// Receipts issued by the mosque (devis B7). Also used by donors
 /// (`mosqueId == null` → own receipts across mosques).
 @RoutePage()
@@ -35,11 +37,18 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
     final rows = useState<List<MosqueReceipt>>(const []);
     final loading = useState(true);
     final openingId = useState<int?>(null);
+    // Donor self-service: the (mosque, year) pairs they gave to.
+    final years = useState<List<MosqueDonationYear>>(const []);
+    final requesting = useState<String?>(null);
 
     Future<void> load() async {
       loading.value = true;
       final res = await repo.getReceipts(mosqueId: mine ? null : mosque?.id);
       res.when((v) => rows.value = v, (e) => appEvents.send(ShowErrorEvent(e)));
+      if (mine) {
+        final y = await repo.getMyDonationYears();
+        y.when((v) => years.value = v, (e) => appEvents.send(ShowErrorEvent(e)));
+      }
       loading.value = false;
     }
 
@@ -47,6 +56,38 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
       WidgetsBinding.instance.addPostFrameCallback((_) => load());
       return null;
     }, [mosque?.id]);
+
+    /// Asks the server for a document. A tax receipt needs the donor's postal
+    /// address (mandatory in FR and collected nowhere else), so the sheet is
+    /// shown first when the fiscal profile is incomplete.
+    Future<void> request(MosqueDonationYear y, {required bool taxReceipt}) async {
+      final key = '${y.mosqueId}-${y.year}-$taxReceipt';
+      if (requesting.value != null) return;
+
+      if (taxReceipt) {
+        final profileRes = await repo.getMyTaxProfile();
+        final profile = profileRes.when((v) => v, (_) => null);
+        if (profile == null || !profile.isComplete) {
+          if (!context.mounted) return;
+          final saved = await askDonorTaxProfile(context, ref, initial: profile);
+          if (saved == null) return;
+        }
+      }
+
+      requesting.value = key;
+      final res = await repo.generateReceipt(
+        mosqueId: y.mosqueId,
+        year: y.year,
+        kind: taxReceipt ? MosqueReceipt.kindTax : MosqueReceipt.kindAttestation,
+      );
+      requesting.value = null;
+
+      await res.when((generated) async {
+        await load();
+        final url = generated.url;
+        if (url != null) await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+      }, (e) async => appEvents.send(ShowErrorEvent(e)));
+    }
 
     Future<void> open(MosqueReceipt r) async {
       openingId.value = r.id;
@@ -67,6 +108,15 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
           ? const Center(child: UICircularProgressBar())
           : Column(
               children: [
+                if (mine && years.value.isNotEmpty)
+                  _DonorRequestSection(
+                    years: years.value,
+                    l10n: l10n,
+                    lang: lang,
+                    theme: theme,
+                    busyKey: requesting.value,
+                    onRequest: request,
+                  ),
                 if (!mine && !canIssue)
                   Padding(
                     padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 8, kPageHorzPadding, 0),
@@ -125,6 +175,99 @@ class MosqueAdminReceiptsPage extends HookConsumerWidget {
                 ),
               ],
             ),
+    );
+  }
+}
+
+/// "Get my document" — one row per (mosque, year) the donor gave to.
+///
+/// A tax receipt is offered only where the country actually has one, the
+/// mosque holds the right, and the year is closed. Everywhere else the donor
+/// is offered the neutral attestation instead of a button that would fail.
+class _DonorRequestSection extends StatelessWidget {
+  const _DonorRequestSection({
+    required this.years,
+    required this.l10n,
+    required this.lang,
+    required this.theme,
+    required this.busyKey,
+    required this.onRequest,
+  });
+
+  final List<MosqueDonationYear> years;
+  final AppLocale l10n;
+  final String lang;
+  final UIThemeData theme;
+  final String? busyKey;
+  final Future<void> Function(MosqueDonationYear, {required bool taxReceipt}) onRequest;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(kPageHorzPadding, 12, kPageHorzPadding, 0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            l10n.mosque_receipts_request_title,
+            style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white),
+          ),
+          const SizedBox(height: 8),
+          for (final y in years) ...[
+            Builder(
+              builder: (_) {
+                final tax = y.taxReceiptAvailable;
+                final key = '${y.mosqueId}-${y.year}-$tax';
+                final busy = busyKey == key;
+                return Container(
+                  margin: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    color: UIColorsToken.bgSurface,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${y.mosqueName} · ${y.year}',
+                                style: theme.typo.inter.bodyMedium.copyWith(color: UIColorsToken.white)),
+                            const SizedBox(height: 2),
+                            Text(
+                              tax
+                                  ? l10n.mosque_receipts_request_tax
+                                  : (y.canIssue && y.regimeSupported && !y.isClosedYear
+                                      ? l10n.mosque_receipts_request_wait_year
+                                      : l10n.mosque_receipts_request_attestation_only),
+                              style: theme.typo.inter.caption.copyWith(color: UIColorsToken.textParagraph),
+                            ),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      busy
+                          ? const UICircularProgressBar(size: 16)
+                          : UITap(
+                              onTap: () => onRequest(y, taxReceipt: tax),
+                              child: Text(
+                                tax ? l10n.mosque_receipts_request_cta : l10n.mosque_receipts_request_cta_attestation,
+                                style: theme.typo.inter.caption.copyWith(
+                                  color: UIColorsToken.textYellow,
+                                  decoration: TextDecoration.underline,
+                                ),
+                              ),
+                            ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }

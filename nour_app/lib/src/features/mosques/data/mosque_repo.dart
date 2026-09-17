@@ -178,13 +178,47 @@ class MosqueRepo {
   Future<SuccessOrError<List<MosqueReceipt>>> getReceipts({int? mosqueId, int? year}) =>
       Failure.exceptionsCatcher(() => donation.getReceipts(mosqueId: mosqueId, year: year));
   Future<String?> receiptUrl(String storagePath) => donation.receiptUrl(storagePath);
-  Future<SuccessOrError<GeneratedReceipt>> generateReceipt({int? transactionId, int? mosqueId, int? year, String? userId}) =>
-      Failure.exceptionsCatcher(() => donation.generateReceipt(transactionId: transactionId, mosqueId: mosqueId, year: year, userId: userId));
+  Future<SuccessOrError<GeneratedReceipt>> generateReceipt({
+    int? transactionId,
+    int? mosqueId,
+    int? year,
+    String? userId,
+    String kind = MosqueReceipt.kindTax,
+  }) =>
+      Failure.exceptionsCatcher(
+        () => donation.generateReceipt(
+          transactionId: transactionId,
+          mosqueId: mosqueId,
+          year: year,
+          userId: userId,
+          kind: kind,
+        ),
+      );
+
+  // Tax receipts — docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+  Future<SuccessOrError<MosqueTaxReadiness>> getTaxReadiness(int mosqueId) =>
+      Failure.exceptionsCatcher(() => donation.getTaxReadiness(mosqueId));
+  Future<SuccessOrError<bool>> setTaxReceipts(int mosqueId, bool enabled, {required String declarationVersion}) =>
+      Failure.exceptionsCatcher(() => donation.setTaxReceipts(mosqueId, enabled, declarationVersion: declarationVersion));
+  Future<SuccessOrError<void>> saveSignatory(int mosqueId, {String? name, String? role, String? signaturePath}) =>
+      Failure.exceptionsCatcher(() => donation.saveSignatory(mosqueId, name: name, role: role, signaturePath: signaturePath));
+  Future<SuccessOrError<String>> uploadSignature({required int mosqueId, required File file}) =>
+      Failure.exceptionsCatcher(() => donation.uploadSignature(mosqueId: mosqueId, file: file));
+  Future<String?> signatureUrl(String path) => donation.signatureUrl(path);
+  Future<SuccessOrError<MosqueTaxYearSummary>> getTaxYearSummary(int mosqueId, int year) =>
+      Failure.exceptionsCatcher(() => donation.getTaxYearSummary(mosqueId, year));
+
+  // Donor side
+  Future<SuccessOrError<List<MosqueDonationYear>>> getMyDonationYears() =>
+      Failure.exceptionsCatcher(donation.getMyDonationYears);
+  Future<SuccessOrError<DonorTaxProfile?>> getMyTaxProfile() => Failure.exceptionsCatcher(donation.getMyTaxProfile);
+  Future<SuccessOrError<DonorTaxProfile>> saveMyTaxProfile(DonorTaxProfile profile) =>
+      Failure.exceptionsCatcher(() => donation.saveMyTaxProfile(profile));
 
   // Admin (P3)
   Future<SuccessOrError<MosqueStripeAccount>> getStripeAccount(int mosqueId) => Failure.exceptionsCatcher(() => donation.getStripeAccount(mosqueId));
-  Future<SuccessOrError<String>> startStripeOnboarding(int mosqueId, {bool canIssueTaxReceipts = false}) =>
-      Failure.exceptionsCatcher(() => donation.startStripeOnboarding(mosqueId, canIssueTaxReceipts: canIssueTaxReceipts));
+  Future<SuccessOrError<String>> startStripeOnboarding(int mosqueId) =>
+      Failure.exceptionsCatcher(() => donation.startStripeOnboarding(mosqueId));
   Future<SuccessOrError<MosqueStripeAccount>> refreshStripeStatus(int mosqueId) => Failure.exceptionsCatcher(() => donation.refreshStripeStatus(mosqueId));
   Future<SuccessOrError<MosqueDonationSettings>> saveDonationSettings(MosqueDonationSettings s) => Failure.exceptionsCatcher(() => donation.saveSettings(s));
   Future<SuccessOrError<MosqueCampaignSettings>> saveCampaignSettings(MosqueCampaignSettings s) =>

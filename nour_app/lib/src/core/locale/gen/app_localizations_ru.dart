@@ -3891,4 +3891,227 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get mosque_reminders_no_times_hint =>
       'Напоминания приходят по времени намазов, которое вы публикуете. Задайте расписание мечети, чтобы начать их получать.';
+
+  @override
+  String get mosque_admin_tax_title => 'Налоговые квитанции';
+
+  @override
+  String get mosque_admin_tax_open_settings => 'Настроить налоговые квитанции';
+
+  @override
+  String get mosque_admin_tax_regime_checking => 'Проверяем вашу страну…';
+
+  @override
+  String get mosque_admin_tax_regime_available => 'Доступно в вашей стране';
+
+  @override
+  String get mosque_admin_tax_regime_unavailable =>
+      'Пока недоступно в вашей стране';
+
+  @override
+  String get mosque_admin_tax_regime_unavailable_hint =>
+      'В вашей стране налоговые квитанции существуют, но Nour ещё не подтвердил официальный образец. Донор всё равно может скачать подтверждение пожертвования.';
+
+  @override
+  String get mosque_admin_tax_regime_not_receipt_based =>
+      'В вашей стране другой порядок';
+
+  @override
+  String get mosque_admin_tax_regime_not_receipt_based_hint =>
+      'В вашей стране льготу получает организация, а не донор по квитанции. Донор может скачать подтверждение пожертвования.';
+
+  @override
+  String get mosque_admin_tax_checklist => 'Что нужно до выпуска квитанций';
+
+  @override
+  String get mosque_admin_tax_checklist_ok =>
+      'Все необходимые данные заполнены.';
+
+  @override
+  String get mosque_admin_tax_blocker_not_approved => 'Мечеть ещё на проверке.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_name =>
+      'Укажите юридическое название организации.';
+
+  @override
+  String get mosque_admin_tax_blocker_address =>
+      'Заполните почтовый адрес организации.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_id =>
+      'Отсутствует регистрационный номер организации.';
+
+  @override
+  String get mosque_admin_tax_blocker_legal_id_hint =>
+      'Этот номер проверяет команда Nour. Напишите в поддержку, если он отсутствует или неверен.';
+
+  @override
+  String get mosque_admin_tax_blocker_signatory =>
+      'Добавьте уполномоченное лицо и его подпись.';
+
+  @override
+  String get mosque_admin_tax_blocker_unknown =>
+      'Не хватает части обязательных данных.';
+
+  @override
+  String get mosque_admin_tax_signatory => 'Уполномоченное лицо';
+
+  @override
+  String get mosque_admin_tax_signatory_hint =>
+      'Квитанции подписывает лицо, уполномоченное организацией. Его имя и подпись печатаются на каждом документе.';
+
+  @override
+  String get mosque_admin_tax_signatory_name => 'Имя и фамилия';
+
+  @override
+  String get mosque_admin_tax_signatory_role =>
+      'Должность (председатель, казначей…)';
+
+  @override
+  String get mosque_admin_tax_signature => 'Подпись';
+
+  @override
+  String get mosque_admin_tax_signature_add => 'Добавить изображение подписи';
+
+  @override
+  String get mosque_admin_tax_signature_saved => 'Подпись сохранена';
+
+  @override
+  String get mosque_admin_tax_right_section => 'Право выпускать квитанции';
+
+  @override
+  String get mosque_admin_tax_right =>
+      'Наша организация вправе выпускать налоговые квитанции';
+
+  @override
+  String get mosque_admin_tax_right_hint =>
+      'Доноры смогут скачать квитанцию по своим пожертвованиям.';
+
+  @override
+  String get mosque_admin_tax_right_blocked => 'Сначала закройте пункты выше.';
+
+  @override
+  String get mosque_admin_tax_liability =>
+      'Nour оформляет документ от вашего имени. Ответственность за его выпуск несёт организация.';
+
+  @override
+  String get mosque_admin_tax_enabled => 'Налоговые квитанции включены';
+
+  @override
+  String get mosque_admin_tax_disabled => 'Налоговые квитанции выключены';
+
+  @override
+  String get mosque_admin_tax_declaration_title => 'Заявление';
+
+  @override
+  String get mosque_admin_tax_declaration_body =>
+      'Я подтверждаю, что организация отвечает требованиям закона для выпуска налоговых квитанций по пожертвованиям, что указанные данные верны и что я уполномочен(а) подписывать эти документы от её имени. Ответственность за неправомерно выданную квитанцию несёт организация.';
+
+  @override
+  String get mosque_admin_tax_declaration_confirm => 'Подтверждаю';
+
+  @override
+  String mosque_admin_tax_summary_title(int year) {
+    return 'Квитанций выпущено в $year';
+  }
+
+  @override
+  String mosque_admin_tax_summary_body(int count, int donors, String total) {
+    return '$count квитанций · $donors доноров · $total';
+  }
+
+  @override
+  String get donor_tax_profile_title => 'Ваши данные для квитанции';
+
+  @override
+  String get donor_tax_profile_hint =>
+      'В налоговой квитанции должны быть ваши имя и почтовый адрес. Указываются один раз и используются для всех мечетей.';
+
+  @override
+  String get donor_tax_profile_name => 'Имя и фамилия';
+
+  @override
+  String get donor_tax_profile_address => 'Адрес';
+
+  @override
+  String get donor_tax_profile_postal => 'Индекс';
+
+  @override
+  String get donor_tax_profile_city => 'Город';
+
+  @override
+  String get mosque_receipts_request_title => 'Получить документ';
+
+  @override
+  String get mosque_receipts_request_tax => 'Доступна налоговая квитанция';
+
+  @override
+  String get mosque_receipts_request_attestation_only =>
+      'Подтверждение пожертвования (без вычета)';
+
+  @override
+  String get mosque_receipts_request_wait_year => 'Будет доступно с 1 января';
+
+  @override
+  String get mosque_receipts_request_cta => 'Запросить';
+
+  @override
+  String get mosque_receipts_request_cta_attestation => 'Скачать';
+
+  @override
+  String get error_api_mosque_tax_regime_unsupported =>
+      'Налоговые квитанции пока недоступны в этой стране.';
+
+  @override
+  String get error_api_mosque_tax_regime_not_receipt_based =>
+      'В этой стране квитанция донору не используется.';
+
+  @override
+  String get error_api_mosque_tax_legal_id_missing =>
+      'Отсутствует регистрационный номер организации.';
+
+  @override
+  String get error_api_mosque_tax_legal_id_invalid =>
+      'Регистрационный номер организации недействителен.';
+
+  @override
+  String get error_api_mosque_tax_legal_data_missing =>
+      'Юридические данные организации заполнены не полностью.';
+
+  @override
+  String get error_api_mosque_tax_signatory_missing =>
+      'Сначала добавьте уполномоченное лицо и подпись.';
+
+  @override
+  String get error_api_mosque_tax_issuer_incomplete =>
+      'Данных мечети недостаточно для этого документа.';
+
+  @override
+  String get error_api_mosque_tax_donor_incomplete =>
+      'Для документа нужны ваши имя и почтовый адрес.';
+
+  @override
+  String get error_api_mosque_tax_year_not_closed =>
+      'Документ доступен только после окончания года.';
+
+  @override
+  String get error_api_mosque_tax_below_threshold =>
+      'Сумма меньше минимальной для этой страны.';
+
+  @override
+  String get error_api_mosque_tax_mixed_currencies =>
+      'Пожертвования в разных валютах нельзя объединить в один документ.';
+
+  @override
+  String get error_api_mosque_tax_declaration_failed =>
+      'Не удалось изменить настройку налоговых квитанций.';
+
+  @override
+  String get error_api_mosque_tax_profile_save_failed =>
+      'Не удалось сохранить ваши данные.';
+
+  @override
+  String get error_api_mosque_signature_upload_failed =>
+      'Не удалось загрузить подпись.';
 }

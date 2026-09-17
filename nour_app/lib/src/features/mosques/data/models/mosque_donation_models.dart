@@ -686,6 +686,21 @@ class MosqueReceipt extends Equatable {
   final DateTime createdAt;
   final String? url;
 
+  /// `tax_receipt` (the real thing) or `donation_attestation` (neutral proof,
+  /// explicitly not a tax document). See docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+  final String kind;
+  final String currency;
+  final String? countryCode;
+  final String? templateKey;
+  final String? templateVersion;
+  final DateTime? revokedAt;
+
+  bool get isTaxReceipt => kind == MosqueReceipt.kindTax;
+  bool get isRevoked => revokedAt != null;
+
+  static const kindTax = 'tax_receipt';
+  static const kindAttestation = 'donation_attestation';
+
   const MosqueReceipt({
     required this.id,
     required this.mosqueId,
@@ -697,6 +712,12 @@ class MosqueReceipt extends Equatable {
     required this.storagePath,
     required this.createdAt,
     this.url,
+    this.kind = MosqueReceipt.kindTax,
+    this.currency = 'EUR',
+    this.countryCode,
+    this.templateKey,
+    this.templateVersion,
+    this.revokedAt,
   });
 
   factory MosqueReceipt.fromJson(Json json) => MosqueReceipt(
@@ -709,19 +730,37 @@ class MosqueReceipt extends Equatable {
         amount: _num(json['amount']),
         storagePath: json['storage_path'] as String? ?? '',
         createdAt: DateTime.tryParse(json['created_at']?.toString() ?? '')?.toLocal() ?? DateTime.now(),
+        kind: json['kind'] as String? ?? MosqueReceipt.kindTax,
+        currency: json['currency'] as String? ?? 'EUR',
+        countryCode: json['country_code'] as String?,
+        templateKey: json['template_key'] as String?,
+        templateVersion: json['template_version'] as String?,
+        revokedAt: DateTime.tryParse(json['revoked_at']?.toString() ?? '')?.toLocal(),
       );
 
   @override
-  List<Object?> get props => [id, mosqueId, userId, transactionId, year, number, amount, storagePath, createdAt, url];
+  List<Object?> get props => [
+        id, mosqueId, userId, transactionId, year, number, amount, storagePath, createdAt, url,
+        kind, currency, countryCode, templateKey, templateVersion, revokedAt,
+      ];
 }
 
 /// Result of `generate-mosque-receipt`.
 class GeneratedReceipt {
-  const GeneratedReceipt({required this.receiptId, required this.amount, this.number, this.url});
+  const GeneratedReceipt({
+    required this.receiptId,
+    required this.amount,
+    this.number,
+    this.url,
+    this.kind = MosqueReceipt.kindTax,
+    this.currency = 'EUR',
+  });
   final int receiptId;
   final double amount;
   final String? number;
   final String? url;
+  final String kind;
+  final String currency;
 }
 
 /// Phase-1 result of `create-mosque-payment-intent` / `create-mosque-subscription`.
@@ -743,4 +782,244 @@ class MosqueCreatedPayment {
   final int? subscriptionId;
   final String? customerId;
   final String? ephemeralKeySecret;
+}
+
+
+// ── Tax receipts — country regime, issuer readiness, donor fiscal identity ──
+// Mirrors public.tax_regimes + fn_mosque_tax_readiness.
+// See docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+
+/// Why a mosque cannot (yet) issue tax receipts. The server is the source of
+/// truth: these are the codes `fn_mosque_tax_readiness` returns in `missing`.
+enum TaxBlocker {
+  mosqueNotApproved,
+  legalName,
+  addressLine,
+  postalCode,
+  city,
+  legalId,
+  signatory,
+  unknown;
+
+  static TaxBlocker parse(String raw) {
+    if (raw == 'mosque_not_approved') return TaxBlocker.mosqueNotApproved;
+    if (raw == 'legal_id_missing') return TaxBlocker.legalId;
+    if (raw == 'signatory_missing') return TaxBlocker.signatory;
+    if (raw.startsWith('missing_field:')) {
+      return switch (raw.substring('missing_field:'.length)) {
+        'legal_name' => TaxBlocker.legalName,
+        'address_line' => TaxBlocker.addressLine,
+        'postal_code' => TaxBlocker.postalCode,
+        'city' => TaxBlocker.city,
+        _ => TaxBlocker.unknown,
+      };
+    }
+    return TaxBlocker.unknown;
+  }
+}
+
+/// What the country allows, and what is still missing before the right can be
+/// granted. Drives the whole tax settings screen.
+class MosqueTaxReadiness extends Equatable {
+  const MosqueTaxReadiness({
+    this.country = 'FR',
+    this.regimeKind = 'none',
+    this.supported = false,
+    this.enabled = false,
+    this.ready = false,
+    this.requiresSignature = false,
+    this.annualOnly = false,
+    this.legalRef,
+    this.templateKey,
+    this.templateVersion,
+    this.minAmount,
+    this.blockers = const [],
+  });
+
+  final String country;
+
+  /// `receipt` | `reclaim_by_charity` | `none`.
+  final String regimeKind;
+
+  /// A validated renderer exists for this country.
+  final bool supported;
+  final bool enabled;
+  final bool ready;
+  final bool requiresSignature;
+  final bool annualOnly;
+  final String? legalRef;
+  final String? templateKey;
+  final String? templateVersion;
+  final double? minAmount;
+  final List<TaxBlocker> blockers;
+
+  /// Receipts exist in this country but Nour has not shipped the template yet.
+  bool get notYetAvailable => !supported && regimeKind == 'receipt';
+
+  /// The country has no donor-side receipt at all (UK Gift Aid).
+  bool get notReceiptBased => regimeKind == 'reclaim_by_charity' || regimeKind == 'none';
+
+  bool get canToggle => supported && regimeKind == 'receipt' && (ready || enabled);
+
+  factory MosqueTaxReadiness.fromJson(Json json) => MosqueTaxReadiness(
+        country: json['country'] as String? ?? 'FR',
+        regimeKind: json['kind'] as String? ?? 'none',
+        supported: json['supported'] as bool? ?? false,
+        enabled: json['enabled'] as bool? ?? false,
+        ready: json['ready'] as bool? ?? false,
+        requiresSignature: json['requires_signature'] as bool? ?? false,
+        annualOnly: json['annual_only'] as bool? ?? false,
+        legalRef: json['legal_ref'] as String?,
+        templateKey: json['template_key'] as String?,
+        templateVersion: json['template_version'] as String?,
+        minAmount: json['min_amount'] == null ? null : _num(json['min_amount']),
+        blockers: (json['missing'] as List?)
+                ?.map((e) => TaxBlocker.parse(e.toString()))
+                .toList() ??
+            const [],
+      );
+
+  @override
+  List<Object?> get props => [
+        country, regimeKind, supported, enabled, ready, requiresSignature, annualOnly,
+        legalRef, templateKey, templateVersion, minAmount, blockers,
+      ];
+}
+
+/// Row of `public.donor_tax_profiles`: the donor's name and postal address,
+/// mandatory on a French receipt and nowhere else in the app.
+class DonorTaxProfile extends Equatable {
+  const DonorTaxProfile({
+    this.fullName = '',
+    this.addressLine = '',
+    this.postalCode = '',
+    this.city = '',
+    this.countryCode = 'FR',
+  });
+
+  final String fullName;
+  final String addressLine;
+  final String postalCode;
+  final String city;
+  final String countryCode;
+
+  bool get isComplete =>
+      fullName.trim().isNotEmpty &&
+      addressLine.trim().isNotEmpty &&
+      postalCode.trim().isNotEmpty &&
+      city.trim().isNotEmpty;
+
+  DonorTaxProfile copyWith({
+    String? fullName,
+    String? addressLine,
+    String? postalCode,
+    String? city,
+    String? countryCode,
+  }) =>
+      DonorTaxProfile(
+        fullName: fullName ?? this.fullName,
+        addressLine: addressLine ?? this.addressLine,
+        postalCode: postalCode ?? this.postalCode,
+        city: city ?? this.city,
+        countryCode: countryCode ?? this.countryCode,
+      );
+
+  factory DonorTaxProfile.fromJson(Json json) => DonorTaxProfile(
+        fullName: json['full_name'] as String? ?? '',
+        addressLine: json['address_line'] as String? ?? '',
+        postalCode: json['postal_code'] as String? ?? '',
+        city: json['city'] as String? ?? '',
+        countryCode: json['country_code'] as String? ?? 'FR',
+      );
+
+  Json toJson() => {
+        'full_name': fullName.trim(),
+        'address_line': addressLine.trim(),
+        'postal_code': postalCode.trim(),
+        'city': city.trim(),
+        'country_code': countryCode,
+      };
+
+  @override
+  List<Object?> get props => [fullName, addressLine, postalCode, city, countryCode];
+}
+
+/// One (mosque, year) the signed-in donor gave to — drives the donor-side
+/// "get my document" list. Mirrors `fn_my_mosque_donation_years`.
+class MosqueDonationYear extends Equatable {
+  const MosqueDonationYear({
+    required this.mosqueId,
+    required this.mosqueName,
+    required this.year,
+    required this.total,
+    this.currency = 'EUR',
+    this.gifts = 0,
+    this.countryCode = 'FR',
+    this.canIssue = false,
+    this.regimeKind = 'none',
+    this.regimeSupported = false,
+  });
+
+  final int mosqueId;
+  final String mosqueName;
+  final int year;
+  final double total;
+  final String currency;
+  final int gifts;
+  final String countryCode;
+  final bool canIssue;
+  final String regimeKind;
+  final bool regimeSupported;
+
+  bool get isClosedYear => year < DateTime.now().year;
+
+  /// A tax receipt is only offered for a closed year, in a supported
+  /// receipt-based country, by a mosque that holds the right.
+  bool get taxReceiptAvailable =>
+      canIssue && regimeSupported && regimeKind == 'receipt' && isClosedYear;
+
+  factory MosqueDonationYear.fromJson(Json json) => MosqueDonationYear(
+        mosqueId: _int(json['mosque_id']),
+        mosqueName: json['mosque_name'] as String? ?? '',
+        year: _int(json['year']),
+        total: _num(json['total']),
+        currency: json['currency'] as String? ?? 'EUR',
+        gifts: _int(json['gifts']),
+        countryCode: json['country_code'] as String? ?? 'FR',
+        canIssue: json['can_issue'] as bool? ?? false,
+        regimeKind: json['regime_kind'] as String? ?? 'none',
+        regimeSupported: json['regime_supported'] as bool? ?? false,
+      );
+
+  @override
+  List<Object?> get props =>
+      [mosqueId, mosqueName, year, total, currency, gifts, countryCode, canIssue, regimeKind, regimeSupported];
+}
+
+/// Aggregates a French association needs for form 2070-SD.
+class MosqueTaxYearSummary extends Equatable {
+  const MosqueTaxYearSummary({
+    required this.year,
+    this.receiptsCount = 0,
+    this.donorsCount = 0,
+    this.total = 0,
+    this.currency = 'EUR',
+  });
+
+  final int year;
+  final int receiptsCount;
+  final int donorsCount;
+  final double total;
+  final String currency;
+
+  factory MosqueTaxYearSummary.fromJson(Json json) => MosqueTaxYearSummary(
+        year: _int(json['year']),
+        receiptsCount: _int(json['receipts_count']),
+        donorsCount: _int(json['donors_count']),
+        total: _num(json['total']),
+        currency: json['currency'] as String? ?? 'EUR',
+      );
+
+  @override
+  List<Object?> get props => [year, receiptsCount, donorsCount, total, currency];
 }

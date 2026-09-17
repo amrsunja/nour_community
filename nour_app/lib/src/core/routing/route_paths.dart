@@ -34,6 +34,7 @@ abstract class RoutePaths {
   static const mosqueAdminCampaigns = 'mosque-admin/donations/campaigns';
   static const mosqueAdminDonors = 'mosque-admin/donations/donors';
   static const mosqueAdminReceipts = 'mosque-admin/donations/receipts';
+  static const mosqueAdminTaxSettings = 'mosque-admin/donations/tax-receipts';
 
   // Mosques — worshipper side
   static const mosqueSearch = 'mosques/search';

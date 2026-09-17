@@ -49,6 +49,7 @@ abstract class NavigationServices {
 	void toMosqueAdminCampaigns();
 	void toMosqueAdminDonors();
 	void toMosqueAdminReceipts();
+	void toMosqueAdminTaxSettings();
 	void toMyMosqueReceipts();
 	void toHome({bool openSignIn = false});
 	void navigateToHome();
@@ -248,6 +249,9 @@ class NavigationServicesImpl implements NavigationServices {
   void toMosqueAdminDonors() => router.push(const MosqueAdminDonorsRoute());
   @override
   void toMosqueAdminReceipts() => router.push(MosqueAdminReceiptsRoute());
+
+  @override
+  void toMosqueAdminTaxSettings() => router.push(const MosqueAdminTaxSettingsRoute());
   @override
   void toMyMosqueReceipts() => router.push(MosqueAdminReceiptsRoute(mine: true));
 
