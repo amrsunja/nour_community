@@ -61,10 +61,6 @@ class MosqueOnboardingPage extends HookConsumerWidget {
       await presenter.previous();
     }
 
-    Future<void> onStartOver() async {
-      await presenter.reset();
-      nav.toWelcome();
-    }
 
     return UIGradientLinedScaffold(
       resizeToAvoidBottomInset: false,
