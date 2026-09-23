@@ -9,7 +9,9 @@ import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/url_launcher_service.dart';
 import 'package:nour/src/features/auth/ui/state_management/auth_provider.dart';
+import 'package:nour/src/features/mosques/ui/widgets/my_mosques_sheet.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/settings/ui/state_management/app_config_provider.dart';
 import 'package:nour/src/features/profile/ui/widgets/delete_account_sheet.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_avatar.dart';
 import 'package:nour/src/features/profile/ui/widgets/profile_menu_row.dart';
@@ -28,6 +30,8 @@ class ProfilePage extends HookConsumerWidget {
     final profile = ref.watch(profileProvider.select((s) => s.profile));
     final session = ref.watch(authSessionProvider);
     final isLoading = ref.watch(authProvider.select((s) => s.isLoading));
+    final isMosqueAccount = profile?.isMosqueAccount ?? false;
+    final mosquesEnabled = ref.watch(appConfigProvider.select((c) => c.mosquesEnabled));
 
     final name = (profile?.name?.trim().isNotEmpty ?? false)
         ? profile!.name!.trim()
@@ -126,6 +130,16 @@ class ProfilePage extends HookConsumerWidget {
                     const UISpace.vert(24),
                   ],
 
+                  // ---------- Mosque account: back to the dashboard ----------
+                  if (isMosqueAccount) ...[
+                    _AdminPanelCard(
+                      title: l10n.mosque_admin_panel_title,
+                      subtitle: l10n.mosque_admin_panel_subtitle,
+                      onTap: () => nav.toMosqueAdminOrReview(),
+                    ),
+                    const UISpace.vert(24),
+                  ],
+
                   // ---------- Journey ----------
                   ProfileSection(
                     title: l10n.profile_journey,
@@ -140,11 +154,19 @@ class ProfilePage extends HookConsumerWidget {
                         label: l10n.profile_favourites,
                         onTap: () => nav.toFavorites(),
                       ),
-                      ProfileMenuRow(
-                        icon: Icons.volunteer_activism_outlined,
-                        label: l10n.profile_my_donations,
-                        onTap: () => nav.toMyDonations(),
-                      ),
+                      if (!isMosqueAccount) ...[
+                        ProfileMenuRow(
+                          icon: Icons.volunteer_activism_outlined,
+                          label: l10n.profile_my_donations,
+                          onTap: () => nav.toMyDonations(),
+                        ),
+                        if (mosquesEnabled)
+                          ProfileMenuRow(
+                            icon: Icons.mosque_outlined,
+                            label: l10n.profile_my_mosques,
+                            onTap: () => MyMosquesSheet.show(context),
+                          ),
+                      ],
                     ],
                   ),
                   const UISpace.vert(24),
@@ -162,6 +184,11 @@ class ProfilePage extends HookConsumerWidget {
                         icon: Icons.settings_outlined,
                         label: l10n.profile_settings,
                         onTap: () => nav.toSettings(),
+                      ),
+                      ProfileMenuRow(
+                        icon: Icons.notifications_none,
+                        label: l10n.push_settings_title,
+                        onTap: () => nav.toPushSettings(),
                       ),
                       /*ProfileMenuRow(
                         icon: Icons.menu_book_outlined,

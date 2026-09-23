@@ -9,6 +9,7 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provider.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
 import 'package:nour/src/features/tools/data/prayer_settings_repo.dart';
@@ -97,8 +98,9 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   /// permission. Returns `true` when scheduling may proceed; on a missing
   /// permission it deep-links to app settings and returns `false` so the caller
   /// keeps the switch off. Disabling never needs this gate.
-  Future<bool> ensureLocationForScheduling() =>
-      GeolocatorTools.ensureLocationPermission();
+  Future<bool> ensureLocationForScheduling() async {
+    return GeolocatorTools.ensureLocationPermission();
+  }
 
   /// Enable/disable the notification for a single prayer. Reschedules the whole
   /// prayer range so it reflects the new enabled set.
@@ -257,17 +259,26 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
 
       final settings = state.settings;
       if (!settings.anyPrayer) return;
+      final titles = _prayerTitles();
 
       final position = await _schedulingPosition();
       if (position == null) return;
 
       final resolvedMethod = method ?? await _method();
-      final week = await IslamicTools.getUpcomingPrayerTimes(
+      final computedWeek = await IslamicTools.getUpcomingPrayerTimes(
         days: NotificationIds.prayersDaysAhead,
         position: position,
         method: resolvedMethod,
       );
-      final titles = _prayerTitles();
+      // Mosques module (§9): the principal mosque's published schedule
+      // overrides the computed times for the days it covers.
+      final myMosques = ref.read(myMosquesProvider);
+      final today = DateTime.now();
+      final week = [
+        for (int i = 0; i < computedWeek.length; i++)
+          myMosques.effectiveDayFor(today.add(Duration(days: i)))?.toDailyPrayerTimes(fallback: computedWeek[i]) ??
+              computedWeek[i],
+      ];
 
       for (int day = 0; day < week.length; day++) {
         final times = week[day];
@@ -305,6 +316,7 @@ class NotificationsPresenter extends Presenter<NotificationsState> {
   }) async {
     try {
       await notifications.initialize();
+
       final position = await _schedulingPosition();
       if (position == null) return;
 

@@ -15,6 +15,8 @@ import 'package:nour/src/features/impact/data/models/impact_project_model.dart';
 import 'package:nour/src/features/impact/ui/state_management/impact_provider.dart';
 import 'package:nour/src/features/impact/ui/widgets/impact_project_card_widget.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provider.dart';
+import 'package:nour/src/features/mosques/ui/widgets/mosque_card_home.dart';
 import 'package:nour/src/features/tools/ui/state_management/prayer_times_provider.dart';
 import 'package:nour/src/features/tools/ui/widgets/next_prayer_widget.dart';
 
@@ -106,6 +108,7 @@ class DashboardPage extends HookConsumerWidget {
         ref.watch(impactProvider).projects.take(3).toList();
     useEffect(() {
       WidgetsBinding.instance.addPostFrameCallback((_) {
+        ref.read(myMosquesProvider.notifier).init();
         ref.read(prayerTimesProvider.notifier).init();
         // App-lifetime provider; init() is a no-op once the Impact tab loaded.
         ref.read(impactProvider.notifier).init();
@@ -116,9 +119,26 @@ class DashboardPage extends HookConsumerWidget {
     // Re-sync when returning from background: Dart timers don't fire while the
     // app is suspended, so a prayer may have elapsed off-screen.
     final lifecycle = useAppLifecycleState();
+    final wasSuspended = useRef(false);
     useEffect(() {
-      if (lifecycle == AppLifecycleState.resumed) {
-        ref.read(prayerTimesProvider.notifier).refresh();
+      switch (lifecycle) {
+        case AppLifecycleState.paused:
+        case AppLifecycleState.inactive:
+        case AppLifecycleState.hidden:
+        case AppLifecycleState.detached:
+          wasSuspended.value = true;
+        case AppLifecycleState.resumed:
+          // Skip the initial `resumed` seen on the first build: init() above
+          // already recomputes, and this effect body runs synchronously
+          // inside build() — mutating a provider there is illegal.
+          if (wasSuspended.value) {
+            wasSuspended.value = false;
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              ref.read(prayerTimesProvider.notifier).refresh();
+            });
+          }
+        case null:
+          break;
       }
       return null;
     }, [lifecycle]);
@@ -190,7 +210,7 @@ class DashboardPage extends HookConsumerWidget {
                     const UISpace.horz(12),
                     Expanded(
                       child: _QuickActionCard(
-                        asset: Assets.images.illustration19,
+                        asset: Assets.images.illustration13,
                         label: l10n.tools_daily_dua,
                         points: 5,
                         onTap: () {
@@ -230,6 +250,13 @@ class DashboardPage extends HookConsumerWidget {
                     onViewAll: nav.toPrayerTimes,
                   ),
                 ),
+
+              // ---------------- My mosque ----------------
+              const UISpace.vert(24),
+              const UIAppearAnimation(
+                delay: Duration(milliseconds: 180),
+                child: MosqueCardHome(),
+              ),
 
               // ---------------- Quick tools ----------------
               const UISpace.vert(24),

@@ -47,6 +47,11 @@ abstract class StripePaymentService {
     required String label,
     String? customerId,
     String? customerEphemeralKeySecret,
+
+    /// Stripe Connect DIRECT charge: the PaymentIntent lives on the mosque's
+    /// connected account, so the SDK must be pointed at it for the duration
+    /// of the confirmation (reset to the platform account afterwards).
+    String? stripeAccountId,
   });
 }
 
@@ -91,8 +96,10 @@ class StripePaymentServiceImpl implements StripePaymentService {
     required String label,
     String? customerId,
     String? customerEphemeralKeySecret,
+    String? stripeAccountId,
   }) async {
     try {
+      await _useAccount(stripeAccountId);
       switch (method) {
         case PaymentMethodKind.card:
           await _presentCardSheet(
@@ -149,7 +156,17 @@ class StripePaymentServiceImpl implements StripePaymentService {
     } catch (e) {
       talker.error('[stripe] confirm ${method.value}', e);
       return PaymentSheetResult.failed;
+    } finally {
+      if (stripeAccountId != null) await _useAccount(null);
     }
+  }
+
+  /// Switches the SDK between the platform account (`null`) and a connected
+  /// account. No-op when nothing changes.
+  Future<void> _useAccount(String? accountId) async {
+    if (stripe.Stripe.stripeAccountId == accountId) return;
+    stripe.Stripe.stripeAccountId = accountId;
+    await stripe.Stripe.instance.applySettings();
   }
 
   Future<void> _presentCardSheet({

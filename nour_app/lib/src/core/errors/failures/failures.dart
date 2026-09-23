@@ -236,6 +236,78 @@ class ServerFailure extends Failure {
         return l.error_api_admin_payout_proof_upload_failed;
       case ApiErrorKey.adminTransactionsLoadFailed:
         return l.error_api_admin_transactions_load_failed;
+
+      // Mosques
+      case ApiErrorKey.mosqueLoadFailed:
+        return l.error_api_mosque_load_failed;
+      case ApiErrorKey.mosqueSaveFailed:
+        return l.error_api_mosque_save_failed;
+      case ApiErrorKey.mosqueSearchFailed:
+        return l.error_api_mosque_search_failed;
+      case ApiErrorKey.mosqueRegisterFailed:
+        return l.error_api_mosque_register_failed;
+      case ApiErrorKey.mosqueRegisterIsWorshipper:
+        return l.error_api_mosque_register_is_worshipper;
+      case ApiErrorKey.mosqueRegisterAnonymous:
+        return l.error_api_mosque_register_anonymous;
+      case ApiErrorKey.mosqueRegisterInvalidSiren:
+        return l.error_api_mosque_register_invalid_siren;
+      case ApiErrorKey.mosqueRegisterInvalidRna:
+        return l.error_api_mosque_register_invalid_rna;
+      case ApiErrorKey.mosqueRegisterDuplicate:
+        return l.error_api_mosque_register_duplicate;
+      case ApiErrorKey.mosquePostLimitReached:
+        return l.error_api_mosque_post_limit_reached;
+      case ApiErrorKey.mosqueBroadcastQuotaExceeded:
+        return l.error_api_mosque_broadcast_quota_exceeded;
+      case ApiErrorKey.mosqueNotApproved:
+        return l.error_api_mosque_not_approved;
+      case ApiErrorKey.pushRegisterFailed:
+        return l.error_api_push_register_failed;
+      case ApiErrorKey.mosqueCampaignLimitReached:
+        return l.error_api_mosque_campaign_limit_reached;
+      case ApiErrorKey.mosqueCampaignClosed:
+        return l.error_api_mosque_campaign_closed;
+      case ApiErrorKey.mosqueFrequencyNotAllowed:
+        return l.error_api_mosque_frequency_not_allowed;
+      case ApiErrorKey.mosqueDonationsDisabled:
+        return l.error_api_mosque_donations_disabled;
+      case ApiErrorKey.mosqueReceiptsNotAllowed:
+        return l.error_api_mosque_receipts_not_allowed;
+      case ApiErrorKey.mosqueReceiptNoDonations:
+        return l.error_api_mosque_receipt_no_donations;
+      case ApiErrorKey.mosqueReceiptFailed:
+        return l.error_api_mosque_receipt_failed;
+      case ApiErrorKey.mosqueTaxRegimeUnsupported:
+        return l.error_api_mosque_tax_regime_unsupported;
+      case ApiErrorKey.mosqueTaxRegimeNotReceiptBased:
+        return l.error_api_mosque_tax_regime_not_receipt_based;
+      case ApiErrorKey.mosqueTaxLegalIdMissing:
+        return l.error_api_mosque_tax_legal_id_missing;
+      case ApiErrorKey.mosqueTaxLegalIdInvalid:
+        return l.error_api_mosque_tax_legal_id_invalid;
+      case ApiErrorKey.mosqueTaxLegalDataMissing:
+        return l.error_api_mosque_tax_legal_data_missing;
+      case ApiErrorKey.mosqueTaxSignatoryMissing:
+        return l.error_api_mosque_tax_signatory_missing;
+      case ApiErrorKey.mosqueTaxIssuerIncomplete:
+        return l.error_api_mosque_tax_issuer_incomplete;
+      case ApiErrorKey.mosqueTaxDonorIncomplete:
+        return l.error_api_mosque_tax_donor_incomplete;
+      case ApiErrorKey.mosqueTaxYearNotClosed:
+        return l.error_api_mosque_tax_year_not_closed;
+      case ApiErrorKey.mosqueTaxBelowThreshold:
+        return l.error_api_mosque_tax_below_threshold;
+      case ApiErrorKey.mosqueTaxMixedCurrencies:
+        return l.error_api_mosque_tax_mixed_currencies;
+      case ApiErrorKey.mosqueTaxDeclarationFailed:
+        return l.error_api_mosque_tax_declaration_failed;
+      case ApiErrorKey.mosqueTaxProfileSaveFailed:
+        return l.error_api_mosque_tax_profile_save_failed;
+      case ApiErrorKey.mosqueSignatureUploadFailed:
+        return l.error_api_mosque_signature_upload_failed;
+      case ApiErrorKey.mosqueStripeFailed:
+        return l.error_api_mosque_stripe_failed;
     }
   }
 }

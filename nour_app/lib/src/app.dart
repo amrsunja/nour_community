@@ -94,6 +94,10 @@ class _AppState extends ConsumerState<App> with WidgetsBindingObserver {
 					splashColor: Colors.transparent,
 					highlightColor: Colors.transparent,
 					hoverColor: Colors.transparent,
+					// Date / time pickers follow the app palette even when opened
+					// through a raw showDatePicker / showTimePicker call.
+					datePickerTheme: UIPickers.datePickerTheme,
+					timePickerTheme: UIPickers.timePickerTheme,
 				),
 				title: kAppName,
 			  debugShowCheckedModeBanner: false,

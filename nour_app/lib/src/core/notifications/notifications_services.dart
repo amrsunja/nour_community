@@ -25,6 +25,10 @@ abstract class NotificationIds {
   // Evening adhkar: 4000..4099
   static const int eveningAdhkarBase = 4000;
   static const int eveningAdhkarEnd = 4099;
+
+  // Remote pushes mirrored in the foreground (Android): 5000..5999
+  static const int pushBase = 5000;
+  static const int pushEnd = 5999;
 }
 
 final notificationsServicesProvider = Provider(

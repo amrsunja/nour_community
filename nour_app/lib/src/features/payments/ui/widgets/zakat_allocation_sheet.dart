@@ -34,15 +34,12 @@ class ZakatAllocationSheet extends ConsumerStatefulWidget {
   final double zakatOwed;
 
   static Future<ZakatCart?> show(BuildContext context, {required double zakatOwed}) {
-    return showModalBottomSheet<ZakatCart>(
+    return UIBottomSheet.show<ZakatCart>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true,
       isDismissible: true,
       useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
       builder: (_) => ZakatAllocationSheet(zakatOwed: zakatOwed),
     );
   }

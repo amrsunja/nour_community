@@ -50,7 +50,7 @@ class DonationSubscriptionModel extends Equatable {
     return DonationSubscriptionModel(
       id: json['id'] as int,
       userId: json['user_id'] as String,
-      impactProjectId: json['impact_project_id'] as int,
+      impactProjectId: json['impact_project_id'] as int? ?? 0,
       amount: _toDouble(json['amount']),
       feeCovered: _toDouble(json['fee_covered']),
       currency: json['currency'] as String? ?? 'EUR',

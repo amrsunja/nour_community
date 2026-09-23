@@ -95,6 +95,15 @@
                 <data android:scheme="nour" android:host="stripe-redirect" />
             </intent-filter>
 
+            <!-- Mosques module deep links: nour://mosque/{id}, nour://mosque-admin -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="nour" android:host="mosque" />
+                <data android:scheme="nour" android:host="mosque-admin" />
+            </intent-filter>
+
         		<!-- Deep links -->
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -104,6 +113,11 @@
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
+        <!-- FCM: default channel for pushes received while the app is in background -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="nour_mosques" />
+
         <!-- Google Pay via Stripe PaymentSheet / PlatformPay -->
         <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"

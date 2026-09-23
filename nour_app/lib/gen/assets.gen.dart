@@ -20,14 +20,50 @@ class $AssetsIconsGen {
   /// File path: assets/icons/arrow-right.svg
   String get arrowRight => 'assets/icons/arrow-right.svg';
 
+  /// File path: assets/icons/calendar.svg
+  String get calendar => 'assets/icons/calendar.svg';
+
+  /// File path: assets/icons/calendar_add.svg
+  String get calendarAdd => 'assets/icons/calendar_add.svg';
+
   /// File path: assets/icons/check.svg
   String get check => 'assets/icons/check.svg';
 
   /// File path: assets/icons/chevron-left.svg
   String get chevronLeft => 'assets/icons/chevron-left.svg';
 
+  /// File path: assets/icons/clock.svg
+  String get clock => 'assets/icons/clock.svg';
+
+  /// File path: assets/icons/copy.svg
+  String get copy => 'assets/icons/copy.svg';
+
+  /// File path: assets/icons/curone.svg
+  String get curone => 'assets/icons/curone.svg';
+
   /// File path: assets/icons/dhikr.svg
   String get dhikr => 'assets/icons/dhikr.svg';
+
+  /// File path: assets/icons/earth.svg
+  String get earth => 'assets/icons/earth.svg';
+
+  /// File path: assets/icons/empty_calendar.svg
+  String get emptyCalendar => 'assets/icons/empty_calendar.svg';
+
+  /// File path: assets/icons/gallery.svg
+  String get gallery => 'assets/icons/gallery.svg';
+
+  /// File path: assets/icons/geo.svg
+  String get geo => 'assets/icons/geo.svg';
+
+  /// File path: assets/icons/hand.svg
+  String get hand => 'assets/icons/hand.svg';
+
+  /// File path: assets/icons/heart.svg
+  String get heart => 'assets/icons/heart.svg';
+
+  /// File path: assets/icons/heart_handshake.svg
+  String get heartHandshake => 'assets/icons/heart_handshake.svg';
 
   /// File path: assets/icons/home.svg
   String get home => 'assets/icons/home.svg';
@@ -38,8 +74,14 @@ class $AssetsIconsGen {
   /// File path: assets/icons/impact.svg
   String get impact => 'assets/icons/impact.svg';
 
+  /// File path: assets/icons/janaza.svg
+  String get janaza => 'assets/icons/janaza.svg';
+
   /// File path: assets/icons/location.svg
   String get location => 'assets/icons/location.svg';
+
+  /// File path: assets/icons/masjid.svg
+  String get masjid => 'assets/icons/masjid.svg';
 
   /// File path: assets/icons/mute.svg
   String get mute => 'assets/icons/mute.svg';
@@ -50,8 +92,23 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notif.svg
   String get notif => 'assets/icons/notif.svg';
 
+  /// File path: assets/icons/notify.svg
+  String get notify => 'assets/icons/notify.svg';
+
+  /// File path: assets/icons/persons.svg
+  String get persons => 'assets/icons/persons.svg';
+
+  /// File path: assets/icons/plus.svg
+  String get plus => 'assets/icons/plus.svg';
+
   /// File path: assets/icons/refresh.svg
   String get refresh => 'assets/icons/refresh.svg';
+
+  /// File path: assets/icons/search.svg
+  String get search => 'assets/icons/search.svg';
+
+  /// File path: assets/icons/settings.svg
+  String get settings => 'assets/icons/settings.svg';
 
   /// File path: assets/icons/share.svg
   String get share => 'assets/icons/share.svg';
@@ -74,6 +131,12 @@ class $AssetsIconsGen {
   /// File path: assets/icons/volume.svg
   String get volume => 'assets/icons/volume.svg';
 
+  /// File path: assets/icons/warning.svg
+  String get warning => 'assets/icons/warning.svg';
+
+  /// File path: assets/icons/world.svg
+  String get world => 'assets/icons/world.svg';
+
   /// File path: assets/icons/x.svg
   String get x => 'assets/icons/x.svg';
 
@@ -81,17 +144,36 @@ class $AssetsIconsGen {
   List<String> get values => [
     aa,
     arrowRight,
+    calendar,
+    calendarAdd,
     check,
     chevronLeft,
+    clock,
+    copy,
+    curone,
     dhikr,
+    earth,
+    emptyCalendar,
+    gallery,
+    geo,
+    hand,
+    heart,
+    heartHandshake,
     home,
     idea,
     impact,
+    janaza,
     location,
+    masjid,
     mute,
     notNotif,
     notif,
+    notify,
+    persons,
+    plus,
     refresh,
+    search,
+    settings,
     share,
     source,
     squarePen,
@@ -99,6 +181,8 @@ class $AssetsIconsGen {
     tools,
     unmute,
     volume,
+    warning,
+    world,
     x,
   ];
 }
@@ -113,6 +197,10 @@ class $AssetsImagesGen {
   AssetGenImage get arabicText =>
       const AssetGenImage('assets/images/arabic_text.png');
 
+  /// File path: assets/images/bg_card_arabic_image.png
+  AssetGenImage get bgCardArabicImage =>
+      const AssetGenImage('assets/images/bg_card_arabic_image.png');
+
   /// File path: assets/images/compass_lines.png
   AssetGenImage get compassLines =>
       const AssetGenImage('assets/images/compass_lines.png');
@@ -123,10 +211,6 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/google.png
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
-
-  /// File path: assets/images/illustration36.png
-  AssetGenImage get illustration36 =>
-      const AssetGenImage('assets/images/illustration36.png');
 
   /// File path: assets/images/illustration_1.png
   AssetGenImage get illustration1 =>
@@ -244,9 +328,57 @@ class $AssetsImagesGen {
   AssetGenImage get illustration35 =>
       const AssetGenImage('assets/images/illustration_35.png');
 
+  /// File path: assets/images/illustration_36.png
+  AssetGenImage get illustration36 =>
+      const AssetGenImage('assets/images/illustration_36.png');
+
+  /// File path: assets/images/illustration_37.png
+  AssetGenImage get illustration37 =>
+      const AssetGenImage('assets/images/illustration_37.png');
+
+  /// File path: assets/images/illustration_38.png
+  AssetGenImage get illustration38 =>
+      const AssetGenImage('assets/images/illustration_38.png');
+
+  /// File path: assets/images/illustration_39.png
+  AssetGenImage get illustration39 =>
+      const AssetGenImage('assets/images/illustration_39.png');
+
   /// File path: assets/images/illustration_4.png
   AssetGenImage get illustration4 =>
       const AssetGenImage('assets/images/illustration_4.png');
+
+  /// File path: assets/images/illustration_40.png
+  AssetGenImage get illustration40 =>
+      const AssetGenImage('assets/images/illustration_40.png');
+
+  /// File path: assets/images/illustration_41.png
+  AssetGenImage get illustration41 =>
+      const AssetGenImage('assets/images/illustration_41.png');
+
+  /// File path: assets/images/illustration_42.png
+  AssetGenImage get illustration42 =>
+      const AssetGenImage('assets/images/illustration_42.png');
+
+  /// File path: assets/images/illustration_43.png
+  AssetGenImage get illustration43 =>
+      const AssetGenImage('assets/images/illustration_43.png');
+
+  /// File path: assets/images/illustration_44.png
+  AssetGenImage get illustration44 =>
+      const AssetGenImage('assets/images/illustration_44.png');
+
+  /// File path: assets/images/illustration_45.png
+  AssetGenImage get illustration45 =>
+      const AssetGenImage('assets/images/illustration_45.png');
+
+  /// File path: assets/images/illustration_46.png
+  AssetGenImage get illustration46 =>
+      const AssetGenImage('assets/images/illustration_46.png');
+
+  /// File path: assets/images/illustration_47.png
+  AssetGenImage get illustration47 =>
+      const AssetGenImage('assets/images/illustration_47.png');
 
   /// File path: assets/images/illustration_5.png
   AssetGenImage get illustration5 =>
@@ -270,6 +402,13 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/kaaba.png
   AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
+
+  /// File path: assets/images/masjid.png
+  AssetGenImage get masjid => const AssetGenImage('assets/images/masjid.png');
+
+  /// File path: assets/images/pray_muslim.png
+  AssetGenImage get prayMuslim =>
+      const AssetGenImage('assets/images/pray_muslim.png');
 
   /// File path: assets/images/prayer_time_asr.png
   AssetGenImage get prayerTimeAsr =>
@@ -298,10 +437,10 @@ class $AssetsImagesGen {
   List<AssetGenImage> get values => [
     apple,
     arabicText,
+    bgCardArabicImage,
     compassLines,
     donationIllustration,
     google,
-    illustration36,
     illustration1,
     illustration10,
     illustration11,
@@ -331,13 +470,27 @@ class $AssetsImagesGen {
     illustration33,
     illustration34,
     illustration35,
+    illustration36,
+    illustration37,
+    illustration38,
+    illustration39,
     illustration4,
+    illustration40,
+    illustration41,
+    illustration42,
+    illustration43,
+    illustration44,
+    illustration45,
+    illustration46,
+    illustration47,
     illustration5,
     illustration6,
     illustration7,
     illustration8,
     illustration9,
     kaaba,
+    masjid,
+    prayMuslim,
     prayerTimeAsr,
     prayerTimeDuhr,
     prayerTimeFajr,

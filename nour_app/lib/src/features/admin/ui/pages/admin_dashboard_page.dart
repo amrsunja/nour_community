@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:nour/src/features/admin/ui/widgets/admin_mosques_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -158,6 +159,10 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           value: AdminTab.received,
                           label: l10n.admin_tab_received,
                         ),
+                        UITabItem(
+                          value: AdminTab.mosques,
+                          label: l10n.admin_tab_mosques,
+                        ),
                       ],
                       onChanged: notifier.selectTab,
                     ),
@@ -182,6 +187,7 @@ class _AdminDashboardPageState extends ConsumerState<AdminDashboardPage> {
                           langCode: langCode,
                           l10n: l10n,
                         ),
+                      AdminTab.mosques => const AdminMosquesTab(),
                     },
                   ],
                 ),
@@ -207,6 +213,7 @@ class _StatCard extends StatelessWidget {
     final typo = UITheme.of(context).typo;
     return UICard(
       padding: const EdgeInsets.all(14),
+      borderRadius: 10,
       disableBorder: true,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -508,14 +515,11 @@ class _PayoutStatusSheet extends StatelessWidget {
     required PayoutStatus current,
     required AppLocale l10n,
   }) {
-    return showModalBottomSheet<_PayoutSheetAction>(
+    return UIBottomSheet.show<_PayoutSheetAction>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true, // content is taller than the default half-sheet
       useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (_) => _PayoutStatusSheet(current: current, l10n: l10n),
     );
   }
@@ -547,16 +551,6 @@ class _PayoutStatusSheet extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: UIColorsToken.stroke,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
             const UISpace.vert(20),
             Text(
               l10n.admin_change_status_title,
@@ -646,12 +640,9 @@ class _PayoutStatusSheet extends StatelessWidget {
 /// Destructive confirmation before removing a payout from the ledger.
 Future<bool?> _confirmDeletePayout(BuildContext context, AppLocale l10n) {
   final typo = UITheme.of(context).typo;
-  return showModalBottomSheet<bool>(
+  return UIBottomSheet.show<bool>(
     context: context,
     backgroundColor: UIColorsToken.bgPrimary,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-    ),
     builder: (ctx) => SafeArea(
       top: false,
       child: Padding(
@@ -660,16 +651,6 @@ Future<bool?> _confirmDeletePayout(BuildContext context, AppLocale l10n) {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Center(
-              child: Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: UIColorsToken.stroke,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-            ),
             const UISpace.vert(20),
             Text(
               l10n.admin_delete_payout_confirm_title,

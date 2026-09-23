@@ -25,14 +25,11 @@ class RecordPayoutSheet extends ConsumerStatefulWidget {
     ImpactProjectModel? presetProject,
     TxType? presetType,
   }) {
-    return showModalBottomSheet<bool>(
+    return UIBottomSheet.show<bool>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true,
       isDismissible: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (_) => RecordPayoutSheet(
         presetProject: presetProject,
         presetType: presetType,
@@ -156,16 +153,6 @@ class _RecordPayoutSheetState extends ConsumerState<RecordPayoutSheet> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: UIColorsToken.stroke,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
               const UISpace.vert(18),
               Text(
                 l10n.admin_record_payout,

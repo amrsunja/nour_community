@@ -7,6 +7,7 @@ import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen4 extends HookConsumerWidget {
   const OnboardingScreen4({super.key});
@@ -31,7 +32,7 @@ class OnboardingScreen4 extends HookConsumerWidget {
 
       final ok = await profileP.updateLevel(level);
       if (ok) {
-        provider.changePage(4);
+        provider.changePage(OnboardingStep.screen5);
       }
     }
 

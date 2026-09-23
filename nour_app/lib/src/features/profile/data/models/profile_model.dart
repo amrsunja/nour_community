@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:nour/src/core/utils/enums/account_type.dart';
 import 'package:nour/src/core/utils/enums/gender_type.dart';
 import 'package:nour/src/core/utils/enums/level_type.dart';
 import 'package:nour/src/core/utils/typedefs.dart';
@@ -17,6 +18,11 @@ class ProfileModel extends Equatable {
   final DateTime? lastStreakDate;
   final int earnedAjrCount;
   final bool isAdmin;
+  /// Worshipper (default) or mosque manager — drives the whole routing (§3).
+  final AccountType accountType;
+  final String? countryCode;
+  /// Per-kind push toggles; a missing key means enabled.
+  final Map<String, dynamic> pushPrefs;
   final DateTime? createdAt;
   final DateTime? updatedAt;
 
@@ -33,9 +39,16 @@ class ProfileModel extends Equatable {
     required this.lastStreakDate,
     required this.earnedAjrCount,
     required this.isAdmin,
+    this.accountType = AccountType.user,
+    this.countryCode,
+    this.pushPrefs = const {},
     required this.createdAt,
     required this.updatedAt,
   });
+
+  bool get isMosqueAccount => accountType == AccountType.mosque;
+
+  bool pushEnabled(String kind) => pushPrefs[kind] != false;
 
   factory ProfileModel.fromJson(Json json) => ProfileModel(
     id: json['id'],
@@ -49,10 +62,54 @@ class ProfileModel extends Equatable {
     currentStreak: json['current_streak'],
     lastStreakDate: DateTime.tryParse(json['last_streak_date'] ?? ''),
     earnedAjrCount: json['earned_ajr_count'],
-    isAdmin: json['is_admin'],
+    isAdmin: json['is_admin'] ?? false,
+    accountType: AccountType.fromString(json['account_type'] as String?),
+    countryCode: json['country_code'] as String?,
+    pushPrefs: (json['push_prefs'] as Map?)?.cast<String, dynamic>() ?? const {},
     createdAt: DateTime.tryParse(json['created_at'] ?? ''),
     updatedAt: DateTime.tryParse(json['updated_at'] ?? ''),
   );
+
+  /// Returns a NEW instance so Riverpod `select()` listeners actually fire.
+  /// (Mutating `avatar` in place kept the same object identity and could leave
+  /// the avatar widgets showing stale initials.)
+  ProfileModel copyWith({
+    String? name,
+    String? avatar,
+    bool clearAvatar = false,
+    GenderType? gender,
+    LevelType? level,
+    bool? onboardingCompleted,
+    int? lastOnboardingScreen,
+    int? dailyPracticeTime,
+    int? currentStreak,
+    DateTime? lastStreakDate,
+    int? earnedAjrCount,
+    bool? isAdmin,
+    AccountType? accountType,
+    String? countryCode,
+    Map<String, dynamic>? pushPrefs,
+  }) {
+    return ProfileModel(
+      id: id,
+      name: name ?? this.name,
+      avatar: clearAvatar ? null : (avatar ?? this.avatar),
+      gender: gender ?? this.gender,
+      level: level ?? this.level,
+      onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
+      lastOnboardingScreen: lastOnboardingScreen ?? this.lastOnboardingScreen,
+      dailyPracticeTime: dailyPracticeTime ?? this.dailyPracticeTime,
+      currentStreak: currentStreak ?? this.currentStreak,
+      lastStreakDate: lastStreakDate ?? this.lastStreakDate,
+      earnedAjrCount: earnedAjrCount ?? this.earnedAjrCount,
+      isAdmin: isAdmin ?? this.isAdmin,
+      accountType: accountType ?? this.accountType,
+      countryCode: countryCode ?? this.countryCode,
+      pushPrefs: pushPrefs ?? this.pushPrefs,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
 
   @override
   List<Object?> get props => [
@@ -68,6 +125,9 @@ class ProfileModel extends Equatable {
     lastStreakDate,
     earnedAjrCount,
     isAdmin,
+    accountType,
+    countryCode,
+    pushPrefs,
     createdAt,
     updatedAt,
   ];
