@@ -21,7 +21,7 @@ class ProjectCoverCarousel extends HookWidget {
   Widget build(BuildContext context) {
     final urls = [
       for (final i in images)
-        if (ImpactRemoteDatasource.publicStoryImageUrl(i) case final u?) u,
+        ?ImpactRemoteDatasource.publicStoryImageUrl(i),
     ];
     if (urls.isEmpty) {
       return Container(
@@ -37,7 +37,7 @@ class ProjectCoverCarousel extends HookWidget {
     final index = useState(0);
 
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: .circular(12),
       child: SizedBox(
         height: height,
         width: double.infinity,
@@ -53,6 +53,24 @@ class ProjectCoverCarousel extends HookWidget {
                 itemCount: urls.length,
                 itemBuilder: (_, i) => _Slide(url: urls[i]),
               ),
+            Positioned(
+              left: 0,
+              right: 0,
+              top: 0,
+              height: 60,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      UIColorsToken.bgPrimary.withValues(alpha: .5),
+                      Colors.transparent,
+                    ],
+                  ),
+                ),
+              ),
+            ),
             // Bottom fade so the dots stay readable on bright photos.
             Positioned(
               left: 0,
@@ -66,7 +84,7 @@ class ProjectCoverCarousel extends HookWidget {
                     end: Alignment.bottomCenter,
                     colors: [
                       Colors.transparent,
-                      UIColorsToken.black.withValues(alpha: 0.45),
+                      UIColorsToken.bgPrimary.withValues(alpha: .5),
                     ],
                   ),
                 ),

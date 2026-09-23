@@ -1,0 +1,664 @@
+import 'dart:io';
+
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:nour/src/core/errors/exceptions/server/server_exception.dart';
+import 'package:nour/src/core/network/supabase_client.dart';
+import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/core/utils/typedefs.dart';
+import 'package:nour/src/features/payments/data/models/tx_enums.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+
+import '../models/mosque_donation_models.dart';
+
+final mosqueDonationRemoteDataProvider = Provider((ref) => MosqueDonationRemoteDatasource());
+
+/// P3 — Sadaqa / campaigns / membership fee / receipts / Stripe Connect.
+///
+/// Money WRITES only happen in the edge functions (direct charges on the
+/// mosque's connected account); the client reads through RLS + RPCs.
+class MosqueDonationRemoteDatasource {
+  static const _settings = 'mosque_donation_settings';
+  static const _campaignSettings = 'mosque_campaign_settings';
+  static const _campaigns = 'mosque_campaigns';
+  static const _campaignUpdates = 'mosque_campaign_updates';
+  static const _stripeAccounts = 'mosque_stripe_accounts';
+  static const _receipts = 'mosque_receipts';
+  static const _donorTaxProfiles = 'donor_tax_profiles';
+  static const _legalBucket = 'mosque-legal';
+  static const _receiptsBucket = 'mosque-receipts';
+  static const _subscriptions = 'donation_subscriptions';
+
+  static const _fnOnboarding = 'mosque-stripe-onboarding';
+  static const _fnIntent = 'create-mosque-payment-intent';
+  static const _fnSubscription = 'create-mosque-subscription';
+  static const _fnCancel = 'cancel-mosque-subscription';
+  static const _fnConfirm = 'confirm-mosque-payment';
+  static const _fnReceipt = 'generate-mosque-receipt';
+
+  String _requireUserId() {
+    final user = supabaseClient.auth.currentUser;
+    if (user == null) throw ServerException(type: .unauthorized, messageKey: ApiErrorKey.userNotAuthenticated);
+    return user.id;
+  }
+
+  ServerException _wrap(Object e, ApiErrorKey fallback) {
+    talker.error(e);
+    if (e is ServerException) return e;
+    if (e is PostgrestException) {
+      if (e.message.contains('campaign_limit_reached')) return ServerException(type: .badRequest, messageKey: ApiErrorKey.mosqueCampaignLimitReached);
+      final tax = _mapTaxError(e.message);
+      if (tax != null) return ServerException(type: .badRequest, messageKey: tax);
+      if (e.message.contains('forbidden') || e.code == '42501') return ServerException(type: .forbiden, messageKey: ApiErrorKey.mosqueNotApproved);
+      return ServerException(type: .badRequest, message: e.message);
+    }
+    return ServerException(type: .badRequest, messageKey: fallback);
+  }
+
+  /// `fn_mosque_set_tax_receipts` raises stable, parseable messages
+  /// (`missing_field:city`, `legal_id_invalid:rna`, ...). See
+  /// docs/TAX_RECEIPTS_MULTI_COUNTRY.md §4.
+  ApiErrorKey? _mapTaxError(String message) {
+    if (message.contains('regime_not_receipt_based')) return ApiErrorKey.mosqueTaxRegimeNotReceiptBased;
+    if (message.contains('regime_unsupported')) return ApiErrorKey.mosqueTaxRegimeUnsupported;
+    if (message.contains('legal_id_invalid')) return ApiErrorKey.mosqueTaxLegalIdInvalid;
+    if (message.contains('legal_id_missing')) return ApiErrorKey.mosqueTaxLegalIdMissing;
+    if (message.contains('missing_field:')) return ApiErrorKey.mosqueTaxLegalDataMissing;
+    if (message.contains('signatory_missing')) return ApiErrorKey.mosqueTaxSignatoryMissing;
+    if (message.contains('mosque_not_approved')) return ApiErrorKey.mosqueNotApproved;
+    return null;
+  }
+
+  ApiErrorKey _mapFunctionError(dynamic data, ApiErrorKey fallback) {
+    final code = data is Map ? data['error'] : null;
+    return switch (code) {
+      'amount_too_small' => ApiErrorKey.paymentAmountTooSmall,
+      'amount_too_large' => ApiErrorKey.paymentAmountTooLarge,
+      'donations_disabled' || 'stripe_not_ready' || 'mosque_not_chargeable' => ApiErrorKey.mosqueDonationsDisabled,
+      'campaign_closed' || 'campaign_not_found' => ApiErrorKey.mosqueCampaignClosed,
+      'frequency_not_allowed' => ApiErrorKey.mosqueFrequencyNotAllowed,
+      'mosque_not_approved' || 'forbidden' => ApiErrorKey.mosqueNotApproved,
+      'receipts_not_allowed' => ApiErrorKey.mosqueReceiptsNotAllowed,
+      'no_donations' => ApiErrorKey.mosqueReceiptNoDonations,
+      'regime_unsupported' => ApiErrorKey.mosqueTaxRegimeUnsupported,
+      'regime_not_receipt_based' => ApiErrorKey.mosqueTaxRegimeNotReceiptBased,
+      'incomplete_issuer_data' => ApiErrorKey.mosqueTaxIssuerIncomplete,
+      'incomplete_donor_data' => ApiErrorKey.mosqueTaxDonorIncomplete,
+      'year_not_closed' || 'annual_only' => ApiErrorKey.mosqueTaxYearNotClosed,
+      'below_threshold' => ApiErrorKey.mosqueTaxBelowThreshold,
+      'mixed_currencies' => ApiErrorKey.mosqueTaxMixedCurrencies,
+      'donor_anonymous' => ApiErrorKey.mosqueNotApproved,
+      'method_not_supported' => ApiErrorKey.paymentIntentFailed,
+      _ => fallback,
+    };
+  }
+
+  ServerException _fnError(Object e, ApiErrorKey fallback) {
+    if (e is ServerException) return e;
+    if (e is FunctionException) {
+      talker.error('[mosque-donation] fn ${e.status}', e);
+      return ServerException(type: .badRequest, messageKey: _mapFunctionError(e.details, fallback));
+    }
+    talker.error('[mosque-donation] fn', e);
+    return ServerException(type: .badRequest, messageKey: fallback);
+  }
+
+  static double _toDouble(dynamic v) => v == null ? 0 : (v is num ? v.toDouble() : double.tryParse('$v') ?? 0);
+
+  // ── Public reads ──────────────────────────────────────────────────────────
+
+  Future<MosqueDonationSettings> getSettings(int mosqueId) async {
+    try {
+      final row = await supabaseClient.from(_settings).select().eq('mosque_id', mosqueId).maybeSingle();
+      return row == null ? MosqueDonationSettings(mosqueId: mosqueId) : MosqueDonationSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// Fundraising configuration of the mosque (campaigns — NOT the Sadaqa card).
+  /// A missing row means "never configured": the defaults apply.
+  Future<MosqueCampaignSettings> getCampaignSettings(int mosqueId) async {
+    try {
+      final row = await supabaseClient.from(_campaignSettings).select().eq('mosque_id', mosqueId).maybeSingle();
+      return row == null ? MosqueCampaignSettings(mosqueId: mosqueId) : MosqueCampaignSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  Future<List<MosqueCampaignModel>> getCampaigns(int mosqueId, {bool activeOnly = false, int limit = 20}) async {
+    try {
+      var q = supabaseClient.from(_campaigns).select().eq('mosque_id', mosqueId);
+      if (activeOnly) q = q.eq('status', 'active');
+      final rows = await q.order('status', ascending: true).order('ends_at', ascending: true).limit(limit);
+      return (rows as List).map((e) => MosqueCampaignModel.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  Future<MosqueCampaignModel> getCampaign(int campaignId) async {
+    try {
+      final row = await supabaseClient.from(_campaigns).select().eq('id', campaignId).single();
+      return MosqueCampaignModel.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// Realtime on one campaign (progress bar after a gift, close by cron).
+  Stream<MosqueCampaignModel?> watchCampaign(int campaignId) => supabaseClient
+      .from(_campaigns)
+      .stream(primaryKey: ['id'])
+      .eq('id', campaignId)
+      .map((rows) => rows.isEmpty ? null : MosqueCampaignModel.fromJson(rows.first));
+
+  Future<List<MosqueCampaignUpdate>> getCampaignUpdates(int campaignId) async {
+    try {
+      final rows = await supabaseClient.from(_campaignUpdates).select().eq('campaign_id', campaignId).order('created_at', ascending: false).limit(20);
+      return (rows as List).map((e) => MosqueCampaignUpdate.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  Future<List<MosqueCampaignDonor>> getCampaignRecentDonors(int campaignId, {int limit = 3}) async {
+    try {
+      final rows = await supabaseClient.rpc('fn_mosque_campaign_recent_donors', params: {'p_campaign_id': campaignId, 'p_limit': limit});
+      return (rows as List).map((e) => MosqueCampaignDonor.fromJson(e as Json)).toList();
+    } catch (e) {
+      talker.error('[mosque-donation] recentDonors', e);
+      return const [];
+    }
+  }
+
+  // ── Donor: pay ────────────────────────────────────────────────────────────
+
+  /// Asks the server to settle this donation against Stripe instead of waiting
+  /// for `stripe-connect-webhook`. Returns the authoritative status, or `null`
+  /// when the call itself failed (the caller keeps waiting).
+  Future<TxStatus?> confirmPayment(int transactionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnConfirm, body: {'transactionId': transactionId});
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : TxStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[mosque-donation] confirmPayment $transactionId: $e');
+      return null;
+    }
+  }
+
+  /// Subscription variant of [confirmPayment].
+  Future<SubscriptionStatus?> confirmSubscription(int subscriptionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnConfirm, body: {'subscriptionId': subscriptionId});
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : SubscriptionStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[mosque-donation] confirmSubscription $subscriptionId: $e');
+      return null;
+    }
+  }
+
+  Future<MosqueCreatedPayment> createPaymentIntent({
+    required int mosqueId,
+    required double amount,
+    required String currency,
+    int? campaignId,
+    int? membershipId,
+    required bool isAnonymous,
+    required PaymentMethodKind paymentMethod,
+    required String clientKey,
+  }) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnIntent, body: {
+        'mosqueId': mosqueId,
+        'amount': amount,
+        'currency': currency,
+        if (campaignId != null) 'campaignId': campaignId,
+        if (membershipId != null) 'membershipId': membershipId,
+        'isAnonymous': isAnonymous,
+        'paymentMethod': paymentMethod.value,
+        'clientKey': clientKey,
+      });
+      final data = res.data;
+      final secret = data?['clientSecret'] as String?;
+      final txId = (data?['transactionId'] as num?)?.toInt();
+      final acct = data?['stripeAccountId'] as String?;
+      if (secret == null || txId == null || acct == null) {
+        throw ServerException(type: .badRequest, messageKey: _mapFunctionError(data, ApiErrorKey.paymentIntentFailed));
+      }
+      return MosqueCreatedPayment(clientSecret: secret, stripeAccountId: acct, transactionId: txId, amountCharged: _toDouble(data?['amountCharged']));
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.paymentIntentFailed);
+    }
+  }
+
+  Future<MosqueCreatedPayment> createSubscription({
+    required int mosqueId,
+    required double amount,
+    required String currency,
+    required DonationFrequency frequency,
+    int? campaignId,
+    int? membershipId,
+    required bool isAnonymous,
+    required PaymentMethodKind paymentMethod,
+    required String clientKey,
+  }) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnSubscription, body: {
+        'mosqueId': mosqueId,
+        'amount': amount,
+        'currency': currency,
+        'interval': frequency.interval ?? 'month',
+        if (campaignId != null) 'campaignId': campaignId,
+        if (membershipId != null) 'membershipId': membershipId,
+        'isAnonymous': isAnonymous,
+        'paymentMethod': paymentMethod.value,
+        'clientKey': clientKey,
+      });
+      final data = res.data;
+      final secret = data?['clientSecret'] as String?;
+      final subId = (data?['subscriptionId'] as num?)?.toInt();
+      final acct = data?['stripeAccountId'] as String?;
+      if (secret == null || subId == null || acct == null) {
+        throw ServerException(type: .badRequest, messageKey: _mapFunctionError(data, ApiErrorKey.paymentSubscriptionFailed));
+      }
+      return MosqueCreatedPayment(
+        clientSecret: secret,
+        stripeAccountId: acct,
+        subscriptionId: subId,
+        customerId: data?['customerId'] as String?,
+        ephemeralKeySecret: data?['ephemeralKeySecret'] as String?,
+        amountCharged: _toDouble(data?['amountCharged']),
+      );
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.paymentSubscriptionFailed);
+    }
+  }
+
+  Future<void> cancelSubscription(int subscriptionId, {bool immediately = false}) async {
+    _requireUserId();
+    try {
+      await supabaseClient.functions.invoke(_fnCancel, body: {'subscriptionId': subscriptionId, 'immediately': immediately});
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.paymentSubscriptionCancelFailed);
+    }
+  }
+
+  // ── Donor: history ────────────────────────────────────────────────────────
+
+  Future<List<MyMosqueDonation>> getMyDonations({int limit = 100}) async {
+    _requireUserId();
+    try {
+      final rows = await supabaseClient.rpc('fn_my_mosque_donations', params: {'p_limit': limit});
+      return (rows as List).map((e) => MyMosqueDonation.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.paymentHistoryLoadFailed);
+    }
+  }
+
+  Future<List<MyMosqueSubscription>> getMySubscriptions() async {
+    final uid = _requireUserId();
+    try {
+      final rows = await supabaseClient
+          .from(_subscriptions)
+          .select('*, mosques(name)')
+          .eq('user_id', uid)
+          .not('mosque_id', 'is', null)
+          .order('created_at', ascending: false);
+      return (rows as List).map((e) => MyMosqueSubscription.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.paymentSubscriptionsLoadFailed);
+    }
+  }
+
+  /// Active recurring gift of the caller to [mosqueId] (Sadaqa or fee).
+  Future<MyMosqueSubscription?> getMyActiveSubscription(int mosqueId, {String? type}) async {
+    final uid = supabaseClient.auth.currentUser?.id;
+    if (uid == null) return null;
+    try {
+      var q = supabaseClient.from(_subscriptions).select('*, mosques(name)').eq('user_id', uid).eq('mosque_id', mosqueId).inFilter('status', ['active', 'past_due']);
+      if (type != null) q = q.eq('type', type);
+      final rows = await q.order('created_at', ascending: false).limit(1);
+      if ((rows as List).isEmpty) return null;
+      return MyMosqueSubscription.fromJson(rows.first as Json);
+    } catch (e) {
+      talker.error('[mosque-donation] activeSub', e);
+      return null;
+    }
+  }
+
+  /// Receipts of the caller (all mosques) or, for an admin, of one mosque.
+  Future<List<MosqueReceipt>> getReceipts({int? mosqueId, int? year}) async {
+    final uid = _requireUserId();
+    try {
+      var q = supabaseClient.from(_receipts).select().isFilter('revoked_at', null);
+      q = mosqueId != null ? q.eq('mosque_id', mosqueId) : q.eq('user_id', uid);
+      if (year != null) q = q.eq('year', year);
+      final rows = await q.order('created_at', ascending: false).limit(200);
+      return (rows as List).map((e) => MosqueReceipt.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.paymentHistoryLoadFailed);
+    }
+  }
+
+  /// Signed URL (1h) of an existing receipt PDF.
+  Future<String?> receiptUrl(String storagePath) async {
+    try {
+      return await supabaseClient.storage.from(_receiptsBucket).createSignedUrl(storagePath, 3600);
+    } catch (e) {
+      talker.error('[mosque-donation] receiptUrl', e);
+      return null;
+    }
+  }
+
+  /// Generates (or returns the existing) receipt. Either one gift
+  /// ([transactionId]) or a yearly summary ([mosqueId] + [year], admins may
+  /// pass [userId] for a donor).
+  Future<GeneratedReceipt> generateReceipt({
+    int? transactionId,
+    int? mosqueId,
+    int? year,
+    String? userId,
+    String kind = MosqueReceipt.kindTax,
+  }) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnReceipt, body: {
+        if (transactionId != null) 'transactionId': transactionId,
+        if (mosqueId != null) 'mosqueId': mosqueId,
+        if (year != null) 'year': year,
+        if (userId != null) 'userId': userId,
+        'kind': kind,
+      });
+      final data = res.data;
+      final id = (data?['receiptId'] as num?)?.toInt();
+      if (id == null) throw ServerException(type: .badRequest, messageKey: _mapFunctionError(data, ApiErrorKey.mosqueReceiptFailed));
+      return GeneratedReceipt(
+        receiptId: id,
+        amount: _toDouble(data?['amount']),
+        number: data?['number'] as String?,
+        url: data?['url'] as String?,
+        kind: data?['kind'] as String? ?? kind,
+        currency: data?['currency'] as String? ?? 'EUR',
+      );
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.mosqueReceiptFailed);
+    }
+  }
+
+  // ── Tax receipts: regime, right, signatory, donor identity ────────────────
+  // docs/TAX_RECEIPTS_MULTI_COUNTRY.md
+
+  /// What the mosque's country allows and what is still missing before the
+  /// right can be granted. Same rules as the RPC that grants it, no side effect.
+  Future<MosqueTaxReadiness> getTaxReadiness(int mosqueId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_tax_readiness', params: {'p_mosque_id': mosqueId});
+      return MosqueTaxReadiness.fromJson((res as Map).cast<String, dynamic>());
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// The ONLY way `mosques.can_issue_tax_receipts` moves: the column is
+  /// protected and this RPC records an attestation row on every change.
+  Future<bool> setTaxReceipts(int mosqueId, bool enabled, {required String declarationVersion}) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_set_tax_receipts', params: {
+        'p_mosque_id': mosqueId,
+        'p_enabled': enabled,
+        'p_declaration_version': declarationVersion,
+      });
+      return res as bool? ?? enabled;
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueTaxDeclarationFailed);
+    }
+  }
+
+  /// Signatory name / role / signature path. Kept out of the profile save so
+  /// an unrelated edit can never blank them.
+  Future<void> saveSignatory(int mosqueId, {String? name, String? role, String? signaturePath}) async {
+    _requireUserId();
+    try {
+      await supabaseClient.from('mosques').update({
+        'signatory_name': name,
+        'signatory_role': role,
+        if (signaturePath != null) 'signature_path': signaturePath,
+      }).eq('id', mosqueId);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  /// Uploads the signature to the PRIVATE `mosque-legal` bucket and returns its
+  /// object path (never a public URL: it is a signature).
+  Future<String> uploadSignature({required int mosqueId, required File file}) async {
+    _requireUserId();
+    try {
+      final ext = file.path.split('.').last.toLowerCase();
+      final path = '$mosqueId/signature/${DateTime.now().millisecondsSinceEpoch}.$ext';
+      await supabaseClient.storage.from(_legalBucket).upload(
+            path,
+            file,
+            fileOptions: FileOptions(upsert: true, contentType: ext == 'png' ? 'image/png' : 'image/jpeg'),
+          );
+      return path;
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSignatureUploadFailed);
+    }
+  }
+
+  Future<String?> signatureUrl(String path) async {
+    try {
+      return await supabaseClient.storage.from(_legalBucket).createSignedUrl(path, 3600);
+    } catch (e) {
+      talker.error('[mosque-donation] signatureUrl', e);
+      return null;
+    }
+  }
+
+  /// Totals a French association needs for form 2070-SD.
+  Future<MosqueTaxYearSummary> getTaxYearSummary(int mosqueId, int year) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.rpc('fn_mosque_tax_year_summary', params: {
+        'p_mosque_id': mosqueId,
+        'p_year': year,
+      });
+      return MosqueTaxYearSummary.fromJson((res as Map).cast<String, dynamic>());
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  // ── Donor side ────────────────────────────────────────────────────────────
+
+  /// Every (mosque, year) the caller gave to, with what that country allows.
+  Future<List<MosqueDonationYear>> getMyDonationYears() async {
+    _requireUserId();
+    try {
+      final rows = await supabaseClient.rpc('fn_my_mosque_donation_years') as List;
+      return rows.map((e) => MosqueDonationYear.fromJson((e as Map).cast<String, dynamic>())).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.paymentHistoryLoadFailed);
+    }
+  }
+
+  /// The donor's fiscal identity (name + postal address), mandatory on a
+  /// French receipt and collected nowhere else in the app.
+  Future<DonorTaxProfile?> getMyTaxProfile() async {
+    final uid = _requireUserId();
+    try {
+      final row = await supabaseClient.from(_donorTaxProfiles).select().eq('user_id', uid).maybeSingle();
+      return row == null ? null : DonorTaxProfile.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.profileLoadFailed);
+    }
+  }
+
+  Future<DonorTaxProfile> saveMyTaxProfile(DonorTaxProfile profile) async {
+    final uid = _requireUserId();
+    try {
+      final row = await supabaseClient
+          .from(_donorTaxProfiles)
+          .upsert({'user_id': uid, ...profile.toJson()})
+          .select()
+          .single();
+      return DonorTaxProfile.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueTaxProfileSaveFailed);
+    }
+  }
+
+  // ── Admin ─────────────────────────────────────────────────────────────────
+
+  Future<MosqueStripeAccount> getStripeAccount(int mosqueId) async {
+    try {
+      final row = await supabaseClient.from(_stripeAccounts).select().eq('mosque_id', mosqueId).maybeSingle();
+      return row == null ? const MosqueStripeAccount() : MosqueStripeAccount.fromRow(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  /// `action: 'start'` → hosted onboarding URL (account created on first call).
+  Future<String> startStripeOnboarding(int mosqueId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnOnboarding, body: {'mosqueId': mosqueId, 'action': 'start'});
+      final url = res.data?['url'] as String?;
+      if (url == null) throw ServerException(type: .badRequest, messageKey: _mapFunctionError(res.data, ApiErrorKey.mosqueStripeFailed));
+      return url;
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.mosqueStripeFailed);
+    }
+  }
+
+  /// `action: 'status'` → refreshes the row from Stripe and flips
+  /// `mosques.donations_enabled`.
+  Future<MosqueStripeAccount> refreshStripeStatus(int mosqueId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(_fnOnboarding, body: {'mosqueId': mosqueId, 'action': 'status'});
+      final data = res.data;
+      if (data is! Map || data['accountId'] == null) {
+        // No account yet — not an error.
+        return const MosqueStripeAccount();
+      }
+      return MosqueStripeAccount.fromStatus(Map<String, dynamic>.from(data));
+    } catch (e) {
+      throw _fnError(e, ApiErrorKey.mosqueStripeFailed);
+    }
+  }
+
+  Future<MosqueDonationSettings> saveSettings(MosqueDonationSettings s) async {
+    try {
+      final row = await supabaseClient.from(_settings).upsert(s.toJson(), onConflict: 'mosque_id').select().single();
+      return MosqueDonationSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignSettings> saveCampaignSettings(MosqueCampaignSettings s) async {
+    try {
+      final row = await supabaseClient.from(_campaignSettings).upsert(s.toJson(), onConflict: 'mosque_id').select().single();
+      return MosqueCampaignSettings.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignModel> createCampaign(int mosqueId, MosqueCampaignDraft d) async {
+    final uid = _requireUserId();
+    try {
+      final row = await supabaseClient.from(_campaigns).insert({...d.toJson(mosqueId), 'status': 'active', 'created_by': uid}).select().single();
+      return MosqueCampaignModel.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignModel> updateCampaign(int mosqueId, MosqueCampaignDraft d) async {
+    try {
+      final patch = d.toJson(mosqueId)..remove('mosque_id');
+      final row = await supabaseClient.from(_campaigns).update(patch).eq('id', d.id!).select().single();
+      return MosqueCampaignModel.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignModel> extendCampaign(int campaignId, DateTime endsAt) async {
+    try {
+      final row = await supabaseClient
+          .from(_campaigns)
+          .update({'ends_at': endsAt.toUtc().toIso8601String(), 'status': 'active', 'closed_at': null, 'closed_reason': null, 'reminded_at': null})
+          .eq('id', campaignId)
+          .select()
+          .single();
+      return MosqueCampaignModel.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignModel> closeCampaign(int campaignId, {String reason = 'manual'}) async {
+    try {
+      final row = await supabaseClient
+          .from(_campaigns)
+          .update({'status': 'closed', 'closed_at': DateTime.now().toUtc().toIso8601String(), 'closed_reason': reason})
+          .eq('id', campaignId)
+          .select()
+          .single();
+      return MosqueCampaignModel.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueCampaignUpdate> postCampaignUpdate({required int mosqueId, required int campaignId, required String body, String? imageUrl}) async {
+    try {
+      final row = await supabaseClient
+          .from(_campaignUpdates)
+          .insert({'mosque_id': mosqueId, 'campaign_id': campaignId, 'body': body.trim(), 'image_url': imageUrl})
+          .select()
+          .single();
+      return MosqueCampaignUpdate.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
+
+  Future<MosqueDonationStats> getStats(int mosqueId, {int? year}) async {
+    try {
+      final data = await supabaseClient.rpc('fn_mosque_donation_stats', params: {'p_mosque_id': mosqueId, 'p_year': year});
+      return MosqueDonationStats.fromJson(Map<String, dynamic>.from(data as Map));
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  Future<List<MosqueDonorRow>> getDonors(int mosqueId, {int? year, String? type, int limit = 50, int offset = 0}) async {
+    try {
+      final rows = await supabaseClient.rpc('fn_mosque_donors', params: {
+        'p_mosque_id': mosqueId,
+        'p_year': year,
+        'p_type': type,
+        'p_limit': limit,
+        'p_offset': offset,
+      });
+      return (rows as List).map((e) => MosqueDonorRow.fromJson(e as Json)).toList();
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+}

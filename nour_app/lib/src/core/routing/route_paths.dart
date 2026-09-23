@@ -3,6 +3,52 @@ abstract class RoutePaths {
 
   // Auth
   static const signIn= 'sign-in';
+  static const welcome = 'welcome';
+  static const profileType = 'profile-type';
+
+  // Mosque accounts (§3)
+  static const mosqueOnboarding = 'mosque-onboarding';
+  static const mosqueReview = 'mosque-review';
+  static const mosqueAdmin = 'mosque-admin';
+  static const mosqueAdminDashboard = 'dashboard';
+  static const mosqueAdminCommunity = 'community';
+  static const mosqueAdminMosque = 'mosque';
+  static const mosqueAdminPost = 'mosque-admin/post';
+  /// `mosque-admin/post/event` — `:type` is a MosquePostType db value.
+  static String mosqueAdminPostForm({String? type}) => 'mosque-admin/post/${type ?? ':type'}';
+  static const mosqueAdminEditProfile = 'mosque-admin/edit-profile';
+  static const mosqueAdminNotifications = 'mosque-admin/notifications';
+  static const mosqueSettings = 'mosque-admin/mosque-settings';
+  static const mosqueAdminSettings = 'mosque-admin/settings';
+  static const mosqueAdminPushSettings = 'mosque-admin/push-settings';
+  static const mosqueAdminReminders = 'mosque-admin/reminders';
+  static const mosqueAdminLanguage = 'mosque-admin/language';
+  static const mosqueAdminAccount = 'mosque-admin/account';
+  static const mosqueAdminWebView = 'mosque-admin/web-view';
+  // P3 — donations
+  static const mosqueAdminSadaqaSettings = 'mosque-admin/donations/settings';
+  static const mosqueAdminFundraisingSettings = 'mosque-admin/donations/fundraising-settings';
+  static const mosqueAdminStripe = 'mosque-admin/donations/stripe';
+  static const mosqueAdminCampaignForm = 'mosque-admin/donations/campaign-form';
+  static String mosqueAdminCampaign({int? campaignId}) => 'mosque-admin/donations/campaign/${campaignId ?? ':campaignId'}';
+  static const mosqueAdminCampaigns = 'mosque-admin/donations/campaigns';
+  static const mosqueAdminDonors = 'mosque-admin/donations/donors';
+  static const mosqueAdminReceipts = 'mosque-admin/donations/receipts';
+  static const mosqueAdminTaxSettings = 'mosque-admin/donations/tax-receipts';
+
+  // Mosques — worshipper side
+  static const mosqueSearch = 'mosques/search';
+  /// `mosque/12?tab=news&postId=` — `:id` is the mosque id.
+  static String mosqueProfile({int? id}) => 'mosque/${id ?? ':id'}';
+  static String mosqueMember({int? id}) => 'mosque/${id ?? ':id'}/member';
+  static String mosqueCampaign({int? id, int? campaignId}) =>
+      'mosque/${id ?? ':id'}/campaign/${campaignId ?? ':campaignId'}';
+  static String mosqueCheckout({int? id}) => 'mosque/${id ?? ':id'}/checkout';
+  /// `mosque/12/reward?amount=&frequency=&campaignId=&membershipId=` — shown
+  /// after a confirmed sadaqa / campaign gift / membership fee.
+  static String mosqueReward({int? id}) => 'mosque/${id ?? ':id'}/reward';
+  static const myMosqueReceipts = 'mosque-receipts';
+  static const pushSettings = 'push-settings';
   //static const signUp= 'sign-up';
   static const onboarding = 'onboarding';
 

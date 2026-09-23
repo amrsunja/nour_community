@@ -17,13 +17,10 @@ class AvatarActionSheet extends StatelessWidget {
     BuildContext context, {
     required bool hasAvatar,
   }) {
-    return showModalBottomSheet<AvatarAction>(
+    return UIBottomSheet.show<AvatarAction>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (_) => AvatarActionSheet(hasAvatar: hasAvatar),
     );
   }
@@ -38,15 +35,6 @@ class AvatarActionSheet extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const SizedBox(height: 12),
-          Container(
-            width: 40,
-            height: 4,
-            decoration: BoxDecoration(
-              color: UIColorsToken.stroke,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
             child: Align(

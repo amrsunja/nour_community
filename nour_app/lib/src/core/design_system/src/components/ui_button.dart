@@ -59,8 +59,9 @@ class UIButton extends StatelessWidget {
     bool isSmall = false,
     bool fullWidth = false,
     bool isBusy = false,
-    UIButtonIconAxis? iconAxis,
+    UIButtonIconAxis? iconAxis = .leading,
     VoidCallback? onTap,
+    Color? contentColor = UIColorsToken.textYellow,
   }) {
     return UIButton._(
       key: key,
@@ -72,6 +73,7 @@ class UIButton extends StatelessWidget {
       fullWidth: fullWidth,
       isBusy: isBusy,
       iconAxis: iconAxis,
+      contentColor: contentColor,
     );
   }
 
@@ -118,9 +120,20 @@ class UIButton extends StatelessWidget {
   final Color? contentColor;
   final VoidCallback? onTap;
 
-  EdgeInsets? get _padding => variant == _UIButtonVariant.textual ? null : isSmall
-      ? const EdgeInsets.symmetric(horizontal: 10, vertical: 6)
-      : EdgeInsets.symmetric(horizontal: label == null ? 20 : 16, vertical: label == null ? 16 : 12);
+  EdgeInsets? get _padding {
+    if (variant == _UIButtonVariant.textual) {
+      return null;
+    }
+
+    if (isSmall) {
+      return const EdgeInsets.symmetric(horizontal: 10, vertical: 6);
+    } else if (label == null) {
+      return EdgeInsets.symmetric(horizontal: 10, vertical: 10);
+    } else {
+      return EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+    }
+
+  }
 
   double get _radius => isSmall ? 6 : 12;
 
@@ -134,7 +147,7 @@ class UIButton extends StatelessWidget {
       case _UIButtonVariant.primary:
         return UIColorsToken.bgPriYellow;
       case _UIButtonVariant.secondary:
-        return null;
+        return UIColorsToken.bgSecondYellow;
       case _UIButtonVariant.textual:
         return null;
     }
@@ -152,18 +165,37 @@ class UIButton extends StatelessWidget {
         return UIColorsToken.textYellow;
     }
   }
+  
+  BoxBorder? get _border {
+    if (variant != _UIButtonVariant.secondary && label == null && assetIcon != null) {
+      return Border.all(color: UIColorsToken.white, width: 1);
+    }
+
+    switch (variant) {
+      case _UIButtonVariant.primary:
+        return null;
+      case _UIButtonVariant.secondary:
+        return Border.all(color: UIColorsToken.yellow.withValues(alpha: 0.2), width: 1);
+      case _UIButtonVariant.textual:
+        return null;
+    }
+  }
 
   BoxDecoration get _decoration {
     return BoxDecoration(
       gradient: _backgroundColor,
       borderRadius: BorderRadius.circular(_radius),
-      border: variant == _UIButtonVariant.secondary && label == null && assetIcon != null
-          ? Border.all(color: UIColorsToken.white, width: 1)
-          : null,
+      border: _border,
     );
   }
 
-  double get _iconSize => isSmall ? 12 : 14;
+  double get _iconSize {
+    if (label == null) {
+      return isSmall ? 12 : 25;
+    } 
+
+    return isSmall ? 12 : 18;
+  }
 
   double get _spinnerSize => isSmall ? 14 : 20;
 
@@ -235,7 +267,7 @@ class UIButton extends StatelessWidget {
       // icon-row variant so the button doesn't visibly jump when toggled.
       return Center(
         child: UICircularProgressBar(
-          color: UIColorsToken.black,
+          color: variant == _UIButtonVariant.textual ? UIColorsToken.white : UIColorsToken.black,
           size: _spinnerSize + 3,
         ),
       );

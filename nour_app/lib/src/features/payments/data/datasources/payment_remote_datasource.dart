@@ -66,6 +66,7 @@ class PaymentRemoteDatasource {
   static const _createIntentFn = 'create-payment-intent';
   static const _createSubscriptionFn = 'create-subscription';
   static const _cancelSubscriptionFn = 'cancel-subscription';
+  static const _confirmFn = 'confirm-payment';
   static const _recentDonorsRpc = 'fn_project_recent_donors';
 
   String _requireUserId() {
@@ -272,6 +273,42 @@ class PaymentRemoteDatasource {
     }
   }
 
+  /// Asks the server for Stripe's own verdict on this payment and settles the
+  /// row. The webhook stays the ledger's source of truth; this closes the gap
+  /// when it is late — and, for a subscription, books any paid invoice that
+  /// never produced a transaction (so the gift reaches the project total).
+  /// Returns null when the call itself failed — the caller just keeps waiting.
+  Future<TxStatus?> confirmPayment(int transactionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(
+        _confirmFn,
+        body: {'transactionId': transactionId},
+      );
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : TxStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[payment] confirmPayment $transactionId: $e');
+      return null;
+    }
+  }
+
+  /// Subscription variant of [confirmPayment].
+  Future<SubscriptionStatus?> confirmSubscription(int subscriptionId) async {
+    _requireUserId();
+    try {
+      final res = await supabaseClient.functions.invoke(
+        _confirmFn,
+        body: {'subscriptionId': subscriptionId},
+      );
+      final status = (res.data as Map?)?['status'] as String?;
+      return status == null ? null : SubscriptionStatus.fromString(status);
+    } catch (e) {
+      talker.warning('[payment] confirmSubscription $subscriptionId: $e');
+      return null;
+    }
+  }
+
   Future<List<DonationSubscriptionModel>> getMySubscriptions() async {
     final userId = _requireUserId();
     try {
@@ -281,6 +318,9 @@ class PaymentRemoteDatasource {
               'title_nl, title_tr, title_id, title_ur, title_bn, title_ms, title_ru, '
               'cover_image_url)')
           .eq('user_id', userId)
+          // Mosque subscriptions (P3) have no impact project; they are listed
+          // through `fn_my_mosque_donations` instead.
+          .not('impact_project_id', 'is', null)
           .order('created_at', ascending: false);
       return (response as List)
           .map((e) => DonationSubscriptionModel.fromJson(e))
@@ -322,6 +362,8 @@ class PaymentRemoteDatasource {
               'title_ar, title_de, title_nl, title_tr, title_id, title_ur, '
               'title_bn, title_ms, title_ru, cover_image_url))')
           .eq('user_id', userId)
+          // Mosque gifts (P3) are listed separately (`fn_my_mosque_donations`).
+          .isFilter('mosque_id', null)
           .neq('status', 'pending')
           .order('created_at', ascending: false);
 

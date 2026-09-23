@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_strings.dart';
 import 'package:nour/src/core/utils/islamic_tools/hijri_tool.dart';
 import 'package:nour/src/core/utils/islamic_tools/islamic_tools.dart';
@@ -18,6 +19,8 @@ import '../widgets/prayer_calc_method_card_widget.dart';
 import '../widgets/prayer_calc_method_sheet.dart';
 import '../widgets/prayer_extra_times_widget.dart';
 import '../widgets/prayer_time_widget.dart';
+import 'package:nour/src/features/mosques/ui/widgets/my_mosques_sheet.dart';
+import 'package:nour/src/features/mosques/ui/widgets/mosque_prayer_source_chip.dart';
 
 @RoutePage()
 class PrayerTimesPage extends HookConsumerWidget {
@@ -61,6 +64,7 @@ class PrayerTimesPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = ref.watch(l10nProvider);
     final presenter = ref.read(prayerTimesProvider.notifier);
+    final nav = ref.read(navigationServicesProvider);
     final state = ref.watch(prayerTimesProvider);
     final notifPresenter = ref.read(notificationsProvider.notifier);
     final notifSettings =
@@ -90,6 +94,13 @@ class PrayerTimesPage extends HookConsumerWidget {
           selected: state.settings.method,
           onSelect: presenter.changeMethod,
         ),
+        onMosqueChip: () async {
+          final saved = await MyMosquesSheet.show(context);
+          if (saved) {
+            await presenter.refresh();
+            await notifPresenter.rescheduleAll();
+          }
+        },
         onBeforeToggle: (enable) async =>
             !enable || await notifPresenter.ensureLocationForScheduling(),
         onToggleNotify: notifPresenter.setPrayer,
@@ -102,6 +113,14 @@ class PrayerTimesPage extends HookConsumerWidget {
       appBar: UIAppBar(
         title: l10n.prayer_times_title,
         onBack: context.pop,
+        // Trailing action: jump to the mosque map to follow a mosque's schedule.
+        leadingIcons: [
+          UIIcon(
+            UIIconsToken.icons.search,
+            color: UIColorsToken.yellow,
+            onTap: nav.toMosqueSearch,
+          ),
+        ],
       ),
       body: SafeArea(top: false, bottom: false, child: body),
     );
@@ -114,6 +133,7 @@ class _Content extends StatelessWidget {
     required this.l10n,
     required this.notifSettings,
     required this.onChangeMethod,
+    required this.onMosqueChip,
     required this.onBeforeToggle,
     required this.onToggleNotify,
     required this.onToggleAll,
@@ -123,6 +143,7 @@ class _Content extends StatelessWidget {
   final AppLocale l10n;
   final NotificationsSettingsModel notifSettings;
   final VoidCallback onChangeMethod;
+  final VoidCallback onMosqueChip;
 
   /// Location gate: returns false (after bouncing to settings) when enabling a
   /// reminder without location permission.
@@ -132,6 +153,7 @@ class _Content extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = UITheme.of(context);
     final times = state.times!;
     final settings = state.settings;
     final jumua = state.jumua;
@@ -143,11 +165,25 @@ class _Content extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           UIAppearAnimation(
-            child: PrayerCalcMethodCardWidget(
-              label: l10n.prayer_times_calc_method(settings.method.localizedName(l10n)),
-              onTap: onChangeMethod,
+            child: MosquePrayerSourceChip(
+              mosqueName: state.mosqueName,
+              isMosqueSource: state.source == PrayerSource.mosque,
+              onTap: onMosqueChip,
             ),
           ),
+          const SizedBox(height: 12),
+          if (state.source != PrayerSource.mosque)
+            UIAppearAnimation(
+              child: PrayerCalcMethodCardWidget(
+                label: l10n.prayer_times_calc_method(settings.method.localizedName(l10n)),
+                onTap: onChangeMethod,
+              ),
+            )
+          else
+            Text(
+              l10n.prayer_times_from_mosque_hint,
+              style: theme.typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph),
+            ),
           const SizedBox(height: 16),
           UIAppearAnimation(
             delay: const Duration(milliseconds: 150),
@@ -170,7 +206,7 @@ class _Content extends StatelessWidget {
               child: PrayerTimeWidget(
                 title: PrayerTimesPage._slotTitle(l10n, slot),
                 time: times.forSlot(slot),
-                offsetMinutes: settings.offsetFor(slot),
+                offsetMinutes: state.offsetFor(slot),
                 notify: notifSettings.prayerFor(slot),
                 onToggleNotify: () async {
                   final enable = !notifSettings.prayerFor(slot);

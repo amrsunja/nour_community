@@ -6,6 +6,7 @@ import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/onboarding/ui/state_management/onboarding_provider.dart';
 import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
+import 'package:nour/src/features/onboarding/domain/onboarding_step.dart';
 
 class OnboardingScreen5 extends HookConsumerWidget {
   const OnboardingScreen5({super.key});
@@ -37,7 +38,7 @@ class OnboardingScreen5 extends HookConsumerWidget {
       final ok = await profilePresenter.updateDailyPracticeTime(minutes);
       if (ok) {
         profile?.dailyPracticeTime = minutes;
-        onboarding.changePage(5);
+        onboarding.changePage(OnboardingStep.mosque);
       }
     }
 

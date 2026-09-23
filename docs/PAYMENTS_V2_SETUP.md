@@ -71,8 +71,14 @@ cd ios && pod install && cd ..
    `https://gawzqxnhliggvyebldmb.supabase.co/functions/v1/stripe-webhook`
    Events:
    `payment_intent.succeeded`, `payment_intent.payment_failed`, `payment_intent.canceled`,
-   `charge.refunded`, `invoice.paid`, `invoice.payment_failed`,
+   `charge.refunded`, `invoice.paid`, `invoice.payment_succeeded`, `invoice.payment_failed`,
    `customer.subscription.updated`, `customer.subscription.deleted`
+   > **Recurring donations depend on the invoice events.** Without `invoice.paid`
+   > (or `invoice.payment_succeeded`) no `transactions` row is written, so the
+   > subscription shows as paid but counts for nothing in any collected total.
+   > Keep the endpoint's **API version** at `2024-06-20` — the 2025 "basil"
+   > versions renamed `invoice.subscription` / `invoice.payment_intent`
+   > (`_shared/invoice.ts` reads both shapes, but the pinned version is tested).
    → copy the **Signing secret** (`whsec_…`) → `supabase secrets set STRIPE_WEBHOOK_SECRET=…`, then redeploy `stripe-webhook`.
 3. **Payment methods** — Settings → Payment methods: enable **Cards**, **Apple Pay**, **Google Pay**, **PayPal**.
    *PayPal via Stripe is available for EU accounts and must be activated; recurring PayPal needs “PayPal recurring payments” enabled too. If PayPal is not offered on your account, set `kPayPalEnabled = false` in `constants.dart` (row disappears).*

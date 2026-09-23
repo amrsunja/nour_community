@@ -14,8 +14,9 @@ import '../../data/models/donation_subscription_model.dart';
 import '../../data/models/transaction_model.dart';
 import '../../data/models/tx_enums.dart';
 import '../state_management/my_donations_provider.dart';
+import '../widgets/mosque_donations_list.dart';
 
-enum _Tab { history, recurring }
+enum _Tab { history, recurring, mosques }
 
 /// Profile → "My donations": one-time history (with status) and the recurring
 /// donations the user can stop.
@@ -62,6 +63,7 @@ class MyDonationsPage extends HookConsumerWidget {
                 items: [
                   UITabItem(value: _Tab.history, label: l10n.my_donations_tab_history),
                   UITabItem(value: _Tab.recurring, label: l10n.my_donations_tab_recurring),
+                  UITabItem(value: _Tab.mosques, label: l10n.my_donations_tab_mosques),
                 ],
                 onChanged: (t) => tab.value = t,
               ),
@@ -88,6 +90,17 @@ class MyDonationsPage extends HookConsumerWidget {
                             onCancel: confirmCancel,
                             onTapProject: (id) => nav.toImpactProjectDetail(projectId: id),
                           ),
+                        _Tab.mosques => MosqueDonationsList(
+                            donations: state.mosqueDonations,
+                            subscriptions: state.mosqueSubscriptions,
+                            cancellingId: state.cancellingId,
+                            onCancel: (id) async {
+                              final ok = await _confirmStop(context, l10n);
+                              if (ok == true) await presenter.cancelMosqueSubscription(id);
+                            },
+                            onTapMosque: (id) => nav.toMosqueProfile(mosqueId: id),
+                            onReceipts: () => nav.toMyMosqueReceipts(),
+                          ),
                       },
                     ),
             ),
@@ -99,12 +112,9 @@ class MyDonationsPage extends HookConsumerWidget {
 
   Future<bool?> _confirmStop(BuildContext context, AppLocale l10n) {
     final typo = UITheme.of(context).typo;
-    return showModalBottomSheet<bool>(
+    return UIBottomSheet.show<bool>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-      ),
       builder: (ctx) => SafeArea(
         top: false,
         child: Padding(
@@ -113,16 +123,6 @@ class MyDonationsPage extends HookConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(
-                    color: UIColorsToken.stroke,
-                    borderRadius: BorderRadius.circular(2),
-                  ),
-                ),
-              ),
               const UISpace.vert(20),
               Text(
                 l10n.my_donations_cancel_confirm_title,

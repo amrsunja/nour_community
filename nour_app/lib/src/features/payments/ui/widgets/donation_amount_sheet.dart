@@ -47,15 +47,12 @@ class DonationAmountSheet extends HookConsumerWidget {
     double? initialAmount,
     bool allowRecurring = true,
   }) {
-    return showModalBottomSheet<DonationAmountSelection>(
+    return UIBottomSheet.show<DonationAmountSelection>(
       context: context,
       backgroundColor: UIColorsToken.bgPrimary,
       isScrollControlled: true,
       isDismissible: true,
       useSafeArea: true,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
       builder: (_) => DonationAmountSheet(
         currency: currency,
         presetAmounts: presetAmounts,

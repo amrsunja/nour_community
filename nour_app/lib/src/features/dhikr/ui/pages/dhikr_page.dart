@@ -67,13 +67,10 @@ class DhikrPage extends HookConsumerWidget {
                   onTap: () async {
                     final others = state.dhikrs.where((d) => d.id != dhikr.id).toList();
                     //_openSelector(context, ref, count.value);
-                    await showModalBottomSheet<DhikrModel>(
+                    await UIBottomSheet.show<DhikrModel>(
                       context: context,
                       backgroundColor: UIColorsToken.bgSurface,
                       isScrollControlled: true,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                      ),
                       builder: (ctx) => SafeArea(
                         child: Padding(
                           padding: const EdgeInsets.all(16),

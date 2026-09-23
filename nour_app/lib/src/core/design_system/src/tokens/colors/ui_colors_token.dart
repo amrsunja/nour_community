@@ -29,6 +29,13 @@ class UIColorsToken {
     ]
   );
 
+  static final bgSecondYellow = LinearGradient(
+    colors: [
+      Color(0xffC59F54).withValues(alpha: 0.2),
+      Color(0xffDCB770).withValues(alpha: 0.2),
+    ]
+  );
+
   static const bgPriGreen = LinearGradient(
     colors: [
       Color(0xff404F3B),

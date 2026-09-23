@@ -12,7 +12,6 @@ import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
-import 'package:nour/src/features/profile/ui/state_management/profile_provider.dart';
 
 import '../state_management/auth_provider.dart';
 import '../widgets/social_auth_button.dart';
@@ -67,6 +66,8 @@ class SignInPage extends HookConsumerWidget {
         final res = await sendCode();
         switch (res) {
           case EmailConnectResult.failed:
+          case EmailConnectResult.routed:
+            // routed: the presenter already navigated (mosque account).
             return;
           case EmailConnectResult.linked:
             // New email: linked instantly, already authenticated.
@@ -83,9 +84,9 @@ class SignInPage extends HookConsumerWidget {
         email: emailController.text.trim(),
         token: otpController.text.trim(),
       );
+      // false = failed OR the presenter already routed (mosque account).
       if (!ok) return;
 
-      await ref.read(profileProvider.notifier).initProfile();
       await close();
     }
 

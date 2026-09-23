@@ -8,6 +8,7 @@ import 'package:nour/src/core/utils/state_management/app_events.dart';
 import 'package:nour/src/core/utils/state_management/presenter.dart';
 import 'package:nour/src/core/utils/state_management/single_events.dart';
 import 'package:nour/src/core/utils/talker/talker.dart';
+import 'package:nour/src/features/mosques/ui/state_management/my_mosques_provider.dart';
 import 'package:nour/src/features/notifications/ui/state_management/notifications_provider.dart';
 
 import '../../data/models/prayer_settings_model.dart';
@@ -90,23 +91,57 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
 
   Future<void> _recompute({bool openSettingsIfBlocked = false}) async {
     try {
+      // Make sure the principal mosque (+ its schedule) is known before
+      // deciding the source. No-op for users without a mosque.
+      await ref.read(myMosquesProvider.notifier).init();
       final position = await GeolocatorTools.currentOrCachedPosition(
         openSettingsIfBlocked: openSettingsIfBlocked,
       );
       final method = state.settings.method;
 
-      final times = await IslamicTools.getPrayerTimesForDate(
+      final computed = await IslamicTools.getPrayerTimesForDate(
         position: position,
         method: method,
       );
-      final next = await IslamicTools.getNextPrayer(
+      var next = await IslamicTools.getNextPrayer(
         position: position,
         method: method,
       );
-      final jumua = await IslamicTools.getJumuaTime(
+      var jumua = await IslamicTools.getJumuaTime(
         position: position,
         method: method,
       );
+
+      // Mosques module (§9): when the user has a principal mosque with a
+      // published schedule for today, its times (+ overrides, iqama offsets)
+      // replace the computed ones. Missing day → computed fallback.
+      var times = computed;
+      var source = PrayerSource.computed;
+      Map<PrayerSlot, int> offsets = PrayerSettingsModel.displayOffsets;
+      final my = ref.read(myMosquesProvider);
+      final today = DateTime.now();
+      final todayDay = my.effectiveDayFor(today);
+      if (my.principal != null && todayDay != null && !todayDay.isEmpty) {
+        times = todayDay.toDailyPrayerTimes(fallback: computed);
+        offsets = {for (final s in PrayerSlot.values) s: todayDay.offsetFor(s)};
+        source = PrayerSource.mosque;
+        if (todayDay.jumua != null) jumua = todayDay.instant(todayDay.jumua!);
+        // Next prayer from the mosque schedule (tomorrow's Fajr if all passed).
+        PrayerOccurrence? n;
+        for (final slot in IslamicTools.orderedSlots) {
+          if (times.forSlot(slot).isAfter(today)) {
+            n = PrayerOccurrence(slot: slot, time: times.forSlot(slot));
+            break;
+          }
+        }
+        if (n == null) {
+          final tomorrow = my.effectiveDayFor(today.add(const Duration(days: 1)));
+          if (tomorrow != null && !tomorrow.isEmpty) {
+            n = PrayerOccurrence(slot: PrayerSlot.fajr, time: tomorrow.toDailyPrayerTimes().fajr);
+          }
+        }
+        if (n != null) next = n;
+      }
 
       state = state.copyWith(
         isLoading: false,
@@ -115,6 +150,11 @@ class PrayerTimesPresenter extends Presenter<PrayerTimesState> {
         nextSlot: next.slot,
         nextTime: next.time,
         jumua: jumua,
+        source: source,
+        offsets: offsets,
+        mosqueName: my.principal?.name,
+        mosqueId: my.principal?.id,
+        clearMosque: my.principal == null,
       );
 
       _scheduleRollover(next.time);
