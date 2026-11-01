@@ -4114,4 +4114,82 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Не удалось загрузить подпись.';
+
+  @override
+  String get mosque_admin_verification_title => 'Проверка для пожертвований';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Чтобы получать пожертвования, ваша мечеть должна быть подтверждённой некоммерческой организацией. Введите ID организации в Benevity, чтобы команда Nour могла его проверить.';
+
+  @override
+  String get mosque_admin_verification_open => 'Подтвердить мечеть';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'На проверке';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Подтверждена';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Не одобрено';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Ваш запрос на проверке. Вы получите уведомление, когда будет принято решение.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Ваша мечеть подтверждена. Теперь можно настроить Stripe для приёма пожертвований.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Ваш запрос не одобрен. Проверьте данные и отправьте его снова.';
+
+  @override
+  String get mosque_admin_verification_benevity_id =>
+      'ID организации в Benevity';
+
+  @override
+  String get mosque_admin_verification_legal_name =>
+      'Юридическое название организации';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Ссылка на сертификат проверки';
+
+  @override
+  String get mosque_admin_verification_notes => 'Дополнительная информация';
+
+  @override
+  String get mosque_admin_verification_submit =>
+      'Запросить доступ к пожертвованиям';
+
+  @override
+  String get admin_mosque_section_registrations => 'Регистрации';
+
+  @override
+  String get admin_mosque_section_donations => 'Пожертвования';
+
+  @override
+  String get admin_donation_empty => 'Нет запросов на пожертвования.';
+
+  @override
+  String get admin_donation_validate => 'Подтвердить';
+
+  @override
+  String get admin_donation_cancel => 'Отменить доступ';
+
+  @override
+  String get admin_donation_reviewed => 'Доступ к пожертвованиям обновлён.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe готов';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe не настроен';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Мечеть должна быть подтверждена, прежде чем настраивать пожертвования.';
 }

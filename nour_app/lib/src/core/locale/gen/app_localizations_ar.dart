@@ -4058,4 +4058,79 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'التحقق من التبرعات';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'قبل تلقي التبرعات، يجب أن يكون مسجدك منظمة غير ربحية موثقة. أدخل معرّف المنظمة في Benevity ليراجعه فريق نور.';
+
+  @override
+  String get mosque_admin_verification_open => 'توثيق مسجدي';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'قيد المراجعة';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'موثّق';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'غير مقبول';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'طلبك قيد المراجعة. سيصلك إشعار عند اتخاذ القرار.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'تم توثيق مسجدك. يمكنك الآن إعداد Stripe لتلقي التبرعات.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'لم تتم الموافقة على طلبك. راجع بياناتك وأعد إرساله.';
+
+  @override
+  String get mosque_admin_verification_benevity_id =>
+      'معرّف المنظمة في Benevity';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'الاسم القانوني للمنظمة';
+
+  @override
+  String get mosque_admin_verification_certificate => 'رابط شهادة التحقق';
+
+  @override
+  String get mosque_admin_verification_notes => 'معلومات إضافية';
+
+  @override
+  String get mosque_admin_verification_submit => 'طلب إذن التبرعات';
+
+  @override
+  String get admin_mosque_section_registrations => 'التسجيلات';
+
+  @override
+  String get admin_mosque_section_donations => 'التبرعات';
+
+  @override
+  String get admin_donation_empty => 'لا توجد طلبات تبرعات.';
+
+  @override
+  String get admin_donation_validate => 'اعتماد';
+
+  @override
+  String get admin_donation_cancel => 'إلغاء الإذن';
+
+  @override
+  String get admin_donation_reviewed => 'تم تحديث إذن التبرعات.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe جاهز';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe غير مُعدّ';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'يجب توثيق مسجدك قبل إعداد التبرعات.';
 }

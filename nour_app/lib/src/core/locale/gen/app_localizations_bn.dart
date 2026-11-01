@@ -4092,4 +4092,78 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'অনুদান যাচাই';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'অনুদান গ্রহণের আগে আপনার মসজিদকে একটি যাচাইকৃত অলাভজনক সংস্থা হতে হবে। নূর টিম যাতে পর্যালোচনা করতে পারে সেজন্য আপনার Benevity সংস্থা আইডি লিখুন।';
+
+  @override
+  String get mosque_admin_verification_open => 'আমার মসজিদ যাচাই করুন';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'পর্যালোচনাধীন';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'যাচাইকৃত';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'অনুমোদিত হয়নি';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'আপনার অনুরোধ পর্যালোচনাধীন। সিদ্ধান্ত হলে আপনি বিজ্ঞপ্তি পাবেন।';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'আপনার মসজিদ যাচাই হয়েছে। এখন অনুদান গ্রহণের জন্য Stripe সেট আপ করতে পারেন।';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'আপনার অনুরোধ অনুমোদিত হয়নি। তথ্য যাচাই করে আবার পাঠান।';
+
+  @override
+  String get mosque_admin_verification_benevity_id => 'Benevity সংস্থা আইডি';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'সংস্থার আইনি নাম';
+
+  @override
+  String get mosque_admin_verification_certificate => 'যাচাই সনদের লিংক';
+
+  @override
+  String get mosque_admin_verification_notes => 'অতিরিক্ত তথ্য';
+
+  @override
+  String get mosque_admin_verification_submit => 'অনুদানের অনুমতি চান';
+
+  @override
+  String get admin_mosque_section_registrations => 'নিবন্ধন';
+
+  @override
+  String get admin_mosque_section_donations => 'অনুদান';
+
+  @override
+  String get admin_donation_empty => 'কোনো অনুদানের অনুরোধ নেই।';
+
+  @override
+  String get admin_donation_validate => 'অনুমোদন করুন';
+
+  @override
+  String get admin_donation_cancel => 'অনুমতি বাতিল করুন';
+
+  @override
+  String get admin_donation_reviewed => 'অনুদানের অনুমতি হালনাগাদ হয়েছে।';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe প্রস্তুত';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe সেট আপ হয়নি';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'অনুদান সেট আপ করার আগে আপনার মসজিদ যাচাই করতে হবে।';
 }

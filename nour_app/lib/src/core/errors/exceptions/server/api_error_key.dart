@@ -157,4 +157,5 @@ enum ApiErrorKey {
   mosqueTaxProfileSaveFailed,
   mosqueSignatureUploadFailed,
   mosqueStripeFailed,
+  mosqueDonationsNotVerified,
 }

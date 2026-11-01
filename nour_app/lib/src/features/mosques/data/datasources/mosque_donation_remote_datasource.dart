@@ -22,6 +22,7 @@ class MosqueDonationRemoteDatasource {
   static const _campaigns = 'mosque_campaigns';
   static const _campaignUpdates = 'mosque_campaign_updates';
   static const _stripeAccounts = 'mosque_stripe_accounts';
+  static const _verifications = 'mosque_donation_verifications';
   static const _receipts = 'mosque_receipts';
   static const _donorTaxProfiles = 'donor_tax_profiles';
   static const _legalBucket = 'mosque-legal';
@@ -46,6 +47,7 @@ class MosqueDonationRemoteDatasource {
     if (e is ServerException) return e;
     if (e is PostgrestException) {
       if (e.message.contains('campaign_limit_reached')) return ServerException(type: .badRequest, messageKey: ApiErrorKey.mosqueCampaignLimitReached);
+      if (e.message.contains('donation_verification_')) return ServerException(type: .badRequest, messageKey: fallback);
       final tax = _mapTaxError(e.message);
       if (tax != null) return ServerException(type: .badRequest, messageKey: tax);
       if (e.message.contains('forbidden') || e.code == '42501') return ServerException(type: .forbiden, messageKey: ApiErrorKey.mosqueNotApproved);
@@ -74,6 +76,7 @@ class MosqueDonationRemoteDatasource {
       'amount_too_small' => ApiErrorKey.paymentAmountTooSmall,
       'amount_too_large' => ApiErrorKey.paymentAmountTooLarge,
       'donations_disabled' || 'stripe_not_ready' || 'mosque_not_chargeable' => ApiErrorKey.mosqueDonationsDisabled,
+      'donations_not_verified' => ApiErrorKey.mosqueDonationsNotVerified,
       'campaign_closed' || 'campaign_not_found' => ApiErrorKey.mosqueCampaignClosed,
       'frequency_not_allowed' => ApiErrorKey.mosqueFrequencyNotAllowed,
       'mosque_not_approved' || 'forbidden' => ApiErrorKey.mosqueNotApproved,
@@ -519,6 +522,37 @@ class MosqueDonationRemoteDatasource {
   }
 
   // ── Admin ─────────────────────────────────────────────────────────────────
+
+  Future<MosqueDonationVerification?> getVerification(int mosqueId) async {
+    try {
+      final row = await supabaseClient.from(_verifications).select().eq('mosque_id', mosqueId).maybeSingle();
+      return row == null ? null : MosqueDonationVerification.fromJson(row);
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueLoadFailed);
+    }
+  }
+
+  Future<MosqueDonationVerification> requestVerification({
+    required int mosqueId,
+    required String benevityCharityId,
+    required String legalName,
+    String? certificateUrl,
+    String? notes,
+  }) async {
+    _requireUserId();
+    try {
+      final row = await supabaseClient.rpc('fn_mosque_request_donation_verification', params: {
+        'p_mosque_id': mosqueId,
+        'p_benevity_charity_id': benevityCharityId,
+        'p_legal_name': legalName,
+        'p_certificate_url': certificateUrl,
+        'p_notes': notes,
+      });
+      return MosqueDonationVerification.fromJson((row as Map).cast<String, dynamic>());
+    } catch (e) {
+      throw _wrap(e, ApiErrorKey.mosqueSaveFailed);
+    }
+  }
 
   Future<MosqueStripeAccount> getStripeAccount(int mosqueId) async {
     try {

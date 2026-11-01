@@ -4106,4 +4106,78 @@ class AppLocalizationsMs extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Pengesahan derma';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Sebelum menerima derma, masjid anda mesti menjadi organisasi bukan untung yang disahkan. Masukkan ID organisasi Benevity anda supaya pasukan Nour dapat menyemaknya.';
+
+  @override
+  String get mosque_admin_verification_open => 'Sahkan masjid saya';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'Sedang disemak';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Disahkan';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Tidak diluluskan';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Permintaan anda sedang disemak. Anda akan menerima pemberitahuan setelah keputusan dibuat.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Masjid anda telah disahkan. Anda kini boleh menyediakan Stripe untuk menerima derma.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Permintaan anda tidak diluluskan. Semak butiran anda dan hantar semula.';
+
+  @override
+  String get mosque_admin_verification_benevity_id => 'ID organisasi Benevity';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'Nama sah organisasi';
+
+  @override
+  String get mosque_admin_verification_certificate => 'Pautan sijil pengesahan';
+
+  @override
+  String get mosque_admin_verification_notes => 'Maklumat tambahan';
+
+  @override
+  String get mosque_admin_verification_submit => 'Minta akses derma';
+
+  @override
+  String get admin_mosque_section_registrations => 'Pendaftaran';
+
+  @override
+  String get admin_mosque_section_donations => 'Derma';
+
+  @override
+  String get admin_donation_empty => 'Tiada permintaan derma.';
+
+  @override
+  String get admin_donation_validate => 'Luluskan';
+
+  @override
+  String get admin_donation_cancel => 'Batalkan akses';
+
+  @override
+  String get admin_donation_reviewed => 'Akses derma dikemas kini.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe sedia';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe belum disediakan';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Masjid anda mesti disahkan sebelum boleh menyediakan derma.';
 }

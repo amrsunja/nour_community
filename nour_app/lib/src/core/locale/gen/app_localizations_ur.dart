@@ -4091,4 +4091,79 @@ class AppLocalizationsUr extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'عطیات کی تصدیق';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'عطیات وصول کرنے سے پہلے آپ کی مسجد کا تصدیق شدہ غیر منافع بخش ادارہ ہونا ضروری ہے۔ اپنی Benevity ادارہ آئی ڈی درج کریں تاکہ نور ٹیم اس کا جائزہ لے سکے۔';
+
+  @override
+  String get mosque_admin_verification_open => 'میری مسجد کی تصدیق کریں';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'زیر جائزہ';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'تصدیق شدہ';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'منظور نہیں ہوا';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'آپ کی درخواست زیر جائزہ ہے۔ فیصلہ ہونے پر آپ کو اطلاع ملے گی۔';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'آپ کی مسجد کی تصدیق ہو گئی ہے۔ اب آپ عطیات وصول کرنے کے لیے Stripe سیٹ اپ کر سکتے ہیں۔';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'آپ کی درخواست منظور نہیں ہوئی۔ اپنی معلومات چیک کر کے دوبارہ بھیجیں۔';
+
+  @override
+  String get mosque_admin_verification_benevity_id => 'Benevity ادارہ آئی ڈی';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'ادارے کا قانونی نام';
+
+  @override
+  String get mosque_admin_verification_certificate => 'تصدیقی سرٹیفکیٹ کا لنک';
+
+  @override
+  String get mosque_admin_verification_notes => 'اضافی معلومات';
+
+  @override
+  String get mosque_admin_verification_submit =>
+      'عطیات کی اجازت کی درخواست کریں';
+
+  @override
+  String get admin_mosque_section_registrations => 'رجسٹریشنز';
+
+  @override
+  String get admin_mosque_section_donations => 'عطیات';
+
+  @override
+  String get admin_donation_empty => 'عطیات کی کوئی درخواست نہیں۔';
+
+  @override
+  String get admin_donation_validate => 'منظور کریں';
+
+  @override
+  String get admin_donation_cancel => 'اجازت منسوخ کریں';
+
+  @override
+  String get admin_donation_reviewed => 'عطیات کی اجازت اپ ڈیٹ ہو گئی۔';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe تیار ہے';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe سیٹ اپ نہیں ہے';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'عطیات سیٹ اپ کرنے سے پہلے آپ کی مسجد کی تصدیق ضروری ہے۔';
 }

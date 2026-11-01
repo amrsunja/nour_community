@@ -4110,4 +4110,80 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Donatieverificatie';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Voordat je moskee donaties kan ontvangen, moet deze een geverifieerde non-profitorganisatie zijn. Vul je Benevity-organisatie-ID in zodat het Nour-team het kan beoordelen.';
+
+  @override
+  String get mosque_admin_verification_open => 'Mijn moskee verifiëren';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'In behandeling';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Geverifieerd';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Niet goedgekeurd';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Je aanvraag wordt beoordeeld. Je krijgt een melding zodra er een besluit is.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Je moskee is geverifieerd. Je kunt nu Stripe instellen om donaties te ontvangen.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Je aanvraag is niet goedgekeurd. Controleer je gegevens en stuur deze opnieuw.';
+
+  @override
+  String get mosque_admin_verification_benevity_id => 'Benevity-organisatie-ID';
+
+  @override
+  String get mosque_admin_verification_legal_name =>
+      'Wettelijke naam van de organisatie';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Link naar verificatiecertificaat';
+
+  @override
+  String get mosque_admin_verification_notes => 'Aanvullende informatie';
+
+  @override
+  String get mosque_admin_verification_submit => 'Donatietoegang aanvragen';
+
+  @override
+  String get admin_mosque_section_registrations => 'Registraties';
+
+  @override
+  String get admin_mosque_section_donations => 'Donaties';
+
+  @override
+  String get admin_donation_empty => 'Geen donatieaanvragen.';
+
+  @override
+  String get admin_donation_validate => 'Goedkeuren';
+
+  @override
+  String get admin_donation_cancel => 'Toegang intrekken';
+
+  @override
+  String get admin_donation_reviewed => 'Donatietoegang bijgewerkt.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe gereed';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe niet ingesteld';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Je moskee moet geverifieerd zijn voordat je donaties kunt instellen.';
 }

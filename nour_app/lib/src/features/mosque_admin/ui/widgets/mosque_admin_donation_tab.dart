@@ -199,6 +199,30 @@ class _SetupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = UITheme.of(context);
     final pending = state.stripe.hasAccount;
+    if (!state.isVerified) {
+      return UICard(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                const Icon(Icons.verified_user_outlined, color: UIColorsToken.textYellow),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(l10n.mosque_admin_verification_title,
+                      style: theme.typo.inter.title.copyWith(color: UIColorsToken.white, fontWeight: FontWeight.w700)),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(l10n.mosque_admin_verification_intro, style: theme.typo.inter.bodySmall.copyWith(color: UIColorsToken.textParagraph)),
+            const SizedBox(height: 14),
+            UIButton.primary(label: l10n.mosque_admin_verification_open, fullWidth: true, onTap: onTap),
+          ],
+        ),
+      );
+    }
     return UICard(
       padding: const EdgeInsets.all(16),
       child: Column(

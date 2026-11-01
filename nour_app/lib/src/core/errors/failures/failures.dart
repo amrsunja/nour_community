@@ -308,6 +308,8 @@ class ServerFailure extends Failure {
         return l.error_api_mosque_signature_upload_failed;
       case ApiErrorKey.mosqueStripeFailed:
         return l.error_api_mosque_stripe_failed;
+      case ApiErrorKey.mosqueDonationsNotVerified:
+        return l.error_api_mosque_donations_not_verified;
     }
   }
 }
