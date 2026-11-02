@@ -10,12 +10,14 @@ import 'package:nour/src/features/mosques/data/models/mosque_donation_models.dar
 import 'package:url_launcher/url_launcher.dart';
 
 import '../state_management/mosque_admin_donation_provider.dart';
+import '../widgets/mosque_donation_verification_card.dart';
 
 /// Stripe Connect (Express) onboarding & status — devis B1.
 ///
 /// The hosted onboarding runs in the browser; when the app resumes we sync
 /// the account status (`action: 'status'`), which also flips
-/// `mosques.donations_enabled` server-side.
+/// `mosques.donations_enabled` server-side. Stripe setup only opens once the
+/// Nour admin has validated the mosque's donation verification request.
 @RoutePage()
 class MosqueAdminStripePage extends HookConsumerWidget {
   const MosqueAdminStripePage({super.key});
@@ -66,6 +68,8 @@ class MosqueAdminStripePage extends HookConsumerWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
+                  const MosqueDonationVerificationCard(),
+                  const SizedBox(height: 16),
                   UICard(
                     padding: const EdgeInsets.all(16),
                     child: Column(
@@ -108,7 +112,9 @@ class MosqueAdminStripePage extends HookConsumerWidget {
                     onTap: () => ref.read(navigationServicesProvider).toMosqueAdminTaxSettings(),
                   ),
                   const SizedBox(height: 8),
-                  if (!acct.chargesEnabled)
+                  if (!state.isVerified)
+                    const SizedBox.shrink()
+                  else if (!acct.chargesEnabled)
                     UIButton.primary(
                       label: acct.hasAccount ? l10n.mosque_admin_stripe_continue : l10n.mosque_admin_stripe_start,
                       fullWidth: true,

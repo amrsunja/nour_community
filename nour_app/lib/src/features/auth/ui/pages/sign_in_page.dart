@@ -8,10 +8,12 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
+import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
 import 'package:nour/src/core/providers/widgets/snackbar_provider.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/features/analytics/data/analytics_repo.dart';
+import 'package:nour/src/features/mosque_onboarding/data/datasources/mosque_onboarding_local_datasource.dart';
 
 import '../state_management/auth_provider.dart';
 import '../widgets/social_auth_button.dart';
@@ -52,6 +54,19 @@ class SignInPage extends HookConsumerWidget {
       }
     }
 
+    // Opened from Welcome (no session yet): popping would land back on Welcome,
+    // so let [AuthGuard] route by account type instead.
+    final openedWithoutSession = useMemoized(
+      () => !ref.read(authProvider).isAuthenticated,
+    );
+
+    Future<void> onSignedIn() async {
+      if (!openedWithoutSession) return close();
+      final nav = ref.read(navigationServicesProvider);
+      await ref.read(mosqueOnboardingLocalDataProvider).clear();
+      nav.toHome();
+    }
+
     Future<EmailConnectResult> sendCode() {
       return notifier.connectEmail(email: emailController.text.trim());
     }
@@ -71,7 +86,7 @@ class SignInPage extends HookConsumerWidget {
             return;
           case EmailConnectResult.linked:
             // New email: linked instantly, already authenticated.
-            await close();
+            await onSignedIn();
             return;
           case EmailConnectResult.otpSent:
             codeSent.value = true;
@@ -87,7 +102,7 @@ class SignInPage extends HookConsumerWidget {
       // false = failed OR the presenter already routed (mosque account).
       if (!ok) return;
 
-      await close();
+      await onSignedIn();
     }
 
     Future<void> onResend() async {
@@ -100,13 +115,13 @@ class SignInPage extends HookConsumerWidget {
     Future<void> onGoogle() async {
       analytics.trackSignInClick(method: 'google');
       if (isLoading) return;
-      if (await notifier.linkWithGoogle()) await close();
+      if (await notifier.linkWithGoogle()) await onSignedIn();
     }
 
     Future<void> onApple() async {
       analytics.trackSignInClick(method: 'apple');
       if (isLoading) return;
-      if (await notifier.linkWithApple()) await close();
+      if (await notifier.linkWithApple()) await onSignedIn();
     }
 
     final canResend = secondsLeft.value == 0 && !isLoading;

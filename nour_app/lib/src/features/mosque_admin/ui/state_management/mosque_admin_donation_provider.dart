@@ -16,6 +16,9 @@ class MosqueAdminDonationState extends Equatable {
   final bool isLoading;
   final bool loaded;
   final MosqueStripeAccount stripe;
+
+  /// Null until the mosque has requested donation access.
+  final MosqueDonationVerification? verification;
   final MosqueDonationSettings? settings;
   final MosqueCampaignSettings? campaignSettings;
   final List<MosqueCampaignModel> campaigns;
@@ -31,6 +34,7 @@ class MosqueAdminDonationState extends Equatable {
     this.isLoading = false,
     this.loaded = false,
     this.stripe = const MosqueStripeAccount(),
+    this.verification,
     this.settings,
     this.campaignSettings,
     this.campaigns = const [],
@@ -40,7 +44,8 @@ class MosqueAdminDonationState extends Equatable {
     this.busy = false,
   });
 
-  bool get donationsReady => stripe.chargesEnabled;
+  bool get isVerified => verification?.isApproved ?? false;
+  bool get donationsReady => isVerified && stripe.chargesEnabled;
   List<MosqueCampaignModel> get activeCampaigns => campaigns.where((c) => c.status == MosqueCampaignStatus.active).toList();
   List<MosqueCampaignModel> get pastCampaigns => campaigns.where((c) => c.status != MosqueCampaignStatus.active).toList();
   bool get canCreateCampaign => activeCampaigns.length < 3;
@@ -49,6 +54,7 @@ class MosqueAdminDonationState extends Equatable {
     bool? isLoading,
     bool? loaded,
     MosqueStripeAccount? stripe,
+    MosqueDonationVerification? verification,
     MosqueDonationSettings? settings,
     MosqueCampaignSettings? campaignSettings,
     List<MosqueCampaignModel>? campaigns,
@@ -61,6 +67,7 @@ class MosqueAdminDonationState extends Equatable {
         isLoading: isLoading ?? this.isLoading,
         loaded: loaded ?? this.loaded,
         stripe: stripe ?? this.stripe,
+        verification: verification ?? this.verification,
         settings: settings ?? this.settings,
         campaignSettings: campaignSettings ?? this.campaignSettings,
         campaigns: campaigns ?? this.campaigns,
@@ -72,7 +79,7 @@ class MosqueAdminDonationState extends Equatable {
 
   @override
   List<Object?> get props =>
-      [isLoading, loaded, stripe, settings, campaignSettings, campaigns, stats, taxReadiness, year, busy];
+      [isLoading, loaded, stripe, verification, settings, campaignSettings, campaigns, stats, taxReadiness, year, busy];
 }
 
 final mosqueAdminDonationProvider = StateNotifierProvider<MosqueAdminDonationPresenter, MosqueAdminDonationState>((ref) {
@@ -112,6 +119,7 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
       await ref.read(myMosqueProvider.notifier).load();
     }
 
+    final verificationRes = await repo.getDonationVerification(id);
     final settingsRes = await repo.getDonationSettings(id);
     final campaignSettingsRes = await repo.getCampaignSettings(id);
     final readinessRes = await repo.getTaxReadiness(id);
@@ -123,6 +131,10 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
       isLoading: false,
       loaded: true,
       stripe: stripe,
+      verification: verificationRes.when((v) => v, (e) {
+        talker.error('[mosque-admin] verification', e);
+        return state.verification;
+      }),
       settings: settingsRes.when((v) => v, (_) => state.settings ?? MosqueDonationSettings(mosqueId: id)),
       campaignSettings: campaignSettingsRes.when((v) => v, (_) => state.campaignSettings ?? MosqueCampaignSettings(mosqueId: id)),
       campaigns: campaignsRes.when((v) => v, (_) => state.campaigns),
@@ -144,6 +156,35 @@ class MosqueAdminDonationPresenter extends Presenter<MosqueAdminDonationState> {
     final res = await repo.getDonationStats(id, year: year);
     if (!mounted) return;
     res.when((v) => state = state.copyWith(stats: v), (e) => appEvents.send(ShowErrorEvent(e)));
+  }
+
+  /// Sends (or resends) the request the Nour admin validates before the mosque
+  /// can receive donations.
+  Future<bool> requestVerification({
+    required String benevityCharityId,
+    required String legalName,
+    String? certificateUrl,
+    String? notes,
+  }) async {
+    final id = _mosqueId;
+    if (id == null || state.busy) return false;
+    state = state.copyWith(busy: true);
+    final res = await repo.requestDonationVerification(
+      mosqueId: id,
+      benevityCharityId: benevityCharityId,
+      legalName: legalName,
+      certificateUrl: certificateUrl,
+      notes: notes,
+    );
+    if (!mounted) return false;
+    return res.when((v) {
+      state = state.copyWith(busy: false, verification: v);
+      return true;
+    }, (e) {
+      appEvents.send(ShowErrorEvent(e));
+      state = state.copyWith(busy: false);
+      return false;
+    });
   }
 
   /// Returns the hosted onboarding URL (Stripe Express).

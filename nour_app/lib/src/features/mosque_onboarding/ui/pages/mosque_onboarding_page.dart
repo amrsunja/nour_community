@@ -39,11 +39,7 @@ class MosqueOnboardingPage extends HookConsumerWidget {
 
     useEffect(() {
       if (!state.restored || !pageController.hasClients) return null;
-      pageController.animateToPage(
-        state.pageIndex,
-        duration: Durations.medium2,
-        curve: Curves.fastOutSlowIn,
-      );
+      pageController.animateToPage(state.pageIndex, duration: Durations.medium2, curve: Curves.fastOutSlowIn);
       return null;
     }, [state.pageIndex, state.restored]);
 
@@ -61,27 +57,27 @@ class MosqueOnboardingPage extends HookConsumerWidget {
       await presenter.previous();
     }
 
-
     return UIGradientLinedScaffold(
+      // The scaffold keeps its full height so the backdrop stays still; only the
+      // content makes room for the keyboard, which lets each step's scroll view
+      // bring the focused field into view.
       resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding, vertical: 4),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                UIIcon(
-                  UIIconsToken.icons.chevronLeft,
-                  color: UIColorsToken.yellow,
-                  onTap: onBack,
-                ),
-                if (canSkip)
-                  UITap(
-                    onTap: presenter.skipFeatures,
-                    child: Text(l10n.onboarding_skip, style: theme.typo.inter.bodyMedium),
-                  )
-                /*
+      body: Padding(
+        padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kPageHorzPadding, vertical: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  UIIcon(UIIconsToken.icons.chevronLeft, color: UIColorsToken.yellow, onTap: onBack),
+                  if (canSkip)
+                    UITap(
+                      onTap: presenter.skipFeatures,
+                      child: Text(l10n.onboarding_skip, style: theme.typo.inter.bodyMedium),
+                    ),
+                  /*
                 else
                   UITap(
                     onTap: onStartOver,
@@ -91,31 +87,29 @@ class MosqueOnboardingPage extends HookConsumerWidget {
                     ),
                   ),
                   */
-              ],
+                ],
+              ),
+            ).animate(effects: [FadeEffect()]),
+            Expanded(
+              child: !state.restored
+                  ? const Center(child: UICircularProgressBar())
+                  : PageView(
+                      controller: pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: const [
+                        MosqueOnboardingAnnouncementsScreen(),
+                        MosqueOnboardingFundsScreen(),
+                        MosqueOnboardingCalendarScreen(),
+                        MosqueOnboardingCountryScreen(),
+                        MosqueOnboardingLanguageScreen(),
+                        MosqueOnboardingRegisterScreen(),
+                        MosqueOnboardingAccountScreen(),
+                      ],
+                    ),
             ),
-          ).animate(effects: [FadeEffect()]),
-          Expanded(
-            child: !state.restored
-                ? const Center(child: UICircularProgressBar())
-                : PageView(
-                    controller: pageController,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: const [
-                      MosqueOnboardingAnnouncementsScreen(),
-                      MosqueOnboardingFundsScreen(),
-                      MosqueOnboardingCalendarScreen(),
-                      MosqueOnboardingCountryScreen(),
-                      MosqueOnboardingLanguageScreen(),
-                      MosqueOnboardingRegisterScreen(),
-                      MosqueOnboardingAccountScreen(),
-                    ],
-                  ),
-          ),
-          UISliderProgressBar(
-            totalCount: MosqueOnboardingState.pageCount,
-            currentIndex: state.pageIndex,
-          ),
-        ],
+            UISliderProgressBar(totalCount: MosqueOnboardingState.pageCount, currentIndex: state.pageIndex),
+          ],
+        ),
       ),
     ).animate(effects: [FadeEffect(duration: const Duration(milliseconds: 600))]);
   }

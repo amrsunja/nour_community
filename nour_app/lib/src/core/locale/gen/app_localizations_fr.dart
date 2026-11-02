@@ -456,6 +456,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get auth_connect => 'Connecter';
 
   @override
+  String get auth_have_account_sign_in =>
+      'Vous avez déjà un compte ? Se connecter';
+
+  @override
   String get auth_email_required => 'Veuillez saisir votre e-mail';
 
   @override
@@ -4139,4 +4143,81 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Impossible d\'envoyer la signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Vérification des dons';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Avant de recevoir des dons, votre mosquée doit être un organisme à but non lucratif vérifié. Saisissez votre identifiant d\'organisme Benevity pour que l\'équipe Nour puisse l\'examiner.';
+
+  @override
+  String get mosque_admin_verification_open => 'Vérifier ma mosquée';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'En cours d\'examen';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Vérifiée';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Non approuvée';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Votre demande est en cours d\'examen. Vous recevrez une notification dès qu\'une décision sera prise.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Votre mosquée est vérifiée. Vous pouvez maintenant configurer Stripe pour recevoir des dons.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Votre demande n\'a pas été approuvée. Vérifiez vos informations et renvoyez-la.';
+
+  @override
+  String get mosque_admin_verification_benevity_id =>
+      'Identifiant d\'organisme Benevity';
+
+  @override
+  String get mosque_admin_verification_legal_name =>
+      'Nom légal de l\'organisme';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Lien du certificat de vérification';
+
+  @override
+  String get mosque_admin_verification_notes => 'Informations complémentaires';
+
+  @override
+  String get mosque_admin_verification_submit => 'Demander l\'accès aux dons';
+
+  @override
+  String get admin_mosque_section_registrations => 'Inscriptions';
+
+  @override
+  String get admin_mosque_section_donations => 'Dons';
+
+  @override
+  String get admin_donation_empty => 'Aucune demande de dons.';
+
+  @override
+  String get admin_donation_validate => 'Valider';
+
+  @override
+  String get admin_donation_cancel => 'Annuler l\'accès';
+
+  @override
+  String get admin_donation_reviewed => 'Accès aux dons mis à jour.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe prêt';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe non configuré';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Votre mosquée doit être vérifiée avant de pouvoir configurer les dons.';
 }

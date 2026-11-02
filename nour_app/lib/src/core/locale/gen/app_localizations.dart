@@ -944,6 +944,12 @@ abstract class AppLocalizations {
   /// **'Connect'**
   String get auth_connect;
 
+  /// No description provided for @auth_have_account_sign_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign in'**
+  String get auth_have_account_sign_in;
+
   /// No description provided for @auth_email_required.
   ///
   /// In en, this message translates to:
@@ -7373,6 +7379,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not upload the signature.'**
   String get error_api_mosque_signature_upload_failed;
+
+  /// No description provided for @mosque_admin_verification_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation verification'**
+  String get mosque_admin_verification_title;
+
+  /// No description provided for @mosque_admin_verification_intro.
+  ///
+  /// In en, this message translates to:
+  /// **'Before receiving donations, your mosque must be a verified nonprofit. Enter your Benevity charity ID so the Nour team can review it.'**
+  String get mosque_admin_verification_intro;
+
+  /// No description provided for @mosque_admin_verification_open.
+  ///
+  /// In en, this message translates to:
+  /// **'Verify my mosque'**
+  String get mosque_admin_verification_open;
+
+  /// No description provided for @mosque_admin_verification_status_pending.
+  ///
+  /// In en, this message translates to:
+  /// **'Under review'**
+  String get mosque_admin_verification_status_pending;
+
+  /// No description provided for @mosque_admin_verification_status_approved.
+  ///
+  /// In en, this message translates to:
+  /// **'Verified'**
+  String get mosque_admin_verification_status_approved;
+
+  /// No description provided for @mosque_admin_verification_status_rejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Not approved'**
+  String get mosque_admin_verification_status_rejected;
+
+  /// No description provided for @mosque_admin_verification_pending_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your request is under review. You\'ll get a notification once it\'s decided.'**
+  String get mosque_admin_verification_pending_message;
+
+  /// No description provided for @mosque_admin_verification_approved_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque is verified. You can now set up Stripe to receive donations.'**
+  String get mosque_admin_verification_approved_message;
+
+  /// No description provided for @mosque_admin_verification_rejected_message.
+  ///
+  /// In en, this message translates to:
+  /// **'Your request wasn\'t approved. Check your details and send it again.'**
+  String get mosque_admin_verification_rejected_message;
+
+  /// No description provided for @mosque_admin_verification_benevity_id.
+  ///
+  /// In en, this message translates to:
+  /// **'Benevity charity ID'**
+  String get mosque_admin_verification_benevity_id;
+
+  /// No description provided for @mosque_admin_verification_legal_name.
+  ///
+  /// In en, this message translates to:
+  /// **'Organisation\'s legal name'**
+  String get mosque_admin_verification_legal_name;
+
+  /// No description provided for @mosque_admin_verification_certificate.
+  ///
+  /// In en, this message translates to:
+  /// **'Verification certificate link'**
+  String get mosque_admin_verification_certificate;
+
+  /// No description provided for @mosque_admin_verification_notes.
+  ///
+  /// In en, this message translates to:
+  /// **'Additional information'**
+  String get mosque_admin_verification_notes;
+
+  /// No description provided for @mosque_admin_verification_submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Request donation access'**
+  String get mosque_admin_verification_submit;
+
+  /// No description provided for @admin_mosque_section_registrations.
+  ///
+  /// In en, this message translates to:
+  /// **'Registrations'**
+  String get admin_mosque_section_registrations;
+
+  /// No description provided for @admin_mosque_section_donations.
+  ///
+  /// In en, this message translates to:
+  /// **'Donations'**
+  String get admin_mosque_section_donations;
+
+  /// No description provided for @admin_donation_empty.
+  ///
+  /// In en, this message translates to:
+  /// **'No donation requests.'**
+  String get admin_donation_empty;
+
+  /// No description provided for @admin_donation_validate.
+  ///
+  /// In en, this message translates to:
+  /// **'Validate'**
+  String get admin_donation_validate;
+
+  /// No description provided for @admin_donation_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel access'**
+  String get admin_donation_cancel;
+
+  /// No description provided for @admin_donation_reviewed.
+  ///
+  /// In en, this message translates to:
+  /// **'Donation access updated.'**
+  String get admin_donation_reviewed;
+
+  /// No description provided for @admin_donation_stripe_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Stripe ready'**
+  String get admin_donation_stripe_ready;
+
+  /// No description provided for @admin_donation_stripe_not_ready.
+  ///
+  /// In en, this message translates to:
+  /// **'Stripe not set up'**
+  String get admin_donation_stripe_not_ready;
+
+  /// No description provided for @error_api_mosque_donations_not_verified.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mosque must be verified before it can set up donations.'**
+  String get error_api_mosque_donations_not_verified;
 }
 
 class _AppLocalizationsDelegate

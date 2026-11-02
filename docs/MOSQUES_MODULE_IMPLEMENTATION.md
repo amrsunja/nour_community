@@ -1440,7 +1440,7 @@ All four phases are implemented on `feat/mosques-module` (5 commits after the sp
 ```bash
 cd backend
 supabase db push                       # 5 new migrations, all idempotent / additive
-supabase functions deploy send-push notify-mosque-followers review-mosque \
+supabase functions deploy send-push notify-mosque-followers review-mosque review-mosque-donations \
   mosque-stripe-onboarding create-mosque-payment-intent create-mosque-subscription \
   cancel-mosque-subscription stripe-connect-webhook generate-mosque-receipt
 supabase secrets set \

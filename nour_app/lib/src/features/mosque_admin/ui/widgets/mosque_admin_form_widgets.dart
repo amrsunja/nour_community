@@ -36,12 +36,13 @@ class AdminLabel extends StatelessWidget {
 
 /// Multi-line filled text area.
 class AdminTextArea extends StatelessWidget {
-  const AdminTextArea({super.key, required this.controller, this.hint, this.minLines = 3, this.maxLines = 8, this.onChanged});
+  const AdminTextArea({super.key, required this.controller, this.hint, this.minLines = 3, this.maxLines = 8, this.onChanged, this.bgColor = UIColorsToken.bgSurface});
   final TextEditingController controller;
   final String? hint;
   final int minLines;
   final int maxLines;
   final ValueChanged<String>? onChanged;
+  final Color bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +55,7 @@ class AdminTextArea extends StatelessWidget {
       style: theme.typo.inter.body.copyWith(color: UIColorsToken.white),
       decoration: InputDecoration(
         filled: true,
-        fillColor: UIColorsToken.bgSurface,
+        fillColor: bgColor,
         hintText: hint,
         hintStyle: theme.typo.inter.body.copyWith(color: UIColorsToken.textParagraph),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: BorderSide.none),

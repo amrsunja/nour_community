@@ -457,6 +457,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get auth_connect => 'Verbinden';
 
   @override
+  String get auth_have_account_sign_in => 'Du hast bereits ein Konto? Anmelden';
+
+  @override
   String get auth_email_required => 'Bitte gib deine E-Mail ein';
 
   @override
@@ -4134,4 +4137,81 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Spendenverifizierung';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Bevor deine Moschee Spenden erhalten kann, muss sie als gemeinnützige Organisation verifiziert sein. Gib deine Benevity-Organisations-ID ein, damit das Nour-Team sie prüfen kann.';
+
+  @override
+  String get mosque_admin_verification_open => 'Meine Moschee verifizieren';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'In Prüfung';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Verifiziert';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Nicht genehmigt';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Deine Anfrage wird geprüft. Du erhältst eine Benachrichtigung, sobald entschieden wurde.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Deine Moschee ist verifiziert. Du kannst jetzt Stripe einrichten, um Spenden zu erhalten.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Deine Anfrage wurde nicht genehmigt. Prüfe deine Angaben und sende sie erneut.';
+
+  @override
+  String get mosque_admin_verification_benevity_id =>
+      'Benevity-Organisations-ID';
+
+  @override
+  String get mosque_admin_verification_legal_name =>
+      'Rechtlicher Name der Organisation';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Link zum Verifizierungszertifikat';
+
+  @override
+  String get mosque_admin_verification_notes => 'Weitere Informationen';
+
+  @override
+  String get mosque_admin_verification_submit => 'Spendenzugang beantragen';
+
+  @override
+  String get admin_mosque_section_registrations => 'Registrierungen';
+
+  @override
+  String get admin_mosque_section_donations => 'Spenden';
+
+  @override
+  String get admin_donation_empty => 'Keine Spendenanfragen.';
+
+  @override
+  String get admin_donation_validate => 'Bestätigen';
+
+  @override
+  String get admin_donation_cancel => 'Zugang entziehen';
+
+  @override
+  String get admin_donation_reviewed => 'Spendenzugang aktualisiert.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe bereit';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe nicht eingerichtet';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Deine Moschee muss verifiziert sein, bevor sie Spenden einrichten kann.';
 }

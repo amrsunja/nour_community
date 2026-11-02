@@ -452,6 +452,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get auth_connect => 'Hubungkan';
 
   @override
+  String get auth_have_account_sign_in => 'Sudah punya akun? Masuk';
+
+  @override
   String get auth_email_required => 'Silakan masukkan emailmu';
 
   @override
@@ -4109,4 +4112,79 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Verifikasi donasi';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Sebelum menerima donasi, masjid Anda harus menjadi organisasi nirlaba terverifikasi. Masukkan ID organisasi Benevity Anda agar tim Nour dapat meninjaunya.';
+
+  @override
+  String get mosque_admin_verification_open => 'Verifikasi masjid saya';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'Sedang ditinjau';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Terverifikasi';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Tidak disetujui';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Permintaan Anda sedang ditinjau. Anda akan menerima notifikasi setelah ada keputusan.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Masjid Anda terverifikasi. Sekarang Anda dapat menyiapkan Stripe untuk menerima donasi.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Permintaan Anda tidak disetujui. Periksa data Anda lalu kirim kembali.';
+
+  @override
+  String get mosque_admin_verification_benevity_id => 'ID organisasi Benevity';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'Nama resmi organisasi';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Tautan sertifikat verifikasi';
+
+  @override
+  String get mosque_admin_verification_notes => 'Informasi tambahan';
+
+  @override
+  String get mosque_admin_verification_submit => 'Minta akses donasi';
+
+  @override
+  String get admin_mosque_section_registrations => 'Pendaftaran';
+
+  @override
+  String get admin_mosque_section_donations => 'Donasi';
+
+  @override
+  String get admin_donation_empty => 'Tidak ada permintaan donasi.';
+
+  @override
+  String get admin_donation_validate => 'Setujui';
+
+  @override
+  String get admin_donation_cancel => 'Batalkan akses';
+
+  @override
+  String get admin_donation_reviewed => 'Akses donasi diperbarui.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe siap';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe belum disiapkan';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Masjid Anda harus terverifikasi sebelum dapat menyiapkan donasi.';
 }

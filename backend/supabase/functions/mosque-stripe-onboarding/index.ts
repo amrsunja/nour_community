@@ -83,6 +83,18 @@ Deno.serve(async (req) => {
 
   let accountId = existing?.stripe_account_id as string | undefined;
 
+  // Donation access is validated by the Nour admin before any Stripe setup. A
+  // mosque onboarded before this rule can still sync its existing account.
+  const { data: verification } = await admin
+    .from("mosque_donation_verifications")
+    .select("status")
+    .eq("mosque_id", mosque.id)
+    .maybeSingle();
+  if (verification?.status !== "approved") {
+    if (payload.action === "start") return json({ error: "donations_not_verified" }, 403);
+    if (!accountId) return json({ status: "not_started" });
+  }
+
   try {
     if (!accountId) {
       const account = await stripe.accounts.create({
@@ -128,6 +140,7 @@ Deno.serve(async (req) => {
     }).eq("mosque_id", mosque.id);
 
     // donations_enabled is a protected column: service role bypasses the guard.
+    // A DB trigger keeps it false until the donation verification is approved.
     await admin.from("mosques").update({ donations_enabled: acct.charges_enabled === true }).eq("id", mosque.id);
     if (acct.charges_enabled) {
       await admin.from("mosque_donation_settings").upsert({ mosque_id: mosque.id }, { onConflict: "mosque_id", ignoreDuplicates: true });

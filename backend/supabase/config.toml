@@ -120,6 +120,9 @@ verify_jwt = true
 [functions.review-mosque]
 verify_jwt = true
 
+[functions.review-mosque-donations]
+verify_jwt = true
+
 [functions.mosque-stripe-onboarding]
 verify_jwt = true
 

@@ -455,6 +455,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get auth_connect => 'Bağlan';
 
   @override
+  String get auth_have_account_sign_in => 'Zaten hesabınız var mı? Giriş yapın';
+
+  @override
   String get auth_email_required => 'Lütfen e-postanızı girin';
 
   @override
@@ -4094,4 +4097,80 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get error_api_mosque_signature_upload_failed =>
       'Could not upload the signature.';
+
+  @override
+  String get mosque_admin_verification_title => 'Bağış doğrulaması';
+
+  @override
+  String get mosque_admin_verification_intro =>
+      'Bağış alabilmek için caminizin doğrulanmış kâr amacı gütmeyen bir kuruluş olması gerekir. Nour ekibinin incelemesi için Benevity kuruluş kimliğinizi girin.';
+
+  @override
+  String get mosque_admin_verification_open => 'Camimi doğrula';
+
+  @override
+  String get mosque_admin_verification_status_pending => 'İnceleniyor';
+
+  @override
+  String get mosque_admin_verification_status_approved => 'Doğrulandı';
+
+  @override
+  String get mosque_admin_verification_status_rejected => 'Onaylanmadı';
+
+  @override
+  String get mosque_admin_verification_pending_message =>
+      'Talebiniz inceleniyor. Karar verildiğinde bildirim alacaksınız.';
+
+  @override
+  String get mosque_admin_verification_approved_message =>
+      'Camiiniz doğrulandı. Artık bağış almak için Stripe\'ı kurabilirsiniz.';
+
+  @override
+  String get mosque_admin_verification_rejected_message =>
+      'Talebiniz onaylanmadı. Bilgilerinizi kontrol edip yeniden gönderin.';
+
+  @override
+  String get mosque_admin_verification_benevity_id =>
+      'Benevity kuruluş kimliği';
+
+  @override
+  String get mosque_admin_verification_legal_name => 'Kuruluşun yasal adı';
+
+  @override
+  String get mosque_admin_verification_certificate =>
+      'Doğrulama sertifikası bağlantısı';
+
+  @override
+  String get mosque_admin_verification_notes => 'Ek bilgiler';
+
+  @override
+  String get mosque_admin_verification_submit => 'Bağış erişimi talep et';
+
+  @override
+  String get admin_mosque_section_registrations => 'Kayıtlar';
+
+  @override
+  String get admin_mosque_section_donations => 'Bağışlar';
+
+  @override
+  String get admin_donation_empty => 'Bağış talebi yok.';
+
+  @override
+  String get admin_donation_validate => 'Onayla';
+
+  @override
+  String get admin_donation_cancel => 'Erişimi iptal et';
+
+  @override
+  String get admin_donation_reviewed => 'Bağış erişimi güncellendi.';
+
+  @override
+  String get admin_donation_stripe_ready => 'Stripe hazır';
+
+  @override
+  String get admin_donation_stripe_not_ready => 'Stripe kurulmadı';
+
+  @override
+  String get error_api_mosque_donations_not_verified =>
+      'Bağışları kurmadan önce caminizin doğrulanması gerekir.';
 }
