@@ -137,6 +137,7 @@
   "auth_otp_invalid": "6 haneli kodu girin",
   "auth_or_sign_up_with": "veya şununla",
   "auth_connect": "Bağlan",
+  "auth_have_account_sign_in": "Zaten hesabınız var mı? Giriş yapın",
   "auth_email_required": "Lütfen e-postanızı girin",
   "auth_email_invalid": "Lütfen geçerli bir e-posta girin",
   "auth_link_success": "Hesabınız bağlandı",

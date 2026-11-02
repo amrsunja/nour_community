@@ -442,6 +442,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get auth_connect => 'ربط الحساب';
 
   @override
+  String get auth_have_account_sign_in => 'لديك حساب بالفعل؟ تسجيل الدخول';
+
+  @override
   String get auth_email_required => 'يرجى إدخال بريدك الإلكتروني';
 
   @override

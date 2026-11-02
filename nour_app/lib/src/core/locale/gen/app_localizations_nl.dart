@@ -450,6 +450,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get auth_connect => 'Koppelen';
 
   @override
+  String get auth_have_account_sign_in => 'Heb je al een account? Inloggen';
+
+  @override
   String get auth_email_required => 'Voer je e-mailadres in';
 
   @override

@@ -451,6 +451,9 @@ class AppLocalizationsMs extends AppLocalizations {
   String get auth_connect => 'Sambung';
 
   @override
+  String get auth_have_account_sign_in => 'Sudah mempunyai akaun? Log masuk';
+
+  @override
   String get auth_email_required => 'Sila masukkan e-mel anda';
 
   @override

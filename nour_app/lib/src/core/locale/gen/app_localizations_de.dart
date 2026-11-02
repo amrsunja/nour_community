@@ -457,6 +457,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get auth_connect => 'Verbinden';
 
   @override
+  String get auth_have_account_sign_in => 'Du hast bereits ein Konto? Anmelden';
+
+  @override
   String get auth_email_required => 'Bitte gib deine E-Mail ein';
 
   @override

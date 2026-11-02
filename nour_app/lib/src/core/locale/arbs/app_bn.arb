@@ -137,6 +137,7 @@
   "auth_otp_invalid": "৬ সংখ্যার কোডটি লিখুন",
   "auth_or_sign_up_with": "অথবা",
   "auth_connect": "সংযুক্ত করুন",
+  "auth_have_account_sign_in": "আগে থেকেই অ্যাকাউন্ট আছে? সাইন ইন করুন",
   "auth_email_required": "অনুগ্রহ করে আপনার ইমেইল লিখুন",
   "auth_email_invalid": "অনুগ্রহ করে একটি সঠিক ইমেইল লিখুন",
   "auth_link_success": "আপনার অ্যাকাউন্ট সংযুক্ত হয়েছে",

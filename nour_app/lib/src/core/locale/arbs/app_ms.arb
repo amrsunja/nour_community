@@ -137,6 +137,7 @@
   "auth_otp_invalid": "Masukkan kod 6 digit",
   "auth_or_sign_up_with": "atau dengan",
   "auth_connect": "Sambung",
+  "auth_have_account_sign_in": "Sudah mempunyai akaun? Log masuk",
   "auth_email_required": "Sila masukkan e-mel anda",
   "auth_email_invalid": "Sila masukkan e-mel yang sah",
   "auth_link_success": "Akaun anda telah disambungkan",

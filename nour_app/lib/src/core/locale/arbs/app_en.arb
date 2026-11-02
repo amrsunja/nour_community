@@ -144,6 +144,7 @@
   "auth_otp_invalid": "Enter the 6-digit code",
   "auth_or_sign_up_with": "or with",
   "auth_connect": "Connect",
+  "auth_have_account_sign_in": "Already have an account? Sign in",
   "auth_email_required": "Please enter your email",
   "auth_email_invalid": "Please enter a valid email",
   "auth_link_success": "Your account is connected",

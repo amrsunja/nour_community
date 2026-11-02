@@ -137,6 +137,7 @@
   "auth_otp_invalid": "Введите 6-значный код",
   "auth_or_sign_up_with": "или через",
   "auth_connect": "Привязать",
+  "auth_have_account_sign_in": "Уже есть аккаунт? Войти",
   "auth_email_required": "Пожалуйста, введите вашу эл. почту",
   "auth_email_invalid": "Пожалуйста, введите корректную эл. почту",
   "auth_link_success": "Ваш аккаунт привязан",

@@ -137,6 +137,7 @@
   "auth_otp_invalid": "Gib den 6-stelligen Code ein",
   "auth_or_sign_up_with": "oder mit",
   "auth_connect": "Verbinden",
+  "auth_have_account_sign_in": "Du hast bereits ein Konto? Anmelden",
   "auth_email_required": "Bitte gib deine E-Mail ein",
   "auth_email_invalid": "Bitte gib eine gültige E-Mail ein",
   "auth_link_success": "Dein Konto ist verbunden",

@@ -944,6 +944,12 @@ abstract class AppLocalizations {
   /// **'Connect'**
   String get auth_connect;
 
+  /// No description provided for @auth_have_account_sign_in.
+  ///
+  /// In en, this message translates to:
+  /// **'Already have an account? Sign in'**
+  String get auth_have_account_sign_in;
+
   /// No description provided for @auth_email_required.
   ///
   /// In en, this message translates to:

@@ -137,6 +137,7 @@
   "auth_otp_invalid": "6 ہندسوں کا کوڈ درج کریں",
   "auth_or_sign_up_with": "یا اس کے ذریعے",
   "auth_connect": "منسلک کریں",
+  "auth_have_account_sign_in": "پہلے سے اکاؤنٹ ہے؟ سائن اِن کریں",
   "auth_email_required": "براہ کرم اپنا ای میل درج کریں",
   "auth_email_invalid": "براہ کرم درست ای میل درج کریں",
   "auth_link_success": "آپ کا اکاؤنٹ منسلک ہو گیا ہے",

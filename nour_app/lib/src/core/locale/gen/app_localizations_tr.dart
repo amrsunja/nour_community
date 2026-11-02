@@ -455,6 +455,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get auth_connect => 'Bağlan';
 
   @override
+  String get auth_have_account_sign_in => 'Zaten hesabınız var mı? Giriş yapın';
+
+  @override
   String get auth_email_required => 'Lütfen e-postanızı girin';
 
   @override

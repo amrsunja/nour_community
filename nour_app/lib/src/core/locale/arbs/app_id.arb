@@ -137,6 +137,7 @@
   "auth_otp_invalid": "Masukkan kode 6 digit",
   "auth_or_sign_up_with": "atau dengan",
   "auth_connect": "Hubungkan",
+  "auth_have_account_sign_in": "Sudah punya akun? Masuk",
   "auth_email_required": "Silakan masukkan emailmu",
   "auth_email_invalid": "Masukkan email yang valid",
   "auth_link_success": "Akunmu sudah terhubung",

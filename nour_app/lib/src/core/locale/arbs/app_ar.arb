@@ -137,6 +137,7 @@
   "auth_otp_invalid": "أدخل الرمز المكوّن من 6 أرقام",
   "auth_or_sign_up_with": "أو مع",
   "auth_connect": "ربط الحساب",
+  "auth_have_account_sign_in": "لديك حساب بالفعل؟ تسجيل الدخول",
   "auth_email_required": "يرجى إدخال بريدك الإلكتروني",
   "auth_email_invalid": "يرجى إدخال بريد إلكتروني صالح",
   "auth_link_success": "تم ربط حسابك",

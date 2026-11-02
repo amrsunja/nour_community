@@ -137,6 +137,7 @@
   "auth_otp_invalid": "Voer de 6-cijferige code in",
   "auth_or_sign_up_with": "of met",
   "auth_connect": "Koppelen",
+  "auth_have_account_sign_in": "Heb je al een account? Inloggen",
   "auth_email_required": "Voer je e-mailadres in",
   "auth_email_invalid": "Voer een geldig e-mailadres in",
   "auth_link_success": "Je account is gekoppeld",

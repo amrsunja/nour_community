@@ -452,6 +452,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get auth_connect => 'Hubungkan';
 
   @override
+  String get auth_have_account_sign_in => 'Sudah punya akun? Masuk';
+
+  @override
   String get auth_email_required => 'Silakan masukkan emailmu';
 
   @override

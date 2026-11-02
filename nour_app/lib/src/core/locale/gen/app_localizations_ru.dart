@@ -453,6 +453,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get auth_connect => 'Привязать';
 
   @override
+  String get auth_have_account_sign_in => 'Уже есть аккаунт? Войти';
+
+  @override
   String get auth_email_required => 'Пожалуйста, введите вашу эл. почту';
 
   @override
