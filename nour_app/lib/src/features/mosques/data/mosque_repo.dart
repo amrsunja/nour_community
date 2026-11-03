@@ -216,6 +216,22 @@ class MosqueRepo {
       Failure.exceptionsCatcher(() => donation.saveMyTaxProfile(profile));
 
   // Admin (P3)
+  Future<SuccessOrError<MosqueDonationVerification?>> getDonationVerification(int mosqueId) =>
+      Failure.exceptionsCatcher(() => donation.getVerification(mosqueId));
+  Future<SuccessOrError<MosqueDonationVerification>> requestDonationVerification({
+    required int mosqueId,
+    required String benevityCharityId,
+    required String legalName,
+    String? certificateUrl,
+    String? notes,
+  }) =>
+      Failure.exceptionsCatcher(() => donation.requestVerification(
+            mosqueId: mosqueId,
+            benevityCharityId: benevityCharityId,
+            legalName: legalName,
+            certificateUrl: certificateUrl,
+            notes: notes,
+          ));
   Future<SuccessOrError<MosqueStripeAccount>> getStripeAccount(int mosqueId) => Failure.exceptionsCatcher(() => donation.getStripeAccount(mosqueId));
   Future<SuccessOrError<String>> startStripeOnboarding(int mosqueId) =>
       Failure.exceptionsCatcher(() => donation.startStripeOnboarding(mosqueId));

@@ -78,6 +78,52 @@ class MosqueStripeAccount extends Equatable {
   List<Object?> get props => [accountId, status, chargesEnabled, payoutsEnabled, detailsSubmitted, currentlyDue, dashboardUrl];
 }
 
+enum MosqueDonationVerificationStatus {
+  pending,
+  approved,
+  rejected;
+
+  static MosqueDonationVerificationStatus fromString(String? v) =>
+      values.firstWhere((e) => e.name == v, orElse: () => pending);
+}
+
+/// `mosque_donation_verifications` — the mosque's request to receive donations,
+/// validated or cancelled by the Nour admin.
+class MosqueDonationVerification extends Equatable {
+  final int mosqueId;
+  final MosqueDonationVerificationStatus status;
+  final String benevityCharityId;
+  final String legalName;
+  final String? certificateUrl;
+  final String? notes;
+  final String? reviewNote;
+
+  const MosqueDonationVerification({
+    required this.mosqueId,
+    required this.status,
+    required this.benevityCharityId,
+    required this.legalName,
+    this.certificateUrl,
+    this.notes,
+    this.reviewNote,
+  });
+
+  bool get isApproved => status == MosqueDonationVerificationStatus.approved;
+
+  factory MosqueDonationVerification.fromJson(Json json) => MosqueDonationVerification(
+        mosqueId: json['mosque_id'] as int,
+        status: MosqueDonationVerificationStatus.fromString(json['status'] as String?),
+        benevityCharityId: json['benevity_charity_id'] as String? ?? '',
+        legalName: json['legal_name'] as String? ?? '',
+        certificateUrl: json['certificate_url'] as String?,
+        notes: json['notes'] as String?,
+        reviewNote: json['review_note'] as String?,
+      );
+
+  @override
+  List<Object?> get props => [mosqueId, status, benevityCharityId, legalName, certificateUrl, notes, reviewNote];
+}
+
 /// `mosque_donation_settings` — the Sadaqa card configuration (devis B2).
 class MosqueDonationSettings extends Equatable {
   final int mosqueId;

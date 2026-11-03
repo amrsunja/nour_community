@@ -7,12 +7,16 @@ import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
 import 'package:nour/src/core/providers/routing/navigation_services_provider.dart';
+import 'package:nour/src/core/routing/app_router.gr.dart';
 import 'package:nour/src/core/utils/constants/constants.dart';
 import 'package:nour/src/features/mosque_onboarding/data/datasources/mosque_onboarding_local_datasource.dart';
 
+import '../state_management/auth_provider.dart';
+
 /// First screen when there is NO session (fresh install, logged out).
-/// "Welcome to Nour" → profile type selection. A pending mosque-onboarding
-/// draft offers to resume where the manager left off.
+/// "Welcome to Nour" → profile type selection, or sign in to an existing
+/// account. A pending mosque-onboarding draft offers to resume where the
+/// manager left off.
 @RoutePage()
 class WelcomePage extends HookConsumerWidget {
   const WelcomePage({super.key});
@@ -25,6 +29,13 @@ class WelcomePage extends HookConsumerWidget {
 
     final draftFuture = useMemoized(() => ref.read(mosqueOnboardingLocalDataProvider).read());
     final draft = useFuture(draftFuture).data;
+
+    void onSignIn() {
+      // A draft left by an aborted mosque onboarding must not register a mosque
+      // when the user signs in from here.
+      ref.read(authProvider.notifier).setPendingMosqueDraft(null);
+      context.router.push(const SignInRoute());
+    }
 
     return UIGradientLinedScaffold(
       body: Padding(
@@ -80,6 +91,12 @@ class WelcomePage extends HookConsumerWidget {
               label: l10n.onboarding_lets_get_started,
               fullWidth: true,
               onTap: nav.toProfileType,
+            ),
+            const UISpace.vert(4),
+            UIButton.textual(
+              label: l10n.auth_have_account_sign_in,
+              isSmall: true,
+              onTap: onSignIn,
             ),
             const UISpace.vert(10),
           ],
