@@ -1,4 +1,7 @@
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as stripe;
 import 'package:nour/gen/assets.gen.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
@@ -201,7 +204,8 @@ class CheckoutMethodLogo extends StatelessWidget {
     final Widget mark = switch (method) {
       PaymentMethodKind.paypal => const Icon(Icons.paypal, color: Color(0xff003087), size: 26),
       PaymentMethodKind.card => const Icon(Icons.credit_card, color: Color(0xff2A5DB0), size: 26),
-      PaymentMethodKind.applePay => Image.asset(Assets.images.apple.path, width: 24, height: 24),
+      // apple.png is white (Sign in with Apple); tint it for the white square.
+      PaymentMethodKind.applePay => Image.asset(Assets.images.apple.path, width: 24, height: 24, color: UIColorsToken.black),
       PaymentMethodKind.googlePay => Image.asset(Assets.images.google.path, width: 24, height: 24),
     };
     return Container(
@@ -214,6 +218,44 @@ class CheckoutMethodLogo extends StatelessWidget {
       ),
       child: mark,
     );
+  }
+}
+
+/// Bottom-bar call to action. App Review (guideline 4.9) requires Apple Pay to
+/// be started from Apple's own button, so it replaces the gold button while
+/// Apple Pay is the selected method. The busy state keeps the gold spinner.
+class CheckoutPayButton extends StatelessWidget {
+  const CheckoutPayButton({
+    super.key,
+    required this.method,
+    required this.label,
+    required this.isBusy,
+    required this.onTap,
+    this.applePayType = stripe.PlatformButtonType.donate,
+  });
+
+  final PaymentMethodKind method;
+  final String label;
+  final bool isBusy;
+  final VoidCallback? onTap;
+  final stripe.PlatformButtonType applePayType;
+
+  @override
+  Widget build(BuildContext context) {
+    final tap = onTap;
+    if (Platform.isIOS && method == PaymentMethodKind.applePay && !isBusy && tap != null) {
+      return SizedBox(
+        width: double.infinity,
+        child: stripe.PlatformPayButton(
+          type: applePayType,
+          // White variant: the app background is dark.
+          appearance: stripe.PlatformButtonStyle.white,
+          borderRadius: 12,
+          onPressed: tap,
+        ),
+      );
+    }
+    return UIButton.primary(label: label, fullWidth: true, isBusy: isBusy, onTap: tap);
   }
 }
 

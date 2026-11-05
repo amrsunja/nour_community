@@ -19,6 +19,7 @@ import '../../data/models/tx_enums.dart';
 import '../state_management/checkout_provider.dart';
 import '../state_management/checkout_state.dart';
 import '../state_management/zakat_cart_provider.dart';
+import '../widgets/checkout_widgets.dart';
 
 /// Zakat checkout — the multi-project variant of the checkout. Reads the
 /// allocation from [zakatCartProvider] (set by the allocation sheet), charges
@@ -93,11 +94,11 @@ class ZakatCheckoutPage extends HookConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            UIButton.primary(
+            CheckoutPayButton(
+              method: state.method,
               label: state.isBusy
                   ? l10n.checkout_pay_button
                   : '${l10n.checkout_pay_button} · ${ImpactFormat.moneyPrecise(total, currency)}',
-              fullWidth: true,
               isBusy: state.isBusy,
               onTap: () => presenter.pay(
                 currency: currency,
@@ -459,8 +460,9 @@ class _MethodTile extends StatelessWidget {
         const Icon(Icons.paypal, color: Color(0xff003087), size: 26),
       PaymentMethodKind.card =>
         const Icon(Icons.credit_card, color: Color(0xff2A5DB0), size: 26),
-      PaymentMethodKind.applePay =>
-        Image.asset(Assets.images.apple.path, width: 24, height: 24),
+      // apple.png is white (Sign in with Apple); tint it for the white square.
+      PaymentMethodKind.applePay => Image.asset(Assets.images.apple.path,
+          width: 24, height: 24, color: UIColorsToken.black),
       PaymentMethodKind.googlePay =>
         Image.asset(Assets.images.google.path, width: 24, height: 24),
     };

@@ -123,11 +123,11 @@ class CheckoutPage extends HookConsumerWidget {
                   style: typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph),
                 ),
               ),
-            UIButton.primary(
+            CheckoutPayButton(
+              method: state.method,
               label: state.isBusy
                   ? l10n.checkout_pay_button
                   : '${l10n.checkout_pay_button} · ${ImpactFormat.money(total, currency)}',
-              fullWidth: true,
               isBusy: state.isBusy,
               onTap: project == null
                   ? null
