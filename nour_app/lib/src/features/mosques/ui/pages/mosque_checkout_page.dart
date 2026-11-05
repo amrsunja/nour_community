@@ -5,6 +5,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' show PlatformButtonType;
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:nour/src/core/design_system/design_system.dart';
 import 'package:nour/src/core/locale/l10n.dart';
@@ -121,9 +122,11 @@ class MosqueCheckoutPage extends HookConsumerWidget {
                         style: typo.inter.smallCaption.copyWith(color: UIColorsToken.textParagraph),
                       ),
                     ),
-                  UIButton.primary(
+                  CheckoutPayButton(
+                    method: state.method,
+                    // A membership fee is a payment, not a gift.
+                    applePayType: args.isMembership ? PlatformButtonType.plain : PlatformButtonType.donate,
                     label: state.isBusy ? l10n.checkout_pay_button : '${l10n.checkout_pay_button} · ${ImpactFormat.money(total, currency)}',
-                    fullWidth: true,
                     isBusy: state.isBusy,
                     onTap: mosque == null ? null : () => presenter.pay(currency: currency, label: title),
                   ),
